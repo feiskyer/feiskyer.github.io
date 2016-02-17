@@ -1,0 +1,167 @@
+layout: false
+---
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><!-- <meta name="baidu-site-verification" content="707024a76f8f40b549f07f478abab237"/> -->
+<title>初探赔率问题</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="title" content="初探赔率问题"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2014-01-02T19:58+0800"/>
+<meta name="author" content="dirtysalt"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style><link rel="shortcut icon" href="http://blog.com/css/favicon.ico" /> <link rel="stylesheet" type="text/css" href="../css/site.css" />
+
+
+</head>
+<body><!-- <div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare"><a class="bds_tsina"></a><span class="bds_more"></span><a class="shareCount"></a></div> --><!-- Place this tag where you want the +1 button to render --><!-- <g:plusone annotation="inline"></g:plusone> -->
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">初探赔率问题</h1>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 get-to-know-the-odds-problem</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> get-to-know-the-odds-problem</h2>
+<div class="outline-text-2" id="text-1">
+
+<p>NOTE（blog）：2012.6.14
+</p>
+<p>
+昨天大家说做一个赌球赔率系统，晚上Hai教我了一些基本的东西。
+</p>
+<p>
+所有这里讨论的赔率问题都是0-1模型的，就是众多结果中的话只有一个是成功的，其他都是失败的。好比小组赛Germany vs. Spanish,我们可以设置不同的盘口来符合0-1模型。比如：
+</p><ul>
+<li>win draw lose，
+</li>
+<li>Germany净胜球超过3个, &gt;1 &amp;&amp; &lt;=3, &lt;=1
+</li>
+</ul>
+
+
+<p>
+考虑下面有N个盘口，各个盘口的赔率分别是1:b{i}.如果庄家不抽水的话，那么赔率的倒数相加是=1的，而每个赔率的倒数就是这个盘口出现的概率。比如今天晚上意大利 vs. 克罗地亚，赔率是
+</p><ul>
+<li>win 2.22
+</li>
+<li>draw 3.16
+</li>
+<li>lose 3.30
+</li>
+</ul>
+
+<p>折合计算概率就是
+</p><ul>
+<li>win 0.45
+</li>
+<li>draw 0.32
+</li>
+<li>lose 0.3
+</li>
+</ul>
+
+<p>概率加起来0.45+0.32+0.3=1.07(&gt;1说明庄家在抽水，越大说明抽水越多).
+</p>
+<p>
+如果我们知道各个盘口的金额的话，那么可以很容易地设计一个赔率让庄家抽水，可以参看这篇文章 <a href="http://bbs.178.com/viewthread.php?tid=329140">http://bbs.178.com/viewthread.php?tid=329140</a> 。方法非常简单，我们考虑两个ab球队，分别赌注N,M.假设我们希望抽水K的话，
+</p><ul>
+<li>如果a win,那么我们希望只是输掉(M-K).所以赔率应该是1:1+(M-K)/N
+</li>
+<li>如果b win,那么我们希望只是输掉(N-K).所以赔率应该是1:1+(N-K)/M
+</li>
+</ul>
+
+<p>但是赔率至少应该有得赚，所以M-K&gt;0 &amp;&amp; N-K&gt;0.因此K
+</p>
+
+<hr/>
+
+<p>
+但是现实中存在下面一些问题：
+</p>
+<ul>
+<li>如何bootstrap呢?（设定初始赔率）。NOTE（blog）：我们可以首先计算出双方获胜概率p,计算出赔率1/p.为了抽水了降低赔率比如1/p*0.9.这样最后概率计算出来就会是1/0.9了。
+</li>
+<li>如果某一方没有压钱的话，那么相当于是庄家自己在赌博。
+</li>
+<li>现实生活中是先看到赔率然后再下手的，下手之后这笔钱对应的赔率应该是不变的。而我们设计的模型是假设钱都已经到位了之后，我们再来定义赔率。
+</li>
+</ul>
+
+
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="date">Date: 2014-01-02T19:58+0800</p>
+<p class="creator"><a href="http://orgmode.org">Org</a> version 7.9.2 with <a href="http://www.gnu.org/software/emacs/">Emacs</a> version 23</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
+</div>
+<!-- Baidu Analytics BEGIN --><script type="text/javascript">var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F54a700ad7035f6e485eaf2300641e7e9' type='text/javascript'%3E%3C/script%3E"));</script><!-- Baidu Analytics END --><!-- Google Analytics BEGIN --><!-- <script type="text/javascript">  var _gaq = _gaq || [];  _gaq.push(['_setAccount', 'UA-31377772-1']);  _gaq.push(['_trackPageview']);  (function() {    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);  })();</script> --><!-- Google Analytics END --><!-- Baidu Button BEGIN --><!-- <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6762177" ></script><script type="text/javascript" id="bdshell_js"></script><script type="text/javascript"> document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)</script> --><!-- Baidu Button END --><!-- G+ BEGIN --><!-- Place this render call where appropriate --><!-- <script type="text/javascript">  (function() {    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;    po.src = 'https://apis.google.com/js/plusone.js';    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);  })();</script> --><!-- G+ END --><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script type="text/javascript">/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * *//* required: replace example with your forum shortname  */var disqus_shortname = 'feiskyblog';var disqus_identifier = 'note/get-to-know-the-odds-problem.html';var disqus_title = 'note/get-to-know-the-odds-problem.html';var disqus_url = 'http://blog.com/note/get-to-know-the-odds-problem.html';/* * * DON'T EDIT BELOW THIS LINE * * */(function() {var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a><!-- DISQUS END --></body>
+</html>

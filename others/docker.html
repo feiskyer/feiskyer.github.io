@@ -1,0 +1,189 @@
+layout: false
+---
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>html { font-size: 100%; overflow-y: scroll; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+
+body{
+  color:#444;
+  font-family:Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman',
+              "Hiragino Sans GB", "STXihei", "微软雅黑", serif;
+  font-size:12px;
+  line-height:1.5em;
+  background:#fefefe;
+  width: 45em;
+  margin: 10px auto;
+  padding: 1em;
+  outline: 1300px solid #FAFAFA;
+}
+
+a{ color: #0645ad; text-decoration:none;}
+a:visited{ color: #0b0080; }
+a:hover{ color: #06e; }
+a:active{ color:#faa700; }
+a:focus{ outline: thin dotted; }
+a:hover, a:active{ outline: 0; }
+
+span.backtick {
+  border:1px solid #EAEAEA;
+  border-radius:3px;
+  background:#F8F8F8;
+  padding:0 3px 0 3px;
+}
+
+::-moz-selection{background:rgba(255,255,0,0.3);color:#000}
+::selection{background:rgba(255,255,0,0.3);color:#000}
+
+a::-moz-selection{background:rgba(255,255,0,0.3);color:#0645ad}
+a::selection{background:rgba(255,255,0,0.3);color:#0645ad}
+
+p{
+margin:1em 0;
+}
+
+img{
+max-width:100%;
+}
+
+h1,h2,h3,h4,h5,h6{
+font-weight:normal;
+color:#111;
+line-height:1em;
+}
+h4,h5,h6{ font-weight: bold; }
+h1{ font-size:2.5em; }
+h2{ font-size:2em; border-bottom:1px solid silver; padding-bottom: 5px; }
+h3{ font-size:1.5em; }
+h4{ font-size:1.2em; }
+h5{ font-size:1em; }
+h6{ font-size:0.9em; }
+
+blockquote{
+color:#666666;
+margin:0;
+padding-left: 3em;
+border-left: 0.5em #EEE solid;
+}
+hr { display: block; height: 2px; border: 0; border-top: 1px solid #aaa;border-bottom: 1px solid #eee; margin: 1em 0; padding: 0; }
+
+
+pre , code, kbd, samp { 
+  color: #000; 
+  font-family: monospace; 
+  font-size: 0.88em; 
+  border-radius:3px;
+  background-color: #F8F8F8;
+  border: 1px solid #CCC; 
+}
+pre { white-space: pre; white-space: pre-wrap; word-wrap: break-word; padding: 5px 12px;}
+pre code { border: 0px !important; padding: 0;}
+code { padding: 0 3px 0 3px; }
+
+b, strong { font-weight: bold; }
+
+dfn { font-style: italic; }
+
+ins { background: #ff9; color: #000; text-decoration: none; }
+
+mark { background: #ff0; color: #000; font-style: italic; font-weight: bold; }
+
+sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
+sup { top: -0.5em; }
+sub { bottom: -0.25em; }
+
+ul, ol { margin: 1em 0; padding: 0 0 0 2em; }
+li p:last-child { margin:0 }
+dd { margin: 0 0 0 2em; }
+
+img { border: 0; -ms-interpolation-mode: bicubic; vertical-align: middle; }
+
+table { border-collapse: collapse; border-spacing: 0; }
+td { vertical-align: top; }
+
+@media only screen and (min-width: 480px) {
+body{font-size:14px;}
+}
+
+@media only screen and (min-width: 768px) {
+body{font-size:16px;}
+}
+
+@media print {
+  * { background: transparent !important; color: black !important; filter:none !important; -ms-filter: none !important; }
+  body{font-size:12pt; max-width:100%; outline:none;}
+  a, a:visited { text-decoration: underline; }
+  hr { height: 1px; border:0; border-bottom:1px solid black; }
+  a[href]:after { content: " (" attr(href) ")"; }
+  abbr[title]:after { content: " (" attr(title) ")"; }
+  .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after { content: ""; }
+  pre, blockquote { border: 1px solid #999; padding-right: 1em; page-break-inside: avoid; }
+  tr, img { page-break-inside: avoid; }
+  img { max-width: 100% !important; }
+  @page :left { margin: 15mm 20mm 15mm 10mm; }
+  @page :right { margin: 15mm 10mm 15mm 20mm; }
+  p, h2, h3 { orphans: 3; widows: 3; }
+  h2, h3 { page-break-after: avoid; }
+}
+</style><title>docker</title></head><body><h3 id="_1">简介</h3>
+<p>Docker 是 dotCloud 最近几个月刚宣布的开源引擎，旨在提供一种应用程序的自动化部署解决方案，简单的说就是，在 Linux 系统上迅速创建一个容器（类似虚拟机）并在容器上部署和运行应用程序，并通过配置文件可以轻松实现应用程序的自动化安装、部署和升级，非常方便。因为使用了容器，所以可以很方便的把生产环境和开发环境分开，互不影响，这是 docker 最普遍的一个玩法。更多的玩法还有大规模 web 应用、数据库部署、持续部署、集群、测试环境、面向服务的云计算、虚拟桌面 VDI 等等。</p>
+<p>Docker 使用 Go 语言编写，用 cgroup 实现资源隔离，容器技术采用 LXC. LXC 已经足够成熟，被多个主流 PaaS 服务商采用（比如 dotCloud），国内的一些互联网公司也在用（比如腾讯）。虽然都是企图解决自动化部署方面的问题，Docker 的解决方式有别于我们常提到的 Puppet/Chef，他们虽然走的是不同的路，但也可以拿来一起用。</p>
+<h3 id="ubuntu-1204">安装 (ubuntu 12.04)</h3>
+<p>Due to a bug in LXC, Docker works best on the 3.8 kernel. Precise comes with a 3.2 kernel, so we need to upgrade it. The kernel you’ll install when following these steps comes with AUFS built in. We also include the generic headers to enable packages that depend on them, like ZFS and the VirtualBox guest additions.</p>
+<pre><code>sudo apt-get install python-software-properties
+sudo apt-get install linux-image-generic-lts-raring linux-headers-generic-lts-raring
+sudo reboot
+
+</code></pre>
+
+<p>添加docker源并安装docker</p>
+<pre><code>sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 36A1D7869245C8950F966E92D8576A8BA88D21E9
+sudo sh -c &quot;echo deb http://get.docker.io/ubuntu docker main &gt; /etc/apt/sources.list.d/docker.list&quot;
+sudo apt-get update
+sudo apt-get install lxc-docker
+</code></pre>
+
+<p>上面两步也可以替换成执行<code>curl -s https://get.docker.io/ubuntu/ | sudo sh</code>，更简单。</p>
+<h3 id="_2">创建容器</h3>
+<p>首先从<a href="https://index.docker.io/">https://index.docker.io/</a>下载一个预定义的镜像</p>
+<pre><code>sudo docker pull ubuntu
+</code></pre>
+
+<p>启动一个容器：</p>
+<pre><code>sudo docker run -i -t ubuntu /bin/bash
+</code></pre>
+
+<h3 id="starting-a-long-running-worker-process">Starting a long-running worker process</h3>
+<pre><code># Start a very useful long-running process
+JOB=$(sudo docker run -d ubuntu /bin/sh -c &quot;while true; do echo Hello world; sleep 1; done&quot;)
+
+# Collect the output of the job so far
+sudo docker logs $JOB
+
+# Kill the job
+sudo docker kill $JOB
+</code></pre>
+
+<h3 id="bind-a-service-on-a-tcp-port">Bind a service on a TCP port</h3>
+<pre><code># Bind port 4444 of this container, and tell netcat to listen on it
+JOB=$(sudo docker run -d -p 4444 ubuntu:12.10 /bin/nc -l 4444)
+
+# Which public port is NATed to my container?
+PORT=$(sudo docker port $JOB 4444 | awk -F: '{ print $2 }')
+
+# Connect to the public port
+echo hello world | nc 127.0.0.1 $PORT
+
+# Verify that the network connection worked
+echo &quot;Daemon received: $(sudo docker logs $JOB)&quot;
+</code></pre>
+
+<h3 id="committing-saving-a-container-state">Committing (saving) a container state¶</h3>
+<p>Save your containers state to a container image, so the state can be re-used.</p>
+<p>When you commit your container only the differences between the image the container was created from and the current state of the container will be stored (as a diff). See which images you already have using the docker images command.</p>
+<pre><code># Commit your container to a new named image
+sudo docker commit &lt;container_id&gt; &lt;some_name&gt;
+
+# List your containers
+sudo docker images
+</code></pre>
+
+<p>You now have a image state from which you can create new instances.</p>
+<p>更多功能见<a href="http://docs.docker.io/">http://docs.docker.io/</a></p></body></html>

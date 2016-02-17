@@ -1,0 +1,240 @@
+layout: false
+---
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><!-- <meta name="baidu-site-verification" content="707024a76f8f40b549f07f478abab237"/> -->
+<title>azkaban</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="title" content="azkaban"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2014-01-02T19:57+0800"/>
+<meta name="author" content="dirtysalt"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style><link rel="shortcut icon" href="http://blog.com/css/favicon.ico" /> <link rel="stylesheet" type="text/css" href="./css/site.css" />
+
+
+</head>
+<body><!-- <div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare"><a class="bds_tsina"></a><span class="bds_more"></span><a class="shareCount"></a></div> --><!-- Place this tag where you want the +1 button to render --><!-- <g:plusone annotation="inline"></g:plusone> -->
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">azkaban</h1>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 azkaban</a>
+<ul>
+<li><a href="#sec-1-1">1.1 Overview</a></li>
+<li><a href="#sec-1-2">1.2 TroubleShooting</a>
+<ul>
+<li><a href="#sec-1-2-1">1.2.1 Getting Started</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> azkaban</h2>
+<div class="outline-text-2" id="text-1">
+
+<ul>
+<li><a href="http://azkaban.github.io/azkaban2/">http://azkaban.github.io/azkaban2/</a>
+</li>
+</ul>
+
+
+
+</div>
+
+<div id="outline-container-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Overview</h3>
+<div class="outline-text-3" id="text-1-1">
+
+<p>Azkaban consists of 3 key components:
+</p><ul>
+<li>Relational Database (MySQL)
+<ul>
+<li>How does AzkabanWebServer use the DB?
+<ul>
+<li>Project Management - The projects, the permissions on the projects as well as the uploaded files.
+</li>
+<li>Executing Flow State - Keep track of executing flows and which Executor is running them.
+</li>
+<li>Previous Flow/Jobs - Search through previous executions of jobs and flows as well as access their log files.
+</li>
+<li>Scheduler - Keeps the state of the scheduled jobs.
+</li>
+<li>SLA - Keeps all the sla rules 
+</li>
+</ul>
+
+</li>
+<li>How does the AzkabanExecutorServer use the DB?
+<ul>
+<li>Access the project - Retrieves project files from the db.
+</li>
+<li>Executing Flows/Jobs - Retrieves and updates data for flows and that are executing
+</li>
+<li>Logs - Stores the output logs for jobs and flows into the db.（存储输出日志）
+</li>
+<li>Interflow dependency - If a flow is running on a different executor, it will take state from the DB.
+</li>
+</ul>
+
+</li>
+<li>There is no reason why MySQL was chosen except that it is a widely used DB. We are looking to implement compatibility with other DB’s, although the search requirement on historically running jobs benefits from a relational data store.（关系数据库可以比较方便地来做查询。对于这种工作流系统数据量不大但是对于各种形式的query比较多的系统，关系数据库确实是比较合适的选择）
+</li>
+</ul>
+
+</li>
+<li>AzkabanWebServer
+<ul>
+<li>The AzkabanWebServer is the main manager to all of Azkaban. It handles project management, authentication, scheduler, and monitoring of executions. It also serves as the web user interface.
+</li>
+<li>Using Azkaban is easy. Azkaban uses *.job key-value property files to define individual tasks in a work flow, and the dependencies property to define the dependency chain of the jobs. These job files and associated code can be archived into a *.zip and uploaded through the web server through the Azkaban UI or through curl.（单个zip描述的是project，下面可以有许多jobs，它们之间存在dependencies.每个job有对应的.job key-value文件来描）
+</li>
+</ul>
+
+</li>
+<li>AzkabanExecutorServer
+<ul>
+<li>Previous versions of Azkaban had both the AzkabanWebServer and the AzkabanExecutorServer features in a single server. The Executor has since been separated into its own server. There were several reasons for splitting these services: 
+</li>
+<li>we will soon be able to scale the number of executions and fall back on operating Executors if one fails. （扩展性）
+<ul>
+<li>Also, we are able to roll our upgrades of Azkaban with minimal impact on the users. As Azkaban’s usage grew, we found that upgrading Azkaban became increasingly more difficult as all times of the day became ‘peak’.（升级维护）
+</li>
+</ul>
+
+</li>
+</ul>
+
+</li>
+</ul>
+
+
+<p>
+<img src="./images/azkaban2overviewdesign.png"  alt="./images/azkaban2overviewdesign.png" />
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> TroubleShooting</h3>
+<div class="outline-text-3" id="text-1-2">
+
+
+</div>
+
+<div id="outline-container-1-2-1" class="outline-4">
+<h4 id="sec-1-2-1"><span class="section-number-4">1.2.1</span> Getting Started</h4>
+<div class="outline-text-4" id="text-1-2-1">
+
+<p><a href="http://azkaban.github.io/azkaban2/documents/2.1/">http://azkaban.github.io/azkaban2/documents/2.1/</a> 文档描述的还是比较详细的
+</p>
+<ul>
+<li>配置SSL的时候，最好使用 <a href="http://docs.codehaus.org/display/JETTY/How+to+configure+SSL">http://docs.codehaus.org/display/JETTY/How+to+configure+SSL</a> 链接里面keytool工具，一步到位
+</li>
+<li>default.timezone.id=Asia/Shanghai
+</li>
+<li>Setup Azkaban Plugins. 
+<ul>
+<li>没有正确加载Pig和Hive插件。因为暂时没有必要使用，所以索性删除对应的目录。
+</li>
+<li>plugins/jobtypes/common.properties 填写hadoop.home
+</li>
+</ul>
+
+</li>
+<li>启动webserver/executorserver脚本.
+<ul>
+<li>头部添加#!/bin/bash（似乎没有办法在zsh下面工作）
+</li>
+<li>basedir=$1 &ndash;&gt; basedir=.（不然就需要使用start.sh . 这样的方式启动）
+</li>
+<li>tmpdir= &ndash;&gt; tmpdir=./temp（不然会因为缺少tmpdir变量报错）
+</li>
+</ul>
+
+</li>
+<li>zip -r project.zip project # 将project打包成为.zip文件
+</li>
+<li>PDT比CST慢16个小时，UTC比CST慢8个小时。这个在填写Schedule时候可能需要换算。
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="date">Date: 2014-01-02T19:57+0800</p>
+<p class="creator"><a href="http://orgmode.org">Org</a> version 7.9.2 with <a href="http://www.gnu.org/software/emacs/">Emacs</a> version 23</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
+</div>
+<!-- Baidu Analytics BEGIN --><script type="text/javascript">var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F54a700ad7035f6e485eaf2300641e7e9' type='text/javascript'%3E%3C/script%3E"));</script><!-- Baidu Analytics END --><!-- Google Analytics BEGIN --><!-- <script type="text/javascript">  var _gaq = _gaq || [];  _gaq.push(['_setAccount', 'UA-31377772-1']);  _gaq.push(['_trackPageview']);  (function() {    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);  })();</script> --><!-- Google Analytics END --><!-- Baidu Button BEGIN --><!-- <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6762177" ></script><script type="text/javascript" id="bdshell_js"></script><script type="text/javascript"> document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)</script> --><!-- Baidu Button END --><!-- G+ BEGIN --><!-- Place this render call where appropriate --><!-- <script type="text/javascript">  (function() {    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;    po.src = 'https://apis.google.com/js/plusone.js';    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);  })();</script> --><!-- G+ END --><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script type="text/javascript">/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * *//* required: replace example with your forum shortname  */var disqus_shortname = 'feiskyblog';var disqus_identifier = 'azkaban.html';var disqus_title = 'azkaban.html';var disqus_url = 'http://blog.com/azkaban.html';/* * * DON'T EDIT BELOW THIS LINE * * */(function() {var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a><!-- DISQUS END --></body>
+</html>

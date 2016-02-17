@@ -1,0 +1,306 @@
+layout: false
+---
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><!-- <meta name="baidu-site-verification" content="707024a76f8f40b549f07f478abab237"/> -->
+<title>cpu</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="title" content="cpu"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2014-01-02T19:57+0800"/>
+<meta name="author" content="dirtysalt"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style><link rel="shortcut icon" href="http://blog.com/css/favicon.ico" /> <link rel="stylesheet" type="text/css" href="./css/site.css" />
+
+
+</head>
+<body><!-- <div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare"><a class="bds_tsina"></a><span class="bds_more"></span><a class="shareCount"></a></div> --><!-- Place this tag where you want the +1 button to render --><!-- <g:plusone annotation="inline"></g:plusone> -->
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">cpu</h1>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 cpu</a>
+<ul>
+<li><a href="#sec-1-1">1.1 超线程，双核和双路CPU</a>
+<ul>
+<li><a href="#sec-1-1-1">1.1.1 超线程</a></li>
+<li><a href="#sec-1-1-2">1.1.2 双核心</a></li>
+<li><a href="#sec-1-1-3">1.1.3 双CPU(双路CPU)</a></li>
+<li><a href="#sec-1-1-4">1.1.4 总结</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-2">1.2 x86 Faces Unexpected RISC Competition</a></li>
+<li><a href="#sec-1-3">1.3 related syslog</a>
+<ul>
+<li><a href="#sec-1-3-1">1.3.1 Core power limit notifaction</a></li>
+<li><a href="#sec-1-3-2">1.3.2 Package power limit notification</a></li>
+<li><a href="#sec-1-3-3">1.3.3 below trip temperature. Throttling disabled</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> cpu</h2>
+<div class="outline-text-2" id="text-1">
+
+
+</div>
+
+<div id="outline-container-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> 超线程，双核和双路CPU</h3>
+<div class="outline-text-3" id="text-1-1">
+
+<p><a href="http://blog.csai.cn/user1/249/archives/2006/6872.html">http://blog.csai.cn/user1/249/archives/2006/6872.html</a>
+</p>
+
+</div>
+
+<div id="outline-container-1-1-1" class="outline-4">
+<h4 id="sec-1-1-1"><span class="section-number-4">1.1.1</span> 超线程</h4>
+<div class="outline-text-4" id="text-1-1-1">
+
+
+<p>
+超线程(Hyperthreading Technology)技术就是通过采用特殊的硬件指令，可以把两个逻辑内核模拟成两个物理芯片，在单处理器中实现线程级的并行计算，同时在相应的软硬件的支持下大幅度的提高运行效能，从而实现在单处理器上模拟双处理器的效能。其实，从实质上说，超线程是一种可以将CPU内部暂时闲置处理资源充分“调动” 起来的技术。“超线程”的实现条件需要CPU的支持，主板芯片组和主板BIOS的支持，另外操作系统和应用软件方面也需得到应有的支持。说白了超线程就是通过软件的手段模拟出双个逻辑内核进行工作，运行效果尽量接近两个物理核心的性能。不过超线程也存在着致命的不足，首先他在windows 2000下无法使用，因为WIN2000不支持超线程，只有WIN XP以上的系统才可以使用HT。另外由于HT是软件模拟出两个核心，所以模拟出来后的两个核心是分享物理缓存的，从而使物理缓存大小减半，另外因为超线程技术是对多任务处理有优势，因此当运行单线程运用软件时，超线程技术将会降低系统性能，尤其在多线程操作系统运行单线程软件时将容易出现此问题。
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-1-2" class="outline-4">
+<h4 id="sec-1-1-2"><span class="section-number-4">1.1.2</span> 双核心</h4>
+<div class="outline-text-4" id="text-1-1-2">
+
+
+<p>
+所谓双核心处理器，简单地说就是在一块CPU基板上集成两个处理器核心，并通过并行总线将各处理器核心连接起来。双核心并不是一个新概念，而只是CMP(Chip Multi Processors ，单芯片多处理器) 中最基本、最简单、最容易实现的一种类型。换言之双核心处理器就是基于单个半导体的一个处理器上拥有两个一样功能的处理器核心。这样就将两个物理处理器核心整合入一个核中，在任务繁重时，两个核心能相互配合，让CPU发挥最大效力。两个能互补的核心运行起来性能是非常不错的，例如使用Intel奔腾D双核处理器就相当于你有了两台采用奔腾4的主机。如果说超线程是用软件来模拟出双核的效果，那么现在所说的双核心就是真正意义上的两个核心。他弥补了超线程适用系统比较少的缺点，可以广泛用于windows操作系统的多个版本;他还有效的解决了双核运算中出现的缓存分离与数据冲突错误问题。
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-1-3" class="outline-4">
+<h4 id="sec-1-1-3"><span class="section-number-4">1.1.3</span> 双CPU(双路CPU)</h4>
+<div class="outline-text-4" id="text-1-1-3">
+
+
+<p>
+前面所说的双核心是在一个处理器里拥有两个处理器核心，核心是两个，但是其他硬件还都是两个核心在共同拥有，而双CPU则是真正意义上的双核心，不光是处理器核心是两个，其他例如缓存等硬件配置也都是双份的。
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-1-4" class="outline-4">
+<h4 id="sec-1-1-4"><span class="section-number-4">1.1.4</span> 总结</h4>
+<div class="outline-text-4" id="text-1-1-4">
+
+
+<p>
+单处理器内部有很多资源是不会同时使用的，比如浮点逻辑单元FPU与算术逻辑单元ALU。如果线程里面线程A在进行浮点运算，而线程B在进行整数运算的话，两个线程使用超线程技术同时运行，就可以充分利用单处理器的资源了。按照编程术语来说的话，超线程称为并发(Concurrency). 双核心是有两个处理器核心，两份FPU以及ALU以及CU(Control Unit)，在真正执行起来的话也是两个处理器都同时执行。但是它们共享一个缓存，使用同一条总线访问内存，而在这个时候需要串行访问。按照编程术语来说的话，双核称为带有局部冲突的并行(Parallelisim with local contention). 双路CPU就是真正的两个处理器核心以及核心外围设施都相互独立。同样按照编程术语来说的话，双路称为无冲突并行(Parallelism without contention).
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> x86 Faces Unexpected RISC Competition</h3>
+<div class="outline-text-3" id="text-1-2">
+
+<p><a href="http://www.drdobbs.com/architecture-and-design/231903053">http://www.drdobbs.com/architecture-and-design/231903053</a>
+</p>
+<p>
+科普性文章。x86是CISC指令集的CPU(AMD也是)。在很早之前RISC和CISC是共存的，RISC性能并行性都比较好，主要用于大型机以及高性能计算方面，而CISC通常只用于桌面和终端系统上。但是随着x86和AMD在CPU性能方面不断地改进以及市场推广，加上GPU对于图形显示方面的加强，RISC似乎失去了永无之地。但是随着移动设备的崛起，突然有一种RISC指令集的CPU异常地适用，就是ARM，优势主要体现在低功耗以及功耗比方面。然后x86也开始关注到了这块市场，推出了Atom处理器，但是在功耗和功耗比方面和ARM依然相差很远。
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> related syslog</h3>
+<div class="outline-text-3" id="text-1-3">
+
+
+</div>
+
+<div id="outline-container-1-3-1" class="outline-4">
+<h4 id="sec-1-3-1"><span class="section-number-4">1.3.1</span> Core power limit notifaction</h4>
+<div class="outline-text-4" id="text-1-3-1">
+
+
+
+
+<pre class="example">May 12 12:29:12 dp57 kernel: CPU1: Core power limit notification (total events = 42322)
+May 12 12:29:12 dp57 kernel: CPU17: Core power limit notification (total events = 42321)
+May 12 12:29:12 dp57 kernel: CPU5: Core power limit notification (total events = 42328)
+May 12 12:29:12 dp57 kernel: CPU21: Core power limit notification (total events = 42327)
+May 12 12:29:12 dp57 kernel: CPU19: Core power limit notification (total events = 42327)
+May 12 12:29:12 dp57 kernel: CPU3: Core power limit notification (total events = 42327)
+May 12 12:29:12 dp57 kernel: CPU7: Core power limit notification (total events = 42323)
+May 12 12:29:12 dp57 kernel: CPU23: Core power limit notification (total events = 42322)
+May 12 12:29:12 dp57 kernel: CPU25: Core power limit notification (total events = 42226)
+May 12 12:29:12 dp57 kernel: CPU9: Core power limit notification (total events = 42222)
+May 12 12:29:12 dp57 kernel: CPU11: Core power limit notification (total events = 42222)
+May 12 12:29:12 dp57 kernel: CPU27: Core power limit notification (total events = 42219)
+May 12 12:29:12 dp57 kernel: CPU13: Core power limit notification (total events = 42321)
+May 12 12:29:12 dp57 kernel: CPU29: Core power limit notification (total events = 42307)
+May 12 12:29:12 dp57 kernel: CPU15: Core power limit notification (total events = 42556)
+May 12 12:29:12 dp57 kernel: CPU31: Core power limit notification (total events = 42550)
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-3-2" class="outline-4">
+<h4 id="sec-1-3-2"><span class="section-number-4">1.3.2</span> Package power limit notification</h4>
+<div class="outline-text-4" id="text-1-3-2">
+
+
+
+
+<pre class="example">May 12 12:29:12 dp57 kernel: CPU17: Package power limit notification (total events = 42377)
+May 12 12:29:12 dp57 kernel: CPU5: Package power limit notification (total events = 42612)
+May 12 12:29:12 dp57 kernel: CPU21: Package power limit notification (total events = 42615)
+May 12 12:29:12 dp57 kernel: CPU19: Package power limit notification (total events = 42553)
+May 12 12:29:12 dp57 kernel: CPU3: Package power limit notification (total events = 42543)
+May 12 12:29:12 dp57 kernel: CPU7: Package power limit notification (total events = 42661)
+May 12 12:29:12 dp57 kernel: CPU23: Package power limit notification (total events = 42667)
+May 12 12:29:12 dp57 kernel: CPU25: Package power limit notification (total events = 42707)
+May 12 12:29:12 dp57 kernel: CPU9: Package power limit notification (total events = 42706)
+May 12 12:29:12 dp57 kernel: CPU11: Package power limit notification (total events = 42705)
+May 12 12:29:12 dp57 kernel: CPU27: Package power limit notification (total events = 42731)
+May 12 12:29:12 dp57 kernel: CPU13: Package power limit notification (total events = 42619)
+May 12 12:29:12 dp57 kernel: CPU29: Package power limit notification (total events = 42627)
+May 12 12:29:12 dp57 kernel: CPU15: Package power limit notification (total events = 42623)
+May 12 12:29:12 dp57 kernel: CPU31: Package power limit notification (total events = 42644)
+May 12 12:29:12 dp57 kernel: CPU1: Package power limit notification (total events = 42360
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-3-3" class="outline-4">
+<h4 id="sec-1-3-3"><span class="section-number-4">1.3.3</span> below trip temperature. Throttling disabled</h4>
+<div class="outline-text-4" id="text-1-3-3">
+
+
+
+
+<pre class="example">May 12 12:29:40 dp57 mcelog: Processor 17 below trip temperature. Throttling disabled
+May 12 12:29:40 dp57 mcelog: Processor 5 below trip temperature. Throttling disabled
+May 12 12:29:40 dp57 mcelog: Processor 21 below trip temperature. Throttling disabled
+May 12 12:29:40 dp57 mcelog: Processor 19 below trip temperature. Throttling disabled
+May 12 12:29:40 dp57 mcelog: Processor 3 below trip temperature. Throttling disabled
+May 12 12:29:40 dp57 mcelog: Processor 7 below trip temperature. Throttling disabled
+May 12 12:29:40 dp57 mcelog: Processor 23 below trip temperature. Throttling disabled
+May 12 12:29:40 dp57 mcelog: Processor 25 below trip temperature. Throttling disabled
+May 12 12:29:40 dp57 mcelog: Processor 9 below trip temperature. Throttling disabled
+May 12 12:29:40 dp57 mcelog: Processor 11 below trip temperature. Throttling disabled
+May 12 12:29:40 dp57 mcelog: Processor 27 below trip temperature. Throttling disabled
+May 12 12:29:40 dp57 mcelog: Processor 13 below trip temperature. Throttling disabled
+May 12 12:29:40 dp57 mcelog: Processor 29 below trip temperature. Throttling disabled
+May 12 12:29:40 dp57 mcelog: Processor 15 below trip temperature. Throttling disabled
+May 12 12:29:40 dp57 mcelog: Processor 17 below trip temperature. Throttling disabled
+May 12 12:29:40 dp57 mcelog: Processor 31 below trip temperature. Throttling disabled
+May 12 12:29:40 dp57 mcelog: Processor 5 below trip temperature. Throttling disabled
+May 12 12:29:40 dp57 mcelog: Processor 21 below trip temperature. Throttling disabled
+May 12 12:29:40 dp57 mcelog: Processor 19 below trip temperature. Throttling disabled
+May 12 12:29:40 dp57 mcelog: Processor 3 below trip temperature. Throttling disabled
+May 12 12:29:40 dp57 mcelog: Processor 7 below trip temperature. Throttling disabled
+May 12 12:29:40 dp57 mcelog: Processor 23 below trip temperature. Throttling disabled
+May 12 12:29:40 dp57 mcelog: Processor 25 below trip temperature. Throttling disabled
+May 12 12:29:40 dp57 mcelog: Processor 9 below trip temperature. Throttling disabled
+May 12 12:29:40 dp57 mcelog: Processor 11 below trip temperature. Throttling disabled
+May 12 12:29:40 dp57 mcelog: Processor 27 below trip temperature. Throttling disabled
+May 12 12:29:40 dp57 mcelog: Processor 13 below trip temperature. Throttling disabled
+May 12 12:29:40 dp57 mcelog: Processor 29 below trip temperature. Throttling disabled
+May 12 12:29:40 dp57 mcelog: Processor 15 below trip temperature. Throttling disabled
+May 12 12:29:40 dp57 mcelog: Processor 31 below trip temperature. Throttling disabled
+May 12 12:29:40 dp57 mcelog: Processor 1 below trip temperature. Throttling disabled
+May 12 12:29:40 dp57 mcelog: Processor 1 below trip temperature. Throttling disabled
+</pre>
+
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="date">Date: 2014-01-02T19:57+0800</p>
+<p class="creator"><a href="http://orgmode.org">Org</a> version 7.9.2 with <a href="http://www.gnu.org/software/emacs/">Emacs</a> version 23</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
+</div>
+<!-- Baidu Analytics BEGIN --><script type="text/javascript">var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F54a700ad7035f6e485eaf2300641e7e9' type='text/javascript'%3E%3C/script%3E"));</script><!-- Baidu Analytics END --><!-- Google Analytics BEGIN --><!-- <script type="text/javascript">  var _gaq = _gaq || [];  _gaq.push(['_setAccount', 'UA-31377772-1']);  _gaq.push(['_trackPageview']);  (function() {    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);  })();</script> --><!-- Google Analytics END --><!-- Baidu Button BEGIN --><!-- <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6762177" ></script><script type="text/javascript" id="bdshell_js"></script><script type="text/javascript"> document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)</script> --><!-- Baidu Button END --><!-- G+ BEGIN --><!-- Place this render call where appropriate --><!-- <script type="text/javascript">  (function() {    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;    po.src = 'https://apis.google.com/js/plusone.js';    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);  })();</script> --><!-- G+ END --><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script type="text/javascript">/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * *//* required: replace example with your forum shortname  */var disqus_shortname = 'feiskyblog';var disqus_identifier = 'cpu.html';var disqus_title = 'cpu.html';var disqus_url = 'http://blog.com/cpu.html';/* * * DON'T EDIT BELOW THIS LINE * * */(function() {var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a><!-- DISQUS END --></body>
+</html>

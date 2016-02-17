@@ -1,0 +1,536 @@
+layout: false
+---
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><!-- <meta name="baidu-site-verification" content="707024a76f8f40b549f07f478abab237"/> -->
+<title>distributed-system-reading</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="title" content="distributed-system-reading"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2014-01-02T19:57+0800"/>
+<meta name="author" content="dirtysalt"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style><link rel="shortcut icon" href="http://blog.com/css/favicon.ico" /> <link rel="stylesheet" type="text/css" href="./css/site.css" />
+
+
+</head>
+<body><!-- <div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare"><a class="bds_tsina"></a><span class="bds_more"></span><a class="shareCount"></a></div> --><!-- Place this tag where you want the +1 button to render --><!-- <g:plusone annotation="inline"></g:plusone> -->
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">distributed-system-reading</h1>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 distributed-system-reading</a>
+<ul>
+<li><a href="#sec-1-1">1.1 Availability vs. Durability</a></li>
+<li><a href="#sec-1-2">1.2 Cloudera blog</a>
+<ul>
+<li><a href="#sec-1-2-1">1.2.1 Application</a></li>
+<li><a href="#sec-1-2-2">1.2.2 Hadoop</a></li>
+<li><a href="#sec-1-2-3">1.2.3 HDFS</a></li>
+<li><a href="#sec-1-2-4">1.2.4 MapReduce</a></li>
+<li><a href="#sec-1-2-5">1.2.5 HBase</a></li>
+<li><a href="#sec-1-2-6">1.2.6 Pig</a></li>
+<li><a href="#sec-1-2-7">1.2.7 Scribe</a></li>
+<li><a href="#sec-1-2-8">1.2.8 ZooKeeper</a></li>
+<li><a href="#sec-1-2-9">1.2.9 Sqoop</a></li>
+<li><a href="#sec-1-2-10">1.2.10 Avro</a></li>
+<li><a href="#sec-1-2-11">1.2.11 Hive</a></li>
+<li><a href="#sec-1-2-12">1.2.12 Misc</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> distributed-system-reading</h2>
+<div class="outline-text-2" id="text-1">
+
+
+<ul>
+<li>Distributed Systems Reading List <a href="http://dancres.org/reading_list.html">http://dancres.org/reading_list.html</a>
+</li>
+<li>分布式系统领域经典论文翻译集 <a href="http://duanple.blog.163.com/blog/static/709717672011330101333271/">http://duanple.blog.163.com/blog/static/709717672011330101333271/</a>
+</li>
+<li>Hadoop Reading List <a href="http://duanple.blog.163.com/blog/static/7097176720119791920962/">http://duanple.blog.163.com/blog/static/7097176720119791920962/</a>
+</li>
+</ul>
+
+
+
+</div>
+
+<div id="outline-container-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Availability vs. Durability</h3>
+<div class="outline-text-3" id="text-1-1">
+
+<p>如果只有一个副本机器A，要是它出故障，则读肯定会失败。要是有多副本机器，A坏了，我还有B和C可以读。写也一样。所以说多副本提高了服务的availabaility。
+</p>
+<p>
+如果只有一个副本机器A，要是A的硬盘坏了，那数据就丢失了。要是有多个副本机器，则还可以从其他机器上找回来。所以说多副本提高了数据的durability，写完多副本的数据很难会丢失。
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> Cloudera blog</h3>
+<div class="outline-text-3" id="text-1-2">
+
+
+</div>
+
+<div id="outline-container-1-2-1" class="outline-4">
+<h4 id="sec-1-2-1"><span class="section-number-4">1.2.1</span> Application</h4>
+<div class="outline-text-4" id="text-1-2-1">
+
+<ol>
+<li><a href="http://www.cloudera.com/blog/2009/04/22/using-hadoop-to-annotate-=billions-of-web-documents-with-semantics/">Using Hadoop to Annotate Billions of Web Documents with Semantics</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2009/06/02/smart-grid-big-data-hadoop=-tennessee-valley-authority-tva/">The Smart Grid and Big Data: Hadoop at the Tennessee Valley Authority (TVA)</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2009/10/15/analyzing-human-genomes-with=-hadoop/">Analyzing Human Genomes with Hadoop</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2009/11/17/hadoop-at-twitter-part-=1-splittable-lzo-compression/">Hadoop at Twitter (part 1): Splittable LZO Compression</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2010/03/why-europes-largest-ad-targetin=g-platform-uses-hadoop/">Why Europe's Largest Ad Targeting Platform Uses Hadoop</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2010/03/natural-language-processing-wit=h-hadoop-and-python/">Natural Language Processing with Hadoop and Python</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2010/03/how-raytheon-researchers-are-usi=hadoop-to-build-a-scalable-distributed-triple-store/">How Raytheon BBN Technologies Researchers are Using Hadoop to Build a Scalable, Distributed TripleStore</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2010/04/scaling-social-science-with-had=/">Scaling Social Science withHadoop</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2010/11/do-the-schimmy-efficient-large-=le-graph-analysis-with-hadoop/">Do the Schimmy: Efficient Large-Scale Graph Analysis with Hadoop</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2010/11/do-the-schimmy-efficient-lar=scale-graph-analysis-with-hadoop-part-2/">Do the Schimmy: Efficient Large-Scale Graph Analysis with Hadoop, Part 2</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2010/12/lessons-learned-putting-had=-into-production/">Lessons learned putting Hadoop intoproduction</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2011/02/wordnik-bypasses-processing-bot=neck-with-hadoop/">Wordnik Bypasses Processing Bottleneck with Hadoop</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2011/02/strategies-for-exploiting-l=e-scale-data-in-the-federal-government/">Strategies for Exploiting Large-scale Data in the FederalGovernment</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2011/02/an-emerging-data-m=anagement-architectural-pattern-behind-interactive-web-application/">An emerging data management architectural pattern behind interactive web applications</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2011/04/adopting-apache-hadoop-in-t=he-federal-government/">Adopting Apache Hadoop in the Federal Government</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2011/05/using-hadoop-to-measure-infl=uence/">Using Hadoop to Measure Influence</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2011/06/biodiversity-indexing-migration=-from-mysql-to-hadoop/">Biodiversity Indexing: Migration from MySQL to Hadoop</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2011/07/evolution-of-hadoop-ecosyst=em-aol-advertising-experience/">Evolution of Hadoop Ecosystem: AOL Advertising Experience</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2011/07/recordbreaker-automatic-structure=-for-your-text-formatted-data/">RecordBreaker: Automatic structure for your text-formatted data</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2011/09/hadoop-applied/=">Hadoop Applied </a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2011/09/a-glance-at-the-hadoop-world-201=1-applications-track/">Hadoop World 2011: A Glimpse of the Applications Track</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2011/09/hadoop-for-archiving-email/">Hadoop for Archiving Email</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2011/10/hadoop-world-2011-a-glimp=se-into-enterprise-architecture/">Hadoop World 2011: A Glimpse into Enterprise Architecture</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2011/10/hadoop-world-2011-a-glimps=e-into-development/">Hadoop World 2011: A Glimpse into Development</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2011/10/hadoop-world-2011-a-glimpse=-into-operations/">Hadoop World 2011: A Glimpse into Operations</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2011/11/using-hadoop-to-analyze=-adverse-drug-events/">Using Apache Hadoop to Find Signal in the Noise: Analyzing Adverse Drug Events</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2011/12/fonedoktor-a-wibidata-appl=ication/">FoneDoktor, A WibiData Application</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2011/12/how-i-found-hadoop/">How I found Hadoop</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2012/01/hadoop-for-archiving-email-part-2/">Hadoop for Archiving Email Part 2</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2012/01/seismic-data-science-hadoop-use=-case/">Seismic Data Science: Reflection Seismology and Hadoop</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2012/03/indexing-files-via-solr-and-=java-mapreduce/">Indexing Files via Solr and Java MapReduce</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2012/04/hbasecon-2012-a-glimpse-into-the=-development-track/">HBaseCon 2012: A Glimpse into the Development Track</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2012/04/hbasecon-2012-a-glimpse-into-the=-operations-track/">HBaseCon 2012: A Glimpse into the Operations Track</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2012/05/treato-analyzes-health-re=lated-big-data-with-hadoop/">How Treato Analyzes Health-related Social Media Big Data with Hadoop and HBase</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2012/07/processing-rat-brain-neuronal-signals-using-a-hadoop-computing-cluster-part-i/">Processing Rat Brain Neuronal Signals Using A Hadoop Computing Cluster – Part I</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2012/08/processing-rat-brain-neuronal-signals-using-a-hadoop-computing-cluster-part-ii/">Processing Rat Brain Neuronal Signals Using a Hadoop Computing Cluster – Part II</a>
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-2-2" class="outline-4">
+<h4 id="sec-1-2-2"><span class="section-number-4">1.2.2</span> Hadoop</h4>
+<div class="outline-text-4" id="text-1-2-2">
+
+<ol>
+<li><a href="http://www.cloudera.com/blog/2008/12/03/securing-a-hadoop-cluster-t=hrough-a-gateway/">Securing a Hadoop Cluster Through a Gateway</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2008/12/16/testing-hadoop= /">Testing Hadoop</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2009/02/02/the-small-files-problem/">The Small Files Problem</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2009/03/06/database-access-with-hadoop/= ">Database Access with oop</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2009/03/12/hadoop-metrics= /">Hadoop Metrics</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2009/03/30/configuration-parameters-wh=at-can-you-just-ignore/">Configuration Parameters: What can you just ignore?</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2009/04/20/configuring-eclipse-for=-hadoop-development-a-screencast/">Configuring Eclipse for Hadoop Development (a screencast)</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2009/05/01/high-energy-hadoop/">High Energy Hadoop</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2009/05/14/5-common-questions-about-had=oop/">5 Common Questions About Hadoop</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2009/06/24/parallel-lzo-splittable-comp=ression-for-hadoop/">Parallel LZO: Splittable Compression for Hadoop</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2009/07/07/hadoop-graphing-with-cacti/">Hadoop Graphing with Cacti</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2009/07/17/file-appends-in-hdfs/">File Appends in HDFS</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2009/07/22/hadoop-ha-configurati=on/">Hadoop HA Configuration</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2010/11/integrating-hadoop-in-your=-existing-dw-and-bi-environment/">Integrating Hadoop in your Existing DW and BI Environment</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2011/01/map-reduce-with-ruby-using-apac=he-hadoop/">Map-Reduce With Ruby Using Apache Hadoop</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2011/01/setting-up-cdh3-hadoop-on-my-new-m=acbook-pro/">Setting up CDH3 Hadoop on my new Macbook Pro</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2011/01/hadoop-io-sequence-map-set-array=-bloommap-files/">Hadoop I/O: Sequence, Map, Set, Array, BloomMap Files</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2011/01/lessons-learned-from-clouderas-=hadoop-developer-training-course/">Lessons Learned from Cloudera's Hadoop Developer Training Course</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2011/02/hadoop-avai= lability/">Hadoop Availability</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2011/02/avoiding-full-gcs-in-hbase-w=ith-memstore-local-allocation-buffers-part-1/">Avoiding Full GCs in HBase with MemStore-Local Allocation Buffers: Part 1</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2011/02/avoiding-full-gcs-in-hbase-w=ith-memstore-local-allocation-buffers-part-2/">Avoiding Full GCs in HBase with MemStore-Local Allocation Buffers: Part 2</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2011/03/avoiding-full-gcs-in-hbase-w=ith-memstore-local-allocation-buffers-part-3/">Avoiding Full GCs in HBase with MemStore-Local Allocation Buffers: Part 3</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2011/03/learn-about-apache-hadoop-at-th=e-chicago-data-summit/">Learn about Apache Hadoop at the Chicago Data Summit</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2011/08/automatically-documentin=g-apache-hadoop-configuration/">Automatically Documenting Apache Hadoop Configuration</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2011/09/snappy-and-hadoop/">Snappy and Hadoop</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2012/03/thoughts-on-cloudera-and-cisco-=ucs-reference-architecture-for-hadoop/">Thoughts on Cloudera and Cisco UCS reference architecture for Hadoop</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2012/03/authorization-and-authenticatio=n-in-hadoop/">Authorization and Authentication In Hadoop</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2012/06/hadoop-beyond-mapreduce-introdu=cing-kitten/">Hadoop Beyond MapReduce, Part 1: Introducing Kitten</a>   
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-2-3" class="outline-4">
+<h4 id="sec-1-2-3"><span class="section-number-4">1.2.3</span> HDFS</h4>
+<div class="outline-text-4" id="text-1-2-3">
+
+<ol>
+<li><a href="http://www.cloudera.com/blog/2009/01/14/hdfs-reliabi= lity/">HDFS Reliability</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2009/02/10/multi-host-secondaryn=amenode-configuration/">Multi-host SecondaryNameNode Configuration</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2009/05/22/protecting-per-datanode-me=tadata/">Protecting per-DataNode Metadata</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2011/07/hoop-hadoop-hdfs-over-http/">Hoop - Hadoop HDFS over HTTP</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2012/03/high-availability-for-the-hadoo=p-distributed-file-system-hdfs/">High Availability for the Hadoop Distributed File System (HDFS)</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2012/05/namenode-recovery-tools-for-the=-hadoop-distributed-file-system/">NameNode Recovery Tools for the Hadoop Distributed File System</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2012/07/why-we-build-our-platform-on-hdfs=/">Why we build our platform on HDFS</a>
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-2-4" class="outline-4">
+<h4 id="sec-1-2-4"><span class="section-number-4">1.2.4</span> MapReduce</h4>
+<div class="outline-text-4" id="text-1-2-4">
+
+<ol>
+<li><a href="http://www.cloudera.com/blog/2008/11/14/sending-files-to-remote-t=ask-nodes-with-hadoop-mapreduce/">Sending Files to Remote Task Nodes with Hadoop MapReduce</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2008/11/23/job-scheduling-in-hadoop/">Job Scheduling in Hadoop</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2009/04/03/upcoming-functionality-in=-fair-scheduler-20/">Upcoming Functionality in Fair Scheduler 2.0</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2009/05/18/10-mapreduce-tips/">10 MapReduce Tips</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2009/07/03/debugging-mapreduce-programs=-with-mrunit/">Debugging MapReduce Programs With MRUnit</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2009/07/29/advice-on-qa-testing-your-mapr=educe-jobs/">Advice on QA Testing Your MapReduce Jobs</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2009/12/7-tips-for-improving-mapre=duce-performance/">7 Tips for Improving MapReduce Performance</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2010/12/a-profile-of-hadoop-mapredu=ce-computing-efficiency-sra-paul-burkhardt/">A profile of Apache Hadoop MapReduce computing efficiency</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2010/12/a-profile-of-hadoop-mapred=uce-computing-efficiency-continued/">A profile of Apache Hadoop MapReduce computing efficiency (continued)</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2011/01/how-to-include-third-party-librari=es-in-your-map-reduce-job/">How to Include Third-Party Libraries in Your Map-Reduce Job</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2011/03/simple-moving-average-secondary-sor=t-and-mapreduce-part-1/">Simple Moving Average, Secondary Sort, and MapReduce (Part 1)</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2011/03/simple-moving-average-secondary-sor=t-and-mapreduce-part-2/">Simple Moving Average, Secondary Sort, and MapReduce (Part 2)</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2011/04/simple-moving-average-secondary-sor=t-and-mapreduce-part-3/">Simple Moving Average, Secondary Sort, and MapReduce (Part 3)</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2011/10/introducing-crunch/">Introducing Crunch: Easy MapReduce Pipelines for Hadoop</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2011/11/building-and-deploying-mr2/">Building and Deploying MR2</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2011/12/crunch-for-dummies/">Crunch for Dummies</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2012/02/mapreduce-2-0-in-hadoop-0-23/">MapReduce 2.0 in Hadoop 0.23</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2012/07/experimenting-with-mapreduce-2-0/">Experimenting with MapReduce 2.0</a>
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-2-5" class="outline-4">
+<h4 id="sec-1-2-5"><span class="section-number-4">1.2.5</span> HBase</h4>
+<div class="outline-text-4" id="text-1-2-5">
+
+<ol>
+<li><a href="http://www.cloudera.com/blog/2010/03/hbase-user-group-9-hbase-and-hdfs=/">HBase User Group #9: HBase and HDFS</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2010/06/integrating-hive-and-hbase/">Integrating Hive and HBase</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2011/02/log-event-processing-with-hbase/=">Log Event Processing with HBase</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2011/04/hbase-dos-and-donts/">HBase Dos and Donts</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2012/01/caching-in-hbase-slabcache/">Caching in HBase: SlabCache</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2012/03/hbase-hadoop-xceivers/">HBase + Hadoop + Xceivers</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2012/06/online-hbase-backups-with-co=pytable-2/">Online HBase Backups with CopyTable</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2012/06/the-singularity-hbase-co=mpatibility-and-extensibility/">The Singularity: HBase Compatibility and Extensibility</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2012/06/hbase-write-pat= h/">HBase Write Path</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2012/06/hbase-io-hfile-input-output/">HBase I/O - HFile</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2012/07/hbase-log-splitting/">HBase Log Splitting</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2012/07/hbase-replication-overview-2/=">HBase Replication Overview</a>
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-2-6" class="outline-4">
+<h4 id="sec-1-2-6"><span class="section-number-4">1.2.6</span> Pig</h4>
+<div class="outline-text-4" id="text-1-2-6">
+
+<ol>
+<li><a href="http://www.cloudera.com/blog/2009/06/17/analyzing-apache-logs-with-pig/=">Analyzing Apache logs with Pig</a>
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-2-7" class="outline-4">
+<h4 id="sec-1-2-7"><span class="section-number-4">1.2.7</span> Scribe</h4>
+<div class="outline-text-4" id="text-1-2-7">
+
+<ol>
+<li><a href="http://www.cloudera.com/blog/2008/10/28/installing-scribe-for-lo=g-collection/">Installing Scribe For Log Collection</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2008/11/02/configuring-and-using-sc=ribe-for-hadoop-log-collection/">Configuring and Using Scribe for Hadoop Log Collection</a>
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-2-8" class="outline-4">
+<h4 id="sec-1-2-8"><span class="section-number-4">1.2.8</span> ZooKeeper</h4>
+<div class="outline-text-4" id="text-1-2-8">
+
+<ol>
+<li><a href="http://www.cloudera.com/blog/2009/05/28/building-a-distributed-co=ncurrent-queue-with-apache-zookeeper/">Building a distributed concurrent queue with Apache ZooKeeper</a>
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-2-9" class="outline-4">
+<h4 id="sec-1-2-9"><span class="section-number-4">1.2.9</span> Sqoop</h4>
+<div class="outline-text-4" id="text-1-2-9">
+
+<ol>
+<li><a href="http://www.cloudera.com/blog/2009/06/01/introducing-sqoop/">Introducing Sqoop</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2011/10/apache-sqoop-overview/">Apache Sqoop - Overview</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2012/01/apache-sqoop-highlights-of-sqoop-2/">Apache Sqoop: Highlights of Sqoop 2</a>
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-2-10" class="outline-4">
+<h4 id="sec-1-2-10"><span class="section-number-4">1.2.10</span> Avro</h4>
+<div class="outline-text-4" id="text-1-2-10">
+
+<ol>
+<li><a href="http://www.cloudera.com/blog/2009/11/02/avro-a-format-for-big-data/">Avro: a Format for Big Data</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2010/11/better-workflow-management-in-cdh-wi=th-oozie-2/">Better Workflow Management in CDH with Oozie 2</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2010/09/tracing-with-avro/">Tracing with Avro</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2011/05/three-reasons-why-apache-av=ro-data-serialization-is-a-good-choice-for-openrtb/">Three Reasons Why Apache Avro Data Serialization is a Good Choice for OpenRTB</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2011/07/avro-data-interop/">Data Interoperability with Apache Avro</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2011/12/apache-avro-at-richrelev=ance/">Apache Avro at RichRelevance</a>
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-2-11" class="outline-4">
+<h4 id="sec-1-2-11"><span class="section-number-4">1.2.11</span> Hive</h4>
+<div class="outline-text-4" id="text-1-2-11">
+
+<ol>
+<li><a href="http://www.cloudera.com/blog/2009/11/11/hadoop-world-rethi=nking-the-data-warehouse-with-hadoop-and-hive-from-ashish-thusoo/">Hadoop World: Rethinking the Data Warehouse with Hadoop and Hive from Ashish Thusoo</a>
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-2-12" class="outline-4">
+<h4 id="sec-1-2-12"><span class="section-number-4">1.2.12</span> Misc</h4>
+<div class="outline-text-4" id="text-1-2-12">
+
+<ol>
+<li><a href="http://www.cloudera.com/blog/2010/04/cap-confusion-problems=-with-partition-tolerance/">CAP Confusion: Problems with 'partition tolerance'</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2011/06/if-80-of-data-is-unstructured-is=-it-the-exception-or-a-new-rule/">If 80% of data is unstructured, is it the exception or a new rule?</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2011/12/notes-from-the-flume-ng-hack=athon/">Notes from the Flume NG Hackathon</a>
+</li>
+<li><a href="http://www.cloudera.com/blog/2012/01/capacity-planning-with-clouder=a-manager/">Capacity Planning with Cloudera Manager</a>
+</li>
+</ol>
+
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="date">Date: 2014-01-02T19:57+0800</p>
+<p class="creator"><a href="http://orgmode.org">Org</a> version 7.9.2 with <a href="http://www.gnu.org/software/emacs/">Emacs</a> version 23</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
+</div>
+<!-- Baidu Analytics BEGIN --><script type="text/javascript">var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F54a700ad7035f6e485eaf2300641e7e9' type='text/javascript'%3E%3C/script%3E"));</script><!-- Baidu Analytics END --><!-- Google Analytics BEGIN --><!-- <script type="text/javascript">  var _gaq = _gaq || [];  _gaq.push(['_setAccount', 'UA-31377772-1']);  _gaq.push(['_trackPageview']);  (function() {    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);  })();</script> --><!-- Google Analytics END --><!-- Baidu Button BEGIN --><!-- <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6762177" ></script><script type="text/javascript" id="bdshell_js"></script><script type="text/javascript"> document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)</script> --><!-- Baidu Button END --><!-- G+ BEGIN --><!-- Place this render call where appropriate --><!-- <script type="text/javascript">  (function() {    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;    po.src = 'https://apis.google.com/js/plusone.js';    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);  })();</script> --><!-- G+ END --><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script type="text/javascript">/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * *//* required: replace example with your forum shortname  */var disqus_shortname = 'feiskyblog';var disqus_identifier = 'distributed-system-reading.html';var disqus_title = 'distributed-system-reading.html';var disqus_url = 'http://blog.com/distributed-system-reading.html';/* * * DON'T EDIT BELOW THIS LINE * * */(function() {var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a><!-- DISQUS END --></body>
+</html>

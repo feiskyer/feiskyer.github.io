@@ -1,0 +1,327 @@
+layout: false
+---
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><!-- <meta name="baidu-site-verification" content="707024a76f8f40b549f07f478abab237"/> -->
+<title>gizzard</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="title" content="gizzard"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2014-01-02T19:57+0800"/>
+<meta name="author" content="dirtysalt"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style><link rel="shortcut icon" href="http://blog.com/css/favicon.ico" /> <link rel="stylesheet" type="text/css" href="./css/site.css" />
+
+
+</head>
+<body><!-- <div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare"><a class="bds_tsina"></a><span class="bds_more"></span><a class="shareCount"></a></div> --><!-- Place this tag where you want the +1 button to render --><!-- <g:plusone annotation="inline"></g:plusone> -->
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">gizzard</h1>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 gizzard</a>
+<ul>
+<li><a href="#sec-1-1">1.1 Gizzard: a library for creating distributed datastores</a>
+<ul>
+<li><a href="#sec-1-1-1">1.1.1 An introduction to sharding</a></li>
+<li><a href="#sec-1-1-2">1.1.2 What is a sharding framework?</a></li>
+<li><a href="#sec-1-1-3">1.1.3 How does it work?</a>
+<ul>
+<li><a href="#sec-1-1-3-1">1.1.3.1 Gizzard is middleware</a></li>
+<li><a href="#sec-1-1-3-2">1.1.3.2 Gizzard supports any datastorage backend</a></li>
+<li><a href="#sec-1-1-3-3">1.1.3.3 Gizzard handles partitioning through a forwarding table</a></li>
+<li><a href="#sec-1-1-3-4">1.1.3.4 Gizzard handles replication through a replication tree</a></li>
+<li><a href="#sec-1-1-3-5">1.1.3.5 Gizzard is fault-tolerant</a></li>
+<li><a href="#sec-1-1-3-6">1.1.3.6 Winged migrations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> gizzard</h2>
+<div class="outline-text-2" id="text-1">
+
+<ul>
+<li><a href="https://github.com/twitter/gizzard">https://github.com/twitter/gizzard</a>
+</li>
+</ul>
+
+
+
+</div>
+
+<div id="outline-container-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Gizzard: a library for creating distributed datastores</h3>
+<div class="outline-text-3" id="text-1-1">
+
+<p><b>NOTE(blog):定位是library</b>
+</p>
+
+</div>
+
+<div id="outline-container-1-1-1" class="outline-4">
+<h4 id="sec-1-1-1"><span class="section-number-4">1.1.1</span> An introduction to sharding</h4>
+<div class="outline-text-4" id="text-1-1-1">
+
+</div>
+
+</div>
+
+<div id="outline-container-1-1-2" class="outline-4">
+<h4 id="sec-1-1-2"><span class="section-number-4">1.1.2</span> What is a sharding framework?</h4>
+<div class="outline-text-4" id="text-1-1-2">
+
+<ul>
+<li>Thus, we have extracted Gizzard, a Scala framework that makes it easy to create custom fault-tolerant, distributed databases.
+</li>
+<li>At a high level, 
+<ul>
+<li>Gizzard is a middleware networking service that manages partitioning data across arbitrary backend datastores (e.g., SQL databases, Lucene, etc.). 
+</li>
+<li>The partitioning rules are stored in a forwarding table that maps key ranges to partitions. 
+</li>
+<li>Each partition manages its own replication through a declarative replication tree. 
+</li>
+<li>Gizzard supports “migrations” (for example, elastically adding machines to the cluster) and gracefully handles failures. 
+</li>
+<li>The system is made eventually consistent by requiring that all write-operations are idempotent and commutative and as operations fail (because of, e.g., a network partition) they are retried at a later time.
+</li>
+</ul>
+
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-1-3" class="outline-4">
+<h4 id="sec-1-1-3"><span class="section-number-4">1.1.3</span> How does it work?</h4>
+<div class="outline-text-4" id="text-1-1-3">
+
+
+</div>
+
+<div id="outline-container-1-1-3-1" class="outline-5">
+<h5 id="sec-1-1-3-1"><span class="section-number-5">1.1.3.1</span> Gizzard is middleware</h5>
+<div class="outline-text-5" id="text-1-1-3-1">
+
+<p><img src="./images/gizzard-middleware.png"  alt="./images/gizzard-middleware.png" />
+</p>
+<ul>
+<li>Gizzard instances are stateless so run as many gizzards as are necessary to sustain throughput or manage TCP
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-1-3-2" class="outline-5">
+<h5 id="sec-1-1-3-2"><span class="section-number-5">1.1.3.2</span> Gizzard supports any datastorage backend</h5>
+<div class="outline-text-5" id="text-1-1-3-2">
+
+<ul>
+<li>As a general rule, Gizzard requires that all write operations be idempotent and commutative (see the section on Fault Tolerance and Migrations), so this places some constraints on how you may use the back-end store.
+</li>
+<li>In particular, Gizzard does not guarantee that write operations are applied in order. It is therefore imperative that the system is designed to reach a consistent state regardless of the order in which writes are applied.
+</li>
+</ul>
+
+<p>要求写操作是幂等并且是具有结合性的（说白了就是out-of-order write要支持），要求这些特性主要是和gizzard设计的fault-tolerance,migrations策略相关。
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-1-3-3" class="outline-5">
+<h5 id="sec-1-1-3-3"><span class="section-number-5">1.1.3.3</span> Gizzard handles partitioning through a forwarding table</h5>
+<div class="outline-text-5" id="text-1-1-3-3">
+
+<ul>
+<li>Gizzard handles partitioning (i.e., dividing exclusive ranges of data across many hosts) by mappings ranges of data to particular shards. （range based partition) 
+</li>
+<li>These mappings are stored in a forwarding table that specifies lower-bound of a numerical range and what shard that data in that range belongs to.(partition信息保存在forwarding-table上面）
+</li>
+<li>To be precise, you provide Gizzard a hash function that, given a key for your data (and this key can be application specific), produces a number that belongs to one of the ranges in the forwarding table. (自己指定hash function将数据生成number然后做range based partition)
+</li>
+<li>This range-based approach differs from the "consistent hashing" technique used in many other distributed data-stores. This allows for heterogeneously sized partitions so that you easily manage hotspots, segments of data that are extremely popular. (range based相对于一致性hash能够更好地找到热点，并且针对热点进行优化）
+</li>
+<li>In fact, Gizzard does allows you to implement completely custom forwarding strategies like consistent hashing, but this isn't the recommended approach（但是gizzard本身也是支持一致性hash路由算法，但是这个算法本身是不被推荐的）
+</li>
+</ul>
+
+
+<p>
+<img src="./images/gizzard-forwarding-table.png"  alt="./images/gizzard-forwarding-table.png" />
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-1-3-4" class="outline-5">
+<h5 id="sec-1-1-3-4"><span class="section-number-5">1.1.3.4</span> Gizzard handles replication through a replication tree</h5>
+<div class="outline-text-5" id="text-1-1-3-4">
+
+<ul>
+<li>Each shard referenced in the forwarding table can be either a physical shard or a logical shard. 
+<ul>
+<li>A physical shard is a reference to a particular data storage back-end, such as a SQL database. (physical shard)
+</li>
+<li>In contrast, A logical shard is just a tree of other shards, where each branch in the tree represents some logical transformation on the data, and each node is a data-storage back-end. (logical shard/branch)
+</li>
+<li>These logical transformations at the branches are usually rules about how to propagate read and write operations to the children of that branch.（branch代表数据的流动，这个和logical shard属性相关）
+</li>
+</ul>
+
+</li>
+</ul>
+
+
+<p>
+<img src="./images/gizzard-replication-tree.png"  alt="./images/gizzard-replication-tree.png" />
+</p>
+<ul>
+<li>But Gizzard ships with a few standard strategies of broad utility such as Replicating, Write-Only, Read-Only, and Blocked (allowing neither reads nor writes). （我觉得文章里面说的logical shard/branch就是这几类）
+</li>
+<li>You can create custom branching/logical shards for your particular data storage needs, such as to add additional transaction/coordination primitives or quorum strategies.（可以编写自定义的logical shard/branch)
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-1-3-5" class="outline-5">
+<h5 id="sec-1-1-3-5"><span class="section-number-5">1.1.3.5</span> Gizzard is fault-tolerant</h5>
+<div class="outline-text-5" id="text-1-1-3-5">
+
+<ul>
+<li>Gizzard is designed to avoid any single points of failure. 
+<ul>
+<li>If a certain replica in a partition has crashed, Gizzard routes requests to the remaining healthy replicas, bearing in mind the weighting function. 
+</li>
+<li>If all replicas of in a partition are unavailable, Gizzard will be unable to serve read requests to that shard, but all other shards will be unaffected. 
+</li>
+<li>Writes to an unavailable shard are buffered until the shard again becomes available.
+</li>
+</ul>
+
+</li>
+<li>In fact, if any number of replicas in a shard are unavailable, Gizzard will try to write to all healthy replicas as quickly as possible and buffer the writes to the unavailable shard, to try again later when the unhealthy shard returns to life.(如果shard任何一个replicas挂掉的话，那么对于healthy replicas依然能够正常工作，而对于bad replicas的会buffer起来，等待replicas恢复之后write下去）
+</li>
+<li>The basic strategy is that all writes are materialized to a durable, transactional journal. Writes are then performed asynchronously (but with manageably low latency) to all replicas in a shard. If a shard is unavailable, the write operation goes into an error queue and is retried later.(writer buffer是通过保存到本地磁盘的journal来完成的，当shard重新恢复的话那么期间所有的写都会异步地更新到上面）
+</li>
+<li>In order to achieve “eventual consistency”, this “retry later” strategy requires that your write operations are idempotent and commutative. This is because a retry later strategy can apply operations out-of-order（为了达到这种最终一致性，retry later这种策略就要求write操作本身是幂等并且是满足结合性的）
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-1-3-6" class="outline-5">
+<h5 id="sec-1-1-3-6"><span class="section-number-5">1.1.3.6</span> Winged migrations</h5>
+<div class="outline-text-5" id="text-1-1-3-6">
+
+<ul>
+<li>When migrating from Datastore A to Datastore A', a Replicating shard is set up between them but a WriteOnly shard is placed in front of Datastore A'. Then data is copied from the old shard to the new shard. The WriteOnly shard ensures that while the new Shard is bootstrapping, no data is read from it (because it has an incomplete picture of the corpus). (原来老的数据通过replication复制过去，而新增数据通过write-only shard拦截住，在new shard完全replication之前是不可读但是却可写的。
+</li>
+<li>Because writes will happen out of order (new writes occur before older ones and some writes may happen twice), all writes must be idempotent and commutative to ensure data consistency.（同样在这里牵扯到replication以及write-only，write是完全无序并且可能写多次的，因此这里也要求write操作满足幂等和结合性）
+</li>
+</ul>
+
+
+<p>
+<img src="./images/gizzard-migration.png"  alt="./images/gizzard-migration.png" /> 
+</p>
+
+
+
+
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="date">Date: 2014-01-02T19:57+0800</p>
+<p class="creator"><a href="http://orgmode.org">Org</a> version 7.9.2 with <a href="http://www.gnu.org/software/emacs/">Emacs</a> version 23</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
+</div>
+<!-- Baidu Analytics BEGIN --><script type="text/javascript">var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F54a700ad7035f6e485eaf2300641e7e9' type='text/javascript'%3E%3C/script%3E"));</script><!-- Baidu Analytics END --><!-- Google Analytics BEGIN --><!-- <script type="text/javascript">  var _gaq = _gaq || [];  _gaq.push(['_setAccount', 'UA-31377772-1']);  _gaq.push(['_trackPageview']);  (function() {    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);  })();</script> --><!-- Google Analytics END --><!-- Baidu Button BEGIN --><!-- <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6762177" ></script><script type="text/javascript" id="bdshell_js"></script><script type="text/javascript"> document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)</script> --><!-- Baidu Button END --><!-- G+ BEGIN --><!-- Place this render call where appropriate --><!-- <script type="text/javascript">  (function() {    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;    po.src = 'https://apis.google.com/js/plusone.js';    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);  })();</script> --><!-- G+ END --><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script type="text/javascript">/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * *//* required: replace example with your forum shortname  */var disqus_shortname = 'feiskyblog';var disqus_identifier = 'gizzard.html';var disqus_title = 'gizzard.html';var disqus_url = 'http://blog.com/gizzard.html';/* * * DON'T EDIT BELOW THIS LINE * * */(function() {var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a><!-- DISQUS END --></body>
+</html>

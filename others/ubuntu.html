@@ -1,0 +1,992 @@
+layout: false
+---
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><!-- <meta name="baidu-site-verification" content="707024a76f8f40b549f07f478abab237"/> -->
+<title>ubuntu</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="title" content="ubuntu"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2014-01-02T19:55+0800"/>
+<meta name="author" content="dirtysalt"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style><link rel="shortcut icon" href="http://blog.com/css/favicon.ico" /> <link rel="stylesheet" type="text/css" href="./css/site.css" />
+
+
+</head>
+<body><!-- <div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare"><a class="bds_tsina"></a><span class="bds_more"></span><a class="shareCount"></a></div> --><!-- Place this tag where you want the +1 button to render --><!-- <g:plusone annotation="inline"></g:plusone> -->
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">ubuntu</h1>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 ubuntu</a>
+<ul>
+<li><a href="#sec-1-1">1.1 写在前面</a></li>
+<li><a href="#sec-1-2">1.2 系统配置</a>
+<ul>
+<li><a href="#sec-1-2-1">1.2.1 察看ubuntu内部版本</a></li>
+<li><a href="#sec-1-2-2">1.2.2 重启机器</a></li>
+<li><a href="#sec-1-2-3">1.2.3 关闭机器</a></li>
+<li><a href="#sec-1-2-4">1.2.4 重启unity</a></li>
+<li><a href="#sec-1-2-5">1.2.5 设置字符界面启动</a></li>
+<li><a href="#sec-1-2-6">1.2.6 绑定静态IP</a></li>
+<li><a href="#sec-1-2-7">1.2.7 修改主机名称</a></li>
+<li><a href="#sec-1-2-8">1.2.8 root密码</a></li>
+<li><a href="#sec-1-2-9">1.2.9 deb使用</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-3">1.3 桌面应用</a>
+<ul>
+<li><a href="#sec-1-3-1">1.3.1 amarok循环播放</a></li>
+<li><a href="#sec-1-3-2">1.3.2 设置输入法切换</a></li>
+<li><a href="#sec-1-3-3">1.3.3 自动启动输入法</a></li>
+<li><a href="#sec-1-3-4">1.3.4 google docs不能输入中文</a></li>
+<li><a href="#sec-1-3-5">1.3.5 设置默认浏览器</a></li>
+<li><a href="#sec-1-3-6">1.3.6 thunderbird配置gmail</a></li>
+<li><a href="#sec-1-3-7">1.3.7 thunderbird的Inbox文件过大</a></li>
+<li><a href="#sec-1-3-8">1.3.8 窗口常用快捷键</a></li>
+<li><a href="#sec-1-3-9">1.3.9 调整字体大小</a></li>
+<li><a href="#sec-1-3-10">1.3.10 调整边栏大小</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-4">1.4 编程环境</a>
+<ul>
+<li><a href="#sec-1-4-1">1.4.1 bash的tab自动补全</a></li>
+<li><a href="#sec-1-4-2">1.4.2 加快ssh登陆</a></li>
+<li><a href="#sec-1-4-3">1.4.3 建立ssh信任关系</a></li>
+<li><a href="#sec-1-4-4">1.4.4 简化ssh登陆</a></li>
+<li><a href="#sec-1-4-5">1.4.5 修改默认shell</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-5">1.5 虚拟机</a>
+<ul>
+<li><a href="#sec-1-5-1">1.5.1 vmware虚拟机增加磁盘空间</a></li>
+<li><a href="#sec-1-5-2">1.5.2 virtualbox安装windows虚拟机</a></li>
+<li><a href="#sec-1-5-3">1.5.3 virtualbox设置共享文件夹</a></li>
+<li><a href="#sec-1-5-4">1.5.4 virtualbox下使用U盾</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> ubuntu</h2>
+<div class="outline-text-2" id="text-1">
+
+
+
+</div>
+
+<div id="outline-container-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> 写在前面</h3>
+<div class="outline-text-3" id="text-1-1">
+
+<p>千万不要抱有一朝一兮就可以搞定的想法。最好的话身边有一个群体，大家都使用Ubuntu这个东西。
+这样如果有什么问题的话，大家就比较容易找到解决办法，直到自己完全适应为止。推荐安装下面这些软件：
+</p>
+<ul>
+<li>#sudo apt-get install vlc # 视频
+</li>
+<li>#sudo apt-get install pidgin # 聊天
+</li>
+<li>#sudo apt-get install stardict # 词典
+</li>
+<li>#sudo apt-get install amarok # 音乐
+</li>
+<li>sudo apt-get install okular # pdf阅读
+</li>
+<li>sudo apt-get install git
+</li>
+<li>#sudo apt-get install subversion
+</li>
+<li>sudo apt-get install htop
+</li>
+<li>sudo apt-get install dstat
+</li>
+<li>sudo apt-get install sysstat
+</li>
+<li>sudo apt-get install httperf
+</li>
+<li>sudo apt-get install rsync
+</li>
+<li>sudp apt-get install tree
+</li>
+<li>sudo apt-get install tcpdump
+</li>
+<li>sudo apt-get install clusterssh
+</li>
+<li>#sudo apt-get install libjs-extjs
+</li>
+<li>#sudo apt-get install libjs-extjs-doc
+</li>
+<li>sudo apt-get install openssh-server
+</li>
+<li>sudo apt-get install sqlite3
+</li>
+<li>#sudo apt-get install eclipse
+</li>
+<li>sudo apt-get install python-dev
+</li>
+<li>#sudo apt-get install libevent-dev
+</li>
+<li>#sudo apt-get install python-gevent
+</li>
+<li>#sudo apt-get install python-gevent-doc
+</li>
+<li>#sudo apt-get install gunicorn
+</li>
+<li>#sudo apt-get install recordmydesktop # 录制桌面
+</li>
+<li>sudo apt-get install maven2
+</li>
+<li>sudo apt-get install ttyload
+</li>
+<li>sudo apt-get install autoconf
+</li>
+<li>sudo apt-get install libtool
+</li>
+<li>sudo apt-get install automake
+</li>
+<li>sudo apt-get install alien
+</li>
+<li>sudo apt-get install dos2unix
+</li>
+<li>sudo apt-get install astyle
+</li>
+<li>sudo apt-get install valgrind
+</li>
+<li>#sudo apt-get install mongodb
+</li>
+<li>#sudo apt-get install python-imaging
+</li>
+<li>#sudo apt-get install python-imaging-doc
+</li>
+<li>sudo apt-get install screen
+</li>
+<li>sudo apt-get install tmux
+</li>
+<li>#sudo apt-get install python-pychart
+</li>
+<li>#sudo apt-get install python-pychart-doc
+</li>
+<li>sudo apt-get install python-doc
+</li>
+<li>sudo apt-get install python-setuptools
+</li>
+<li>sudo apt-get install linux-tools-common
+</li>
+<li>sudo apt-get install linux-base
+</li>
+<li>#sudo apt-get install mercurial
+</li>
+<li>sudo apt-get install golang-go
+</li>
+<li>sudo apt-get install kchmviewer # chm阅读
+</li>
+<li>sudo apt-get install flex
+</li>
+<li>sudo apt-get install bison
+</li>
+<li>sudo apt-get install iotop
+</li>
+<li>sudo apt-get install curl
+</li>
+<li>sudo apt-get install ibus
+</li>
+<li>sudo apt-get install ibus-sunpinyin
+</li>
+<li>sudo apt-get install xsunpinyin
+</li>
+<li>sudo apt-get install python-xlib # 需要在emacs下面调用ibus
+</li>
+<li>#sudo apt-get install chromium-browser # 实验性质版本
+</li>
+<li>sudo apt-get install google-chrome-stable # 稳定版本
+</li>
+<li>#sudo apt-get install firefox
+</li>
+<li>#sudo apt-get install thunderbird
+</li>
+<li>sudo apt-get install dkms 
+</li>
+<li>sudo apt-get install virtualbox
+</li>
+<li>sudo apt-get install virtualbox-guest-additions # 设置windows虚拟机共享文件夹
+</li>
+<li>sudo apt-get install ntp
+</li>
+<li>sudo apt-get install systemtap
+</li>
+<li>sudo apt-get install clojure
+</li>
+<li>sudo apt-get install zsh
+</li>
+<li>sudo apt-get install collectl
+</li>
+<li>sudo apt-get install vim
+</li>
+<li>#sudo apt-get install xbmc
+</li>
+<li>sudo apt-get install latex-cjk-all
+</li>
+<li>sudo apt-get install texlive-fonts-recommended
+</li>
+<li>sudo apt-get install texinfo
+</li>
+<li>#sudo apt-get install sun-java6-jdk
+</li>
+<li>sudo apt-get install openjdk-6-jdk
+</li>
+<li>sudo apt-get install openjdk-6-doc
+</li>
+<li>sudo apt-get install openvpn
+</li>
+<li>sudo apt-get install lzop
+</li>
+<li>sudo apt-get install liblzo2-dev
+</li>
+<li>sudo apt-get install scala
+</li>
+<li>sudo apt-get install scala-doc
+</li>
+<li>sudp apt-get install ubuntu-tweak
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> 系统配置</h3>
+<div class="outline-text-3" id="text-1-2">
+
+
+</div>
+
+<div id="outline-container-1-2-1" class="outline-4">
+<h4 id="sec-1-2-1"><span class="section-number-4">1.2.1</span> 察看ubuntu内部版本</h4>
+<div class="outline-text-4" id="text-1-2-1">
+
+<p>lsb_release -a
+</p>
+
+
+
+<pre class="example">➜  note git:(master) ✗ lsb_release -a
+No LSB modules are available.
+Distributor ID: Ubuntu
+Description:    Ubuntu 12.04 LTS
+Release:        12.04
+Codename:       precise
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-2-2" class="outline-4">
+<h4 id="sec-1-2-2"><span class="section-number-4">1.2.2</span> 重启机器</h4>
+<div class="outline-text-4" id="text-1-2-2">
+
+<p>似乎Ubuntu下面限制用户进行重启，可以使用sudo reboot重启机器。
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-2-3" class="outline-4">
+<h4 id="sec-1-2-3"><span class="section-number-4">1.2.3</span> 关闭机器</h4>
+<div class="outline-text-4" id="text-1-2-3">
+
+<p>关闭机器同样需要超级权限，可以使用sudo shutdown 0立即关闭机器。
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-2-4" class="outline-4">
+<h4 id="sec-1-2-4"><span class="section-number-4">1.2.4</span> 重启unity</h4>
+<div class="outline-text-4" id="text-1-2-4">
+
+<p>unity restart &amp;
+</p>
+<p>
+<b>NOTE（blog）：这种方式可以work但是似乎问题比较多，如果unity出现问题还是重启比较方便</b>
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-2-5" class="outline-4">
+<h4 id="sec-1-2-5"><span class="section-number-4">1.2.5</span> 设置字符界面启动</h4>
+<div class="outline-text-4" id="text-1-2-5">
+
+<ul>
+<li>编辑文件/etc/default/grub
+</li>
+<li>GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"修改成GRUB_CMDLINE_LINUX_DEFAULT="quiet splash text"
+</li>
+<li>运行sudo update-grub
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-2-6" class="outline-4">
+<h4 id="sec-1-2-6"><span class="section-number-4">1.2.6</span> 绑定静态IP</h4>
+<div class="outline-text-4" id="text-1-2-6">
+
+<p>修改/etc/network/interfaces
+</p>
+
+
+<pre class="example">auto eth0
+iface eth0 inet static
+address 10.18.102.200
+netmask 255.255.255.0
+gateway 10.18.102.254
+</pre>
+
+
+<p>
+修改/etc/resolve.conf
+</p>
+
+
+<pre class="example">nameserver 208.67.222.222
+nameserver 202.106.0.20
+nameserver 219.232.48.62
+nameserver 210.52.149.2
+</pre>
+
+
+<p>
+修改/etc/nsswitch.conf
+</p>
+
+
+<pre class="example">hosts:          files dns
+networks:       files
+</pre>
+
+
+<p>
+然后重启网络
+</p>
+
+
+<pre class="example">sudo /etc/init.d/networking restart
+</pre>
+
+<p>
+<b>NOTE(blog):可能需要重启多次</b>
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-2-7" class="outline-4">
+<h4 id="sec-1-2-7"><span class="section-number-4">1.2.7</span> 修改主机名称</h4>
+<div class="outline-text-4" id="text-1-2-7">
+
+<p>sudo hostname &lt;name&gt;
+</p>
+<p>
+<b>NOTE(blog):mac works too=D</b>
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-2-8" class="outline-4">
+<h4 id="sec-1-2-8"><span class="section-number-4">1.2.8</span> root密码</h4>
+<div class="outline-text-4" id="text-1-2-8">
+
+<p>初次启动的时候需要使用sudo passwd root来修改root密码
+</p>
+<p>
+<b>NOTE（blog）：it works for mac too=D</b>
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-2-9" class="outline-4">
+<h4 id="sec-1-2-9"><span class="section-number-4">1.2.9</span> deb使用</h4>
+<div class="outline-text-4" id="text-1-2-9">
+
+<p>安装deb使用命令 sudo dpkg -i test.deb
+</p>
+<p>
+通常我们不太清楚一个deb安装了哪些文件，尤其是doc的话可能不知道放置在什么位置上面。我们可以通过搜索引擎查找这个包，然后在 <a href="http://packages.ubuntu.com">http://packages.ubuntu.com</a> 下面找到这个包以及对应的文件列表信息。
+</p>
+<p>
+doc存放位置通常在/usr/share/doc/&lt;package&gt;/下面。
+</p>
+<p>
+使用alien在deb和rpm之间转换
+</p><ul>
+<li>安装alien
+</li>
+<li>rpm转deb sudo alien -d test.rpm
+</li>
+<li>deb转rpm sudo alien -r test.deb
+</li>
+</ul>
+
+<p>看了一下alien的help还可和下面几个包格式互转
+</p><ul>
+<li>slp
+</li>
+<li>lsb
+</li>
+<li>tgz
+</li>
+<li>pkg
+</li>
+</ul>
+
+<p>甚至可以直接调用alien -i test.rpm直接安装而不需要转换。
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> 桌面应用</h3>
+<div class="outline-text-3" id="text-1-3">
+
+
+</div>
+
+<div id="outline-container-1-3-1" class="outline-4">
+<h4 id="sec-1-3-1"><span class="section-number-4">1.3.1</span> amarok循环播放</h4>
+<div class="outline-text-4" id="text-1-3-1">
+
+<p>在amarok的右下角有task progression的图标，选择repeat track即可。
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-3-2" class="outline-4">
+<h4 id="sec-1-3-2"><span class="section-number-4">1.3.2</span> 设置输入法切换</h4>
+<div class="outline-text-4" id="text-1-3-2">
+
+<p>在Preferences里面：
+</p><ul>
+<li>Input Method 里面添加 SubPinyin
+</li>
+<li>然后在General里面的Keyboard Shortcuts里面设置Enable or disable设置切换按键
+<ul>
+<li>Release+Shift_L 左边的Shift键
+</li>
+<li>Constrol+space control和空格键
+</li>
+<li>这些都和windows输入法的默认配置很像。
+</li>
+</ul>
+
+</li>
+</ul>
+
+<p>TODO（blog）：在Emacs里面需要安装ibus.el以及ibus-agent。但是现在不知道为什么左边的Shift键在Emacs里面一直不能使用。
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-3-3" class="outline-4">
+<h4 id="sec-1-3-3"><span class="section-number-4">1.3.3</span> 自动启动输入法</h4>
+<div class="outline-text-4" id="text-1-3-3">
+
+<p>另外系统默认是不会自动启动ibus的，可以在System Settings里面的Language Support里面设置Input method为ibus, 这样ibus就可以自动启动了。如果emacs需要使用ibus的话，那么ibus-daemon必须先于emacs启动。可能这样agent才能够工作。
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-3-4" class="outline-4">
+<h4 id="sec-1-3-4"><span class="section-number-4">1.3.4</span> google docs不能输入中文</h4>
+<div class="outline-text-4" id="text-1-3-4">
+
+<p>似乎sunpinyin在google docs下面工作不是很好。使用原来的pinyin就没有问题。what a shame！
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-3-5" class="outline-4">
+<h4 id="sec-1-3-5"><span class="section-number-4">1.3.5</span> 设置默认浏览器</h4>
+<div class="outline-text-4" id="text-1-3-5">
+
+<p>System Settings =》 Details 里面可以设置默认浏览器。至于emacs里面的话可以使用如下配置。
+</p>
+
+
+<pre class="src src-elisp">(setq browse-url-generic-program (executable-find <span class="org-string">"chromium-browser"</span>)
+      browse-url-browser-function 'browse-url-generic)
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-3-6" class="outline-4">
+<h4 id="sec-1-3-6"><span class="section-number-4">1.3.6</span> thunderbird配置gmail</h4>
+<div class="outline-text-4" id="text-1-3-6">
+
+<ul>
+<li>pop3 pop.gmail.com SSL/TLS 995 normal password
+</li>
+<li>smtp smtp.gmail.com SSL/TLS 465 normal password
+</li>
+<li><b>NOTE(blog):需要确认gmail允许pop3来访问</b>
+</li>
+<li>不过似乎现在thunderbird已经非常智能了，只要输入username以及email的话就可以自动进行配置了。nice！！！（现在看起来选择iamp模式也没有什么问题）
+</li>
+<li>server settings =&gt; 
+<ul>
+<li>1) leave mesages on server until I delete them. （对于imap模式来说的话，就使用默认移动到Trash下面即可）
+</li>
+<li>2) empty trash on exit. 
+</li>
+<li>3) check for new messages at startup. 
+</li>
+<li>4) check for new messages every 10 minutes.     
+</li>
+</ul>
+
+</li>
+<li>copies and folders =&gt; 1) cc these email addresses: dirtysalt1987@gmail.com（如果使用imap模式可以不使用）
+</li>
+<li>composition and addressing =&gt; 1) start my reply above the quote and place my signature below the quote.
+</li>
+<li>设置签名
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-3-7" class="outline-4">
+<h4 id="sec-1-3-7"><span class="section-number-4">1.3.7</span> thunderbird的Inbox文件过大</h4>
+<div class="outline-text-4" id="text-1-3-7">
+
+<ul>
+<li><a href="http://blog.tianya.cn/blogger/post_read.asp?BlogID=3802303&amp;PostID=35373429">http://blog.tianya.cn/blogger/post_read.asp?BlogID=3802303&amp;PostID=35373429</a>
+</li>
+</ul>
+
+
+<p>
+在安装新的操作系统时候，可能需要将原来的邮件全部迁移过去。thunderbird迁移邮件非常方便。在C:\Documents and Settings\\Application Data\Thunderbird\Profiles\wkq5wydz.default\Mail\ 下面会有你这个pop-server对应的文件，比如Inbox(对应thunderbird的收件箱),Drafts(对应thunderbird的草稿箱）等。将这些文件直接copy过去就OK了。不得不说这点非常方便：）
+</p>
+<p>
+但是我们会遇到一个问题就是Inbox文件太大了。而且如果我们在thunderbird下面删除收件箱里面内容的话，会发现这个Inbox文件其实没有发生变化。原因是因为thunderbird采用标记删除，所以原来的邮件内容依然是保存的（也就是说如果我们通过修改Inbox里面的标记位是可以恢复的，而且这个工作不难，因为阅读Inbox的内容就会发现里面保存的文本格式。不过谨慎选用编辑器，不要将Inbox内容全部载入不然内存会爆掉的）。 <b>解决这个问题非常简单，就是在thunderbird下面针对这个文件夹右键点击压缩。对于草稿箱和其他的文件夹是一样的操作。而且在thunderbird下面有工具-&gt;选项-&gt;高级-&gt;网络&amp;磁盘空间里面，可以选择如果超过过大的话就会进行压缩。</b>
+</p>
+<p>
+作为后端开发者，觉得thunderbird这样做是很正常的。有几种方式：
+</p><ol>
+<li>一种是用小碎片文件来解决，每个小碎片文件对应一个邮件，但是这样邮件太多的话性能和碎片会成为问题，但是增加和删除都非常方便
+</li>
+<li>另外就是使用大文件来追加写，然后针对每封邮件进行索引。索引可以保存在内存里面并且定期dump出去，启动时候检查索引是否和文件对应，不对应的话那么可能需要增量做一部分索引。但是这样删除会成为问题，标记删除可能就是最好的办法了。所以需要用户手动或者是通过程序判断磁盘文件大小来触发压缩。
+</li>
+<li>使用数据库本质上和2是一样的，只不过可以在一定程度上简化代码。在删除方便可能还是使用压缩删除。如果是我自己做的话那么可能考虑使用sqlite来做。单机可以embed,并且通过SQL来进行检索或者是其他操作。
+</li>
+</ol>
+
+
+<p>
+NOTE（blog）：其实thunderbird超过一定大小就会自动提醒是否需要压缩
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-3-8" class="outline-4">
+<h4 id="sec-1-3-8"><span class="section-number-4">1.3.8</span> 窗口常用快捷键</h4>
+<div class="outline-text-4" id="text-1-3-8">
+
+<ul>
+<li>Ctrl+Alt+T // 打开一个terminal。
+</li>
+<li>Ctrl+Alt+上下左右 // 在不同的workspace之间切换。
+</li>
+<li>
+</li>
+</ul>
+
+</div>
+
+</div>
+
+<div id="outline-container-1-3-9" class="outline-4">
+<h4 id="sec-1-3-9"><span class="section-number-4">1.3.9</span> 调整字体大小</h4>
+<div class="outline-text-4" id="text-1-3-9">
+
+<p>System Settings =》 Universal Access里面的Seeing部分可以用来调整字体大小。但是只有等级没有具体的数字可以进行调整。
+可以通过安装gnome-tweak-tool并且运行之来进行微调。
+</p>
+<p>
+参考链接 <a href="http://ltek.dyndns.org/wordpress/?p=282">http://ltek.dyndns.org/wordpress/?p=282</a>
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-3-10" class="outline-4">
+<h4 id="sec-1-3-10"><span class="section-number-4">1.3.10</span> 调整边栏大小</h4>
+<div class="outline-text-4" id="text-1-3-10">
+
+<p>System Settings =&gt; Appearance =&gt; Launcher icon size. 
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-1-4" class="outline-3">
+<h3 id="sec-1-4"><span class="section-number-3">1.4</span> 编程环境</h3>
+<div class="outline-text-3" id="text-1-4">
+
+
+</div>
+
+<div id="outline-container-1-4-1" class="outline-4">
+<h4 id="sec-1-4-1"><span class="section-number-4">1.4.1</span> bash的tab自动补全</h4>
+<div class="outline-text-4" id="text-1-4-1">
+
+<ul>
+<li>sudo apt-get install bash-completion
+</li>
+</ul>
+
+
+<p>
+但是我觉得这个自动补全有点不太好的就是，比如我cd ~/.ssh/想自动补全的话，我不仅仅是希望能够补全目录(虽然cd参数只能够是目录),我还希望可以显示文件(比如我想知道这个目录下面是否有Makefile或者是pom.xml)，这样就可以快速判断某个文件是否在目录下面。不然我只能调回命令行开头，切换成为cat,然后跳回去使用两次tab进行自动补全(cat能够显示文件).
+</p>
+<p>
+这个自动补全配置文件在/etc/bash_completion下面。阅读代码发现可能是和file_dir这个函数相关。调用时候使用file_dir -d的话只会显示目录，而file_dir的话就会显示所有。所以最简单的做法就是将file_dir -d全部替换成为file_dir. done!!!
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-4-2" class="outline-4">
+<h4 id="sec-1-4-2"><span class="section-number-4">1.4.2</span> 加快ssh登陆</h4>
+<div class="outline-text-4" id="text-1-4-2">
+
+<p>对于服务器的话可以修改/etc/ssh/sshd_config
+</p>
+
+
+<pre class="example">UseDNS no 
+
+</pre>
+
+<p>
+对于客户端的话可以修改/etc/ssh/ssh_config
+</p>
+
+
+<pre class="example">GSSAPIAuthentication no
+GSSAPIDelegateCredentials no 
+</pre>
+
+
+<p>
+<b>TODO(blog):具体为什么? sorry I have no idea!!!</b>
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-4-3" class="outline-4">
+<h4 id="sec-1-4-3"><span class="section-number-4">1.4.3</span> 建立ssh信任关系</h4>
+<div class="outline-text-4" id="text-1-4-3">
+
+<p>关于sshd机器之间的信任关系，很多文章都有介绍。大致方法就是：
+</p><ol>
+<li>在自己机器上面ssh-keygen生成~/.ssh/id_rsa{.pub}.其中.pub文件是公钥
+</li>
+<li>然后将id_rsa.pub内容copy到另外机器下面的~/.ssh/authorized_keys里面(注意chmod 600)
+</li>
+<li>接着本地的.pub文件就可以删除
+</li>
+</ol>
+
+<p><b>NOTE（blog）：这个密钥是可以在不同机器上面使用的，也就是说你只需要生成一次即可</b>
+</p>
+<p>
+我猜想大致工作过程应该是这样的：
+</p><ol>
+<li>在ssh建立连接的时候，本地ssh-client会读取~/.ssh/id_rsa内容
+</li>
+<li>建立好连接之后会将rsa内容发给对端机器，对端机器针对authorized_keys进行验证
+</li>
+<li>如果验证OK的话那么就认为是信任对方的。
+</li>
+</ol>
+
+<p>但是具体这些文件都是可以配置的，关于这个配置可以man ssh_config(client) / man sshd_config(server). 今天遇到一个问题就出在/etc/sshd_config里面对于认证文件修改了，不是放在authorized_keys里面而是放在cloud_keys里面!!!
+</p>
+<p>
+对于这种东西我觉得还是使用默认的比较好，convention over configuration!!!
+</p>
+
+<hr/>
+
+<p>
+如果登陆过程中出现 "Agent admitted failure to sign using the key" 的话，可以尝试下面的命令
+</p>
+
+
+<pre class="example">ssh-add   ~/.ssh/id_rsa
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-4-4" class="outline-4">
+<h4 id="sec-1-4-4"><span class="section-number-4">1.4.4</span> 简化ssh登陆</h4>
+<div class="outline-text-4" id="text-1-4-4">
+
+<p>简化ssh登陆第一个方式就是去除密码输出，这个可以通过配置信任关系完成。
+</p>
+<p>
+简化ssh登陆第二个方式就是可以针对hostname,user以及port做别名，这个可以在~/.ssh/config里面配置
+</p>
+
+
+<pre class="example">blog@blog-virtual-machine:~/.ssh$ cat config
+Host git
+Port 16024
+HostName git.fm
+User dirtysalt
+</pre>
+
+<p>
+这样之后通过ssh git的话就相当于ssh -l dirtysalt -p 16021 git.fm.非常方便。
+</p>
+<p>
+<b>NOTE（blog）：实际上第二点这个对于scp也是很必要的，因为scp没有办法指定工作端口只能使用默认的22</b>
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-4-5" class="outline-4">
+<h4 id="sec-1-4-5"><span class="section-number-4">1.4.5</span> 修改默认shell</h4>
+<div class="outline-text-4" id="text-1-4-5">
+
+<p>sudo chsh -s /bin/zsh blog
+</p>
+<p>
+似乎需要重启才能够生效
+</p></div>
+</div>
+
+</div>
+
+<div id="outline-container-1-5" class="outline-3">
+<h3 id="sec-1-5"><span class="section-number-3">1.5</span> 虚拟机</h3>
+<div class="outline-text-3" id="text-1-5">
+
+
+</div>
+
+<div id="outline-container-1-5-1" class="outline-4">
+<h4 id="sec-1-5-1"><span class="section-number-4">1.5.1</span> vmware虚拟机增加磁盘空间</h4>
+<div class="outline-text-4" id="text-1-5-1">
+
+<p>今天感觉自己的磁盘空间好像有点不够了，大部分数据都是在$HOME下面的，需要增加磁盘空间。
+</p>
+<p>
+使用vmware disk expand似乎不太好用，虽然磁盘空间增大了，但是df -h发现识别的硬盘大小还是一样（可能需要重新格式化才行）：（。
+</p>
+<p>
+另外一个办法，就是在vmware下面再增加一个disk. 128G,识别为/dev/sdb。然后在linux下面
+</p><ol>
+<li>fdisk为/dev/sdb创建分区，partition number=1.
+</li>
+<li>partprobe /dev/sdb1 （？具体什么用途我也不太清楚，inform OS partition table changed)
+</li>
+<li>mkfs.ext4 /dev/sdb1 格式化文件系统
+</li>
+</ol>
+
+<p>产生这个硬盘之后，可以首先将自己的$HOME重命名，然后mount /dev/sdb1 $HOME.
+</p>
+<p>
+接着将原来数据copy过去，最好使用cp -r .*这样可以copy隐藏文件。然后需要chown owner:owner .* -R来修改权限（因为这个步骤通常是root操作的）。然后将原来的数据删除即可。
+</p>
+<p>
+之后为了自动挂载，修改/etc/fstab
+</p>
+
+
+<pre class="example">/dev/sdb1 $HOME ext4 defaults 0 0
+</pre>
+
+<p>
+NOTE(blog):这里对于0 0不太清楚是什么意思，只是知道分别是dumps以及fsck check order. :(
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-5-2" class="outline-4">
+<h4 id="sec-1-5-2"><span class="section-number-4">1.5.2</span> virtualbox安装windows虚拟机</h4>
+<div class="outline-text-4" id="text-1-5-2">
+
+<p>安装windows虚拟机主要是为了方便一些需要在windows下面完成的操作，比如U盾。
+另外windows下面也有一些第三方的软件在Linux下面比较匮乏比如EverBox，
+虽然DropBox也非常不错但是相对来说还是国内服务器会比较好一些。
+</p>
+<p>
+使用virtualbox，通过加载windows xp的镜像安装，这个非常简单。
+或者是直接使用别人生成好的.vdi文件。vdi全称应该是virtual disk image。
+</p>
+<p>
+<b>NOTE（blog）：升级内核或者是重装系统的话，可能会造成内核版本与默认源的virtualbox不匹配，可以从官网下载最新版本。</b> 参考链接 <a href="https://www.virtualbox.org/wiki/Linux_Downloads">https://www.virtualbox.org/wiki/Linux_Downloads</a>
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-5-3" class="outline-4">
+<h4 id="sec-1-5-3"><span class="section-number-4">1.5.3</span> virtualbox设置共享文件夹</h4>
+<div class="outline-text-4" id="text-1-5-3">
+
+<p>设置共享文件夹主要是为了数据可以进行同步。通过windows虚拟机，安装同步软件比如GDrive。
+然后通过共享文件夹，将GDrive的同步目录隐射到Linux文件系统上面，完成数据同步。
+</p>
+<ul>
+<li>首先挂载VBoxAdditions.iso,这个文件在/usr/share/virtualbox下面
+</li>
+<li>之后就会在虚拟机里面提示安装相关的驱动程序。
+</li>
+<li>完成之后在设置virtualbox的settings/share folder，创建本地share folder
+</li>
+<li>然后进入虚拟机“我的电脑”右键选择映射网络驱动器，通过浏览可以找到对应的网络驱动器。
+</li>
+</ul>
+
+
+<p>   
+我是参考这篇图文并茂的文章的 <a href="http://hi.baidu.com/hifinan/item/79f22545a8400ed3c1a592f3">http://hi.baidu.com/hifinan/item/79f22545a8400ed3c1a592f3</a>
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-5-4" class="outline-4">
+<h4 id="sec-1-5-4"><span class="section-number-4">1.5.4</span> virtualbox下使用U盾</h4>
+<div class="outline-text-4" id="text-1-5-4">
+
+<p>首先需要在 <a href="https://www.virtualbox.org/wiki/Downloads">https://www.virtualbox.org/wiki/Downloads</a> VirtualBox Extension Pack，双击执行。
+在Settings =》 USB选项里面勾选 Enable USB Controller 和 Enable USB2.0（EHCI） Controller。
+</p>
+<p>
+然后我们需要添加vboxusers这个群组，同时将自己加入到这个群组内：
+</p><ul>
+<li>sudo groupadd vboxusers
+</li>
+<li>sudo gpasswd -a blog vboxusers
+</li>
+</ul>
+
+<p>接着重新启动ubuntu。
+</p>
+<p>
+接着Settings =》 USB里面添加那些已经识别的设备，接着启动windows虚拟机就可以使用U盾了。
+</p></div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="date">Date: 2014-01-02T19:55+0800</p>
+<p class="creator"><a href="http://orgmode.org">Org</a> version 7.9.2 with <a href="http://www.gnu.org/software/emacs/">Emacs</a> version 23</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
+</div>
+<!-- Baidu Analytics BEGIN --><script type="text/javascript">var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F54a700ad7035f6e485eaf2300641e7e9' type='text/javascript'%3E%3C/script%3E"));</script><!-- Baidu Analytics END --><!-- Google Analytics BEGIN --><!-- <script type="text/javascript">  var _gaq = _gaq || [];  _gaq.push(['_setAccount', 'UA-31377772-1']);  _gaq.push(['_trackPageview']);  (function() {    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);  })();</script> --><!-- Google Analytics END --><!-- Baidu Button BEGIN --><!-- <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6762177" ></script><script type="text/javascript" id="bdshell_js"></script><script type="text/javascript"> document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)</script> --><!-- Baidu Button END --><!-- G+ BEGIN --><!-- Place this render call where appropriate --><!-- <script type="text/javascript">  (function() {    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;    po.src = 'https://apis.google.com/js/plusone.js';    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);  })();</script> --><!-- G+ END --><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script type="text/javascript">/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * *//* required: replace example with your forum shortname  */var disqus_shortname = 'feiskyblog';var disqus_identifier = 'ubuntu.html';var disqus_title = 'ubuntu.html';var disqus_url = 'http://blog.com/ubuntu.html';/* * * DON'T EDIT BELOW THIS LINE * * */(function() {var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a><!-- DISQUS END --></body>
+</html>

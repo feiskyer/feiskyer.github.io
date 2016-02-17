@@ -1,0 +1,216 @@
+layout: false
+---
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><!-- <meta name="baidu-site-verification" content="707024a76f8f40b549f07f478abab237"/> -->
+<title>scheme</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="title" content="scheme"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2014-01-02T19:56+0800"/>
+<meta name="author" content="dirtysalt"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style><link rel="shortcut icon" href="http://blog.com/css/favicon.ico" /> <link rel="stylesheet" type="text/css" href="./css/site.css" />
+
+
+</head>
+<body><!-- <div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare"><a class="bds_tsina"></a><span class="bds_more"></span><a class="shareCount"></a></div> --><!-- Place this tag where you want the +1 button to render --><!-- <g:plusone annotation="inline"></g:plusone> -->
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">scheme</h1>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 scheme</a>
+<ul>
+<li><a href="#sec-1-1">1.1 相关资料</a></li>
+<li><a href="#sec-1-2">1.2 SICP</a></li>
+<li><a href="#sec-1-3">1.3 church counter</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> scheme</h2>
+<div class="outline-text-2" id="text-1">
+
+
+</div>
+
+<div id="outline-container-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> 相关资料</h3>
+<div class="outline-text-3" id="text-1-1">
+
+<ul>
+<li><a href="http://mitpress.mit.edu/sicp/">Structure and Interpretation of Computer Programs</a>
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> SICP</h3>
+<div class="outline-text-3" id="text-1-2">
+
+<p>绝不要认为似乎成功计算机的钥匙就掌握在你的手里。你所掌握的,也是我认为并且希望的,也就是智慧:那种看到这一机器比你第一次站在它面前时能够做的更多的能力，这样你才能将它向前推进。
+</p>
+<p>
+一台计算机就像是把小提琴。你可以想象一个新手试了一个音符并且立刻丢弃它。后来他说，听起来真难听。我们已经从大众和我们的大部分计算机科学家那里反复听到这种说法。他们说，计算机程序对个别具体用途而言确实是好东西，但是他们太缺乏弹性了。一把小提琴或者是一台打字机也能够同样缺乏弹性，那时你学会了如何使用它们之前。
+</p>
+<p>
+心智的活动除了尽力产生各种简单的认识外，主要表现在(组合，对比，抽象):
+</p><ol>
+<li>将若干简单认识组合称为复合认识，由此产生复杂的认识
+</li>
+<li>将两个认识放在一起对照，不管简单还是复杂，由此得到它们之间的相互关系的认识
+</li>
+<li>将有关认识和实际中和它们所在的认识隔离开，就是抽象，所有具有普遍性的认识都是这样得到的。
+</li>
+</ol>
+
+
+<p>
+现在到了数学抽象中最关键的一步:让我们忘记这些符号所表示的对象。数学家不应该在这里停步，有许多操作可以应用于这些符号，而根本不必考虑它们代表什么。
+</p>
+<p>
+建立新语言是在工程设计中控制复杂性的一种威力强大的工作策略，通常能够采用一种新语言提升处理复杂问题的能力，因为新语言能够使我们以一种完全不同的方式，利用不同原语组合方式和抽象方式去描述(思考)所面临的问题。
+</p>
+<p>
+NOTE(blog):<a href="http://mitpress.mit.edu/sicp/">SICP</a> 大四时候就看到了，当时只是觉得封面很有神秘感，里面的代码似乎和我以前写过的代码方式差别很大，当时没有完全看懂（现在也没有完全看懂，不确定求值没有看懂，第五章没有静下心看）。对于语言层面的认识基本上忘了，只记得有惰性求值来解决流问题，正则序和应用序，eval+apply是程序运行过程等。但是当时有一点让我印象深刻，就是这么简单的语言能够组合得这么强大并且如此具有表示力。
+</p>
+<p>
+SICP1的封面
+</p>
+<p>
+<img src="./images/SICP.jpg"  alt="./images/SICP.jpg" />
+</p>
+<p>
+SICP2的封面
+</p>
+<p>
+<img src="./images/SICP2.jpg"  alt="./images/SICP2.jpg" />
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> church counter</h3>
+<div class="outline-text-3" id="text-1-3">
+
+<p>只要能够正确理解计数就可以，并不一定要将这个数显示出来
+</p>
+
+
+
+<pre class="src src-scheme">(<span class="org-keyword">define</span> <span class="org-function-name">zero</span> (<span class="org-keyword">lambda</span> (f) (<span class="org-keyword">lambda</span> (x) x)))
+(<span class="org-keyword">define</span> (<span class="org-function-name">add-1</span> n) (<span class="org-keyword">lambda</span> (f) (<span class="org-keyword">lambda</span> (x) (f ((n f) x)))))
+</pre>
+
+
+<p>
+我们把zero带入add-1
+</p>
+
+
+<pre class="example">(lambda (f) (lambda (x) (f ((lambda (f) (lambda (x) x)) f) x)))
+ =&gt; (lambda (f) (lambda (x) (f ((lambda (x) x) x))))
+ =&gt; (lambda (f) (lambda (x) (f x)))
+</pre>
+
+<p>
+这个时候我们可以和zero比较，就会发现里面多了一次f操作，这就是计数操作
+</p>
+<p>
+对于one two的定义，可以写为
+</p>
+
+
+<pre class="src src-scheme">(<span class="org-keyword">define</span> <span class="org-function-name">one</span> (<span class="org-keyword">lambda</span> (f) (<span class="org-keyword">lambda</span> (x) (f x))))
+(<span class="org-keyword">define</span> <span class="org-function-name">two</span> (<span class="org-keyword">lambda</span> (f) (<span class="org-keyword">lambda</span> (x) (f (f x)))))
+</pre>
+
+<p>
+对于(add m n)定义可以写为
+</p>
+
+
+<pre class="src src-scheme">(<span class="org-keyword">define</span> (<span class="org-function-name">add</span> m n) (<span class="org-keyword">lambda</span> (f) (<span class="org-keyword">lambda</span> (x) ((m f) ((n f) x)))))
+</pre>
+
+</div>
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="date">Date: 2014-01-02T19:56+0800</p>
+<p class="creator"><a href="http://orgmode.org">Org</a> version 7.9.2 with <a href="http://www.gnu.org/software/emacs/">Emacs</a> version 23</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
+</div>
+<!-- Baidu Analytics BEGIN --><script type="text/javascript">var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F54a700ad7035f6e485eaf2300641e7e9' type='text/javascript'%3E%3C/script%3E"));</script><!-- Baidu Analytics END --><!-- Google Analytics BEGIN --><!-- <script type="text/javascript">  var _gaq = _gaq || [];  _gaq.push(['_setAccount', 'UA-31377772-1']);  _gaq.push(['_trackPageview']);  (function() {    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);  })();</script> --><!-- Google Analytics END --><!-- Baidu Button BEGIN --><!-- <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6762177" ></script><script type="text/javascript" id="bdshell_js"></script><script type="text/javascript"> document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)</script> --><!-- Baidu Button END --><!-- G+ BEGIN --><!-- Place this render call where appropriate --><!-- <script type="text/javascript">  (function() {    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;    po.src = 'https://apis.google.com/js/plusone.js';    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);  })();</script> --><!-- G+ END --><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script type="text/javascript">/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * *//* required: replace example with your forum shortname  */var disqus_shortname = 'feiskyblog';var disqus_identifier = 'scheme.html';var disqus_title = 'scheme.html';var disqus_url = 'http://blog.com/scheme.html';/* * * DON'T EDIT BELOW THIS LINE * * */(function() {var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a><!-- DISQUS END --></body>
+</html>

@@ -1,0 +1,821 @@
+layout: false
+---
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><!-- <meta name="baidu-site-verification" content="707024a76f8f40b549f07f478abab237"/> -->
+<title>clr-interview-problem</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="title" content="clr-interview-problem"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2013-10-18T07:48+0800"/>
+<meta name="author" content="dirtysalt"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style><link rel="stylesheet" type="text/css" href="./css/site.css" />
+
+
+</head>
+<body><!-- <div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare"><a class="bds_tsina"></a><span class="bds_more"></span><a class="shareCount"></a></div> --><!-- Place this tag where you want the +1 button to render --><!-- <g:plusone annotation="inline"></g:plusone> -->
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">clr-interview-problem</h1>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 clr-interview-problem</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> clr-interview-problem</h2>
+<div class="outline-text-2" id="text-1">
+
+<p>从 @陈利人 新浪微博搜索“面试题"按照timeline整理的结果。
+</p>
+<p> 
+UPDATED:2013-10-18
+</p>
+
+<hr/>
+<p>
+#面试题#给定字符串，可以通过插入字符，使其变为回文。求最少插入字符的数量。例如：ab最少插入1个字符，变为bab；aa最少插入0个字符；abcd最少插入3个字符，dcbabcd。
+</p>
+
+<hr/>
+<p>
+#面试题#给定字符串，以及一个字典，判断字符串是否能够拆分为字段中的单词。例如，字段为{hello，world}，字符串为hellohelloworld，则可以拆分为hello,hello,world，都是字典中的单词。
+</p>
+
+<hr/>
+<p>
+#面试题#一根绳子，长度为n米。将其切成几段，每一段的长度都是整数。请给出一种切法，使得切成的各段绳子之间的乘积是最大的。注意，最少要切一下的。
+</p>
+
+<hr/>
+<p>
+#面试题#给定软件的版本号的表示方式，以及一些版本号，请找出最新的版本。例如：1.2，2.2 最新的是2.2；3.1, 3.1.3 最新的是3.1.3。 上面的版本号，都是用字符串表示的。
+</p>
+
+<hr/>
+<p>
+#面试题#城市的环形路有n个加油站，第i个加油站的油量用gas[i]来表示，你有如下的一辆车：它的油缸是无限量的，初始是空的；它从第i个加油站到第i+1个加油站消耗油量为cost[i]。从任意加油站开始，路过加油站可以不断的加油，问是否能够走完环形路。
+</p>
+
+<hr/>
+<p>
+#面试题#有一个链表，每一个节点除了next指针指向一下节点以外，又多出了一个指针random，指向链表中的任何一个节点，包括null。请给出方法完成链表的深拷贝。
+</p>
+
+<hr/>
+<p>
+#面试题#N个孩子站成一排，每个人分给一个权重。按照如下的规则分配糖果： 每个孩子至少有一个糖果；所分配权重较高的孩子，会比他的邻居获得更多的糖果。问题是，最少需要多少个糖果？
+</p>
+
+<hr/>
+<p>
+#面试题#从一个长字符串中查找包含给定字符集合的最短子串。例如，长串为“aaaaaaaaaacbebbbbbdddddddcccccc”，字符集为{abcd}，那么最短子串是“acbebbbbbd”。如果将条件改为“包含且只包含给定字符集合”，你的算法和实现又将如何改动。
+</p>
+
+<hr/>
+<p>
+#面试题#给定两个字符串A和B，判断A中是否包含由B中字符重新排列成的新字符串。例如：A=abcdef, B=ba，结果应该返回true。因为ba的排列ab，是A的子串。
+</p>
+
+<hr/>
+<p>
+#面试题#给一个数字串，比如12259，映射到字母数组，比如，1 -&gt; a， 2-&gt; b，&hellip; ， 12 -&gt; l ，&hellip; 26-&gt; z。那么，12259 -&gt; lyi 或 abbei 或 lbei 或 abyi。输入一个数字串，判断是否能转换成字符串，如果能，则打印所以有可能的转换成的字符串。
+</p>
+
+<hr/>
+<p>
+#面试题#给定字符串，找到它的最长回文子串，都有哪些思路呢？例如"adaiziguizhongrenenrgnohziugiziadb",回文字串很多了，但最长的是"daiziguizhongrenenrgnohziugiziad"。
+</p>
+
+<hr/>
+<p>
+#面试题#删除字符串中的“b”和“ac”，需要满足如下的条件：字符串只能遍历一次；不能够实用额外的空间。例如：acbac ==&gt; ""；aaac ==&gt; aa；ababac ==&gt; aa；bbbbd ==&gt; d。进一步思考：如何处理aaccac呢，需要做哪些改变呢？
+</p>
+
+<hr/>
+<p>
+#面试题#3个字符串a，b，c。判断c是否是a和b的interleave，也就是c中应该有a，b中所有字符，并且c中字符顺序和a，b中一样。比如，a = "ef" b = "gh" c = "egfh" return true；a = "ef" b = "gh" c = "ehgf" return false。 
+</p>
+
+<hr/>
+<p>
+#面试题#给定字符串，输出括号是否匹配，例如，"()" yes；")(" no；"(abcd(e)" no； "(a)(b)" yes。要求必须用递归写，整个实现不可以出现一个循环语句。
+</p>
+
+<hr/>
+<p>
+#面试题#一个数组A，数字出现的情况，只有以下三种：一些数字只出现一次；一些数字出现两次；只有一个数字出现三次。请给出方法，找到出现三次的数字。
+</p>
+
+<hr/>
+<p>
+#面试题#给定一个无序的整数数组，怎么找到第一个大于0，并且不在此数组的整数。比如[1,2,0] 返回 3, [3,4,-1,1] 返回 2。最好能O(1)空间和O(n)时间。
+</p>
+
+<hr/>
+<p>
+#面试题#数组A中，除了某一个数字x之外，其他数字都出现了三次，而x出现了一次。请给出最快的方法，找到x。
+</p>
+
+<hr/>
+<p>
+#面试题#给定未排序的数组，请给出方法找到最长的等差数列。
+</p>
+
+<hr/>
+<p>
+#面试题#给定长度为n的整数数列：a0,a1,..,an-1，以及整数S。这个数列会有连续的子序列的整数总和大于S的，求这些数列中，最小的长度。
+</p>
+
+<hr/>
+<p>
+#面试题#给定大小为n的数组A，A中的元素有正有负。请给出方法，对其排序，保证：负数在前面，正数在后面；正数之间相对位置不变；负数之间相对位置不变。 能够做到时间复杂度为O(n)，空间复杂度为O(1)么？
+</p>
+
+<hr/>
+<p>
+#面试题#有数组A={5,3,8,9,16}，第一次遍历有：A = {3-5,8-3,9-8,16-9}={-2,5,1,7}，数组中元素和为-2+5+1+7=11；第二次遍历有：A = {5-(-2),1-5,7-1}={7，-4,6}，元素和为9. 给定数组A，求第n次遍历之后，数组中元素的和。
+</p>
+
+<hr/>
+<p>
+#面试题#有这样一个数组A，大小为n，相邻元素差的绝对值都是1。如：A={4,5,6,5,6,7,8,9,10,9}。 现在，给定A和目标整数t，请找到t在A中的位置。除了依次遍历，还有更好的方法么？
+</p>
+
+<hr/>
+<p>
+#面试题#有100盏灯，依次编号1-100，初始都是关着的。第1次遍历，打开全部的灯；第2次遍历，关掉第2盏、第4盏等被2整除的灯；第i次，对被i整除的灯做如下操作 如果灯开着，就关掉；如果灯关着，就打开。如此交替，直到100次遍历完毕，还有多少盏灯亮着。
+</p>
+
+<hr/>
+<p>
+#面试题#给定数组A，大小为n，数组元素为1到n的数字，不过有的数字出现了多次，有的数字没有出现。请给出算法和程序，统计哪些数字没有出现，哪些数字出现了多少次。能够在O(n)的时间复杂度，O(1)的空间复杂度要求下完成么？
+</p>
+
+<hr/>
+<p>
+#面试题#有一个棵树，不一定是二叉树，有n个节点，编号为0到n-1。有一个数组A，数组的索引为0到n-1，数组的值A[i]表示节点i的父节点的id，根节点的父节点id为-1。给定数组A，求得树的高度。
+</p>
+
+<hr/>
+<p>
+#面试题#每一种语言，都有自己的字母表，类似英文的a-z，但是顺序不相同。例如，有的语言可能是z是第一个之类的。现在给定这个语言的字典，请分析这个字典，得到这个语言的字母表的顺序。 例如：有如下的字母：C CAC CB BCC BA。 经过分析，得到字母表为C-&gt;B-&gt;A。
+</p>
+
+<hr/>
+<p>
+#面试题#搜索引擎的查询提示(suggestion)是非常重要的一个功能。现在给定查询列表，以及每一个查询对应的频率。请设计一种查询提示的实现方案，要兼顾效果和速度。如果有其他更好的优化点，请给出详细说明。
+</p>
+
+<hr/>
+<p>
+#面试题#有原数组S和目标数组T两个数组，它们分别是0-n-1的n个数字的某一种排列的结果。请给出算法，完成从S到T的变换，只允许使用一种操作：数组中的其他元素可以0交换。例如：S={0,1,2}，T={0,2,1}。变换过程中，只允许1和2于0进行交换。下面是一种可行方法：{0,1,2}=&gt;{2,1,0}=&gt;{2,0,1}=&gt;{0,2,1}。
+</p>
+
+<hr/>
+<p>
+#面试题#给定平面上的两个格点P1(x1,y1)，P2(x2,y2)，在线段P1P2上，除P1、P2外，一共有多少个格点？格点定义为x和y都是整数的点。
+</p>
+
+<hr/>
+<p>
+#面试题#兄弟数字：给定一个数X，他的兄弟数Y定义为：是由X中的数字组合而成，并且Y是大于X的数中最小的。例如，38276的兄弟数字为38627。给定X，求Y。
+</p>
+
+<hr/>
+<p>
+#面试题#有N个木桩，高度分别为1到N。你要将木桩排列为一行，当你从左边看的时候，只看到L个木桩(因为，一些高的木桩会挡住矮的木桩)；从右边看时，只看到R个木桩。给定N、L、R，你该如何排列木桩呢？例1：N=3,L=2,R=1，可行的排列方案只有{2,1,3}。例2：N=3,L=2,R=2，可行的排列方案有{1,3,2}{2,3,1}
+</p>
+
+<hr/>
+<p>
+#面试题#有n对喜鹊。每一对可以表示为(x,y)，x、y是喜鹊的编号，并且任意一对，x总是小于y。(c,d)可以连接在(a,b)之后，当且仅当b&lt;c。多对喜鹊连接在一起，就构建成了鹊桥。给定n对喜鹊，请你构建最长的鹊桥，来帮助有情人相会。
+</p>
+
+<hr/>
+<p>
+#面试题#盒子中有n张卡片，上面的数字分别为k1,k2,&hellip;,kn。你有4次机会，每抽一次，记录下卡片上的数字，再将卡片放回盒子中。如果4个数字的和等于m。则你就赢得游戏，否则就是输。直觉上，赢的可能性太低了。请你给出程序，判断是否有赢的可能性。
+</p>
+
+<hr/>
+<p>
+#面试题#n只蚂蚁以每秒1cm的速度在长为Lcm的竿子上爬行。蚂蚁爬到终点会掉下来。两只蚂蚁相遇时，只能调头爬回去。对于每一只蚂蚁i，给定其距离竿子左端的距离x[i]，但是我们不知道蚂蚁的初始朝向。计算，所有蚂蚁掉落需要的最短时间和最长时间。
+</p>
+
+<hr/>
+<p>
+#面试题#n根长度不一的棍子，判断是否有三根棍子可以构成三角形，并且找到周长最长的三角形。
+</p>
+
+<hr/>
+<p>
+#面试题#请构造程序，找到满足如下条件的最大数： 假设最大数表示为，abcdefghihk&hellip;.. 每一个字母表示一位，其中 abc，bcd，cde&hellip;以此类推，每三个一组，构成的数字是素数，也就是说abc, bcd, cde，等，都是素数，而且这些素数是互不相同的。
+</p>
+
+<hr/>
+<p>
+#面试题#求正数数组内和为指定数字的合并总数 例如：[5, 5, 10, 2, 3] 合并值为 15 合并总数为4，分别为:(5 + 10, 5 + 10, 5 + 5 + 2 + 3, 10 + 2 + 3)。 
+</p>
+
+<hr/>
+<p>
+#面试题#给定无序数组A，在线性时间内找到i和j，j&gt;i，并且保证A[j]-A[i]是最大的。
+</p>
+
+<hr/>
+<p>
+#面试题#输入数组[a1,a2,&hellip;,an,b1,b2,&hellip;,bn]，构造函数，使得输出为，[a1,b1,a2,b2,&hellip;,an,bn]，注意：方法要是in-place的。
+</p>
+
+<hr/>
+<p>
+#面试题#n个色子，每个色子m面，每一面的值分别是1-m。你将n个色子同时抛，落地后将所有朝上面的数字加起来，记为sum。给定一个数字x，如果sum&gt;x，则你赢。给定n，m，x，求你赢的概率。1&lt;=n&lt;=100，1&lt;=m&lt;=10，m&lt;=x&lt;n*m。
+</p>
+
+<hr/>
+<p>
+#面试题#有一个待选国家的列表，以及国家的相对热门程度，请给出一个算法，随机选择一个国家，并且保证，越是热门的国家，随机选择它的可能性就越高。
+</p>
+
+<hr/>
+<p>
+#面试题#盒子A有10个红球，盒子B有十个绿球。进行如下的操作：随机从A中拿三个球放入B中；随机从B中拿三个球放入A中。问题是，在哪一个盒子中，会出现一个颜色的球比另一个颜色的球更多？该如何分析？
+</p>
+
+<hr/>
+<p>
+#面试题#一个小岛，表示为一个N×N的方格，从(0,0)到(N-1, N-1)，一个人站在位置(x, y)，可以上下左右走，一步一格子，选择上下左右的可能性是一样的。当他走出小岛，就意味着死亡。假设他要走n步，请问死亡的概率有多大？请写出代码。
+</p>
+
+<hr/>
+<p>
+#面试题#有两个色子，一个是正常的，六面分别1-6的数字；另一个六面都是空白的。现在有0-6的数字，请给出一个方案，将0-6中的任意数字涂在空白的色子上，使得当同时扔两个色子时，以相等的概率出现某一个数字（这个数字是两个色子上数的和），比如，如果一个色子是1，另一个色子是2，则出现的数字是3。
+</p>
+
+<hr/>
+<p>
+#面试题#千王之王：52张牌，四张A，随机打乱后问，从左到右一张一张翻直到出现第一张A，请问平均要翻几张牌？
+</p>
+
+<hr/>
+<p>
+#面试题#一根一米长的绳子，随机断成三段；求最短的一段的期望长度以及最长的一段的期望长度。
+</p>
+
+<hr/>
+<p>
+#面试题#一个数组A[1&hellip;n]，满足A[1]&gt;=A[2], A[n] &gt;= A[n-1]。A[i]被成为波谷，意味着：A[i-1] &gt;= A[i] &lt;= A[i+1]。请给出一个算法，找到数组中的一个波谷。O(n)的方法，是很直接，有更快的方法么？
+</p>
+
+<hr/>
+<p>
+#面试题#相伴一生： 给定一个数组，数组中只包含0和1。请找到一个最长的子序列，其中0和1的数量是相同的。 例1：10101010 结果就是其本身。 例2：1101000 结果是110100
+</p>
+
+<hr/>
+<p>
+#面试题#给定只包含正数的数组，给出一个方法，将数组中的数拼接起来，得到的数，是最大的。 例如： [4, 94, 9, 14, 1] 拼接之后，所得最大数为：9944141
+</p>
+
+<hr/>
+<p>
+#面试题#Facebook用户都是双向的好友，a是b的好友，那么b一定是a的。给定一个用户列表，有些用户是好友，有些不是，请判断，这些用户是否可以划分为两组，每组内的用户，互相都不是好友。如果能，请给出这个划分。比如用户：{1, 2, 3} 好友关系：1-2， 2-3 划分：{1,3} {2}。
+</p>
+
+<hr/>
+<p>
+#面试题#一台电脑，内存有限（4GB），硬盘无限大。如何sort一个200GB的文件。瓶颈可能出现在哪里？如果硬盘IO带宽是100MB/s，那么需要多长时间才能完成整个sorting过程。
+</p>
+
+<hr/>
+<p>
+#面试题# On a traditional Linux system, how many times data is copied when system read()s a file from disk and send()s it across the network?
+</p>
+
+<hr/>
+<p>
+Facebook电话#面试题#：1. 把一个字符串中的 %20 都转成空格；2. 按层打印一棵二叉树；3. 找出两个有序数组里不同的数字（类似求集合的异或）。
+</p>
+
+<hr/>
+<p>
+#面试题#给一个整数数组， 找到其中包含最多连续数的子集，比如给：15, 7, 12, 6, 14, 13, 9, 11，则返回: 5:[11, 12, 13, 14, 15] 。最简单的方法是sort然后scan一遍，但是要o(nlgn). 有什么O(n)的方法吗？
+</p>
+
+<hr/>
+<p>
+#开放面试题# 固定时间内某网站只允许访问有限次，如何让index次数尽可能的少，又不错过更新。
+</p>
+
+<hr/>
+<p>
+#面试题#一个应用，有大量用户调用一些service，比如可能每秒有上千次调用，现在需要统计每秒钟每种service被调用的次数。考虑到均衡负载，有多台服务器提供这些服务。现在的问题是，如何设计这样的系统有效的统计这些被调用的信息？
+</p>
+
+<hr/>
+<p>
+#面试题#Given 2D coordinates, find the k points which are closest to the given point (x, y). Propose a data structure for storing the points and the method to get the k points. Also point out the complexity of the code.
+</p>
+
+<hr/>
+<p>
+#面试题#给任意一个double，如何构建一个hash function to get a key?
+</p>
+
+<hr/>
+<p>
+#面试题#Given A1,A2,&hellip;.Am and B1,B2,&hellip;.Bn. All of them are positive integers. Find a way to link B to A so that the sum of absolute difference of each B and its assigned A is minimized.
+</p>
+
+<hr/>
+<p>
+#面试题#两个大数相乘：char* multiply(char*,char*)。给了两个字符串，每个都是代表了一个很长的10进制表示的数，比如 char str1[] = "23456789009877666555544444"；char str2[] = "346587436598437594375943875943875"，最后求出它们的乘积。
+</p>
+
+<hr/>
+<p>
+#面试题#有一个fair的硬币，反复投，你可以选择什么时候停止投。如果你选择停止投，你可以得到的钱等于投到正面的次数除以投的总次数，问如何设计策略使得得到的钱尽量多。
+</p>
+
+<hr/>
+<p>
+#面试题#在@梁斌penny 的#人址导航#项目（ <a href="http://t.cn/zOl502t">http://t.cn/zOl502t</a> ）中，为了防止作弊，要求一个IP在24小时内只能投票一次，那么你该怎么设计这个系统来达到这个要求？
+</p>
+
+<hr/>
+<p>
+【大部分人都没有赚到的$10000，你呢？】三个信封(A，B，C)，只有一封有$10000。你可以任选其中一封，譬如B，剩下两封必有一封为空，譬如A，现在取走A，剩下两封。问：你是坚持你的选择(B)，还是选择剩下的另外那封(C)？#面试题#
+</p>
+
+<hr/>
+<p>
+#面试题#An array with n elements which is K most sorted，就是每个element的初始位置 和它最终的排序后的位置的距离不超过常数K，设计一个排序算法。It should be faster than O(n*lgn)。
+</p>
+
+<hr/>
+<p>
+#面试题#写一个二叉树中序遍历的c++ class iterator。
+</p>
+
+<hr/>
+<p>
+#面试题#这个是不是大家很熟悉的，只是有故事：一个M*N的矩阵里，随机放着很多石头，让找最大的空的矩形，并返回位置。
+</p>
+
+<hr/>
+<p>
+#面试题# 给定一个0和1的矩阵，返回连成一片的1的快的个数，只考虑前后左右四个 邻居。如果这个矩阵足够大，一个机器处理不了，怎么半？
+</p>
+
+<hr/>
+<p>
+#面试题#有两个机器人站在数轴上，他们的距离是一个正整数，彼此不知道对方在哪儿，现在你给他们编写命令，可以用的命令：Move +1；Move -1；Goto 某行代码；If（对方来过当前点） Then （自己填）。问如何编程，才能使他们俩相遇？ (对了，在每一秒钟机器人都会且只会移动一步）。
+</p>
+
+<hr/>
+<p>
+#面试题#给一个N x M的正整数矩阵, 我们需要将所有的元素清零，但只能有以下两种操作：1) 将一列的每个元素乘以2；2) 将一行的每个元素减1。要求你设计算法和编程找到最少数量的操作将矩阵清零。
+</p>
+
+<hr/>
+<p>
+#面试题#有一个数组，每次从中间随机取一个，然后放回去，当所有的元素都被取过，返回总共的取的次数。写一个函数实现。复杂度是什么。
+</p>
+
+<hr/>
+<p>
+#面试题#给定两个排好序的数组A和B，两数组长度都为N，我们从两个数组各取一个元素求和，这样就得到了N^2个和，要求把这N^2个和按序输出，空间不能超过O(N)。
+</p>
+
+<hr/>
+<p>
+#面试题#对于你熟悉的编程语言，你能写一个打印程序自己的程序吗？In English, How to write a self-printing program.
+</p>
+
+<hr/>
+<p>
+#面试题#螺母和螺栓：有N个螺母和N个螺栓，每个螺母的大小都不同，每个螺栓的大小也不同，对每个螺母有且仅有一个螺栓与它对应。每次可以拿起一个螺母和一个螺栓比较，看是否匹配，如果不匹配，显然可以知道哪个大哪个小。但是不允许直接比较两个螺母或两个螺栓。现要求用最少的比较次数找出对应关系。
+</p>
+
+<hr/>
+<p>
+#面试题#24点游戏：任取1－9之间的4个数字，用＋－＊／（）连结成算式，使得式子的计算结果为24。
+</p>
+
+<hr/>
+<p>
+#面试题# 3个字符串a，b，c。判断c是否是a和b的interleave，也就是c中应该有a，b中所有字 符，并且c中字符顺序和a，b中一样。比如，a = "ef" b = "gh" c = "egfh" return true；a = "ef" b = "gh" c = "ehgf" return false。
+</p>
+
+<hr/>
+<p>
+#面试题#一个立方体（n*n*n ），一个蜘蛛在一个角落（只能沿着边缘随机移动，x,y,z 3个方向概率分别1/3），一只蚂蚁在相对的最远那个角落（固定），问蜘蛛平均需要多少步达到蚂蚁？如果不限制沿边缘，若在面上只能上下左右移动呢？
+</p>
+
+<hr/>
+<p>
+#面试题# 左“{”，右”}"括号各N个，请打印出所有正确的组合，比如当N=3，{}{}{}等为正确的组合。如果写的代码是recursive，能否用iterative再写一个；反之亦然。
+</p>
+
+<hr/>
+<p>
+#面试题#一个robot在二维坐标平面(0,0)点，可以上下左右移动到相邻整数坐标点，如果该点横坐标和纵坐标所有位数加起来不大于某个指定的K（比如，点 (23, 43)，检查2+3+4+3&lt;=K？），就可访问，否则为障碍（负坐标时，忽略负号）。求robot从(0, 0)到目标点(M, N)要经过多少个坐标点，不一定要最优路径。
+</p>
+
+<hr/>
+<p>
+#面试题# 从一个长字符串中查找包含给定字符集合的最短子串。例如，长串为“aaaaaaaaaacbebbbbbdddddddcccccc”，字符集为{abcd}，那么最短子串是“acbebbbbbd”。如果将条件改为“包含且只包含给定字符集合”，你的算法和实现又将如何改动。
+</p>
+
+<hr/>
+<p>
+#面试题#一个小猴子边上有100 根香蕉，它要走过50 米才能到家，每次它最多搬50 根香蕉，每走1 米就要吃掉一根，请问它最多能把多少根香蕉搬到家里。
+</p>
+
+<hr/>
+<p>
+#面试题#已知每个待查找的字符串长度为10，如何在一个很长的字符串的序列里快速查找这样的字符串。你能想到的最高效的算法是什么？
+</p>
+
+<hr/>
+<p>
+#面试题#假设有很多多边形，最大的是地球，每一个国家可以认为是一个多边形，每一个省，市，县，区都可以认为是一个多边形，这些多边形之间要么是相互包含的，要么是互相没有交集的。给出一个多边形，要求写程序求出最小的包含它的多边形。已知有现成的函数可以判断两个多边形是否相互包含。
+</p>
+
+<hr/>
+<p>
+#面试题#一个数字数组，给一个窗口，长度为k，窗口从数组头开始往后滑动，每次滑动一个，求每次窗口中的最大值。例如，数组 [3, 4, 5, 7, 3, 5, 2, 9] ，k = 3，那么，输出：5 7 7 7 5 9 。
+</p>
+
+<hr/>
+<p>
+#面试题#给定一个无序的整数数组，怎么找到第一个大于0，并且不在此数组的 整数。比如[1,2,0] 返回 3, [3,4,-1,1] 返回 2。最好能O(1)空间和O(n)时间。
+</p>
+
+<hr/>
+<p>
+#面试题#一个区间的序列（链表或数组），如[1,3], [2,9], [8,10]，[15,18] 写程序合并有重叠的区间，比如上面的序列合并为[1,10], [15,18] 。如果这个序列不是静态的，而是一个数据流，如何处理？
+</p>
+
+<hr/>
+<p>
+#面试题#这是关于数据库和SQL，一百个账户各有$100，某个账户某天如有支出则添加一条新记录，记录其余额。一百天后，请输出每天所有账户的余额信息。注意每个用户在某天可能有多条纪录，也可能一条纪录也没有。
+</p>
+
+<hr/>
+<p>
+#面试题#一个n*n块的智力拼图，被打乱了。然后有一个函数，你个它两块，它能告诉你这两块之间的关系：1. 两块相邻：上下左右关系；2. 两块不相邻。问如何能拼好这个智力拼图。你的算法的时间复杂度是多少。
+</p>
+
+<hr/>
+<p>
+#面试题#飞机上有100个座位，编号为1到100；另有100个乘客，标号也是1到100，其中有两个盲人。盲人先登机，随机选择座位坐下，其他乘客一一陆续登机，如果他的座位号没人坐，坐下，否则随机选个空座位坐下。问题：最后一个登机的乘客做到属于自己的座位号的概率。
+</p>
+
+<hr/>
+<p>
+#面试题#公司要组织一系列活动，要求每个员工能参加至少两次。公司有N个员工，每个员工都标明了他们能参加的日期的范围，比如，第一个员工指明的范围是1-4，意味着他只能第一到第四天参加；第二个员工可能是2-6；第三个可能是8-9；等等。你怎么帮组织一下，能将这个系列活动在最少的天数完成。
+</p>
+
+<hr/>
+<p>
+#面试题#在一个社交网络中，比如Google+，假设有n个用户，每个用户有两个属性，每个属性可以用一个数来表示，根据这两个属性，要找出关系最近的两个用户。关系的远近定义为欧式距离，即d = sprt [ (x1-x2)^2 + (y1-y2)^2 ]。
+</p>
+
+<hr/>
+<p>
+#面试题拓展#如果是最快的5匹呢？题：有25匹马，一个赛场有5个赛道，就是说最多同时可以有5匹马一起比赛。假设每匹马都跑的很稳定，试问最少得比多少场才能知道跑得最快的5匹马。"假设每匹马都跑的很稳定" 的意思是在上一场比赛中A马比B马快，则下一场比赛中A马依然比B马快。那如果是n*n中找出n呢？
+</p>
+
+<hr/>
+<p>
+#Facebook面试题#这是一个编程题，动手做做才会有体会。给一个数组和一个值，从数组中删除这个指定的值的所有出现，并且返回新的数组的长度。size_t remove_elem(T* array, size_t len, T elem) {}。
+</p>
+
+<hr/>
+<p>
+#面试题#使用Linux文件相关的命令时，经常使用Wildcard表达式，比如，"ls *.txt"，能列出所有的text文件。你能否编写一个简单的Wildcard的分析器。简单的Wildcard表达式只有两种元字符，'?' 和'*'.，其它字符都是精确匹配。 '?'匹配正好一个任意的字符，'*'匹配零个或多个任意的字符（可能是不同的）
+</p>
+
+<hr/>
+<p>
+#面试题#附近地点搜索，就是搜索用户附近有哪些地点。随着GPS和带有GPS功能的移动设备的普及，附近地点搜索也变得炙手可热。在庞大的地理数据库中搜索地点，索引是很重要的。但是，我们的需求是搜索附近地点，例如，坐标(39.91, 116.37)附近500米内有什么餐馆，那么让你来设计，该怎么做？
+</p>
+
+<hr/>
+<p>
+#面试题#输入一个矩阵：A B C E；S F C S；A D E E 和 一个字符串，比如ABCCED，判断这个字符串是否是矩阵的一个连续路径（可以上下左右移动，一次一格），矩阵中用过的字母不能再用。
+</p>
+
+<hr/>
+<p>
+#Google面试题#有一块矩形（m*n）内存，每次从里面分配一个小块的空闲内存（也是矩形）。问如何组织剩余的空间。
+</p>
+
+<hr/>
+<p>
+#Google面试题#在一个n*n的字符矩阵上，问有多少个有效的字符串。一个有效的字符串可以从矩阵中任何一个字符开始，到任何一个字符结束。下一个字符是上一个字符8个相邻字符中的一个。而且字符不能重复使用。
+</p>
+
+<hr/>
+<p>
+#Google面试题#给你一天的Google搜索日志，你怎么设计算法找出是否有一个搜索词，它出现的频率占所有搜索的一半以上？如果肯定有一个搜索词占大多数，你能怎么提高你的算法找到它？再假定搜索日志就是内存中的一个数组，能否有O(1)空间，O(n)时间的算法？
+</p>
+
+<hr/>
+<p>
+#Google面试题#给一个无序的正整数数组，找出所有三个元素的组合使它们作为三条边能形成一个三角形。比如，输入为{4, 6, 3, 7}, 可能组合为 {3, 4, 6}，{4, 6, 7}和{3, 6, 7}。尽量优化你的算法。
+</p>
+
+<hr/>
+<p>
+#Google面试题#在2.5亿个整数中找出不重复的整数，内存不足以容纳这2.5亿个整数。
+</p>
+
+<hr/>
+<p>
+#Google面试题#给定两个巨大文件，各存放50亿个网址，每个网址各占64字节，内存限制是4G，怎么找出两个文件共同的网址？
+</p>
+
+<hr/>
+<p>
+#Google面试题#给一个排序好的整数数组A，请写一个函数，输入是数组A和一个整数x，返回数组A中值小于x的最大元素的索引和值。
+</p>
+
+<hr/>
+<p>
+#Google面试题#股市上一个股票的价格从开市开始是不停的变化的，需要开发一个系统，给定一个股票，它能实时显示从开市到当前时间的这个股票的价格的中位数（中值）。
+</p>
+
+<hr/>
+<p>
+#Google面试题#如下图所示，编写代码生成一个这样按红线顺序从1，2，3，4，5，6，&hellip;的不断变换螺旋方向的螺旋矩阵。输入是矩阵维数。
+</p>
+
+<hr/>
+<p>
+#Google面试题#有一个矩阵，行列都是排序的，给一个值，判断其在不在矩阵内。
+</p>
+
+<hr/>
+<p>
+#面试题#有两个正整数集合A和B，集合中的元素可能有重复，在保持SUM(A)不变的情况下，用B中的若干元素替换A中的若干元素，使得A中的元素个数最少? 比如A中有1，2 两个元素，而B中有3这个元素，可以用3来替换1，2，从而使A中元素变少。
+</p>
+
+<hr/>
+<p>
+#Google面试题#有个封装好的函数int BlockReader(char *buf) 内部有个静态文件指针，只能向文件末尾移，不能退，每次读4K的块到buf，返回读的字节数（除非到文件尾，否则总是4K）。 实现int AnysizeReader(char *buf, int size)，从文件的当前位置读取任意大小的数据存入buf，并返回实际读到的字节数。
+</p>
+
+<hr/>
+<p>
+#Google面试题# 给你一年的Google搜索日志和一台有限内存的机器，能否只扫描一遍，估计这一年中不同的独特的搜索（unique queries）的个数。
+</p>
+
+<hr/>
+<p>
+#Google面试题# 给一个单向链表，只扫描一遍，随机选择一个节点。
+</p>
+
+<hr/>
+<p>
+#Google面试题#大家肯定碰到过有关二叉搜索树的题（对了，什么是二叉搜索树？），这道题你可能没见过。给一个N个节点的二叉搜索树（BST/Binary Search Tree），给一个Key，返回与key最接近的m个节点（m&lt;N）。
+</p>
+
+<hr/>
+<p>
+#Google面试题#有一块矩形土地被划分成 N×M 个正方形小块，每块是一平方米。这些小块高低不平，每一小块地都有自己的高度H(i, j)米。水可以由任意一块地流向周围四个方向的四块地中，但不能直接流入对角相连的小块中。一场大雨后，许多低洼地方都积存了不少降水，求出它最多能积存多少立方米的降水么?
+</p>
+
+<hr/>
+<p>
+#Google面试题#用户浏览器打开个网站，速度特别慢，怎troubleshooting？这是比较灵活的一道题，但是很能考察面试者的知识面，经验值，包括前端，后端，网络，软件，等等。
+</p>
+
+<hr/>
+<p>
+我们知道了怎么用位运算来做加法，那来个变化的题：写个函数实现两个整数相除，要求在函数体内不得使用×、÷、%。In English, Divide two integers without using multiplication, division and mod operator. 你看看，你也会出面试题了吧。这个题是#Facebook面试题#。
+</p>
+
+<hr/>
+<p>
+#Google面试题#微博中高人真是不少，给出的解答也是让人眼睛一亮，茅塞顿开。经过长期的训练，肯定是无坚不摧。再来一道：对于一个整数矩阵，存在一种运算，对矩阵中任意元素加一时，需要其相邻（上下左右）某一个元素也加一。现给出一正数矩阵，判断其是否能够由一个全零矩阵经过上述运算得到。
+</p>
+
+<hr/>
+<p>
+#Google面试题# 一个整数数组，长度为n，将其分为m份，使各份的和相等，求m的最大值。比如{3，2，4，3，6} 可以分成{3，2，4，3，6} m=1；{3,6}{2,4,3} m=2；{3,3}{2,4}{6} m=3；所以m的最大值为3。
+</p>
+
+<hr/>
+<p>
+#谷歌面试题# 写一个函数，求两个整数之和，要求在函数体内不得使用＋、－、×、÷。
+</p>
+
+<hr/>
+<p>
+#微软面试题# 门外三个开关分别对应室内三盏灯，线路良好，在门外控制开关时候不能看到室内灯的情况，现在只允许进门一次，确定开关和灯的对应关系?
+</p>
+
+<hr/>
+<p>
+#谷歌面试题# 两个玩家，一堆石头，假设多于100块，两人依次拿，最后拿光者赢，规则是：1. 第一个人不能一次拿光所有的；2. 第一次拿了之后， 每人每次最多只能拿对方前一次拿的数目的两倍。求先拿者必胜策略, 如果有的话。怎么证明必胜。
+</p>
+
+<hr/>
+<p>
+#谷歌面试题#长周末，来个有意思的。一个小镇有N个人，有些人互相认识，有些不，且认识关系不一定是对称的，比如，我认识你，你不一定认识我。现在小镇要找一个有名且公正的镇长，要求两个条件：1.所有镇上的人都认识他；2.除了他自己，不认识镇上的任何人。写个程序来帮他们找到符合条件的所有人选。
+</p>
+
+<hr/>
+<p>
+#谷歌面试题#给一个链表，将它分拆成两个链表，一个是前半部分，另一个是后半部分。如果有奇数个节点，多出的节点放到第一个由前半部分节点构成的链表。 比如，对于链表{1, 3, 5, 7, 11}，应该输出链表{1, 3, 5}和{7, 11}。
+</p>
+
+<hr/>
+<p>
+#Facebook面试题# 给一个单链表，假定你不能用头指针，但给了一个指向链表中的某个节点的指针p，怎么插入一个新的节点在给定的指针p之前。In English, a single linked list, you are not allowed to use head pointer, just know a pointer of a node, insert a node before this node.
+</p>
+
+<hr/>
+<p>
+#google面试题#： 钟的时、分、秒指针一天重叠多少次？
+</p>
+
+<hr/>
+<p>
+#谷歌面试题#实现如下的类，它能枚举一个向量的向量中的所有元素(Implement the class, which incrementally iterates over the elements in a vector of vectors): template &lt;class T&gt; class Flattener { public: Flattener(const vector&lt;vector&lt;T&gt; &gt;&amp; vv); bool hasNext(); T next(); };
+</p>
+
+<hr/>
+<p>
+#谷歌面试题#看看面试题怎么变种，很多人都听说过检测一个linked list中是否有环的题。如果没有，你能否在O(1)空间和O(n)时间实现。如果见过，我们将题变化一下，看看你能否设计一个算法找到环的起始节点？Given a linked list, detect the loop and return the node at the beginning of the loop.
+</p>
+
+<hr/>
+<p>
+#Facebook面试题# 这个是数组中最大连续子序列的和(Maximum sum contiguous subsequence)的变种，如果你没听说过，或是没有找到最佳答案的话，不妨先试试，然后举一反三。现在的题是：用O(nlogn)或是更快的方法来检查一个实数序列里是否存在和为0的连续子序列。
+</p>
+
+<hr/>
+<p>
+#谷歌面试题# 一个大小为n的数组，里面的数都属于范围[0, n-1]，有不确定的重复元素，找到至少一个重复元素，要求O(1)空间和O(n)时间。
+</p>
+
+<hr/>
+<p>
+#谷歌面试题# 概率题：盒子A中有50个电阻，其中5个有问题；盒子B中有100个，其中10个有问题。随机的从一个盒子中取三个电阻，是的，三个电阻都来自相同的盒子。计算这种情形的概率，三个电阻都是有问题，并且都是从盒子A中取的。
+</p>
+
+<hr/>
+<p>
+#谷歌面试题# Google还真是对大数据和中值情有独钟，再来一道，给你1T(10^12)的int64整数，和仅有的1GB(10^9)的内存，如何设计算法和程序来找到它们的中值。英文题大概是这样：Find the median of 1TB of int64s with only 1GB RAM。
+</p>
+
+<hr/>
+<p>
+#谷歌面试题# 两个sorted array，A和B，找其中值。证明复杂度。
+</p>
+
+<hr/>
+<p>
+#苹果面试题# 洗牌：你手上有一副313张的牌，做如下操作：1. 拿出最上面一张，放到桌上；2. 拿出最上面一张，放到手中这幅牌的最下面；3. 重复1和2直到所有的牌都放到桌上，再从桌上拿起这副牌，重复1，2和3，直到这副牌中每张牌的顺序和最初发牌时的一样。你觉得需要多少轮操作？
+</p>
+
+<hr/>
+<p>
+#谷歌面试题# 给一串整数 0，1，2，&hellip;，N，其中一个整数缺失。也就是说，如果是排序好放到大小为N的数组中，其实最大的整数应该是N+1。你的任务和算法是找出其中缺失的整数。如果是排序好的，怎么做？如果是无序的，又该如何做？时间复杂度各是什么？
+</p>
+
+<hr/>
+<p>
+#谷歌面试题# #OO设计# 算数表达式由数字和操作符组成，数字包括：0，1，2，&hellip;，9；操作符包括：+，-，x，/。比如，10+5x78-3/42。那你怎么设计一个或多个类（class）来表示这种表达式。
+</p>
+
+<hr/>
+<p>
+#谷歌面试题# 给你一个数组，它有N个8-bit整数， （比如，从0到255）， 和M个子数组，[i, j] （每个子数组由两个下标 i 和 j 确定，0 &lt;= i &lt;= j &lt; N）。对每个子数组，找到平均值和中值。
+</p>
+
+<hr/>
+<p>
+#谷歌面试题# 翻译数字串，类似于电话号码翻译：给一个数字串，比如12259，映射到字母数组，比如，1 -&gt; a， 2-&gt; b，&hellip; ， 12 -&gt; l ，&hellip; 26-&gt; z。那么，12259 -&gt; lyi 或 abbei 或 lbei 或 abyi。输入一个数字串，判断是否能转换成字符串，如果能，则打印所以有可能的转换成的字符串。
+</p>
+
+<hr/>
+<p>
+#谷歌面试题# #数据结构# 设计一种堆栈(stack)，它能 push，pop，并且能在常数时间内O(1)找到当前栈中的最小元素。
+</p>
+
+<hr/>
+<p>
+#Facebook面试题# 25匹马，请找出最快的3匹。一次只能赛5匹，只能知道这5匹马的排序，没有秒表。力求用最少的操作。
+</p>
+
+<hr/>
+<p>
+#Facebook面试题# 给一个二叉树，每个节点都是正或负整数，如何找到一个子树，它所有节点的和最大？
+</p>
+
+<hr/>
+<p>
+#Zynga面试题# 海盗分金：有5个强盗A，B，C，D，E，得到100个金币，决定分掉，分法怪异：首先A提出分法，B~E表决，如果不过半数同意，就砍掉A的头。然后由B来分，C~E表决，如果不过半数同意，就砍掉B的头。依次类推，如果假设强盗都足够聪明，在不被砍掉头的同时获得最多的金币。问：最后结果如何？
+</p>
+
+<hr/>
+<p>
+#谷歌面试题# 这个是Google大拿Jeff Dean经常问的一个自由发挥问题：怎么加速用户的浏览速度？假设用户没有很好的网速，但可以装任何软件在用户的机器上或是Google的数据中心，但不能要求世界上所有的网站都改变他们的软件，你能怎么设计系统，算法来提高用户的浏览体验呢？充分发挥想象力证实自己吧。
+</p>
+
+<hr/>
+<p>
+#谷歌面试题# 战胜股市：现在欧美股市相当劲爆，你是不是心动了，假设给你一个数组表示这个月内每天谷歌股票的收盘价，还假设在这个月内，你只能在收盘时买或者卖一股谷歌股票，是的，就一股，你能设计一个算法寻找你最佳的买卖时间，赚取最多的钱？
+</p>
+
+<hr/>
+<p>
+#谷歌面试题# 在一个位图中找面积最大的白色矩形：给你一个NxN的黑白位图，找一个面积最大的全白色的矩形。注意了，是一个矩形，不是任意一个白色相连的区域。你的算法能达到O(n*n)吗？
+</p>
+
+<hr/>
+<p>
+#谷歌面试题# 在柱状图中找最大的矩形：给一组非负的整数来表示一个柱状图，设计一个算法找到最大面积的能适合到柱状图内的矩形。比如，对与这组数，1 2 3 4 1 ，有两种可能的方案，一种是适合到 2 3 4 内的矩形，面积是 2*3；另一种是适合到 3 4 内的矩形，面积是 3*2。你觉得能有O(n)算法吗？
+</p>
+
+<hr/>
+<p>
+#谷歌面试题# 既然大家对google面试题兴趣浓浓，再来一题：有几百亿的整数，分布的存储到几百台通过网络连接的计算机上，你能否开发出一个算法和系统，找出这几百亿数据的中值？就是在一组排序好的数据中居于中间的数。显然，一台机器是装不下所有的数据。也尽量少用网络带宽。 <a href="http://matpalm.com/median/index.html">http://matpalm.com/median/index.html</a>
+</p></div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="date">Date: 2013-10-18T07:48+0800</p>
+<p class="creator"><a href="http://orgmode.org">Org</a> version 7.9.2 with <a href="http://www.gnu.org/software/emacs/">Emacs</a> version 24</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
+</div>
+<!-- Baidu Analytics BEGIN --><script type="text/javascript">var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F54a700ad7035f6e485eaf2300641e7e9' type='text/javascript'%3E%3C/script%3E"));</script><!-- Baidu Analytics END --><!-- Google Analytics BEGIN --><!-- <script type="text/javascript">  var _gaq = _gaq || [];  _gaq.push(['_setAccount', 'UA-31377772-1']);  _gaq.push(['_trackPageview']);  (function() {    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);  })();</script> --><!-- Google Analytics END --><!-- Baidu Button BEGIN --><!-- <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6762177" ></script><script type="text/javascript" id="bdshell_js"></script><script type="text/javascript"> document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)</script> --><!-- Baidu Button END --><!-- G+ BEGIN --><!-- Place this render call where appropriate --><!-- <script type="text/javascript">  (function() {    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;    po.src = 'https://apis.google.com/js/plusone.js';    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);  })();</script> --><!-- G+ END --><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script type="text/javascript">/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * *//* required: replace example with your forum shortname  */var disqus_shortname = 'feiskyblog';var disqus_identifier = 'clr-interview-problem.html';var disqus_title = 'clr-interview-problem.html';var disqus_url = 'http://blog.com/clr-interview-problem.html';/* * * DON'T EDIT BELOW THIS LINE * * */(function() {var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a><!-- DISQUS END --></body>
+</html>

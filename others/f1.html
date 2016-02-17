@@ -1,0 +1,462 @@
+layout: false
+---
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><!-- <meta name="baidu-site-verification" content="707024a76f8f40b549f07f478abab237"/> -->
+<title>f1</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="title" content="f1"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2014-01-02T19:57+0800"/>
+<meta name="author" content="dirtysalt"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style><link rel="shortcut icon" href="http://blog.com/css/favicon.ico" /> <link rel="stylesheet" type="text/css" href="./css/site.css" />
+
+
+</head>
+<body><!-- <div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare"><a class="bds_tsina"></a><span class="bds_more"></span><a class="shareCount"></a></div> --><!-- Place this tag where you want the +1 button to render --><!-- <g:plusone annotation="inline"></g:plusone> -->
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">f1</h1>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 f1</a>
+<ul>
+<li><a href="#sec-1-1">1.1 F1 - The Fault-Tolerant Distributed RDBMS Supporting Google's Ad Business</a>
+<ul>
+<li><a href="#sec-1-1-1">1.1.1 Today's Talk</a></li>
+<li><a href="#sec-1-1-2">1.1.2 Our Legacy DB: Sharded MySQL</a></li>
+<li><a href="#sec-1-1-3">1.1.3 Our Solution: F1</a></li>
+<li><a href="#sec-1-1-4">1.1.4 How We Deploy</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-2">1.2 F1: A Distributed SQL Database That Scales</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> f1</h2>
+<div class="outline-text-2" id="text-1">
+
+
+</div>
+
+<div id="outline-container-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> F1 - The Fault-Tolerant Distributed RDBMS Supporting Google's Ad Business</h3>
+<div class="outline-text-3" id="text-1-1">
+
+<ul>
+<li>link <a href="http://research.google.com/pubs/pub38125.html">http://research.google.com/pubs/pub38125.html</a>
+</li>
+<li>date 2012
+</li>
+</ul>
+
+
+
+</div>
+
+<div id="outline-container-1-1-1" class="outline-4">
+<h4 id="sec-1-1-1"><span class="section-number-4">1.1.1</span> Today's Talk</h4>
+<div class="outline-text-4" id="text-1-1-1">
+
+<ul>
+<li>F1 - A Hybrid Database combining the
+<ul>
+<li>Scalability of Bigtable
+</li>
+<li>Usability and functionality of SQL databases
+
+</li>
+</ul>
+
+</li>
+<li>Key Ideas
+<ul>
+<li>Scalability: Auto-sharded storage
+</li>
+<li>Availability &amp; Consistency: Synchronous
+</li>
+<li>High commit latency: Can be hidden
+<ul>
+<li>Hierarchical schema <b>层次schema？这个似乎是spanner直接提供的？</b>
+</li>
+<li>Protocol buffer column types
+</li>
+<li>Efficient client code
+</li>
+</ul>
+
+</li>
+<li>Can you have a scalable database without going NoSQL?  Yes.
+</li>
+</ul>
+
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-1-2" class="outline-4">
+<h4 id="sec-1-1-2"><span class="section-number-4">1.1.2</span> Our Legacy DB: Sharded MySQL</h4>
+<div class="outline-text-4" id="text-1-1-2">
+
+<ul>
+<li>Sharding Strategy
+<ul>
+<li>Sharded by customer
+</li>
+<li>Apps optimized using shard awareness
+
+</li>
+</ul>
+
+</li>
+<li>Limitations
+<ul>
+<li>Availability
+<ul>
+<li>Master / slave replication -&gt; downtime during failover
+</li>
+<li>Schema changes -&gt; downtime for table locking
+</li>
+</ul>
+
+</li>
+<li>Scaling
+<ul>
+<li>Grow by adding shards
+</li>
+<li>Rebalancing shards is extremely difficult and risky
+</li>
+<li>Therefore, limit size and growth of data stored in database
+</li>
+</ul>
+
+</li>
+<li>Functionality
+<ul>
+<li>Can't do cross-shard transactions or joins
+</li>
+</ul>
+
+</li>
+</ul>
+
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-1-3" class="outline-4">
+<h4 id="sec-1-1-3"><span class="section-number-4">1.1.3</span> Our Solution: F1</h4>
+<div class="outline-text-4" id="text-1-1-3">
+
+<ul>
+<li>A new database
+<ul>
+<li>built from scratch,
+</li>
+<li>designed to operate at Google scale,
+</li>
+<li>without compromising on RDBMS features.
+</li>
+<li>Co-developed with new lower-level storage system, Spanner
+
+</li>
+</ul>
+
+</li>
+<li>Underlying Storage - <a href="spanner.html">Spanner</a> <b>spanner本身提供的data model也是支持层次schema的</b>
+<ul>
+<li>Descendant of Bigtable, Successor to Megastore
+</li>
+<li>Properties
+<ul>
+<li>Globally distributed
+</li>
+<li>Synchronous cross-datacenter replication (with Paxos)
+</li>
+<li>Transparent sharding, data movement
+</li>
+<li>General transactions
+<ul>
+<li>Multiple reads followed by a single atomic write
+</li>
+<li>Local or cross-machine (using 2PC)
+</li>
+</ul>
+
+</li>
+<li>Snapshot reads
+</li>
+</ul>
+
+</li>
+<li>Hierarchical Schema
+<ul>
+<li>Explicit table hierarchies.  Example:
+</li>
+<li>Customer (root table): PK (CustomerId)
+</li>
+<li>Campaign (child): PK (CustomerId, CampaignId)
+</li>
+<li>AdGroup (child):   PK (CustomerId, CampaignId, AdGroupId)
+</li>
+</ul>
+
+</li>
+<li>Clustered Storage 
+<ul>
+<li>Child rows under one root row form a cluster （属于同一个root的数据形成一个cluster)
+</li>
+<li>Cluster stored on one machine (unless huge) （然后这个cluster通常会存放在一个机器上面）
+</li>
+<li>Transactions within one cluster are most efficient
+</li>
+<li>Very efficient joins inside clusters (can merge with no sorting)
+</li>
+</ul>
+
+</li>
+<li>Protocol Buffer Column Types （这个应该有很多好处，能够在很大程度上减少表的数量以及减少阻抗）
+</li>
+</ul>
+
+</li>
+</ul>
+
+
+<p>
+<img src="./images/f1-hierarchical-schema.png"  alt="./images/f1-hierarchical-schema.png" />
+</p>
+<p>
+<img src="./images/f1-clustered-storage.png"  alt="./images/f1-clustered-storage.png" />
+</p>
+
+<ul>
+<li>Architecture
+<ul>
+<li>Sharded Spanner servers
+<ul>
+<li>data on GFS and in memory
+</li>
+</ul>
+
+</li>
+<li>Stateless F1 server
+</li>
+<li>Pool of workers for query execution
+</li>
+</ul>
+
+</li>
+</ul>
+
+<p><img src="./images/f1-architecture.png"  alt="./images/f1-architecture.png" />
+</p>
+<ul>
+<li>Features
+<ul>
+<li>Relational schema
+<ul>
+<li>Extensions for hierarchy and rich data types
+</li>
+<li>Non-blocking schema changes
+</li>
+</ul>
+
+</li>
+<li>Consistent indexes
+</li>
+<li>Parallel reads with SQL or Map-Reduce
+</li>
+</ul>
+
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-1-4" class="outline-4">
+<h4 id="sec-1-1-4"><span class="section-number-4">1.1.4</span> How We Deploy</h4>
+<div class="outline-text-4" id="text-1-1-4">
+
+<ul>
+<li>Five replicas needed for high availability
+<ul>
+<li>Why not three?
+<ul>
+<li>Assume one datacenter down
+</li>
+<li>Then one more machine crash =&gt; partial outage
+</li>
+</ul>
+
+</li>
+<li>Replicas spread across the country to survive regional disasters
+<ul>
+<li>Up to 100ms apart（传输距离达到了100ms以上？）
+
+</li>
+</ul>
+
+</li>
+</ul>
+
+</li>
+<li>Performance
+<ul>
+<li>Very high commit latency - 50-100ms（因为写需要跨越几个机房）
+</li>
+<li>Reads take 5-10ms - much slower than MySQL（如果单次读取在5-10ms算是比较快的了）
+</li>
+<li>High throughput
+
+</li>
+</ul>
+
+</li>
+<li>Coping with High Latency
+<ul>
+<li>Preferred transaction structure
+<ul>
+<li>One read phase: No serial reads
+<ul>
+<li>Read in batches
+</li>
+</ul>
+
+</li>
+<li>Read asynchronously in parallel
+</li>
+<li>Buffer writes in client, send as one RPC
+</li>
+</ul>
+
+</li>
+<li>Use coarse schema and hierarchy（通过提供protobuf column type来提供粗粒度的schema）
+<ul>
+<li>Fewer tables and columns
+</li>
+<li>Fewer joins
+</li>
+</ul>
+
+</li>
+<li>For bulk operations
+<ul>
+<li>Use small transactions in parallel - high throughput
+</li>
+</ul>
+
+</li>
+</ul>
+
+</li>
+</ul>
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> F1: A Distributed SQL Database That Scales</h3>
+<div class="outline-text-3" id="text-1-2">
+
+<ul>
+<li>link <a href="http://research.google.com/pubs/pub41344.html">http://research.google.com/pubs/pub41344.html</a>
+</li>
+<li>date 2013
+</li>
+</ul>
+
+
+<p>
+TODO(blog):
+</p></div>
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="date">Date: 2014-01-02T19:57+0800</p>
+<p class="creator"><a href="http://orgmode.org">Org</a> version 7.9.2 with <a href="http://www.gnu.org/software/emacs/">Emacs</a> version 23</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
+</div>
+<!-- Baidu Analytics BEGIN --><script type="text/javascript">var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F54a700ad7035f6e485eaf2300641e7e9' type='text/javascript'%3E%3C/script%3E"));</script><!-- Baidu Analytics END --><!-- Google Analytics BEGIN --><!-- <script type="text/javascript">  var _gaq = _gaq || [];  _gaq.push(['_setAccount', 'UA-31377772-1']);  _gaq.push(['_trackPageview']);  (function() {    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);  })();</script> --><!-- Google Analytics END --><!-- Baidu Button BEGIN --><!-- <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6762177" ></script><script type="text/javascript" id="bdshell_js"></script><script type="text/javascript"> document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)</script> --><!-- Baidu Button END --><!-- G+ BEGIN --><!-- Place this render call where appropriate --><!-- <script type="text/javascript">  (function() {    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;    po.src = 'https://apis.google.com/js/plusone.js';    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);  })();</script> --><!-- G+ END --><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script type="text/javascript">/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * *//* required: replace example with your forum shortname  */var disqus_shortname = 'feiskyblog';var disqus_identifier = 'f1.html';var disqus_title = 'f1.html';var disqus_url = 'http://blog.com/f1.html';/* * * DON'T EDIT BELOW THIS LINE * * */(function() {var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a><!-- DISQUS END --></body>
+</html>

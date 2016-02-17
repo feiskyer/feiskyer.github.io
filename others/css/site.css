@@ -1,0 +1,13 @@
+pre {
+    background-color: #eee;
+    box-shadow: 5px 5px 5px #888;
+    border: none;
+    padding: 5pt;
+    margin-bottom: 14pt;
+    color: black;
+    padding: 12pt;
+    font-family: Courier New;
+    font-size: 95%;
+    overflow: auto;
+}
+

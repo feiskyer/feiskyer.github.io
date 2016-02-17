@@ -1,0 +1,368 @@
+layout: false
+---
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><!-- <meta name="baidu-site-verification" content="707024a76f8f40b549f07f478abab237"/> -->
+<title>cassandra</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="title" content="cassandra"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2014-01-02T19:57+0800"/>
+<meta name="author" content="dirtysalt"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style><link rel="shortcut icon" href="http://blog.com/css/favicon.ico" /> <link rel="stylesheet" type="text/css" href="./css/site.css" />
+
+
+</head>
+<body><!-- <div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare"><a class="bds_tsina"></a><span class="bds_more"></span><a class="shareCount"></a></div> --><!-- Place this tag where you want the +1 button to render --><!-- <g:plusone annotation="inline"></g:plusone> -->
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">cassandra</h1>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 cassandra</a>
+<ul>
+<li><a href="#sec-1-1">1.1 Cassandra - A Decentralized Structured Storage System</a>
+<ul>
+<li><a href="#sec-1-1-1">1.1.1 ABSTRACT</a></li>
+<li><a href="#sec-1-1-2">1.1.2 INTRODUCTION</a></li>
+<li><a href="#sec-1-1-3">1.1.3 RELATED WORK</a></li>
+<li><a href="#sec-1-1-4">1.1.4 DATA MODEL</a></li>
+<li><a href="#sec-1-1-5">1.1.5 API</a></li>
+<li><a href="#sec-1-1-6">1.1.6 SYSTEM ARCHITECTURE</a></li>
+<li><a href="#sec-1-1-7">1.1.7 PRACTICAL EXPERIENCES</a></li>
+<li><a href="#sec-1-1-8">1.1.8 CONCLUSION</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-2">1.2 Facebook’s Cassandra paper, annotated and compared to Apache Cassandra 2.0</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> cassandra</h2>
+<div class="outline-text-2" id="text-1">
+
+<ul>
+<li>Cassandra - A Decentralized Structured Storage System <a href="http://www.cs.cornell.edu/projects/ladis2009/papers/lakshman-ladis2009.pdf">http://www.cs.cornell.edu/projects/ladis2009/papers/lakshman-ladis2009.pdf</a>
+</li>
+<li><a href="http://www.dbthink.com/archives/372">http://www.dbthink.com/archives/372</a>
+</li>
+<li>Facebook’s Cassandra paper, annotated and compared to Apache Cassandra 2.0 : <a href="http://www.datastax.com/documentation/articles/cassandra/cassandrathenandnow.html">http://www.datastax.com/documentation/articles/cassandra/cassandrathenandnow.html</a>
+</li>
+</ul>
+
+
+
+</div>
+
+<div id="outline-container-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Cassandra - A Decentralized Structured Storage System</h3>
+<div class="outline-text-3" id="text-1-1">
+
+
+</div>
+
+<div id="outline-container-1-1-1" class="outline-4">
+<h4 id="sec-1-1-1"><span class="section-number-4">1.1.1</span> ABSTRACT</h4>
+<div class="outline-text-4" id="text-1-1-1">
+
+</div>
+
+</div>
+
+<div id="outline-container-1-1-2" class="outline-4">
+<h4 id="sec-1-1-2"><span class="section-number-4">1.1.2</span> INTRODUCTION</h4>
+<div class="outline-text-4" id="text-1-1-2">
+
+</div>
+
+</div>
+
+<div id="outline-container-1-1-3" class="outline-4">
+<h4 id="sec-1-1-3"><span class="section-number-4">1.1.3</span> RELATED WORK</h4>
+<div class="outline-text-4" id="text-1-1-3">
+
+</div>
+
+</div>
+
+<div id="outline-container-1-1-4" class="outline-4">
+<h4 id="sec-1-1-4"><span class="section-number-4">1.1.4</span> DATA MODEL</h4>
+<div class="outline-text-4" id="text-1-1-4">
+
+<ul>
+<li>A table in Cassandra is a distributed multi dimensional map indexed by a key. 
+<ul>
+<li>The value is an object which is highly structured. The row key in a table is a string with no size restrictions, although typically 16 to 36 bytes long. 
+</li>
+<li>Every operation under a single row key is atomic per replica no matter how many columns are being read or written into.
+</li>
+</ul>
+
+</li>
+<li>Columns are grouped together into sets called column fam-ilies very much similar to what happens in the Bigtable system. 
+<ul>
+<li>Cassandra exposes two kinds of columns families, Simple and Super column families. 
+</li>
+<li>Super column families can be visualized as a column family within a column family. <b>NOTE（blog）：已经废弃了。现在data model应该是和big table完全一致了</b>
+</li>
+</ul>
+
+</li>
+<li>Furthermore, applications can specify the sort order of columns within a Super Column or Simple Column family. The system allows columns to be sorted either by time or by name. Time sorting of columns is exploited by applica- tion like Inbox Search where the results are always displayed in time sorted order. （可以对column排序，按照时间或者是名称。这个是怎么实现的？？）
+</li>
+<li>Any column within a column family is accessed using the convention <b>column family : column</b> and any column within a column family that is of type super is accessed using the convention <b>column family : super column : column</b>.
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-1-5" class="outline-4">
+<h4 id="sec-1-1-5"><span class="section-number-4">1.1.5</span> API</h4>
+<div class="outline-text-4" id="text-1-1-5">
+
+<p>The Cassandra API consists of the following three simple methods.
+</p><ul>
+<li>insert(table, key, rowMutation)
+</li>
+<li>get(table, key, columnName)
+</li>
+<li>delete(table, key, columnName)
+</li>
+</ul>
+
+<p>columnName can refer to a specific column within a col-umn, a column family, a super column family, or a column within a super column.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-1-6" class="outline-4">
+<h4 id="sec-1-1-6"><span class="section-number-4">1.1.6</span> SYSTEM ARCHITECTURE</h4>
+<div class="outline-text-4" id="text-1-1-6">
+
+<ul>
+<li id="sec-1-1-6-1">Partitioning<br/>
+<ul>
+<li>Cassandra partitions data across the cluster using consistent hashing but uses an <b>order pre-serving hash function</b> to do so. TODO(blog):???
+</li>
+<li>The basic consistent hashing algorithm presents some challenges.
+<ul>
+<li>First, the random position assignment of each node on the ring leads to non-uniform data and load distribution. 
+</li>
+<li>Sec-ond, the basic algorithm is oblivious to the heterogeneity in the performance of nodes. 
+</li>
+</ul>
+
+</li>
+<li>Typically there exist two ways to address this issue: 
+<ul>
+<li>One is for nodes to get assigned to multi-ple positions in the circle (like in Dynamo), 
+</li>
+<li>and the second is to analyze load information on the ring and have lightly loaded nodes move on the ring to alleviate heavily loaded nodes as described in. 
+</li>
+<li>Cassandra opts for the latter as it makes the design and implementation very tractable and helps to make very deterministic choices about load balanc-ing. NOTE（blog）：似乎第二种办法更加不靠谱）
+</li>
+</ul>
+
+</li>
+</ul>
+
+
+</li>
+</ul>
+<ul>
+<li id="sec-1-1-6-2">Replication<br/>
+<ul>
+<li>Cassandra provides the client with various options for how data needs to be replicated. Cassandra provides various replication poli- cies such as “Rack Unaware”, “Rack Aware” (within a data- center) and “Datacenter Aware”. Replicas are chosen based on the replication policy chosen by the application. If cer-tain application chooses “Rack Unaware” replication strat-egy then the non-coordinator replicas are chosen by picking N-1 successors of the coordinator on the ring. For “Rack Aware” and “Datacenter Aware” strategies the algorithm is slightly more involved.（可以很好地为跨数据中心服务）
+
+</li>
+<li>Cassandra system elects a leader amongst its nodes using a system called Zookeeper. All nodes on joining the cluster contact the leader who tells them for what ranges they are replicas for and leader makes a concerted effort to maintain the invariant that no node is responsible for more than N-1 ranges in the ring. The metadata about the ranges a node is responsible is cached locally at each node and in a fault-tolerant manner inside Zookeeper - this way a node that crashes and comes back up knows what ranges it was responsible for.（通过zookeeper对membership持久化）
+</li>
+</ul>
+
+
+</li>
+</ul>
+<ul>
+<li id="sec-1-1-6-3">Membership<br/>
+<ul>
+<li><b>Cluster membership in Cassandra is based on Scuttle-butt</b>, a very efficient anti-entropy Gossip based mech-anism. The salient feature of Scuttlebutt is that it has very efficient CPU utilization and very efficient utilization of the gossip channel. Within the Cassandra system Gossip is not only used for membership but also to disseminate other sys-tem related control state.
+</li>
+<li>Failure detection is a mechanism by which a node can locally determine if any other node in the system is up or down. In Cassandra failure detection is also used to avoid at-tempts to communicate with unreachable nodes during var-ious operations.
+</li>
+<li>Cassandra uses a modified version of the Φ Accrual Failure Detector. The idea of an Accrual Failure Detection is that the failure detection module doesn’t emit a Boolean value stating a node is up or down. Instead the failure detection module emits a value which represents a suspicion level for each of monitored nodes. This value is defined as Φ. The basic idea is to express the value of Φ on a scale that is dynamically adjusted to reflect network and load conditions at the monitored nodes.（使用置信区间的方式来判断节点是否出现故障）
+</li>
+<li>Φ has the following meaning: Given some threshold Φ, and assuming that we decide to suspect a node A when Φ = 1, then the likelihood that we will make a mistake (i.e., the decision will be contradicted in the future by the reception of a late heartbeat) is about 10%. The likelihood is about 1% with Φ = 2, 0.1% with Φ = 3, and so on. Every node in the system maintains a sliding window of inter-arrival times of gossip messages from other nodes in the cluster. The distribution of these inter-arrival times is determined and Φ is calculated. 
+</li>
+<li>Although the original paper suggests that the distribution is approximated by the Gaussian distribu-tion we found the Exponential Distribution to be a better approximation, because of the nature of the gossip channel and its impact on latency. To our knowledge our implemen-tation of the Accrual Failure Detection in a Gossip based setting is the first of its kind. Accrual Failure Detectors are very good in both their accuracy and their speed and they also adjust well to network conditions and server load conditions.
+</li>
+</ul>
+
+
+</li>
+</ul>
+<ul>
+<li id="sec-1-1-6-4">Bootstrapping<br/>
+<ul>
+<li>When a node starts for the first time, it chooses a random token for its position in the ring. For fault tolerance, the mapping is persisted to disk locally and also in Zookeeper. The token information is then gossiped around the cluster. This is how we know about all nodes and their respective po-sitions in the ring. This enables any node to route a request for a key to the correct node in the cluster. 
+</li>
+<li>In the bootstrap case, when a node needs to join a cluster, it reads its configu-ration file which contains a list of a few contact points within the cluster. We call these initial contact points, seeds of the cluster. Seeds can also come from a configuration service like Zookeeper. TODO（blog）：难道这个过程不是和新加节点相同吗？为什么这里还需要有额外的seed nodes?
+</li>
+</ul>
+
+
+</li>
+</ul>
+<ul>
+<li id="sec-1-1-6-5">Scaling the Cluster<br/>
+<ul>
+<li>The node giving up the data streams the data over to the new node using kernel-kernel copy techniques. Operational experience has shown that data can be transferred at the rate of 40 MB/sec from a single node. We are working on improving this by having multiple replicas take part in the bootstrap transfer thereby parallelizing the effort, similar to Bittorrent.（数据转移底层使用kernel-to-kernel的拷贝技术，后续考虑类似bt方式来加快这个过程）
+</li>
+</ul>
+
+
+</li>
+</ul>
+<ul>
+<li id="sec-1-1-6-6">Local Persistence<br/>
+<ul>
+<li>We have a dedicated disk on each machine for the commit log since all writes into the commit log are sequential and so we can maximize disk throughput.（有专门的硬盘来写入commit log）
+</li>
+<li>In order to prevent scanning of every column on disk we maintain column indices which allow us to jump to the right chunk on disk for column retrieval. As the columns for a given key are being serialized and written out to disk we generate indices at every 256K chunk boundary. This boundary is configurable, but we have found 256K to work well for us in our production workloads. TODO（blog）：不是特别理解这个实现？可能实现上和leveldb还不太一样，所以需要为column做索引
+</li>
+</ul>
+
+
+</li>
+</ul>
+<ul>
+<li id="sec-1-1-6-7">Implementation Details<br/>
+<ul>
+<li>All sys-tem control messages rely on UDP based messaging while the application related messages for replication and request routing relies on TCP.（系统控制走UDP）
+</li>
+</ul>
+
+
+</li>
+</ul>
+</div>
+
+</div>
+
+<div id="outline-container-1-1-7" class="outline-4">
+<h4 id="sec-1-1-7"><span class="section-number-4">1.1.7</span> PRACTICAL EXPERIENCES</h4>
+<div class="outline-text-4" id="text-1-1-7">
+
+<p>In the process of designing, implementing and maintaining Cassandra we gained a lot of useful experience and learned numerous lessons. <b>One very fundamental lesson learned was not to add any new feature without understanding the effects of its usage by applications. Most problematic scenarios do not stem from just node crashes and network partitions.</b> We share just a few interesting scenarios here.
+</p><ul>
+<li>We exposed some background channels for the M/R process to aggregate the re-verse index per user and send over the serialized data over to the Cassandra instance, to avoid the serializa-tion/deserialization overhead. This way the Cassandra instance is only bottlenecked by network bandwidth.（BulkLoad方式）
+</li>
+<li>Most applications only require atomic operation per key per replica. However there have been some appli-cations that have asked for transactional mainly for the purpose of maintaining secondary indices.（需要事务功能主要是为二级索引）
+</li>
+<li>We experimented with various implementations of Fail-ure Detectors. Our experience had been that the time to detect fail-ures increased beyond an acceptable limit as the size of the cluster grew. In one particular experiment in a cluster of 100 nodes time to taken to detect a failed node was in the order of two minutes. This is prac-tically unworkable in our environments. With the ac-crual failure detector with a slightly conservative value of PHI, set to 5, the average time to detect failures in the above experiment was about 15 seconds.（降低故障检测的延迟）
+</li>
+<li>Monitoring is not to be taken for granted. The Cas-sandra system is well integrated with Ganglia, a distributed performance monitoring tool. We expose various system level metrics to Ganglia and this has helped us understand the behavior of the system when subject to our production workload. Disks fail for no apparent reasons. The bootstrap algorithm has some hooks to repair nodes when disk fail. This is however an administrative operation.（监控指标直接对接到Ganglia）
+</li>
+<li>Although Cassandra is a completely decentralized sys-tem we have learned that having some amount of co-ordination is essential to making the implementation of some distributed features tractable. For example Cassandra is integrated with Zookeeper, which can be used for various coordination tasks in large scale dis-tributed systems. We intend to use the Zookeeper ab-straction for some key features which actually do not come in the way of applications that use Cassandra as the storage engine.（Zookeeper来完成协调工作使得整个系统易于追踪）
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-1-8" class="outline-4">
+<h4 id="sec-1-1-8"><span class="section-number-4">1.1.8</span> CONCLUSION</h4>
+<div class="outline-text-4" id="text-1-1-8">
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> Facebook’s Cassandra paper, annotated and compared to Apache Cassandra 2.0</h3>
+<div class="outline-text-3" id="text-1-2">
+
+<p>TODO（blog）：
+</p></div>
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="date">Date: 2014-01-02T19:57+0800</p>
+<p class="creator"><a href="http://orgmode.org">Org</a> version 7.9.2 with <a href="http://www.gnu.org/software/emacs/">Emacs</a> version 23</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
+</div>
+<!-- Baidu Analytics BEGIN --><script type="text/javascript">var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F54a700ad7035f6e485eaf2300641e7e9' type='text/javascript'%3E%3C/script%3E"));</script><!-- Baidu Analytics END --><!-- Google Analytics BEGIN --><!-- <script type="text/javascript">  var _gaq = _gaq || [];  _gaq.push(['_setAccount', 'UA-31377772-1']);  _gaq.push(['_trackPageview']);  (function() {    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);  })();</script> --><!-- Google Analytics END --><!-- Baidu Button BEGIN --><!-- <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6762177" ></script><script type="text/javascript" id="bdshell_js"></script><script type="text/javascript"> document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)</script> --><!-- Baidu Button END --><!-- G+ BEGIN --><!-- Place this render call where appropriate --><!-- <script type="text/javascript">  (function() {    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;    po.src = 'https://apis.google.com/js/plusone.js';    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);  })();</script> --><!-- G+ END --><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script type="text/javascript">/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * *//* required: replace example with your forum shortname  */var disqus_shortname = 'feiskyblog';var disqus_identifier = 'cassandra.html';var disqus_title = 'cassandra.html';var disqus_url = 'http://blog.com/cassandra.html';/* * * DON'T EDIT BELOW THIS LINE * * */(function() {var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a><!-- DISQUS END --></body>
+</html>

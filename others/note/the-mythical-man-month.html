@@ -1,0 +1,272 @@
+layout: false
+---
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><!-- <meta name="baidu-site-verification" content="707024a76f8f40b549f07f478abab237"/> -->
+<title>人月神话(The Mythical Man-Month)</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="title" content="人月神话(The Mythical Man-Month)"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2014-01-02T19:57+0800"/>
+<meta name="author" content="dirtysalt"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style><link rel="shortcut icon" href="http://blog.com/css/favicon.ico" /> <link rel="stylesheet" type="text/css" href="../css/site.css" />
+
+
+</head>
+<body><!-- <div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare"><a class="bds_tsina"></a><span class="bds_more"></span><a class="shareCount"></a></div> --><!-- Place this tag where you want the +1 button to render --><!-- <g:plusone annotation="inline"></g:plusone> -->
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">人月神话(The Mythical Man-Month)</h1>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 the-mythical-man-month</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> the-mythical-man-month</h2>
+<div class="outline-text-2" id="text-1">
+
+<p>作者讲的是为什么有这么多软件业项目像是陷入了焦油坑一样，越想摆脱越被束缚，这个关系到这个职业的乐趣的苦恼. 职业的乐趣
+</p><ul>
+<li>首先这种快乐是创造一种新事物的纯粹的快乐
+</li>
+<li>这种快乐来自于开发对其它人有用的东西
+</li>
+<li>快乐来自于整个过程体现的强大魅力，部件耦合在一起
+</li>
+<li>这种快乐是学习的快乐
+</li>
+<li>这种快乐来自于在易于驾驭的介质上工作
+</li>
+</ul>
+
+<p>职业的苦恼
+</p><ul>
+<li>苦恼来自于对完美的追求
+</li>
+<li>苦恼来自由他人来设定目标，供给资源，提供信息
+</li>
+<li>概念性设计有趣但是寻找琐碎的bug确实一项重复性的劳动
+</li>
+<li>当花去大量的时间之后发现编写的东西过时
+</li>
+</ul>
+
+
+
+<hr/>
+<p>
+简化的brooks法则就是:往进度落后的项目中增加人手只会使得项目进度更加落后(Adding manpower to a late of software project makes it later)，至于为什么作者在这章有分析。里面有一些计算我看不懂，感觉是不是计算错了，但是整体的思想很简单就是增加的人手一方面需要进行一段时间的培训，另外一方面人手的增加会带来沟通的困难. 人数和时间的互换仅仅适用于下面的情况:某个人物可以分解给参与人员，并且他们之间不需要任何相互的交流
+</p>
+
+<hr/>
+<p>
+为什么缺乏合理的进度安排如此普遍
+</p><ul>
+<li>我们对于估算技术缺乏有效的研究
+</li>
+<li>估算技术假设人和月可以进行交换
+</li>
+<li>对于自己的估算缺乏信息，软件经理通常不会持续估算这项工作
+</li>
+<li>对进度缺少跟踪和监督
+</li>
+<li>当意识到进度的延缓下意识反应就是增加人力
+</li>
+</ul>
+
+
+
+<hr/>
+<p>
+软件进度安排经验法则
+</p><ul>
+<li>1/3计划
+</li>
+<li>1/6编码
+</li>
+<li>1/4单元测试和构建测试
+</li>
+<li>1/4系统测试
+</li>
+</ul>
+
+<p>需要特别指出不为系统测试安排足够的时间简直就是一场灾难，因为延迟发生在项目快完成的时候，直到接近项目发布的日期才发现进度上面有问题。
+</p>
+
+<hr/>
+<p>
+外科手术队伍属于那种一流人才组成的小型精干的队伍，是很多年轻的软件经理所希望带领的团队，但是问题是外科手术队伍相对开发一个大型系统的话太慢了。你不希望看到一个精干的产品仅仅是几年前人们所希望的产品。为此Mills提出了一个团队的组织方式，具体还是看书，关键是要有一个首席的设计师来决定一些矛盾很多并且关键的事情
+</p>
+
+<hr/>
+<p>
+与之对应的是法国城市兰斯(reims)在建筑风格上的一致性和上面所提到的大教堂形成了鲜明的对比。设计的一致性和那些独到之处一样，同样让人们赞叹和喜悦，如同旅游指南所述，风格的一致和完整性来自8位拥有自我约束和牺牲精神的建筑师们，他们每一个人牺牲了自己的一些创意，以获得纯粹的设计。同样这不仅显示了上帝的荣耀，同时也体现了他拯救那些沉醉在自我骄傲中人们的力量
+</p>
+
+<hr/>
+<p>
+我当然不认为只有结构师才会有好的创意。新的概念经常来自于实现人员或者是用户，然而我一直试图表达并且我的所有经验让我确信，系统的概念完整性决定了其使用的难易程度。不能与系统基本概念进行整合的良好想法和特色，最好放在一边不予与考虑。如果出现了很多非常重要但是不兼容的构思，就应该抛弃原来的设计，对不同基本概念进行合并，在合并后的系统上重新开始
+</p>
+
+<hr/>
+<p>
+我观察到外部的体系结构规定实际上是增强而不是限制小组的创造性。一旦他们将注意力集中在没有人解决过的问题上，创意就开始奔涌而出。在毫无限制的实现小组中进行结构上的决策，会出现大量的争议和想法，但是但是对于具体实现的关注放而会比较少
+</p>
+
+<hr/>
+<p>
+想要成功，结构师必须注意
+</p><ul>
+<li>牢记是开发人员承担创造性和发明性的实现责任，所以结构师只能够建议而不能够支配
+</li>
+<li>时刻准备为所制定的说明建议一种实现方法，同时准备接受其它任何可能到达目标的办法
+</li>
+<li>对上述的建议保持低调和不公开
+</li>
+<li>准备放弃坚持所做的改进建议
+</li>
+</ul>
+
+
+
+<hr/>
+<p>
+这里第二个系统是相对于第一个系统而言的，在设计第一个系统时，工程师总是小心翼翼地在预算和功能之间进行合理的定夺，不加入一些花哨和毫无用的用途的功能，以期待在设计第二个系统时再加入。但是在设计第二个系统，这个系统成为了创造力宣泄的出口，各种庞大的无用的功能够加入。我对Stretch系统的印象是，从某种角度而言它是一个产品线的终结。如同早期的计算机程序一样非常富有创造性，设计非常复杂但是却异常地高效。不知道为什么，同时也感觉到，它粗糙浪费缺乏优雅，并且让人觉得必定存在更好的方法可以代替它(编写很多程序的时候我也有这种想法，总感觉必定有种更一致和优雅的设计）
+</p>
+
+<hr/>
+<p>
+由于规模是软件系统产品用户成本中如此大的一个组成部分，开发人员必须设置规模的目标，控制规模，考虑减小规模的方法，就像是硬件程序员会设立元器件数量目标，控制元器件的数量想出减少零件的办法。同任何开销一样，规模本身不是坏事，但是不必要的规模是不可取的
+</p>
+
+<hr/>
+<p>
+由于缺乏空间而绞尽脑汁的编程人员，常常能够从自己的代码中挣脱出来，回顾和分析实际情况，仔细考虑程序数据最终获得非常好的结果。实际上，数据的表现形式是编程的根本
+</p>
+
+<hr/>
+<p>
+系统软件开发是减少混乱度的过程，所以它本身是出于亚稳态的。软件维护是提高混乱度的过程，即使是最熟练的软件维护工作，也只是放缓了系统退化到非稳态的进程
+</p>
+
+<hr/>
+<p>
+工欲善其事必先利其器，但是个性化的工具会使得交流和沟通困难，那么项目经理必须考虑，计划和组织的工具到底有哪些呢？首先项目的关键问题是沟通，个性化的工具妨碍而不是促进沟通。其次当机器和工作语言发生变化，技术也会随之变化，所以所有工具的生命周期都是很短的。最后毫无疑问，开发和维护公共的通用编程工具的效率更高(在这里就必须赞叹GNU的伟大了，所有的GNU/Linux上面的工具基本上都是清一色的，极大的方便了社区的开发，gcc,gdb,diff,patch,awk,sed,grep,sort,uniq,这些都是标准的工具了，在世界范围内提供了通用编程工具)
+</p>
+
+<hr/>
+<p>
+一天一天的进度落后是难以识别，不容易防范并且难以弥补。昨天某个关键人员生病了，无法召开某个会议。今天由于雷击打坏了大厦的供电变压器所有机器无法启动。明天因为工厂磁盘供货延迟了一周，磁盘例行的测试无法进行。这个列表可以不断延长，每件事情都使得某项活动延迟一天或者是半天，但是整体进度开始落后了，尽管每次只有一点点。
+</p>
+
+<hr/>
+<p>
+里程碑边界明显没有歧义，比它容易被老板核实更加重要。如果里程碑定义的非常明确无法自欺欺人的话，那么很少有人会弄虚作假。但是如果里程碑很模糊，那么老板就会常常得到一份与实际情况不符的报告。毕竟没有人愿意承受坏消息。这种做法只是为了起到缓和的作用，并没有任何蓄意的欺骗。好的里程碑对团队来说实际上是一项服务，可以用来向项目经理提出合理要求的一项服务。而模糊的里程碑式难以处理的负担。如果我们看到的，我们必须关注每一天的滞后，它们是大灾祸的基本组成元素
+</p>
+
+<hr/>
+<p>
+为了能够得到实际的进度报告，老板可以采取两种方式一种是减少角色的冲突，另外一种就是突击进行项目的进度的检查。这里记下第一种方法。首先老板必须区别行动信息和状态信息。他必须规范自己，不对项目经理可以解决的问题作出反应，并且决不在检查状态报告的时候做安排。否则信息肯定会被压制不公开。当项目经理了解到老板受到状态报告受不会惊慌，或者不会越俎代疱，他就会逐渐提交真是的结果。
+</p>
+
+<hr/>
+<p>
+现实中，流程图被鼓吹的程度远远大于它们的实际作用。我从来没有看到过一个有经验程序员在开始编写程序之前，会例行公事的编制详尽的流程图。
+</p>
+
+<hr/>
+<p>
+所有软件活动包括根本任务-打造构成抽象软件实体的复杂概念结构，次要任务-使用编程语言表达这些抽象实体，在时间和空间限制内将它们映射成为机器语言. 我认为软件开发中最困难的部分是规格说明，设计和测试这些概念的结构，而不是对概念进行表达和对实现逼真程度进行验证。从4个内在特性可以反映出来：复杂性，一致性，可变性和不可见性。
+</p><ul>
+<li>复杂性。数字计算机本身就比人类构造的大多数东西复杂，计算机拥有大量的状态，使得构思描述和测试非常困难。而软件系统的状态又比计算机的状态多了几个数量级。并且软件实体是以非线性递增家户的，所以软件复杂度..
+</li>
+<li>一致性。开发最新的软件需要遵循各种接口，并且需要在一定程度上保持向后兼容
+</li>
+<li>可变性。对于机器，汽车等物体人们造出来就不会也不能够在进行修改，但是软件不一样，人们总是希望去修改软件，因此软件也被迫去被修改满足不同的需求。简而言之，软件产品扎根于文化的母体中，如各种应用，自然以及社会规律，计算机硬件等。后者持续不断地变化着，这些变化无情地强迫着软件也随之变化
+</li>
+<li>不可见性。软件不可见也无法可视化，客观存在不具有空间的形体特征，剥夺了一些具有强大功能的概念工具的构造创意，限制了个人的设计过程也严重阻碍了思路相互之间的交流
+</li>
+</ul>
+
+
+
+<hr/>
+<p>
+在所有被误导的科学探索中，最悲惨的莫过于对一种能够将一般金属变成金子的物质，即点金石的研究。这个由统治者不断地投入金钱，被一代代的研究者不懈追求的，炼金术中至高无上的法宝，是一种从理想化理想和普遍假设中-以为事情会像我们所认为的那样-提取出的精华。它是人类纯粹信仰的体现，人们花了大量的时间和精力来认可和接受这种无法解决的问题。即使被证明是不存在，那种寻找出路和希望能一劳永逸的愿望依然十分强烈。而沃恩重的绝大多数总是很同情这些明知不可为而为之的人的勇气，因此它们总是能够延续。所以，将圆形变成方形的论文被发表，恢复脱发的洗液被研制和出售，提高软件生产率的方法被提出并成功地推销。我们太过于倾向于遵循我们自己的乐观主义(或是发掘我们出资人的乐观主义)。我们太喜欢忽视真理的声音，而去听从万灵药贩卖者的诱惑。
+</p>
+
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="date">Date: 2014-01-02T19:57+0800</p>
+<p class="creator"><a href="http://orgmode.org">Org</a> version 7.9.2 with <a href="http://www.gnu.org/software/emacs/">Emacs</a> version 23</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
+</div>
+<!-- Baidu Analytics BEGIN --><script type="text/javascript">var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F54a700ad7035f6e485eaf2300641e7e9' type='text/javascript'%3E%3C/script%3E"));</script><!-- Baidu Analytics END --><!-- Google Analytics BEGIN --><!-- <script type="text/javascript">  var _gaq = _gaq || [];  _gaq.push(['_setAccount', 'UA-31377772-1']);  _gaq.push(['_trackPageview']);  (function() {    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);  })();</script> --><!-- Google Analytics END --><!-- Baidu Button BEGIN --><!-- <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6762177" ></script><script type="text/javascript" id="bdshell_js"></script><script type="text/javascript"> document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)</script> --><!-- Baidu Button END --><!-- G+ BEGIN --><!-- Place this render call where appropriate --><!-- <script type="text/javascript">  (function() {    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;    po.src = 'https://apis.google.com/js/plusone.js';    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);  })();</script> --><!-- G+ END --><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script type="text/javascript">/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * *//* required: replace example with your forum shortname  */var disqus_shortname = 'feiskyblog';var disqus_identifier = 'note/the-mythical-man-month.html';var disqus_title = 'note/the-mythical-man-month.html';var disqus_url = 'http://blog.com/note/the-mythical-man-month.html';/* * * DON'T EDIT BELOW THIS LINE * * */(function() {var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a><!-- DISQUS END --></body>
+</html>

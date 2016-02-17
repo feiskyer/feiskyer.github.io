@@ -1,0 +1,1046 @@
+layout: false
+---
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><!-- <meta name="baidu-site-verification" content="707024a76f8f40b549f07f478abab237"/> -->
+<title>cpp</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="title" content="cpp"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2014-01-02T19:57+0800"/>
+<meta name="author" content="dirtysalt"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style><link rel="shortcut icon" href="http://blog.com/css/favicon.ico" /> <link rel="stylesheet" type="text/css" href="./css/site.css" />
+
+
+</head>
+<body><!-- <div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare"><a class="bds_tsina"></a><span class="bds_more"></span><a class="shareCount"></a></div> --><!-- Place this tag where you want the +1 button to render --><!-- <g:plusone annotation="inline"></g:plusone> -->
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">cpp</h1>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 cpp</a>
+<ul>
+<li><a href="#sec-1-1">1.1 相关资料</a></li>
+<li><a href="#sec-1-2">1.2 TC++PL</a></li>
+<li><a href="#sec-1-3">1.3 language</a>
+<ul>
+<li><a href="#sec-1-3-1">1.3.1 new/delete</a></li>
+<li><a href="#sec-1-3-2">1.3.2 static assert</a></li>
+<li><a href="#sec-1-3-3">1.3.3 renew static_cast</a></li>
+<li><a href="#sec-1-3-4">1.3.4 keyword</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-4">1.4 runtime</a>
+<ul>
+<li><a href="#sec-1-4-1">1.4.1 local static object</a></li>
+<li><a href="#sec-1-4-2">1.4.2 hook function</a></li>
+<li><a href="#sec-1-4-3">1.4.3 undefined reference to static const class member</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-5">1.5 library</a>
+<ul>
+<li><a href="#sec-1-5-1">1.5.1 boost::bind</a></li>
+<li><a href="#sec-1-5-2">1.5.2 boost::spirit</a></li>
+<li><a href="#sec-1-5-3">1.5.3 google::protobuf dynamic usage</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-6">1.6 misc</a>
+<ul>
+<li><a href="#sec-1-6-1">1.6.1 诡异的性能问题</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> cpp</h2>
+<div class="outline-text-2" id="text-1">
+
+
+</div>
+
+<div id="outline-container-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> 相关资料</h3>
+<div class="outline-text-3" id="text-1-1">
+
+<ul>
+<li>The C Programming Language(DMR &amp; BWK)
+</li>
+<li>C and Pointers
+</li>
+<li>The C++ Programming Language(BS)
+</li>
+<li>Thinking in C++
+</li>
+<li><a href="http://www.cplusplus.com/doc/tutorial/">http://www.cplusplus.com/doc/tutorial/</a>
+</li>
+<li>TCC : Tiny C Compiler <a href="http://bellard.org/tcc/">http://bellard.org/tcc/</a>
+</li>
+<li>
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> TC++PL</h3>
+<div class="outline-text-3" id="text-1-2">
+
+<p>学习C++时，最主要的事情就是集中关注概念，不要迷失在语言的技术细节里面，学习语言的目的是成为一个更好的程序员，对于程序设计和设计技术的理解远远比语言细节重要.在实践性程序设计中，理解语言中最晦涩难懂的语言特征或者使用大量的不同特征并不能够获得什么利益:-).C++支持一种逐步推进的学习方式，就是说一开始就可以来使用C++编写实际的东西，同时C++支持多种程序设计范型，能够使得你大致线形地学习它的概念，并且在学习过程中不断收到实际效益。
+</p>
+<p>
+OOP允许程序员用问题本身的属于来描述问题，而不是要用运行解决方案的计算机术语来描述问题。人们已经对OOP语言有了这样的看法，就是程序员应该抛弃所知道的所有事情并且从一组新的概念和文法重新开始，程序员应当相信从长远观点来看，最好还是丢掉所有来自过程语言的老行装。没错从长远观点来看，这是对的，但是从短期角度来看，这些行装确实有价值的。C++成功的原因是很经济的，转变到OOP需要代价但是C++尽可能让代价小。
+</p>
+<p>
+关于C++标准库的忠告:
+</p><ul>
+<li>不要像重新发明轮子一样去做每一件事情，使用库。
+</li>
+<li>不要相信奇迹，理解你的库能够做什么如何做，代价多大。
+</li>
+<li>不要认为为标准库对于任何事情都是最理想的。
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> language</h3>
+<div class="outline-text-3" id="text-1-3">
+
+
+</div>
+
+<div id="outline-container-1-3-1" class="outline-4">
+<h4 id="sec-1-3-1"><span class="section-number-4">1.3.1</span> new/delete</h4>
+<div class="outline-text-4" id="text-1-3-1">
+
+<p>new/delete和C的内存分配有很多区别，主要的改进在进行了很多可定制化的内容:
+</p><ul>
+<li>new/delete作为运算符而不是函数存在，因此可以重载来进行内存分配的定制
+</li>
+<li>在new/delete对象的时候会调用分配对象的构造和析构函数
+</li>
+<li>new/delete对象的时候区分了new/delete和new/delete [](主要原因还是因为需要调用构造和析构函数):-)
+</li>
+<li>支持放置语法，就是传入一个信息告诉分配函数希望在哪个地方进行分配
+</li>
+<li>加入了异常分配失败抛出bad_alloc
+</li>
+<li>提供了一种方法设置handler在分配失败的时候调用set_new_handler()
+</li>
+<li>默认的new还进行检查以确信在传递地址给构造函数之前内存分配成功
+</li>
+<li>允许重载全局new/delete和某个类的new/delete 
+</li>
+</ul>
+
+
+<ul>
+<li id="sec-1-3-1-1">new重载<br/>
+用户可以重载new/delete来实现全局new/delete或者是某个类的new/delete.原型有下面这些
+
+
+
+<pre class="src src-C++">// #include &lt;new&gt;
+void* operator new(std::size_t) throw (std::bad_alloc);
+void* operator new[](std::size_t) throw (std::bad_alloc);
+void operator delete(void*) throw();
+void operator delete[](void*) throw();
+void* operator new(std::size_t, const std::nothrow_t&amp;) throw();
+void* operator new[](std::size_t, const std::nothrow_t&amp;) throw();
+void operator delete(void*, const std::nothrow_t&amp;) throw();
+void operator delete[](void*, const std::nothrow_t&amp;) throw();
+
+// Default placement versions of operator new.
+inline void* operator new(std::size_t, void* __p) throw() { return __p; }
+inline void* operator new[](std::size_t, void* __p) throw() { return __p; }
+
+// Default placement versions of operator delete.
+inline void  operator delete  (void*, void*) throw() { }
+inline void  operator delete[](void*, void*) throw() { }
+</pre>
+
+
+<p>
+new/delete如果作为类成员的话被重载的话，始终是静态成员，即使你不这样声明也是如此，这个事实意味着这些运算符不接受this指针。其实这也是非常容易考虑到的，new/delete本来就是来分配内存使用的。new在初始化构造之前调用，而delete是在析构函数调用之后调用，所以非静态数据成员肯定不能够被访问:-)此外new/delete是可以继承的,调用的还是基类的new/delete函数，只不过内存大小不同。
+</p>
+
+
+
+<pre class="src src-C++">#include &lt;iostream&gt;
+#include &lt;new&gt;
+class A{
+ public:
+  void* operator new(size_t s,int arg) throw(std::bad_alloc) {
+    std::cout &lt;&lt; <span class="org-string">"size : "</span> &lt;&lt; s &lt;&lt; <span class="org-string">", arg : "</span> &lt;&lt; arg &lt;&lt; std::endl;
+    return ::operator new(s);
+  }
+  void* operator new(size_t s,int arg,const std::nothrow_t&amp; nothrow){
+    std::cout &lt;&lt; <span class="org-string">"[nothrow]size : "</span> &lt;&lt; s &lt;&lt; <span class="org-string">", arg : "</span> &lt;&lt; arg &lt;&lt; std::endl;
+    return ::operator new(s,nothrow);
+  }
+  void operator delete(void* p) {
+    ::operator delete(p);
+  }
+  int x;
+};
+class B: public A{
+  int y;
+};
+
+int main(){
+  A* a=new (10,std::nothrow)A();
+  B* b=new (20)B();
+  delete a;
+  delete b;
+}
+</pre>
+
+
+</li>
+</ul>
+<ul>
+<li id="sec-1-3-1-2">new异常规格<br/>
+从new的异常规格可以看到，如果是普通的调用的话可能会抛出std::bad_alloc这个异常，但是原型里面还有
+
+
+
+<pre class="src src-C++">void* operator new(std::size_t, const std::nothrow_t&amp;) throw(); 
+</pre>
+
+<p>
+这种使用placement来通知new不抛出异常的的接口，语义是返回NULL来告诉app分配失败。要使用这个函数也非常简单
+</p>
+
+
+<pre class="src src-C++">// #include &lt;new&gt;
+//  struct nothrow_t { };
+//  extern const nothrow_t nothrow;
+void* p=new (std::nothrow) int(); // &#36825;&#37324;std::nothrow&#23601;&#26159;std::nothrow_t&#30340;&#23454;&#20363;
+</pre>
+
+<p>
+通过函数重载来达到这个目的，这个方法值得借鉴。
+</p>
+</li>
+</ul>
+<ul>
+<li id="sec-1-3-1-3">内存分配失败<br/>
+C++来提供了内存分配失败的回调函数，但是这个只能够处理全局new分配失败的情况
+
+
+
+<pre class="src src-C++">/** If you write your own error handler to be called by @c new, it must
+ *  be of this type.  */
+typedef void (*new_handler)();
+/// Takes a replacement handler as the argument, returns the previous handler.
+new_handler set_new_handler(new_handler) throw();
+</pre>
+
+
+</li>
+</ul>
+<ul>
+<li id="sec-1-3-1-4">operator new与new operator<br/>
+此外在很多书籍里面会提到operator new和new operator这两个说法，这两个是不一样的概念。operator new就是我们重写运算符函数，而new operator使我们调用new这个表达式。本质上说new这个表达式调用了分配类型里面的operator new函数，同时调用这个类型的初始化构造函数。同理operator delete和delete operator差别也是一样的。通常new operator的动作是这样的:
+<ul>
+<li>void *raw=operaotor new(sizeof(A)); //使用operator new进行内存分配
+</li>
+<li>call A::A on *raw; //在raw上面调用构造函数
+</li>
+<li>A *a=static_castraw; //最后进行一次强制转换
+</li>
+</ul>
+
+<p>同理通常delete operator的动作是这样的:
+</p><ul>
+<li>a-&gt;~A();//调用一次析构函数
+</li>
+<li>operator delete(a);//进行内存释放
+</li>
+</ul>
+
+<p>说到这里，我们需要清楚为什么需要有new []和delete []的方法了。对于operator new和delete来说真的不关心这些，因为只是分配内存，而对于new operator和delete operator就需要关心了，因为需要关心有多少个对象，这样的话才能够调用每个对象的构造函数。调用了new []分配的对象也一定需要使用delete []来释放，不然只会调用第一个元素析构函数和释放它的空间。
+</p>
+</li>
+</ul>
+</div>
+
+</div>
+
+<div id="outline-container-1-3-2" class="outline-4">
+<h4 id="sec-1-3-2"><span class="section-number-4">1.3.2</span> static assert</h4>
+<div class="outline-text-4" id="text-1-3-2">
+
+
+
+
+<pre class="src src-C++">#define STATIC_ASSERT(_cond,_name)      typedef char STATIC_ASSERT_FAILED_ ## _name [ (_cond) ? 1 : -1 ]
+#define STATIC_SIZE_ASSERT(_type,_size) STATIC_ASSERT ( sizeof(_type)==_size, _type ## _MUST_BE_ ## _size ## _BYTES )
+</pre>
+
+
+<p>
+这个宏用来检测sizeof(_type)==_size这个假设，这个可以在编译代码的时候可以进行断言。好比下面这段程序
+</p>
+
+
+
+<pre class="src src-C++">int main() {
+  STATIC_SIZE_ASSERT(int,8);
+  return 0;
+}
+</pre>
+
+
+<p>
+那么编译就会出现
+</p>
+
+
+<pre class="example">main.cc:5: error: size of array `STATIC_ASSERT_FAILED_int_MUST_BE_8_BYTES’ is negative
+</pre>
+
+
+<p>
+当然错误信息并不是非常的优美，但是已经提供了足够多的信息了。不过这种编译断言可能只是比较适合用于简单断言比如sizeof等，对于复杂断言话可能还是需要依赖于configure这种工具比如系统是否有libunwind库。
+</p>
+<p>
+<b>NOTE（blog）：c++0x开始在语言层面上支持static_assert. &ndash;std=c++0x</b>
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-3-3" class="outline-4">
+<h4 id="sec-1-3-3"><span class="section-number-4">1.3.3</span> renew static_cast</h4>
+<div class="outline-text-4" id="text-1-3-3">
+
+<p>学习C的时候总是认为强转不过就是二进制层面的强转。开始学习C++之后就认为C语言的强转对应的就是reinterpret_cast.而static_cast和reinterpret_cast的差别不过就是static_cast可以做一些类型上面的检查，所以在大多数的时候都习惯使用reinterpret_cast而非static_cast.直到在编写itachi（一个异步网络编程框架）的时候，才发现并不是这么回事。下面的例子是我遇到问题的一个抽象。
+</p>
+<ul>
+<li id="sec-1-3-3-1">正确的例子<br/>
+
+
+
+<pre class="src src-C++">#include &lt;cstdio&gt;
+struct A{
+}; // class A
+
+struct B: public A{
+  int g;
+}; // class B
+
+void onComplete(A* o){
+  B* pb=reinterpret_cast&lt;B*&gt;(o);
+  printf(<span class="org-string">"%p\n"</span>,&amp;(pb-&gt;g));
+}
+
+int main() {
+  B b;
+  onComplete(&amp;b);
+  printf(<span class="org-string">"%p\n"</span>,&amp;(b.g));
+  return 0;
+}
+
+</pre>
+
+
+<p>
+运行结果是
+</p>
+
+
+<pre class="example">[blog@localhost ~]$ ./a.out
+0xbff031b0
+0xbff031b0 
+</pre>
+
+
+<p>
+在onComplete这里我们希望处理一个A*抽象类型。假设我们从外围上面保证传入onComplete是一个B或者是B的子类型。
+</p>
+</li>
+</ul>
+<ul>
+<li id="sec-1-3-3-2">当处理多继承时<br/>
+处理B类型没有问题，但是处理B的子类型的话，那么上面代码可能就会出现问题。因为对于B子类型而言的话很可能在 <b>对象模型</b> 之前添加了一些字段，按照reintrepret_cast语义的话是直接二进制映射，字段没有虚方法所以是直接按照偏移来取的，因此可能存在问题。但是看看下面这个例子
+
+
+
+<pre class="src src-C++">#include &lt;cstdio&gt;
+struct A{
+}; // class A
+
+struct B: public A{
+  int g;
+}; // class B
+
+struct Holder{
+  int dummy;
+};
+struct C: public Holder,
+          public B{
+}; // class C
+
+void onComplete(A* o){
+  B* pb=reinterpret_cast&lt;B*&gt;(o);
+  printf(<span class="org-string">"o:%p pb-&gt;g:%p\n"</span>,pb, &amp;(pb-&gt;g));
+}
+
+int main() {
+  C c;
+  onComplete(&amp;c);
+  printf(<span class="org-string">"c:%p c.g:%p\n"</span>,&amp;c, &amp;(c.g));
+  return 0;
+}
+</pre>
+
+
+<p>
+运行结果
+</p>
+
+
+<pre class="example">[blog@localhost ~]$ ./a.out
+o:0xbfff9aa0 pb-&gt;g:0xbfff9aa0
+c:0xbfff9a9c c.g:0xbfff9aa0 
+</pre>
+
+
+<p>
+问题出来了，并不像我们想的那样，pb-&gt;g和c.g的地址是一样的。但是神奇的是，o和c的地址是不一样的。这是为什么呢？原因就在于static_cast.在传参的时候，根据形参和实参之间的类型信息来进行指针的转换。 <b>也就是说，static_cast能够正确处理类型系统。而这点reintrepret_cast是做不到的。</b>
+</p>
+</li>
+</ul>
+<ul>
+<li id="sec-1-3-3-3">应该怎么做<br/>
+<b>因为自己也缺乏C++对象模型方面的知识，所以也没有办法从底层解释原因。</b> 但是结论我想说的就是，尽量地执行static_cast而非reinterpret_cast.reinterpret_cast对于继承方面基本没有做任何事情，而使用static_cast的话则能够检测到类型系统，然后根据类型系统来进行正确的转换。 <b>要是想对于static_cast有更多认识的话，必须看看C++对象模型的实现。</b>
+
+<p>
+下面我总结了一下各种cast应该使用的场景：
+</p><ol>
+<li>static_cast无论如何应该首先考虑使用，而且编译器在生成函数调用时候内部也是在用static_cast.
+</li>
+<li>reinterpret_cast只有在你确定只处理某两种final类型时候，两者之间的转换。比如在内存操作时候uint8_t*和char*之间的转换
+</li>
+<li>const_cast只有在消除const以及volatile这些标记时候有用。
+</li>
+<li>dynamic_cast得到父类型但是不确定子类型的时候，你需要逐个尝试转换可以使用。但是如果外部存在字符串比如type这样的字段表示类型的话，那么可以直接使用static_cast.
+</li>
+</ol>
+
+
+</li>
+</ul>
+</div>
+
+</div>
+
+<div id="outline-container-1-3-4" class="outline-4">
+<h4 id="sec-1-3-4"><span class="section-number-4">1.3.4</span> keyword</h4>
+<div class="outline-text-4" id="text-1-3-4">
+
+<ul>
+<li>__thread 线程级别全局变量
+</li>
+</ul>
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-1-4" class="outline-3">
+<h3 id="sec-1-4"><span class="section-number-3">1.4</span> runtime</h3>
+<div class="outline-text-3" id="text-1-4">
+
+
+</div>
+
+<div id="outline-container-1-4-1" class="outline-4">
+<h4 id="sec-1-4-1"><span class="section-number-4">1.4.1</span> local static object</h4>
+<div class="outline-text-4" id="text-1-4-1">
+
+<p>局部静态对象在C里面初始化只允许是常数，所以这个在编译期就可以搞定。在C++里面局部静态对象允许是一个类对象，那么就涉及到类的初始化等问题，这个是在编译期搞不定的只能够在运行期解决。
+</p>
+
+
+
+<pre class="src src-C++">#include &lt;iostream&gt;
+class A{
+ public:
+  A(){
+    std::cout &lt;&lt; <span class="org-string">"A()"</span> &lt;&lt; std::endl;
+  }
+};
+void foo(){
+  static A a;  
+}
+int main(){
+  foo();
+  return 0;
+}
+</pre>
+
+
+<p>
+我们考虑局部静态对象的初始化时机。如果仅仅是在程序启动时候就初始化的话那么肯定不合适，所以肯定是在第一次调用foo时候进行初始化(这里还需要考虑多线程问题).我们可以看看这个部分汇编代码.对于a对象的话好比存在一个instance_counter初始化为0.首先判断是否初始化了，然后会调用__cxa_guard_acquire加锁然后再判断一次(double check,可以减少开销），最后使用__cxa_guard_release释放这个锁。
+</p>
+
+
+
+<pre class="src src-ASM">.globl _Z3foov
+        .type   _Z3foov, @function
+_Z3foov:
+.LFB1445:
+        pushq   %rbp
+.LCFI3:
+        movq    %rsp, %rbp
+.LCFI4:
+        subq    $32, %rsp
+.LCFI5:
+        cmpb    $0, _ZGVZ3foovE1a(%rip) 
+        jne     .L10
+        movl    $_ZGVZ3foovE1a, %edi
+        call    __cxa_guard_acquire 
+        testl   %eax, %eax
+        je      .L10
+        movb    $0, -1(%rbp)
+        movl    $_ZZ3foovE1a, %edi
+.LEHB0:
+        call    _ZN1AC1Ev
+.LEHE0:
+        movl    $_ZGVZ3foovE1a, %edi
+        call    __cxa_guard_release 
+        jmp     .L10
+.L19:
+        movq    %rax, -24(%rbp)
+.L13:
+        movq    -24(%rbp), %rax
+        movq    %rax, -16(%rbp)
+        cmpb    $0, -1(%rbp)
+        je      .L15
+        jmp     .L16
+.L15:
+        movl    $_ZGVZ3foovE1a, %edi
+        call    __cxa_guard_abort
+.L16:
+        movq    -16(%rbp), %rax
+        movq    %rax, -24(%rbp)
+.L17:
+        movq    -24(%rbp), %rdi
+.LEHB1:
+        call    _Unwind_Resume
+.LEHE1:
+.L10:
+        leave
+        ret
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-4-2" class="outline-4">
+<h4 id="sec-1-4-2"><span class="section-number-4">1.4.2</span> hook function</h4>
+<div class="outline-text-4" id="text-1-4-2">
+
+<p>hook函数调用有两种方式，一种是hook我们代码内部的函数，这意味这这个函数是由我们来编译的，当然我们不能够修改需要hook的函数实现否则就没有意义了。另外一种hook函数是动态库里面的函数，静态库里面的函数因为完全进入了可执行程序，所以修改起来比较麻烦一些。我们QA写过这样的程序用libbfd库修改可执行程序本身，在函数调用之间加上跳板，但是相比本文介绍的两种方式更加复杂。（复杂就以为着容易出错，而且这种修改可执行程序应该是不值得提倡的）。
+</p>
+<ul>
+<li id="sec-1-4-2-1">hook编译时函数<br/>
+在gcc编译的时候需要加入-finstrument-functions这个选项之后，那么每个函数调用之前和之后都会调用
+<ul>
+<li>__cyg_profile_func_enter
+</li>
+<li>__cyg_profile_func_exit 
+</li>
+</ul>
+
+<p>这两个函数是gcc内置函数，_enter函数能够在函数调用之前进行调用，_exit函数能够在函数调用退出之后调用，原型分别是
+</p>
+
+
+<pre class="src src-C++">// this&#26159;&#36825;&#20010;callee&#20989;&#25968;&#22320;&#22336;
+// callsite&#26159;caller&#20989;&#25968;&#35843;&#29992;&#28857;&#22320;&#22336;(&#19981;&#26159;&#20989;&#25968;&#22320;&#22336;)
+void __cyg_profile_func_enter(void *this, void *callsite);
+void __cyg_profile_func_exit(void *this, void *callsite);
+</pre>
+
+
+<p>
+如果不希望函数被hook的话，那么可以在函数属性之后加上__attribute_<sub>((no_instrument_function))</sub>.尤其是这个函数如果在enter和exit里面调用的话，最好加上这个属性，不然非常容易出现递归调用
+</p>
+
+
+
+<pre class="src src-C++">#include &lt;cstdio&gt;
+#include &lt;cstdlib&gt;
+void foo() __attribute__((no_instrument_function));
+void foo() {
+    printf(<span class="org-string">"%s\n"</span>,__func__);
+}
+int main() {
+    printf(<span class="org-string">"main\n"</span>);
+    return 0;
+}
+extern <span class="org-string">"C"</span> {
+    void __cyg_profile_func_enter(void* callee, void* callsite)  __attribute__((no_instrument_function));
+    void __cyg_profile_func_exit(void* callee, void* callsite) __attribute__((no_instrument_function));
+    void __cyg_profile_func_enter(void* callee, void* callsite) {
+        foo();
+    }
+    void __cyg_profile_func_exit(void* callee, void* callsite){
+        foo();
+    }
+}
+</pre>
+
+
+</li>
+</ul>
+<ul>
+<li id="sec-1-4-2-2">hook运行时函数<br/>
+可以使用dlopen截获函数入口，然后使用dlsym(RTLD_NEXT)来获得下一个入口.我们以截获malloc为例。
+
+
+
+<pre class="src src-C++">#include &lt;unistd.h&gt;
+#include &lt;dlfcn.h&gt;
+#include &lt;cstring&gt;
+#include &lt;cstdlib&gt;
+
+void* malloc(size_t size){
+    write(2,<span class="org-string">"do malloc\n"</span>,strlen(<span class="org-string">"do malloc\n"</span>)+1); // &#36825;&#37324;&#19981;&#33021;&#22815;&#29992;printf,&#22240;&#20026;&#20869;&#37096;&#21487;&#33021;&#20250;&#35843;&#29992;malloc
+    static void* (*pmalloc)(size_t size)=0;
+    if(!pmalloc){        
+        pmalloc=(void*(*)(size_t size))(dlsym(RTLD_NEXT,<span class="org-string">"malloc"</span>));
+    }
+    return pmalloc(size);
+}
+
+void free(void *p){
+    write(2,<span class="org-string">"do free\n"</span>,strlen(<span class="org-string">"do free\n"</span>)+1);
+    static void (*pfree)(void* p)=0;    
+    if(!pfree){        
+        pfree=(void(*)(void* p))(dlsym(RTLD_NEXT,<span class="org-string">"free"</span>));
+    }
+    return pfree(p);
+}
+</pre>
+
+
+</li>
+</ul>
+</div>
+
+</div>
+
+<div id="outline-container-1-4-3" class="outline-4">
+<h4 id="sec-1-4-3"><span class="section-number-4">1.4.3</span> undefined reference to static const class member</h4>
+<div class="outline-text-4" id="text-1-4-3">
+
+<p>类型静态常量成员只允许是标量内容,而不允许是字符串数组或者是结构体等。但是下面代码会存在链接问题
+</p>
+
+
+
+<pre class="src src-C++">#include &lt;vector&gt;
+using namespace std;
+class Foo {
+ public:
+  static const int MEMBER = 1;
+};
+
+int main(){
+  vector&lt;int&gt; v;
+  v.push_back( Foo::MEMBER );       // undefined reference to `Foo::MEMBER'
+  v.push_back( (int) Foo::MEMBER ); // OK
+  return 0;
+}
+</pre>
+
+
+<p>
+关于这个问题解释可以参看 <a href="http://stackoverflow.com/questions/272900/c-undefined-reference-to-static-class-member">http://stackoverflow.com/questions/272900/c-undefined-reference-to-static-class-member</a>
+</p>
+<p>
+大致解释是这样，对于第一种用法的话，因为push_back需要是一个const int&amp;,因为需要传入的内容存在地址。而这种情况下面MEMBER仅仅是一个constant,没有任何地址所以会出现链接错误。而对于第二种情况的话，因为强制转换之后那么就存在一个临时对象可以被引用。说到这里我们一定需要注意临时对象，好比下面这种用法
+</p>
+
+
+<pre class="src src-C++">#include &lt;string&gt;
+int main() {
+  std::string s1=<span class="org-string">"h"</span>;
+  std::string s2=<span class="org-string">"o"</span>;
+  const char* s=(s1+s2).c_str();
+  return 0;
+}
+</pre>
+
+<p>
+这里(s1+s2)生成了一个临时对象但是却没有存放的内容，所以后续继续引用s是会出问题的。
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-1-5" class="outline-3">
+<h3 id="sec-1-5"><span class="section-number-3">1.5</span> library</h3>
+<div class="outline-text-3" id="text-1-5">
+
+
+</div>
+
+<div id="outline-container-1-5-1" class="outline-4">
+<h4 id="sec-1-5-1"><span class="section-number-4">1.5.1</span> boost::bind</h4>
+<div class="outline-text-4" id="text-1-5-1">
+
+<p>之前看到陈硕同学在<a href="http://blog.csdn.net/solstice/">博客</a> 给出的C++工程实践推荐，使用boost::function和boost::bind代替虚函数。之所以我们需要使用虚函数，无非就是希望统一执行接口。统一接口通过虚函数是一种方法，而使用boost::function和boost::bind也可以达到相同的目的。
+</p>
+<p>
+首先我们假设存在一个Executor类，里面有一个执行队列，所有的Task首先被push进来然后遍历执行。对于这个Task我们本身只需要一个执行接口void fun(Executor*).如果通过虚函数实现的话，我们需要定义一个abstract class含有virtual函数，然后在具体的类里面实现它。但是如果很不幸的话我们原本定义的类不是这样的，而是
+</p>
+
+
+<pre class="src src-C++">class A{
+ public:
+  void fun(Executor* x,std::string s){
+    std::cout &lt;&lt; <span class="org-string">"executor="</span> &lt;&lt; x &lt;&lt; <span class="org-string">", s="</span> &lt;&lt; s &lt;&lt; std::endl;
+  }
+}; // class A
+
+class B{
+ public:
+  void fun(Executor* x,int s){
+    std::cout &lt;&lt; <span class="org-string">"executor="</span> &lt;&lt; x &lt;&lt; <span class="org-string">", s="</span> &lt;&lt; s &lt;&lt; std::endl;
+  }
+}; // class B
+</pre>
+
+
+<p>
+那我们必须重新定义AdapterA以及AdapterB封装一下。实现上可能非常简单，内部存下std::string以及int的内容，外加一个A,B的指针，在fun里面调用A,B的fun实现并且把内容传进去调用。
+</p>
+<p>
+这是一种蹩脚的方法，类的个数会急剧膨胀。但是如果我们使用boost::function和boost::bind的话，可以不用添加新的Adapter类来解决这个问题。
+</p>
+
+
+<pre class="src src-C++">x.push(boost::bind(&amp;A::fun,&amp;a,_1,<span class="org-string">"hello"</span>));
+x.push(boost::bind(&amp;A::fun,&amp;a,_1,<span class="org-string">"world"</span>));
+x.push(boost::bind(&amp;B::fun,&amp;b,_1,123));
+x.push(boost::bind(&amp;B::fun,&amp;b,_1,456));
+</pre>
+
+
+<p>
+这里_1是boost::bind导出的符号表示占位符，这个参数表示接口中的第一个参数，这里不进行绑定。第一个参数表示函数地址，如果是成员函数的话那么需要传入对象地址（这里对于对象内存管理的话，可能需要智能指针的帮助。可以参考<a href="http://xuchaoqian.com/?p=797">http://xuchaoqian.com/?p=797</a>)。事实上稍微猜想一下boost::function和boost::bind实现，boost::function用于产生新的类型，boost::bind用于产生这个类型的对象，并且将指针以及所需要的closure context都绑定上去。我本来想实现的，但是发现基于模板的元编程，我确实不会:(
+</p>
+<p>
+之后我在想，虽然这个方式不错消除继承完全按照基于对象的方式编程，但是如果对于对象所需要的接口非常多的话，并且虚函数本身就是语言内置的特性，相对来说使用起来会更加方便。下面是可编译的示例代码之后我在想，虽然这个方式不错消除继承完全按照基于对象的方式编程，但是如果对于对象所需要的接口非常多的话，并且虚函数本身就是语言内置的特性，相对来说使用起来会更加方便。
+</p>
+<p>
+具体代码可以参考 <a href="https://github.com/dirtysalt/sperm/blob/master/code/cc/playboard/test_bind.cc">code/cc/playboard/test_bind.cc</a>
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-5-2" class="outline-4">
+<h4 id="sec-1-5-2"><span class="section-number-4">1.5.2</span> boost::spirit</h4>
+<div class="outline-text-4" id="text-1-5-2">
+
+<p>今天被Dr. Yang推荐使用boost::spirit，模板编程实现的语法解析器。Dr. Yang推荐我看看hypertable里面实现的hql，里面就是使用spirit实现的hql(hypertable query language)，在src/cc/Hypertable/Lib/HqlParser.h里面。粗看一下功能还是非常强大的，对于很多使用flex/bison完成的工作都可以通过spirit来完成。看上去是LALR解析器，现在不太清楚就是如果出现shift/reduce或者是reduce/reduce冲突的话spirit是怎么解决的。NOTE(blog):事实上是LL解析器，而且如果没有猜错应该是LL(1)解析器。
+</p>
+<p>
+对于action的话需要单独编写function object来完成，operator()是这个grammar对应的字符串。定义ParserState来构建语法树是一个好主意。对于里面更多的细节现在还是不太了解，关于入门使用可以查看代码中的链接或者documentation.
+</p>
+<p>
+具体代码可以参考 <a href="https://github.com/dirtysalt/sperm/blob/master/code/cc/playboard/test_spirit.cc">code/cc/playboard/test_spirit.cc</a>
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-5-3" class="outline-4">
+<h4 id="sec-1-5-3"><span class="section-number-4">1.5.3</span> google::protobuf dynamic usage</h4>
+<div class="outline-text-4" id="text-1-5-3">
+
+<p>使用google::protobuf如果我们不知道生成消息schema的话，那么就需要依赖于google::protobuf动态编译的能力了。google::protobuf支持动态地读取某个proto文件并且进行动态编译。其实这里说编译有点不太恰当，因为内部并没有生成native code,不过确实使得我们有能力去动态构造一个消息。
+</p>
+<p>
+使用动态编译的话，首先需要了解google::protobuf的反射能力，这个网上有很多关于这方面的文章，这里就不赘述。为了更好地管理动态编译代码，我单独提取了一个类ProtoDynamic，关于里面使用的类可以去阅读protobuf官方网站的documentation，大致使用到了：
+</p><ul>
+<li>SourceTree/DiskSourceTree（当然自己实现SourceTree接口从内存读取Source.MemorySourceTree)
+</li>
+<li>Importer
+</li>
+<li>DynamicMessageFactory
+</li>
+</ul>
+
+<p>然后就是一些涉及到反射的类（不完全）：
+</p><ul>
+<li>FileDescriptor
+</li>
+<li>Descriptor
+</li>
+<li>DescriptorPool
+</li>
+<li>MessageFactory
+</li>
+<li>Message
+</li>
+<li>Reflection
+</li>
+<li>FieldDescriptor
+</li>
+</ul>
+
+
+<p>
+具体代码可以参考 <a href="https://github.com/dirtysalt/sperm/blob/master/code/cc/common/proto_dynamic.h">code/cc/common/proto_dynamic.h</a> 以及 <a href="https://github.com/dirtysalt/sperm/blob/master/code/cc/common/test/test_proto_dynamic.cc">code/cc/common/test/test_proto_dynamic.cc</a>
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-1-6" class="outline-3">
+<h3 id="sec-1-6"><span class="section-number-3">1.6</span> misc</h3>
+<div class="outline-text-3" id="text-1-6">
+
+
+</div>
+
+<div id="outline-container-1-6-1" class="outline-4">
+<h4 id="sec-1-6-1"><span class="section-number-4">1.6.1</span> 诡异的性能问题</h4>
+<div class="outline-text-4" id="text-1-6-1">
+
+<p><b>NOTE（blog）：现在我觉得可能是glibc的问题，而非编译器的问题</b>
+</p>
+<p>
+程序代码如下。程序非常简单，action是为了测试一下以string为key的map性能，action2是为了测试一下以int为key的map性能。然后我们分两组测试运行：
+</p><ol>
+<li>运行action，然后运行action2
+</li>
+<li>只运行action2
+</li>
+</ol>
+
+
+
+
+<pre class="src src-C++">/* coding:utf-8
+ * Copyright (C) blog
+ */
+
+#include &lt;sys/time.h&gt;
+#include &lt;map&gt;
+#include &lt;string&gt;
+#include &lt;cstdio&gt;
+
+using namespace std;
+
+static inline double gettime_ms() {
+  struct timeval tv;
+  gettimeofday(&amp;tv, NULL);
+  return tv.tv_sec * 1000.0 + tv.tv_usec * 0.001;
+}
+
+static const int NUMBER = 10000000;
+static const char* PREFIX = <span class="org-string">"s"</span>;
+
+static void action() {
+  double start = gettime_ms();  
+  map&lt;string, long&gt; dict;
+  char buf[64];
+  char buf2[64];
+  for(int i = 0; i &lt; NUMBER; i++) {
+    snprintf(buf, sizeof(buf), <span class="org-string">"%s%d"</span>, PREFIX, i);
+    dict[buf] = i;
+  }
+  for(int i = 0; i &lt; NUMBER; i++) {
+    snprintf(buf, sizeof(buf), <span class="org-string">"%s%d"</span>, PREFIX, i);
+    snprintf(buf2, sizeof(buf2), <span class="org-string">"%s%d"</span>, PREFIX, (i + 1000) % NUMBER);
+    dict[buf] += dict[buf2];
+  }
+  double end = gettime_ms();
+  printf(<span class="org-string">"%.2lf\n"</span>, end - start);
+}
+
+static void action2() {
+  double start = gettime_ms();  
+  map&lt;int, long&gt; dict;
+  for(int i = 0; i &lt; NUMBER; i++) {
+    dict[i] = i;
+  }
+  for(int i = 0; i &lt; NUMBER; i++) {
+    dict[i] += dict[(i + 1000) % NUMBER];
+  }
+  double end = gettime_ms();
+  printf(<span class="org-string">"%.2lf\n"</span>, end - start);  
+}
+
+int main() {
+  action();
+  action2();
+  return 0;
+}
+</pre>
+
+
+<p>
+<b>在自己的Ubuntu机器下面使用g++4.6编译</b> 运行结果如下。可以看到测试组1里面action2运行时间为2.9s左右，而测试组2里面action2运行时间为8.5s <b>时间差别很大</b>
+</p>
+
+
+<pre class="example">➜  playboard git:(master) ✗ g++ map_perf_test.cc -O2             
+➜  playboard git:(master) ✗ ./a.out 
+19764.38
+2957.30
+➜  playboard git:(master) ✗ g++ map_perf_test.cc -O2
+➜  playboard git:(master) ✗ ./a.out                 
+8521.25
+</pre>
+
+
+<p>
+可能是编译器的原因？ <b>在自己的Ubuntu机器下面clang++来编译，时间差别同样很大</b>
+</p>
+
+
+<pre class="example">➜  playboard git:(master) ✗ clang++ map_perf_test.cc -O2
+➜  playboard git:(master) ✗ ./a.out 
+19494.99
+3052.83
+➜  playboard git:(master) ✗ clang++ map_perf_test.cc -O2
+➜  playboard git:(master) ✗ ./a.out 
+8495.00
+</pre>
+
+
+<p>
+<b>在自己的macbook air下面使用clang重新编译，时间是差不多的</b>
+</p>
+
+
+<pre class="example">➜  playboard git:(master) ✗ g++ map_perf_test.cc -O2
+➜  playboard git:(master) ✗ ./a.out
+22759.82
+4203.22
+playboard git:(master) ✗ g++ map_perf_test.cc -O2
+➜  playboard git:(master) ✗ ./a.out
+4214.48
+</pre>
+
+
+<p>
+<b>NOTE(blog):另外我让同事在其他机器上使用g++3.4.5编译运行，时间差别也非常大</b>
+</p>
+
+<hr/>
+
+<p>
+看来确实是glibc的内存分配问题，多谢微博 @Thomas 的指导。strace两个binary发现：
+</p><ul>
+<li>action调用了很多brk（8288次）,mmap（17次）来分配内存，每次都是分配小内存.运行完成之后这些内存buffer起来了。
+</li>
+<li>在action调用之后的action2没有调用任何系统调用分配内存，都是在用户态完成。
+</li>
+<li>而如果没有action先调用的话，action2就需要自己调用brk（4737次）,mmap（17次），所以比较耗时。
+</li>
+</ul>
+
+<p>改用 <a href="tcmalloc.html">tcmalloc</a> 之后没有这个问题了。tcmalloc调用brk（541次），mmap（500次）。
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="date">Date: 2014-01-02T19:57+0800</p>
+<p class="creator"><a href="http://orgmode.org">Org</a> version 7.9.2 with <a href="http://www.gnu.org/software/emacs/">Emacs</a> version 23</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
+</div>
+<!-- Baidu Analytics BEGIN --><script type="text/javascript">var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F54a700ad7035f6e485eaf2300641e7e9' type='text/javascript'%3E%3C/script%3E"));</script><!-- Baidu Analytics END --><!-- Google Analytics BEGIN --><!-- <script type="text/javascript">  var _gaq = _gaq || [];  _gaq.push(['_setAccount', 'UA-31377772-1']);  _gaq.push(['_trackPageview']);  (function() {    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);  })();</script> --><!-- Google Analytics END --><!-- Baidu Button BEGIN --><!-- <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6762177" ></script><script type="text/javascript" id="bdshell_js"></script><script type="text/javascript"> document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)</script> --><!-- Baidu Button END --><!-- G+ BEGIN --><!-- Place this render call where appropriate --><!-- <script type="text/javascript">  (function() {    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;    po.src = 'https://apis.google.com/js/plusone.js';    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);  })();</script> --><!-- G+ END --><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script type="text/javascript">/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * *//* required: replace example with your forum shortname  */var disqus_shortname = 'feiskyblog';var disqus_identifier = 'cpp.html';var disqus_title = 'cpp.html';var disqus_url = 'http://blog.com/cpp.html';/* * * DON'T EDIT BELOW THIS LINE * * */(function() {var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a><!-- DISQUS END --></body>
+</html>

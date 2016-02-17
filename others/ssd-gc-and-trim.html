@@ -1,0 +1,160 @@
+layout: false
+---
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><!-- <meta name="baidu-site-verification" content="707024a76f8f40b549f07f478abab237"/> -->
+<title>固态硬盘技术解析之垃圾回收和TRIM指令</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="title" content="固态硬盘技术解析之垃圾回收和TRIM指令"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2014-01-02T19:56+0800"/>
+<meta name="author" content="dirtysalt"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style><link rel="shortcut icon" href="http://blog.com/css/favicon.ico" /> <link rel="stylesheet" type="text/css" href="./css/site.css" />
+
+
+</head>
+<body><!-- <div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare"><a class="bds_tsina"></a><span class="bds_more"></span><a class="shareCount"></a></div> --><!-- Place this tag where you want the +1 button to render --><!-- <g:plusone annotation="inline"></g:plusone> -->
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">固态硬盘技术解析之垃圾回收和TRIM指令</h1>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 ssd-gc-and-trim</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> ssd-gc-and-trim</h2>
+<div class="outline-text-2" id="text-1">
+
+
+<p>
+<a href="http://www.beareyes.com.cn/2/lib/201207/06/20120706203_0.htm">http://www.beareyes.com.cn/2/lib/201207/06/20120706203_0.htm</a>
+</p>
+<p>
+这篇文章主要是解释了一下TRIM指令是为什么引入的，解决了什么问题。
+</p>
+<p>
+首先SSD是按照block写入的，如果需要删除内容的话必须将整个page全部clear掉。
+</p>
+<p>
+<img src="./images/ssd-gc.jpg"  alt="./images/ssd-gc.jpg" />
+</p>
+<p>
+如果OS需要删除文件的话，spin disk只需要标记，然后下次在这个位置直接in-place update即可，而SSD不行。如果SSD不支持TRIM指令的话，那么只有当下次OS做in-place update时候，SSD才知道某些block是被删除的，而TRIM指令可以显示地做到这点。
+</p>
+
+
+
+<pre class="example">在机械硬盘系统中，系统可以直接请求新数据写入到旧数据存储的位置。机械硬盘可以直接覆盖旧数据。在固态硬盘中，境况有所不同。如果想让存储无用数据的块写入新数据，就需要先把整个块删除，才可以写入新的数据。固态硬盘并不具备直接覆盖旧数据的能力。
+
+操作系统可以理解数据、结构以及数据存储的逻辑位置，但是却不能够理解存储设备的物理结构。任何一个存储系统，硬盘并不明文件的结构。硬盘只简单的知道在某一特定的扇区内写有多少字节的数据。机械硬盘和固态硬盘一样，当操作系统请求相应的逻辑地址的数据时，它们会把物理地址中的数据发送给系统。
+
+当系统删除某个文件时候，它只是简单的在逻辑数据表内把存储要删除的数据的位置标记为可用而已。使用机械硬盘的系统根本就不需要向存储设备发送任何有关文件删除的消息，因为在将来，系统可以随时把新数据直接覆盖到无用的数据上。固态硬盘的情况就不同，当系统准备把新数据要写入那个位置的时候，固态硬盘才意识到原来这写数据已经被删除了！（无用数据。）当然，固态硬盘也可能再相同的时间内实施了垃圾回收操作，但是受到固态硬盘的结构以及其他条件的影响。
+
+在新一代操作系统中，例如Windows 7/Windows Server 2008 R2/Linux 2.6.33/FreeBSD 8.2/Open Solaris/Mac OS X Lion，它们都加入对Trim指令的支持。这可以让操作系统在删除逻辑表中删除逻辑扇区地址的同时通知固态硬盘某些数据已经无用了。TRIM的先进性在于它可以让固态硬盘在进行垃圾回收的时候跳过移动无用数据的过程，从而不再用重新写入这些无用的数据，达到节省时间的目的。这也会减少闪存删除数据的次数，从而在写入过程中实现高性能。固态硬盘也不需要立即删除或者“垃圾回收”这些TRIM指令告知的位置了，它只是先标记这些位置的数据为“无用”即可。
+
+支持TRIM的系统，在用户写入数据时并没有不同。但是当用户删除文件C的时候，因为系统支持了TRIM指令，固态硬盘立刻就把数据标记为“无用”，从而为接下来的垃圾回收做准备。原来存放文件C的空间，固态硬盘把其看做是可用空间。“动态预留空间”意味着固态硬盘在执行垃圾回收的过程中拥有更多的可用空间，从而整体提高性能。
+
+在第三列中，用户写入新的文件E。尽管现在固态硬盘与不支持TRIM的硬盘闲置空间相同。区别就在于：TRIM支持的固态硬盘知道哪些数据是无用的，在垃圾回收的时候，这些无用数据可以被看成是空闲空间，从而避免把无用数据移动到其他块中。 
+</pre>
+
+
+<p>
+下面是不支持TRIM指令SSD的工作过程
+</p>
+<p>
+<img src="./images/ssd-without-trim.jpg"  alt="./images/ssd-without-trim.jpg" />
+</p>
+<p>
+可以看到当向上面复写E的时候，SSD才会知道C需要删除。而在这个期间内，如果发生GC的话，C还是需要被移动的。而如果支持TRIM指令的话，就可以标记C删除，这样GC就可以减少移动大小了。
+</p>
+<p>
+<img src="./images/ssd-with-trim.jpg"  alt="./images/ssd-with-trim.jpg" />
+</p>
+<p>
+这将会产生三大优点：
+</p><ol>
+<li>降低写入放大。更少的数据被重写，更多的空闲空间为垃圾回收所利用。更多的空间可用也意味着不需要重新写入更多的数据。
+</li>
+<li>更高的吞吐量。支持了TRIM指令，就意味着在垃圾回收阶段需要移动的数据表少，固态硬盘性能就会提升。固态硬盘吞吐量的瓶颈在于闪存。固态硬盘的最快写入速度就是闪存所能支持的最快写入速度。在执行垃圾回收过程中，由于涉及到数据的移动和写入，固态硬盘不得不要停止一些主控的数据传输。这也是为什么固态硬盘知道无用数据的优点所在，至少在垃圾回收阶段，它这些数据不在需要移动，从而节省带宽。
+</li>
+</ol>
+
+<p>   3．改善耐用性。由于不在需要重新写入无用数据，这样可以减少固态硬盘的实际写入次数。
+注意：目前TRIM并不能正常工作在RAID环境中。这是因为目前RAID驱动一般都不支持TRIM。当更多的RAID厂商开始支持RAID TRIM，我们期待TRIM无乱在RAID还是正常环境下都能够为用户带来益处。
+</p>
+
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="date">Date: 2014-01-02T19:56+0800</p>
+<p class="creator"><a href="http://orgmode.org">Org</a> version 7.9.2 with <a href="http://www.gnu.org/software/emacs/">Emacs</a> version 23</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
+</div>
+<!-- Baidu Analytics BEGIN --><script type="text/javascript">var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F54a700ad7035f6e485eaf2300641e7e9' type='text/javascript'%3E%3C/script%3E"));</script><!-- Baidu Analytics END --><!-- Google Analytics BEGIN --><!-- <script type="text/javascript">  var _gaq = _gaq || [];  _gaq.push(['_setAccount', 'UA-31377772-1']);  _gaq.push(['_trackPageview']);  (function() {    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);  })();</script> --><!-- Google Analytics END --><!-- Baidu Button BEGIN --><!-- <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6762177" ></script><script type="text/javascript" id="bdshell_js"></script><script type="text/javascript"> document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)</script> --><!-- Baidu Button END --><!-- G+ BEGIN --><!-- Place this render call where appropriate --><!-- <script type="text/javascript">  (function() {    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;    po.src = 'https://apis.google.com/js/plusone.js';    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);  })();</script> --><!-- G+ END --><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script type="text/javascript">/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * *//* required: replace example with your forum shortname  */var disqus_shortname = 'feiskyblog';var disqus_identifier = 'ssd-gc-and-trim.html';var disqus_title = 'ssd-gc-and-trim.html';var disqus_url = 'http://blog.com/ssd-gc-and-trim.html';/* * * DON'T EDIT BELOW THIS LINE * * */(function() {var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a><!-- DISQUS END --></body>
+</html>

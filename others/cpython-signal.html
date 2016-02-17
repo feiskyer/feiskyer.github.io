@@ -1,0 +1,333 @@
+layout: false
+---
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>html { font-size: 100%; overflow-y: scroll; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+
+body{
+  color:#444;
+  font-family:Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman',
+              "Hiragino Sans GB", "STXihei", "微软雅黑", serif;
+  font-size:12px;
+  line-height:1.5em;
+  background:#fefefe;
+  width: 45em;
+  margin: 10px auto;
+  padding: 1em;
+  outline: 1300px solid #FAFAFA;
+}
+
+a{ color: #0645ad; text-decoration:none;}
+a:visited{ color: #0b0080; }
+a:hover{ color: #06e; }
+a:active{ color:#faa700; }
+a:focus{ outline: thin dotted; }
+a:hover, a:active{ outline: 0; }
+
+span.backtick {
+  border:1px solid #EAEAEA;
+  border-radius:3px;
+  background:#F8F8F8;
+  padding:0 3px 0 3px;
+}
+
+::-moz-selection{background:rgba(255,255,0,0.3);color:#000}
+::selection{background:rgba(255,255,0,0.3);color:#000}
+
+a::-moz-selection{background:rgba(255,255,0,0.3);color:#0645ad}
+a::selection{background:rgba(255,255,0,0.3);color:#0645ad}
+
+p{
+margin:1em 0;
+}
+
+img{
+max-width:100%;
+}
+
+h1,h2,h3,h4,h5,h6{
+font-weight:normal;
+color:#111;
+line-height:1em;
+}
+h4,h5,h6{ font-weight: bold; }
+h1{ font-size:2.5em; }
+h2{ font-size:2em; border-bottom:1px solid silver; padding-bottom: 5px; }
+h3{ font-size:1.5em; }
+h4{ font-size:1.2em; }
+h5{ font-size:1em; }
+h6{ font-size:0.9em; }
+
+blockquote{
+color:#666666;
+margin:0;
+padding-left: 3em;
+border-left: 0.5em #EEE solid;
+}
+hr { display: block; height: 2px; border: 0; border-top: 1px solid #aaa;border-bottom: 1px solid #eee; margin: 1em 0; padding: 0; }
+
+
+pre , code, kbd, samp { 
+  color: #000; 
+  font-family: monospace; 
+  font-size: 0.88em; 
+  border-radius:3px;
+  background-color: #F8F8F8;
+  border: 1px solid #CCC; 
+}
+pre { white-space: pre; white-space: pre-wrap; word-wrap: break-word; padding: 5px 12px;}
+pre code { border: 0px !important; padding: 0;}
+code { padding: 0 3px 0 3px; }
+
+b, strong { font-weight: bold; }
+
+dfn { font-style: italic; }
+
+ins { background: #ff9; color: #000; text-decoration: none; }
+
+mark { background: #ff0; color: #000; font-style: italic; font-weight: bold; }
+
+sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
+sup { top: -0.5em; }
+sub { bottom: -0.25em; }
+
+ul, ol { margin: 1em 0; padding: 0 0 0 2em; }
+li p:last-child { margin:0 }
+dd { margin: 0 0 0 2em; }
+
+img { border: 0; -ms-interpolation-mode: bicubic; vertical-align: middle; }
+
+table { border-collapse: collapse; border-spacing: 0; }
+td { vertical-align: top; }
+
+@media only screen and (min-width: 480px) {
+body{font-size:14px;}
+}
+
+@media only screen and (min-width: 768px) {
+body{font-size:16px;}
+}
+
+@media print {
+  * { background: transparent !important; color: black !important; filter:none !important; -ms-filter: none !important; }
+  body{font-size:12pt; max-width:100%; outline:none;}
+  a, a:visited { text-decoration: underline; }
+  hr { height: 1px; border:0; border-bottom:1px solid black; }
+  a[href]:after { content: " (" attr(href) ")"; }
+  abbr[title]:after { content: " (" attr(title) ")"; }
+  .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after { content: ""; }
+  pre, blockquote { border: 1px solid #999; padding-right: 1em; page-break-inside: avoid; }
+  tr, img { page-break-inside: avoid; }
+  img { max-width: 100% !important; }
+  @page :left { margin: 15mm 20mm 15mm 10mm; }
+  @page :right { margin: 15mm 10mm 15mm 20mm; }
+  p, h2, h3 { orphans: 3; widows: 3; }
+  h2, h3 { page-break-after: avoid; }
+}
+</style><title>cpython-signal</title></head><body><p>CPython allows for potentially unbounded delay in handling signals. To my knowledge, there is no fix or workaround that has no drawbacks.</p>
+<hr />
+<p>Suppose you sit down across the table from your interviewer, and they ask you a seemingly simple question:</p>
+<p>We have two programs. One contains the code</p>
+<pre><code>1
+
+
+signal.signal(signal.SIGTERM, signal.SIG_DFL)
+</code></pre>
+<p>and the other contains</p>
+<pre><code>1
+2
+3
+
+
+def handler():
+  sys.exit(signal.SIGTERM)
+signal.signal(signal.SIGTERM, handler)
+</code></pre>
+<p>What are all of the observable differences between these two programs at runtime? (Given that this is all you know about the two programs.)</p>
+<hr />
+<p>There’s a few different parts to this answer.</p>
+<p>At the systems level, you’ll notice that if you kill -TERM the process, when it exits in the first case, it will have a return code of -SIGTERM, and in the second it will have a return code of SIGTERM. Negative return codes are reserved for processes that die because of a signal. Because we register a handler and cause the process to exit intentionally, we can’t cause the negative return code.</p>
+<p>At the python level, you’ll notice a few differences in terms of what code is executed. In the first case, nearly nothing is executed, as we terminate as soon as we hit the signal.<a href="http://thisismiller.github.io/blog/CPython-Signal-Handling/#fn:1">1</a> In the second case, we are throwing a SystemExit exception, so all code in finally blocks between the current execution point and main will run.</p>
+<p>However, the most interesting case is <em>when</em> the code is executed, because of how signals are handled within CPython. This changes if/when you’ll see the behavior mentioned in the previous two points.</p>
+<p>When you request for a piece of python code to be registered as a signal handler, CPython registers a function that will add your handler to a queue of events to be handled, sets the interpreter state to try and run the pending actions soon, and then returns. The next time that CPython goes to execute a python bytecode, it will see that it has pending actions to do, and execute them only if the current thread is the main thread. If the current thread is not the main thread, then it will execute another 100 bytecodes, and then do the same check again. Whenever we happen to switch to the main thread again, we will execute the pending actions, and thus the signal handler.</p>
+<p>It’s very important to note that this means that your python signal handler doesn’t execute as part of the C signal handler. It can’t. In order to execute python code, we’d have to acquire the GIL, and there’s no way that it would be safe to block on locking the GIL in a signal handler. There’s also the important restriction that in order for the python signal handler to execute, the main thread needs to be awake and running. This is done to enforce a consistent behaviour of signals in a multithreaded program. I have found these two requirements combined can cause some seriously unexpected behaviour with respect to when a signal handler will execute.</p>
+<p>So let me illustrate the problem that can be caused with some examples.</p>
+<p>To start with, the no signal handler case:</p>
+<pre><code>1
+2
+3
+4
+
+
+#!/usr/bin/env python
+
+import time
+time.sleep(60)
+</code></pre>
+<p>If we run this program under strace, and SIGTERM it while it sleeps,<a href="#fn:2">2</a> we see:</p>
+<pre><code>select(0, NULL, NULL, NULL, {60, 0})    = ? ERESTARTNOHAND (To be restarted)
+--- SIGTERM (Terminated) @ 0 (0) ---
++++ killed by SIGTERM +++
+143
+</code></pre>
+<p>Showing us that the process immediately received a SIGTERM and died, returning with error code 143, which is the same as -SIGTERM.</p>
+<pre><code>1
+2
+3
+4
+5
+6
+7
+8
+9
+
+
+#!/usr/bin/env python
+
+import signal
+def handler(_a, _b):
+    pass
+signal.signal(signal.SIGTERM, handler)
+
+import time
+time.sleep(60)
+</code></pre>
+<p>If we take this script, run it under strace, and SIGTERM it while it runs, we see</p>
+<pre><code>select(0, NULL, NULL, NULL, {60, 0})    = ? ERESTARTNOHAND (To be restarted)
+--- SIGTERM (Terminated) @ 0 (0) ---
+rt_sigreturn(0xffffffff)                = -1 EINTR (Interrupted system call)
+rt_sigaction(SIGINT, {SIG_DFL, [], SA_RESTORER, 0x7f153709dcb0}, {0x558fd0, [], SA_RESTORER, 0x7f153709dcb0}, 8) = 0
+rt_sigaction(SIGTERM, {SIG_DFL, [], SA_RESTORER, 0x7f153709dcb0}, {0x558fd0, [], SA_RESTORER, 0x7f153709dcb0}, 8) = 0
+exit_group(0)                           = ?
+0
+</code></pre>
+<p>So here we discover that under the covers, time.sleep maps to an empty select call to (ab)use the timeout feature of select. ERESTARTNOHAND is a return value that’s never seen by client code. It means that if there’s no handler (the signal is ignored) that the interrupted syscall will just be restarted. In this case, we do have a signal handler for SIGTERM, which executes, and then from sigreturn we see that the select was then forced to return with EINTR. Immediately after receiving the SIGTERM, the python process exited gracefully.</p>
+<p>This is one of the useful features of signals: they let you break syscalls. With Python, this is doubly amazing, since it means you can get back to the python interpreter and be able to run your python signal handler!</p>
+<p>However, this doesn’t always work, because whatever C code you’re calling from python has to abide by the fact that if anything it calls returns with EINTR, then it should return (hopefully with an EINTR).</p>
+<p>And unfortunately, it’s fairly easy to force a call from python that doesn’t helpfully abide by this rule.</p>
+<pre><code>1
+2
+3
+4
+5
+6
+7
+8
+9
+
+
+#!/usr/bin/env python
+
+import signal
+def handler(_a, _b):
+    pass
+signal.signal(signal.SIGTERM, handler)
+
+import socket
+socket.getaddrinfo("www.potato.com", 80)
+</code></pre>
+<p>If we run this again under strace, we’ll see that it loops over a set of DNS servers and possible search domains.<a href="#fn:3">3</a> If we SIGTERM it during the lookup, we’ll see the following from strace.</p>
+<pre><code>stat("/etc/resolv.conf", {st_mode=S_IFREG|0644, st_size=856, ...}) = 0
+socket(PF_INET, SOCK_DGRAM|SOCK_NONBLOCK, IPPROTO_IP) = 3
+connect(3, {sa_family=AF_INET, sin_port=htons(53), sin_addr=inet_addr("second.dns.server.ip")}, 16) = 0
+poll([{fd=3, events=POLLOUT}], 1, 0)    = 1 ([{fd=3, revents=POLLOUT}])
+sendto(3, "R\315\1\0\0\1\0\0\0\0\0\0\3www\6potato\3com\0\0\1\0\1", 32, MSG_NOSIGNAL, NULL, 0) = 32
+poll([{fd=3, events=POLLIN}], 1, 5000)  = ? ERESTART_RESTARTBLOCK (To be restarted)
+--- SIGTERM (Terminated) @ 0 (0) ---
+rt_sigreturn(0xffffffff)                = -1 EINTR (Interrupted system call)
+poll([{fd=3, events=POLLIN}], 1, 4950)  = 1 ([{fd=3, revents=POLLIN}])
+ioctl(3, FIONREAD, [32])                = 0
+recvfrom(3, "R\315\201\202\0\1\0\0\0\0\0\0\3www\6potato\3com\0\0\1\0\1", 1024, 0, {sa_family=AF_INET, sin_port=htons(53), sin_addr=inet_addr("first.dns.server.ip")}, [16]) = 32
+close(3)                                = 0
+socket(PF_INET, SOCK_DGRAM|SOCK_NONBLOCK, IPPROTO_IP) = 3
+connect(3, {sa_family=AF_INET, sin_port=htons(53), sin_addr=inet_addr("first.dns.server.ip")}, 16) = 0
+poll([{fd=3, events=POLLOUT}], 1, 0)    = 1 ([{fd=3, revents=POLLOUT}])
+sendto(3, "R\315\1\0\0\1\0\0\0\0\0\0\3www\6potato\3com\0\0\1\0\1", 32, MSG_NOSIGNAL, NULL, 0) = 32
+</code></pre>
+<p>So we see the program receive the signal, and poll return with EINTR. getaddrinfo then begins doing the DNS queries from the top again. It appears that getaddrinfo internally restarts its series of lookups from the very beginning when it handles the EINTR .<a href="#fn:4">4</a></p>
+<p>This means that we can’t really force a call to getaddrinfo to bring us back to a point where the python interpreter resumes running just by sending a signal. We also can’t force the python signal handler for SIGTERM to run until getaddrinfo returns, and we have no control over how long that takes.</p>
+<p>The behavior of code outside our control can cause our signal handler to potentially never run. That is very unfortunate.</p>
+<p>To bring this all together, let me explain the bug that caused this write up in the first place to show how this does and can cause problems in the real world. In our codebase, we register a SIGTERM handler that enforces some very quick and forceful cleanup.</p>
+<pre><code>1
+2
+3
+4
+5
+6
+
+
+# Snipped context hides that this is a closure and `pid_file_manager` comes
+# from the environment.
+def handle_sigterm(signum, frame):
+    if pid_file_manager:
+        pid_file_manager.close_file(1, signal.SIGTERM)
+    os.killpg(os.getpgrp(), signal.SIGKILL)
+</code></pre>
+<p>We write out a pidfile, and then we forcefully terminate our entire process group. Therefore, it should be highly expected that after receiving a SIGTERM, the process should exit. However, because of calls that we have to getaddrinfo, we sometimes send a SIGTERM, and after 5 seconds, the process still hasn’t exited. <a href="https://pypi.python.org/pypi/faulthandler/">faulthandler</a> shows that we’re in a call to getaddrinfo. Since the process didn’t terminate after SIGTERM, we thus assume that it’s completely wedged somehow, and kill it with a SIGKILL. We’re then left with a pidfile that wasn’t properly closed, and our infrastructure sends out a warning.</p>
+<p>So there’s three possible directions to go that I see to solve this problem:</p>
+<ol>
+<li>One can try to make signals work by moving all work off of the main thread.</li>
+</ol>
+<p>The only way to ensure that a python process will respond to signals in a timely fashion is to always have the main thread be idle. This isn’t that difficult to set up<a href="#fn:5">5</a>, but it restricts what you can do with signals.</p>
+<p>In our codebase, we have a very convenient decorator that sets up SIGALRM to be delivered after a timeout, and raises a TimeoutException if it happens. This lets us recover from when sending or receiving on a socket hangs. If we move all of the work off the main thread, then we’ll use the decorator on a non-main thread, and the SIGALRM will still be handled on the main thread and the TimeoutException thrown will kill the main thread.
+1. One can achieve the same goals without using signals.</p>
+<p>We happen to already have an execution subdirectory for each python process that we wish to terminate. Therefore, one could drop a named pipe in the execution subdirectory and set up a thread in the python process so that when any data is read off the named pipe, the thread runs the cleanup and aborts the process. Doing so drops the requirement that the main thread must be available, so as long as the GIL is not acquired, the process will be able to terminate gracefully.
+1. One can do the cleanup work elsewhere, and let the python process exit ungracefully.</p>
+<p>The cleanup that is done can be moved to a higher level of the infrastructure. This is, somewhat sadly, the route that I ended up going. We already send a process a SIGKILL if it doesn’t respond to SIGTERM in time, and it doesn’t make sense to expect a process that has been sent SIGKILL to exit gracefully, so we now just suppress notifications in that case.</p>
+<p>Let me finish by saying that everything that I’ve explained is documented in the text at the top of the documentation for the signal module:</p>
+<blockquote>
+<p>This module provides mechanisms to use signal handlers in Python. Some general rules for working with signals and their handlers:</p>
+</blockquote>
+<ul>
+<li>
+<blockquote>
+<p>A handler for a particular signal, once set, remains installed until it is explicitly reset (Python emulates the BSD style interface regardless of the underlying implementation), with the exception of the handler for SIGCHLD, which follows the underlying implementation.</p>
+</blockquote>
+</li>
+<li>
+<blockquote>
+<p>There is no way to “block” signals temporarily from critical sections (since this is not supported by all Unix flavors).</p>
+</blockquote>
+</li>
+<li>
+<blockquote>
+<p>Although Python signal handlers are called asynchronously as far as the Python user is concerned, they can only occur between the “atomic” instructions of the Python interpreter. This means that signals arriving during long calculations implemented purely in C (such as regular expression matches on large bodies of text) may be delayed for an arbitrary amount of time.</p>
+</blockquote>
+</li>
+<li>
+<blockquote>
+<p>When a signal arrives during an I/O operation, it is possible that the I/O operation raises an exception after the signal handler returns. This is dependent on the underlying Unix system’s semantics regarding interrupted system calls.</p>
+</blockquote>
+</li>
+<li>
+<blockquote>
+<p>Because the C signal handler always returns, it makes little sense to catch synchronous errors like SIGFPE or SIGSEGV.</p>
+</blockquote>
+</li>
+<li>
+<blockquote>
+<p>Python installs a small number of signal handlers by default: SIGPIPE is ignored (so write errors on pipes and sockets can be reported as ordinary Python exceptions) and SIGINT is translated into a KeyboardInterrupt exception. All of these can be overridden.</p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>Some care must be taken if both signals and threads are used in the same program. The fundamental thing to remember in using signals and threads simultaneously is: always perform signal() operations in the main thread of execution. Any thread can perform an alarm(), getsignal(), pause(), setitimer() or getitimer(); only the main thread can set a new signal handler, and the main thread will be the only one to receive signals (this is enforced by the Python signal module, even if the underlying thread implementation supports sending signals to individual threads). This means that signals can’t be used as a means of inter-thread communication. Use locks instead.</p>
+</blockquote>
+<p>So nothing I’ve described above about Python wasn’t known before. If you look at the man page for getaddrinfo, you’ll see that it doesn’t mention returning with EINTR or being interruptible by a signal. Everything is working as designed/intended here, it’s just that this combination causes a very unfortunate effect.</p>
+<hr />
+<ol>
+<li>This hasn’t always been the semantics. Early python versions had a default SIGTERM handler that would call sys.exitfunc to allow cleanup.<a href="#fnref:1">↩</a></li>
+<li>(strace ./foobar.py |&amp; tee output &amp;) ; sleep 0.5 ; kill -TERM $(ps | grep python | cut -f1 -d ' ') is the line I used for generating these, with foobar.py being the example code.<a href="#fnref:2">↩</a></li>
+<li>If you look up foo.bar.com, libc loops though all of the search domains and nameservers. Do grep -e ^nameserver -e ^search /etc/resolv.conf for the list.<a href="#fnref:3">↩</a></li>
+<li>This text has been edited since the original post, which was misleading at its best interpretation. It has been expanded and clarified, though I’m still not clear on the extact internals of getaddrinfo. For significantly more detail please see the <a href="http://www.reddit.com/r/Python/comments/1yd5v0/cpython_signal_handling/cfjqpnn">comment thread</a> on Reddit, and much thanks to NYKevin for questioning its accuracy.<a href="#fnref:4">↩</a></li>
+<li>The obvious thing to do of start a thread and join on it doesn’t work. join() will continue to block even after you send a signal (or ctrl-c). One needs to daemonize the thread running main(), and then enter into a time.sleep() loop. See <a href="http://stackoverflow.com/questions/1635080/terminate-a-multi-thread-python-program">Stack Overflow</a>.<a href="#fnref:5">↩</a></li>
+</ol>
+<p>Tips 1:</p>
+<blockquote>
+<p>Sub interpreters in Python also add extra complexity to signal handling. From memory it is only when the main thread in the main interpreter gets to run through Python code that signal handlers will be dealt with, but in doing that it only handles any registered for the main interpreter. Therefore, signal handlers don't do anything if registered in sub interpreters.</p>
+<p>In an embedded system such as Apache/mod_wsgi, the main thread isn't usually even ever used for handling actual web requests, so even if the web application was running in the main interpreter, signal handlers would never get triggered.</p>
+<p>For this reason, Apache/mod_wsgi actually replaces signal handler registration routines with a NOOP and logs a message they don't do anything. Process shutdown is then handled for relevant signals by mod_wsgi itself by having a C level signal handler which sends a character down a socketpair. All the main thread does is wait on something to come down that socketpair and when it gets something start an orderly sequence of events to shutdown the process, including grace periods to allow current requests to finish as necessary and shutdown timeouts after which the process is forcibly killed. All very messy, but much more reliable than trying to use Python level signal handlers.</p>
+</blockquote>
+<p>Tips 2:</p>
+<blockquote>
+<p>3 is always the correct way. Handling pid file for the current process and self daemonising code is most always a very brittle and perilous approach - there can be many subtle failures like this because the daemonising code is not isolated from the other code (that is doing weird stuff all over the place).</p>
+<p>If you ever want to try #1 you'll come to the sad conclusion that linux doesn't guarantee to always deliver the signal to the main thread. It's just python, releasing the GIL till the main thread is lucky enough to get it and handle the signal. Setting a signal mask for the other threads could help in that situation (not 100% sure tho - but it seemed to work fine when using signalfd to receive signals).</p>
+</blockquote></body></html>

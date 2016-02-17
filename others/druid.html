@@ -1,0 +1,553 @@
+layout: false
+---
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><!-- <meta name="baidu-site-verification" content="707024a76f8f40b549f07f478abab237"/> -->
+<title>druid</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="title" content="druid"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2014-01-02T19:57+0800"/>
+<meta name="author" content="dirtysalt"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style><link rel="shortcut icon" href="http://blog.com/css/favicon.ico" /> <link rel="stylesheet" type="text/css" href="./css/site.css" />
+
+
+</head>
+<body><!-- <div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare"><a class="bds_tsina"></a><span class="bds_more"></span><a class="shareCount"></a></div> --><!-- Place this tag where you want the +1 button to render --><!-- <g:plusone annotation="inline"></g:plusone> -->
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">druid</h1>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 druid</a>
+<ul>
+<li><a href="#sec-1-1">1.1 Design · metamx/druid Wiki</a>
+<ul>
+<li><a href="#sec-1-1-1">1.1.1 Introduction</a></li>
+<li><a href="#sec-1-1-2">1.1.2 Architecture</a></li>
+<li><a href="#sec-1-1-3">1.1.3 Data Storage</a></li>
+<li><a href="#sec-1-1-4">1.1.4 Fault Tolerance</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-2">1.2 Introducing Druid: Real-Time Analytics at a Billion Rows Per Second | Metamarkets</a>
+<ul>
+<li><a href="#sec-1-2-1">1.2.1 Background</a></li>
+<li><a href="#sec-1-2-2">1.2.2 Failed Solution I: Dynamic Roll-Ups with a RDBMS</a></li>
+<li><a href="#sec-1-2-3">1.2.3 Failed Solution II: Pre-compute the World in NoSQL</a></li>
+<li><a href="#sec-1-2-4">1.2.4 Introducing Druid: A Distributed, In-Memory OLAP Store</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-3">1.3 Druid, Part Deux: Three Principles for Fast, Distributed OLAP | Metamarkets</a>
+<ul>
+<li><a href="#sec-1-3-1">1.3.1 Partial Aggregates + In-Memory + Indexes =&gt; Fast Queries</a></li>
+<li><a href="#sec-1-3-2">1.3.2 Distributed Data + Parallelizable Queries =&gt; Horizontal Scalability</a></li>
+<li><a href="#sec-1-3-3">1.3.3 Real-Time Analytics: Immutable Past, Append-Only Future</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> druid</h2>
+<div class="outline-text-2" id="text-1">
+
+<ul>
+<li>github <a href="https://github.com/metamx/druid">https://github.com/metamx/druid</a>
+</li>
+</ul>
+
+
+
+</div>
+
+<div id="outline-container-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Design · metamx/druid Wiki</h3>
+<div class="outline-text-3" id="text-1-1">
+
+<p><a href="https://github.com/metamx/druid/wiki/Design">https://github.com/metamx/druid/wiki/Design</a>
+</p>
+
+</div>
+
+<div id="outline-container-1-1-1" class="outline-4">
+<h4 id="sec-1-1-1"><span class="section-number-4">1.1.1</span> Introduction</h4>
+<div class="outline-text-4" id="text-1-1-1">
+
+<p>Druid currently allows for single-table queries in a similar manner to Dremel and PowerDrill. It adds to the mix （功能介于dremel以及powerdrill之间）
+</p><ul>
+<li>columnar storage format for partially nested data structures（对于嵌套数据结构使用列式存储）
+</li>
+<li>hierarchical query distribution with intermediate pruning（层级查询的时候会进行剪枝）
+</li>
+<li>indexing for quick filtering（使用index进行快速过滤）
+</li>
+<li>realtime ingestion (ingested data is immediately available for querying)（能够处理实时的数据）
+</li>
+<li>fault-tolerant distributed architecture that doesn’t lose data（容错性）
+</li>
+</ul>
+
+<p>As far as a comparison of systems is concerned, Druid sits in between PowerDrill and Dremel on the spectrum of functionality. It implements almost everything Dremel offers (Dremel handles arbitrary nested data structures while Druid only allows for a single level of array-based nesting) and gets into some of the interesting data layout and compression methods from PowerDrill. （druid基本提供了dremel所提到的功能，但是不允许嵌套数据结构只允许数组，而借鉴了一些powerdrill的数据存储方式和压缩算法） <b>NOTE(drirlt):druid不支持跨表查询，只是支持单表query，这点和dremel非常类似，而cloudera的impala支持join操作）</b>
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-1-2" class="outline-4">
+<h4 id="sec-1-1-2"><span class="section-number-4">1.1.2</span> Architecture</h4>
+<div class="outline-text-4" id="text-1-1-2">
+
+<ul>
+<li>The name comes from the Druid class in many role-playing games: it is a shape-shifter, capable of taking many different forms to fulfill various different roles in a group.(druid名字在许多角色游戏里面都有出现，它能够变形以适应各种不同的角色）
+</li>
+</ul>
+
+
+<p>
+The node types that currently exist are:（有下面几种节点类型存在）
+</p><ul>
+<li>Compute nodes are the workhorses that handle storage and querying on “historical” data (non-realtime) 处理历史数据
+</li>
+<li>Realtime nodes ingest data in real-time, they are in charge of listening to a stream of incoming data and making it available immediately inside the Druid system. As data they have ingested ages, they hand it off to the compute nodes. 处理实时数据，并且能够将实时数据导入到druid系统里面供compute节点使用 <b>NOTE（blog）：我对realtime这个部分的数据处理还是比较好奇的，因为这个部分的数据似乎不像是使用druid描述那些方法来进行query的</b>
+</li>
+<li>Master nodes act as coordinators. They look over the grouping of computes and make sure that data is available, replicated and in a generally “optimal” configuration. 作为协调者存在，判断节点是否挂掉，确保数据能够available以及replicated.
+</li>
+<li>Broker nodes understand the topology of data across all of the other nodes in the cluster and re-write and route queries accordingly 相当于router的角色存在，知道每个节点上面存在哪些数据，接收query请求并且将query请求改写让realtime和compute节点计算，然后做汇总。
+</li>
+<li>Indexer nodes form a cluster of workers to load batch and real-time data into the system as well as allow for alterations to the data stored in the system (as of 11/2012, these nodes are still a work in progress) 对历史数据和realtime数据进行索引。
+</li>
+</ul>
+
+<p>工作方式大致是：
+</p><ul>
+<li>请求发送到broker上面
+</li>
+<li>broker会改写这个query statement，并且根据route信息将这些sub query发送到compute/realtime节点进行计算
+</li>
+<li>compute/realtime返回结果，breoker将结果进行聚合返回。
+</li>
+</ul>
+
+<p><b>NOTE（blog）：似乎是单层的结构，但是不是非常确定</b>
+</p>
+<p>
+另外整个系统还需要依赖外部三个组组件：
+</p><ul>
+<li>A running ZooKeeper cluster for cluster service discovery and maintenance of current data topology（zookeeper记录topology）
+</li>
+<li>A MySQL instance for maintenance of metadata about the data segments that should be served by the system（MySQL存储segment的metadata)
+</li>
+<li>A “deep storage” LOB store/file system to hold the stored segments(deep storage用来保存alpha data set以及beta data set)
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-1-3" class="outline-4">
+<h4 id="sec-1-1-3"><span class="section-number-4">1.1.3</span> Data Storage</h4>
+<div class="outline-text-4" id="text-1-1-3">
+
+<p>Getting data into the Druid system requires an indexing process. This gives the system a chance to analyze the data, add indexing structures, compress and adjust the layout in an attempt to optimize query speed. (数据进入druid之前会进行一些分析并且进行索引，然后压缩并且调整存储格式来优化查询速度） A quick list of what happens to the data follows.
+</p><ul>
+<li>Converted to columnar format
+</li>
+<li>Indexed with bitmap indexes
+</li>
+<li>Compressed using various algorithms
+<ul>
+<li>LZF (switching to Snappy is on the roadmap, not yet implemented)
+</li>
+<li>Dictionary encoding w/ id storage minimization
+</li>
+<li>Bitmap compression
+</li>
+<li>RLE (on the roadmap, but not yet implemented)
+</li>
+</ul>
+
+</li>
+</ul>
+
+<p>The output of the indexing process is stored in a “deep storage” LOB store/file system (S3 is the currently implemented solution, HDFS is planned). Data is then loaded by compute nodes by first downloading the data to their local disk and then memory mapping it before serving queries.(输出结果保存在LOB里面，现在是使用S3存储接口今后会支持HDFS。数据的话首先会被download到本地然后进行serve）
+</p>
+<p>
+In order for a segment to exist inside of the cluster, an entry has to be added to a table in a MySQL instance. This entry is a self-describing bit of metadata about the segment, it includes things like the schema of the segment, the size, and the location on deep storage. These entries are what the Master uses to know what data should be available on the cluster. （segment的metadata会保存在MySQL里面。master会用这些信息来判断哪些信息是没有被serve的） <b>NOTE（blog）：个人觉得实现方式应该类似与，indexer运行不是很频繁，每次indexer对数据进行index的时候会将segment的metadata写入MySQL，完成之后通知Master来读取</b>
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-1-4" class="outline-4">
+<h4 id="sec-1-1-4"><span class="section-number-4">1.1.4</span> Fault Tolerance</h4>
+<div class="outline-text-4" id="text-1-1-4">
+
+<ul>
+<li>Compute As discussed above, if a compute node dies, another compute node can take its place and there is no fear of data loss 
+</li>
+<li>Master Can be run in a hot fail-over configuration. If no masters are running, then changes to the data topology will stop happening (no new data and no data balancing decisions), but the system will continue to run.（如果master挂掉的话那么不允许进行topology的变化，不允许新增数据以及数据的balance) <b>NOTE(blog):S3的存储难道没有解决balance以及replication的问题？</b>
+</li>
+<li>Broker Can be run in parallel or in hot fail-over.
+</li>
+<li>Realtime Depending on the semantics of the delivery stream, multiple of these can be run in parallel processing the exact same stream. They periodically checkpoint to disk and eventually push out to the Computes. Steps are taken to be able to recover from process death, but loss of access to the local disk can result in data loss if this is the only method of adding data to the system. <b>TODO（blog）；realtime介绍不是很多</b>
+</li>
+<li>“deep storage” file system If this is not available, new data will not be able to enter the cluster, but the cluster will continue operating as is.
+</li>
+<li>MySQL If this is not available, the master will be unable to find out about new segments in the system, but it will continue with its current view of the segments that should exist in the cluster.（不能够知道新的segment加入）
+</li>
+<li>ZooKeeper If this is not available, data topology changes will not be able to be made, but the Brokers will maintain their most recent view of the data topology and continue serving requests accordingly.（如果compute节点挂掉的话那么检测不到。对于路由信息broker本身会保存一份副本）
+</li>
+</ul>
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> Introducing Druid: Real-Time Analytics at a Billion Rows Per Second | Metamarkets</h3>
+<div class="outline-text-3" id="text-1-2">
+
+<p><a href="http://metamarkets.com/2011/druid-part-i-real-time-analytics-at-a-billion-rows-per-second/">http://metamarkets.com/2011/druid-part-i-real-time-analytics-at-a-billion-rows-per-second/</a>
+</p>
+
+</div>
+
+<div id="outline-container-1-2-1" class="outline-4">
+<h4 id="sec-1-2-1"><span class="section-number-4">1.2.1</span> Background</h4>
+<div class="outline-text-4" id="text-1-2-1">
+
+<p>Druid is the distributed, in-memory OLAP data store that resulted.（分布式全内存的OLAP存储系统） 有两个名字需要稍微了解一下：
+</p><ul>
+<li>roll up，降维比如使用group
+</li>
+<li>drill down. roll up的反义
+</li>
+</ul>
+
+
+<p>
+文中以下面的实际例子来进行分析。假设我们有如下的data table数据集合成为alpha data set,这个部分数据是存放在硬盘上面的。
+</p>
+<p class="verse">
+timestamp             publisher          advertiser  gender  country  .. dimensions ..   click  price<br/>
+2011-01-01T01:01:35Z  bieberfever.com    google.com  Male    USA                         0      0.65<br/>
+2011-01-01T01:03:63Z  bieberfever.com    google.com  Male    USA                         0      0.62<br/>
+2011-01-01T01:04:51Z  bieberfever.com    google.com  Male    USA                         1      0.45<br/>
+&hellip;<br/>
+2011-01-01T01:00:00Z  ultratrimfast.com  google.com  Female  UK                          0      0.87<br/>
+2011-01-01T02:00:00Z  ultratrimfast.com  google.com  Female  UK                          0      0.99<br/>
+2011-01-01T02:00:00Z  ultratrimfast.com  google.com  Female  UK                          1      1.53<br/>
+<br/>
+&hellip;<br/>
+</p>
+
+
+<p>
+为了能够将数据放入内存，在alpha data set上面做roll up形成beta data set.这个部分可以放入内存。roll up方法如下
+</p>
+<p class="verse">
+GROUP BY timestamp, publisher, advertiser, gender, country<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; :: impressions = COUNT(1),  clicks = SUM(click),  revenue = SUM(price)<br/>
+</p>
+
+
+<p>
+产生的beta data set如下：
+</p>
+<p class="verse">
+timestamp             publisher          advertiser  gender  country  impressions  clicks  revenue<br/>
+2011-01-01T01:00:00Z  ultratrimfast.com  google.com  Male    USA      1800         25      15.70<br/>
+2011-01-01T01:00:00Z  bieberfever.com    google.com  Male    USA      2912         42      29.18<br/>
+2011-01-01T02:00:00Z  ultratrimfast.com  google.com  Male    UK       1953         17      17.31<br/>
+2011-01-01T02:00:00Z  bieberfever.com    google.com  Male    UK       3194         170     34.01<br/>
+</p>
+
+
+<p>
+beta data set主要包含3个部分：
+</p><ul>
+<li>Timestamp column: We treat timestamp separately because all of our queries center around the time axis. Timestamps are faceted by varying granularities (hourly, in the example above).（时间列主要用来做时间范围内的查询，roll up时候可以按照不同的粒度切片，上面的例子是按照小时）
+</li>
+<li>Dimension columns: Here we have four dimensions of publisher, advertiser, gender, and country. They each represent an axis of the data that we’ve chosen to slice across.（维度列主要用来进行交叉查询）
+</li>
+<li>Metric columns: These are impressions, clicks and revenue. These represent values, usually numeric, which are derived from an aggregation operation – such as count, sum, and mean (we also run variance and higher moment calculations). For example, in the first row, the revenue metric of 15.70 is the sum of 1800 event-level prices.（指标列则是一些具体的数值）
+</li>
+</ul>
+
+
+<p>
+对于这些数据集合上面我们可能需要有下面这些操作：
+</p><ul>
+<li>“How many impressions from males were on bieberfever.com?” and 
+</li>
+<li>“What is the average cost to advertise to women at ultratrimfast.com?”  
+</li>
+<li>But we have a hard requirement to meet: we want queries over any arbitrary combination of dimensions at sub-second latencies.
+</li>
+</ul>
+
+<p>理论上这个集合可能非常大，但是实际上这个大部分的维度交叉item还是非常少的，比如few Kazakhstanis visit beiberfever.com
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-2-2" class="outline-4">
+<h4 id="sec-1-2-2"><span class="section-number-4">1.2.2</span> Failed Solution I: Dynamic Roll-Ups with a RDBMS</h4>
+<div class="outline-text-4" id="text-1-2-2">
+
+<p>So about a year ago, we fired up a RDBMS instance (actually, the Greenplum Community Edition, running on an m1.large EC2 box) 开始使用一些关系数据库，但是存在下面这些问题：
+</p><ul>
+<li>We stored the data in a star schema, which meant that there was operational overhead maintaining dimension and fact tables. <b>TOOO（blog）：不太明白这个是什么意思</b>
+<ul>
+<li>关于star schema可以参考这篇文章 Salina &amp; IT Mind: Data Warehouse: Star Schema <a href="http://salinaitmind.blogspot.jp/2012/10/data-warehouse-star-schema.html">http://salinaitmind.blogspot.jp/2012/10/data-warehouse-star-schema.html</a>
+</li>
+<li>所谓的fact table里面存放的是具体值，而dimensional table是指属性或者说是维度。
+</li>
+<li>dimensional table引用的都是fact table里的值。
+</li>
+<li>一个fact table（多个fact table也行）可能会被多个dimensional table所引用，这样就形成了一个星型schema。 
+</li>
+</ul>
+
+</li>
+<li>Whenever we needed to do a full table scan, for things like global counts, the queries ran slow. For example, naive benchmarks showed scanning 33 million rows took 3 seconds. （对于一些全表扫描的操作非常地慢 <b>NOTE（blog）：这个主要是因为没有使用并行查询的方式把？</b> ）
+<ul>
+<li>We started materializing all dimensional roll-ups of a certain depth, and began routing queries to these pre-aggregated tables. We also implemented a caching layer in front of our queries. （开始通过pre roll up到一定的深度然后在这些table上面进行查询，并且在query之前假设一个cache layer）
+</li>
+<li>This approach generally worked and is, I believe, a fairly common strategy in the space. Except, when things weren’t in the cache and a query couldn’t be mapped to a pre-aggregated table, we were back to full scans and slow performance.（上面工作方式在大部分时候工作还是很好的，但是如果没有出现在cache或者是pre-compute的table里面性能就非常差）
+</li>
+<li>We tried indexing our way out of it, but given that we are allowing arbitrary combinations of dimensions, we couldn’t really take advantage of composite indexes. （尝试建立二级联合索引，但是因为允许在所有的dimenson上面进行查询，所以还是不行）
+</li>
+<li>Additionally, index merge strategies are not always implemented, or only implemented for bitmap indexes, depending on the flavor of RDBMS.（另外一些RDBMS的index merge策略可能没有实现，或者只是实现了bitmap index merge策略 <b>TODO（blog）：不太明白什么意思？</b> ）
+</li>
+</ul>
+
+</li>
+</ul>
+
+<p>We also benchmarked plain Postgres, MySQL, and InfoBright, but did not observe dramatically better performance.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-2-3" class="outline-4">
+<h4 id="sec-1-2-3"><span class="section-number-4">1.2.3</span> Failed Solution II: Pre-compute the World in NoSQL</h4>
+<div class="outline-text-4" id="text-1-2-3">
+
+<ul>
+<li>In short, we took all of our data and pre-computed aggregates for every combination of dimensions. At query time we need only locate the specific pre-computed aggregate and and return it: an O(1) key-value lookup. This made things fast and worked wonderfully when we had a six dimension beta data set.(在NoSQL里面需要预先计算很多维度的组合，但是在查询的时候非常快。如果维度只有6个的时候还是工作非常快速的）
+</li>
+<li>But when we added five more dimensions – giving us 11 dimensions total – the time to pre-compute all aggregates became unmanageably large (such that we never waited more than 24 hours required to see it finish).（但是我们测试11个维度的时候，发现计算量太大）
+</li>
+<li>Lesson learned: massively scalable counter systems like rainbird are intended for high cardinality data sets with pre-defined hierarchical drill-downs. But they break down when supporting arbitrary drill downs across all dimensions. （NoSQL不太适合高维度的查询，只是适合低纬度并且能够预先计算的场景）
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-2-4" class="outline-4">
+<h4 id="sec-1-2-4"><span class="section-number-4">1.2.4</span> Introducing Druid: A Distributed, In-Memory OLAP Store</h4>
+<div class="outline-text-4" id="text-1-2-4">
+
+<p>下面是前面两种方式各自的问题：
+</p><ul>
+<li>Relational Database Architectures
+<ul>
+<li>Full table scans were slow, regardless of the storage engine used
+</li>
+<li>Maintaining proper dimension tables, indexes and aggregate tables was painful
+</li>
+<li>Parallelization of queries was not always supported or non-trivial
+</li>
+</ul>
+
+</li>
+<li>Massive NOSQL With Pre-Computation
+<ul>
+<li>Supporting high dimensional OLAP requires pre-computing an exponentially large amount of data
+</li>
+</ul>
+
+</li>
+</ul>
+
+
+<p>
+Keeping everything in memory provides fast scans, but it does introduce a new problem: machine memory is limited. The corollary thus was: distribute the data over multiple machines. （内存有限的话通过将数据分布在多个机器上面）
+</p>
+<p>
+Thus, our requirements were:
+</p><ul>
+<li>Ability to load up, store, and query data sets in memory （放在内存里面避免了load up时间）
+</li>
+<li>Parallelized architecture that allows us to add more machines in order to relieve memory pressure（分布式查询能够减缓memory压力）
+</li>
+</ul>
+
+<p>And then we threw in a couple more that seemed like good ideas:
+</p><ul>
+<li>Parallelized queries to speed up full scan processing （同时分布式查询可以加快full scan处理速度）
+</li>
+<li>No dimensional tables to manage （不维护任何dimensional table）
+</li>
+</ul>
+
+
+<p>
+These are the requirements we used to implement Druid. The system makes a number of simplifying assumptions that fit our use case (namely that all analytics are time-based) and integrates access to real-time and historical data for a configurable amount of time into the past.（做了一些假设来简化设计比如所有的分析都是按照时间来进行划分的，并且支持对实时和非实时数据的统一访问）
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> Druid, Part Deux: Three Principles for Fast, Distributed OLAP | Metamarkets</h3>
+<div class="outline-text-3" id="text-1-3">
+
+<p><a href="http://metamarkets.com/2011/druid-part-deux-three-principles-for-fast-distributed-olap/">http://metamarkets.com/2011/druid-part-deux-three-principles-for-fast-distributed-olap/</a>
+</p>
+
+</div>
+
+<div id="outline-container-1-3-1" class="outline-4">
+<h4 id="sec-1-3-1"><span class="section-number-4">1.3.1</span> Partial Aggregates + In-Memory + Indexes =&gt; Fast Queries</h4>
+<div class="outline-text-4" id="text-1-3-1">
+
+<ul>
+<li>alpha represents the raw, unaggregated event logs, while beta is its partially aggregated derivative. （将alpha dataset使用部分聚合形成beta dataset)
+</li>
+<li>The key to Druid’s speed is maintaining the beta data entirely in memory. Full scans are several orders of magnitude faster in memory than via disk. What we lose in having to compute roll-ups on the fly, we make up for with speed.(将beta data set存放在memory里面）
+</li>
+<li>To support drill-downs on specific dimensions (such as results for only ‘bieberfever.com’), we maintain a set of inverted indices.(为了支持在beta dataset上面做drill down，需要维护一个反向索引，这个在另外一片文章里面提到了，主要使用bitmap来表示entry在alpha dataset中的位置，并且对应的表示非常容易进行and/or/not)     
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-3-2" class="outline-4">
+<h4 id="sec-1-3-2"><span class="section-number-4">1.3.2</span> Distributed Data + Parallelizable Queries =&gt; Horizontal Scalability</h4>
+<div class="outline-text-4" id="text-1-3-2">
+
+<ul>
+<li>Druid’s performance depends on having memory — lots of it. We achieve the requisite memory scale by dynamically distributing data across a cluster of nodes. As the data set grows, we can horizontally expand by adding more machines.(通过动态地在节点中分布数据来达到比较方便的水平扩展）
+</li>
+<li>To facilitate rebalancing, we take chunks of beta data and index them into segments based on time ranges.（为了能够完成rebalance，将beta dataset分片并且进行索引，根据时间范围）
+</li>
+<li>For high cardinality dimensions, distributing by time isn’t enough (we generally try to keep segments no larger than 20M rows), so we have introduced partitioning. We store metadata about segments within the query layer and partitioning logic within the segment generation code.（而对于维度比较多的内容，仅仅按照时间分布还是不够的，我们尽量让我一个segment不要超过20M rows所以需要引入partition。 <b>NOTE（blog）：这个partition应该是用户自己定义的</b> 然后druid将segment的metadata保存在qeury layer上面，而用户在查询的时候需要自己提供partition的code）
+</li>
+<li>We persist these segments in a storage system (currently S3) that is accessible from all nodes. If a node goes down, Zookeeper coordinates the remaining live nodes to reconstitute the missing beta set.（segment数据也会在S3文件系统上面进行持久化。这样如果一个server node挂掉的，可以选举另外一个节点从S3文件系统中读取beta dataset。检测node挂掉通过zookeeper协调）
+</li>
+<li>Downstream clients of the API are insulated from this rebalancing: Druid’s query API seamlessly handles changes in cluster topology.（下游的client则不需要考虑rebalance的情况）
+</li>
+<li>Queries against the Druid cluster are perfectly horizontal. We limited the aggregation operations we support – count, mean, variance and other parametric statistics – that are inherently parallelizable. While less parallelizable operations, such as median, are not supported, this limitation is offset by rich support of histogram and higher-order moment stores. The co-location of processing with in-memory data on each node reduces network load and dramatically improves performance.（限制进行聚合的操作，确保这些操作确实可以并行完成。 如果没有并行完成的话，可以通过  <b>histogram and higher-order moment stores（高阶矩）</b> 的支持来补偿 <b>TODO（blog）：WTF is that?</b> 
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-3-3" class="outline-4">
+<h4 id="sec-1-3-3"><span class="section-number-4">1.3.3</span> Real-Time Analytics: Immutable Past, Append-Only Future</h4>
+<div class="outline-text-4" id="text-1-3-3">
+
+<ul>
+<li>For real-time analytics, we have an event stream that flows into a set of real-time indexers. These are servers that advertise responsibility for the most recent 60 minutes of data and nothing more. (对于实时分析有专门都的real-time indexer server，处理最近60分钟的数据）
+</li>
+<li>They aggregate the real-time feed and periodically push an index segment to our storage system. The segment then gets loaded into memory of a standard server, and is flushed from the real-time indexer.（定期将real-time和历史数据做合并然后刷新real-time的数据）
+</li>
+<li>Similarly, for long-range historical data that we want to make available, but not keep hot, we have deep-history servers. These use a memory mapping strategy for addressing segments, rather than loading them all into memory. This provides access to long-range data while maintaining the high-performance that our customers expect for near-term data.（对于那些非常老的历史数据，使用deep-history servers工作方式，使用mmap来访问segments而不用完全载入内存）
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="date">Date: 2014-01-02T19:57+0800</p>
+<p class="creator"><a href="http://orgmode.org">Org</a> version 7.9.2 with <a href="http://www.gnu.org/software/emacs/">Emacs</a> version 23</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
+</div>
+<!-- Baidu Analytics BEGIN --><script type="text/javascript">var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F54a700ad7035f6e485eaf2300641e7e9' type='text/javascript'%3E%3C/script%3E"));</script><!-- Baidu Analytics END --><!-- Google Analytics BEGIN --><!-- <script type="text/javascript">  var _gaq = _gaq || [];  _gaq.push(['_setAccount', 'UA-31377772-1']);  _gaq.push(['_trackPageview']);  (function() {    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);  })();</script> --><!-- Google Analytics END --><!-- Baidu Button BEGIN --><!-- <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6762177" ></script><script type="text/javascript" id="bdshell_js"></script><script type="text/javascript"> document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)</script> --><!-- Baidu Button END --><!-- G+ BEGIN --><!-- Place this render call where appropriate --><!-- <script type="text/javascript">  (function() {    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;    po.src = 'https://apis.google.com/js/plusone.js';    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);  })();</script> --><!-- G+ END --><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script type="text/javascript">/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * *//* required: replace example with your forum shortname  */var disqus_shortname = 'feiskyblog';var disqus_identifier = 'druid.html';var disqus_title = 'druid.html';var disqus_url = 'http://blog.com/druid.html';/* * * DON'T EDIT BELOW THIS LINE * * */(function() {var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a><!-- DISQUS END --></body>
+</html>

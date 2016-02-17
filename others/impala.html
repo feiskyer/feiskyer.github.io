@@ -1,0 +1,447 @@
+layout: false
+---
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><!-- <meta name="baidu-site-verification" content="707024a76f8f40b549f07f478abab237"/> -->
+<title>impala</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="title" content="impala"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2014-01-02T19:57+0800"/>
+<meta name="author" content="dirtysalt"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style><link rel="shortcut icon" href="http://blog.com/css/favicon.ico" /> <link rel="stylesheet" type="text/css" href="./css/site.css" />
+
+
+</head>
+<body><!-- <div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare"><a class="bds_tsina"></a><span class="bds_more"></span><a class="shareCount"></a></div> --><!-- Place this tag where you want the +1 button to render --><!-- <g:plusone annotation="inline"></g:plusone> -->
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">impala</h1>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 impala</a>
+<ul>
+<li><a href="#sec-1-1">1.1 Cloudera Impala: Real-Time Queries in Apache Hadoop, For Real | Apache Hadoop for the Enterprise | Cloudera</a></li>
+<li><a href="#sec-1-2">1.2 Cloudera+Impala+1.0+Beta+Documentation</a>
+<ul>
+<li><a href="#sec-1-2-1">1.2.1 How Cloudera Impala Works with CDH</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-3">1.3 Installation</a>
+<ul>
+<li><a href="#sec-1-3-1">1.3.1 Hardware Requirements</a></li>
+<li><a href="#sec-1-3-2">1.3.2 Prerequsite</a></li>
+<li><a href="#sec-1-3-3">1.3.3 Ubuntu</a></li>
+<li><a href="#sec-1-3-4">1.3.4 Gettting Started</a></li>
+<li><a href="#sec-1-3-5">1.3.5 TroubleShooting</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> impala</h2>
+<div class="outline-text-2" id="text-1">
+
+<ul>
+<li>github <a href="http://github.com/cloudera/impala">http://github.com/cloudera/impala</a>
+</li>
+<li>documentation <a href="https://ccp.cloudera.com/display/IMPALA10BETADOC/Cloudera+Impala+1.0+Beta+Documentation">https://ccp.cloudera.com/display/IMPALA10BETADOC/Cloudera+Impala+1.0+Beta+Documentation</a>
+</li>
+<li>DataScientist » Impala源代码分析(1)-Impala架构和RPC <a href="http://yanbohappy.sinaapp.com/?p=314">http://yanbohappy.sinaapp.com/?p=314</a>
+</li>
+<li>Parquet: Columnar Storage for Hadoop <a href="http://parquet.github.com/">http://parquet.github.com/</a>
+</li>
+<li>External Hands-on Experiences with Cloudera Impala | Apache Hadoop for the Enterprise | Cloudera <a href="http://blog.cloudera.com/blog/2012/11/external-observations-about-cloudera-impala/">http://blog.cloudera.com/blog/2012/11/external-observations-about-cloudera-impala/</a>
+</li>
+</ul>
+
+
+
+</div>
+
+<div id="outline-container-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Cloudera Impala: Real-Time Queries in Apache Hadoop, For Real | Apache Hadoop for the Enterprise | Cloudera</h3>
+<div class="outline-text-3" id="text-1-1">
+
+<p><a href="http://blog.cloudera.com/blog/2012/10/cloudera-impala-real-time-queries-in-apache-hadoop-for-real/">http://blog.cloudera.com/blog/2012/10/cloudera-impala-real-time-queries-in-apache-hadoop-for-real/</a>
+</p>
+<ul>
+<li>With Impala, you can query data, whether stored in HDFS or Apache HBase – including SELECT, JOIN, and aggregate functions – in real time. (数据存储在HDFS以及HBase）
+</li>
+<li>Furthermore, it uses the same metadata, SQL syntax (Hive SQL), ODBC driver and user interface (Hue Beeswax) as Apache Hive, providing a familiar and unified platform for batch-oriented or real-time queries. (For that reason, Hive users can utilize Impala with little setup overhead.) （使用了和Hive相同的metadata，SQL语法以及ODBC driver以及user interface，这样就为real-time以及batch query提供了统一的平台，对于Hive用户来说学习代价非常小）
+</li>
+<li>The first beta drop includes support for text files and SequenceFiles; SequenceFiles can be compressed as Snappy, GZIP, and BZIP (with Snappy recommended for maximum performance). Support for additional formats including Avro, RCFile, LZO text files, and Doug Cutting’s Trevni columnar format is planned for the production drop.（beta版本支持在HDFS上面存储text以及sequenceFile，SF可以使用snappy，gzip以及bzip压缩。产品级别释出的时候会支持一些其他的格式比如Avro，RCFile，LZO txt以及Doug Cutting编写的Trevni的列式存储格式）
+</li>
+<li>To avoid latency, Impala circumvents MapReduce to directly access the data through a specialized distributed query engine that is very similar to those found in commercial parallel RDBMSs.（为了缩短延迟，impala绕过mr，通过类似商业并行的RDBMS的分布式查询引擎来访问数据）
+</li>
+<li>Unlike Dremel as described in the 2010 paper, which could only handle single-table queries, Impala already supports the full set of join operators that are one of the factors that make SQL so popular.（dremel只是支持在一个table上面的query，而impala可以支持SQL里面所有的join操作）
+</li>
+</ul>
+
+
+<p>
+<img src="./images/impala-high-level-architecture.png"  alt="./images/impala-high-level-architecture.png" />
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> Cloudera+Impala+1.0+Beta+Documentation</h3>
+<div class="outline-text-3" id="text-1-2">
+
+
+</div>
+
+<div id="outline-container-1-2-1" class="outline-4">
+<h4 id="sec-1-2-1"><span class="section-number-4">1.2.1</span> How Cloudera Impala Works with CDH</h4>
+<div class="outline-text-4" id="text-1-2-1">
+
+<p>The Impala solution is composed of the following components:
+</p><ul>
+<li>Clients - Entities including Hue, ODBC clients, JDBC clients, and the Impala Shell can all interact with Impala. These interfaces are typically used to issue queries or complete administrative tasks such as connecting to Impala.  (通过hue,odbc,jdcb或者是shell来和impala做交互，发起交互或者是管理命令）
+</li>
+<li>Hive Metastore - Stores information about the data available to Impala. For example, the metastore lets Impala know what databases are available and what the structure of those databases is.（hive metastore用来存储元数据）
+</li>
+<li>Cloudera Impala - This process, which runs on datanodes, coordinates and executes queries. Each instance of Impala can receive, plan, and coordinate queries from Impala clients. Queries are distributed among Impala nodes, and these nodes then act as workers, executing parallel query fragments.
+</li>
+<li>HBase and HDFS - Storage for data to be queried.
+</li>
+</ul>
+
+
+<p>
+Queries executed using Impala are handled as follows:
+</p><ol>
+<li>User applications send SQL queries to Impala through ODBC or JDBC, which provide standardized querying interfaces. The user application may connect to any impalad in the cluster. This impalad becomes the coordinator for the query. （通过connecor发送到集群中任意的impalad）
+</li>
+<li>Impala parses the query and analyzes it to determine what tasks need to be performed by impalad instances across the cluster. Execution is planned for optimal efficiency.（query planner进行查询规划，并且通过query coordinator调度到其他机器上的impalad)
+</li>
+<li>Services such as HDFS and HBase are accessed by local impalad instances to provide data.(query exec engine访问hdfs/hbase数据） <b>NOTE（drlt）：但是应该考虑了locality</b>
+</li>
+<li>Each impalad returns data to the coordinating impalad, which sends these results to the client. 
+</li>
+</ol>
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> Installation</h3>
+<div class="outline-text-3" id="text-1-3">
+
+
+</div>
+
+<div id="outline-container-1-3-1" class="outline-4">
+<h4 id="sec-1-3-1"><span class="section-number-4">1.3.1</span> Hardware Requirements</h4>
+<div class="outline-text-4" id="text-1-3-1">
+
+<ul>
+<li>During join operations all data from both data sets is loaded into memory. Data sets can be very large, so ensure your hardware has sufficient memory to accommodate the joins you anticipate completing. <b>NOTE(blog):这有点汗，join操作都是在全内存完成的</b>
+</li>
+<li>CPU - Impala uses the SSE4.2 instruction set, which is included in newer processors. Impala can use older processors, but for best performance use:
+<ul>
+<li>Intel - Nehalem (released 2008) or later processors.
+</li>
+<li>AMD - Bulldozer (released 2011) or later processors.
+</li>
+</ul>
+
+</li>
+<li>Memory - 32GB or more. Impala cannot run queries that have a working set greater than the total available ram. Note that the working set is not the size of the input.
+</li>
+<li>Storage - DataNodes with 10 or more disks each. I/O speeds are often the limiting factor for disk performance with Impala. Ensure you have sufficient disk space to store the data Impala will be querying. <b>NOTE（blog）：感叹未来的趋势就是拿内存当磁盘用</b>
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-3-2" class="outline-4">
+<h4 id="sec-1-3-2"><span class="section-number-4">1.3.2</span> Prerequsite</h4>
+<div class="outline-text-4" id="text-1-3-2">
+
+<ul>
+<li>Install CDH4 as described in CDH4 Installation. <a href="https://ccp.cloudera.com/display/CDH4DOC/CDH4+Installation">https://ccp.cloudera.com/display/CDH4DOC/CDH4+Installation</a>
+<ul>
+<li>添加下面source,然后sudo apt-get update
+</li>
+<li>sudo apt-get install hadoop-0.20-mapreduce-jobtracker
+</li>
+<li>sudo apt-get install hadoop-hdfs-namenode
+</li>
+<li>sudo apt-get install hadoop-0.20-mapreduce-tasktracker 
+</li>
+<li>sudo apt-get install hadoop-hdfs-datanode
+</li>
+<li>sudo apt-get install hadoop-client
+</li>
+</ul>
+
+</li>
+<li>Install Hive as described in Hive Installation. As part of this process, you must configure Hive to use an external database as a metastore. 必须使用外部数据库来作为metastore <b>NOTE(blog):hive允许使用内嵌数据库做metastore</b>
+<ul>
+<li>sudo apt-get install hive
+</li>
+</ul>
+
+</li>
+</ul>
+
+
+
+
+<pre class="example">deb [arch=amd64] http://archive.cloudera.com/cdh4/ubuntu/precise/amd64/cdh precise-cdh4 contrib
+deb-src http://archive.cloudera.com/cdh4/ubuntu/precise/amd64/cdh precise-cdh4 contrib
+
+deb [arch=amd64] http://beta.cloudera.com/impala/ubuntu/precise/amd64/impala precise-impala0 contrib
+deb-src http://beta.cloudera.com/impala/ubuntu/precise/amd64/impala precise-impala0 contrib
+</pre>
+
+
+<p>
+tarball:
+</p><ul>
+<li>hadoop <a href="http://archive.cloudera.com/cdh4/cdh/4/hadoop-2.0.0-cdh4.2.0.tar.gz">http://archive.cloudera.com/cdh4/cdh/4/hadoop-2.0.0-cdh4.2.0.tar.gz</a>
+</li>
+<li>hbase <a href="http://archive.cloudera.com/cdh4/cdh/4/hbase-0.94.2-cdh4.2.0.tar.gz">http://archive.cloudera.com/cdh4/cdh/4/hbase-0.94.2-cdh4.2.0.tar.gz</a>
+</li>
+<li>zookeeper <a href="http://archive.cloudera.com/cdh4/cdh/4/zookeeper-3.4.5-cdh4.2.0.tar.gz">http://archive.cloudera.com/cdh4/cdh/4/zookeeper-3.4.5-cdh4.2.0.tar.gz</a>
+</li>
+<li>hive <a href="http://archive.cloudera.com/cdh4/cdh/4/hive-0.10.0-cdh4.2.0.tar.gz">http://archive.cloudera.com/cdh4/cdh/4/hive-0.10.0-cdh4.2.0.tar.gz</a>
+</li>
+</ul>
+
+
+<p>
+<b>NOTE(blog):最好不要用tarball安装</b> impala需要使用hdfs的short-circuit read的特性，这个特性需要有libhadoop.so.但是tarball没有自带native实现
+</p>
+
+
+<pre class="example">Enabling short-circuit reads allows Impala to read local data directly from the file system. This removes
+the need to communicate through the DataNodes, improving performance. This setting also minimizes
+the number of additional copies of data. Short-circuit reads requires libhadoop.so (the Hadoop
+Native Library) to be accessible to both the server and the client. libhadoop.so is not available if you
+have installed from a tarball. You must install from an .rpm, .deb, or parcel in order to use short-circuit
+local reads.
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-3-3" class="outline-4">
+<h4 id="sec-1-3-3"><span class="section-number-4">1.3.3</span> Ubuntu</h4>
+<div class="outline-text-4" id="text-1-3-3">
+
+<p>source compile: <b>NOTE（blog）：比较麻烦</b>
+</p><ul>
+<li>sudo apt-get install libboost-all-dev libevent1-dev automake libtool flex bison g++ libssl-dev make cmake doxygen libglib2.0-dev python-dev libzip2 subversion libsasl2-dev wget git unzip
+</li>
+<li>llvm maven3 # github README上面有描述
+</li>
+<li>git clone <a href="https://github.com/cloudera/impala.git">https://github.com/cloudera/impala.git</a>
+</li>
+<li>cd impala &amp;&amp; . bin/impala-config.sh # <b>NOTE(blog):我使用oh-my-zsh似乎有问题，切换成为bash就成功</b>
+</li>
+<li>cd thirdparty &amp;&amp; ./download_thirdparty.sh # <b>NOTE(blog):如果自己手动下载了hadoop和hive的话，可以修改一下脚本，因为这两个包还是比较大的</b>
+</li>
+<li>cd ${IMPALA_HOME} &amp;&amp; ./build_public.sh -build_thirdparty
+</li>
+<li><b>NOTE（blog）：编译麻烦，我没有成功，放弃</b>
+</li>
+</ul>
+
+
+<p>
+binary install:
+</p><ul>
+<li>sudo apt-get install impala
+</li>
+<li>sudo apt-get install impala-shell
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-3-4" class="outline-4">
+<h4 id="sec-1-3-4"><span class="section-number-4">1.3.4</span> Gettting Started</h4>
+<div class="outline-text-4" id="text-1-3-4">
+
+<ul>
+<li>启动hdfs
+</li>
+<li>无需启动mapreduce/yarn/hbase.
+</li>
+<li>启动hive metastore
+</li>
+<li>使用hive创建table并且导入数据
+</li>
+<li>启动impalad # impala daemon. sudo impalad start
+</li>
+<li>启动statstored # imapala存储统计数据进行优化. sudo statestored start
+</li>
+<li>启动impala shell 
+<ul>
+<li>connect &lt;host&gt; # 连接到host的impalad. connect localhost
+</li>
+<li>refresh # 从hive metastore读取meta数据，保存在内存中
+</li>
+<li>SQL语句
+</li>
+</ul>
+
+</li>
+</ul>
+
+
+<p>
+下面是一个例子，使用Hive和Impala来做SQL查询
+</p>
+
+
+
+<pre class="example">➜  lib  impala-shell
+Welcome to the Impala shell. Press TAB twice to see a list of available commands.
+
+Copyright (c) 2012 Cloudera, Inc. All rights reserved.
+
+(Build version: Impala v0.6 (720f93c) built on Sat Feb 23 18:52:43 PST 2013)
+[Not connected] &gt; connect localhost
+Connected to localhost:21000
+[localhost:21000] &gt; refresh
+Successfully refreshed catalog
+[localhost:21000] &gt; select * from kv where k = 400;
+Query: select * from kv where k = 400
+Query finished, fetching results ...
+400     val_400
+Returned 1 row(s) in 0.65s
+[localhost:21000] &gt; 
+</pre>
+
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-3-5" class="outline-4">
+<h4 id="sec-1-3-5"><span class="section-number-4">1.3.5</span> TroubleShooting</h4>
+<div class="outline-text-4" id="text-1-3-5">
+
+
+<hr/>
+<p>
+启动sudo impalad start出现下面错误
+</p>
+
+
+<pre class="example">0314 16:41:13.884233 18187 impala-server.cc:573] ERROR: short-circuit local reads is disabled because
+  - dfs.client.read.shortcircuit is not enabled.
+E0314 16:41:13.884558 18187 impala-server.cc:575] Impala is aborted due to improper configurations.
+</pre>
+
+
+<p>
+这个问题原因是因为impala需要使用hdfs的short-circuit功能直接读取本地文件系统，避免从datannode传输。为了使用这个功能需要在hdfs-site.xml加上下面选项
+</p>
+
+
+<pre class="example">&lt;property&gt;
+  &lt;name&gt;dfs.client.read.shortcircuit&lt;/name&gt;
+  &lt;value&gt;true&lt;/value&gt;
+&lt;/property&gt;
+&lt;property&gt;
+  &lt;name&gt;dfs.domain.socket.path&lt;/name&gt;
+  &lt;value&gt;/var/run/hadoop-hdfs/dn._PORT&lt;/value&gt;
+&lt;/property&gt;
+</pre>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="date">Date: 2014-01-02T19:57+0800</p>
+<p class="creator"><a href="http://orgmode.org">Org</a> version 7.9.2 with <a href="http://www.gnu.org/software/emacs/">Emacs</a> version 23</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
+</div>
+<!-- Baidu Analytics BEGIN --><script type="text/javascript">var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F54a700ad7035f6e485eaf2300641e7e9' type='text/javascript'%3E%3C/script%3E"));</script><!-- Baidu Analytics END --><!-- Google Analytics BEGIN --><!-- <script type="text/javascript">  var _gaq = _gaq || [];  _gaq.push(['_setAccount', 'UA-31377772-1']);  _gaq.push(['_trackPageview']);  (function() {    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);  })();</script> --><!-- Google Analytics END --><!-- Baidu Button BEGIN --><!-- <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6762177" ></script><script type="text/javascript" id="bdshell_js"></script><script type="text/javascript"> document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)</script> --><!-- Baidu Button END --><!-- G+ BEGIN --><!-- Place this render call where appropriate --><!-- <script type="text/javascript">  (function() {    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;    po.src = 'https://apis.google.com/js/plusone.js';    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);  })();</script> --><!-- G+ END --><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script type="text/javascript">/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * *//* required: replace example with your forum shortname  */var disqus_shortname = 'feiskyblog';var disqus_identifier = 'impala.html';var disqus_title = 'impala.html';var disqus_url = 'http://blog.com/impala.html';/* * * DON'T EDIT BELOW THIS LINE * * */(function() {var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a><!-- DISQUS END --></body>
+</html>

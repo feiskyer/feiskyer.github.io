@@ -1,0 +1,341 @@
+layout: false
+---
+layout: false
+---
+
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>html { font-size: 100%; overflow-y: scroll; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+
+body{
+  color:#444;
+  font-family:Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman',
+              "Hiragino Sans GB", "STXihei", "微软雅黑", serif;
+  font-size:12px;
+  line-height:1.5em;
+  background:#fefefe;
+  width: 45em;
+  margin: 10px auto;
+  padding: 1em;
+  outline: 1300px solid #FAFAFA;
+}
+
+a{ color: #0645ad; text-decoration:none;}
+a:visited{ color: #0b0080; }
+a:hover{ color: #06e; }
+a:active{ color:#faa700; }
+a:focus{ outline: thin dotted; }
+a:hover, a:active{ outline: 0; }
+
+span.backtick {
+  border:1px solid #EAEAEA;
+  border-radius:3px;
+  background:#F8F8F8;
+  padding:0 3px 0 3px;
+}
+
+::-moz-selection{background:rgba(255,255,0,0.3);color:#000}
+::selection{background:rgba(255,255,0,0.3);color:#000}
+
+a::-moz-selection{background:rgba(255,255,0,0.3);color:#0645ad}
+a::selection{background:rgba(255,255,0,0.3);color:#0645ad}
+
+p{
+margin:1em 0;
+}
+
+img{
+max-width:100%;
+}
+
+h1,h2,h3,h4,h5,h6{
+font-weight:normal;
+color:#111;
+line-height:1em;
+}
+h4,h5,h6{ font-weight: bold; }
+h1{ font-size:2.5em; }
+h2{ font-size:2em; border-bottom:1px solid silver; padding-bottom: 5px; }
+h3{ font-size:1.5em; }
+h4{ font-size:1.2em; }
+h5{ font-size:1em; }
+h6{ font-size:0.9em; }
+
+blockquote{
+color:#666666;
+margin:0;
+padding-left: 3em;
+border-left: 0.5em #EEE solid;
+}
+hr { display: block; height: 2px; border: 0; border-top: 1px solid #aaa;border-bottom: 1px solid #eee; margin: 1em 0; padding: 0; }
+
+
+pre , code, kbd, samp { 
+  color: #000; 
+  font-family: monospace; 
+  font-size: 0.88em; 
+  border-radius:3px;
+  background-color: #F8F8F8;
+  border: 1px solid #CCC; 
+}
+pre { white-space: pre; white-space: pre-wrap; word-wrap: break-word; padding: 5px 12px;}
+pre code { border: 0px !important; padding: 0;}
+code { padding: 0 3px 0 3px; }
+
+b, strong { font-weight: bold; }
+
+dfn { font-style: italic; }
+
+ins { background: #ff9; color: #000; text-decoration: none; }
+
+mark { background: #ff0; color: #000; font-style: italic; font-weight: bold; }
+
+sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
+sup { top: -0.5em; }
+sub { bottom: -0.25em; }
+
+ul, ol { margin: 1em 0; padding: 0 0 0 2em; }
+li p:last-child { margin:0 }
+dd { margin: 0 0 0 2em; }
+
+img { border: 0; -ms-interpolation-mode: bicubic; vertical-align: middle; }
+
+table { border-collapse: collapse; border-spacing: 0; }
+td { vertical-align: top; }
+
+@media only screen and (min-width: 480px) {
+body{font-size:14px;}
+}
+
+@media only screen and (min-width: 768px) {
+body{font-size:16px;}
+}
+
+@media print {
+  * { background: transparent !important; color: black !important; filter:none !important; -ms-filter: none !important; }
+  body{font-size:12pt; max-width:100%; outline:none;}
+  a, a:visited { text-decoration: underline; }
+  hr { height: 1px; border:0; border-bottom:1px solid black; }
+  a[href]:after { content: " (" attr(href) ")"; }
+  abbr[title]:after { content: " (" attr(title) ")"; }
+  .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after { content: ""; }
+  pre, blockquote { border: 1px solid #999; padding-right: 1em; page-break-inside: avoid; }
+  tr, img { page-break-inside: avoid; }
+  img { max-width: 100% !important; }
+  @page :left { margin: 15mm 20mm 15mm 10mm; }
+  @page :right { margin: 15mm 10mm 15mm 20mm; }
+  p, h2, h3 { orphans: 3; widows: 3; }
+  h2, h3 { page-break-after: avoid; }
+}
+</style><title>paste.deploy</title></head><body><h3 id="pastedeploy">PasteDeploy</h3>
+<p>Paste Deployment是用于发现和配置WSGI appliaction和server的系统。对于WSGI application用户提供一个单独的简单的函数（loadapp），用于从配置文件或者python egg中加载WSGI application。因为WSGI application提供了唯一的单独简单的访问入口，所以application 发布者并不需要暴露application的内部的实现细节。</p>
+<p>几个概念：</p>
+<ul>
+<li>app是一个callable object，接受的参数(environ,start_response)，这是paste系统交给application的，符合WSGI规范的参数. app需要完成的任务是响应envrion中的请求，准备好响应头和消息体，然后交给start_response处理，并返回响应消息体。</li>
+<li>composite是一个调度器，会根据一些条件将web请求调度到不同的app。</li>
+<li>filter是一个callable object，其唯一参数是(app)，这是WSGI的application对象，filter需要完成的工作是将application包装成另一个application（“过滤”），并返回这个包装后的application。</li>
+<li>app_factory是一个callable object，其接受的参数是一些关于application的配置信息：(global_conf, **kwargs)【注：swift就是使用这部分】，global_conf是在ini文件中default section中定义的一系列key-value对，而**kwargs，即一些本地配置，是在ini文件中，app:xxx section中定义的一系列key-value对。app_factory返回值是一个application对象</li>
+<li>filter_factory是一个callable object，其接受的参数是一系列关于filter的配置信息：(global_conf,**kwargs)，global_conf是在ini文件中default section中定义的一系列key-value对，而**kwargs，即一些本地配置，是在ini文件中，filter:xxx section中定义的一系列key-value对。filter_factory返回一个filter对象</li>
+</ul>
+<h3 id="pastedeploy_1">Paste.deploy 基本的使用</h3>
+<p>可以使用Paste Deployment用于加载WSGI的应用，大多数的Python框架都支持WSGI。主要的函数是paste.deploy.loadapp，基本使用方法如下：</p>
+<pre><code class="python">from paste.deploy import loadapp
+from wsgiref.simple_server import make_server
+
+wsgi_app = loadapp(&quot;config:%s&quot; % os.path.abspath(configfile), appname)
+server = make_server('localhost', 8080, wsgi_app)
+server.serve_forever()
+</code></pre>
+
+<p>目前支持两种URI模式config：和egg：。egg就是setuptools使用的分发和安装格式，不再赘述。</p>
+<h3 id="config">config:配置文件</h3>
+<p>示例如下所示：</p>
+<pre><code>[DEFAULT]       # 全局配置，会传到所有的app，app中可以种set key1=v1覆盖全局配置
+key1=value1
+key2=value2
+key3=values
+
+[composite:pdl] # 使用urlmap调度请求到其他app
+use=egg:Paste#urlmap
+/:root
+/calc:calc
+/list:list
+
+[pipeline:root] # 也可以通过filter-with = logrequest showversion来应用filter
+pipeline = logrequest showversion
+
+[pipeline:calc]
+pipeline = logrequest calculator
+
+[filter:logrequest]
+username = root
+password = root123
+paste.filter_factory = pastedeploylab:LogFilter.factory
+
+[app:showversion]
+version = 1.0.0
+paste.app_factory = pastedeploylab:ShowVersion.factory
+
+[app:calculator]
+description = This is an &quot;+-*/&quot; Calculator
+paste.app_factory = pastedeploylab:Calculator.factory
+
+[app:list]      # 静态页面
+use = egg:Paste#static
+document_root = %(here)s
+
+</code></pre>
+
+<p>配置文件的说明：
+<em> 在一个文件中可以定义多个application，每个application都应该有自己独立的section，即使仅有一个application存在，也需要写入到section中。
+</em> 每个定义一个application的section都应该以app：前缀开头
+<em> composite是一个调度器，分发请求到其他app
+</em> 可以使用filter-with或者pipeline应用filter</p>
+<p>各个app的实现示例</p>
+<pre><code class="python">#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# Example from http://blog.csdn.net/sonicatnoc/article/details/6539716.
+#
+# http://127.0.0.1:8080/    输出：
+#
+#   Paste Deploy LAB: Version = 1.0.0
+#
+# http://127.0.0.1:8080/calc?operator=plus&amp;operand1=12&amp;operand2=23  输出：
+#
+#   UnicodeMultiDict([('operator', u'plus'), ('operand1', u'12'), ('operand2', u'23')])
+#   RESULT= 35
+#
+
+import os
+# import webob
+from webob import Request
+from webob import Response
+from paste.deploy import loadapp
+from wsgiref.simple_server import make_server
+
+
+# Filter
+class LogFilter():
+
+    def __init__(self, app):
+        self.app = app
+        pass
+
+    def __call__(self, environ, start_response):
+        print &quot;filter:LogFilter is called.&quot;
+        return self.app(environ, start_response)
+
+    @classmethod
+    def factory(cls, global_conf, **kwargs):
+        print &quot;in LogFilter.factory&quot;, global_conf, kwargs
+        return LogFilter
+
+
+class ShowVersion():
+
+    def __init__(self, version):
+        self.version  = version
+
+    def __call__(self, environ, start_response):
+        start_response(&quot;200 OK&quot;, [(&quot;Content-type&quot;, &quot;text/plain&quot;)])
+        content = []
+        content.append(&quot;Paste Deploy LAB: Version = %s&quot; % self.version )
+        content.append(&quot;Environ: %s&quot; % environ)
+        return ['\n'.join(content)]
+
+    @classmethod
+    def factory(cls, global_conf, **kwargs):
+        print &quot;in ShowVersion.factory&quot;, global_conf, kwargs
+        return ShowVersion(kwargs['version'])
+
+
+class Calculator():
+
+    def __init__(self):
+        pass
+
+    def __call__(self, environ, start_response):
+        req = Request(environ)
+        res = Response()
+        res.status = &quot;200 OK&quot;
+        res.content_type = &quot;text/plain&quot;
+        # get operands
+        operator = req.GET.get(&quot;operator&quot;, None)
+        operand1 = req.GET.get(&quot;operand1&quot;, None)
+        operand2 = req.GET.get(&quot;operand2&quot;, None)
+        print req.GET
+        opnd1 = int(operand1)
+        opnd2 = int(operand2)
+        if operator == u'plus':
+            opnd1 = opnd1 + opnd2
+        elif operator == u'minus':
+            opnd1 = opnd1 - opnd2
+        elif operator == u'star':
+            opnd1 = opnd1 * opnd2
+        elif operator == u'slash':
+            opnd1 = opnd1 / opnd2
+        res.body = &quot;%s \nRESULT= %d&quot; % (str(req.GET), opnd1)
+        return res(environ, start_response)
+
+    @classmethod
+    def factory(cls, global_conf, **kwargs):
+        print &quot;in Calculator.factory&quot;, global_conf, kwargs
+        return Calculator()
+
+if __name__ == '__main__':
+    configfile = &quot;pastedeploylab.ini&quot;
+    appname = &quot;pdl&quot;
+    wsgi_app = loadapp(&quot;config:%s&quot; % os.path.abspath(configfile), appname)
+    server = make_server('localhost', 8080, wsgi_app)
+    server.serve_forever()
+    pass
+
+</code></pre>
+
+<h3 id="factory">定义factory函数</h3>
+<p>factory函数的定义还是遵循应用协议。目前，用于工厂函数的协议有以下：</p>
+<ul>
+<li>paste.app_factory</li>
+<li>paste.composite_factory</li>
+<li>paste.filter_factory</li>
+<li>paste.server_factory</li>
+</ul>
+<p>所有的这些都希望有一个含有<code>__call__</code>方法的（函数，方法，类）。</p>
+<pre><code class="python">
+def app_factory(global_config, **local_conf):
+    return wsgi_app
+
+</code></pre>
+
+<pre><code class="python">def composite_factory(loader, global_config, **local_conf):
+   return wsgi_app
+</code></pre>
+
+<pre><code class="python">def pipeline_factory(loader, global_config, pipeline):
+    # space-separated list of filter and app names:
+    pipeline = pipeline.split()
+    filters = [loader.get_filter(n) for n in pipeline[:-1]]
+    app = loader.get_app(pipeline[-1])
+    filters.reverse() # apply in reverse order!
+    for filter in filters:
+      app = filter(app)
+    return app
+</code></pre>
+
+<pre><code class="python">def auth_filter_factory(global_conf, req_usernames):
+    # space-separated list of usernames:
+    req_usernames = req_usernames.split()
+    def filter(app):
+        return AuthFilter(app, req_usernames)
+    return filter
+
+class AuthFilter(object):
+    def __init__(self, app, req_usernames):
+        self.app = app
+        self.req_usernames = req_usernames
+
+def __call__(self, environ, start_response):
+    if environ.get('REMOTE_USER') in self.req_usernames:
+            return self.app(environ, start_response)
+    start_response(
+            '403 Forbidden', [('Content-type', 'text/html')])
+    return ['You are forbidden to view this resource']
+</code></pre></body></html>

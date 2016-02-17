@@ -1,0 +1,684 @@
+layout: false
+---
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><!-- <meta name="baidu-site-verification" content="707024a76f8f40b549f07f478abab237"/> -->
+<title>systemtap</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="title" content="systemtap"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2014-01-02T19:55+0800"/>
+<meta name="author" content="dirtysalt"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style><link rel="shortcut icon" href="http://blog.com/css/favicon.ico" /> <link rel="stylesheet" type="text/css" href="./css/site.css" />
+
+
+</head>
+<body><!-- <div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare"><a class="bds_tsina"></a><span class="bds_more"></span><a class="shareCount"></a></div> --><!-- Place this tag where you want the +1 button to render --><!-- <g:plusone annotation="inline"></g:plusone> -->
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">systemtap</h1>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 systemtap</a>
+<ul>
+<li><a href="#sec-1-1">1.1 Introduction</a></li>
+<li><a href="#sec-1-2">1.2 Architecture of systemtap a Linux trace probe tool</a>
+<ul>
+<li><a href="#sec-1-2-1">1.2.1 Motivation</a></li>
+<li><a href="#sec-1-2-2">1.2.2 Systemtap processing steps</a></li>
+<li><a href="#sec-1-2-3">1.2.3 Programming</a></li>
+<li><a href="#sec-1-2-4">1.2.4 Tapsets</a></li>
+<li><a href="#sec-1-2-5">1.2.5 Safety</a></li>
+<li><a href="#sec-1-2-6">1.2.6 Lower layer issues</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-3">1.3 probe</a></li>
+<li><a href="#sec-1-4">1.4 language</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> systemtap</h2>
+<div class="outline-text-2" id="text-1">
+
+<ul>
+<li>SystemTap <a href="http://sourceware.org/systemtap/">http://sourceware.org/systemtap/</a>
+</li>
+<li>SystemTap <a href="http://sourceware.org/systemtap/documentation.html">http://sourceware.org/systemtap/documentation.html</a>
+</li>
+<li>Linux 自检和 SystemTap <a href="http://www.ibm.com/developerworks/cn/linux/l-systemtap/">http://www.ibm.com/developerworks/cn/linux/l-systemtap/</a>
+</li>
+<li>IBM Redbooks | SystemTap: Instrumenting the Linux Kernel for Analyzing Performance and Functional Problems <a href="http://www.redbooks.ibm.com/abstracts/redp4469.html">http://www.redbooks.ibm.com/abstracts/redp4469.html</a>
+</li>
+<li>Architecture of systemtap a Linux trace probe tool <a href="http://sourceware.org/systemtap/archpaper.pdf">http://sourceware.org/systemtap/archpaper.pdf</a>
+</li>
+<li>Dynamic Instrumentation of Production Systems <a href="http://static.usenix.org/event/usenix04/tech/general/full_papers/cantrill/cantrill_html/">http://static.usenix.org/event/usenix04/tech/general/full_papers/cantrill/cantrill_html/</a>
+</li>
+<li>sudo apt-get install systemtap # 直接使用apt安装
+<ul>
+<li>sudo apt-get install elfutils # 可能需要安装
+</li>
+</ul>
+
+</li>
+<li><b>NOTE（blog）：linux还自带perf工具也能够观察kernel行为</b>
+</li>
+</ul>
+
+
+
+</div>
+
+<div id="outline-container-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Introduction</h3>
+<div class="outline-text-3" id="text-1-1">
+
+<p>systemtap的工作原理是使用linux提供的kprobe接口 <b>TODO(blog):more about kprobe</b> ，将用户需要观测linux系统的行为转换成为c（使用kprobe)并且编译成为kernel object然后运行。 
+systemtap使用一种触发式的工作方式，通过安装探针（probe）来监控系统的行为，一旦探针事件出现的话就会触发对应的代码。代码使用自己定义的语言，和C语言非常类似。
+</p>
+<p>
+<img src="./images/systemtap-prepare-workflow.gif"  alt="./images/systemtap-prepare-workflow.gif" />
+</p>
+<ul>
+<li>stap 流程从将脚本转换成解析树开始 (pass 1)
+</li>
+<li>然后使用细化（elaboration）步骤 (pass 2) 中关于当前运行的内核的符号信息解析符号
+</li>
+<li>接下来转换流程将解析树转换成 C 源代码 (pass 3) 并使用解析后的信息和 tapset 脚本（SystemTap 定义的库，包含有用的功能）
+</li>
+<li>stap 的最后步骤是构造使用本地内核模块构建进程的内核模块 (pass 4)。
+</li>
+</ul>
+
+
+<p>
+<img src="./images/systemtap-run-workflow.gif"  alt="./images/systemtap-run-workflow.gif" />
+</p>
+<ul>
+<li>staprun 负责启动kernel object
+</li>
+<li>stapio 负责收集kernel object的输出
+</li>
+<li>执行期间中断的话将执行清除进程，卸载模块并退出所有相关的实用程序
+</li>
+</ul>
+
+
+<p>
+一个使用systemtap的简单例子
+</p>
+
+
+<pre class="example">[blog@umeng-ubuntu-pc] &gt;  sudo stap -ve 'probe begin { log("hello world") exit() }'
+Pass 1: parsed user script and 76 library script(s) using 92476virt/22592res/2616shr kb, in 80usr/0sys/85real ms.
+Pass 2: analyzed script: 1 probe(s), 2 function(s), 0 embed(s), 0 global(s) using 93000virt/23472res/2816shr kb, in 0usr/0sys/4real 
+ms.                                                                                                                                
+Pass 3: translated to C into "/tmp/stapbx8Gpk/stap_7703b9bd08bd359932cf8da12019f6d8_813.c" using 93000virt/23628res/2964shr kb, in 0
+usr/0sys/0real ms.                                                                                                                 
+Pass 4: compiled C into "stap_7703b9bd08bd359932cf8da12019f6d8_813.ko" in 3240usr/510sys/4048real ms.
+Pass 5: starting run.
+hello world
+Pass 5: run completed in 10usr/10sys/600real ms.
+
+[blog@umeng-ubuntu-pc] &gt;  sudo stap -ve 'probe begin { log("hello world") exit() }'
+Pass 1: parsed user script and 76 library script(s) using 92476virt/22592res/2616shr kb, in 80usr/10sys/85real ms.
+Pass 2: analyzed script: 1 probe(s), 2 function(s), 0 embed(s), 0 global(s) using 93000virt/23472res/2816shr kb, in 0usr/0sys/4real 
+ms.                                                                                                                                
+Pass 3: using cached /home/blog/.systemtap/cache/77/stap_7703b9bd08bd359932cf8da12019f6d8_813.c
+Pass 4: using cached /home/blog/.systemtap/cache/77/stap_7703b9bd08bd359932cf8da12019f6d8_813.ko
+Pass 5: starting run.
+hello world
+Pass 5: run completed in 0usr/10sys/586real ms.
+</pre>
+
+<p>
+可以看到在第二次运行的时候systemtap会去读取缓存内容。
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> Architecture of systemtap a Linux trace probe tool</h3>
+<div class="outline-text-3" id="text-1-2">
+
+
+</div>
+
+<div id="outline-container-1-2-1" class="outline-4">
+<h4 id="sec-1-2-1"><span class="section-number-4">1.2.1</span> Motivation</h4>
+<div class="outline-text-4" id="text-1-2-1">
+
+<ul>
+<li>A tracing and probing tool gives knowledgeable users a deep insight into what is going on inside the operat-ing system, going well beyond isolated tools like netstat, ps, top, iostat 了解当前系统运行状况的工具
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-2-2" class="outline-4">
+<h4 id="sec-1-2-2"><span class="section-number-4">1.2.2</span> Systemtap processing steps</h4>
+<div class="outline-text-4" id="text-1-2-2">
+
+<p><img src="./images/systemtap-processing-steps.png"  alt="./images/systemtap-processing-steps.png" />
+</p>
+<ul>
+<li>Probe language
+<ul>
+<li>The language describes an association of handler subroutines with probe points. 类似AWK的工作方式，绑定一些handle到probe points上面
+</li>
+<li>Probe points are abstract names given to identify a particular place in kernel/user code, or a particular event (timers, counters) that may occur at any time. （所谓探测点是用来识别内核或者是用户代码的一些位置，或者是某些事件的发生）
+</li>
+<li>Handlers are subroutines written in the script language, which are run whenever the probe points are hit.（而handler就是当探测点出发的时候执行的过程）
+</li>
+<li>The language resembles dtrace’s “D”, itself inspired by the old UNIX tool awk（语言名字叫做D引用dtrace,非常类似awk的语言）
+<ul>
+<li>These are simplified from C, lacking types, declarations, and most indirection 类似C但是没有类型和声明以及间接引用
+</li>
+<li>but adding associative arrays and simplified string process-ing. 关联数组实现
+</li>
+<li>The language includes some extensions to interoperate with the target software being instrumented, in order to refer to its data and program state. 增加扩展用来引用系统或者是应用程序特定的数据。
+</li>
+</ul>
+
+</li>
+</ul>
+
+</li>
+<li>Elaboration
+<ul>
+<li>Elaboration is a processing phase that analyzes the input script, and resolves any needed symbolic references to the kernel, user programs, or other any “tapsets”. （这个过程解析符号交叉引用，包括内核，用户程序以及tapset）
+</li>
+<li>Tapsets are libraries of script or C code used to extend the capability of a basic script（tapset类似library，有D实现也有C扩展）
+</li>
+<li>Elaboration is analogous to linking an object file with needed libraries, turn them into a self-contained executable.（类似与链接过程）
+</li>
+<li>References to kernel data such as function parameters, local and global variables, functions, source locations, all need to be resolved to actual run-time addresses.（对于引用kenel或者是可执行文件的符号都是在run之前就完成解析的）
+<ul>
+<li>This is most rigorously done by processing the DWARF debugging information emitted by the compiler, in the same way as an ordinary debugger would（通过处理DWARF debugging信息来完成的）
+</li>
+<li>However, such debug data processing is transformed into an executable form ahead of time, so that during actual probe execution, no explicit decoding is necessary.（但是这些debug数据因为是静态的，所以可以在run之前完成）
+</li>
+</ul>
+
+</li>
+</ul>
+
+</li>
+<li>Translation
+<ul>
+<li>Once an entire set of probe functions is processed through the elaboration stage, they are translated to a quantity of C code.（生成C代码）
+<ul>
+<li>Each systemtap construct is expanded to a block of C that includes whatever locking and safety checks are necessary.
+</li>
+<li>Control-flow constructs translate to include runaway-prevention logic. <b>TODO（blog）：？？？</b>
+</li>
+<li>Each variable shared amongst probes is mapped to an appropriate static declaration, and accesses are protected by locks.（全局变量生成static并且通过lock来保护）
+</li>
+<li>Each group of local variables is placed into a synthetic call frame structure that keeps them off the tiny real kernel stacks. <b>TODO(blog):？压缩局部变量的存储方式</b>
+</li>
+</ul>
+
+</li>
+<li>Probe handlers are wrapped by an interface function which uses whatever probe point registration API is appropriate. （所有的probe handler都被包装成为function然后注册到probe point回调，但是方式有所不同）
+<ul>
+<li>For location type probe points targeting the kernel, this generally uses kprobes.（如果是内核探测点的话，那么使用kprobe)
+</li>
+<li>Where the target software is user-level, probe points would need to be inserted into specific processes’ executable segments, using a mechanism yet to be specified.（如果是用户程序探测点的话，那么需要修改进程内存）
+</li>
+</ul>
+
+</li>
+<li>When complete, the generated C code is compiled, and linked with the runtime, into a stand-alone kernel module. For security reasons, the module may be cryptographically signed, so that it may be archived and later reused here, or on another computer without a compiler installed.（编译成为ko模块，并且签名做cache)
+</li>
+</ul>
+
+</li>
+<li>Execution
+<ul>
+<li>To run the probes, the systemtap driver program simply loads the kernel module using insmod. 使用insmod安装ko模块
+</li>
+<li>The module will initialize itself, insert the probes, then sit back and let the probe handlers be triggered by the system to collect and pass data. It will eventually remove the probes at unload time.（模块初始化之后安装probe然后等待handle触发，在unload的时候会将probes全部移除）
+</li>
+<li>When a probe is hit, the associated handler routine takes over the processor, suspending the target software briefly. When all handlers for that probe point have been executed, the target program resumes.（probe hit之后handler会执行，等待所有的handler执行完成之后目标程序才开始运行，因此最好不用hold住handler)
+</li>
+<li>The probe run concludes when the user sends an interrupt to the driver, or when the probe script runs an exit primitive. (This primitive might simply send a SIGINT to the running user-level driver process.) 通过发起信号结束
+</li>
+</ul>
+
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-2-3" class="outline-4">
+<h4 id="sec-1-2-3"><span class="section-number-4">1.2.3</span> Programming</h4>
+<div class="outline-text-4" id="text-1-2-3">
+
+<ul>
+<li>A systemtap script file has the suffix “.stp” 
+</li>
+<li>A script file is a sequence of top-level constructs, of which there are three types: 下面这些元素组成
+<ul>
+<li>probe definitions, 
+</li>
+<li>auxiliary function definitions, 辅助函数定义
+</li>
+<li>and global variable declarations. 全局变量
+</li>
+<li>These may occur in any order, and forward references are permitted. 可以向前引用
+</li>
+</ul>
+
+</li>
+<li>Multiple probe handlers may execute concurrently on a multiprocessor. Multiple probe definitions may end up referring to the same event or program location <b>多个probe handler可能会在多个CPU上同时执行，并且不同的probe def可能引用到program的相同位置，因此需要注意多线程问题</b>
+<ul>
+<li>但是之前也提到了对于全局变量隐含地有一个access lock.
+</li>
+</ul>
+
+</li>
+<li>A script may make references to an identifier defined elsewhere in library of script tapsets. Such a cross-reference causes the entire tapset file providing the definition to be merged into the elaborated script, as if it was simply concatenated. (如果引用其他script变量的话，那么elaboration阶段会将引用的script全部包含进来，简单地看就像是合并）
+</li>
+<li>Fatal errors that occur during script execution cause a winddown of activity associated with the systemtap script, and an early abort. Running out of memory, dividing by zero, exceeding an operation count limit, calling too many nested functions, are just a few types of fatal errors（运行中如果出现问题的话会使得script提前中止）
+</li>
+</ul>
+
+
+<ul>
+<li id="sec-1-2-3-1">Probe points<br/>
+<b>NOTE（blog）：这个部分是比较重要的，说明了probe point的定义规则</b>
+<ul>
+<li>A probe definition gives probe points in a comma-separated list, and an associated action in the form of a statement block.（使用，分割多个probe points）
+</li>
+<li>Each probe point specification has a “dotted-functor” syntax such as kernel.function("foo").return（probe point通过.来表示层级）
+<ol>
+<li>kernel or module("foo") kernel或者是foo.ko模块
+</li>
+<li>functions
+<ul>
+<li>function("fn")
+<ul>
+<li>fn可以使用?,*做通配
+</li>
+</ul>
+
+</li>
+<li>function("fn@filename")
+</li>
+<li>function("fn@filename:lineno") 
+</li>
+<li>function(0x1f) PC address located.
+</li>
+<li>.callees 可以指定这个fn所有调用的函数
+</li>
+<li>.return fn返回时候触发，默认是.entry
+</li>
+</ul>
+
+</li>
+<li>statements <b>NOTE（blog）：分析执行过程</b>
+<ul>
+<li>statement("fn") 函数fn入口
+</li>
+<li>statement("fn@filename")
+</li>
+<li>statement("fn@filename:lineno")
+</li>
+<li>.relative(0x1f) 偏移定位
+</li>
+<li>.label("need_resched") 标签定位
+</li>
+<li>statement(0x1f) PC address located.
+</li>
+</ul>
+
+</li>
+<li>events
+<ul>
+<li>主要指抽象事件，和kernel或者是program无关。
+</li>
+</ul>
+
+</li>
+</ol>
+
+</li>
+</ul>
+
+
+
+
+
+<pre class="example">kernel.function("sys_read").return
+  a return probe on the named function.
+
+module("ext3").function("*@fs/ext3/inode.c")
+  every function in the named source file, a part of ext3fs
+
+kernel.function("kmalloc").callees
+  every function known statically to be callable from kmalloc
+
+module("usb-storage").statement(0x0233)
+  the given address, which must be at an instruction boundary
+
+kernel.function(0xffffffff802202dc).return
+  a return probe on whichever function that contains the given address
+</pre>
+
+
+</li>
+</ul>
+<ul>
+<li id="sec-1-2-3-2">Language Elements<br/>
+<ul>
+<li>Identifiers
+<ul>
+<li>Systemtap identifiers have the same syntax as C identifiers, except that $ is also a legal character.
+</li>
+<li>Identifiers that begin with $ are interpreted as references to variables in the target software, rather than to systemtap script variables. <b>以$开头标示引用的是target一些变量</b>
+</li>
+</ul>
+
+</li>
+<li>Types
+<ul>
+<li>Numbers are 64-bit signed integers.
+</li>
+<li>Strings
+</li>
+<li>Statistics. These are special objects that compute aggregations (statistical averages, minima, his-tograms, etc.) over numbers.（用来做统计的一些数据类型）
+</li>
+<li>Associative arrays
+</li>
+</ul>
+
+</li>
+</ul>
+
+
+</li>
+</ul>
+<ul>
+<li id="sec-1-2-3-3">Statements<br/>
+<ul>
+<li>foreach ( &lt;names&gt; in &lt;array_name&gt; ) &lt;stmt&gt;
+</li>
+<li>next 执行下个handler
+</li>
+<li>delete &lt;expression&gt; 删除关联数组或者是其中元素
+<ul>
+<li>delete noise
+</li>
+<li>delete smell ["dog", 0]
+</li>
+</ul>
+
+</li>
+</ul>
+
+
+</li>
+</ul>
+<ul>
+<li id="sec-1-2-3-4">Expressions<br/>
+<ul>
+<li>statistics accumulation: &lt;&lt;&lt; 统计类型输入
+</li>
+<li>string concatenation: . (period) 字符串连接
+</li>
+<li>&lt;key&gt; in &lt;array&gt; or [&lt;key1&gt;, &lt;key2&gt;, &hellip;] in &lt;array&gt;
+</li>
+<li>associative-array references: &lt;array&gt;[&lt;expr&gt;] or &lt;array&gt;[&lt;expr&gt;,&lt;expr&gt;]
+</li>
+<li>$&lt;var&gt;-&gt;&lt;field&gt;. Here &lt;var&gt; is a reference to a struct-pointer type variable in the target. <b>引用target变量内部字段</b>
+</li>
+</ul>
+
+
+</li>
+</ul>
+<ul>
+<li id="sec-1-2-3-5">Auxiliary functions<br/>
+<ul>
+<li>function(arglist) 自动推导类型
+</li>
+</ul>
+
+
+</li>
+</ul>
+</div>
+
+</div>
+
+<div id="outline-container-1-2-4" class="outline-4">
+<h4 id="sec-1-2-4"><span class="section-number-4">1.2.4</span> Tapsets</h4>
+<div class="outline-text-4" id="text-1-2-4">
+
+<ul>
+<li id="sec-1-2-4-1">Script tapsets<br/>
+<ul>
+<li>The simplest kind of tapset is one that uses the ordinary script language to define new probes, auxiliary functions, global variables, for invocation by an end-user script or another tapset. （可以用来定义新的probe,辅助函数以及全局变量）
+</li>
+<li>Recall that a script that makes otherwise undefined reference to an identifier (function or global variable) that is defined by another script in a library directory causes that script to be included in the elaborated program.（因为使用全局变量的时候会将所定义的script包含进来，所以那么这个script相当也在使用）
+</li>
+</ul>
+
+
+
+
+<pre class="example">global tgid_history # always contains the last few tgids scheduled
+global _histsize
+probe begin {
+  _histsize = 10
+}
+probe kernel.function("context_switch") {
+  # rotate array
+  for (i=_histsize-1; i&gt;1; i--)
+  tgid_history [i] = tgid_history [i-1];
+  tgid_history [0] = $prev-&gt;tgid;
+}
+</pre>
+
+<ul>
+<li>In addition, a script tapset can define a probe alias. This is a way of synthesizing a higher level probe out of a lower level one. 重新定义一些probe point将一些底层的probe point进行抽象和包装
+<ul>
+<li>This consists of renaming a probe point, and may include some script statements. 附带了语句，这些语句在probe point之前会执行，这样的话就可以准备一些对应的局部变量。
+</li>
+<li>These statements are all executed before the others that are within the user’s probe definition (which referenced the alias), as if they were simply transcribed there.
+</li>
+<li>This way, they can prepare some useful local variables, or even conditionally reject a probe hit using the next statement.
+</li>
+</ul>
+
+</li>
+</ul>
+
+
+
+
+<pre class="example">probe kernel.resource.oom.nonroot =
+kernel.statement("do_page_fault").label("out_of_memory") {
+  if ($tsk-&gt;uid == 0) next;
+  victim_tgid = $tsk-&gt;tgid;
+  victim_pid = $tsk-&gt;pid;
+  victim_uid = $tsk-&gt;uid;
+  victim_fault_addr = $address
+
+}
+
+// usage.
+probe kernel.resource.oom.nonroot {
+trace ("OOM for pid " . string (victim_pid))
+}
+</pre>
+
+
+</li>
+</ul>
+<ul>
+<li id="sec-1-2-4-2">C tapsets<br/>
+</li>
+</ul>
+</div>
+
+</div>
+
+<div id="outline-container-1-2-5" class="outline-4">
+<h4 id="sec-1-2-5"><span class="section-number-4">1.2.5</span> Safety</h4>
+<div class="outline-text-4" id="text-1-2-5">
+
+</div>
+
+</div>
+
+<div id="outline-container-1-2-6" class="outline-4">
+<h4 id="sec-1-2-6"><span class="section-number-4">1.2.6</span> Lower layer issues</h4>
+<div class="outline-text-4" id="text-1-2-6">
+
+<ul>
+<li id="sec-1-2-6-1">Kernel-to-user transport<br/>
+<ul>
+<li>Data collected from systemtap in the kernel must somehow be transmitted to userspace. This transport must have high performance and minimal performance impact on the monitored system. 在内核态收集的数据必须发送到用户态空间，这个传输过程必须满足高性能。
+</li>
+<li>One candidate is relayfs
+<ul>
+<li>Relayfs provides an efficient way to move large blocks of data from the kernel to userspace
+</li>
+<li>The data is sent in per-cpu beffers which a userspace program can save or display. 每个CPU都对应的数据buffer
+</li>
+<li>Drawbacks are that the data arrives in blocks and is separated into per-cpu blocks, possibly requiring a post-processing step that stitches the data into an integrated steam. 提供stream的时候需要将每个CPU的数据stitch起来
+</li>
+<li>Relayfs is included in some recent -mm kernels. It can be built as a loadable module and is currently checked into CVS under src/runtime/relayfs.
+</li>
+</ul>
+
+</li>
+<li>The other candidate is netlink. <b>NOTE（blog）：感觉相比relayfs，这个东西似乎更加适合小需要实时展现的数据</b>
+<ul>
+<li>Netlink is included in the kernel. It allows a simple stream of data to be sent using the familiar socket APIs. It is unlikely to be as fast as relayfs.
+</li>
+</ul>
+
+</li>
+<li>Relayfs typically makes use of netlink as a control channel. With some simple extensions, the runtime can use netlink as the main transport too. So we can currently select in the runtime between relayfs and netlink, allowing us to support streams of data or blocks. And allowing us to perform direct comparisons of efficiency（relayfs底层使用netlink来做控制channel. 做成可扩展的方式可以在两个实现下面做切换对比性能）
+</li>
+</ul>
+
+
+</li>
+</ul>
+<ul>
+<li id="sec-1-2-6-2">Output<br/>
+<ul>
+<li>Depending on the primitives used in the systemtap script, output may flow gradually via logging streams (printk, netlink, etc.), or in large batches (relayfs files).
+</li>
+</ul>
+
+
+</li>
+</ul>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> probe</h3>
+<div class="outline-text-3" id="text-1-3">
+
+<p>TODO(blog):
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-4" class="outline-3">
+<h3 id="sec-1-4"><span class="section-number-3">1.4</span> language</h3>
+<div class="outline-text-3" id="text-1-4">
+
+<p>TODO(blog):
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="date">Date: 2014-01-02T19:55+0800</p>
+<p class="creator"><a href="http://orgmode.org">Org</a> version 7.9.2 with <a href="http://www.gnu.org/software/emacs/">Emacs</a> version 23</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
+</div>
+<!-- Baidu Analytics BEGIN --><script type="text/javascript">var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F54a700ad7035f6e485eaf2300641e7e9' type='text/javascript'%3E%3C/script%3E"));</script><!-- Baidu Analytics END --><!-- Google Analytics BEGIN --><!-- <script type="text/javascript">  var _gaq = _gaq || [];  _gaq.push(['_setAccount', 'UA-31377772-1']);  _gaq.push(['_trackPageview']);  (function() {    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);  })();</script> --><!-- Google Analytics END --><!-- Baidu Button BEGIN --><!-- <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6762177" ></script><script type="text/javascript" id="bdshell_js"></script><script type="text/javascript"> document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)</script> --><!-- Baidu Button END --><!-- G+ BEGIN --><!-- Place this render call where appropriate --><!-- <script type="text/javascript">  (function() {    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;    po.src = 'https://apis.google.com/js/plusone.js';    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);  })();</script> --><!-- G+ END --><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script type="text/javascript">/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * *//* required: replace example with your forum shortname  */var disqus_shortname = 'feiskyblog';var disqus_identifier = 'systemtap.html';var disqus_title = 'systemtap.html';var disqus_url = 'http://blog.com/systemtap.html';/* * * DON'T EDIT BELOW THIS LINE * * */(function() {var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a><!-- DISQUS END --></body>
+</html>

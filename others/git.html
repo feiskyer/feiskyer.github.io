@@ -1,0 +1,394 @@
+layout: false
+---
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><!-- <meta name="baidu-site-verification" content="707024a76f8f40b549f07f478abab237"/> -->
+<title>git</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="title" content="git"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2014-01-02T19:57+0800"/>
+<meta name="author" content="dirtysalt"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style><link rel="shortcut icon" href="http://blog.com/css/favicon.ico" /> <link rel="stylesheet" type="text/css" href="./css/site.css" />
+
+
+</head>
+<body><!-- <div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare"><a class="bds_tsina"></a><span class="bds_more"></span><a class="shareCount"></a></div> --><!-- Place this tag where you want the +1 button to render --><!-- <g:plusone annotation="inline"></g:plusone> -->
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">git</h1>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 git</a>
+<ul>
+<li><a href="#sec-1-1">1.1 FAQ</a>
+<ul>
+<li><a href="#sec-1-1-1">1.1.1 git仓库</a>
+<ul>
+<li><a href="#sec-1-1-1-1">1.1.1.1 git本地</a></li>
+<li><a href="#sec-1-1-1-2">1.1.1.2 git远程</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-1-2">1.1.2 git分支</a></li>
+<li><a href="#sec-1-1-3">1.1.3 git标签</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-2">1.2 git-flow</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> git</h2>
+<div class="outline-text-2" id="text-1">
+
+
+<p>
+参考资源
+</p><ul>
+<li>Git – Fast Version Control System. <a href="http://git.or.cz/index.html">http://git.or.cz/index.html</a> 
+</li>
+<li>Git 简易指南. <a href="http://rogerdudler.github.com/git-guide/index.zh.html">http://rogerdudler.github.com/git-guide/index.zh.html</a>
+</li>
+<li>Git Tutorial. <a href="http://www.vogella.com/articles/Git/article.html">http://www.vogella.com/articles/Git/article.html</a>
+</li>
+<li>Pro Git. <a href="http://git-scm.com/book/zh">http://git-scm.com/book/zh</a>
+</li>
+<li>Git Manual Page. <a href="http://www.kernel.org/pub/software/scm/git/docs/">http://www.kernel.org/pub/software/scm/git/docs/</a>
+</li>
+<li>图解Git. <a href="http://blog.jobbole.com/22647">http://blog.jobbole.com/22647</a>
+</li>
+<li>Git Reference. <a href="http://gitref.org/">http://gitref.org/</a>
+</li>
+</ul>
+
+
+
+</div>
+
+<div id="outline-container-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> FAQ</h3>
+<div class="outline-text-3" id="text-1-1">
+
+
+</div>
+
+<div id="outline-container-1-1-1" class="outline-4">
+<h4 id="sec-1-1-1"><span class="section-number-4">1.1.1</span> git仓库</h4>
+<div class="outline-text-4" id="text-1-1-1">
+
+<p>git分为远程仓库和本地仓库。可以从不同的远程仓库拉下内容到本地仓库，并且也可以推送本地仓库到不同的远程仓库去。
+可以通过git remote add origin <a href="https://github.com/dirtysalt/sperm">https://github.com/dirtysalt/sperm</a> 来为仓库建立别名。在pull或者是push的时候就
+可以指定远程仓库。
+</p>
+
+</div>
+
+<div id="outline-container-1-1-1-1" class="outline-5">
+<h5 id="sec-1-1-1-1"><span class="section-number-5">1.1.1.1</span> git本地</h5>
+<div class="outline-text-5" id="text-1-1-1-1">
+
+<p>git本地仓库由下面三棵树构成：
+</p><ul>
+<li>工作目录(working directory/WD).我们实际持有的文件。分为untracked和tracked两类。
+</li>
+<li>缓存区(index/stage,INDEX).临时保存我们所做的修改。
+</li>
+<li>HEAD.指向我们最后一次提交的结果。
+</li>
+</ul>
+
+<p>整个变化过程是这样的：WD -&gt; "git add" -&gt; INDEX -&gt; "git commit" -&gt; HEAD
+</p>
+<ul>
+<li>git init 初始化本地git仓库
+</li>
+<li>git clone &lt;repo&gt; 克隆到本地git仓库
+</li>
+<li>git add &lt;files&gt; 将WD放入INDEX（不管是tracked还是untracked）
+</li>
+<li>git commit 将INDEX放入HEAD
+</li>
+<li>git commit -a &lt;files&gt; 将WD放入INDEX和HEAD（对于已经tracked的文件）
+</li>
+<li>git commit &ndash;amend 修改最后一次提交
+</li>
+<li>git checkout &ndash; &lt;files&gt; 放弃本地修改，将INDEX移到WD
+</li>
+<li>git checkout HEAD &ndash; &lt;files&gt; 放弃本地修改，HEAD移到INDEX和WD
+</li>
+<li>git reset HEAD &lt;files&gt; 保留本地修改，取消INDEX
+</li>
+<li>git diff WD和INDEX差别
+</li>
+<li>git diff &ndash;cached INDEX和HEAD差别
+</li>
+<li>git rm &lt;files&gt; 从HEAD删除
+</li>
+<li>git rm &ndash;cached &lt;files&gt; 从INDEX删除
+</li>
+<li>git mv 重命名文件
+</li>
+<li>git log 察看日志   
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-1-1-2" class="outline-5">
+<h5 id="sec-1-1-1-2"><span class="section-number-5">1.1.1.2</span> git远程</h5>
+<div class="outline-text-5" id="text-1-1-1-2">
+
+<ul>
+<li>git remote -v 显示远程仓库信息（本地信息）
+</li>
+<li>git remote add &lt;alias&gt; &lt;path&gt; 添加远程仓库
+</li>
+<li>git remote show &lt;repo&gt; 显示远程仓库信息（远程信息）
+</li>
+<li>git remote rename &lt;old&gt; &lt;new&gt;
+</li>
+<li>git remote rm &lt;repo&gt; 删除某个远程仓库
+</li>
+</ul>
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-1-1-2" class="outline-4">
+<h4 id="sec-1-1-2"><span class="section-number-4">1.1.2</span> git分支</h4>
+<div class="outline-text-4" id="text-1-1-2">
+
+<p>默认来说git包含一个master分支，也可以很容易地创建和删除分支。当从远程clone到本地的时候，
+会将远程repo里面所有的分支内容全部clone到本地，维护所有版本信息以及历史文件，所以本地切换分支非常快。
+</p>
+<ul>
+<li>git branch &lt;branch&gt; 创建分支
+</li>
+<li>git checkout &lt;branch&gt; 切换分支
+</li>
+<li>git checkout -b &lt;branch&gt; 创建并且切换分支
+</li>
+<li>git branch -d &lt;branch&gt; 删除分支 / -D &lt;branch&gt; 强制删除分支
+</li>
+<li>git push &lt;repo&gt; &lt;branch&gt; 将本地branch HEAD信息推送到远程repo的branch
+</li>
+<li>git push &lt;repo&gt; :&lt;branch&gt; 将删除分支信息推送。 <b>NOTE(blog):这个可以这样理解，:之前表示null,将null推到branch相当于清空x。</b>
+</li>
+<li>git pull &lt;repo&gt; 将远程repo合并到本地HEAD
+</li>
+<li>git merge &lt;branch&gt; 将本地branch进行合并
+</li>
+<li>git fetch &lt;repo&gt; &lt;branch&gt; 将远程repo的branch拉到本地但是并不进行任何修改
+</li>
+</ul>
+
+
+<p>
+如果合并过来的分支，是当前分支的child的话，那么执行fast-forward合并，否则会执行普通的合并生成一个新的node，这个node是两个分支的共同child。
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-1-3" class="outline-4">
+<h4 id="sec-1-1-3"><span class="section-number-4">1.1.3</span> git标签</h4>
+<div class="outline-text-4" id="text-1-1-3">
+
+<p>Git使用的标签有两种类型：轻量级的（lightweight）和含附注的（annotated）。轻量级标签就像是个不会变化的分支，实际上它就是个指向特 定提交对象的引用。而含附注标签，实际上是存储在仓库中的一个独立对象，它有自身的校验和信息，包含着标签的名字，电子邮件地址和日期，以及标签说明，标签本身也允许使用 GNU Privacy Guard (GPG) 来签署或验证。一般我们都建议使用含附注型的标签，以便保留相关信息；当然，如果只是临时性加注标签，或者不需要旁注额外信息，用轻量级标签也没问题。
+</p>
+<ul>
+<li>git tag 列出所有的标签
+</li>
+<li>git tag -a &lt;tag-name&gt; -m &lt;comment&gt; [&lt;sha1&gt;] 添加含附注的标签
+</li>
+<li>git show &lt;tag-name&gt; 察看相应标签的版本信息
+</li>
+<li>git tag &lt;tag-name&gt; [&lt;sha1&gt;] 添加轻量标签
+</li>
+<li>git push &lt;repo&gt; &lt;tag&gt; /&ndash;tags 推送某个标签或者是全部的标签
+</li>
+</ul>
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> git-flow</h3>
+<div class="outline-text-3" id="text-1-2">
+
+<p>参考资源
+</p><ul>
+<li>Git flow 开发流程。<a href="http://ihower.tw/blog/archives/5140/">http://ihower.tw/blog/archives/5140/</a>
+</li>
+<li>A successful Git branching model. <a href="http://nvie.com/posts/a-successful-git-branching-model/">http://nvie.com/posts/a-successful-git-branching-model/</a>
+</li>
+<li>Git分支管理策略 <a href="http://www.ruanyifeng.com/blog/2012/07/git.html">http://www.ruanyifeng.com/blog/2012/07/git.html</a>
+</li>
+</ul>
+
+
+<p>
+git-flow主要推行的就是一种开发方式，然后通过工具来配合这种开发方式。git-flow分为下面几类分支：
+</p><ul>
+<li>master 线上使用版本始终都是ready状态。    
+</li>
+<li>develop 作为开发基线版本。
+</li>
+<li>feature 专门用于开发特性(可以有很多).
+</li>
+<li>release 开发到一定阶段发布的版本，作为master candidate.(直接在上面做bug修复)
+</li>
+<li>hotfix master上面出现bug临时修复(可以有很多).
+</li>
+</ul>
+
+
+<p>     
+然后说说各个分支之间的关系(这个在链接里面给出的图表示非常清楚)
+</p><ul>
+<li>master
+<ul>
+<li>第一个版本之后，就会从master开出develop
+</li>
+<li>release OK会merge回master.
+</li>
+<li>hotfix OK会merge回master.
+</li>
+</ul>
+
+</li>
+<li>develop
+<ul>
+<li>hotfix OK会merge回develop.
+</li>
+<li>feature开发完毕会merge回develop，
+</li>
+<li>release做完bug fix之后会merge回develop.
+</li>
+<li>从develop可以开出新的feature分支。
+</li>
+<li>develop OK之后可以开出release.
+</li>
+</ul>
+
+</li>
+<li>feature
+<ul>
+<li>从develop开出
+</li>
+<li>OK之后会合并到develop
+</li>
+</ul>
+
+</li>
+<li>release
+<ul>
+<li>从develop开出
+</li>
+<li>期间测试发现的问题会在上面修复
+</li>
+<li>修复会同时merge回develop
+</li>
+<li>OK之后会合并到master
+</li>
+</ul>
+
+</li>
+<li>hotfix
+<ul>
+<li>从master开出
+</li>
+<li>OK之后合并到master和develop
+</li>
+</ul>
+
+</li>
+</ul>
+
+<p>关系还是非常清楚的(不过我这里可能描述比较混乱).
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="date">Date: 2014-01-02T19:57+0800</p>
+<p class="creator"><a href="http://orgmode.org">Org</a> version 7.9.2 with <a href="http://www.gnu.org/software/emacs/">Emacs</a> version 23</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
+</div>
+<!-- Baidu Analytics BEGIN --><script type="text/javascript">var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F54a700ad7035f6e485eaf2300641e7e9' type='text/javascript'%3E%3C/script%3E"));</script><!-- Baidu Analytics END --><!-- Google Analytics BEGIN --><!-- <script type="text/javascript">  var _gaq = _gaq || [];  _gaq.push(['_setAccount', 'UA-31377772-1']);  _gaq.push(['_trackPageview']);  (function() {    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);  })();</script> --><!-- Google Analytics END --><!-- Baidu Button BEGIN --><!-- <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6762177" ></script><script type="text/javascript" id="bdshell_js"></script><script type="text/javascript"> document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)</script> --><!-- Baidu Button END --><!-- G+ BEGIN --><!-- Place this render call where appropriate --><!-- <script type="text/javascript">  (function() {    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;    po.src = 'https://apis.google.com/js/plusone.js';    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);  })();</script> --><!-- G+ END --><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script type="text/javascript">/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * *//* required: replace example with your forum shortname  */var disqus_shortname = 'feiskyblog';var disqus_identifier = 'git.html';var disqus_title = 'git.html';var disqus_url = 'http://blog.com/git.html';/* * * DON'T EDIT BELOW THIS LINE * * */(function() {var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a><!-- DISQUS END --></body>
+</html>

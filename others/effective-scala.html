@@ -1,0 +1,438 @@
+layout: false
+---
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><!-- <meta name="baidu-site-verification" content="707024a76f8f40b549f07f478abab237"/> -->
+<title>Effective Scala</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="title" content="Effective Scala"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2014-01-02T19:57+0800"/>
+<meta name="author" content="dirtysalt"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style><link rel="shortcut icon" href="http://blog.com/css/favicon.ico" /> <link rel="stylesheet" type="text/css" href="./css/site.css" />
+
+
+</head>
+<body><!-- <div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare"><a class="bds_tsina"></a><span class="bds_more"></span><a class="shareCount"></a></div> --><!-- Place this tag where you want the +1 button to render --><!-- <g:plusone annotation="inline"></g:plusone> -->
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">Effective Scala</h1>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 effective-scala</a>
+<ul>
+<li><a href="#sec-1-1">1.1 Introduction</a></li>
+<li><a href="#sec-1-2">1.2 Formatting</a></li>
+<li><a href="#sec-1-3">1.3 Types and Generics</a></li>
+<li><a href="#sec-1-4">1.4 Collections</a></li>
+<li><a href="#sec-1-5">1.5 Concurrency</a></li>
+<li><a href="#sec-1-6">1.6 Control structures</a></li>
+<li><a href="#sec-1-7">1.7 Functional programming</a></li>
+<li><a href="#sec-1-8">1.8 Object oriented programming</a></li>
+<li><a href="#sec-1-9">1.9 Error handling</a></li>
+<li><a href="#sec-1-10">1.10 Garbage collection</a></li>
+<li><a href="#sec-1-11">1.11 Java compatibility</a></li>
+<li><a href="#sec-1-12">1.12 Twitter's standard libraries</a></li>
+<li><a href="#sec-1-13">1.13 Acknowledgements</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> effective-scala</h2>
+<div class="outline-text-2" id="text-1">
+
+<ul>
+<li><a href="http://twitter.github.io/effectivescala/">http://twitter.github.io/effectivescala/</a>
+</li>
+</ul>
+
+
+
+</div>
+
+<div id="outline-container-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Introduction</h3>
+<div class="outline-text-3" id="text-1-1">
+
+<ul>
+<li>Scala provides many tools that enable succinct expression. Less typing is less reading, and less reading is often faster reading, and thus brevity enhances clarity. However brevity is a blunt tool that can also deliver the opposite effect: After correctness, think always of the reader.
+</li>
+<li>Above all, program in Scala. You are not writing Java, nor Haskell, nor Python; a Scala program is unlike one written in any of these. In order to use the language effectively, you must phrase your problems in its terms. There’s no use coercing a Java program into Scala, for it will be inferior in most ways to its original.
+</li>
+<li>This is a living document that will change to reflect our current “best practices,” but its core ideas are unlikely to change: <b>Always favor readability; write generic code but not at the expensive of clarity; take advantage of simple language features that afford great power but avoid the esoteric ones (especially in the type system). Above all, be always aware of the trade offs you make A sophisticated language requires a complex implementation, and complexity begets complexity: of reasoning, of semantics, of interaction between features, and of the understanding of your collaborators. Thus complexity is the tax of sophistication — you must always ensure that its utility exceeds its cost.</b>
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> Formatting</h3>
+<div class="outline-text-3" id="text-1-2">
+
+<ul>
+<li>Use pattern matching directly in function definitions whenever applicable # list map {  case Some(x) =&gt; x  case None =&gt; default }
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> Types and Generics</h3>
+<div class="outline-text-3" id="text-1-3">
+
+<ul>
+<li>Immutable collections should be covariant. Methods that receive the contained type should “downgrade” the collection appropriately.
+</li>
+</ul>
+
+
+
+
+<pre class="src src-Scala">trait Collection[+T] {
+  def add[U &gt;: T](other: U): Collection[U]
+}
+</pre>
+
+<ul>
+<li>Mutable collections should be invariant. Covariance is typically invalid with mutable collections.
+</li>
+<li>If you do find yourself using implicits, always ask yourself if there is a way to achieve the same thing without their help. Do not use implicits to do automatic conversions between similar datatypes (for example, converting a list to a stream); these are better done explicitly because the types have different semantics, and the reader should beware of these implications.
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-4" class="outline-3">
+<h3 id="sec-1-4"><span class="section-number-3">1.4</span> Collections</h3>
+<div class="outline-text-3" id="text-1-4">
+
+<ul>
+<li><a href="http://www.scala-lang.org/docu/files/collections-api/collections.html">http://www.scala-lang.org/docu/files/collections-api/collections.html</a>
+</li>
+<li>The collections library is large: in addition to an elaborate hierarchy — the root of which being Traversable[T] — there are immutable and mutable variants for most collections. Whatever the complexity, the following diagram contains the important distinctions for both immutable and mutable hierarchies. 
+<ul>
+<li>Iterable[T] is any collection that may be iterated over, they provide an iterator method (and thus foreach). 
+</li>
+<li>Seq[T]s are collections that are ordered, 
+<ul>
+<li>IndexedSeq
+<ul>
+<li>Vector
+</li>
+</ul>
+
+</li>
+<li>LinearSeq
+<ul>
+<li>List
+</li>
+</ul>
+
+</li>
+</ul>
+
+</li>
+<li>Set[T]s are mathematical sets (unordered collections of unique items), 
+</li>
+<li>and Map[T]s are associative arrays, also unordered.
+</li>
+</ul>
+
+</li>
+</ul>
+
+
+<p>
+<img src="./images/scala-collection-hierarchy-simple.png"  alt="./images/scala-collection-hierarchy-simple.png" />
+</p>
+<ul>
+<li>Prefer using immutable collections. They are applicable in most circumstances, and make programs easier to reason about since they are referentially transparent and are thus also threadsafe by default. Use the mutable namespace explicitly. 
+<ul>
+<li>import scala.collection.mutable
+</li>
+<li>val set = mutable.Set()
+</li>
+</ul>
+
+</li>
+<li>Use the default constructor for the collection type. The corollary to the above is: in your own methods and constructors, receive the most generic collection type appropriate. This typically boils down to one of the above: Iterable, Seq, Set, or Map.
+</li>
+<li>High level collections libraries (as with higher level constructs generally) make reasoning about performance more difficult: the further you stray from instructing the computer directly — in other words, imperative style — the harder it is to predict the exact performance implications of a piece of code. Reasoning about correctness however, is typically easier; readability is also enhanced. With Scala the picture is further complicated by the Java runtime; Scala hides boxing/unboxing operations from you, which can incur severe performance or space penalties.
+</li>
+<li>Use scala.collection.JavaConverters to interoperate with Java collections. These are a set of implicits that add conversion asJava and asScala conversion methods. The use of these ensures that such conversions are explicit, aiding the reader.
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-5" class="outline-3">
+<h3 id="sec-1-5"><span class="section-number-3">1.5</span> Concurrency</h3>
+<div class="outline-text-3" id="text-1-5">
+
+<ul>
+<li>Prefer transforming futures over creating your own. Future transformations ensure that failures are propagated, that cancellations are signalled, and free the programmer from thinking about the implications of the Java memory model.
+</li>
+<li>The subject of concurrent collections is fraught with opinions, subtleties, dogma and FUD. In most practical situations they are a nonissue: Always start with the simplest, most boring, and most standard collection that serves the purpose. Don’t reach for a concurrent collection before you know that a synchronized one won’t do: the JVM has sophisticated machinery to make synchronization cheap, so their efficacy may surprise you.
+</li>
+<li>If an immutable collection will do, use it — they are referentially transparent, so reasoning about them in a concurrent context is simple. Mutations in immutable collections are typically handled by updating a reference to the current value (in a var cell or an AtomicReference). Care must be taken to apply these correctly: atomics must be retried, and vars must be declared volatile in order for them to be published to other threads.
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-6" class="outline-3">
+<h3 id="sec-1-6"><span class="section-number-3">1.6</span> Control structures</h3>
+<div class="outline-text-3" id="text-1-6">
+
+<ul>
+<li>returns can have hidden costs: when used inside of a closure. <b>implemented in bytecode as an exception catching/throwing pair which, used in hot code, has performance implications.</b>
+</li>
+<li>require and assert both serve as executable documentation. Both are useful for situations in which the type system cannot express the required invariants. 
+<ul>
+<li>assert is used for invariants that the code assumes
+</li>
+<li>Whereas require is used to express API contracts:
+</li>
+</ul>
+
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-7" class="outline-3">
+<h3 id="sec-1-7"><span class="section-number-3">1.7</span> Functional programming</h3>
+<div class="outline-text-3" id="text-1-7">
+
+<ul>
+<li>Value oriented programming confers many advantages, especially when used in conjunction with functional programming constructs. This style emphasizes 
+<ul>
+<li>the transformation of values over stateful mutation, 
+</li>
+<li>yielding code that is referentially transparent, 
+</li>
+<li>providing stronger invariants and thus also easier to reason about. 
+</li>
+<li>Case classes, pattern matching, destructuring bindings, type inference, and lightweight closure- and method-creation syntax are the tools of this trade.
+</li>
+</ul>
+
+</li>
+<li>The Option type is a container that is either empty (None) or full (Some(value)). They provide a safe alternative to the use of null, and should be used in their stead whenever possible. <b>They are a collection (of at most one item) and they are embellished with collection operations — use them!</b>
+</li>
+<li>Don’t use pattern matching for conditional execution when defaults make more sense. <b>The collections libraries usually provide methods that return Options;</b>
+</li>
+<li>PartialFunction <a href="http://scala-lang.org/api/current/index.html#scala.PartialFunction">http://scala-lang.org/api/current/index.html#scala.PartialFunction</a> # can be chained.
+</li>
+<li>Use lazy fields for this purpose, but avoid using laziness when laziness is required by semantics. In these cases it's better to be explicit since it makes the cost model explicit, and side effects can be controlled more precisely. <b>Lazy fields are thread safe.</b>
+</li>
+<li>flatMap — the combination of map with flatten — deserves special attention, for it has subtle power and great utility. <b>Like its brethren map, it is frequently available in nontraditional collections such as Future and Option.</b>
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-8" class="outline-3">
+<h3 id="sec-1-8"><span class="section-number-3">1.8</span> Object oriented programming</h3>
+<div class="outline-text-3" id="text-1-8">
+
+<ul>
+<li>Singleton class types # def foo(): Foo with Bar = new Foo with Bar with Baz {}
+</li>
+<li>Structural typing # obj.asInstanceOf[{def close()}].close()
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-9" class="outline-3">
+<h3 id="sec-1-9"><span class="section-number-3">1.9</span> Error handling</h3>
+<div class="outline-text-3" id="text-1-9">
+
+<ul>
+<li>Instead, encode such errors explicitly: <b>using Option or com.twitter.util.Try are good, idiomatic choices, as they harness the type system to ensure that the user is properly considering error handling.</b>
+</li>
+<li>Instead, use the com.twitter.util.NonFatal extractor to handle only nonfatal exceptions.
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-10" class="outline-3">
+<h3 id="sec-1-10"><span class="section-number-3">1.10</span> Garbage collection</h3>
+<div class="outline-text-3" id="text-1-10">
+
+<ul>
+<li>We spend a lot of time tuning garbage collection in production. The garbage collection concerns are largely similar to those of Java though idiomatic Scala code tends to generate more (short-lived) garbage than idiomatic Java code — a byproduct of the functional style. Hotspot’s generational garbage collection typically makes this a nonissue as short-lived garbage is effectively free in most circumstances.
+</li>
+<li>Before tackling GC performance issues, watch <a href="http://www.infoq.com/presentations/JVM-Performance-Tuning-twitter">this</a> presentation by Attila that illustrates some of our experiences with GC tuning.
+</li>
+<li>In Scala proper, your only tool to mitigate GC problems is to generate less garbage; but do not act without data! Unless you are doing something obviously degenerate, use the various Java profiling tools — our own include <a href="https://github.com/mariusaeriksen/heapster">heapster</a> and <a href="https://github.com/twitter/jvmgcprof">gcprof</a>.
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-11" class="outline-3">
+<h3 id="sec-1-11"><span class="section-number-3">1.11</span> Java compatibility</h3>
+<div class="outline-text-3" id="text-1-11">
+
+</div>
+
+</div>
+
+<div id="outline-container-1-12" class="outline-3">
+<h3 id="sec-1-12"><span class="section-number-3">1.12</span> Twitter's standard libraries</h3>
+<div class="outline-text-3" id="text-1-12">
+
+<ul>
+<li>The most important standard libraries at Twitter are <a href="http://github.com/twitter/util">Util</a> and <a href="https://github.com/twitter/finagle">Finagle</a>. Util should be considered an extension to the Scala and Java standard libraries, providing missing functionality or more appropriate implementations. Finagle is our RPC system; the kernel distributed systems components.
+</li>
+<li>Futures
+<ul>
+<li>Twitter’s futures are asynchronous, so blocking operations — basically any operation that can suspend the execution of its thread; network IO and disk IO are examples — must be handled by a system that itself provides futures for the results of said operations. Finagle provides such a system for network IO.
+</li>
+<li>Futures are plain and simple: they hold the promise for the result of a computation that is not yet complete. They are a simple container — a placeholder. A computation could fail of course, and this must also be encoded: <b>a Future can be in exactly one of 3 states: pending, failed or completed.</b>
+</li>
+<li><b>Futures are a type of collection — they are a container of either 0 or 1 elements — and you’ll find they have standard collection methods (eg. map, filter, and foreach).</b> 
+</li>
+<li>Since a Future’s value is deferred, the result of applying any of these methods is necessarily also deferred
+</li>
+<li>Futures implement a weak form of cancellation. Invoking Future#cancel does not directly terminate the computation but instead propagates a level triggered signal that may be queried by whichever process ultimately satisfies the future. Cancellation flows in the opposite direction from values: a cancellation signal set by a consumer is propagated to its producer. The producer uses onCancellation on Promise to listen to this signal and act accordingly. This means that the cancellation semantics depend on the producer, and there is no default implementation. Cancellation is but a hint.
+</li>
+<li>Util’s Local provides a reference cell that is local to a particular future dispatch tree. Setting the value of a local makes this value available to any computation deferred by a Future in the same thread. <b>They are analogous to thread locals, except their scope is not a Java thread but a tree of “future threads”.</b> As with thread locals, Locals can be very convenient, but should almost always be avoided: make sure the problem cannot be sufficiently solved by passing data around explicitly, even if it is somewhat burdensome. <b>Locals are used effectively by core libraries for very common concerns — threading through RPC traces, propagating monitors, creating “stack traces” for future callbacks — where any other solution would unduly burden the user.</b> Locals are inappropriate in almost any other situation.
+</li>
+</ul>
+
+</li>
+<li>Offer/Broker
+<ul>
+<li>Concurrent systems are greatly complicated by the need to coordinate access to shared data and resources. Actors present one strategy of simplification: each actor is a sequential process that maintains its own state and resources, and data is shared by messaging with other actors. Sharing data requires communicating between actors.
+</li>
+<li>Offer/Broker builds on this in three important ways. First, communication channels (Brokers) are first class — that is, you send messages via Brokers, not to an actor directly. Secondly, Offer/Broker is a synchronous mechanism: to communicate is to synchronize. <b>This means we can use Brokers as a coordination mechanism: when process a has sent a message to process b; both a and b agree on the state of the system.</b> Lastly, communication can be performed selectively: a process can propose several different communications, and exactly one of them will obtain.
+</li>
+<li>Offer.choose/timeout
+</li>
+<li>It may be tempting to compare the use of Offer/Broker to SynchronousQueue, but they are different in subtle but important ways. <b>Offers can be composed in ways that such queues simply cannot.</b>
+</li>
+</ul>
+
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-13" class="outline-3">
+<h3 id="sec-1-13"><span class="section-number-3">1.13</span> Acknowledgements</h3>
+<div class="outline-text-3" id="text-1-13">
+
+
+</div>
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="date">Date: 2014-01-02T19:57+0800</p>
+<p class="creator"><a href="http://orgmode.org">Org</a> version 7.9.2 with <a href="http://www.gnu.org/software/emacs/">Emacs</a> version 23</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
+</div>
+<!-- Baidu Analytics BEGIN --><script type="text/javascript">var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F54a700ad7035f6e485eaf2300641e7e9' type='text/javascript'%3E%3C/script%3E"));</script><!-- Baidu Analytics END --><!-- Google Analytics BEGIN --><!-- <script type="text/javascript">  var _gaq = _gaq || [];  _gaq.push(['_setAccount', 'UA-31377772-1']);  _gaq.push(['_trackPageview']);  (function() {    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);  })();</script> --><!-- Google Analytics END --><!-- Baidu Button BEGIN --><!-- <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6762177" ></script><script type="text/javascript" id="bdshell_js"></script><script type="text/javascript"> document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)</script> --><!-- Baidu Button END --><!-- G+ BEGIN --><!-- Place this render call where appropriate --><!-- <script type="text/javascript">  (function() {    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;    po.src = 'https://apis.google.com/js/plusone.js';    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);  })();</script> --><!-- G+ END --><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script type="text/javascript">/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * *//* required: replace example with your forum shortname  */var disqus_shortname = 'feiskyblog';var disqus_identifier = 'effective-scala.html';var disqus_title = 'effective-scala.html';var disqus_url = 'http://blog.com/effective-scala.html';/* * * DON'T EDIT BELOW THIS LINE * * */(function() {var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a><!-- DISQUS END --></body>
+</html>

@@ -1,0 +1,281 @@
+layout: false
+---
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><!-- <meta name="baidu-site-verification" content="707024a76f8f40b549f07f478abab237"/> -->
+<title>apache</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="title" content="apache"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2014-01-02T19:57+0800"/>
+<meta name="author" content="dirtysalt"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style><link rel="shortcut icon" href="http://blog.com/css/favicon.ico" /> <link rel="stylesheet" type="text/css" href="./css/site.css" />
+
+
+</head>
+<body><!-- <div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare"><a class="bds_tsina"></a><span class="bds_more"></span><a class="shareCount"></a></div> --><!-- Place this tag where you want the +1 button to render --><!-- <g:plusone annotation="inline"></g:plusone> -->
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">apache</h1>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 apache</a>
+<ul>
+<li><a href="#sec-1-1">1.1 FAQ</a>
+<ul>
+<li><a href="#sec-1-1-1">1.1.1 上传文件</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> apache</h2>
+<div class="outline-text-2" id="text-1">
+
+<ul>
+<li><a href="http://httpd.apache.org/">http://httpd.apache.org/</a>
+</li>
+</ul>
+
+
+
+</div>
+
+<div id="outline-container-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> FAQ</h3>
+<div class="outline-text-3" id="text-1-1">
+
+
+</div>
+
+<div id="outline-container-1-1-1" class="outline-4">
+<h4 id="sec-1-1-1"><span class="section-number-4">1.1.1</span> 上传文件</h4>
+<div class="outline-text-4" id="text-1-1-1">
+
+<ol>
+<li>编译apache时候带上dav这个模块，最简单的方法就是将所有模块全部安装上./configure –enable-modules=all
+</li>
+<li>在apache的配置conf/httpd.conf里面，开启dav这个功能。Include conf/extra/httpd-dav.conf。
+</li>
+<li>修改文件conf/extra/httpd-dav.conf来配置dav。如果dav不需要进行什么验证简单配置的的话可以如下：然后我们就可以上传到uploads目录了。
+</li>
+</ol>
+
+
+
+
+<pre class="example">13  DavLockDB "/home/blog/apache//var/DavLock"
+14  Alias /uploads "/home/blog/apache//uploads"
+15  &lt;Directory "/home/blog/apache//uploads"&gt;
+16     Dav On
+17     Order Allow,Deny
+18     Allow from all
+19     &lt;LimitExcept GET OPTIONS&gt;
+20     &lt;/LimitExcept&gt;
+21  &lt;/Directory&gt;
+</pre>
+
+
+<p>
+写了一个限速上传下载文件程序(python)，封装HTTPConnection但是修改了发送的逻辑，允许在发送一部分unit之后做一个回调来修改限制的速度，下载的封装也是一样通过读取unit部分数据之后调用回调来限制速度。
+</p>
+
+
+<pre class="src src-Python">#!/usr/bin/env python
+#coding:gbk 
+
+import httplib
+import os
+import stat
+import time
+
+class HTTPUploadFileLimitSpeed(object):
+    def __init__(self,host,port,timeout,max_speed,send_unit):
+        self._conn=httplib.HTTPConnection(host,port)
+        self._max_speed=max_speed
+        self._already_sent_bytes=0
+        self._elapsed_seconds=0.001
+        self._unit=send_unit
+
+    def set_upload_file_params(self,uri,local_file):
+        self._conn.putrequest(method='PUT',url=uri)
+        self._conn.putheader('Content-Type','application/octet-stream')
+        self._data=open(local_file,'rb').read()
+        self._data_len=os.stat(local_file)[stat.ST_SIZE]
+        self._conn.putheader('Content-Length',str(self._data_len))
+
+    def perform(self,callback):
+        self._conn.endheaders()
+        while(True):
+            if((self._already_sent_bytes+self._unit)&gt;self._data_len):
+                self._conn.send(self._data[self._already_sent_bytes:])
+                self._already_sent_bytes=self._data_len
+                res=self._conn.getresponse()
+                return res
+            else:
+                before=os.times()[4]
+                self._conn.send(self._data[self._already_sent_bytes:self._already_sent_bytes+self._unit])
+                self._already_sent_bytes+=self._unit
+                after=os.times()[4]
+                self._elapsed_seconds+=after-before
+                should_seconds=1.0*self._already_sent_bytes/self._max_speed
+                if(should_seconds&gt;self._elapsed_seconds):
+                    time.sleep(should_seconds-self._elapsed_seconds)
+                self._elapsed_seconds=should_seconds
+                callback(self)
+    def close(self):
+        self._conn.close()
+
+class HTTPDownloadFileLimitSpeed(object):
+    def __init__(self,host,port,timeout,max_speed,recv_unit):
+        self._conn=httplib.HTTPConnection(host,port)
+        self._max_speed=max_speed
+        self._already_recv_bytes=0
+        self._elapsed_seconds=0.001
+        self._unit=recv_unit
+
+    def set_download_file_params(self,uri,local_file):
+        self._uri=uri
+        self._local_file=local_file
+
+    def perform(self,callback):
+        self._conn.request(method='GET',url=self._uri)
+        res=self._conn.getresponse()
+        fp=open(self._local_file,'wb')
+        while(True):
+            before=os.times()[4]
+            read_data=res.read(self._unit)
+            fp.write(read_data)
+            read_size=len(read_data)
+            after=os.times()[4]
+            if(read_size==0):
+                return res
+            else:
+                self._already_recv_bytes+=read_size
+                self._elapsed_seconds+=after-before
+                should_seconds=1.0*self._already_recv_bytes/self._max_speed
+                if(should_seconds&gt;self._elapsed_seconds):
+                    time.sleep(should_seconds-self._elapsed_seconds)
+                self._elapsed_seconds=should_seconds
+                callback(self)
+    def close(self):
+        self._conn.close()
+
+def callback_upload(self):
+    print(<span class="org-string">"max_speed:%lf,sent_bytes:%lf,seconds:%lf,unit:%d"</span>%(self._max_speed,
+                                                              self._already_sent_bytes,
+                                                              self._elapsed_seconds,
+                                                              self._unit))
+    if(self._already_sent_bytes&gt;1024):
+        if(self._max_speed==128):
+            self._max_speed*=8
+
+def callback_download(self):
+    print(<span class="org-string">"max_speed:%lf,recv_bytes:%lf,seconds:%lf,unit:%d"</span>%(self._max_speed,
+                                                              self._already_recv_bytes,
+                                                              self._elapsed_seconds,
+                                                              self._unit))
+    if(self._already_recv_bytes&gt;1024):
+        if(self._max_speed==128):
+            self._max_speed*=8
+
+client=HTTPUploadFileLimitSpeed('localhost',8080,timeout=10,max_speed=128,send_unit=128)
+client.set_upload_file_params(<span class="org-string">"/uploads/test.py"</span>,'./test.py')
+res=client.perform(callback_upload)
+data=res.read()
+print(res.getheaders())
+print(res.version)
+print(res.status)
+print(res.reason)
+print(data)
+client.close()
+
+client=HTTPDownloadFileLimitSpeed('localhost',8080,timeout=10,max_speed=128,recv_unit=128)
+client.set_download_file_params(<span class="org-string">"/uploads/test.py"</span>,'./test.py')
+res=client.perform(callback_download)
+print(res.getheaders())
+print(res.version)
+print(res.status)
+print(res.reason)
+client.close()
+</pre>
+
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="date">Date: 2014-01-02T19:57+0800</p>
+<p class="creator"><a href="http://orgmode.org">Org</a> version 7.9.2 with <a href="http://www.gnu.org/software/emacs/">Emacs</a> version 23</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
+</div>
+<!-- Baidu Analytics BEGIN --><script type="text/javascript">var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F54a700ad7035f6e485eaf2300641e7e9' type='text/javascript'%3E%3C/script%3E"));</script><!-- Baidu Analytics END --><!-- Google Analytics BEGIN --><!-- <script type="text/javascript">  var _gaq = _gaq || [];  _gaq.push(['_setAccount', 'UA-31377772-1']);  _gaq.push(['_trackPageview']);  (function() {    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);  })();</script> --><!-- Google Analytics END --><!-- Baidu Button BEGIN --><!-- <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6762177" ></script><script type="text/javascript" id="bdshell_js"></script><script type="text/javascript"> document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)</script> --><!-- Baidu Button END --><!-- G+ BEGIN --><!-- Place this render call where appropriate --><!-- <script type="text/javascript">  (function() {    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;    po.src = 'https://apis.google.com/js/plusone.js';    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);  })();</script> --><!-- G+ END --><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script type="text/javascript">/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * *//* required: replace example with your forum shortname  */var disqus_shortname = 'feiskyblog';var disqus_identifier = 'apache.html';var disqus_title = 'apache.html';var disqus_url = 'http://blog.com/apache.html';/* * * DON'T EDIT BELOW THIS LINE * * */(function() {var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a><!-- DISQUS END --></body>
+</html>

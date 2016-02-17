@@ -1,0 +1,629 @@
+layout: false
+---
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><!-- <meta name="baidu-site-verification" content="707024a76f8f40b549f07f478abab237"/> -->
+<title>web-misc</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="title" content="web-misc"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2014-01-02T19:55+0800"/>
+<meta name="author" content="dirtysalt"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style><link rel="shortcut icon" href="http://blog.com/css/favicon.ico" /> <link rel="stylesheet" type="text/css" href="./css/site.css" />
+
+
+</head>
+<body><!-- <div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare"><a class="bds_tsina"></a><span class="bds_more"></span><a class="shareCount"></a></div> --><!-- Place this tag where you want the +1 button to render --><!-- <g:plusone annotation="inline"></g:plusone> -->
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">web-misc</h1>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 web-misc</a>
+<ul>
+<li><a href="#sec-1-1">1.1 Wordpress Related</a>
+<ul>
+<li><a href="#sec-1-1-1">1.1.1 解决WordPress半角引号变成全角引号问题的方法</a></li>
+<li><a href="#sec-1-1-2">1.1.2 在wordpress添加百度统计代码</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-2">1.2 OAuth2 &amp; Basic Auth</a>
+<ul>
+<li><a href="#sec-1-2-1">1.2.1 Basic Auth</a></li>
+<li><a href="#sec-1-2-2">1.2.2 OAuth2</a></li>
+<li><a href="#sec-1-2-3">1.2.3 修改weibo.py支持Basic Auth</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-3">1.3 WSGI in Python</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> web-misc</h2>
+<div class="outline-text-2" id="text-1">
+
+
+</div>
+
+<div id="outline-container-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Wordpress Related</h3>
+<div class="outline-text-3" id="text-1-1">
+
+
+</div>
+
+<div id="outline-container-1-1-1" class="outline-4">
+<h4 id="sec-1-1-1"><span class="section-number-4">1.1.1</span> 解决WordPress半角引号变成全角引号问题的方法</h4>
+<div class="outline-text-4" id="text-1-1-1">
+
+
+<p>
+<a href="http://www.imzhang.com/archives/756.html">http://www.imzhang.com/archives/756.html</a>
+</p>
+<p>
+WordPress会自动将单引号转换成全角单引号。这样就导致浏览者在复制博主的代码执行时，出现了出错提示。那为了方便浏览者使用代码，我们必须要将这一“智能”的功能去掉才行。
+</p>
+<p>
+第一种：通过修改主题的函数functions.php文件
+</p>
+<p>
+修改主题theme下的主题函数functions.php文件，在里面的头部加入下面的代码：
+</p>
+
+
+<pre class="src src-PHP">&lt;?php remove_filter('the_content', 'wptexturize'); ?&gt;
+</pre>
+
+
+<p>
+第二种：通过修改formatting.php来实现
+</p>
+<p>
+修改wp-includes目录下的formatting.php，打开formatting.php这个文件找到
+</p>
+
+
+
+<pre class="src src-PHP">// &#22312;curl&#21069;&#38754;&#21152;&#19978;&#20004;&#26465;//&#23558;&#20854;&#27880;&#37322;&#25481;&#65292;&#22914;&#19979;&#65306;
+// static strings
+//$curl = str_replace($static_characters, $static_replacements, $curl);
+// regular expressions
+//$curl = preg_replace($dynamic_characters, $dynamic_replacements, $curl);
+</pre>
+
+
+<p>
+第二种方法有个弊端就是一旦WordPress升级更新后会自动覆盖恢复成原来的，所以推荐用第一种方法修改functions.php文件，这样就不会受到WordPress升级后代码变为原来的影响！
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-1-2" class="outline-4">
+<h4 id="sec-1-1-2"><span class="section-number-4">1.1.2</span> 在wordpress添加百度统计代码</h4>
+<div class="outline-text-4" id="text-1-1-2">
+
+
+<p>
+<a href="http://zhidao.baidu.com/question/394838856.html">http://zhidao.baidu.com/question/394838856.html</a>
+</p>
+<p>
+修改主题下面的footer.php里面，在之前加上即可。下面是我修改之后footer.php
+</p>
+
+
+
+<pre class="src src-PHP">&lt;?php
+        /* Always have wp_footer() just before the closing &lt;/body&gt;
+         * tag of your theme, or you will break many plugins, which
+         * generally use this hook to reference JavaScript files.
+         */
+
+        wp_footer();
+?&gt;
+&lt;script type=<span class="org-string">"text/javascript"</span>&gt;
+var _bdhmProtocol = ((<span class="org-string">"https:"</span> == document.location.protocol) ? <span class="org-string">" https://"</span> : <span class="org-string">" http://"</span>);
+document.write(unescape(<span class="org-string">"%3Cscript src='"</span> + _bdhmProtocol + <span class="org-string">"hm.baidu.com/h.js%3F54a700ad7035f6e485eaf2300641e7e9' type='text/javascript'%3E%3C/script%3E"</span>));
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> OAuth2 &amp; Basic Auth</h3>
+<div class="outline-text-3" id="text-1-2">
+
+<p>突然想看看sina weibo的API接口，首先遇到的问题就是登陆问题。weibo提供了几种认证方式：
+</p><ul>
+<li>OAuth2.<a href="http://oauth.net/2/">主页</a>
+</li>
+<li>OAuth1.
+</li>
+<li>Basic Auth.
+</li>
+</ul>
+
+
+
+</div>
+
+<div id="outline-container-1-2-1" class="outline-4">
+<h4 id="sec-1-2-1"><span class="section-number-4">1.2.1</span> Basic Auth</h4>
+<div class="outline-text-4" id="text-1-2-1">
+
+<p>Basic Auth就是简单地在http上面传输username+password.如何使用Basic Auth推荐的文章就是<a href="http://www.cnblogs.com/QLeelulu/archive/2009/11/22/1607898.html.weibo">http://www.cnblogs.com/QLeelulu/archive/2009/11/22/1607898.html.weibo</a> 使用Basic Auth方式链接在<a href="http://open.weibo.com/wiki/%E6%8E%A5%E5%8F%A3%E9%97%AE%E9%A2%98">这里(接口使用.AppKey怎么用)</a>
+</p>
+<p class="verse">
+要在发送请求的时候添加HTTP Basic Authentication认证信息到请求中，有两种方法：<br/>
+<br/>
+1.在请求头中添加Authorization：<br/>
+<br/>
+Authorization: “Basic 用户名和密码的base64加密字符串”<br/>
+<br/>
+2.在url中添加用户名和密码：<br/>
+<br/>
+<a href="http://userName:password@api.minicloud.com.cn/statuses/friends_timeline.xml">http://userName:password@api.minicloud.com.cn/statuses/friends_timeline.xml</a><br/>
+</p>
+
+
+
+
+
+<pre class="src src-Python">import os
+import base64
+username='username'
+password='password'
+#os.system('curl -u %s:%s http://api.weibo.com/2/statuses/public_timeline.json?source=1144364821'%(username,password))
+os.system('curl -H Authorization:<span class="org-string">"Basic %s"</span> http://api.weibo.com/2/statuses/public_timeline.json?source=1144364821'%(
+        base64.b64encode(username+':'+password)))
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-2-2" class="outline-4">
+<h4 id="sec-1-2-2"><span class="section-number-4">1.2.2</span> OAuth2</h4>
+<div class="outline-text-4" id="text-1-2-2">
+
+<p>没有仔细阅读OAuth2的Specification，只是就weibo API看了一下OAuth2大致是如何工作的。weibo的两个授权接口分别是:
+</p><ol>
+<li>authorize GET/POST
+</li>
+<li>access_token POST
+</li>
+</ol>
+
+<p>比较诡异的就是不管是GET/POST的话，request params都是放在URL而不是放在header里面的。这就有一个问题就是access_token似乎支持也支持提交username+password.所以weibo API在OAuth2里面如果通过username+password提交的话（app通过客户端方式的话），那么需要提交申请。
+</p>
+<p>
+下面是OAuth2.0的授权工作流程图
+<img src="./images/oAuth2.gif"  alt="./images/oAuth2.gif" />
+</p>
+<p>
+结合weibo API大致描述一下工作方式：
+</p><ol>
+<li>App提供一个uri.用户访问这个uri的话就会触发授权。uri内部有redirect_uri(这个必须和app配置的redirect_uri匹配).如果授权成功的话，那么就会访问这个redirect_uri，同时后面带上一下code.比如<a href="https://api.weibo.com/oauth2/authorize?redirect_uri=http://blog.com&amp;response_type=code&amp;client_id=1144364821&amp;display=default">https://api.weibo.com/oauth2/authorize?redirect_uri=http%3A//blog.com&amp;response_type=code&amp;client_id=1144364821&amp;display=default</a>. 允许访问的话，那么就会访问到<a href="http://blog.com?code=CODE.那么App得到了CODE">http://blog.com?code=CODE.那么App得到了CODE</a>.(似乎每次得到这个CODE都是不同的，猜测这个CODE是存在一定超时失效的）
+</li>
+<li>然后App按照这个CODE去请求一下access_token.得到这个access_token也是有一定失效时间的。 <b>weibo API做了简化，可以让1,2合成一步完成，似乎这个是一个更好的方式，后台也不用在维护CODE这个概念了。</b> redirect_uri部分直接就带上了access_token以及失效时间返回。
+</li>
+<li>得到这个access_token之后，就可以在失效时间之内访问这个用户的资源了。而这个时候每次只需要带上access_token而不是password.
+</li>
+</ol>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-2-3" class="outline-4">
+<h4 id="sec-1-2-3"><span class="section-number-4">1.2.3</span> 修改weibo.py支持Basic Auth</h4>
+<div class="outline-text-4" id="text-1-2-3">
+
+<p>看了一下weibo Python SDK似乎没有支持Basic Auth. 修改weibo.py支持Basic Auth似乎并不是很困难的事情，只要不使用HTTP_GET请求的话应该安全性上面没有什么太大的问题。下面是使用Basic Auth weibo.py的例子，后面是修改之后的weibo.py代码。
+</p>
+<p>
+可以看到在APIClient构造部分的话需要传入username,password,然后有三种方式可以调用
+</p><ol>
+<li>get（不推荐使用）
+</li>
+<li>post
+</li>
+<li>upload
+</li>
+</ol>
+
+<p>如果需要调用post的话那么调用client.post.(arguments).其中method就是url地址但是/部分转换称为__.
+</p>
+
+
+
+<pre class="src src-Python">#!/usr/bin/env python
+#coding:utf-8
+#Copyright (C) blog
+
+import weibo
+client=weibo.APIClient('1144364821',
+                       '4285144b8dd7ef36fc37fdcae25db3fa', 
+                       # modify it.
+                       'username',
+                       'password')
+# see more http://open.weibo.com/wiki/API%E6%96%87%E6%A1%A3_V2
+# '/' in url replaced with '__'
+r=client.post.statuses__update(source='1144364821',
+                               status='test@@@!!!')
+
+print(r)
+</pre>
+
+
+
+<hr/>
+
+<p>
+下面是支持Basic Auth之后的weibo.py. 在修改的地方增加了NOTICE.这个是在weibo-pysdk-1.05版本上面修改的。
+</p>
+
+
+
+<pre class="src src-Python">#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+__version__ = '1.04'
+__author__ = 'Liao Xuefeng (askxuefeng@gmail.com)'
+
+'''
+Python client SDK for sina weibo API using OAuth 2.
+'''
+
+try:
+    import json
+except ImportError:
+    import simplejson as json
+import time
+import urllib
+import urllib2
+import logging
+
+def _obj_hook(pairs):
+    '''
+    convert json object to python object.
+    '''
+    o = JsonObject()
+    for k, v in pairs.iteritems():
+        o[str(k)] = v
+    return o
+
+class APIError(StandardError):
+    '''
+    raise APIError if got failed json message.
+    '''
+    def __init__(self, error_code, error, request):
+        self.error_code = error_code
+        self.error = error
+        self.request = request
+        StandardError.__init__(self, error)
+
+    def __str__(self):
+        return 'APIError: %s: %s, request: %s' % (self.error_code, self.error, self.request)
+
+class JsonObject(dict):
+    '''
+    general json object that can bind any fields but also act as a dict.
+    '''
+    def __getattr__(self, attr):
+        return self[attr]
+
+    def __setattr__(self, attr, value):
+        self[attr] = value
+
+def _encode_params(**kw):
+    '''
+    Encode parameters.
+    '''
+    args = []
+    for k, v in kw.iteritems():
+        qv = v.encode('utf-8') if isinstance(v, unicode) else str(v)
+        args.append('%s=%s' % (k, urllib.quote(qv)))
+    return '&amp;'.join(args)
+
+def _encode_multipart(**kw):
+    '''
+    Build a multipart/form-data body with generated random boundary.
+    '''
+    boundary = '----------%s' % hex(int(time.time() * 1000))
+    data = []
+    for k, v in kw.iteritems():
+        data.append('--%s' % boundary)
+        if hasattr(v, 'read'):
+            # file-like object:
+            ext = ''
+            filename = getattr(v, 'name', '')
+            n = filename.rfind('.')
+            if n != (-1):
+                ext = filename[n:].lower()
+            content = v.read()
+            data.append('Content-Disposition: form-data; name=<span class="org-string">"%s"</span>; filename=<span class="org-string">"hidden"</span>' % k)
+            data.append('Content-Length: %d' % len(content))
+            data.append('Content-Type: %s\r\n' % _guess_content_type(ext))
+            data.append(content)
+        else:
+            data.append('Content-Disposition: form-data; name=<span class="org-string">"%s"</span>\r\n' % k)
+            data.append(v.encode('utf-8') if isinstance(v, unicode) else v)
+    data.append('--%s--\r\n' % boundary)
+    return '\r\n'.join(data), boundary
+
+_CONTENT_TYPES = { '.png': 'image/png', '.gif': 'image/gif', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.jpe': 'image/jpeg' }
+
+def _guess_content_type(ext):
+    return _CONTENT_TYPES.get(ext, 'application/octet-stream')
+
+_HTTP_GET = 0
+_HTTP_POST = 1
+_HTTP_UPLOAD = 2
+
+def _http_get(url, authorization=None, **kw):
+    logging.info('GET %s' % url)
+    return _http_call(url, _HTTP_GET, authorization, **kw)
+
+def _http_post(url, authorization=None, **kw):
+    logging.info('POST %s' % url)
+    return _http_call(url, _HTTP_POST, authorization, **kw)
+
+def _http_upload(url, authorization=None, **kw):
+    logging.info('MULTIPART POST %s' % url)
+    return _http_call(url, _HTTP_UPLOAD, authorization, **kw)
+
+def _http_call(url, method, authorization, **kw):
+    '''
+    send an http request and expect to return a json object if no error.
+    '''
+    params = None
+    boundary = None
+    if method==_HTTP_UPLOAD:
+        params, boundary = _encode_multipart(**kw)
+    else:
+        params = _encode_params(**kw)
+    http_url = '%s?%s' % (url, params) if method==_HTTP_GET else url
+    http_body = None if method==_HTTP_GET else params
+    req = urllib2.Request(http_url, data=http_body)
+    if authorization:
+        req.add_header('Authorization', 'OAuth2 %s' % authorization)
+    if boundary:
+        req.add_header('Content-Type', 'multipart/form-data; boundary=%s' % boundary)
+    # NOTICE(blog):use Basic Auth mode.
+    import base64
+    username=kw['username']
+    password=kw['password']
+    req.add_header('Authorization','Basic %s'%(base64.b64encode(username+':'+password)))
+    resp = urllib2.urlopen(req)
+    body = resp.read()
+    r = json.loads(body, object_hook=_obj_hook)
+    if hasattr(r, 'error_code'):
+        raise APIError(r.error_code, getattr(r, 'error', ''), getattr(r, 'request', ''))
+    return r
+
+class HttpObject(object):
+
+    def __init__(self, client, method):
+        self.client = client
+        self.method = method
+
+    def __getattr__(self, attr):
+        def wrap(**kw):
+            if self.client.is_expires():
+                raise APIError('21327', 'expired_token', attr)
+            kw['username']=self.client.username
+            kw['password']=self.client.password
+            return _http_call('%s%s.json' % (self.client.api_url, attr.replace('__', '/')), self.method, self.client.access_token, **kw)
+        return wrap
+
+class APIClient(object):
+    '''
+    API client using synchronized invocation.
+    NOTICE(blog):add 'username' and 'password' for Basic Auth.
+    '''
+    def __init__(self, app_key, app_secret, username, password, redirect_uri=None, response_type='code', domain='api.weibo.com', version='2'):
+        self.client_id = app_key
+        self.client_secret = app_secret
+        self.username=username
+        self.password=password
+        self.redirect_uri = redirect_uri
+        self.response_type = response_type        
+        self.auth_url = 'https://%s/oauth2/' % domain
+        self.api_url = 'https://%s/%s/' % (domain, version)
+        self.access_token = None
+        self.expires = 0.0
+        self.get = HttpObject(self, _HTTP_GET)
+        self.post = HttpObject(self, _HTTP_POST)
+        self.upload = HttpObject(self, _HTTP_UPLOAD)
+        # NOTICE(blog):never expires.
+        self.access_token='random'
+        self.expires=2**63
+
+    def set_access_token(self, access_token, expires_in):
+        self.access_token = str(access_token)
+        self.expires = float(expires_in)
+
+    def get_authorize_url(self, redirect_uri=None, display='default'):
+        '''
+        return the authroize url that should be redirect.
+        '''
+        redirect = redirect_uri if redirect_uri else self.redirect_uri
+        if not redirect:
+            raise APIError('21305', 'Parameter absent: redirect_uri', 'OAuth2 request')
+        return '%s%s?%s' % (self.auth_url, 'authorize', \
+                _encode_params(client_id = self.client_id, \
+                        response_type = 'code', \
+                        display = display, \
+                        redirect_uri = redirect))
+
+    def request_access_token(self, code, redirect_uri=None):
+        '''
+        return access token as object: {<span class="org-string">"access_token"</span>:<span class="org-string">"your-access-token"</span>,<span class="org-string">"expires_in"</span>:12345678}, expires_in is standard unix-epoch-time
+        '''
+        redirect = redirect_uri if redirect_uri else self.redirect_uri
+        if not redirect:
+            raise APIError('21305', 'Parameter absent: redirect_uri', 'OAuth2 request')
+        r = _http_post('%s%s' % (self.auth_url, 'access_token'), \
+                client_id = self.client_id, \
+                client_secret = self.client_secret, \
+                redirect_uri = redirect, \
+                code = code, grant_type = 'authorization_code')
+        r.expires_in += int(time.time())
+        return r
+
+    def is_expires(self):
+        return not self.access_token or time.time() &gt; self.expires
+</pre>
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> WSGI in Python</h3>
+<div class="outline-text-3" id="text-1-3">
+
+<p>python运行web大约有下面三种方式：
+</p><ol>
+<li>程序自己启动http server直接对外服务
+</li>
+<li>用WSGI编写然后使用gunicorn这样的container启动对外服务
+</li>
+<li>nginx在前端做反向代理，uwsgi做WSGI Container和nginx通信
+</li>
+</ol>
+
+
+<p>
+实践证明1这个方案因为python GIL缘故只能使用单线程处理，并且http server扩展性也不好。而方案2相对来说比较灵活，可以使用不同的container启动，并且也可以很容易地切换成为方案3，但是却不能够很好地处理子域名问题，同时部署上没有方案3灵活。
+自己搭建fantuan.blog.com里面就涉及到了子域名这个问题，最后还是使用方案3解决的，使用的就是nginx + uwsgi + web.py这个解决方案。所以这里简单地记录一下如何配置。
+</p>
+<p>
+在nginx/site-enables里面从default产生一份新的配置文件，修改内容
+</p>
+
+
+<pre class="example">server {
+        server_name fantuan.blog.com;
+        location / {
+                include uwsgi_params;
+                uwsgi_pass  127.0.0.1:8001;
+        }
+}
+</pre>
+
+<p>
+也就是说对于fantuan.blog.com这个请求包含uwsgi_params里面的参数全部转发到127.0.0.1:8001这个端口。
+</p>
+<p>
+然后在本地启动uwsgi绑定在127.0.0.1:8001这个端口上面，同时考虑到uwsgi支持配置文件的方式，我们首先编写配置文件
+</p>
+
+
+<pre class="example">[uwsgi]
+chdir = .
+module = server:application
+master = True
+processes = 4
+socket = 127.0.0.1:8001
+vacuum = True
+max-requests = 128
+</pre>
+
+
+<p>
+<b>TODO（blog）：里面的字段的意思还不是清楚</b> 最重要的就是两个参数
+</p><ul>
+<li>module x:y 说明x.py里面的y对象是WSGI function对象
+</li>
+<li>socket 必须指定是127.0.0.1:8001
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="date">Date: 2014-01-02T19:55+0800</p>
+<p class="creator"><a href="http://orgmode.org">Org</a> version 7.9.2 with <a href="http://www.gnu.org/software/emacs/">Emacs</a> version 23</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
+</div>
+<!-- Baidu Analytics BEGIN --><script type="text/javascript">var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F54a700ad7035f6e485eaf2300641e7e9' type='text/javascript'%3E%3C/script%3E"));</script><!-- Baidu Analytics END --><!-- Google Analytics BEGIN --><!-- <script type="text/javascript">  var _gaq = _gaq || [];  _gaq.push(['_setAccount', 'UA-31377772-1']);  _gaq.push(['_trackPageview']);  (function() {    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);  })();</script> --><!-- Google Analytics END --><!-- Baidu Button BEGIN --><!-- <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6762177" ></script><script type="text/javascript" id="bdshell_js"></script><script type="text/javascript"> document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)</script> --><!-- Baidu Button END --><!-- G+ BEGIN --><!-- Place this render call where appropriate --><!-- <script type="text/javascript">  (function() {    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;    po.src = 'https://apis.google.com/js/plusone.js';    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);  })();</script> --><!-- G+ END --><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script type="text/javascript">/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * *//* required: replace example with your forum shortname  */var disqus_shortname = 'feiskyblog';var disqus_identifier = 'web-misc.html';var disqus_title = 'web-misc.html';var disqus_url = 'http://blog.com/web-misc.html';/* * * DON'T EDIT BELOW THIS LINE * * */(function() {var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a><!-- DISQUS END --></body>
+</html>
