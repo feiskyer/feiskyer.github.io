@@ -54,7 +54,7 @@ DDC provides deep integration with docker tools (docker, swarm, compose). Becaus
 - Docker commercially support
 - User-friendly UI for managing containers togather
 
-On the other side, kubernetes is more difficult to deploy and has no working UI now (UI is being developing at https://github.com/kubernetes/dashboard).
+On the other side, kubernetes is more difficult to deploy and the dashboard is still on developing at https://github.com/kubernetes/dashboard.
 
 There is no official release about what size of cluster DDC can support, while kubernetes has officially cluster size supporting plan for each release.
 
