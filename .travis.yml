@@ -6,23 +6,27 @@ language: node_js
 sudo: false
 
 node_js:
-- '5.4'
+  - '5.4'
 
 before_install:
-- git config --global user.name "feisky"
-- git config --global user.email feiskyer@gmail.com
-- git clone -b master https://${GitHubKEY}@github.com/feiskyer/feiskyer.github.io.git .deploy_git
+  - git config --global user.name "feisky"
+  - git config --global user.email feiskyer@gmail.com
+  - git clone -b master https://${GitHubKEY}@github.com/feiskyer/feiskyer.github.io.git .deploy_git
 
 install:
-- npm install hexo-cli -g
-- npm install
+  - npm install hexo-cli -g
+  - npm install
 
 script:
-- hexo clean
-- hexo generate
-- cd .deploy_git
-- rm -rf ./*
-- cp -r ../public/* .
-- git add -A .
-- git commit -a -m 'New post added.'
-- git push -q -u origin master
+  - hexo clean
+  - hexo generate
+  - cd .deploy_git
+  - rm -rf ./*
+  - cp -r ../public/* .
+  - git add -A .
+  - git commit -a -m 'New post added.'
+  - git push -q -u origin master
+
+notifications:
+  slack:
+    secure: HrHSWyLLyTlcLjF46C2IChEKsqBhFGPOdv/S1j2iAZRalQPNxj0ctkKCeL8IJTjetQzHhqE8oiNr3glelvAACGB/cHBxJ7uqYF4C37m1pPpK4fYWvQY2UbttfrOvZtTSEI8wmG6iOwcsEsb/qB+YGhg3XPA4CJMuGrKFwhRq951+QckC81xvuQhbl5PYvu788tKt6CyAcxcDPKHv230f5K0kKc/KPRGZw+bJ/3BnYAve5CMbEuBGV7/7BPBBWLJeSv3e3laLytAX9/K8JiQwtsUxm05fgOTkUwy846CPI/qkTOCwl3uf3VPVYIxQaBxMXFF9/pU6RTDlKwuFPf+aDQn3e6xueQsPTqZMJbS++HYqz2o7w3uRLXQ3YmtN5sxcaUws6jzGTsT2CdiS2R4e9tLoGk0CNnmvJIcTgos/WyXQeCnR2kJeoSjOA1UUXhj8Ny2jQN5IB8wp4y9LZH8MTW2g2UPmqLOAv8bYu4BMlX3+w2HBa5oVEUPbRILGVaiOE6DpFwFecHMHm8WRTtoxfTP1jfhE+pAjekVWVJ7YSoiTF3wNdNGIX5UIfiaVMCuq6ZX3QyZ9OvoWeZlYAaZoKfq38QWbOMP57FPS09dTD+gdMpx86YXGjayLxIVcJ5oE6ZgvSMnElRFj3v5wy8xrZIHvwPMkOlJTKIHWXk267Bk=

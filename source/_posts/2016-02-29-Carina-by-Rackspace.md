@@ -1,0 +1,190 @@
+---
+title: Carina by Rackspace
+date: 2016-02-29 19:20:27
+tags: [docker, rackspace]
+---
+
+## What is Carina?
+
+Carina is a container runtime environment (currently in Beta) that offers performance, container-native tools, and portability without sacrificing ease of use. You can get started in minutes by using open-source software on managed infrastructure to run your containerized applications.
+
+Your containers run in a bare-metal environment, which avoids the "hypervisor tax" on performance. Applications in this environment launch as much as 20 percent faster and run as much as 60 percent faster. This environment builds on the standard restrictions set out by libcontainer by using an AppArmor profile as an additional security layer to keep your resources isolated.
+
+Carina is built on the open-source Docker Swarm project. It exposes the Docker API, which gives you maximum portability for easily moving applications from development to test and production environments, thus reducing errors and saving time. In the future, other container orchestration environments will be available to you.
+
+You also have access to an intuitive user interface (UI), a command-line interface (CLI), and Carina specific developer tooling, in addition to the ecosystem of tools already compatible with the Docker API. You also have access to a wealth of documentation, from getting started guides to detailed tutorials and best practices. If you need help, you can access community support directly from other developers.
+
+The path from creating a free account (no credit card required) to running a containerized application on a cluster takes under two minutes. You will use open-source software like Docker to compose your applications. And because the infrastructure is managed by Carina, you can take advantage of features like autoscaling. Now you can focus on what is important to you, your business, and your applications.
+
+## Usage
+
+```
+brew install carina
+export CARINA_USERNAME=<email>
+export CARINA_APIKEY=<api_key>
+
+carina create cluster --wait --segments=2 --autoscale
+carina list
+eval $(carina env cluster)
+
+# Now play with docker images
+$ docker run -itd -P nginx
+ebca8aff4badb001912cc119fb58a93d6d2209622ec74404c0643ecbbf31a50a
+# Grab public ip and ports
+$ docker inspect -f {{.NetworkSettings.Ports}} ebca8aff
+map[443/tcp:[{104.130.0.24 32768}] 80/tcp:[{104.130.0.24 32769}]]
+```
+
+## Limitations
+
+For a public container service, Carina of course should only allow containers to run non-privileged processes. For example:
+
+```
+$ docker run --rm --privileged busybox
+Timestamp: 2016-02-29 02:21:29.151360105 +0000 UTC
+Code: System error
+
+Message: permission denied
+
+Frames:
+---
+0: setupRootfs
+Package: github.com/opencontainers/runc/libcontainer
+File: rootfs_linux.go@40
+---
+1: Init
+Package: github.com/opencontainers/runc/libcontainer.(*linuxStandardInit)
+File: standard_init_linux.go@57
+---
+2: StartInitialization
+Package: github.com/opencontainers/runc/libcontainer.(*LinuxFactory)
+File: factory_linux.go@240
+---
+3: initializer
+Package: github.com/docker/docker/daemon/execdriver/native
+File: init.go@35
+---
+4: Init
+Package: github.com/docker/docker/pkg/reexec
+File: reexec.go@26
+---
+5: main
+Package: main
+File: docker.go@18
+---
+6: main
+Package: runtime
+File: proc.go@111
+---
+7: goexit
+Package: runtime
+File: asm_amd64.s@1721
+docker: Error response from daemon: 500 Internal Server Error: Container command could not be invoked..
+```
+
+What interests me is Carina allows your container bind to host network, which means processes in container could monitoring all networks the underlying physical machine:
+
+```sh
+docker run -it --rm --net=host  busybox sh
+/ # hostname
+a0b7f5c6-a069-4ed0-b681-adc9ad8cd8de-n1
+/ # ifconfig
+docker0   Link encap:Ethernet  HWaddr 02:42:83:02:E7:0C
+          inet addr:172.17.0.1  Bcast:0.0.0.0  Mask:255.255.0.0
+          inet6 addr: fe80::42:83ff:fe02:e70c/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:1211 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:1260 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0
+          RX bytes:579745 (566.1 KiB)  TX bytes:596826 (582.8 KiB)
+
+eth0      Link encap:Ethernet  HWaddr BC:76:4E:20:ED:26
+          inet addr:104.130.0.23  Bcast:104.130.0.255  Mask:255.255.255.0
+          inet6 addr: fe80::be76:4eff:fe20:ed26/64 Scope:Link
+          inet6 addr: 2001:4802:7800:103:be76:4eff:fe20:ed26/64 Scope:Global
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:105014 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:74924 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:195922683 (186.8 MiB)  TX bytes:10895679 (10.3 MiB)
+
+eth1      Link encap:Ethernet  HWaddr BC:76:4E:20:F5:C3
+          inet addr:10.176.224.183  Bcast:10.176.255.255  Mask:255.255.224.0
+          inet6 addr: fe80::be76:4eff:fe20:f5c3/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:7 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:8 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:570 (570.0 B)  TX bytes:648 (648.0 B)
+
+lo        Link encap:Local Loopback
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+          RX packets:509058 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:509058 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0
+          RX bytes:142964399 (136.3 MiB)  TX bytes:142964399 (136.3 MiB)
+
+veth1a257f6 Link encap:Ethernet  HWaddr DE:DC:7D:59:A4:DE
+          inet6 addr: fe80::dcdc:7dff:fe59:a4de/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:1161 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:1270 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0
+          RX bytes:590651 (576.8 KiB)  TX bytes:597163 (583.1 KiB)
+/ # brctl show
+bridge name bridge id       STP enabled interfaces
+docker0     8000.02428302e70c   no      veth1a257f6
+/ # netstat -anp
+Active Internet connections (servers and established)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 127.0.0.1:12000         0.0.0.0:*               LISTEN      -
+tcp        0      0 10.176.224.183:12001    0.0.0.0:*               LISTEN      -
+tcp        0      0 10.176.224.183:12002    0.0.0.0:*               LISTEN      -
+tcp        0      0 10.176.224.183:7946     0.0.0.0:*               LISTEN      -
+tcp        0      0 10.176.224.183:8300     0.0.0.0:*               LISTEN      -
+tcp        0      0 127.0.0.1:8400          0.0.0.0:*               LISTEN      -
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      -
+tcp        0      0 127.0.0.1:8600          0.0.0.0:*               LISTEN      -
+tcp        0      0 127.0.0.1:12000         127.0.0.1:57711         ESTABLISHED -
+tcp        0      0 127.0.0.1:12000         127.0.0.1:57808         ESTABLISHED -
+tcp        0      0 127.0.0.1:12000         127.0.0.1:54332         ESTABLISHED -
+tcp        0      0 127.0.0.1:57808         127.0.0.1:12000         ESTABLISHED -
+tcp        0      0 127.0.0.1:57832         127.0.0.1:12000         ESTABLISHED -
+tcp        0      0 127.0.0.1:54335         127.0.0.1:12000         ESTABLISHED -
+tcp        0      0 104.130.0.23:43695      104.130.0.23:42376      ESTABLISHED -
+tcp        0      0 127.0.0.1:12000         127.0.0.1:54335         ESTABLISHED -
+tcp        0      0 127.0.0.1:54328         127.0.0.1:12000         ESTABLISHED -
+tcp        0      0 127.0.0.1:54332         127.0.0.1:12000         ESTABLISHED -
+tcp        0      0 104.130.0.23:43692      104.130.0.23:42376      ESTABLISHED -
+tcp        0      0 127.0.0.1:12000         127.0.0.1:57832         ESTABLISHED -
+tcp        0      0 127.0.0.1:12000         127.0.0.1:54328         ESTABLISHED -
+tcp        0      0 104.130.0.23:43694      104.130.0.23:42376      ESTABLISHED -
+tcp        0      0 104.130.0.23:47207      104.130.0.23:42376      ESTABLISHED -
+tcp        0      0 127.0.0.1:57711         127.0.0.1:12000         ESTABLISHED -
+tcp        0      0 :::32770                :::*                    LISTEN      -
+tcp        0      0 :::2376                 :::*                    LISTEN      -
+tcp        0      0 :::42376                :::*                    LISTEN      -
+tcp        0      0 :::22                   :::*                    LISTEN      -
+tcp        0      0 ::ffff:104.130.0.23:42376 ::ffff:104.130.0.23:47207 ESTABLISHED -
+tcp        0      0 ::ffff:104.130.0.23:42376 ::ffff:104.130.0.23:43694 ESTABLISHED -
+tcp        0   2500 ::ffff:104.130.0.23:2376 ::ffff:139.227.1.228:50333 ESTABLISHED -
+tcp        0      0 ::ffff:104.130.0.23:42376 ::ffff:104.130.0.23:43695 ESTABLISHED -
+tcp        0      0 ::ffff:104.130.0.23:42376 ::ffff:104.130.0.23:43692 ESTABLISHED -
+tcp        0      0 ::ffff:104.130.0.23:2376 ::ffff:139.227.1.228:50332 ESTABLISHED -
+udp        0      0 10.176.224.183:7946     0.0.0.0:*                           -
+udp        0      0 127.0.0.1:8600          0.0.0.0:*                           -
+udp        0      0 10.176.224.183:12001    0.0.0.0:*                           -
+udp        0      0 10.176.224.183:12002    0.0.0.0:*                           -
+Active UNIX domain sockets (servers and established)
+Proto RefCnt Flags       Type       State         I-Node PID/Program name    Path
+unix  2      [ ACC ]     STREAM     LISTENING     1015753155 -                   /var/lib/docker/network/files/33d3542ddd4b10c0411b8c50997cceb8272475bc7a63caeb666e772b57c48a8a.sock
+unix  2      [ ACC ]     STREAM     LISTENING     1015755212 -                   /var/run/docker.sock
+/ # brctl addbr br0
+brctl: bridge br0: Operation not permitted
+```
+
+Although you couldn't manage networks (Operation not permitted), but as you see above, containers could obtain many sensitive machine informations. Actually I don't understand why Rackspace would like to take this risk for public services, or this is just because they are making mistakes. 
+
+Though Rackspace makes a different way of CaaS (Run docker bare-metally), Docker itself without hypervisor is still not of security for pulic container services. So all of pulic container services, including AWS ECS, Google GKE, Docker Cloud and so on, are running Docker on virtual machines provided by IaaS.
