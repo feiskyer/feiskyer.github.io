@@ -186,7 +186,7 @@ disqus_shortname: feiskyblog
 
 
 # Google Analytics
-#google_analytics:
+google_analytics: UA-69699206-1
 
 
 # Make duoshuo show UA
