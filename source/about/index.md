@@ -25,4 +25,4 @@ Hi，我是倪朋飞，工作在云计算领域，熟悉OpenStack、Docker、Kub
 
 1. 微博：@[feisky](https://weibo.com/371069890)
 2. Twitter：@[feisky](https://twitter.com/feisky)
-3. Github：@[feisky](https://github.com/feiskyer)
+3. Github：@[feiskyer](https://github.com/feiskyer)

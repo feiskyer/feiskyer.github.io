@@ -175,6 +175,8 @@ docker service create –name frontend –replicas 5 -p 80:80/tcp –network myn
 docker service create –name redis –network mynet redis:latest
 ```
 
+<img width="1133" alt="2016-06-26 10 27 20" src="https://cloud.githubusercontent.com/assets/676637/16362920/7dbd339e-3bed-11e6-9987-8d425480ba59.png">
+
 <img width="1169" alt="2016-06-24 12 05 30" src="https://cloud.githubusercontent.com/assets/676637/16327980/c4af9432-3a07-11e6-93ed-9e94d12f0c9b.png">
 <img width="1228" alt="2016-06-24 12 05 58" src="https://cloud.githubusercontent.com/assets/676637/16327982/c4b2a906-3a07-11e6-8e97-70a26c5fc701.png">
 <img width="1235" alt="2016-06-24 12 06 11" src="https://cloud.githubusercontent.com/assets/676637/16327981/c4b14fc0-3a07-11e6-84f0-260a716044cb.png">
@@ -186,5 +188,6 @@ Docker v1.12 indeeds introduced easy-of-use interface for orchestrating containe
 ### Further more
 
 - https://blog.docker.com/2016/06/docker-1-12-built-in-orchestration/
+- http://www.slideshare.net/MadhuVenugopal2/dockercon-us-2016-docker-networking-deep-dive
 - https://medium.com/google-cloud/docker-swarm-on-google-cloud-platform-c9925bd7863c#.3plkwmxss
 - https://beta.docker.com/docs/
