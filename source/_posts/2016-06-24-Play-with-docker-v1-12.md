@@ -4,13 +4,15 @@ date: 2016-06-24 12:39:49
 tags: [docker]
 ---
 
+[TOC]
+
 Docker v1.12 brings in its integrated orchestration into docker engine.
 
 > Starting with Docker 1.12, we have added features to the core Docker Engine to make multi-host and multi-container orchestration easy.  We’ve added new API objects, like Service and Node, that will let you use the Docker API to deploy and manage apps on a group of Docker Engines called a swarm. With Docker 1.12, the best way to orchestrate Docker is Docker!
 
 ![docker-v1 12](https://cloud.githubusercontent.com/assets/676637/16327966/a4f34346-3a07-11e6-8d21-153509596cec.png)
 
-### Playing on GCE
+## Playing on GCE
 
 Create swarm-manager:
 
@@ -83,7 +85,7 @@ ID                           NAME            MEMBERSHIP  STATUS  AVAILABILITY  M
 4v1oo055unqiz9fy14u8wg3fn    swarm-worker-1  Accepted    Ready   Active
 ```
 
-### Playing with service
+## Playing with service
 
 ```sh
 eval $(docker-machine env swarm-manager)
@@ -191,3 +193,5 @@ Docker v1.12 indeeds introduced easy-of-use interface for orchestrating containe
 - http://www.slideshare.net/MadhuVenugopal2/dockercon-us-2016-docker-networking-deep-dive
 - https://medium.com/google-cloud/docker-swarm-on-google-cloud-platform-c9925bd7863c#.3plkwmxss
 - https://beta.docker.com/docs/
+
+
