@@ -12,7 +12,7 @@ Hi，我是倪朋飞，工作在云计算领域，熟悉OpenStack、Docker、Kub
 
 1. 熟悉Xen、KVM虚拟化技术
 2. 熟悉Linux内核，并熟悉C、C++、Python等
-3. 熟悉OpenStack、Neutron、Docker等开源云
+3. 熟悉Kubernetes、OpenStack、Neutron、Docker等开源云
 4. 熟悉SDN、ACI等
 
 过往工作经历
@@ -26,3 +26,5 @@ Hi，我是倪朋飞，工作在云计算领域，熟悉OpenStack、Docker、Kub
 1. 微博：@[feisky](https://weibo.com/371069890)
 2. Twitter：@[feisky](https://twitter.com/feisky)
 3. Github：@[feiskyer](https://github.com/feiskyer)
+4. cnblogs: @[feisky](http://www.cnblogs.com/feisky/)
+

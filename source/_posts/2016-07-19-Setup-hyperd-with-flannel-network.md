@@ -4,8 +4,6 @@ date: 2016-07-19 15:58:26
 tags: [flannel, hyper, container]
 ---
 
-[TOC]
-
 # Flannel
 
 Flannel is a virtual network that gives a subnet to each host for use with container runtimes.
