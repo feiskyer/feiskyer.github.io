@@ -160,7 +160,7 @@ ol{
 ## 容器的世界
 
 <ol class="rounded-list">
-<li><a href="/2015/02/13/docker-intro/">docker指南</a></li>
+<li><a href="/2015/02/12/docker-intro/">docker指南</a></li>
 <li><a href="docker-internal.html">docker实现原理</a></li>
 </ol>
 
