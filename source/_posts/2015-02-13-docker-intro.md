@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Docker 笔记 By 枯木"
+title: "Docker 笔记"
 description: "docker 学习笔记"
 category: Docker
 tags: [Docker]

@@ -28,10 +28,11 @@ rss:
 menu:
   home: /
   categories: /categories
-  about: /about
   archives: /archives
   tags: /tags
+  pages: /pages
   commonweal: /404.html
+  about: /about
 
 
 # Enable/Disable menu icons.
@@ -46,6 +47,7 @@ menu_icons:
   about: user
   categories: th
   tags: tags
+  pages: th
   archives: archive
   commonweal: heartbeat
 
@@ -114,7 +116,7 @@ sidebar:
   #  - hide    expand only when click on the sidebar toggle icon.
   #  - remove  Totally remove sidebar including sidebar toggle icon.
   #display: post
-  display: post
+  display: always
   #display: hide
   #display: remove
 
