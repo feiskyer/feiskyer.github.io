@@ -47,8 +47,8 @@ CRI还在着力解决一些很有挑战的问题，比如
 虽然CRI还在持续开发中（目前还没有任何release），但已经有很多厂商已经开始了引入新容器引擎的进程：
 
 - Frakti：为解决多租户场景下的容器隔离问题，Hyper以虚拟化的方式运行容器。关于frakti的更多细节见https://github.com/kubernetes/frakti。
-- Ocid：为解耦对docker的依赖，Redhat提供对OCI容器引擎的支持（目前主要是runc）。关于ocid的更多细节见https://github.com/kubernetes-incubator/ocid。
-- Rktlet：为了加速rkt容器引擎的开发维护，CoreOS提议将rkt集成独立出Kubelet，并重构rkt以适应CRI的变化。关于rktlet的更多细节见https://github.com/kubernetes-incubator/rktlet。
+- OCI-O：为解耦对docker的依赖，Redhat提供对OCI容器引擎的支持（目前主要是runc）。关于oci-o的更多细节见https://github.com/kubernetes-incubator/oci-o。
+- Rktlet：为了加速rkt容器引擎的开发维护，CoreOS提议将rkt集成的代码独立出Kubelet（vendor到kubelet，同集成到kubelet内部便于发布），并重构rkt以适应CRI的变化。关于rktlet的更多细节见https://github.com/kubernetes-incubator/rktlet。
 - Virtlet：为了支持原生的虚拟机管理，Mirantis提议直接用Kubernetes来管理原生的虚拟机（需要将docker镜像替换成qcow2镜像）。关于virtlet的更多细节见https://github.com/Mirantis/virtlet。
 - 当然，docker相关的代码还会继续保留在kubelet内部，只不过要重构到CRI上面来。
 
