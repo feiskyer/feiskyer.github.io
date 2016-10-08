@@ -138,6 +138,36 @@ func DoTheThing(reallyDoIt bool) (err error) {
 
 上面的代码永远返回nil，这是因为循环内的err变量是一个函数返回err变量的影子变量. 所以上面的代码解决方案是添加一个`var result string`，而不要在内部使用`:=`来定义什么新变量。
 
+~~2016-10-08补充~~
+
+即使在同一个scope之内，也会出现影子变量问题，比如：
+
+```go
+package main
+
+import (
+    "fmt"
+)
+
+func trivial() (string, string) {
+    return "hello", "world"
+}
+
+func main() {
+    var he = "hello, a"
+    defer fmt.Println("defer: ", he)
+    he, wo := trivial()
+    fmt.Println(he, wo)
+}
+```
+
+上述代码输出如下：
+
+```
+hello world
+defer:  hello, a
+```
+
 ### 开大括号不能放在单独的一行
 
 在大多数其他使用大括号的语言中，你需要选择放置它们的位置。Go的方式不同。你可以为此感谢下自动分号的注入（没有预读）。是的，Go中也是有分号的：-）

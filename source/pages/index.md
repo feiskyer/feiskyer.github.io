@@ -7,9 +7,9 @@ date: 2016-09-18 14:20:54
 
 <style>
 ol{
-        counter-reset: li; /* 创建一个计数器 */
-        list-style: none; /* 清除列表默认的编码*/
-        *list-style: decimal; /* 让IE6/7具有默认的编码 */
+        counter-reset: li; 
+        list-style: none; 
+        *list-style: decimal; 
         font: 20px 'trebuchet MS', 'lucida sans';
         padding: 1;
         margin-bottom: 1em;
@@ -27,7 +27,7 @@ ol{
     color: #444;
     text-decoration: none;
     border-radius: .3em;
-    transition: all .3s ease-out;   
+    transition: all .3s ease-out; 
 }
 
 .rounded-list a:hover{
@@ -35,7 +35,7 @@ ol{
 }
 
 .rounded-list a:hover:before{
-    transform: rotate(360deg);  
+    transform: rotate(360deg); 
 }
 
 .rounded-list a:before{
@@ -154,7 +154,6 @@ ol{
             left: -0.5em;
             border-left-color: #fa8072;
         }
-        
 </style>
 
 ## 容器的世界
@@ -162,7 +161,10 @@ ol{
 <ol class="rounded-list">
 <li><a href="/2015/02/12/docker-intro/">docker指南</a></li>
 <li><a href="docker-internal.html">docker实现原理</a></li>
+<li><a href="http://calcotestudios.com/ccco">容器编排系统对比</a></li>
+<li><a href="https://leecalcote.github.io/ccco/overlay-underlay-betting-on-container-networking.html">容器网络方案对比</a></li>
 </ol>
+<li><a href="http://dockerconrecap-leecalcote.rhcloud.com/#/">Docker 1.12</a></li>
 
 ## 分布式系统
 
