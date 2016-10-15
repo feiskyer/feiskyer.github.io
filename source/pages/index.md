@@ -166,6 +166,14 @@ ol{
 <li><a href="http://dockerconrecap-leecalcote.rhcloud.com/#/">Docker 1.12</a></li>
 </ol>
 
+## 虚拟化
+
+
+<ol class="rounded-list">
+<li><a href="/GPU/">GPU虚拟化</a></li>
+<li><a href="/SR-IOV/">SR-IOV</a></li>
+</ol>
+
 ## 分布式系统
 
 <ol class="rounded-list">
