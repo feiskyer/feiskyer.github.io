@@ -163,8 +163,8 @@ ol{
 <li><a href="docker-internal.html">docker实现原理</a></li>
 <li><a href="http://calcotestudios.com/ccco">容器编排系统对比</a></li>
 <li><a href="https://leecalcote.github.io/ccco/overlay-underlay-betting-on-container-networking.html">容器网络方案对比</a></li>
-</ol>
 <li><a href="http://dockerconrecap-leecalcote.rhcloud.com/#/">Docker 1.12</a></li>
+</ol>
 
 ## 分布式系统
 
