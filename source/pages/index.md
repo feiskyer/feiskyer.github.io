@@ -172,6 +172,7 @@ ol{
 <ol class="rounded-list">
 <li><a href="/GPU/">GPU虚拟化</a></li>
 <li><a href="/SR-IOV/">SR-IOV</a></li>
+<li><a href="http://awilliam.github.io/presentations/KVM-Forum-2016/">VFIO</a></li>
 </ol>
 
 ## 分布式系统

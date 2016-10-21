@@ -10,6 +10,8 @@ cri-o基于Kubelet容器运行时接口（CRI）为Kubernetes带来了原生的O
 ## 编译安装
 
 ```sh
+# CentOS/Fedora
+# yum install -y glib2-devel glibc-static
 # Ubuntu 16.04 LTS Xenial
 apt-get install -y linux-headers-$(uname -r) build-essential golang libglib2.0-dev
 apt-get install -y runc
@@ -46,6 +48,16 @@ ocic ctr start --id e28b037b26690075456f4e51318314544d6e226a85c103080e5dd818e936
 ```
 
 启动一个redis容器后的进程关系：
+
+```
+ ├─ocid ExecReload=/bin/kill -s HUP
+  │   ├─conmon -c default-podsandbox1-0-infra -r /usr/local/sbin/runc
+  │   │   └─pause
+  │   ├─conmon -c default-podsandbox1-0-podsandbox1-redis-0 -r /usr/local/sbin/runc
+  │   │   └─redis-server
+  │   │       └─2*[{redis-server}]
+  │   └─9*[{ocid}]
+```
 
 ```
       ├─13009 ocid --runtime /usr/sbin/runc --debug
