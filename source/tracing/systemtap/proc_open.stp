@@ -1,0 +1,10 @@
+#!/usr/bin/stap -v
+ 
+# usage: ./proc_open process_name
+  
+  probe kernel.function("sys_open")
+  {
+#   if (task_execname(task_current()) == "gvim")
+        if (execname() == @1)
+                    printf("open %s\n", user_string($filename))
+  }

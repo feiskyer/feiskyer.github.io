@@ -1,0 +1,37 @@
+/*
+ * Copyright (C) 2010 Dominic Duval, Red Hat Inc.
+ *
+ * ioqueuelength.stp : Reports changes in the size of the read and write
+ * queues for block devices.
+ *
+ * USAGE: stap ioqueuelength.stp
+ *
+ */
+
+global p, count_0, count_1
+
+probe kernel.function("__elv_add_request") {
+	if($rq == 0 || $rq->rq_disk == 0) {
+		
+	} else {
+		disk_major = $rq->rq_disk->major
+                disk_minor = $rq->rq_disk->first_minor
+		if ($rq->rq_disk->queue->rq->count[0] != count_0[disk_major, disk_minor]) {
+			count_0[disk_major, disk_minor] = $rq->rq_disk->queue->rq->count[0]
+			p=1
+		}
+		
+		if ($rq->rq_disk->queue->rq->count[1] != count_1[disk_major, disk_minor]) {
+			count_1[disk_major, disk_minor] = $rq->rq_disk->queue->rq->count[1]
+			p=1
+		}
+
+	}
+
+	if (p == 1)
+		printf("%5d %5d %5d %5d \n", disk_major, disk_minor, count_0[disk_major, disk_minor], count_1[disk_major, disk_minor] );
+}
+
+probe begin {
+	printf("Major Minor READ-Q WRITE-Q\n");
+}

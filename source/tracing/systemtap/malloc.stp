@@ -1,0 +1,83 @@
+#!/usr/bin/env stap
+#
+# malloc.stap
+# ===========
+# This SystemTap script generates memory allocation stacktraces 
+# for a specific process. The primary purpose is to generate data
+# for creating memory flamegraphs for a specific process or a
+# processgroup.
+#
+# USAGE:
+# This is an example of tracing memory allocations for mysqld:
+# stap -v -o mysql_mem_alloc.stacks --ldd -d /usr/sbin/mysqld malloc.stap mysqld
+#
+# Now you can use the collected stacktraces to generate a memory 
+# flamegraph via the FlameGraph toolchain from Brendan Gregg, which
+# could be found here https://github.com/brendangregg/FlameGraph:
+# perl stackcollapse-stap.pl < mysql_mem_alloc.stacks | \
+# perl flamegraph.pl --colors=mem --countname=bytes > mysql_mem.svg
+#
+# COPYRIGHT: Copyright (c) 2014 Martin Probst.
+#
+#  This program is free software; you can redistribute it and/or
+#  modify it under the terms of the GNU General Public License
+#  as published by the Free Software Foundation; either version 2
+#  of the License, or (at your option) any later version.
+#
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with this program; if not, write to the Free Software Foundation,
+#  Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#
+#  (http://www.gnu.org/copyleft/gpl.html)
+#
+
+# memory allocations > 128K are done via mmap
+# via privat anonymous mappings (see malloc(3))
+@define MMAP_ANONYMOUS %( 0x20 %)
+
+# vars
+global _execname=@1;
+global trace;
+global sbrk;
+
+probe syscall.brk {
+    if(_execname == execname()) {
+        if(!sbrk[pid()]) {
+            sbrk[pid()] = 0;
+        }
+    }
+}
+
+probe syscall.brk.return {
+    if(_execname == execname()) {
+        if($return !=  sbrk[pid()] && sbrk[pid()] != 0) {
+            trace[sprint_backtrace(),sprint_ubacktrace()] += ($brk - sbrk[pid()]); 
+        }
+        sbrk[pid()] = $brk;
+    }
+}
+
+# In newer kernels (2.6.33+), all the sys_mmap() variants are just
+# wrappers around sys_mmap_pgoff(), which is in arch-generic code.
+%( kernel_v >= "2.6.33" %?
+probe syscall.mmap2 {
+%:
+probe syscall.mmap {
+%)
+    if(_execname == execname()) {
+        if(!$addr && (($flags & @MMAP_ANONYMOUS) != 0)) {
+            trace[sprint_backtrace(),sprint_ubacktrace()] += $len;
+        }
+    }
+}
+
+probe end {
+    foreach([ktrace,utrace] in trace) {
+        printf("%s\n%s\n%d\n\n", ktrace, utrace, trace[ktrace,utrace]);
+    }
+}

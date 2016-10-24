@@ -11,7 +11,19 @@ Sysdig "packetizes" this information, so that you can do things like save it int
 
 Sysdig instruments your physical and virtual machines at the OS level by installing into the Linux kernel and capturing system calls and other OS events. Then, using sysdig's command line interface, you can filter and decode these events in order to extract useful information. Sysdig can be used to inspect systems live in real-time, or to generate trace files that can be analyzed at a later stage.
 
-####Networking
+- User Guide: <https://github.com/draios/sysdig/wiki/Sysdig%20User%20Guide>
+- Source code: <https://github.com/draios/sysdig>
+
+## Install
+
+```sh
+# brew install sysdig
+curl -s https://s3.amazonaws.com/download.draios.com/stable/install-sysdig | sudo bash
+sysdig-probe-loader
+```
+
+##  Networking
+
 * See the top processes in terms of network bandwidth usage
 > sysdig -c topprocs_net
 
@@ -36,7 +48,7 @@ as ASCII:
 * List all the incoming connections that are not served by apache.
 > sysdig -p"%proc.name %fd.name" "evt.type=accept and proc.name!=httpd"
 
-####Containers
+## Containers
 * View the CPU usage of the processes running inside the wordpress1 container
 > sudo sysdig -pc -c topprocs_cpu container.name=wordpress1
 
@@ -55,7 +67,8 @@ as ASCII:
 * Show all the interactive commands executed inside the wordpress1 container
 > sudo sysdig -pc -c spy_users container.name=wordpress1
 
-####Application
+## Application
+
 * See all the GET HTTP requests made by the machine
 > sudo sysdig -s 2000 -A -c echo_fds fd.port=80 and evt.buffer contains GET
 
@@ -65,7 +78,7 @@ as ASCII:
 * See queries made via apache to an external MySQL server happening in real time
 > sysdig -s 2000 -A -c echo_fds fd.sip=192.168.30.5 and proc.name=apache2 and evt.buffer contains SELECT
 
-####Disk I/O
+## Disk I/O
 * See the top processes in terms of disk bandwidth usage
 > sysdig -c topprocs_file
 
@@ -93,7 +106,7 @@ as ASCII:
 * Display I/O activity by FD type
 > sysdig -c fdbytes_by fd.type
 
-####Processes and CPU usage
+## Processes and CPU usage
 * See the top processes in terms of CPU usage
 > sysdig -c topprocs_cpu
 
@@ -103,7 +116,7 @@ as ASCII:
 * Observe the standard output of a process
 > sysdig -s4096 -A -c stdout proc.name=cat
 
-####Performance and Errors
+## Performance and Errors
 
 * See the files where most time has been spent
 > sysdig -c topfiles_time
@@ -135,7 +148,7 @@ as ASCII:
 * Print the file I/O calls that have a latency greater than 1ms:
 > sysdig -c fileslower 1
 
-####Security
+## Security
 
 * Show the directories that the user "root" visits
 > sysdig -p"%evt.arg.path" "evt.type=chdir and user.name=root"
@@ -156,7 +169,3 @@ as ASCII:
   * [Fishing for Hackers: Analysis of a Linux Server Attack](http://draios.com/fishing-for-hackers/)
   * [Fishing for Hackers (Part 2): Quickly Identify Suspicious Activity With Sysdig](http://draios.com/fishing-for-hackers-part-2/)
 
-
-User Guide: <https://github.com/draios/sysdig/wiki/Sysdig%20User%20Guide>
-
-Source code: <https://github.com/draios/sysdig>
