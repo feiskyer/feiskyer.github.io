@@ -349,29 +349,27 @@ This means that there is no need for manual setup of block devices, and that gen
 </code></pre>
 <p>目前已知存在的问题是删除的image的 block 文件没有被删除，见<a href="https://github.com/dotcloud/docker/issues/3182">https://github.com/dotcloud/docker/issues/3182</a>,
 笔者发现此问题前4个小时作者给出了原因，看起来是kernel的issue,在讨论中包含work around的方法。</p>
-<p>参考文献:</p>
-<p>[1]<a href="http://blog.docker.io/2013/11/docker-0-7-docker-now-runs-on-any-linux-distribution/">http://blog.docker.io/2013/11/docker-0-7-docker-now-runs-on-any-linux-distribution/</a></p>
-<p>[2]<a href="https://groups.google.com/forum/#!topic/docker-dev/KcCT0bACksY">https://groups.google.com/forum/#!topic/docker-dev/KcCT0bACksY</a></p>
-<hr />
-<h2 id="summary">Summary</h2>
-<p>本文总结了以下几点内容</p>
-<ol>
-<li>
-<p>docker的介绍，包括由来、适用场景等</p>
-</li>
-<li>
-<p>docker背后的一系列技术 - namespace, cgroup, lxc, aufs等</p>
-</li>
-<li>
-<p>docker在利用LXC的同时提供了哪些创新</p>
-</li>
-<li>
-<p>笔者对docker这种container, PaaS的一些理解</p>
-</li>
-<li>
-<p>docker存在的问题和现有的解决思路</p>
-</li>
-</ol>
-<p>希望能对想要了解docker的朋友有所帮助，更细致的了解还是得深入代码, 了解个中原委。</p>
-<p>docker@github - <a href="https://github.com/dotcloud/docker">https://github.com/dotcloud/docker</a></p>
-<p>docker_maillist - <a href="https://groups.google.com/forum/#!forum/docker-dev">https://groups.google.com/forum/#!forum/docker-dev</a></p></body></html>
+
+# TTY
+
+When you allocate a TTY, the creator only gets a single input stream, and a single output stream. Meaning that when you redirect a program's STDOUT & STDERR into the TTY, they are getting muxed together.
+
+For example, lets use the script utility to create a TTY and look at the streams it sets up:
+
+```sh
+# script -q -c 'ls -l /dev/fd/' /dev/null
+total 0
+lrwx------ 1 phemmer adm 64 Jan 25 23:58 0 -> /dev/pts/16
+lrwx------ 1 phemmer adm 64 Jan 25 23:58 1 -> /dev/pts/16
+lrwx------ 1 phemmer adm 64 Jan 25 23:58 2 -> /dev/pts/16
+lr-x------ 1 phemmer adm 64 Jan 25 23:58 3 -> /var/lib/sss/mc/passwd
+lr-x------ 1 phemmer adm 64 Jan 25 23:58 4 -> /var/lib/sss/mc/group
+lrwx------ 1 phemmer adm 64 Jan 25 23:58 5 -> socket:[6636438]
+lr-x------ 1 phemmer adm 64 Jan 25 23:58 6 -> /proc/859/fd
+```
+
+Notice that FD 0, 1, & 2 all go to the TTY.
+
+If you look at a normal terminal session, you'll see the same thing (STDIN, STDOUT, STDERR all going to the same TTY). The reason redirection works in your terminal is because you're performing the redirection BEFORE it gets sent into the TTY device. If you perform the redirection inside the docker container, you can accomplish the same thing.
+
+Refer to <https://github.com/docker/docker/issues/19696> for more.

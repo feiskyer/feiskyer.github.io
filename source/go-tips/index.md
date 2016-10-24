@@ -3,8 +3,6 @@ title: Go语言技巧
 date: 2016-09-18 14:20:54
 ---
 
-本文整理自"50 Shades of Go"和"The Three Go Landmines"，有修改和补充。
-
 ### 避免循环中的变量逃逸到循环外
 
 ```go
@@ -3234,4 +3232,5 @@ If you made it here and you have comments or ideas feel free to add a note to [t
 * <http://devs.cloudimmunity.com/gotchas-and-common-mistakes-in-go-golang/>
 * <https://gist.github.com/lavalamp/4bd23295a9f32706a48f>
 * <https://golang.org/doc/faq#nil_error>
+* <https://go-talks.appspot.com/github.com/davecheney/high-performance-go-workshop/high-performance-go-workshop.slide>
 
