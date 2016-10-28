@@ -15,10 +15,12 @@
     "hexo-generator-search": "^1.0.2",
     "hexo-generator-seo-friendly-sitemap": "0.0.15",
     "hexo-generator-tag": "^0.2.0",
+    "hexo-inject": "^1.0.0",
+    "hexo-math": "^3.0.2",
     "hexo-migrator-rss": "^0.1.2",
     "hexo-pdf": "^1.1.0",
     "hexo-renderer-ejs": "^0.1.1",
-    "hexo-renderer-marked": "^0.2.9",
+    "hexo-renderer-kramed": "^0.1.2",
     "hexo-renderer-stylus": "^0.3.0",
     "hexo-server": "^0.1.3",
     "hexo-tag-bootstrap": "0.0.8"

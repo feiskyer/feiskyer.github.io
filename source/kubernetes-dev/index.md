@@ -75,6 +75,7 @@ make test-e2e-node FOCUS="InitContainer" TEST_ARGS="--runtime-integration-type=c
 - GCE E2E: `@k8s-bot cvm gce e2e test this`
 - Test all: `@k8s-bot test this please, issue #IGNORE`
 - CRI test: `@k8s-bot cri test this.`
+- Verity test: `@k8s-bot verify test this`
 - See more commands at <https://github.com/kubernetes/test-infra/blob/master/prow/jobs.yaml>
 
 **Auto LGTM (only applied if you are one of assignees):**
