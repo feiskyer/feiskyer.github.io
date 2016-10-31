@@ -3,6 +3,26 @@ title: Go语言技巧
 date: 2016-09-18 14:20:54
 ---
 
+# Go语言技巧
+
+## 常用工具
+
+- go fmt
+- golint
+- go vet
+- goimports
+- https://goreportcard.com/
+
+## 惯用法
+
+- 注释用完整句子，以方法或包名开头
+- 每行控制80字节长度
+- error字符串首字母小写
+- 多个相同变量的返回值加上名字以便清晰
+- 创建空slice：`var t []int`
+
+## 技巧汇总
+
 ### 避免循环中的变量逃逸到循环外
 
 ```go
@@ -1367,6 +1387,38 @@ func main() {
 
     ch <- "cmd.1"
     ch <- "cmd.2" //won't be processed
+}
+```
+
+### Use time.NewTimer instead of time.After
+
+```go
+package main
+
+import (
+    "fmt"
+    "time"
+)
+
+func main() {
+    ch := make(chan error)
+    // time.After is not very efficient
+    // The underlying Timer is not recovered by the garbage collector
+    // until the timer fires. If efficiency is a concern, use NewTimer
+    // instead and call Timer.Stop if the timer is no longer needed.
+    timer := time.NewTimer(time.Second)
+    defer timer.Stop()
+    
+    go func() {
+        ch <- fmt.Errorf("done")
+    }()
+    
+    select {
+    case err := <- ch:
+        fmt.Println(err)
+    case <-timer.C:
+        fmt.Println("timeout")
+    }
 }
 ```
 
