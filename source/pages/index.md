@@ -160,10 +160,10 @@ ol{
 
 
 <ol class="rounded-list">
-<li><a href="/kubernetes-dev/">Kubernetes开发环境指南</a></li>
-<li><a href="/cri-o/">CRI-O</a></li>
+<li><a href="/container/kubernetes-dev/">Kubernetes开发环境指南</a></li>
+<li><a href="/container/cri-o/">CRI-O</a></li>
 <li><a href="/2016/02/26/Notes-about-serverless/">Serverless</a></li>
-<li><a href="/2015/02/12/docker-intro/">docker指南</a></li>
+<li><a href="/docker/">docker指南</a></li>
 <li><a href="docker-internal.html">docker实现原理</a></li>
 <li><a href="http://calcotestudios.com/ccco">容器编排系统对比</a></li>
 <li><a href="https://leecalcote.github.io/ccco/overlay-underlay-betting-on-container-networking.html">容器网络方案对比</a></li>
@@ -173,8 +173,8 @@ ol{
 ## 虚拟化
 
 <ol class="rounded-list">
-<li><a href="/GPU/">GPU虚拟化</a></li>
-<li><a href="/SR-IOV/">SR-IOV</a></li>
+<li><a href="/virtualization/GPU/">GPU虚拟化</a></li>
+<li><a href="/virtualization/SR-IOV/">SR-IOV</a></li>
 <li><a href="http://awilliam.github.io/presentations/KVM-Forum-2016/">VFIO</a></li>
 </ol>
 
@@ -192,7 +192,7 @@ ol{
 
 <ol class="rounded-list">
 <li><a href="gdb.html">gdb</a></li>
-<li><a href="../go-tips/">Go语言技巧</a></li>
+<li><a href="/programing/go.html">Go语言技巧</a></li>
 <li><a href="python.html">python</a></li>
 <li><a href="java.html">java</a></li>
 </ol>

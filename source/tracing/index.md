@@ -5,6 +5,13 @@ date: 2016-10-21 17:27:47
 
 # Tracing tools of Linux
 
+**Tools:**
+
+- [sysdig](sysdig)
+- [systemtap](systemtap)
+
+**Links:**
+
 - http://www.sysdig.org
 - https://github.com/iovisor/bcc
 - https://sourceware.org/systemtap/wiki
