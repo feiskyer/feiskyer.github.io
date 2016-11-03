@@ -1,11 +1,11 @@
 #!/bin/bash
 set -e
 
-cat >> _config.yml <<EOF
-deploy: 
-  type: git
-  branch: master
-  repo: https://${GitHubKEY}@github.com/feiskyer/feiskyer.github.io.git
-EOF
-
-hexo deploy --generate
+hexo clean
+hexo generate
+cd .deploy_git
+rm -rf ./*
+cp -r ../public/* .
+git add -A .
+git commit -a -m 'Site updated'
+git push -q -u origin master

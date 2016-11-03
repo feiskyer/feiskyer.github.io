@@ -12,7 +12,7 @@ timezone: Asia/Shanghai
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://feiskyer.github.io
+url: http://feisky.xyz
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -72,3 +72,7 @@ social:
   Weibo: http://weibo.com/371069890
   博客园: http://www.cnblogs.com/feisky/
 
+deploy:
+  type: git
+  branch: master
+  repo: git@github.com:feiskyer/feiskyer.github.io.git
