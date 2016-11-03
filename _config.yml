@@ -65,13 +65,6 @@ pagination_dir: page
 ## Themes: https://hexo.io/themes/
 theme: next
 
-# Deployment
-## Docs: https://hexo.io/docs/deployment.html
-deploy: 
-  type: git
-  repository: git@github.com:feiskyer/feiskyer.github.io.git
-  branch: master
-
 # Social links
 social:
   Github: https://github.com/feiskyer
@@ -79,3 +72,7 @@ social:
   Weibo: http://weibo.com/371069890
   博客园: http://www.cnblogs.com/feisky/
 
+deploy: 
+  type: git
+  #repository: git@github.com:feiskyer/feiskyer.github.io.git
+  branch: master

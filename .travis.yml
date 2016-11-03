@@ -6,26 +6,19 @@ language: node_js
 sudo: false
 
 node_js:
-  - '5.4'
+  - '6'
 
 before_install:
   - git config --global user.name "Pengfei Ni"
   - git config --global user.email feiskyer@gmail.com
-  - git clone -b master https://${GitHubKEY}@github.com/feiskyer/feiskyer.github.io.git .deploy_git
 
 install:
   - npm install hexo-cli -g
   - npm install
 
 script:
-  - hexo clean
-  - hexo generate
-  - cd .deploy_git
-  - rm -rf ./*
-  - cp -r ../public/* .
-  - git add -A .
-  - git commit -a -m 'New post added.'
-  - git push -q -u origin master
+  - echo "  repo: https://${GitHubKEY}@github.com/feiskyer/feiskyer.github.io.git" >> _config.yml
+  - hexo deploy --generate
 
 notifications:
   slack:
