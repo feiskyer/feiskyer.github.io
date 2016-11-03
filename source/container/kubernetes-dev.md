@@ -30,8 +30,11 @@ git clone https://github.com/kubernetes/kubernetes $GOPATH/src/k8s.io/kubernetes
 cd $GOPATH/src/k8s.io/kubernetes
 
 # Start a local cluster
+# set dockerd --selinux-enabled
 export KUBERNETES_PROVIDER=local
 export ALLOW_SECURITY_CONTEXT=yes
+export EXPERIMENTAL_RUNTIME_INTEGRATION_TYPE=cri
+# export NET_PLUGIN=kubenet
 hack/local-up-cluster.sh
 ```
 

@@ -4,11 +4,18 @@ title: "DPDK"
 
 # DPDK
 
+**目录**
+
 - [1. 基本介绍](introduction.html)
 - [2. NUMA](numa.html)
 - [3. 报文转发](forwarding.html)
 - [4. PCIe与网络IO](PCIe.html)
 - [5. 网卡性能优化](hardware.html)
+- [6. 网卡多队列](queue.html)
+- [7. 硬件卸载](offload.html)
+- [8. 虚拟化](io-virtualization.html)
+
+----
 
 Intel DPDK全称Intel Data Plane Development Kit，是intel提供的数据平面开发工具集，为Intel architecture（IA）处理器架构下用户空间高效的数据包处理提供库函数和驱动的支持，它不同于Linux系统以通用性设计为目的，而是专注于网络应用中数据包的高性能处理。DPDK应用程序是运行在用户空间上利用自身提供的数据平面库来收发数据包，绕过了Linux内核协议栈对数据包处理过程。Linux内核将DPDK应用程序看作是一个普通的用户态进程，包括它的编译、连接和加载方式和普通程序没有什么两样。DPDK程序启动后只能有一个主线程，然后创建一些子线程并绑定到指定CPU核心上运行。
 
@@ -52,4 +59,5 @@ DPDK 的上层用户态由很多库组成,主要包括核心部件库(Core Libra
 - http://dpdk.org
 - http://dpdk.org/doc/guides/
 - http://intel.com/go/dpdk
+- 《[深入浅出DPDK](https://www.amazon.cn/%E5%9B%BE%E4%B9%A6/dp/B01FQ9SMZO)》
 
