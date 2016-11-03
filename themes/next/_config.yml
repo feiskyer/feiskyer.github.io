@@ -6,7 +6,7 @@
 favicon: /favicon.ico
 
 # Set default keywords (Use a comma to separate)
-keywords: "Cloud,Container,Kubernetes,SDN,Docker"
+keywords: "Cloud, Container, Kubernetes, SDN, Docker"
 
 # Set rss to false to disable feed link.
 # Leave rss as empty to use site's feed link.
@@ -30,12 +30,12 @@ canonical: true
 menu:
   home: /
   categories: /categories
+  about: /about
+  pages: /pages
   archives: /archives
   tags: /tags
-  pages: /pages
   #schedule: /schedule
   commonweal: /404.html
-  about: /about
 
 
 # Enable/Disable menu icons.
@@ -49,7 +49,7 @@ menu_icons:
   home: home
   about: user
   categories: th
-  #schedule: calendar
+  schedule: calendar
   tags: tags
   pages: th
   archives: archive
@@ -174,8 +174,8 @@ sidebar:
   #  - always  expand for all pages automatically
   #  - hide    expand only when click on the sidebar toggle icon.
   #  - remove  Totally remove sidebar including sidebar toggler.
+  #display: post
   display: always
-  #display: always
   #display: hide
   #display: remove
 
@@ -376,7 +376,7 @@ fancybox: true
 # Please use the https protocol of CDN files when you enable https on your site.
 vendors:
   # Internal path prefix. Please do not edit it.
-  _internal: vendors
+  _internal: lib
 
   # Internal version: 2.1.3
   jquery:
