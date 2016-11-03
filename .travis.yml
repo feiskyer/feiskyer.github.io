@@ -17,8 +17,7 @@ install:
   - npm install
 
 script:
-  - echo "  repo: https://${GitHubKEY}@github.com/feiskyer/feiskyer.github.io.git" >> _config.yml
-  - hexo deploy --generate
+  - hack/deploy.sh
 
 notifications:
   slack:

@@ -72,7 +72,3 @@ social:
   Weibo: http://weibo.com/371069890
   博客园: http://www.cnblogs.com/feisky/
 
-deploy: 
-  type: git
-  #repository: git@github.com:feiskyer/feiskyer.github.io.git
-  branch: master
