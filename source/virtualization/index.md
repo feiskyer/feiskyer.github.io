@@ -10,3 +10,6 @@ title: 虚拟化
 - [pvcall](pvcall)
 - [vsocks](vsocks)
 
+![](/images/14782302803623.jpg)
+
+

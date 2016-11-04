@@ -14,6 +14,7 @@ title: "DPDK"
 - [6. 网卡多队列](queue.html)
 - [7. 硬件卸载](offload.html)
 - [8. 虚拟化](io-virtualization.html)
+- [9. OVS-DPDK](ovs-dpdk.html)
 
 ----
 
@@ -53,11 +54,19 @@ DPDK核心思想：
 
 DPDK 的上层用户态由很多库组成,主要包括核心部件库(Core Libraries)、平台相关模块(Platform)、网卡轮询模式驱动模块(PMD-Natives& Virtual)、QoS 库、报文转发分类算法(Classify)等几大类,用户应用程序可以使用这些库进行二次开发.
 
+## 应用
+
+- [SPDK](http://www.spdk.io/)
+- [OPNFV](https://wiki.opnfv.org/)
+  - [Open vSwitch for NFV](https://wiki.opnfv.org/display/ovsnfv/Open+vSwitch+For+NFV+Home)
+  - [Data Plane Acceleration (DPACC)](https://wiki.opnfv.org/display/dpacc/DPACC+Home) 
+- [OVS-DPDK](ovs-dpdk.html)
+- [VPP](http://fd.io)
 
 **更多参考**
 
-- http://dpdk.org
-- http://dpdk.org/doc/guides/
-- http://intel.com/go/dpdk
+- <http://dpdk.org>
+- <http://dpdk.org/doc/guides/>
+- <http://intel.com/go/dpdk>
 - 《[深入浅出DPDK](https://www.amazon.cn/%E5%9B%BE%E4%B9%A6/dp/B01FQ9SMZO)》
 

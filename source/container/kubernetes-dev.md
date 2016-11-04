@@ -5,6 +5,12 @@ date: 2016-10-21 16:11:07
 
 # Tips for kubernetes development
 
+## Dev in container
+
+```
+docker pull feisky/kubernetes-dev
+```
+
 ## Setup development virtual machine
 
 ```sh
