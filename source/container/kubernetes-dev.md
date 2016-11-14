@@ -8,8 +8,23 @@ date: 2016-10-21 16:11:07
 ## Dev in container
 
 ```
-docker pull feisky/kubernetes-dev
+docker run -it feisky/kubernetes-dev bash
 ```
+
+There are some useful scripts in the images:
+
+- cgroupfs-mount
+- fetch-pr.sh
+- run-e2e-test.sh
+- run-unit-tests.sh
+- run-node-e2e-test.sh
+- setup-kubectl.sh
+- start-frakti.sh
+- start-docker.sh
+- start-hyperd.sh
+- start-kubernetes.sh
+- start-kubernetes-cri.sh
+- start-kubernetes-frakti.sh
 
 ## Setup development virtual machine
 
