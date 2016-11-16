@@ -9,22 +9,29 @@ date: 2016-10-21 16:11:07
 
 ```
 docker run -it feisky/kubernetes-dev bash
+# /hack/start-hyperd.sh
+# /hack/start-docker.sh
+# /hack/start-frakti.sh
+# /hack/start-kubernetes-frakti.sh
+# /hack/setup-kubectl.sh
+# cluster/kubectl.sh
 ```
 
 There are some useful scripts in the images:
 
-- cgroupfs-mount
-- fetch-pr.sh
-- run-e2e-test.sh
-- run-unit-tests.sh
-- run-node-e2e-test.sh
-- setup-kubectl.sh
-- start-frakti.sh
-- start-docker.sh
-- start-hyperd.sh
-- start-kubernetes.sh
-- start-kubernetes-cri.sh
-- start-kubernetes-frakti.sh
+1. /hack/cgroupfs-mount
+2. /hack/fetch-pr.sh
+3. /hack/run-e2e-test.sh
+4. /hack/run-unit-tests.sh
+5. /hack/run-node-e2e-test.sh
+6. /hack/setup-kubectl.sh
+7. /hack/start-frakti.sh
+8. /hack/start-docker.sh
+9. /hack/start-hyperd.sh
+10. /hack/start-ocid.sh
+11. /hack/start-kubernetes.sh
+12. /hack/start-kubernetes-cri.sh
+13. /hack/start-kubernetes-frakti.sh
 
 ## Setup development virtual machine
 
