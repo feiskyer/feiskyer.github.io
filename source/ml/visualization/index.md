@@ -476,7 +476,3 @@ radviz(iris, "species")
 ![png](output_24_1.png)
 
 
-
-```python
-
-```

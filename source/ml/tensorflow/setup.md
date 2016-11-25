@@ -1,9 +1,6 @@
-From Tensorflow Official doc
+# 安装
 
-# Download and Setup
-
-You can install TensorFlow either from our provided binary packages or from the
-github source.
+来自<https://www.tensorflow.org/versions/r0.11/get_started/os_setup.html#download-and-setup>。
 
 ## Requirements
 
@@ -707,3 +704,5 @@ installed, such as:
 ```bash
 $ pip install --upgrade protobuf
 ```
+
+
