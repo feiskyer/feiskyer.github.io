@@ -1,3 +1,8 @@
+---
+title: Kubernetes
+date: 2016-10-21 16:11:07
+---
+
 # Kubernetes
 
 ![](/images/14791968861612.png)
