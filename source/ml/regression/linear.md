@@ -45,6 +45,12 @@ with tf.Session() as sess:
     plt.plot(trX, w.eval()*trX + b.eval(), label="Fitted line")
     plt.legend()
     plt.show()
+    
+    # Plot with pandas
+    #import pandas as pd
+    #fig, axes = plt.subplots(nrows=1, ncols=1)
+    #pd.DataFrame({'x':trX,'y':trY}).plot.scatter(x='x', y='y', ax=axes, color='red')
+    #pd.DataFrame({'x':trX,'y':w.eval()*trX + b.eval()}).plot.scatter(x='x', y='y', ax=axes, color='blue')
 
 ```
 

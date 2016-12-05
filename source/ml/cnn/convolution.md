@@ -219,6 +219,61 @@ ax2.set_yticks([])
 
 ![](/images/14800377471467.jpg)
 
+## 示例4（图像卷积）
+
+还是图像卷积，但是使用`matplotlib.pyplot`读取图像
+
+```python
+# %matplotlib inline
+import tensorflow as tf
+import numpy as np
+import matplotlib.pyplot as plt
+
+image = plt.imread("test.jpg")
+data = np.array(image).astype(np.float32)
+# create session
+sess = tf.InteractiveSession()
+
+# convolution requires images in 4d: N*W*H*C
+img_4d = tf.reshape(data, [1, data.shape[0], data.shape[1],data.shape[2] ])
+
+
+kernel = tf.constant([
+        [
+            [[ 0., 0., 0.], [ 0., 0., 0.], [ 0., 0., 0.]],
+            [[ -1., 0., 0.], [ 0., -1., 0.], [ 0., 0., -1.]],
+            [[ 0., 0., 0.], [ 0., 0., 0.], [ 0., 0., 0.]]
+        ],
+        [
+            [[ -1., 0., 0.], [ 0., -1., 0.], [ 0., 0., -1.]],
+            [[ 5., 0., 0.], [ 0., 5., 0.], [ 0., 0., 5.]],
+            [[ -1., 0., 0.], [ 0., -1., 0.], [ 0., 0., -1.]]
+        ],
+        [
+            [[ 0., 0., 0.], [ 0., 0., 0.], [ 0., 0., 0.]],
+            [[ -1., 0., 0.], [ 0., -1., 0.], [ 0., 0., -1.]],
+            [[ 0, 0., 0.], [ 0., 0., 0.], [ 0., 0., 0.]]
+        ]
+    ])
+conv2d = tf.nn.conv2d(img_4d, kernel, [1, 1, 1, 1], padding="SAME")
+
+fig = plt.gcf() #pyplot.figure()
+ax1 = fig.add_subplot(121)
+ax1.set_title("original")
+ax1.set_xticks([])
+ax1.set_yticks([])
+ax1.imshow(data.astype(np.uint8))
+ax2 = fig.add_subplot(122)
+ax2.imshow(conv2d.eval()[0])
+ax2.set_title("conv")
+ax2.set_xticks([])
+ax2.set_yticks([])
+fig.show()
+```
+
+![](/images/14805901577895.jpg)
+
+
 **参考**
 
 - [working with images](https://github.com/backstopmedia/tensorflowbook/blob/master/chapters/05_object_recognition_and_classification/Chapter%205%20-%2004%20Working%20with%20Images.ipynb)

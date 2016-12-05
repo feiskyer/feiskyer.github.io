@@ -120,3 +120,8 @@ negative of the log-likelihood function
 $$E(\mathbf{w}) = -l(\mathbf{w};D)$$
 
 where we note $-\log(a) = \log(1/a)$.
+
+## Setting up development and test sets
+
+![](Machine_Learning_Yearning_V0.5_01.png)
+
