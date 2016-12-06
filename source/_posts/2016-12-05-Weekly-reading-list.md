@@ -5,7 +5,7 @@ category: Readings
 tags: 
 ---
 
-## [分布式后台毫秒服务引擎](https://mp.weixin.qq.com/s?__biz=MjM5MDE0Mjc4MA==&mid=2650994968&idx=1&sn=6713bb3b59e1fb38c70f7178de136cfc&key=9ed31d4918c154c8a8a01f529fa196951ebfbc7c22ddf37cc02f933acff56b80bdc3334a865379fc88b0d77b95f756374e51ac0f06d3e192818bb5f459e9ffbaa3967d1e50bb1be2be6b374a57492a39&ascene=0&uin=MTMxMzgxNQ%3D%3D&devicetype=iMac+MacBookPro11%2C1+OSX+OSX+10.12.1+build(16B2555)&version=12000510&nettype=WIFI&fontScale=100&pass_ticket=itDwNGAuxfGv2PEFYN%2Bf3JqefGyu46PmKlXUaIsSa8k%3D)
+## [分布式后台毫秒服务引擎](https://mp.weixin.qq.com/s?__biz=MjM5MDE0Mjc4MA==&mid=2650994968&idx=1&sn=6713bb3b59e1fb38c70f7178de136cfc&key=9ed31d4918c154c8a8a01f529fa196951ebfbc7c22ddf37cc02f933acff56b80bdc3334a865379fc88b0d77b95f756374e51ac0f06d3e192818bb5f459e9ffbaa3967d1e50bb1be2be6b374a57492a39&ascene=0&uin=MTMxMzgxNQ%3D%3D&devicetype=iMac+MacBookPro11%2C1+OSX+OSX+10.12.1+build\(16B2555\)&version=12000510&nettype=WIFI&fontScale=100&pass_ticket=itDwNGAuxfGv2PEFYN%2Bf3JqefGyu46PmKlXUaIsSa8k%3D)
 
 > 腾讯QQ团队于12月4日开源了一个服务开发运营框架，叫做毫秒服务引擎（Mass Service Engine in Cluster，MSEC），它集RPC、名字发现服务、负载均衡、业务监控、灰度发布、容量管理、日志管理、Key-Value存储于一体，目的是提高开发与运营的效率和质量。
 
