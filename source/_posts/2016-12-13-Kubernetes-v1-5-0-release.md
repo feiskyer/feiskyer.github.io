@@ -4,6 +4,12 @@ date: 2016-12-13 11:51:29
 tags: kubernetes
 ---
 
+**Update on 2016.12.14:**
+
+Due to a serious security problem, kubernetes v1.5.0 is not recommanded. Kubernetes v1.5.1 has just released, so we should upgrade to v1.5.1 directly.
+
+> The `--anonymous-auth=` flag in v1.5.0 is true by default (which may result in any users being able to access kubernetes API), but v1.5.1 turns it to false.
+
 ## Kubernetes v1.5.0
 
 - StatefulSets (ex-PetSets)
