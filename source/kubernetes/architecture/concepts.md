@@ -1,3 +1,8 @@
+---
+title: Kubernetes设计理念
+layout: "post"
+---
+
 # 设计理念
 
 ## Kubernetes的核心技术概念和API对象
