@@ -1,14 +1,16 @@
 ---
 title: tracing
 date: 2016-10-21 17:27:47
+layout: "post"
 ---
 
 # Tracing tools of Linux
 
 **Tools:**
 
-- [sysdig](sysdig)
-- [systemtap](systemtap)
+- 1) [sysdig](sysdig)
+- 2) [systemtap](systemtap)
+- 3) [bcc](bcc)
 
 **Links:**
 
