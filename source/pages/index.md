@@ -162,7 +162,7 @@ ol{
 <ol class="rounded-list">
 <li><a href="/kubernetes/">Kubernetes指南</a></li>
 <li><a href="/kubernetes-dev.html">Kubernetes开发环境指南</a></li>
-<li><a href="/docker/">docker指南</a></li>
+<li><a href="/container/docker/">docker指南</a></li>
 <li><a href="/container/cri-o.html">CRI-O</a></li>
 <li><a href="/2016/02/26/Notes-about-serverless/">Serverless</a></li>
 <li><a href="docker-internal.html">docker实现原理</a></li>
