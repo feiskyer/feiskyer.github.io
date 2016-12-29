@@ -32,6 +32,9 @@ menu:
   categories: /categories
   about: /about
   pages: /pages
+  sdn: /sdn
+  k8s: /k8s
+  ml: /machine-learning
   archives: /archives
   tags: /tags
   #schedule: /schedule
@@ -52,6 +55,9 @@ menu_icons:
   schedule: calendar
   tags: tags
   pages: th
+  k8s: th
+  ml: th
+  sdn: th
   archives: archive
   commonweal: heartbeat
 

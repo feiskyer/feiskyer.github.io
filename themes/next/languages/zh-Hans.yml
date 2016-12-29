@@ -16,6 +16,9 @@ menu:
   search: 搜索
   commonweal: 公益404
   pages: 笔记
+  ml: 机器学习
+  sdn: SDN网络
+  k8s: Kubernetes指南
 
 
 sidebar:

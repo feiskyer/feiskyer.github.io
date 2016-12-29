@@ -37,5 +37,13 @@ layout: "post"
 * [SDN网络](http://feisky.xyz/sdn/)
 * [DPDK](http://feisky.xyz/sdn/dpdk/)
 
+## 机器学习
+
+- [机器学习笔记](http://feisky.xyz/machine-learning/)
+- [数据可视化](http://feisky.xyz/machine-learning/visualization/index.html)
+- [CNN](http://feisky.xyz/machine-learning/cnn/)
+- [RNN](http://feisky.xyz/machine-learning/rnn/)
+- [Tensorflow](http://feisky.xyz/machine-learning/tensorflow/)
+
 ## [其他](other.html)
 
