@@ -156,31 +156,3 @@ Continuous integration builds have used the following versions of external depen
 
   [Documentation](https://docs.k8s.io) & [Examples](https://releases.k8s.io/release-1.5/examples)
 
-  ## Downloads for v1.5.0
-
-
-  filename | sha256 hash
-  -------- | -----------
-  [kubernetes.tar.gz](https://dl.k8s.io/v1.5.0/kubernetes.tar.gz) | `52b7df98ea05fb3ebbababf1ccb7f6d4e6f4cad00b8d09350f270aa7e3ad7e85`
-  [kubernetes-src.tar.gz](https://dl.k8s.io/v1.5.0/kubernetes-src.tar.gz) | `fbefb2544667f96045c346cee595b0f315282dfdbd41a8f2d5ccc74054a4078e`
-
-  ### Client Binaries
-
-  filename | sha256 hash
-  -------- | -----------
-  [kubernetes-client-darwin-386.tar.gz](https://dl.k8s.io/v1.5.0/kubernetes-client-darwin-386.tar.gz) | `27d71bb6b16a26387ee30272bd4ee5758deccafafdc91b38f3d0dc19a34e129e`
-  [kubernetes-client-darwin-amd64.tar.gz](https://dl.k8s.io/v1.5.0/kubernetes-client-darwin-amd64.tar.gz) | `5fa8550235919568d7d839b19de00e9bdd72a97cfde21dbdbe07fefd6d6290dc`
-  [kubernetes-client-linux-386.tar.gz](https://dl.k8s.io/v1.5.0/kubernetes-client-linux-386.tar.gz) | `032a17701c014b8bbbb83c7da1046d8992a41031628cf7e1959a94378f5f195b`
-  [kubernetes-client-linux-amd64.tar.gz](https://dl.k8s.io/v1.5.0/kubernetes-client-linux-amd64.tar.gz) | `afae4fadb7bbb1532967f88fef1de6458abda17219f634cc2c41608fd83ae7f6`
-  [kubernetes-client-linux-arm64.tar.gz](https://dl.k8s.io/v1.5.0/kubernetes-client-linux-arm64.tar.gz) | `acca7607dae678a0165b7e10685e0eff0d418beebe7c25eaffe18c85717b5cc4`
-  [kubernetes-client-linux-arm.tar.gz](https://dl.k8s.io/v1.5.0/kubernetes-client-linux-arm.tar.gz) | `fbc182b6d9ae476c7c509486d773074fd1007032886a8177735e08010c43f89d`
-  [kubernetes-client-windows-386.tar.gz](https://dl.k8s.io/v1.5.0/kubernetes-client-windows-386.tar.gz) | `a8ddea329bc8d57267294464c163d8c2f7837f6353f8c685271864ed8b8bc54d`
-  [kubernetes-client-windows-amd64.tar.gz](https://dl.k8s.io/v1.5.0/kubernetes-client-windows-amd64.tar.gz) | `bc3a76f1414fa1f4b2fb92732de2100d346edb7b870ed5414ea062bb401a8ebd`
-
-  ### Server Binaries
-
-  filename | sha256 hash
-  -------- | -----------
-  [kubernetes-server-linux-amd64.tar.gz](https://dl.k8s.io/v1.5.0/kubernetes-server-linux-amd64.tar.gz) | `b9c122d709c0556c1e19d31d98bf26ee530f91c0119f4454fb930cef5a0c1aa7`
-  [kubernetes-server-linux-arm64.tar.gz](https://dl.k8s.io/v1.5.0/kubernetes-server-linux-arm64.tar.gz) | `3bbba5c8dedc47db8f9ebdfac5468398cce2470617de9d550affef9702b724c9`
-  [kubernetes-server-linux-arm.tar.gz](https://dl.k8s.io/v1.5.0/kubernetes-server-linux-arm.tar.gz) | `3ff9ccdd641690fd1c8878408cd369beca1f9f8b212198e251862d40cf2dadc0`
