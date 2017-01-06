@@ -114,6 +114,8 @@ make test-e2e-node FOCUS="InitContainer" TEST_ARGS="--runtime-integration-type=c
 - `/lgtm`
 - `/lgtm cancel`
 
+Check more commands at [kubernetes test-infra](https://github.com/kubernetes/test-infra/blob/master/prow/commands.md).
+
 ## Tips for git
 
 Fetch a pull request to local:
@@ -140,17 +142,9 @@ docker-machine create --driver google --google-project xxxx --google-machine-typ
 ```sh
 $ minikube get-k8s-versions
 The following Kubernetes versions are available:
-    - v1.5.0-alpha.0
+    - v1.5.1
     - v1.4.3
-    - v1.4.2
-    - v1.4.1
-    - v1.4.0
-    - v1.3.7
-    - v1.3.6
-    - v1.3.5
-    - v1.3.4
-    - v1.3.3
-    - v1.3.0
+    ...
 
 # http proxy is required in China
 $ minikube start --docker-env HTTP_PROXY=http://proxy-ip:port --docker-env HTTPS_PROXY=http://proxy-ip:port --vm-driver=xhyve --kubernetes-version="v1.4.3"
