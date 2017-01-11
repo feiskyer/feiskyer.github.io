@@ -228,7 +228,7 @@ auto_excerpt:
 
 # Wechat Subscriber
 wechat_subscriber:
-  enabled: true
+  enabled: false
   qcode: /images/qrcode.jpg
   description: 微信公众号订阅
   #qcode: /path/to/your/wechatqcode ex. /uploads/wechat-qcode.jpg
