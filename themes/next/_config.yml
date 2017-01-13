@@ -30,13 +30,13 @@ canonical: true
 menu:
   home: /
   categories: /categories
-  about: /about
-  pages: /pages
-  sdn: /sdn
-  k8s: /k8s
   ml: /machine-learning
+  sdn: /sdn
+  pages: /pages
+  k8s: /k8s
   archives: /archives
   tags: /tags
+  about: /about
   #schedule: /schedule
   commonweal: /404.html
 
