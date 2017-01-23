@@ -30,6 +30,7 @@ canonical: true
 menu:
   home: /
   categories: /categories
+  sre: /SRE
   ml: /machine-learning
   sdn: /sdn
   pages: /pages
@@ -58,6 +59,7 @@ menu_icons:
   k8s: th
   ml: th
   sdn: th
+  sre: th
   archives: archive
   commonweal: heartbeat
 
@@ -263,7 +265,7 @@ disqus_shortname: feiskyblog
 # Available value:
 #    button | slide
 # Warning: Baidu Share does not support https.
-#baidushare:
+# baidushare:
 ##  type: button
 
 # Share

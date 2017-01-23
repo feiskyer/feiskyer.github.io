@@ -19,6 +19,7 @@ menu:
   ml: 机器学习
   sdn: SDN网络
   k8s: Kubernetes指南
+  sre: SRE
 
 
 sidebar:
