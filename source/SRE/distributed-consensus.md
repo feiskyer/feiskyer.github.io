@@ -266,4 +266,4 @@ Paxos的应用简明来讲就是由算法确定一个操作系列，通过编写
 
 ## Raft
 
-参考[这里](../distributed/raft.md)。
+参考[这里](../distributed/raft.html)。
