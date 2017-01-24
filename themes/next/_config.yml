@@ -31,6 +31,7 @@ menu:
   home: /
   categories: /categories
   sre: /SRE
+  docker: /docker
   ml: /machine-learning
   sdn: /sdn
   pages: /pages
@@ -59,6 +60,7 @@ menu_icons:
   k8s: th
   ml: th
   sdn: th
+  docker: th
   sre: th
   archives: archive
   commonweal: heartbeat

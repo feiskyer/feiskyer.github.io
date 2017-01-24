@@ -14,12 +14,13 @@ menu:
   tags: 标签
   about: 关于
   search: 搜索
-  commonweal: 公益404
+  commonweal: 404
   pages: 读书笔记
   ml: 机器学习
   sdn: SDN网络
-  k8s: Kubernetes指南
+  k8s: Kubernetes
   sre: SRE
+  docker: Docker
 
 
 sidebar:
