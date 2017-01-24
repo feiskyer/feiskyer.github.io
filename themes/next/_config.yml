@@ -31,6 +31,7 @@ menu:
   home: /
   categories: /categories
   sre: /SRE
+  docker: /docker
   ml: /machine-learning
   sdn: /sdn
   pages: /pages
@@ -57,6 +58,7 @@ menu_icons:
   tags: tags
   pages: th
   k8s: th
+  docker: th
   ml: th
   sdn: th
   sre: th
