@@ -7,7 +7,7 @@ title: "Docker笔记"
 - [Docker networking](networking.html)
 - [Docker storage](storage.html)
 - [SwarmKit](swarmkit.html)
-- See [here](1.12.html) for docker v1.12.
+- 完整docker笔记见[Docker笔记](/docker/)
 
 # Docker笔记
 

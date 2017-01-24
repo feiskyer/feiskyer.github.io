@@ -20,7 +20,6 @@ menu:
   sdn: SDN网络
   k8s: Kubernetes
   sre: SRE
-  docker: Docker
 
 
 sidebar:
