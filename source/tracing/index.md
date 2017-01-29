@@ -8,17 +8,17 @@ layout: "post"
 
 **Tools:**
 
-- 1) [sysdig](sysdig)
-- 2) [systemtap](systemtap)
-- 3) [bcc](bcc)
-- 4) [perf-tools](https://github.com/brendangregg/perf-tools)
+- [bcc](bcc)
+- [perf-tools](https://github.com/brendangregg/perf-tools)
+- [sysdig](sysdig)
+- [systemtap](systemtap)
 
 **Links:**
 
+- http://www.brendangregg.com
 - http://www.sysdig.org
 - https://github.com/iovisor/bcc
 - https://sourceware.org/systemtap/wiki
-- http://www.brendangregg.com
 - https://github.com/brendangregg/FlameGraph
 - https://github.com/openresty/stapxx
 - http://dtrace.org/blogs/about/
