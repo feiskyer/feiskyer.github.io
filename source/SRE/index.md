@@ -48,5 +48,16 @@ layout: "post"
 
 ![](sre.png)
 
+**SRE book**
+
+Google已经放出了SRE的免费电子书，可以直接在线阅读，<http://landing.google.com/sre/book/index.html>。全书共分为五个部分：
+
+- [Part I - Introduction](http://landing.google.com/sre/book/chapters/part1.html)介绍SRE的概念以及在Google的应用
+- [Part II - Principles](http://landing.google.com/sre/book/chapters/part2.html)介绍SRE的原则和机制
+- [Part III - Practices](http://landing.google.com/sre/book/chapters/part3.html)介绍SRE实践
+- [Part IV - Management](http://landing.google.com/sre/book/chapters/part4.html)介绍如何管理和协调组织内的各个团队
+- [Part V - Conclusions](http://landing.google.com/sre/book/chapters/part5.html)最后是总结
+
+
 ----
 **参考** _[Site Reliability Engineering: How Google Runs Production Systems](https://landing.google.com/sre/)_。
