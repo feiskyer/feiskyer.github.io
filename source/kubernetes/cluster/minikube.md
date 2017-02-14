@@ -10,24 +10,24 @@ layout: "post"
 
 ## 安装minikube
 
-minikube最新release版本为v0.8.0，支持Kubernetes v1.3.0到v1.3.5的各个版本，默认启动Kubernetes v1.3.5。
+minikube最新release版本为v0.15.0，支持Kubernetes v1.3.0到v1.5.1的各个版本，默认启动Kubernetes v1.5.1。
 
 OSX
 
 ```
-curl -Lo minikube https://storage.googleapis.com/minikube/releases/v0.8.0/minikube-darwin-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
+curl -Lo minikube https://storage.googleapis.com/minikube/releases/v0.15.0/minikube-darwin-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
 ```
 
 Linux
 
 ```
-curl -Lo minikube https://storage.googleapis.com/minikube/releases/v0.8.0/minikube-linux-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
+curl -Lo minikube https://storage.googleapis.com/minikube/releases/v0.15.0/minikube-linux-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
 ```
 
 Windows
 
 ```
-下载https://storage.googleapis.com/minikube/releases/v0.8.0/minikube-windows-amd64.exe，并重命名为minikube.exe
+下载https://storage.googleapis.com/minikube/releases/v0.15.0/minikube-windows-amd64.exe，并重命名为minikube.exe
 ```
 
 minikube支持xhyve(on OSX)、VirtualBox、VMWare Fusion等多种不同的driver，这些driver也需要单独安装，比如在OSX上安装xhyve driver:

@@ -1,4 +1,7 @@
-# 其他插件机制
+---
+title: 其他插件机制
+layout: "post"
+---
 
 1. Apiserver federation
 2. Admission-control hooks

@@ -1,4 +1,5 @@
-layout: false
+---
+layout: "post"
 ---
 
 # Awesome-Kubernetes
