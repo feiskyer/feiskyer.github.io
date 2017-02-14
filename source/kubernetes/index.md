@@ -44,6 +44,7 @@ _Kubernetes笔记_
   - [4.2 监控](monitor/)
   - [4.3 日志](deploy/logging.html)
   - 4.4 HA
+  - [4.5 调试](debugging/)
 - [5. 开发指南](dev/)
   - [5.1 开发环境搭建](dev/index.html)
   - [5.2 单元测试](dev/testing.html)
