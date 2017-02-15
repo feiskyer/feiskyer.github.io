@@ -35,6 +35,7 @@ menu:
   ml: /machine-learning
   sdn: /sdn
   pages: /pages
+  dis: /distributed
   k8s: /kubernetes
   archives: /archives
   tags: /tags
@@ -58,6 +59,7 @@ menu_icons:
   tags: tags
   pages: th
   k8s: th
+  dis: th
   docker: th
   ml: th
   sdn: th

@@ -19,6 +19,7 @@ menu:
   ml: 机器学习
   sdn: SDN网络
   k8s: Kubernetes
+  dis: 分布式系统
   docker: Docker
   sre: SRE
 
