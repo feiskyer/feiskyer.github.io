@@ -33,7 +33,7 @@ menu:
   sre: /SRE
   docker: /docker
   ml: /machine-learning
-  sdn: /sdn
+  sdn: /sdn/index.html
   pages: /pages
   dis: /distributed
   k8s: /kubernetes
