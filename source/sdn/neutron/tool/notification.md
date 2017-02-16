@@ -1,4 +1,9 @@
-# 监听notification消息
+---
+title: "监听notification消息"
+layout: "post"
+---
+
+## 监听notification消息
 
 ```python
 #!/usr/bin/env python
@@ -71,3 +76,19 @@ if __name__ == "__main__":
         server.stop()
         server.wait()
 ```
+
+## 删除queue
+
+```python
+import pika
+
+queue_name = "test"
+try:
+  connection = pika.BlockingConnection(pika.ConnectionParameters(
+                 'localhost'))
+  channel = connection.channel()
+  channel.queue_delete(queue=queue_name)
+finally:
+  connection.close()
+```
+
