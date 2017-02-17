@@ -29,6 +29,7 @@ layout: "post"
 * [Gestalt Framework](http://www.galacticfog.com/product) - Gestalt's Lambda Application SERver (LASER)” for short, is a lambda service that supports running .Net, Javascript, Java, Scala, Ruby, and Python lambdas.
 * [lambdoku](https://github.com/kubek2k/lambdoku) - Heroku-like experience when using AWS Lambda
 * [IronFunctions](https://github.com/iron-io/functions) - The Serverless Microservices platform
+* [PyWren](https://github.com/ericmjonas/pywren) - provides the ability to parse out Python-based scientific workloads across many different Lambda services
 
 
 

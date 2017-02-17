@@ -16,13 +16,12 @@ layout: "post"
     - 可用性和扩展性
     - 网络分区
 - 分布式存储系统
-    - [Spanner](spanner.html)
-    - Google - GFS, [F1](F1.html), Chubby, [BigTable](BigTable.html), Omega, Dapper, [Datastore](Datastore.html)
+    - Google - [Spanner](spanner.html), GFS, [F1](F1.html), Chubby, [BigTable](BigTable.html), Omega, Dapper, [Datastore](Datastore.html)
     - AWS - [RDS](aws-rds.html), [DynamoDB](DynamoDB.html), [Aurora](aurora.html)
+    - 阿里云 - [阿里云RDS](aliyun-rds.html), PetaData, OceanBase
     - [TiDB](TiDB.html)
     - [CockroachDB](CockroachDB.html)
     - Cassandra, MongoDB, HBase
-    - 其他 - [阿里云RDS](aliyun-rds.html)
 - 分布式通信系统
     - 消息队列
     - ZooKeeper

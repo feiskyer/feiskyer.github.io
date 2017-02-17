@@ -1,4 +1,9 @@
-# OpenStack Neutron
+---
+title: OpenStack Neutron
+layout: "post"
+---
+
+## 目录
 
 * [前言](index.html)
 * [概述](intro/index.html)
@@ -55,6 +60,15 @@
    * [手动创建Tap网卡](tool/tap.html)
 * [附：安装配置](appendix_install/index.html)
 
+## 链接
 
+- [OpenStack Networking Guide](https://docs.openstack.org/newton/networking-guide/)
+- [Neutron developer guide](https://docs.openstack.org/developer/neutron/)
+- [UMCloud Neutron性能与扩展性测试报告](http://mp.weixin.qq.com/s?__biz=MzAwNjgxNTY5MQ==&mid=2651153920&idx=1&sn=2c87ba7e7af607315a1383be64778a35&chksm=80f66ca4b781e5b234523512e7fb631e18163a683a6b65d58bdc46f776af74a2577daa99dc8c&mpshare=1&scene=1&srcid=0215U0PpXs7khAvyW925ljJH#rd)
+- [OpenStack Architecture Design Guide](https://docs.openstack.org/arch-design/)
+
+---
 
 备注: _基于[yeasy/openstack_understand_Neutron](https://github.com/yeasy/openstack_understand_Neutron)修改。_
+
+
