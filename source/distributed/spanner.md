@@ -3,7 +3,7 @@ title: spanner
 layout: "post"
 ---
 
-[Spanner](https://research.google.com/archive/spanner.html)是Google的全球分布式数据库，在满足事务一致性的同时还具备极强的可扩展性，结合了传统关系数据库和NoSQL数据库的优点。
+[Spanner](https://research.google.com/archive/spanner.html)是Google提供的跨区域/跨数据中心的关系型分布式数据库，在满足事务一致性的同时还具备极强的可扩展性，结合了传统关系数据库和NoSQL数据库的优点。
 
 ![](/images/14871461131101.jpg)
 
@@ -22,7 +22,7 @@ Spanner 近乎完美的一个分布式存储，在 Google 内部也是的 BigTab
 
 而Google Cloud Spanner同时满足了一致性和可用性（CA）：
 
-- 网络分区是不可避免的，在分区出现时，Spanner实际上优先保证一致性，也就是说实际上这是一个CP系统
+- 网络分区是不可避免的，在分区出现时，Spanner实际上优先保证一致性，也就是严格意义上来说这是一个CP系统
 - 但是Spanner实现了高达5个9的可用性，对大部分用户来说，这个可以认为是一个CA系统
 
 那Google是如何实现这么高的可用性的呢
