@@ -49,6 +49,7 @@ as ASCII:
 > sysdig -p"%proc.name %fd.name" "evt.type=accept and proc.name!=httpd"
 
 ## Containers
+
 * View the CPU usage of the processes running inside the wordpress1 container
 > sudo sysdig -pc -c topprocs_cpu container.name=wordpress1
 
@@ -79,6 +80,7 @@ as ASCII:
 > sysdig -s 2000 -A -c echo_fds fd.sip=192.168.30.5 and proc.name=apache2 and evt.buffer contains SELECT
 
 ## Disk I/O
+
 * See the top processes in terms of disk bandwidth usage
 > sysdig -c topprocs_file
 
@@ -107,6 +109,7 @@ as ASCII:
 > sysdig -c fdbytes_by fd.type
 
 ## Processes and CPU usage
+
 * See the top processes in terms of CPU usage
 > sysdig -c topprocs_cpu
 

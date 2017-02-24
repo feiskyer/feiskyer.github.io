@@ -1,4 +1,27 @@
-# Openvswitch
+---
+title: "Openvswitch"
+layout: "post"
+---
+
+## OVS安装
+
+### CentOS
+
+```sh
+yum install centos-release-openstack-newton
+yum install openvswitch
+systemctl enable openvswitch
+systemctl start openvswitch
+```
+
+如果想要安装master版本，可以使用<https://copr.fedorainfracloud.org/coprs/leifmadsen/ovs-master/>的BUILD：
+
+```sh
+wget -o /etc/yum.repos.d/ovs-master.repo https://copr.fedorainfracloud.org/coprs/leifmadsen/ovs-master/repo/epel-7/leifmadsen-ovs-master-epel-7.repo
+yum install openvswitch openvswitch-ovn-*
+```
+
+注：DPDK版本见<https://copr.fedorainfracloud.org/coprs/pmatilai/dpdk-snapshot/>。
 
 ## OVS常用命令参考
 
@@ -25,7 +48,7 @@
     # clear
     ovs-vsctl remove Bridge br0 mirrors mymirror
     ovs-vsctl clear Bridge br-int mirrors
-    
+
 **利用mirror特性对ovs端口patch-tun抓包**
 
     ip link add name snooper0 type dummy
@@ -36,7 +59,7 @@
     -- --id=@patch-tun get Port patch-tun  \
     -- --id=@m create Mirror name=mymirror select-dst-port=@patch-tun \
     select-src-port=@patch-tun output-port=@snooper0
-    
+
     # capture
     tcpdump -i snooper0
 
@@ -96,7 +119,7 @@
     ovs-vsctl set-controller br-ex tcp:192.168.100.1:6633
     ovs-vsctl get-controller br0
 
-## 流规则管理
+## 流表管理
 
 ### 流规则组成
 
@@ -179,3 +202,15 @@
 ```
 ovs-appctl ofproto/trace br0 in_port=3,tcp,nw_src=10.0.0.2,tcp_dst=22
 ```
+
+**注包(packet-out)**
+
+```
+import binascii
+from scapy.all import *
+a=Ether(dst="02:ac:10:ff:00:22",src="02:ac:10:ff:00:11")/IP(dst="172.16.255.22",src="172.16.255.11", ttl=10)/ICMP()
+print binascii.hexlify(str(a))
+
+ovs-ofctl packet-out br-int 5 "normal" 02AC10FF002202AC10FF001108004500001C000100000A015A9DAC10FF0BAC10FF160800F7FF00000000
+```
+

@@ -29,6 +29,14 @@ from scapy.all import *
     str(pkt)       # hex string
     hexdump(pkt)   # hex dump
 
+输出HEX格式的数据包
+
+	import binascii
+	from scapy.all import *
+	a=Ether(dst="02:ac:10:ff:00:22",src="02:ac:10:ff:00:11")/IP(dst="172.16.255.22",src="172.16.255.11", ttl=10)/ICMP()
+	print binascii.hexlify(str(a))
+
+
 TCP/IP协议的四层模型都可以分别构造，并通过`/`连接
 
     Ether()/IP()/TCP()
