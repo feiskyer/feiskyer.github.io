@@ -56,7 +56,9 @@ Azure Functions是一个基于事件的无服务器计算产品，可以方便�
 
 OpenWhisk是IBM发布的开源事件驱动计算平台，剑指AWS Lambda，其代码开源在Github上<https://github.com/openwhisk/openwhisk>。
 
-![arch](https://github.com/openwhisk/openwhisk/raw/master/docs/OpenWhisk.png)
+![arch](OpenWhisk.png)
+
+![flow](OpenWhisk_flow.png)
 
 ## Facebook Parse
 
