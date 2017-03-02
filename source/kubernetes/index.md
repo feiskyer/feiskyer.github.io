@@ -51,6 +51,7 @@ _Kubernetes笔记_
   - [5.3 社区贡献](dev/contribute.html)
 - [6. 应用管理](apps/)
    - [6.1 Helm](apps/helm-app.html)
+   - [6.2 Deis workflow](apps/deis.html)
 - [7. 附录](appendix/)
   - [awesome-docker](appendix/awesome-docker.html)
   - [awesome-kubernetes](appendix/awesome-kubernetes.html)
