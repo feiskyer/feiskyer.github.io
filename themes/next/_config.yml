@@ -31,7 +31,8 @@ menu:
   home: /
   categories: /categories
   sre: /SRE
-  docker: /docker
+  container: /container
+  cloud: /cloud
   ml: /machine-learning
   sdn: /sdn/index.html
   pages: /pages
@@ -58,12 +59,13 @@ menu_icons:
   schedule: calendar
   tags: tags
   pages: th
-  k8s: th
-  dis: th
-  docker: th
-  ml: th
-  sdn: th
-  sre: th
+  k8s: cube
+  dis: database
+  container: cubes
+  cloud: cloud
+  ml: suitcase
+  sdn: firefox
+  sre: linux
   archives: archive
   commonweal: heartbeat
 
