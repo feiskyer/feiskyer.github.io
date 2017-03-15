@@ -1,6 +1,7 @@
 ---
 title: Kubernetes Development
 date: 2016-10-21 16:11:07
+layout: "post"
 ---
 
 # Tips for kubernetes development
@@ -8,24 +9,26 @@ date: 2016-10-21 16:11:07
 ## Dev in container
 
 ```
+# There are some useful scripts in the images /hack/
 docker run -it feisky/kubernetes-dev bash
+
+# start hyperd and frakti
+/hack/start-hyperd.sh
+/hack/start-frakti.sh
+
+# start kubernetes with frakti
+export KUBERNETES_PROVIDER=local
+export KUBE_ENABLE_CLUSTER_DNS=true
+export CONTAINER_RUNTIME=remote
+export CONTAINER_RUNTIME_ENDPOINT=/var/run/frakti.sock
+export EXPERIMENTAL_CGROUPS_PER_QOS=true
+export CGROUP_ROOT=/
+export KUBE_ENABLE_CLUSTER_DNS=true
+
+cd $GOPATH/src/k8s.io/kubernetes
+kubernetes hack/local-up-cluster.sh
 ```
 
-There are some useful scripts in the images:
-
-1. /hack/cgroupfs-mount
-2. /hack/fetch-pr.sh
-3. /hack/run-e2e-test.sh
-4. /hack/run-unit-tests.sh
-5. /hack/run-node-e2e-test.sh
-6. /hack/setup-kubectl.sh
-7. /hack/start-frakti.sh
-8. /hack/start-docker.sh
-9. /hack/start-hyperd.sh
-10. /hack/start-ocid.sh
-11. /hack/start-kubernetes.sh
-12. /hack/start-kubernetes-cri.sh
-13. /hack/start-kubernetes-frakti.sh
 
 ## Setup development virtual machine
 
@@ -50,9 +53,6 @@ cd $GOPATH/src/k8s.io/kubernetes
 
 # Start a local cluster
 export KUBERNETES_PROVIDER=local
-# export ALLOW_SECURITY_CONTEXT=yes
-# set dockerd --selinux-enabled
-# export NET_PLUGIN=kubenet
 hack/local-up-cluster.sh
 ```
 
@@ -149,5 +149,5 @@ The following Kubernetes versions are available:
     ...
 
 # http proxy is required in China
-$ minikube start --docker-env HTTP_PROXY=http://proxy-ip:port --docker-env HTTPS_PROXY=http://proxy-ip:port --vm-driver=xhyve --kubernetes-version="v1.4.3"
+$ minikube start --docker-env HTTP_PROXY=http://proxy-ip:port --docker-env HTTPS_PROXY=http://proxy-ip:port --vm-driver=xhyve
 ```
