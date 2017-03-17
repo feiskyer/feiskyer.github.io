@@ -12,7 +12,7 @@ Kubernetes从1.5开始，通过`kops`或者`kube-up.sh`部署的集群会自动�
 
 如下图所示
 
-![](../kubernetes/ha/ha.png)
+![](/kubernetes/ha/ha.png)
 
 ## etcd集群
 
