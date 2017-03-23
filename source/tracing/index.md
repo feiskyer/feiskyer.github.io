@@ -12,6 +12,7 @@ layout: "post"
 - [perf-tools](https://github.com/brendangregg/perf-tools)
 - [sysdig](sysdig)
 - [systemtap](systemtap)
+- [perf](perf)
 
 **Links:**
 

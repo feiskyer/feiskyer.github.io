@@ -26,6 +26,7 @@ _目录_
   - [1.2 Kubernetes 101](introduction/101.html)
   - [1.3 Kubernetes 201](introduction/201.html)
   - [1.4 Kubernetes集群](introduction/cluster.html)
+  - [1.5 高阶使用方法](use-guide/)
 - [2. 核心原理](architecture/)
   - [2.1 设计理念](architecture/concepts.html)
   - [2.2 主要概念](architecture/objects.html)
@@ -45,6 +46,7 @@ _目录_
     - Kube DNS
     - hyperkube
     - Federation
+    - [kubeadm](deploy/kubeadm.html)
 - [3. 插件指南](plugins/)
   - [3.1 认证和授权插件](plugins/auth.html)
   - [3.2 网络插件](plugins/network.html)
@@ -57,6 +59,9 @@ _目录_
   - [3.9 其他](plugins/other.html)
 - [4. 常用技巧](deploy/)
   - [4.1 部署](deploy/)
+    - [单机部署](deploy/single.html)
+    - [集群部署](deploy/cluster.html)
+      - [kubeadm](deploy/kubeadm.html)
   - [4.2 监控](monitor/)
   - [4.3 日志](deploy/logging.html)
   - [4.4 高可用](ha/)
@@ -66,8 +71,8 @@ _目录_
   - [5.2 单元测试和集成测试](dev/testing.html)
   - [5.3 社区贡献](dev/contribute.html)
 - [6. 应用管理](apps/)
-   - [6.1 Helm](apps/helm-app.html)
-   - [6.2 Deis workflow](apps/deis.html)
+  - [6.1 Helm](apps/helm-app.html)
+  - [6.2 Deis workflow](apps/deis.html)
 - [7. 附录](appendix/)
   - [awesome-docker](appendix/awesome-docker.html)
   - [awesome-kubernetes](appendix/awesome-kubernetes.html)
