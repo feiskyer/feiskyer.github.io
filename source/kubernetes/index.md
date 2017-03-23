@@ -61,7 +61,7 @@ _目录_
   - [4.1 部署](deploy/)
     - [单机部署](deploy/single.html)
     - [集群部署](deploy/cluster.html)
-      - [kubeadm](deploy/kubeadm.html)
+    - [kubeadm](deploy/kubeadm.html)
   - [4.2 监控](monitor/)
   - [4.3 日志](deploy/logging.html)
   - [4.4 高可用](ha/)

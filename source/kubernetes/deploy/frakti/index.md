@@ -1,3 +1,8 @@
+---
+title: "Cluster deploying of frakti"
+layout: "post"
+---
+
 # Cluster deploying of frakti
 
 Updated: 3/21/2017
