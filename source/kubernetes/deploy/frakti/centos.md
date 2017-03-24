@@ -51,8 +51,7 @@ systemctl start docker
 ### Install frakti
 
 ```sh
-# TODO: get frakti from releases
-curl -sSL https://storage.googleapis.com/frakti/frakti -o /usr/bin/frakti
+curl -sSL https://github.com/kubernetes/frakti/releases/download/v0.1/frakti -o /usr/bin/frakti
 chmod +x /usr/bin/frakti
 cat <<EOF > /lib/systemd/system/frakti.service
 [Unit]
