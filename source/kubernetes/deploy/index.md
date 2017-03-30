@@ -9,6 +9,9 @@ layout: "post"
   - [kubeadm](kubeadm.html)
   - [frakti](frakti/index.html)
 
-更多部署方法可以参考[Kubernetes admin guide](https://kubernetes.io/docs/admin/)。
+## 部署脚本
 
+```
+curl http://feisky.xyz/kubernetes/deploy/utils.sh
+```
 
