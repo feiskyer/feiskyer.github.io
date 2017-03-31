@@ -19,7 +19,7 @@ Kubernetes发展非常迅速，已经成为容器编排领域的领导者。
 
 (图片来自[CNCF](https://github.com/cncf/landscape))
 
-_目录_
+## 目录
 
 - [1. Kubernetes简介](introduction/)
   - [1.1 核心概念](introduction/concepts.html)
@@ -78,3 +78,12 @@ _目录_
   - [awesome-kubernetes](appendix/awesome-kubernetes.html)
   - [Kubernetes ecosystem](ecosystem.html)
 
+## 链接
+
+- [Kubernetes官方网站](https://kubernetes.io/)
+- [Kubernetes文档](https://kubernetes.io/docs/home/)
+- Kubernetes project metrics
+  - [https://cncf.biterg.io](https://cncf.biterg.io)
+  - [http://velodrome.k8s.io](http://velodrome.k8s.io)
+  - [http://submit-queue.k8s.io/#/e2e](http://submit-queue.k8s.io/#/e2e)
+  - [https://cloud.google.com/bigquery/public-data/github](https://cloud.google.com/bigquery/public-data/github)
