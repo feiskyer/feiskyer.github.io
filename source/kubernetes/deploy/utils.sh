@@ -1,7 +1,4 @@
 #!/bin/bash
-set -o errexit
-set -o nounset
-set -o pipefail
 
 utils::golang::install() {
 	# install golang
@@ -13,7 +10,7 @@ utils::golang::install() {
 utils::hyperd::install() {
     # install from https://docs.hypercontainer.io/get_started/install/linux.html
     apt-get update && apt-get install -y qemu libvirt-bin
-    curl -sSL https://hypercontainer.io/install | bash
+    curl -k -sSL https://hypercontainer.io/install | bash
     echo -e "Hypervisor=libvirt\n\
 Kernel=/var/lib/hyper/kernel\n\
 Initrd=/var/lib/hyper/hyper-initrd.img\n\
@@ -25,6 +22,46 @@ gRPCHost=127.0.0.1:22318" > /etc/hyper/config
     dpkg -i hyperstart.deb hypercontainer.deb
     rm -f hyperstart.deb hypercontainer.deb
     systemctl enable hyperd
+    systemctl restart hyperd
+}
+
+utils::hyperd::src() {
+    apt-get install -y autoconf automake pkg-config libdevmapper-dev libsqlite3-dev libvirt-dev
+    mkdir -p /var/lib/hyper /var/log/hyper /etc/hyper
+    mkdir -p $GOPATH/src/k8s.io $GOPATH/src/github.com/hyperhq
+    git clone https://github.com/hyperhq/hyperstart $GOPATH/src/github.com/hyperhq/hyperstart
+    git clone https://github.com/hyperhq/hyperd $GOPATH/src/github.com/hyperhq/hyperd
+    cd $GOPATH/src/github.com/hyperhq/hyperstart
+    ./autogen.sh && ./configure && make
+    /bin/cp build/{hyper-initrd.img,kernel} /var/lib/hyper
+    cd $GOPATH/src/github.com/hyperhq/hyperd
+    ./autogen.sh && ./configure
+    /bin/cp -f hyperd /usr/bin/hyperd
+    /bin/cp -f hyperctl /usr/bin/hyperctl
+
+echo -e "Hypervisor=libvirt\n\
+Kernel=/var/lib/hyper/kernel\n\
+Initrd=/var/lib/hyper/hyper-initrd.img\n\
+Hypervisor=qemu\n\
+StorageDriver=overlay\n\
+gRPCHost=127.0.0.1:22318" > /etc/hyper/config
+
+    # sed -i -e '/unix_sock_rw_perms/d' -e '/unix_sock_admin_perms/d' -e '/clear_emulator_capabilities/d' \
+    # -e '/unix_sock_group/d' -e '/auth_unix_ro/d' -e '/auth_unix_rw/d' /etc/libvirt/libvirtd.conf
+    # echo unix_sock_rw_perms=\"0777\" >> /etc/libvirt/libvirtd.conf
+    # echo unix_sock_admin_perms=\"0777\" >> /etc/libvirt/libvirtd.conf
+    # echo unix_sock_group=\"root\" >> /etc/libvirt/libvirtd.conf
+    # echo unix_sock_ro_perms=\"0777\" >> /etc/libvirt/libvirtd.conf
+    # echo auth_unix_ro=\"none\" >> /etc/libvirt/libvirtd.conf
+    # echo auth_unix_rw=\"none\" >> /etc/libvirt/libvirtd.conf
+    # sed -i -e '/^clear_emulator_capabilities =/d' -e '/^user =/d' -e '/^group =/d' /etc/libvirt/qemu.conf
+    # echo clear_emulator_capabilities=0 >> /etc/libvirt/qemu.conf
+    # echo user=\"root\" >> /etc/libvirt/qemu.conf
+    # echo group=\"root\" >> /etc/libvirt/qemu.conf
+
+    /bin/cp -f ./package/dist/lib/systemd/system/hyperd.service /lib/systemd/system/
+    systemctl daemon-reload
+    # systemctl restart libvirtd
     systemctl restart hyperd
 }
 
@@ -64,7 +101,7 @@ EOF
     systemctl start frakti
 }
 
-utils::frakti::install-src() {
+utils::frakti::src() {
     if [[ -z "$(which go)" ]]; then
         echo "Can't find 'go' in PATH, please install golang first"
         exit 2
@@ -186,7 +223,7 @@ EOF
 }
 
 utils::kubectl::expose-pod() {
-    pod=${POD:-"nginx"}
+    pod=${POD:-"pod/nginx"}
     kubectl expose "$pod" nginx --port=80
 }
 

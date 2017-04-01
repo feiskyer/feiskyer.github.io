@@ -86,8 +86,9 @@ go run hack/e2e.go -v -test --test_args='--ginkgo.focus=Feature:SecurityContext'
 ## Running node e2e locally
 
 ```sh
+# running a node e2e with frakti runtime
 export KUBERNETES_PROVIDER=local
-make test-e2e-node FOCUS="InitContainer" TEST_ARGS="--runtime-integration-type=cri"
+make test-e2e-node PARALLELISM=2 CONTAINER_RUNTIME_ENDPOINT=/var/run/frakti.sock RUNTIME=remote FOCUS="\[Conformance\]"
 ```
 
 ## Bot commands
