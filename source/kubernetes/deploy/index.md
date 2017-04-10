@@ -9,9 +9,3 @@ layout: "post"
   - [kubeadm](kubeadm.html)
   - [frakti](frakti/index.html)
 
-## 部署脚本
-
-```
-curl http://feisky.xyz/kubernetes/deploy/utils.sh
-```
-
