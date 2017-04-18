@@ -11,22 +11,6 @@ layout: "post"
 ```
 # There are some useful scripts in the images /hack/
 docker run -it feisky/kubernetes-dev bash
-
-# start hyperd and frakti
-/hack/start-hyperd.sh
-/hack/start-frakti.sh
-
-# start kubernetes with frakti
-export KUBERNETES_PROVIDER=local
-export KUBE_ENABLE_CLUSTER_DNS=true
-export CONTAINER_RUNTIME=remote
-export CONTAINER_RUNTIME_ENDPOINT=/var/run/frakti.sock
-export EXPERIMENTAL_CGROUPS_PER_QOS=true
-export CGROUP_ROOT=/
-export KUBE_ENABLE_CLUSTER_DNS=true
-
-cd $GOPATH/src/k8s.io/kubernetes
-kubernetes hack/local-up-cluster.sh
 ```
 
 
@@ -63,6 +47,12 @@ export KUBERNETES_PROVIDER=local
 cluster/kubectl.sh config set-cluster local --server=http://127.0.0.1:8080 --insecure-skip-tls-verify=true
 cluster/kubectl.sh config set-context local --cluster=local
 cluster/kubectl.sh config use-context local
+```
+
+## Kubelet dockershim mode
+
+```
+kubelet --experimental-dockershim --v=3 --logtostderr
 ```
 
 ## Unit tests
