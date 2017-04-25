@@ -32,7 +32,7 @@ _Docker笔记_
 - [五、Docker Swarm](swarm/)
   - [5.1 swarm](swarm/intro.html)
   - [5.2 swarmkit](swarm/swarmkit-intro.html)
-  [六、LinuxKit](linuxkit/)
+- [六、LinuxKit](linuxkit/)
 - 七、关联项目
   - [6.1 Etcd](etcd/)
   - [6.2 Fig](fig/)
