@@ -92,7 +92,9 @@ EOF
 ### flannel
 
 ```sh
-kubectl apply -f https://gist.githubusercontent.com/feiskyer/1e7a95f27c391a35af47881eb20131d7/raw/4266f05355590fa185bc8e50c0f50d2841993d20/flannel.yaml
+#kubectl apply -f https://gist.githubusercontent.com/feiskyer/1e7a95f27c391a35af47881eb20131d7/raw/4266f05355590fa185bc8e50c0f50d2841993d20/flannel.yaml
+kubectl create -f https://github.com/coreos/flannel/raw/master/Documentation/kube-flannel-rbac.yml
+kubectl create -f https://github.com/coreos/flannel/raw/master/Documentation/kube-flannel.yml
 ```
 
 ### weave

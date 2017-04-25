@@ -21,9 +21,6 @@ _Docker笔记_
   - [1.11 Stack管理](stack/)
   - [1.12 插件管理](plugin/)
   - [1.13 系统管理](system/)
-  - Docker版本记录
-    - [docker v1.12](1.12.html)
-    - [docker v1.13](1.13.html)
 - 二、Docker进阶
   - [2.1 底层实现](underly/)
   - [2.2 高级网络配置](advanced_network/)
@@ -35,16 +32,22 @@ _Docker笔记_
 - [五、Docker Swarm](swarm/)
   - [5.1 swarm](swarm/intro.html)
   - [5.2 swarmkit](swarm/swarmkit-intro.html)
-- 六、关联项目
+  [六、LinuxKit](linuxkit/)
+- 七、关联项目
   - [6.1 Etcd](etcd/)
   - [6.2 Fig](fig/)
   - [6.3 CoreOS](coreos/)
   - [6.4 Kubernetes](kubernetes/)
   - [6.5 Mesos](mesos/)
-- 七、附录
+- 八、附录
   - [附录一：命令查询](appendix_command/)
   - [附录二：常见仓库介绍](appendix_repo/)
   - [附录三：有用的资源](appendix_resources/)
+  - 附录四：Docker版本记录
+    - [docker v1.12](1.12.html)
+    - [docker v1.13](1.13.html)
+    - [docker CE/EE](17.04.html)
+    - [Moby](moby.html)
 
 ----
-备注: _基于[yeasy/docker_practice](https://github.com/yeasy/docker_practice.git)修改。_
+备注: _基于[yeasy/docker_practice](https://github.com/yeasy/docker_practice)修改。_

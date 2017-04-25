@@ -46,7 +46,7 @@ Kubernetes发展非常迅速，已经成为容器编排领域的领导者。
     - Kube DNS
     - hyperkube
     - Federation
-    - [kubeadm](deploy/kubeadm.html)
+    - [kubeadm](architecture/kubeadm.html)
 - [3. 插件指南](plugins/)
   - [3.1 认证和授权插件](plugins/auth.html)
   - [3.2 网络插件](plugins/network.html)

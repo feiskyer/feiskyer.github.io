@@ -44,6 +44,24 @@ kube-controller-manager --master=127.0.0.1:8080 --cluster-cidr=10.245.0.0/16 --a
 
 把[kube-scheduler.yaml](https://kubernetes.io/docs/admin/high-availability/kube-scheduler.yaml)和[kube-controller-manager.yaml](https://kubernetes.io/docs/admin/high-availability/kube-controller-manager.yaml)(非GCE平台需要适当修改) 放到每台master节点的`/etc/kubernetes/manifests/`即可。
 
+## kube-dns
+
+kube-dns可以通过Deployment的方式来部署，默认kubeadm会自动创建。但在大规模集群的时候，需要放宽资源限制，比如
+
+```
+dns_replicas: 6
+dns_cpu_limit: 100m
+dns_memory_limit: 512Mi
+dns_cpu_requests 70m
+dns_memory_requests: 70Mi
+```
+
+另外，也需要给dnsmasq增加资源，比如增加缓存大小到10000，增加并发处理数量`--dns-forward-max=1000`等。
+
+## kube-proxy
+
+默认kube-proxy使用iptables来为Service作负载均衡，这在大规模时会产生很大的Latency，可以考虑使用[IPVS](https://docs.google.com/presentation/d/1BaIAywY2qqeHtyGZtlyAp89JIZs59MZLKcFLxKE6LyM/edit#slide=id.p3)的替代方式（注意Kubernetes v1.6还不支持IPVS模式）。
+
 ## 数据持久化
 
 除了上面提到的这些配置，持久化存储也是高可用Kubernetes集群所必须的。
@@ -56,4 +74,5 @@ kube-controller-manager --master=127.0.0.1:8080 --cluster-cidr=10.245.0.0/16 --a
 - https://kubernetes.io/docs/admin/high-availability/
 - http://kubecloud.io/setup-ha-k8s-kops/
 - https://github.com/coreos/etcd/blob/master/Documentation/op-guide/clustering.md
-
+- [Kubernetes Master Tier For 1000 Nodes Scale](http://fuel-ccp.readthedocs.io/en/latest/design/k8s_1000_nodes_architecture.html)
+- [Scaling Kubernetes to Support 50000 Services](https://docs.google.com/presentation/d/1BaIAywY2qqeHtyGZtlyAp89JIZs59MZLKcFLxKE6LyM/edit#slide=id.p3)
