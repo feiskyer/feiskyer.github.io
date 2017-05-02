@@ -73,6 +73,12 @@ go run hack/e2e.go -v -test --test_args='--ginkgo.focus=Port\sforwarding'
 go run hack/e2e.go -v -test --test_args='--ginkgo.focus=Feature:SecurityContext'
 ```
 
+go test with ginkgo focus
+
+```
+go test -v -ginkgo.focus='Test streaming in container'
+```
+
 ## Running node e2e locally
 
 ```sh

@@ -7,6 +7,7 @@ layout: "post"
 
 Moby将原来的Docker组件化，拆分为更细的各个组件，并提供一个组合在一起的方式（即Docker CE的构建）。这样，如果大家再不满意Docker CLI，那也可以用这些组件去创建自己的版本，而这比之前的Docker fork有一个明显的好处：大部分组件大家都可以共享，这有利于开源项目的进展。并且，Docker也正打算把Moby贡献给CNCF。
 
+![](images/moby.jpg)
 
 ![](images/moby1.png)
 
@@ -19,3 +20,4 @@ Moby将原来的Docker组件化，拆分为更细的各个组件，并提供一�
 - <https://mobyproject.org>
 - <https://www.zhihu.com/question/58805021>
 - <https://news.ycombinator.com/item?id=14156954>
+
