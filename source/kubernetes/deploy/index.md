@@ -8,4 +8,6 @@ layout: "post"
 - [集群部署](cluster.html)
   - [kubeadm](kubeadm.html)
   - [frakti](frakti/index.html)
+  - [证书生成示例](certificate.html)
+
 

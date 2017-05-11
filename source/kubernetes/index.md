@@ -57,11 +57,12 @@ Kubernetes发展非常迅速，已经成为容器编排领域的领导者。
   - 3.7 Cloud Provider
   - 3.8 Scheduler
   - [3.9 其他](plugins/other.html)
-- [4. 常用技巧](deploy/)
-  - [4.1 部署](deploy/)
+- [4. 常用技巧](deploy)
+  - [4.1 部署](deploy)
     - [单机部署](deploy/single.html)
     - [集群部署](deploy/cluster.html)
     - [kubeadm](deploy/kubeadm.html)
+    - [附加组件](addons)
   - [4.2 监控](monitor/)
   - [4.3 日志](deploy/logging.html)
   - [4.4 高可用](ha/)

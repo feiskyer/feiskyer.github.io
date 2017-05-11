@@ -21,7 +21,8 @@ layout: "post"
     - 2.3 阿里云 - [阿里云RDS](aliyun-rds.html), PetaData, OceanBase
     - 2.4 [TiDB](TiDB.html)
     - 2.5 [CockroachDB](CockroachDB.html)
-    - 2.6 Cassandra, MongoDB, HBase
+    - 2.6 [Azure Cosmos DB](https://docs.microsoft.com/en-us/azure/cosmos-db/introduction)
+    - 2.7 Cassandra, MongoDB, HBase
 - 三、分布式通信系统
     - 3.1 消息队列
     - 3.2 [ZooKeeper](zookeeper.html)

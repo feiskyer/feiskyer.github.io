@@ -5,8 +5,6 @@ layout: "post"
 
 # Cluster deploying of frakti
 
-Updated: 3/21/2017
-
 - [Cluster deploying of frakti](#cluster-deploying-of-frakti)
   - [Overview](#overview)
   - [Install packages](#install-packages)

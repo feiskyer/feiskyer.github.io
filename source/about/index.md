@@ -4,9 +4,9 @@ date: 2016-02-17 19:05:11
 comments: false
 ---
 
-Hi，我是倪朋飞，工作在云计算领域，熟悉OpenStack、Docker、Kubernetes等，Kubernetes Collaborator。
+Hi，我是倪朋飞，工作在云计算领域，熟悉OpenStack、Docker、Kubernetes等，Kubernetes Feature Maintainer。
 
-目前在HyperHQ负责[Hypernetes](https://github.com/hyperhq/hypernetes)项目<https://github.com/hyperhq/hypernetes>。
+目前在HyperHQ负责[Hypernetes](https://github.com/hyperhq/hypernetes)项目<https://github.com/hyperhq/hypernetes>和Kubernetes社区。
 
 技能简介
 
