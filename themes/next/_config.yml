@@ -37,7 +37,7 @@ menu:
   sdn: /sdn/index.html
   pages: /pages
   dis: /distributed
-  k8s: /kubernetes
+  k8s: https://feisky.gitbooks.io/kubernetes
   archives: /archives
   tags: /tags
   about: /about
