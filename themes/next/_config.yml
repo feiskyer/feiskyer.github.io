@@ -34,7 +34,7 @@ menu:
   container: /container
   cloud: /cloud
   ml: /machine-learning
-  sdn: /sdn/index.html
+  sdn: https://feisky.gitbooks.io/sdn
   pages: /pages
   dis: /distributed
   k8s: https://feisky.gitbooks.io/kubernetes
