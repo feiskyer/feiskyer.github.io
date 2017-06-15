@@ -17,12 +17,13 @@ menu:
   commonweal: 公益404
   pages: 读书笔记
   ml: 机器学习
-  sdn: SDN网络
-  k8s: Kubernetes
+  sdn: SDN网络指南
+  k8s: Kubernetes指南
   cloud: 云计算
   dis: 分布式系统
   container: 容器
   sre: SRE
+  news: News
 
 
 sidebar:
