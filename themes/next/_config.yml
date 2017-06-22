@@ -38,6 +38,7 @@ menu:
   sdn: https://feisky.gitbooks.io/sdn
   pages: /pages
   dis: /distributed
+  tensorflow: https://tensorflow.feisky.xyz
   k8s: https://feisky.gitbooks.io/kubernetes
   archives: /archives
   tags: /tags
@@ -66,6 +67,7 @@ menu_icons:
   news: newspaper-o
   cloud: cloud
   ml: suitcase
+  tensorflow: suitcase
   sdn: firefox
   sre: linux
   archives: archive
