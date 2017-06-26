@@ -32,7 +32,7 @@ menu:
   categories: /categories
   sre: /SRE
   container: /container
-  news: http://news.feisky.xyz
+  news: /news
   cloud: /cloud
   ml: /machine-learning
   sdn: https://feisky.gitbooks.io/sdn
