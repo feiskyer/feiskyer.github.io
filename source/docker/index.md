@@ -34,11 +34,12 @@ _Docker笔记_
   - [5.2 swarmkit](swarm/swarmkit-intro.html)
 - [六、LinuxKit](linuxkit/)
 - 七、关联项目
-  - [6.1 Etcd](etcd/)
-  - [6.2 Fig](fig/)
-  - [6.3 CoreOS](coreos/)
-  - [6.4 Kubernetes](kubernetes/)
-  - [6.5 Mesos](mesos/)
+  - [Moby](moby.html)
+  - [Etcd](etcd/)
+  - [Fig](fig/)
+  - [CoreOS](coreos/)
+  - [Kubernetes](kubernetes/)
+  - [Mesos](mesos/)
 - 八、附录
   - [附录一：命令查询](appendix_command/)
   - [附录二：常见仓库介绍](appendix_repo/)
@@ -47,7 +48,7 @@ _Docker笔记_
     - [docker v1.12](1.12.html)
     - [docker v1.13](1.13.html)
     - [docker CE/EE](17.04.html)
-    - [Moby](moby.html)
+
 
 ----
 备注: _基于[yeasy/docker_practice](https://github.com/yeasy/docker_practice)修改。_

@@ -1,6 +1,7 @@
 ---
 title: about
 date: 2016-02-17 19:05:11
+layout: "post"
 comments: false
 ---
 
@@ -11,6 +12,7 @@ Hi，我是倪朋飞，工作在云计算领域，HyperHQ成员，[Hypernetes](h
 - 微信
 
   ![](wechat.png)
+
 
 - 微博：@[feisky](https://weibo.com/371069890)
 - Twitter：@[feisky](https://twitter.com/feisky)
