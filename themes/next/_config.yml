@@ -32,7 +32,6 @@ menu:
   categories: /categories
   sre: /SRE
   container: /container
-  news: /news
   cloud: /cloud
   ml: /machine-learning
   sdn: https://feisky.gitbooks.io/sdn
@@ -64,7 +63,6 @@ menu_icons:
   k8s: cube
   dis: database
   container: cubes
-  news: newspaper-o
   cloud: cloud
   ml: suitcase
   tensorflow: suitcase
