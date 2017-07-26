@@ -12,8 +12,6 @@ layout: "post"
 * [Kubernetes开发环境指南](http://feisky.xyz/kubernetes-dev/)
 * [CRI-O](/container/cri-o.html)
 * [Serverless](/2016/02/26/Notes-about-serverless/)
-* [docker实现原理](docker-internal.html)
-* [docker指南](/container/docker/)
 * [容器编排系统对比](http://calcotestudios.com/ccco)
 * [容器网络方案对比](https://leecalcote.github.io/ccco/overlay-underlay-betting-on-container-networking.html)
 * [Docker 1.12](http://dockerconrecap-leecalcote.rhcloud.com/#/)

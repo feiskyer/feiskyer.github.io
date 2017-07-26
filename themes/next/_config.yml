@@ -30,10 +30,8 @@ canonical: true
 menu:
   home: /
   categories: /categories
-  sre: /SRE
   container: /container
   cloud: /cloud
-  ml: /machine-learning
   sdn: https://feisky.gitbooks.io/sdn
   pages: /pages
   dis: /distributed
@@ -64,10 +62,10 @@ menu_icons:
   dis: database
   container: cubes
   cloud: cloud
-  ml: suitcase
+  #ml: suitcase
   tensorflow: suitcase
   sdn: firefox
-  sre: linux
+  #sre: linux
   archives: archive
   commonweal: heartbeat
 
