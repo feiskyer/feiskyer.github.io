@@ -14,16 +14,15 @@ menu:
   tags: 标签
   about: 关于
   search: 搜索
-  commonweal: 公益404
   pages: 读书笔记
-  #ml: 机器学习
   tensorflow: Tensorflow
   sdn: SDN网络指南
   k8s: Kubernetes指南
   cloud: 云计算
   dis: 分布式系统
   container: 容器
-  #sre: SRE
+  sitemap: 站点地图
+  commonweal: 公益404
 
 
 sidebar:
@@ -31,13 +30,24 @@ sidebar:
   toc: 文章目录
 
 post:
+  created: 创建于
+  modified: 更新于
   sticky: 置顶
   posted: 发表于
   in: 分类于
   visitors: 阅读次数
   read_more: 阅读全文
   untitled: 未命名
+  wordcount: 字数统计
+  min2read: 阅读时长
+  totalcount: Site words total count
   toc_empty: 此文章未包含目录
+  copyright:
+    author: 本文作者
+    link: 本文链接
+    license_title: 版权声明
+    license_content: '本博客所有文章除特别声明外，均采用
+      <a href="%s" rel="external nofollow" target="_blank">%s</a> 许可协议。转载请注明出处！'
 
 page:
   totally: 共有
@@ -78,8 +88,13 @@ cheers:
   great: 非常好
   excellent: 太棒了
 
+search:
+  placeholder: 搜索...
+
 keep_on: 继续努力。
 
 symbol:
   comma: '， '
   period: '。 '
+  colon: '：'
+

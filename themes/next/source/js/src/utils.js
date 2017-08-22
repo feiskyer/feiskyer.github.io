@@ -5,24 +5,29 @@ NexT.utils = NexT.$u = {
    * Wrap images with fancybox support.
    */
   wrapImageWithFancyBox: function () {
-    $('.content img').not('.group-picture img').each(function () {
+    $('.content img')
+      .not('[hidden]')
+      .not('.group-picture img, .post-gallery img')
+      .each(function () {
+        var $image = $(this);
+        var imageTitle = $image.attr('title');
+        var $imageWrapLink = $image.parent('a');
 
-      var $image = $(this);
-      var imageTitle = $image.attr('title');
-      var $imageWrapLink = $image.parent('a');
+        if ($imageWrapLink.size() < 1) {
+	        var imageLink = ($image.attr('data-original')) ? this.getAttribute('data-original') : this.getAttribute('src');
+          $imageWrapLink = $image.wrap('<a href="' + imageLink + '"></a>').parent('a');
+        }
 
-      if ($imageWrapLink.size() < 1) {
-        $imageWrapLink = $image.wrap('<a href="' + this.getAttribute('src') + '"></a>').parent('a');
-      }
+        $imageWrapLink.addClass('fancybox fancybox.image');
+        $imageWrapLink.attr('rel', 'group');
 
-      $imageWrapLink.addClass('fancybox');
-      $imageWrapLink.attr('rel', 'group');
+        if (imageTitle) {
+          $imageWrapLink.append('<p class="image-caption">' + imageTitle + '</p>');
 
-      if (imageTitle) {
-        $imageWrapLink.append('<p class="image-caption">' + imageTitle + '</p>');
-        $imageWrapLink.attr('title', imageTitle); //make sure img title tag will show correctly in fancybox
-      }
-    });
+          //make sure img title tag will show correctly in fancybox
+          $imageWrapLink.attr('title', imageTitle);
+        }
+      });
 
     $('.fancybox').fancybox({
       helpers: {
@@ -35,8 +40,57 @@ NexT.utils = NexT.$u = {
 
   lazyLoadPostsImages: function () {
     $('#posts').find('img').lazyload({
-      placeholder: '/images/loading.gif',
-      effect: 'fadeIn'
+      //placeholder: '/images/loading.gif',
+      effect: 'fadeIn',
+      threshold : 0
+    });
+  },
+
+  /**
+   * Tabs tag listener (without twitter bootstrap).
+   */
+  registerTabsTag: function () {
+    var tNav = '.tabs ul.nav-tabs ';
+
+    // Binding `nav-tabs` & `tab-content` by real time permalink changing.
+    $(function() {
+      $(window).bind('hashchange', function() {
+        var tHash = location.hash;
+        if (tHash !== '') {
+          $(tNav + 'li:has(a[href="' + tHash + '"])').addClass('active').siblings().removeClass('active');
+          $(tHash).addClass('active').siblings().removeClass('active');
+        }
+      }).trigger('hashchange');
+    });
+
+    $(tNav + '.tab').on('click', function (href) {
+      href.preventDefault();
+      // Prevent selected tab to select again.
+      if(!$(this).hasClass('active')){
+
+        // Add & Remove active class on `nav-tabs` & `tab-content`.
+        $(this).addClass('active').siblings().removeClass('active');
+        var tActive = $(this).find('a').attr('href');
+        $(tActive).addClass('active').siblings().removeClass('active');
+
+        // Clear location hash in browser if #permalink exists.
+        if (location.hash !== '') {
+          history.pushState('', document.title, window.location.pathname + window.location.search);
+        }
+      }
+    });
+
+  },
+
+  registerESCKeyEvent: function () {
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        $('.search-popup').hide();
+        $('.search-popup-overlay').remove();
+        $('body').css('overflow', '');
+      }
     });
   },
 
@@ -46,6 +100,15 @@ NexT.utils = NexT.$u = {
 
     $(window).on('scroll', function () {
       $top.toggleClass('back-to-top-on', window.pageYOffset > THRESHOLD);
+
+      var scrollTop = $(window).scrollTop();
+      var docHeight = $('#content').height();
+      var winHeight = $(window).height();
+      var contentMath = (docHeight > winHeight) ? (docHeight - winHeight) : ($(document).height() - winHeight);
+      var scrollPercent = (scrollTop) / (contentMath);
+      var scrollPercentRounded = Math.round(scrollPercent*100);
+      var scrollPercentMaxed = (scrollPercentRounded > 100) ? 100 : scrollPercentRounded;
+      $('#scrollpercent>span').html(scrollPercentMaxed);
     });
 
     $top.on('click', function () {
@@ -99,6 +162,8 @@ NexT.utils = NexT.$u = {
         wrap.style.marginBottom = '20px';
         wrap.style.width = '100%';
         wrap.style.paddingTop = videoRatio + '%';
+        // Fix for appear inside tabs tag.
+        (wrap.style.paddingTop === '') && (wrap.style.paddingTop = '50%');
 
         // Add the iframe inside our newly created <div>
         var iframeParent = iframe.parentNode;
@@ -138,7 +203,7 @@ NexT.utils = NexT.$u = {
   addActiveClassToMenuItem: function () {
     var path = window.location.pathname;
     path = path === '/' ? path : path.substring(0, path.length - 1);
-    $('.menu-item a[href="' + path + '"]').parent().addClass('menu-item-active');
+    $('.menu-item a[href^="' + path + '"]:first').parent().addClass('menu-item-active');
   },
 
   hasMobileUA: function () {
@@ -172,7 +237,7 @@ NexT.utils = NexT.$u = {
   },
 
   displaySidebar: function () {
-    if (!this.isDesktop() || this.isPisces()) {
+    if (!this.isDesktop() || this.isPisces() || this.isGemini()) {
       return;
     }
     $('.sidebar-toggle').trigger('click');
@@ -184,6 +249,10 @@ NexT.utils = NexT.$u = {
 
   isPisces: function () {
     return CONFIG.scheme === 'Pisces';
+  },
+
+  isGemini: function () {
+    return CONFIG.scheme === 'Gemini';
   },
 
   getScrollbarWidth: function () {
@@ -202,6 +271,6 @@ NexT.utils = NexT.$u = {
    * @returns {Boolean}
    */
   needAffix: function () {
-    return this.isPisces();
+    return this.isPisces() || this.isGemini();
   }
 };

@@ -16,6 +16,10 @@ rss:
 # Specify the date when the site was setup
 #since: 2015
 
+authoricon: heart
+copyright: true
+seo: true
+
 # Canonical, set a canonical link tag in your hexo, you could use it for your SEO of blog.
 # See: https://support.google.com/webmasters/answer/139066
 # Tips: Before you open this tag, remeber set up your URL in hexo _config.yml ( ex. url: http://yourdomain.com )
@@ -40,7 +44,6 @@ menu:
   archives: /archives
   tags: /tags
   about: /about
-  #schedule: /schedule
   commonweal: /404.html
 
 
@@ -62,10 +65,8 @@ menu_icons:
   dis: database
   container: cubes
   cloud: cloud
-  #ml: suitcase
   tensorflow: suitcase
   sdn: firefox
-  #sre: linux
   archives: archive
   commonweal: heartbeat
 
@@ -155,6 +156,7 @@ social_icons:
   GitHub: github
   Twitter: twitter
   Weibo: weibo
+  Zhihu: zhihu
 
 
 # Sidebar Avatar
@@ -187,11 +189,24 @@ sidebar:
   #  - post    expand on posts automatically. Default.
   #  - always  expand for all pages automatically
   #  - hide    expand only when click on the sidebar toggle icon.
-  #  - remove  Totally remove sidebar including sidebar toggler.
-  #display: post
+  #  - remove  Totally remove sidebar including sidebar toggle.
   display: always
+  #display: always
   #display: hide
   #display: remove
+
+  # Sidebar offset from top menubar in pixels.
+  offset: 12
+  offset_float: 12
+
+  # Back to top in sidebar
+  b2t: false
+
+  # Scroll percent label in b2t button
+  scrollpercent: false
+  
+  # Enable sidebar on narrow view
+  onmobile: false
 
 
 # Blogrolls
@@ -240,18 +255,20 @@ wechat_subscriber:
   qcode: /images/qrcode.jpg
   description: 微信公众号订阅
 
-
+post_copyright:
+  enable: true
+  license: CC BY-NC-SA 4.0
+  license_url: https://creativecommons.org/licenses/by-nc-sa/4.0/
 
 
 # ---------------------------------------------------------------
 # Third Party Services Settings
 # ---------------------------------------------------------------
-
 # MathJax Support
 mathjax:
   enable: true
-  cdn: //cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
-
+  per_page: false
+  cdn: //cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML
 
 # Swiftype Search API Key
 #swiftype_key:
@@ -264,6 +281,11 @@ mathjax:
 
 # Disqus
 disqus_shortname: feisky
+
+disqus:
+  enable: true
+  shortname: feisky
+  count: true
 
 # Baidu Share
 # Available value:
@@ -369,11 +391,49 @@ calendar:
   singleEvents: true
   maxResults: 250
 
+# Algolia Search
+algolia_search:
+  enable: false
+  hits:
+    per_page: 10
+  labels:
+    input_placeholder: Search for Posts
+    hits_empty: "We didn't find any results for the search: ${query}"
+    hits_stats: "${hits} results found in ${time} ms"
 
-#! ---------------------------------------------------------------
-#! DO NOT EDIT THE FOLLOWING SETTINGS
-#! UNLESS YOU KNOW WHAT YOU ARE DOING
-#! ---------------------------------------------------------------
+# Local search
+# Dependencies: https://github.com/flashlab/hexo-generator-search
+local_search:
+  enable: true
+  # if auto, trigger search by changing input
+  # if manual, trigger search by pressing enter key or search button
+  trigger: auto
+  # show top n results per article, show all results by setting to -1
+  top_n_per_article: 1
+
+note:
+  # Note tag style values:
+  #  - simple    bs-callout old alert style. Default.
+  #  - modern    bs-callout new (v2-v3) alert style.
+  #  - flat      flat callout style with background, like on Mozilla or StackOverflow.
+  #  - disabled  disable all CSS styles import of note tag.
+  style: simple
+  icons: false
+  border_radius: 3
+  # Offset lighter of background in % for modern and flat styles (modern: -12 | 12; flat: -18 | 6).
+  # Offset also applied to label tag variables. This option can work with disabled note tag.
+  light_bg_offset: 0
+
+# Label tag.
+label: true
+
+# Tabs tag.
+tabs:
+  enable: true
+  transition:
+    tabs: false
+    labels: true
+  border_radius: 0
 
 # Motion
 use_motion: true
@@ -381,6 +441,41 @@ use_motion: true
 # Fancybox
 fancybox: true
 
+# Progress bar in the top during page loading.
+pace: false
+# Themes list:
+#pace-theme-big-counter
+#pace-theme-bounce
+#pace-theme-barber-shop
+#pace-theme-center-atom
+#pace-theme-center-circle
+#pace-theme-center-radar
+#pace-theme-center-simple
+#pace-theme-corner-indicator
+#pace-theme-fill-left
+#pace-theme-flash
+#pace-theme-loading-bar
+#pace-theme-mac-osx
+#pace-theme-minimal
+# For example
+# pace_theme: pace-theme-center-simple
+pace_theme: pace-theme-minimal
+
+# Canvas-nest
+canvas_nest: false
+
+# three_waves
+three_waves: false
+
+# canvas_lines
+canvas_lines: false
+
+# canvas_sphere
+canvas_sphere: false
+
+# Only fit scheme Pisces
+# Canvas-ribbon
+canvas_ribbon: false
 
 # Script Vendors.
 # Set a CDN address for the vendor you want to customize.
@@ -420,9 +515,49 @@ vendors:
   # See: https://faisalman.github.io/ua-parser-js/
   ua_parser:
 
-  # Internal version: 4.4.0
+  # Internal version: 4.6.2
   # See: http://fontawesome.io/
   fontawesome:
+
+  # Internal version: 1
+  # https://www.algolia.com
+  algolia_instant_js:
+  algolia_instant_css:
+
+  # Internal version: 1.0.2
+  # See: https://github.com/HubSpot/pace
+  # Or use direct links below:
+  # pace: //cdn.bootcss.com/pace/1.0.2/pace.min.js
+  # pace_css: //cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css
+  pace:
+  pace_css:
+
+  # Internal version: 1.0.0
+  # https://github.com/hustcc/canvas-nest.js
+  canvas_nest:
+
+  # three
+  three:
+
+  # three_waves
+  # https://github.com/jjandxa/three_waves
+  three_waves:
+
+  # three_waves
+  # https://github.com/jjandxa/canvas_lines
+  canvas_lines:
+
+  # three_waves
+  # https://github.com/jjandxa/canvas_sphere
+  canvas_sphere:
+
+  # Internal version: 1.0.0
+  # https://github.com/zproo/canvas-ribbon
+  canvas_ribbon:
+
+  # Internal version: 3.3.0
+  # https://github.com/ethantw/Han
+  han:
 
 
 # Assets
@@ -431,4 +566,4 @@ js: js
 images: images
 
 # Theme version
-version: 5.0.2
+version: 5.1.2

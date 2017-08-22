@@ -71,6 +71,7 @@ social:
   Github: https://github.com/feiskyer
   Twitter: https://twitter.com/feisky
   Weibo: http://weibo.com/371069890
+  Zhihu: https://www.zhihu.com/people/feisky
 
 deploy:
   type: git
