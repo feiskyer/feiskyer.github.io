@@ -1,6 +1,7 @@
 ---
 title: Go语言技巧
 date: 2016-09-18 14:20:54
+layout: "post"
 ---
 
 # Go语言技巧
