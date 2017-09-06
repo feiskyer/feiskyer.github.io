@@ -1,6 +1,7 @@
 ---
 title: SELinux
 date: 2016-10-21 16:41:20
+layout: "post"
 ---
 
 SELinux (Security-Enhanced Linux) 是一种强制访问控制（mandatory access control）的实现。它的作法是以最小权限原则（principle of least privilege）为基础，在Linux核心中使用Linux安全模块（Linux Security Modules）。SELinux主要由美国国家安全局开发，并于2000年12月22日发行给开放源代码的开发社区。

@@ -1,16 +1,25 @@
 ---
-title: Serverless框架
+title: Serverless开源框架
 layout: "post"
 ---
 
+常见的Serverless开源框架简介。
 
-## 基于Kubernetes的Framework
+## 基于Kuberetes的Serverless框架
 
 - [Fission](https://github.com/platform9/fission)
 - [Funktion](https://github.com/fabric8io/funktion): 通过fabric8-maven-plugin生成镜像和Manifests，同时兼容Kubernetes和Openshift
 - [Kubeless](https://github.com/skippbox/kubeless): 基于ThirdPartyResource和Kafka，目前是POC阶段
 
-## Serverless Frameworks
+## IBM OpenWhisk
+
+OpenWhisk是IBM发布的开源事件驱动计算平台，剑指AWS Lambda，其代码开源在Github上<https://github.com/openwhisk/openwhisk>。
+
+![arch](OpenWhisk.png)
+
+![flow](OpenWhisk_flow.png)
+
+## 其他Serverless框架
 
 * [Serverless Framework](http://www.serverless.com) - Build and maintain web, mobile and IoT applications running on AWS Lambda and API Gateway (formerly known as JAWS).
 * [Apex](http://apex.run) - Minimal AWS Lambda function manager with Go support.
@@ -30,6 +39,4 @@ layout: "post"
 * [lambdoku](https://github.com/kubek2k/lambdoku) - Heroku-like experience when using AWS Lambda
 * [IronFunctions](https://github.com/iron-io/functions) - The Serverless Microservices platform
 * [PyWren](https://github.com/ericmjonas/pywren) - provides the ability to parse out Python-based scientific workloads across many different Lambda services
-
-
 

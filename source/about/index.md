@@ -10,7 +10,7 @@ Hi，我是倪朋飞，工作在云计算领域，HyperHQ成员，[Hypernetes](h
 ## 社交网络
 
 ![](wechat.png)
-
+<center>扫一扫加我微信</center>
 
 - 微博：@[feisky](https://weibo.com/371069890)
 - Twitter：@[feisky](https://twitter.com/feisky)

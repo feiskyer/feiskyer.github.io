@@ -12,6 +12,20 @@ Serverless，即无服务器架构，将大家从服务器中解放了出来，�
 
 ![](/images/14872486572549.png)
 
+## [Serverless平台](platform.html)
+
+见[这里](platform.html)。
+
+## [Serverless适用场景](usecase.html)
+
+见[这里](usecase.html)。
+
+## [Serverless开源框架](framework.html)
+
+见[这里](framework.html)。
+
+## Serverless优点
+
 引入serverless可以给应用开发者带来明显的好处
 
 * 用户无需配置和管理服务器
@@ -21,11 +35,7 @@ Serverless，即无服务器架构，将大家从服务器中解放了出来，�
 * 事件触发，比如http请求触发、文件更新触发、时间触发、消息触发等
 * 低成本，比如AWS Lambda按执行时间和触发次数收费，在代码未运行时无需付费
 
-serverless目录
-
-* [Serverless平台](platform.html)
-* [Serverless适用场景](usecase.html)
-* [Serverless框架](framework.html)
+## Serverless的缺点
 
 当然，serverless也并非银弹，也有其特有的局限性
 
@@ -34,13 +44,11 @@ serverless目录
 * 启动延迟，特别是应用不活跃或者突发流量的情况下延迟尤为明显
 * 平台依赖，比如服务发现、监控、调试、API Gateway等都依赖于serverless平台提供的功能
 
-**serverless资源**
+## serverless资源
 
 * [Awesome Serverless](https://github.com/anaibol/awesome-serverless)
 * [AWS Lambda](http://docs.aws.amazon.com/lambda/latest/dg/welcome.html)
 * [Serverless Architectures](https://martinfowler.com/articles/serverless.html)
 * [TNS Guide to Serverless Technologies](http://thenewstack.io/tns-guide-serverless-technologies-best-frameworks-platforms-tools/)
 * [Serverless blogs and posts](https://github.com/JustServerless/awesome-serverless)
-
-
 
