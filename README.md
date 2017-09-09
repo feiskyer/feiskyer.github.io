@@ -1,7 +1,6 @@
-
 基于[Hexo](https://hexo.io/zh-cn/docs/)的个人博客<http://feisky.xyz/>。
 
-### hexo基本命令
+## hexo使用方法
 
 创建博客
 

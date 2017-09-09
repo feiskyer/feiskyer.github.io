@@ -14,6 +14,7 @@ git clone -b master https://${GitHubKEY}@github.com/feiskyer/feiskyer.github.io.
 cd .deploy_git
 rm -rf ./*
 cp -r ../public/* .
+cp ../README.md .
 cat >Gemfile <<EOF
 source 'https://rubygems.org'
 
