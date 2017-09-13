@@ -4,7 +4,7 @@ date: 2016-09-18 14:20:54
 layout: "post"
 ---
 
-*一些读书笔记和非常有趣的文章*
+*一些读书笔记和有趣的文章*
 
 ## 容器的世界
 
@@ -16,6 +16,8 @@ layout: "post"
 * [容器网络方案对比](https://leecalcote.github.io/ccco/overlay-underlay-betting-on-container-networking.html)
 * [Docker 1.12](http://dockerconrecap-leecalcote.rhcloud.com/#/)
 * [SELinux](/container/selinux/)
+* [京东容器建设之路](jd-container.html)
+* [Network namespace](networking-namespace.html)
 
 ## 虚拟化
 
@@ -43,5 +45,8 @@ layout: "post"
 - [RNN](http://feisky.xyz/machine-learning/rnn/)
 - [Tensorflow](http://feisky.xyz/machine-learning/tensorflow/)
 
-## [其他](other.html)
+## 其他
+
+- [Amazon Leadership Principles](amazon-leadership.html)
+- [架构即未来](架构即未来.html)
 
