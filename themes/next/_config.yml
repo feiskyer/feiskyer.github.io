@@ -155,8 +155,8 @@ social_icons:
   # KeyMapsToSocalItemKey: NameOfTheIconFromFontAwesome
   GitHub: github
   Twitter: twitter
-  Weibo: weibo
-  Zhihu: zhihu
+  微博: weibo
+  知乎: zhihu
 
 
 # Sidebar Avatar
@@ -176,8 +176,7 @@ toc:
 # Creative Commons 4.0 International License.
 # http://creativecommons.org/
 # Available: by | by-nc | by-nc-nd | by-nc-sa | by-nd | by-sa | zero
-#creative_commons: by-nc-sa
-#creative_commons:
+creative_commons: by-nc-sa
 
 
 sidebar:
@@ -274,7 +273,7 @@ mathjax:
 #swiftype_key:
 
 # Baidu Analytics ID
-#baidu_analytics:
+baidu_analytics: d2f4aad4d3f8dc2de9170fa1df3fcbcf
 
 # Duoshuo ShortName
 #duoshuo_shortname:

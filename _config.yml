@@ -4,8 +4,8 @@
 
 # Site
 title: Feisky's Blog
-subtitle: Notes about anything.
-description: Notes about anything.
+subtitle: Notes about everything.
+description: Notes about everything.
 avatar: /images/qrcode.jpg
 author: Feisky
 language: zh-Hans
@@ -70,8 +70,8 @@ theme: next
 social:
   Github: https://github.com/feiskyer
   Twitter: https://twitter.com/feisky
-  Weibo: http://weibo.com/371069890
-  Zhihu: https://www.zhihu.com/people/feisky
+  微博: http://weibo.com/371069890
+  知乎: https://www.zhihu.com/people/feisky
 
 deploy:
   type: git

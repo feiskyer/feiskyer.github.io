@@ -3,9 +3,10 @@
   "version": "3.2.2",
   "private": true,
   "hexo": {
-    "version": "3.3.8"
+    "version": "3.3.9"
   },
   "dependencies": {
+    "dtrace-provider": "^0.8.5",
     "hexo": "^3.3.9",
     "hexo-cli": "^1.0.2",
     "hexo-deployer-git": "^0.1.0",
