@@ -1,4 +1,4 @@
-基于[Hexo](https://hexo.io/zh-cn/docs/)的个人博客<http://feisky.xyz/>。
+基于 [Hexo](https://hexo.io/zh-cn/docs/) 的个人博客 <https://feisky.xyz>。
 
 ## hexo使用方法
 
