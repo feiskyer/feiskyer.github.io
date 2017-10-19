@@ -2,7 +2,7 @@
 layout: post
 title: Docker CE/EE 原生支持Kubernetes
 date: 2017-10-17 17:18:31
-tags: [docker, liveblog]
+tags: docker
 ---
 
 在今年的 DockerCon EU (2017) 上，Solomon、Brendan、Hockin等联合[宣布](https://blog.docker.com/2017/10/kubernetes-docker-platform-and-moby-project/)Docker将原生支持Kubernetes，也就是说Kubernetes将和Swarm一样作为Docker平台的编排管理系统。这[包括Docker EE、Docker CE以及Docker for Mac/Windows等全平台](https://www.docker.com/kubernetes)的支持。
