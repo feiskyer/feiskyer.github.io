@@ -67,9 +67,9 @@ theme: next
 # Social links
 social:
   Github: https://github.com/feiskyer
-  Twitter: https://twitter.com/feisky
   微博: http://weibo.com/371069890
   知乎: https://www.zhihu.com/people/feisky
+  Twitter: https://twitter.com/feisky
 
 deploy:
   type: git

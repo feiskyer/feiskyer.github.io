@@ -142,9 +142,9 @@ font:
 # Value is the target link (E.g. GitHub: https://github.com/iissnan)
 social:
   Github: https://github.com/feiskyer
-  Twitter: https://twitter.com/feisky
   微博: http://weibo.com/371069890
   知乎: https://www.zhihu.com/people/feisky
+  Twitter: https://twitter.com/feisky
 
 
 # Social Links Icons
@@ -157,9 +157,9 @@ social_icons:
   # Icon Mappings.
   # KeyMapsToSocalItemKey: NameOfTheIconFromFontAwesome
   GitHub: github
-  Twitter: twitter
   微博: weibo
   知乎: quora
+  Twitter: twitter
 
 
 # Sidebar Avatar
