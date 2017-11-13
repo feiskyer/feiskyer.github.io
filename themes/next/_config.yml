@@ -41,6 +41,7 @@ menu:
   dis: /distributed
   tensorflow: https://tensorflow.feisky.xyz
   k8s: https://feisky.gitbooks.io/kubernetes
+  ml: /machine-learning
   archives: /archives
   tags: /tags
   about: /about
@@ -67,6 +68,7 @@ menu_icons:
   cloud: cloud
   tensorflow: suitcase
   sdn: firefox
+  ml: cab
   archives: archive
   commonweal: heartbeat
 
