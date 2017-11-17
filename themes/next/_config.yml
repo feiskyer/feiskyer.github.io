@@ -42,6 +42,7 @@ menu:
   tensorflow: https://tensorflow.feisky.xyz
   k8s: https://feisky.gitbooks.io/kubernetes
   ml: /machine-learning
+  zhihu: https://zhuanlan.zhihu.com/kubernetes
   archives: /archives
   tags: /tags
   about: /about
@@ -69,6 +70,7 @@ menu_icons:
   tensorflow: suitcase
   sdn: firefox
   ml: cab
+  zhihu: file
   archives: archive
   commonweal: heartbeat
 
