@@ -6,14 +6,6 @@ layout: "post"
 
 # Tips for kubernetes development
 
-## Dev in container
-
-```
-# There are some useful scripts in the images /hack/
-docker run -it feisky/kubernetes-dev bash
-```
-
-
 ## Setup development virtual machine
 
 ```sh
