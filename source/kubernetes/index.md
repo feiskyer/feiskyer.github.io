@@ -16,8 +16,6 @@ Kubernetes是谷歌开源的容器集群管理系统，是Google多年大规模�
 
 Kubernetes发展非常迅速，已经成为容器编排领域的领导者。Kubernetes的中文资料也非常丰富，但系统化和紧跟社区更新的则就比较少见了。《Kubernetes指南》开源电子书旨在整理平时在开发和使用Kubernetes时的参考指南和实践总结，形成一个系统化的参考指南以方便查阅。欢迎大家关注和添加完善内容。
 
-注：如无特殊说明，本指南所有文档仅适用于Kubernetes v1.6及以上版本。
-
 ## 在线阅读
 
 可以通过[GitBook](https://feisky.gitbooks.io/kubernetes)或者[Github](https://github.com/feiskyer/kubernetes-handbook/blob/master/SUMMARY.md)来在线阅读。
@@ -28,7 +26,6 @@ Kubernetes发展非常迅速，已经成为容器编排领域的领导者。Kube
 
 项目源码存放于Github上，[https://github.com/feiskyer/kubernetes-handbook](https://github.com/feiskyer/kubernetes-handbook)。
 
-## 贡献者
+## 排错指南
 
-欢迎参与维护项目，贡献方法参考[这里](https://github.com/feiskyer/kubernetes-handbook/blob/master/CONTRIBUTING.md)。感谢所有的贡献者，贡献者列表见[这里](https://github.com/feiskyer/kubernetes-handbook/graphs/contributors)。
-
+参见 [Troubleshooting Kubernetes](troubleshooting/)。
