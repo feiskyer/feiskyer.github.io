@@ -8,6 +8,13 @@ SELinux (Security-Enhanced Linux) 是一种强制访问控制（mandatory access
 
 可以通过`runcon`来为进程设置安全策略，`ls`和`ps`的`-Z`参数可以查看文件或进程的安全策略。
 
+## 安装 SELinux
+
+```sh
+apt install selinux
+reboot
+```
+
 ## 开启与关闭SELinux
 
 修改`/etc/selinux/config`文件方法：
@@ -49,6 +56,8 @@ drwxr-xr-x  root root user_u:object_r:httpd_sys_content_t    html
 ```
 
 ## Docker中的SELinux
+
+默认情况下，dockerd 启动时禁止了 selinux。如果要使用 SELinux，需要修改 dockerd 的启动命令，添加 `--selinux-enabled `。
 
 Docker可以通过`--security-opt label:xxxx`选项为容器设置SELinux，默认为`svirt_sandbox_file_t`；当然，也可以通过`--security-opt label:disable`来为某些容器禁止SELinux。
 
