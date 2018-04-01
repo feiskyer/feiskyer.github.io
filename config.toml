@@ -38,7 +38,7 @@ enableRobotsTXT = true
   postMetaInFooter = true
   linkToMarkDown = false
   contentCopyright = '<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a>'
-  baidu_push = true
+  baidu_push = false
   baidu_analytics = "d2f4aad4d3f8dc2de9170fa1df3fcbcf"
   baidu_verification = ""   # Baidu Verification
   google_verification = ""  # Google_Verification
@@ -64,11 +64,11 @@ enableRobotsTXT = true
   clientSecret = ""       # Your client secret
 
 [Params.flowchartDiagrams]# see https://blog.olowolo.com/example-site/post/js-flowchart-diagrams/
-  enable = true
+  enable = false
   options = ""
 
 [Params.sequenceDiagrams] # see https://blog.olowolo.com/example-site/post/js-sequence-diagrams/
-  enable = true
+  enable = false
   options = ""            # default: "{theme: 'simple'}"
 
 [Params.busuanzi]         # count web traffic by busuanzi
@@ -127,6 +127,6 @@ enableRobotsTXT = true
     url = "https://sdn.feisky.xyz"
 
 [[menu.main]]
-    name = "Kubernetes"
+    name = "Kubernetes指南"
     weight = -100
     url = "https://kubernetes.feisky.xyz"
