@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Docker CE/EE 原生支持Kubernetes - Feisky</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Feisky" />
+  <meta name="description" content="在今年的 DockerCon EU (2017) 上，Solomon、Brendan、Hockin等联合宣布Docker将原生支持Kubernetes，也就是说Kubernet" />
+
+  <meta name="keywords" content="Kubernetes, Cloud, SDN" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.37.1" />
+
+
+<link rel="canonical" href="https://feisky.xyz/post/2017-10-17-docker-ce-ee-%E5%8E%9F%E7%94%9F%E6%94%AF%E6%8C%81kubernetes/" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+<link href="/dist/even.min.css?v=3.1.1" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+
+
+<meta property="og:title" content="Docker CE/EE 原生支持Kubernetes" />
+<meta property="og:description" content="在今年的 DockerCon EU (2017) 上，Solomon、Brendan、Hockin等联合宣布Docker将原生支持Kubernetes，也就是说Kubernet" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://feisky.xyz/post/2017-10-17-docker-ce-ee-%E5%8E%9F%E7%94%9F%E6%94%AF%E6%8C%81kubernetes/" />
+
+
+
+<meta property="article:published_time" content="2017-10-17T17:18:31&#43;00:00"/>
+
+<meta property="article:modified_time" content="2017-10-17T17:18:31&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="Docker CE/EE 原生支持Kubernetes">
+<meta itemprop="description" content="在今年的 DockerCon EU (2017) 上，Solomon、Brendan、Hockin等联合宣布Docker将原生支持Kubernetes，也就是说Kubernet">
+
+
+<meta itemprop="datePublished" content="2017-10-17T17:18:31&#43;00:00" />
+<meta itemprop="dateModified" content="2017-10-17T17:18:31&#43;00:00" />
+<meta itemprop="wordCount" content="808">
+
+
+
+<meta itemprop="keywords" content="docker," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Docker CE/EE 原生支持Kubernetes"/>
+<meta name="twitter:description" content="在今年的 DockerCon EU (2017) 上，Solomon、Brendan、Hockin等联合宣布Docker将原生支持Kubernetes，也就是说Kubernet"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Feisky</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="https://kubernetes.feisky.xyz">
+        <li class="mobile-menu-item">Kubernetes</li>
+      </a><a href="https://sdn.feisky.xyz">
+        <li class="mobile-menu-item">SDN</li>
+      </a><a href="/distributed/">
+        <li class="mobile-menu-item">分布式系统</li>
+      </a><a href="/container/">
+        <li class="mobile-menu-item">容器</li>
+      </a><a href="/machine-learning/">
+        <li class="mobile-menu-item">机器学习</li>
+      </a><a href="https://zhuanlan.zhihu.com/kubernetes">
+        <li class="mobile-menu-item">知乎</li>
+      </a><a href="/docs/">
+        <li class="mobile-menu-item">读书笔记</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Feisky</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="https://kubernetes.feisky.xyz">Kubernetes</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://sdn.feisky.xyz">SDN</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/distributed/">分布式系统</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/container/">容器</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/machine-learning/">机器学习</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://zhuanlan.zhihu.com/kubernetes">知乎</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/docs/">读书笔记</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Docker CE/EE 原生支持Kubernetes</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2017-10-17 </span>
+        
+        <span class="more-meta"> 808 words </span>
+        <span class="more-meta"> 2 mins read </span>
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#docker-for-mac-windows">Docker for Mac/Windows</a></li>
+<li><a href="#docker-ee">Docker EE</a></li>
+<li><a href="#docker-ce-moby">Docker CE/Moby</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      
+
+<p>在今年的 DockerCon EU (2017) 上，Solomon、Brendan、Hockin等联合<a href="https://blog.docker.com/2017/10/kubernetes-docker-platform-and-moby-project/">宣布</a>Docker将原生支持Kubernetes，也就是说Kubernetes将和Swarm一样作为Docker平台的编排管理系统。这<a href="https://www.docker.com/kubernetes">包括Docker EE、Docker CE以及Docker for Mac/Windows等全平台</a>的支持。</p>
+
+<p><img src="/images/15082343121829.png" alt="" /></p>
+
+<h2 id="docker-for-mac-windows">Docker for Mac/Windows</h2>
+
+<p>Docker for Mac/Windows将原生支持把基于docker-compose/swarm的应用部署到本地的Kubernetes集群中，docker swarm和Kubernetes共享相同的镜像、存储卷以及容器（也就是两种调度系统同时管理同一套容器）。这有助于简化容器应用的开发、构建、运行以及测试。</p>
+
+<p>为了实现这个目标，Docker基于Kubernetes Custom Resources和API server aggregation将Docker Compose apps 部署为原生的Kubernetes Pods/Services。</p>
+
+<p><a href="https://www.youtube.com/watch?time_continue=262&amp;v=jWupQjdjLN0">这里</a>是一个Docker for Mac的示例视频，非常有趣。</p>
+
+<h2 id="docker-ee">Docker EE</h2>
+
+<p><img src="/images/15082337741260.jpg" alt="" /></p>
+
+<p>在创建Stack的时候可以选择Swarm或者Kubernetes：</p>
+
+<p><img src="/images/15082337923290.jpg" alt="" /></p>
+
+<p>并且还可以在Shared Resources除查看共享的资源：</p>
+
+<p><img src="/images/15082338098210.jpg" alt="" /></p>
+
+<p>当然，部署也很简单，内置在Docker EE中，swarm和Kubernetes共享相同的Node：</p>
+
+<p><img src="/images/15082339050370.jpg" alt="" /></p>
+
+<p><a href="https://www.youtube.com/watch?v=h2B6mhDCw2o">这里</a>这里也有一个Docker EE + Kubernetes的示例视频。</p>
+
+<h2 id="docker-ce-moby">Docker CE/Moby</h2>
+
+<p><a href="http://mobyproject.org/kubernetes/">Moby与Kubernetes的集成通过一系列的开源项目</a>来实现：</p>
+
+<ul>
+<li><a href="https://github.com/containerd/containerd">containerd</a> 和 <a href="https://github.com/kubernetes-incubator/cri-containerd">cri-containerd</a>，可以参考<a href="https://github.com/kelseyhightower/kubernetes-the-hard-way">Kubernetes The Hard Way</a>查看使用方法</li>
+<li>LinuxKit：支持<a href="https://github.com/linuxkit/linuxkit/tree/master/projects/kubernetes">构建Kubernetes镜像</a></li>
+<li>InfraKit：支持<a href="https://github.com/docker/infrakit/tree/master/pkg/plugin/flavor/kubernetes">Kubernetes Flavor</a></li>
+<li>libnetwork：增加CNI的支持 <a href="https://github.com/docker/libnetwork/pull/1978">https://github.com/docker/libnetwork/pull/1978</a></li>
+<li><a href="https://github.com/docker/notary">Notary</a>将会贡献给CNCF</li>
+<li><a href="https://github.com/docker/libentitlement">libentitlement</a>将提供高级安全接口</li>
+</ul>
+
+<p>不过遗憾的是，Kubernetes的支持需要等到下个release。想要提前预览的同学可以点击<a href="https://beta.docker.com/">https://beta.docker.com/</a>注册预览版。</p>
+
+<p>注：本文同步发布到知乎专栏<a href="https://zhuanlan.zhihu.com/kubernetes">《Kubernetes指南》</a>。</p>
+
+    </div>
+
+    
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Feisky</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">2017-10-17</span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">License</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a></span>
+  </p>
+</div>
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          
+          <a href="/tags/docker/">docker</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/2017-10-19-docker-mta-program/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Docker MTA Program</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        
+          <a class="next" href="/post/2017-10-16-%E9%87%8D%E6%96%B0%E5%BC%80%E5%90%AFhttps/">
+            <span class="next-text nav-default">重新开启HTTPS</span>
+            <span class="prev-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    (function() {
+      
+      
+      if (window.location.hostname === 'localhost') return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = 'feisky';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://twitter.com/feisky" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="https://github.com/feiskyer" class="iconfont icon-github" title="github"></a>
+      <a href="https://weibo.com/371069890" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://www.zhihu.com/people/feisky" class="iconfont icon-zhihu" title="zhihu"></a>
+  <a href="https://feisky.xyz/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    
+      2014 - 
+    2018
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Feisky</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+<script src="/lib/highlight/highlight.pack.js?v=20171001"></script><script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script><script></script>
+<script src="https://cdn.jsdelivr.net/npm/raphael@2.2.7/raphael.min.js" integrity="sha256-67By+NpOtm9ka1R6xpUefeGOY8kWWHHRAKlvaTJ7ONI=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/flowchart.js@1.8.0/release/flowchart.min.js" integrity="sha256-zNGWjubXoY6rb5MnmpBNefO0RgoVYfle9p0tvOQM+6k=" crossorigin="anonymous"></script><script></script>
+<script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+<script type="text/javascript" src="/dist/even.min.js?v=3.1.1"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-69699206-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+<script id="baidu_analytics">
+  var _hmt = _hmt || [];
+  (function() {
+    if (window.location.hostname === 'localhost') return;
+    var hm = document.createElement("script"); hm.async = true;
+    hm.src = "https://hm.baidu.com/hm.js?d2f4aad4d3f8dc2de9170fa1df3fcbcf";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+<script id="baidu_push">
+  (function(){
+    if (window.location.hostname === 'localhost') return;
+    var bp = document.createElement('script'); bp.async = true;
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+
+
+</body>
+</html>

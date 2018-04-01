@@ -1,0 +1,61 @@
+/*
+ * By Dominic Duval, Red Hat Inc.
+ * dduval@redhat.com
+ *
+ * Keeps track of network activity at the socket level.
+ *  
+ * USAGE: stap sockettop.stp
+ *
+ */
+
+global xmit, recv, process, execname, user
+
+probe socket.send
+{
+        p = pid()
+        execname[p] = execname()
+        user[p] = uid()
+        xmit[p] <<< size
+        process[p] ++
+}
+
+probe socket.receive
+{
+        p = pid()
+        execname[p] = execname()
+        user[p] = uid()
+        recv[p] <<< size
+        process[p] ++
+}
+
+
+function print_activity()
+{
+        printf("%5s %5s %7s %7s %7s %7s %-15s\n",
+                "PID", "UID", "XMIT_PK", "RECV_PK",
+                "XMIT_KB", "RECV_KB", "COMMAND")
+
+        foreach ([pid] in process-) {
+                n_xmit = @count(xmit[pid])
+                n_recv = @count(recv[pid])
+                printf("%5d %5d %7d %7d %7d %7d %-15s\n",
+                        pid, user[pid], n_xmit, n_recv,
+                        n_xmit ? @sum(xmit[pid])/1024 : 0,
+                        n_recv ? @sum(recv[pid])/1024 : 0,
+                        execname[pid])
+        }
+
+        print("\n")
+
+        delete execname
+        delete user
+        delete xmit
+        delete recv
+        delete process
+}
+
+probe timer.ms(5000)
+{
+        print_activity()
+}
+

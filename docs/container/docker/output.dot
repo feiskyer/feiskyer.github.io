@@ -1,0 +1,139 @@
+digraph {
+	graph [bb="0,0,1379,217"];
+	node [label="\N",
+		shape=box
+	];
+	subgraph "cluster/NS(71: 3, 4026532394)" {
+		graph [bb="510,15,906,108",
+			fillcolor=aquamarine2,
+			fontcolor=black,
+			label="container-nginx",
+			style=filled
+		];
+		11		 [fillcolor=grey90,
+			height=0.73611,
+			label="eth0 (veth)
+mtu 1450
+",
+			style=filled,
+			width=1.5347];
+		13		 [fillcolor=grey90,
+			height=0.52778,
+			label="eth1 (veth)",
+			style=filled,
+			width=1.5903];
+		16		 [fillcolor=grey90,
+			height=0.73611,
+			label="eth2 (veth)
+mtu 1450
+",
+			style=filled,
+			width=1.6111];
+	}
+	subgraph "cluster/1-4n1a3vtjfh" {
+		graph [bb="108,8,502,209",
+			fillcolor=aquamarine2,
+			fontcolor=black,
+			label="ingress-overlay",
+			style=filled
+		];
+		2		 [fillcolor=grey90,
+			height=0.94444,
+			label="br0 (bridge)
+mtu 1450
+10.132.0.2
+",
+			style=filled,
+			width=1.5347];
+		5		 [fillcolor=grey90,
+			height=0.73611,
+			label="vxlan1 (vxlan)
+mtu 1450
+",
+			style=filled,
+			width=1.5625];
+		5 -> 2		 [style=solid];
+		7		 [fillcolor=grey90,
+			height=0.73611,
+			label="veth2 (veth)
+mtu 1450
+",
+			style=filled,
+			width=1.6111];
+		7 -> 2		 [style=solid];
+		12		 [fillcolor=grey90,
+			height=0.73611,
+			label="veth3 (veth)
+mtu 1450
+",
+			style=filled,
+			width=1.5556];
+		12 -> 2		 [style=solid];
+	}
+	subgraph "cluster/1-e2b3zgo0ni" {
+		graph [bb="510,116,769,209",
+			fillcolor=aquamarine2,
+			fontcolor=black,
+			label="network-overlay1",
+			style=filled
+		];
+		15		 [fillcolor=grey90,
+			height=0.73611,
+			label="vxlan1 (vxlan)
+mtu 1450
+",
+			style=filled,
+			width=1.5347];
+		17		 [fillcolor=grey90,
+			height=0.73611,
+			label="veth2 (veth)
+mtu 1450
+",
+			style=filled,
+			width=1.5625];
+	}
+	subgraph "cluster/ingress_sbox" {
+		graph [bb="914,15,1175,108",
+			fillcolor=aquamarine2,
+			fontcolor=black,
+			label=ingress_sbox,
+			style=filled
+		];
+		6		 [fillcolor=grey90,
+			height=0.73611,
+			label="eth0 (veth)
+mtu 1450
+",
+			style=filled,
+			width=1.5347];
+		9		 [fillcolor=grey90,
+			height=0.52778,
+			label="eth1 (veth)",
+			style=filled,
+			width=1.5903];
+	}
+	8	 [fillcolor=grey90,
+		label="docker_gwbridge (bridge)
+172.18.0.1
+",
+		style=filled];
+	10	 [fillcolor=grey90,
+		height=0.52778,
+		label="veth0e0c97b (veth)",
+		style=filled,
+		width=1.6944];
+	10 -> 8	 [style=solid];
+	10 -> 9	 [style=solid];
+	14	 [fillcolor=grey90,
+		height=0.52778,
+		label="veth75891c9 (veth)",
+		style=filled,
+		width=1.6944];
+	14 -> 8	 [style=solid];
+	14 -> 13	 [style=solid];
+	11 -> 12	 [style=solid];
+	16 -> 17	 [style=solid];
+	7 -> 6	 [style=solid];
+	15 -> 2	 [style=solid];
+	17 -> 2	 [style=solid];
+}

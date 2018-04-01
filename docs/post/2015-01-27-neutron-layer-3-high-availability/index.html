@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Neutron Layer 3 High Availability - Feisky</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Feisky" />
+  <meta name="description" content="L3 Agent Low Availability
+Today, you can utilize multiple network nodes to achieve load sharing, but not high availability or redundancy. Assuming three network nodes, creation of new routers will be scheduled and distributed amongst those three nodes. However, if a node&amp;nbsp;drops, all routers on that node will cease to exist as well as any traffic normally forwarded by those routers. Neutron, in the Icehouse release, doesn’t support any built-in solution." />
+
+  <meta name="keywords" content="Kubernetes, Cloud, SDN" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.37.1" />
+
+
+<link rel="canonical" href="https://feisky.xyz/post/2015-01-27-neutron-layer-3-high-availability/" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+<link href="/dist/even.min.css?v=3.1.1" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+
+
+<meta property="og:title" content="Neutron Layer 3 High Availability" />
+<meta property="og:description" content="L3 Agent Low Availability
+Today, you can utilize multiple network nodes to achieve load sharing, but not high availability or redundancy. Assuming three network nodes, creation of new routers will be scheduled and distributed amongst those three nodes. However, if a node&nbsp;drops, all routers on that node will cease to exist as well as any traffic normally forwarded by those routers. Neutron, in the Icehouse release, doesn’t support any built-in solution." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://feisky.xyz/post/2015-01-27-neutron-layer-3-high-availability/" />
+
+
+
+
+<meta property="article:modified_time" content="2018-04-01T22:42:21&#43;08:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="Neutron Layer 3 High Availability">
+<meta itemprop="description" content="L3 Agent Low Availability
+Today, you can utilize multiple network nodes to achieve load sharing, but not high availability or redundancy. Assuming three network nodes, creation of new routers will be scheduled and distributed amongst those three nodes. However, if a node&nbsp;drops, all routers on that node will cease to exist as well as any traffic normally forwarded by those routers. Neutron, in the Icehouse release, doesn’t support any built-in solution.">
+
+
+
+<meta itemprop="wordCount" content="2334">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Neutron Layer 3 High Availability"/>
+<meta name="twitter:description" content="L3 Agent Low Availability
+Today, you can utilize multiple network nodes to achieve load sharing, but not high availability or redundancy. Assuming three network nodes, creation of new routers will be scheduled and distributed amongst those three nodes. However, if a node&nbsp;drops, all routers on that node will cease to exist as well as any traffic normally forwarded by those routers. Neutron, in the Icehouse release, doesn’t support any built-in solution."/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Feisky</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="https://kubernetes.feisky.xyz">
+        <li class="mobile-menu-item">Kubernetes</li>
+      </a><a href="https://sdn.feisky.xyz">
+        <li class="mobile-menu-item">SDN</li>
+      </a><a href="/distributed/">
+        <li class="mobile-menu-item">分布式系统</li>
+      </a><a href="/container/">
+        <li class="mobile-menu-item">容器</li>
+      </a><a href="/machine-learning/">
+        <li class="mobile-menu-item">机器学习</li>
+      </a><a href="https://zhuanlan.zhihu.com/kubernetes">
+        <li class="mobile-menu-item">知乎</li>
+      </a><a href="/docs/">
+        <li class="mobile-menu-item">读书笔记</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Feisky</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="https://kubernetes.feisky.xyz">Kubernetes</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://sdn.feisky.xyz">SDN</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/distributed/">分布式系统</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/container/">容器</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/machine-learning/">机器学习</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://zhuanlan.zhihu.com/kubernetes">知乎</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/docs/">读书笔记</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Neutron Layer 3 High Availability</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 0001-01-01 </span>
+        
+        <span class="more-meta"> 2334 words </span>
+        <span class="more-meta"> 11 mins read </span>
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  
+  <div class="post-toc-content">
+    
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      <p><strong>L3 Agent Low Availability</strong></p>
+
+<p>Today, you can utilize multiple network nodes to achieve load sharing, but not high availability or redundancy. Assuming three network nodes, creation of new routers will be scheduled and distributed amongst those three nodes. However, if a node&nbsp;drops, all routers on that node will cease to exist as well as any traffic normally forwarded by those routers. Neutron, in the Icehouse release, doesn’t support any built-in solution.</p>
+
+<p><strong>A Detour to the DHCP Agent</strong></p>
+
+<p>DHCP agents are a different beast altogether – The DHCP protocol allows for the co-existence of multiple DHCP servers all serving the same pool, at the same time.</p>
+
+<p>By changing:</p>
+
+<pre>
+<span class="skimlinks-unlinked">neutron.conf</span>:
+dhcp_agents_per_network = X
+</pre>
+
+<p>You will change the DHCP scheduler to schedule X DHCP agents per network. So, for a deployment with 3 network nodes, and setting&nbsp;dhcp_agents_per_network to 2, every Neutron network will be served by 2 DHCP agents out of 3. How does this work?</p>
+
+<p><img src="http://assafmuller.files.wordpress.com/2014/08/dhcp_ha_topology1.png?w=696" alt="dhcp_ha_topology" /></p>
+
+<p>First, let’s take a look at the story from a baremetal perspective, outside of the cloud world. When the workstation is connected to a subnet&nbsp;in the 10.0.0.0/24 subnet, it broadcasts a DHCP discover. Both DHCP servers dnsmasq1 and dnsmasq2 (Or other implementations of a DHCP server) receive the broadcast and respond with an offer for 10.0.0.2. Assuming that the first server’s response was received by the workstation first, it will then broadcast a request for 10.0.0.2, and specify the IP address of dnsmasq1 – 10.0.0.253. Both servers receive the broadcast, but only dnsmasq1 responds with an ACK.&nbsp;Since all DHCP communication is via broadcasts, server 2 also receives the ACK,&nbsp;and can mark 10.0.0.2 as taken by AA:BB:CC:11:22:33, so as to not offer it to other workstations. To summarize, all communication between clients and servers is done via broadcasts and thus the state (What IPs are used at any given time, and by who) can be distributed across the servers correctly.</p>
+
+<p>In the Neutron case, the assignment from MAC to IP is configured on each dnsmasq server beforehand, when the Neutron port is created. Thus, both dnsmasq leases file will hold the AA:BB:CC:11:22:33 to 10.0.0.2 mapping before the DHCP request is even broadcast. As you can see, DHCP HA is&nbsp;supported at the protocol level.</p>
+
+<p><strong>Back to the Lowly Available L3 Agent</strong></p>
+
+<p>L3 agents don’t (Currently) have any of these fancy tricks that DHCP offers, and yet the people demand high availability. So what are the people doing?</p>
+
+<ul>
+<li>Pacemaker / Corosync – Use external clustering technologies to specify a standby network node for an active one. The standby node will essentially sit there looking pretty, and when a failure is detected with the active node, the L3 agent will be started on the standby node. The two nodes are configured with the same hostname so that when the secondary agent goes live and synchronizes with the server, it identifies itself with the same ID and thus manages&nbsp;the same routers.</li>
+<li>Another type of solution writes a script that runs as a cron job. This would be a Python SDK script that would use the API to get a list of dead agents, get all the routers on that agent, and reschedule them to other agents.</li>
+<li>In the Juno time frame, look for this patch&nbsp;<a href="https://review.openstack.org/#/c/110893/&nbsp;by">https://review.openstack.org/#/c/110893/&nbsp;by</a> <a href="http://homes.soic.indiana.edu/ktbenton/">Kevin Benton</a> to bake rescheduling into Neutron itself.</li>
+</ul>
+
+<p><strong>Rescheduling Routers Takes a Long, Long Time</strong></p>
+
+<p>All solutions listed suffer from a substantial failover time, if only for the simple fact that configuring a non-trivial amount of routers on the new node(s) takes quite a while. Thousands of routers take hours to&nbsp;finish the rescheduling and configuration process. The people demand fast failover!</p>
+
+<p><strong>Distributed Virtual Router</strong></p>
+
+<p>DVR has multiple documents explaining how it works:</p>
+
+<ul>
+<li><a href="http://specs.openstack.org/openstack/neutron-specs/specs/juno/neutron-ovs-dvr.html">http://specs.openstack.org/openstack/neutron-specs/specs/juno/neutron-ovs-dvr.html</a></li>
+<li><a href="https://docs.google.com/document/d/1jCmraZGirmXq5V1MtRqhjdZCbUfiwBhRkUjDXGt5QUQ/">https://docs.google.com/document/d/1jCmraZGirmXq5V1MtRqhjdZCbUfiwBhRkUjDXGt5QUQ/</a></li>
+<li><a href="https://docs.google.com/document/d/1depasJSnGZPOnRLxEC_PYsVLcGVFXZLqP52RFTe21BE/">https://docs.google.com/document/d/1depasJSnGZPOnRLxEC_PYsVLcGVFXZLqP52RFTe21BE/</a></li>
+</ul>
+
+<p>The gist is that it moves routing to the compute nodes, rendering the L3 agent on the network nodes pointless. Or does it?</p>
+
+<ul>
+<li>DVR handles only floating IPs, leaving SNAT to the L3 agents on the network nodes</li>
+<li>Doesn’t work with VLANs, only works with <a href="http://assafmuller.wordpress.com/2013/10/14/gre-tunnels-in-openstack-neutron/" title="GRE Tunnels in OpenStack Neutron">tunnels</a> and <a href="http://assafmuller.wordpress.com/2014/02/23/ml2-address-population/" title="ML2 – Address Population">L2pop</a> enabled</li>
+<li>Requires external connectivity on every compute node</li>
+<li>Generally speaking, is a significant departure from Havana or Icehouse Neutron based clouds, while L3 HA is a simpler change to make for your deployment</li>
+</ul>
+
+<p>Ideally you would use DVR together with L3 HA. Floating IP traffic would be routed directly by your compute nodes, while SNAT traffic would go through the HA L3 agents on the network nodes.</p>
+
+<p><strong>Layer 3 High Availability</strong></p>
+
+<p>The Juno targeted L3 HA solution uses the popular Linux keepalived tool, which uses VRRP internally. First, then, let’s discuss VRRP.</p>
+
+<p><strong>What is VRRP, how does it work in the physical world?</strong></p>
+
+<p>Virtual Router Redundancy Protocol is a<a href="http://en.wikipedia.org/wiki/First-hop_redundancy_protocols"> first hop redundancy protocol</a>&nbsp;– It aims to provide high availability of the network’s default gateway, or the next hop of a route. What problem does it solve? In a network topology with two routers providing internet connectivity, you could assign half of the network’s default gateway to the first router’s IP address, and the other half to the second router.</p>
+
+<p><img src="http://assafmuller.files.wordpress.com/2014/08/router_ha_topology_before_vrrp.png?w=696" alt="router_ha_topology_before_vrrp" /></p>
+
+<p>This would provide load sharing, but what happens if one router loses connectivity? Herein comes the idea of a virtual IP address, or a floating address, which will be configured as the network’s default gateway. During a failover, the standby routers won’t receive VRRP hello messages from the master and will thus perform an election process, with the winning router acting as the active gateway, and the others remain as standby. The active router configures the virtual IP address (Or VIP for short), on its internal, LAN facing interface, and responds to ARP requests with a virtual MAC address. The network computers already have entries in their ARP caches (For the VIP + virtual MAC address) and have no reason to resend an ARP request. Following the election process, the virtuous standby router becomes the new active instance, and sends a gratuitous ARP request – Proclaiming to the network that the VIP + MAC pair now belong to it. The switches comprising the network move the virtual MAC address from the old port to the new.</p>
+
+<p><a href="https://assafmuller.files.wordpress.com/2014/08/switch_moves_mac.png"><img src="http://assafmuller.files.wordpress.com/2014/08/switch_moves_mac.png?w=696" alt="switch_moves_mac" /></a></p>
+
+<p>By doing so, traffic to the default gateway will reach the correct (New) active router. Note that this approach does not accomplish load sharing, in the sense that all traffic is forwarded through the active router. (Note that in the Neutron use case, load sharing is not accomplished at the individual router level, but at the node level, assuming a non-trivial amount of routers). How does one accomplish load sharing at the router resolution? VRRP groups: The VRRP header includes a Virtual Router Identifier, or VRID. Half of the network hosts will configure the first VIP, and the other half the second. In the case of a failure, the VIP previously found on the failing router will transfer to another one.</p>
+
+<p><a href="https://assafmuller.files.wordpress.com/2014/08/router_ha_two_vrrp_groups.png"><img src="http://assafmuller.files.wordpress.com/2014/08/router_ha_two_vrrp_groups.png?w=696&amp;h=945" alt="router_ha_two_vrrp_groups" /></a></p>
+
+<p>The observant reader will have identified a problem – What if the active router loses connectivity to the internet? Will it remain as the active router, unable to route packets? VRRP adds the capability to monitor the external link and relinquish its role as the active router in case of a failure.<a href="https://assafmuller.files.wordpress.com/2014/08/router_ha_external_trap.png"><img src="http://assafmuller.files.wordpress.com/2014/08/router_ha_external_trap.png?w=696" alt="router_ha_external_trap" /></a></p>
+
+<p>Note: As far as IP addressing goes, it’s possible to operate in two modes:</p>
+
+<ol>
+<li>Each router gets an IP address, regardless of its VRRP state. The master router is configured with the VIP as an additional &nbsp;or secondary address.</li>
+<li>Only the VIP is configured. IE: The master router will hold the VIP while the slaves will have no IPs configured whatsoever.</li>
+</ol>
+
+<p><strong>VRRP – The Dry Facts</strong></p>
+
+<ul>
+<li>Encapsulated directly in the IP protocol</li>
+<li>Active instance uses multicast address 224.0.0.18, MAC&nbsp;01-00-5E-00-00-12 when sending hello messages to its standby routers</li>
+<li>The virtual MAC address is of the form:&nbsp;00-00-5E-00-01-{VRID}, thus only 256 different VRIDs (0 to 255) can exist in a single broadcast domain</li>
+<li>The election process uses a user configurable priority, from 1 to 255, the higher the better</li>
+<li>Preemptive elections, like in other network protocols, means that if a standby is configured with a higher priority, or comes back after losing its connectivity (And previously acting as the active instance) it will resume its role as the active router</li>
+<li>Non-preemptive elections mean that when an active router loses its connectivity and comes back up, it will remain in a standby role</li>
+<li>The hello internal is configurable (Say: Every T seconds), and standby routers perform an election process if they haven’t received a hello message from the master after 3T seconds</li>
+</ul>
+
+<p><strong>Back to Neutron-land</strong></p>
+
+<p>L3 HA starts a keepalived instance in every router namespace. The different router instances talk to one another via a dedicated HA network, one per tenant. This network is created under the blank tenant to hide it from the CLI and GUI. The HA network is a &nbsp;Neutron tenant network, same as every other network, and uses the default segmentation technology. HA routers have an ‘HA’ device in their namespace: When a HA router is created, it is scheduled to a number of network nodes, along with a port per network node, belonging to the tenant’s HA network. keepalived traffic is forwarded through the HA device (As specified in the <span class="skimlinks-unlinked">keepalived.conf</span> file used by the keepalived instance in the router namespace). Here’s the output of ‘ip address’ in the router namespace:</p>
+
+<pre>
+[stack@vpn-6-88 ~]$ sudo ip netns exec qrouter-b30064f9-414e-4c98-ab42-646197c74020 ip address
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default 
+    ...
+2794: **ha-45249562-ec**: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UNKNOWN group default 
+    link/ether 12:34:56:78:2b:5d brd ff:ff:ff:ff:ff:ff
+    inet 169.254.0.2/24 brd 169.254.0.255 scope global ha-54b92d86-4f
+       valid_lft forever preferred_lft forever
+    inet6 fe80::1034:56ff:fe78:2b5d/64 scope link 
+       valid_lft forever preferred_lft forever
+2795: qr-dc9d93c6-e2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UNKNOWN group default 
+    link/ether ca:fe🇩🇪ad:be:ef brd ff:ff:ff:ff:ff:ff
+    inet 10.0.0.1/24 scope global qr-0d51eced-0f
+       valid_lft forever preferred_lft forever
+    inet6 fe80::c8fe:deff:fead:beef/64 scope link 
+       valid_lft forever preferred_lft forever
+2796: qg-843de7e6-8f: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UNKNOWN group default 
+    link/ether ca:fe🇩🇪ad:be:ef brd ff:ff:ff:ff:ff:ff
+    inet 19.4.4.4/24 scope global qg-75688938-8d
+       valid_lft forever preferred_lft forever
+    inet6 fe80::c8fe:deff:fead:beef/64 scope link 
+       valid_lft forever preferred_lft forever
+</pre>
+
+<p>That is the output for the master instance. The same router on another node would have no IP address on the ha, qr, or qg devices. It would have no floating IPs or routing entries. These are persisted as configuration values in <span class="skimlinks-unlinked">keepalived.conf</span>, and when keepalived detects the master instance failing, these addresses (Or: VIPs) are configured by keepalived on the appropriate devices. Here’s an example of <span class="skimlinks-unlinked">keepalived.conf</span>, for the same router shown above:</p>
+
+<pre>
+vrrp_sync_group VG_1 {
+    group {
+        VR_1
+    }
+    notify_backup "/path/to/<span class="skimlinks-unlinked">notify_backup.sh</span>"
+    notify_master "/path/to/<span class="skimlinks-unlinked">notify_master.sh</span>"
+    notify_fault "/path/to/<span class="skimlinks-unlinked">notify_fault.sh</span>"
+}
+vrrp_instance VR_1 {
+    state BACKUP
+    interface ha-45249562-ec
+    virtual_router_id 1
+    priority 50
+    nopreempt
+    advert_int 2
+    track_interface {
+        ha-45249562-ec
+    }
+    virtual_ipaddress {
+        19.4.4.4/24 dev qg-843de7e6-8f
+    }
+    virtual_ipaddress_excluded {
+        10.0.0.1/24 dev qr-dc9d93c6-e2
+    }
+    virtual_routes {
+        0.0.0.0/0 via 19.4.4.1 dev qg-843de7e6-8f
+    }
+}
+</pre>
+
+<p>What are those notify scripts? These are scripts that keepalived executes upon transition to master, backup, or fault. Here’s the contents of the master script:</p>
+
+<pre>
+#!/usr/bin/env bash
+neutron-ns-metadata-proxy --pid_file=/tmp/tmpp_6Lcx/tmpllLzNs/external/pids/b30064f9-414e-4c98-ab42-646197c74020/pid --metadata_proxy_socket=/tmp/tmpp_6Lcx/tmpllLzNs/metadata_proxy --router_id=b30064f9-414e-4c98-ab42-646197c74020 --state_path=/opt/openstack/neutron --metadata_port=9697 --debug --verbose
+echo -n master > /tmp/tmpp_6Lcx/tmpllLzNs/ha_confs/b30064f9-414e-4c98-ab42-646197c74020/state
+</pre>
+
+<p>The master script simply opens up the metadata proxy, and writes the state to a state file, which can be later read by the L3 agent. The backup and fault scripts kill the proxy and write their respective states to the aforementioned state file. This means that the metadata proxy will be live only on the master router instance.</p>
+
+<p><strong>* Aren’t We Forgetting the Metadata Agent?</strong></p>
+
+<p>Simply enable the agent on every network node and you’re good to go.</p>
+
+<p><strong>Future Work &amp; Limitations</strong></p>
+
+<ul>
+<li>TCP connection tracking – With the current implementation, TCP sessions are broken on failover. The idea is to use conntrackd in order to replicate the session states across HA routers, so that when the failover finishes, TCP sessions will continue where they left off.</li>
+<li>Where is the master instance hosted? As it is now it is impossible for the admin to know which network node is hosting the master instance of a HA router. The plan is for the agents to report this information and for the server to expose it via the API.</li>
+<li>Evacuating an agent – Ideally bringing down a node for maintenance should cause all of the HA router instances on said node to relinquish their master states, speeding up the failover process.</li>
+<li>Notifying L2pop of VIP movements – Consider the IP/MAC of the router on a tenant network. Only the master instance will actually have the IP configured, but the same Neutron port and same MAC will show up on all participating network nodes. This might have adverse effects on the L2pop mechanism driver, as it expects a MAC address in a single location in the network. The plan to solve this deficiency is to send an RPC message from the agent whenever it detects a VRRP state change, so that when a router becomes the master, the controller is notified, which can then update the L2pop state.</li>
+<li>FW, VPN and LB as a service integration. Both DVR and L3 HA have issues integrating with the advanced services, and a more serious look will be taken during the Kilo cycle.</li>
+<li>One HA network per tenant. This implies a limit of 255 HA routers per tenant, as each router takes up a VRID, and the VRRP protocol allows 255 distinct VRID values in a single broadcast domain.</li>
+</ul>
+
+<p><strong>Usage &amp; Configuration</strong></p>
+
+<pre>
+<span class="skimlinks-unlinked">neutron.conf</span>:
+l3_ha = True
+max_l3_agents_per_router = 2
+min_l3_agents_per_router = 2
+</pre>
+
+<ul>
+<li>l3_ha = True means that all router creations will default to HA (And not legacy) routers. This is turned off by default.</li>
+<li>You can set the max to a number between min and the number of network nodes in your deployment. If you deploy 4 net nodes but set max to 2, only two l3 agents will be used per HA router (One master, one slave).</li>
+<li>min is used as a sanity check: If you have two network nodes and one goes out momentarily, any new routers created during that time period will fail as you need at least <min> L3 agents up when creating a HA router.</li>
+</ul>
+
+<p>l3_ha controls the default, while the CLI allows an admin (And only admins) to override that setting on a per router basis:</p>
+
+<pre>
+neutron router-create --ha=<True | False> router1
+</pre>
+
+    </div>
+
+    
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Feisky</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">2018-04-01</span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">License</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a></span>
+  </p>
+</div>
+
+    
+    
+
+    <footer class="post-footer">
+      
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/2015-06-04-mininet-links/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Mininet links</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        
+          <a class="next" href="/post/2015-03-04-ovs-20-call-flow/">
+            <span class="next-text nav-default">OVS 2.0 call flow</span>
+            <span class="prev-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    (function() {
+      
+      
+      if (window.location.hostname === 'localhost') return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = 'feisky';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://twitter.com/feisky" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="https://github.com/feiskyer" class="iconfont icon-github" title="github"></a>
+      <a href="https://weibo.com/371069890" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://www.zhihu.com/people/feisky" class="iconfont icon-zhihu" title="zhihu"></a>
+  <a href="https://feisky.xyz/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    
+      2014 - 
+    2018
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Feisky</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+<script src="/lib/highlight/highlight.pack.js?v=20171001"></script><script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script><script></script>
+<script src="https://cdn.jsdelivr.net/npm/raphael@2.2.7/raphael.min.js" integrity="sha256-67By+NpOtm9ka1R6xpUefeGOY8kWWHHRAKlvaTJ7ONI=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/flowchart.js@1.8.0/release/flowchart.min.js" integrity="sha256-zNGWjubXoY6rb5MnmpBNefO0RgoVYfle9p0tvOQM+6k=" crossorigin="anonymous"></script><script></script>
+<script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+<script type="text/javascript" src="/dist/even.min.js?v=3.1.1"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-69699206-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+<script id="baidu_analytics">
+  var _hmt = _hmt || [];
+  (function() {
+    if (window.location.hostname === 'localhost') return;
+    var hm = document.createElement("script"); hm.async = true;
+    hm.src = "https://hm.baidu.com/hm.js?d2f4aad4d3f8dc2de9170fa1df3fcbcf";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+<script id="baidu_push">
+  (function(){
+    if (window.location.hostname === 'localhost') return;
+    var bp = document.createElement('script'); bp.async = true;
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+
+
+</body>
+</html>

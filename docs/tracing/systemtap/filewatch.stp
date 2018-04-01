@@ -1,0 +1,21 @@
+#!/usr/bin/env stap
+#
+# Works like opensnoop, but implemented as systemtap script
+# and based on a specific file.
+#
+# USAGE:
+# This example shows processes which are reading /etc/passwd:
+# stap -v filewatch.stap /etc/passwd
+#
+
+global _filename = @1;
+
+probe syscall.open {
+        if(sprintf("\"%s\"", _filename) == filename) {
+                printf("%-20s %-7d %s\n", sprintf("%s(%d)", execname(), pid()), uid(), argstr);
+        }
+}
+
+probe begin {
+    printf("%-20s %-7s %s\n", "PROG(PID)", "UID", "FILE/FLAGS");
+}

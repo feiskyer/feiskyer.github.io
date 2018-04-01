@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Kubernetes on Feisky</title>
+    <link>https://feisky.xyz/tags/kubernetes/</link>
+    <description>Recent content in Kubernetes on Feisky</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    <lastBuildDate>Mon, 27 Nov 2017 21:30:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://feisky.xyz/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Azure Container Instance (ACI)</title>
+      <link>https://feisky.xyz/post/2017-11-27-aci/</link>
+      <pubDate>Mon, 27 Nov 2017 21:30:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/post/2017-11-27-aci/</guid>
+      <description>Azure 容器实例（ACI）提供了在 Azure 中运行容器的最简捷方式，它不需要用户配置任何虚拟机或其它高级服务。ACI 适用于快速突发式增长和资源调整的业务，</description>
+    </item>
+    
+    <item>
+      <title>Azure Container Service（ACS）简介</title>
+      <link>https://feisky.xyz/post/2017-11-23-acs-introduction/</link>
+      <pubDate>Mon, 20 Nov 2017 21:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/post/2017-11-23-acs-introduction/</guid>
+      <description>Azure Container Service（ACS）是 Microsoft Azure 在2015年推出的容器服务，支持 Kubernetes、DCOS 以及 Dockers Swarm 等多种容器编排工具。并且 ACS 的核心功能</description>
+    </item>
+    
+    <item>
+      <title>Azure Managed Kubernetes (AKS) 简介</title>
+      <link>https://feisky.xyz/post/2017-11-17-aks/</link>
+      <pubDate>Fri, 17 Nov 2017 08:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/post/2017-11-17-aks/</guid>
+      <description>Azure 容器服务 (AKS) 是 Microsoft Azure 最近发布的一个托管的 Kubernetes 服务（预览版），它独立于现有的 Azure Container Service （ACS）。借助 AKS 用户无需具备容器业务流程的专业知识就可以快速、</description>
+    </item>
+    
+    <item>
+      <title>开始一本开源电子书《Kubernetes指南》</title>
+      <link>https://feisky.xyz/post/2017-05-21-start-kubernetes-handbook/</link>
+      <pubDate>Sun, 21 May 2017 17:42:34 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/post/2017-05-21-start-kubernetes-handbook/</guid>
+      <description>Kubernetes是谷歌开源的容器集群管理系统，是Google多年大规模容器管理技术Borg的开源版本，也是CNCF最重要的组件之一，主要</description>
+    </item>
+    
+    <item>
+      <title>Kubernetes v1.5.0 release</title>
+      <link>https://feisky.xyz/post/2016-12-13-kubernetes-v1-5-0-release/</link>
+      <pubDate>Tue, 13 Dec 2016 11:51:29 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/post/2016-12-13-kubernetes-v1-5-0-release/</guid>
+      <description>Update on 2016.12.14:
+Due to a serious security problem, kubernetes v1.5.0 is not recommanded. Kubernetes v1.5.1 has just released, so we should upgrade to v1.5.1 directly.
+ The --anonymous-auth= flag in v1.5.0 is true by default (which may result in any users being able to access kubernetes API), but v1.5.1 turns it to false.
+ Kubernetes v1.5.0  StatefulSets (ex-PetSets)  StatefulSets are beta now (fixes and stabilization)  Improved Federation Support  New command: kubefed DaemonSets Deployments ConfigMaps  Simplified Cluster Deployment  Improvements to kubeadm HA Setup for Master  Node Robustness and Extensibility  Windows Server Container support CRI for pluggable container runtimes kubelet API supports authentication and authorization   Features Features for this release were tracked via the use of the kubernetes/features issues repo.</description>
+    </item>
+    
+    <item>
+      <title>KubeCon/CloudNativeCon 2016见闻</title>
+      <link>https://feisky.xyz/post/2016-11-14-kubecon-2016%E8%A7%81%E9%97%BB/</link>
+      <pubDate>Mon, 14 Nov 2016 09:49:52 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/post/2016-11-14-kubecon-2016%E8%A7%81%E9%97%BB/</guid>
+      <description>题记：上周去西雅图参加了KubeCon&amp;amp;CloudNativeCon 2016，不仅见到Dawn、Brendan、Tim以及Sig No</description>
+    </item>
+    
+    <item>
+      <title>Kubernetes container runtime interface</title>
+      <link>https://feisky.xyz/post/2016-09-25-kubernetes-container-runtime-interface/</link>
+      <pubDate>Sun, 25 Sep 2016 06:59:31 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/post/2016-09-25-kubernetes-container-runtime-interface/</guid>
+      <description>题记：最近一段时间在做Kubernetes容器引擎接口（Container Runtime Interface， CRI）的重构，并支持以插件的方式引入外部容</description>
+    </item>
+    
+    <item>
+      <title>Kubernetes中的服务发现与负载均衡</title>
+      <link>https://feisky.xyz/post/2016-09-11-kubernetes%E4%B8%AD%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0%E4%B8%8E%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/</link>
+      <pubDate>Sun, 11 Sep 2016 09:48:09 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/post/2016-09-11-kubernetes%E4%B8%AD%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0%E4%B8%8E%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/</guid>
+      <description>Kubernetes在设计之初就充分考虑了针对容器的服务发现与负载均衡机制，提供了Service资源，并通过kube-proxy配合clou</description>
+    </item>
+    
+    <item>
+      <title>如何快速启动一个Kubernetes集群</title>
+      <link>https://feisky.xyz/post/2016-08-24-%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8%E4%B8%80%E4%B8%AAkubernetes%E9%9B%86%E7%BE%A4/</link>
+      <pubDate>Wed, 24 Aug 2016 14:48:44 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/post/2016-08-24-%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8%E4%B8%80%E4%B8%AAkubernetes%E9%9B%86%E7%BE%A4/</guid>
+      <description>相比Docker一个二进制文件解决所有问题，Kubernetes则为不同的服务提供了不同的二进制文件，并将一些服务放到了addons中。故而</description>
+    </item>
+    
+    <item>
+      <title>Kubernetes-mesos architecture</title>
+      <link>https://feisky.xyz/post/2016-06-07-kubernetes-mesos-architecture/</link>
+      <pubDate>Tue, 07 Jun 2016 13:21:07 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/post/2016-06-07-kubernetes-mesos-architecture/</guid>
+      <description>From http://cdn.yongbok.net/ruo91/architecture/k8s/kubernetes_mesos_architecture_v1.x.png</description>
+    </item>
+    
+    <item>
+      <title>Hypernetes: Bringing Security and Multi-tenancy to Kubernetes</title>
+      <link>https://feisky.xyz/post/2016-06-06-hypernetes-bringing-security-and-multi-tenancy-to-kubernetes/</link>
+      <pubDate>Mon, 06 Jun 2016 16:10:25 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/post/2016-06-06-hypernetes-bringing-security-and-multi-tenancy-to-kubernetes/</guid>
+      <description>Notes: this post is copied from http://blog.kubernetes.io/2016/05/hypernetes-security-and-multi-tenancy-in-kubernetes.html.
+ Today’s guest post is written by Harry Zhang and Pengfei Ni, engineers at HyperHQ, describing a new hypervisor based container called HyperContainer
+While many developers and security professionals are comfortable with Linux containers as an effective boundary, many users need a stronger degree of isolation, particularly for those running in a multi-tenant environment. Sadly, today, those users are forced to run their containers inside virtual machines, even one VM per container.</description>
+    </item>
+    
+    <item>
+      <title>Borg, Omega, and Kubernetes (ACM Queue)</title>
+      <link>https://feisky.xyz/post/2016-03-04-borg-omega-and-kubernetes-acm-queue/</link>
+      <pubDate>Fri, 04 Mar 2016 15:46:28 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/post/2016-03-04-borg-omega-and-kubernetes-acm-queue/</guid>
+      <description>Brendan Burns, Brian Grant等在Borg, Omega, and Kubernetes - Lessons learned from three container-management systems over a decade分享了Google在容器管理的经验教训。 在谷歌的历史上，开发了三种容器管理</description>
+    </item>
+    
+    <item>
+      <title>Kubernetes sig-node (Asia) meeting notes</title>
+      <link>https://feisky.xyz/post/2016-03-02-kubernetes-sig-node-asia-meeting-nodes/</link>
+      <pubDate>Wed, 02 Mar 2016 17:07:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/post/2016-03-02-kubernetes-sig-node-asia-meeting-nodes/</guid>
+      <description>Kubernetes 1.2 Status Update (@dchen) Deployment object and HPA scale还有一些P0和P1的问题待解决 aws还有挺多的问题（应该要超过20个） 整个v1.2还有超过100个issue，但</description>
+    </item>
+    
+    <item>
+      <title>Hypernetes   The multi tenant Kubernetes distribution</title>
+      <link>https://feisky.xyz/post/2015-11-04-hypernetes---the-multi-tenant-kubernetes-distribution/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/post/2015-11-04-hypernetes---the-multi-tenant-kubernetes-distribution/</guid>
+      <description>&amp;ldquo;The Caas Revolution&amp;rdquo;. This is what we believe is happening today in the Cloud ecosystem. This revolution has been started by the now famous project (and company) Docker, and embraced by Cloud providers like Google and AWS.
+However, most multi-tenant CaaS solutions today run on a public IaaS, and use fully isolated virtual machine clusters to schedule containers. This is in contrast to the solely container-based implementation provided in private CaaS deployments.</description>
+    </item>
+    
+    <item>
+      <title>Something about kubernetes authentication</title>
+      <link>https://feisky.xyz/post/2015-09-23-something-about-kubernetes-authentication/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/post/2015-09-23-something-about-kubernetes-authentication/</guid>
+      <description>You can enable kubernetes authentication by through this documentation. Then you happily access kube-apiserve by curl:
+# curl -k -N -X GET -H &amp;quot;Authorization: Basic XXXXXXXXXX&amp;quot; http://localhost:8080/api/v1/namespaces/default/pods { &amp;quot;kind&amp;quot;: &amp;quot;PodList&amp;quot;, &amp;quot;apiVersion&amp;quot;: &amp;quot;v1&amp;quot;, &amp;quot;metadata&amp;quot;: { &amp;quot;selfLink&amp;quot;: &amp;quot;/api/v1/namespaces/default/pods&amp;quot;, &amp;quot;resourceVersion&amp;quot;: &amp;quot;74034&amp;quot; }, &amp;quot;items&amp;quot;: [] }  Nothing blocks this request! What is wrong? Wait a moment and checkout kubernetes documentation, I find this:
+ The Kubernetes API is served by the Kubernetes apiserver process.</description>
+    </item>
+    
+    <item>
+      <title>Use kubectl to connect kubernetes cluster</title>
+      <link>https://feisky.xyz/post/2015-11-04-use-kubectl-to-connect-kubernetes-cluster/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/post/2015-11-04-use-kubectl-to-connect-kubernetes-cluster/</guid>
+      <description>kubectl is the main tool to interact with Kubernetes cluster. It connects to http://localhost:8080 with no auth by default. But how can we use kubectl with auth?
+Pretty simple, just config kubectl with dedicated cluster:
+kubectl config set-credentials default --username=username --password=password kubectl config set-cluster default --server=https://kubernetes-master:6443 --insecure-skip-tls-verify=true kubectl config set-context default --cluster=default --user=default kubectl config use-context default  </description>
+    </item>
+    
+  </channel>
+</rss>

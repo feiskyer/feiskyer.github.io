@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Feisky</title>
+    <link>https://feisky.xyz/distributed/</link>
+    <description>Recent content on Feisky</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    <lastBuildDate>Fri, 21 Oct 2016 16:11:07 +0000</lastBuildDate>
+    
+	<atom:link href="https://feisky.xyz/distributed/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Paxos</title>
+      <link>https://feisky.xyz/distributed/paxos/</link>
+      <pubDate>Fri, 21 Oct 2016 16:11:07 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/distributed/paxos/</guid>
+      <description>Paxos Paxos算法是莱斯利·兰伯特于1990年提出的一种基于消息传递且具有高度容错特性的一致性算法。 论文 The Part-Time Parliament Paxos Made Simple Paxos Made Live CONSENSUS: BRIDGING THEORY AND PRACTICE Paxos</description>
+    </item>
+    
+    <item>
+      <title>Raft</title>
+      <link>https://feisky.xyz/distributed/raft/</link>
+      <pubDate>Fri, 21 Oct 2016 16:11:07 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/distributed/raft/</guid>
+      <description>Raft Raft可以在高效的解决分布式系统中各个节点日志内容一致性问题的同时，也使得集群具备一定的容错能力。即使集群中出现部分节点故障、网络故障等</description>
+    </item>
+    
+    <item>
+      <title>Zab</title>
+      <link>https://feisky.xyz/distributed/zab/</link>
+      <pubDate>Fri, 21 Oct 2016 16:11:07 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/distributed/zab/</guid>
+      <description>Zab Zab (Zookeeper atomic broadcast protocol)是Zookeeper内部用到的一致性协议。相比Paxos，Zab最大的特点是保证强一致性(strong consi</description>
+    </item>
+    
+    <item>
+      <title>分布式系统</title>
+      <link>https://feisky.xyz/distributed/</link>
+      <pubDate>Fri, 21 Oct 2016 16:11:07 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/distributed/</guid>
+      <description>目录 一、分布式理论 1.1 CAP 1.2 一致性 2PC/3PC Paxos Raft Zab 1.3 可用性和扩展性 1.4 网络分区 二、分布式存储系统 2.1 Google - Spanner, GFS, F1, Chubby, BigTable, Omega, Dapper, Datastore 2.2 AWS - RDS, DynamoDB, Aurora 2.3 阿里云 - 阿里云RDS,</description>
+    </item>
+    
+    <item>
+      <title>分布式系统的一致性</title>
+      <link>https://feisky.xyz/distributed/consistent/</link>
+      <pubDate>Fri, 21 Oct 2016 16:11:07 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/distributed/consistent/</guid>
+      <description>考虑在数据冗余情况下一致性和性能的问题，即： 1）要想让数据有高可用性，就得写多份数据。 2）写多份的问题会导致数据一致性的问题。 3）数据一致性</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://feisky.xyz/distributed/bigtable/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/distributed/bigtable/</guid>
+      <description>Google BigTable Google 作为大数据的祖宗一样的存在，对于云真是错过了一波又一波：虚拟化错过一波让 VMWare 和 Docker 抢先了（Google 早在十年前就开始容器的方案，要知道容</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://feisky.xyz/distributed/cockroachdb/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/distributed/cockroachdb/</guid>
+      <description>CockroachDB CockroachDB是一个基于Google Spanner论文打造的一个可伸缩的、跨地域复制且兼容ACID的数据库。 Design Documents</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://feisky.xyz/distributed/datastore/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/distributed/datastore/</guid>
+      <description>Google Cloud Datastore 在 2011 年，Google 发表了 Megastore 的论文，第一次描述了一个支持跨数据中心高可用 + 可以水平扩展 + 支持 ACID 事务语义的分布式存储系统。 Google Megastore 构建在 BigTable 之</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://feisky.xyz/distributed/dynamodb/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/distributed/dynamodb/</guid>
+      <description>Amazon DynamoDB Amazon DynamoDB 是一项快速灵活的 NoSQL 数据库服务，适合所有需要一致性且延迟低于 10 毫秒的任意规模的应用程序。它是完全托管的云数据库，支持文档和键值存储模型</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://feisky.xyz/distributed/f1/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/distributed/f1/</guid>
+      <description>Google F1 在 Spanner 项目开始的同时，Google 启动了另外一个和 Spanner 配套使用的分布式 SQL 引擎的项目 F1，底层有那么一个强一致高性能的 Spanner，那么就可</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://feisky.xyz/distributed/tidb/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/distributed/tidb/</guid>
+      <description>TiDB TiDB是 PingCAP 公司基于 Google Spanner / F1 论文实现的开源分布式 NewSQL 数据库。 TiDB 具备如下 NewSQL 核心特性： SQL支持 （TiDB 是 MySQL 兼容的） 水平线性弹性扩展 分布式事务</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://feisky.xyz/distributed/aurora/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/distributed/aurora/</guid>
+      <description>Amazon Aurora Amazon Aurora 是与 MySQL 兼容的关系数据库引擎，既具备高端商用数据库的速度和可用性，又有开源数据库的简单性和成本效益。Amazon Aurora 的性能最高可达到 MySQL 的</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://feisky.xyz/distributed/aws-rds/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/distributed/aws-rds/</guid>
+      <description>Amazon RDS Amazon Relational Database Service (Amazon RDS) 是最早的云数据库产品，提供托管的关系数据库，包括Amazon Aurora、PostgreSQL、MySQL、MariaDB、</description>
+    </item>
+    
+    <item>
+      <title>AWS S3故障回顾和总结</title>
+      <link>https://feisky.xyz/distributed/lessons/aws-s3-2.28/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/distributed/lessons/aws-s3-2.28/</guid>
+      <description>S3故障回顾 2月28日，AWS工程师在排查Northern Virginia (US-EAST-1) Region的一个S3计费问题时，因敲错了一条playbook的参数而误删了大</description>
+    </item>
+    
+    <item>
+      <title>Consul</title>
+      <link>https://feisky.xyz/distributed/consul/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/distributed/consul/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Etcd</title>
+      <link>https://feisky.xyz/distributed/etcd/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/distributed/etcd/</guid>
+      <description>Etcd是CoreOS基于Raft开发的分布式key-value存储，可用于服务发现、共享配置以及一致性保障（如数据库选主、分布式锁等）。 E</description>
+    </item>
+    
+    <item>
+      <title>Gitlab故障回顾和总结</title>
+      <link>https://feisky.xyz/distributed/lessons/gitlab-1.31/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/distributed/lessons/gitlab-1.31/</guid>
+      <description>Gitlab故障回顾 1月31日，Giblab在修复一个PostgreSQL数据同步问题（DB Replication lagged too far behind）时，误将生产环境的数据删除</description>
+    </item>
+    
+    <item>
+      <title>Kafka</title>
+      <link>https://feisky.xyz/distributed/kafka/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/distributed/kafka/</guid>
+      <description>Kafka是Linkedin开发的分布式消息系统，因其可水平扩展和高吞吐被广泛使用。其特点包括 快速持久化，常数时间复杂度的访问性能 高吞吐，单</description>
+    </item>
+    
+    <item>
+      <title>Zookeeper</title>
+      <link>https://feisky.xyz/distributed/zookeeper/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/distributed/zookeeper/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>spanner</title>
+      <link>https://feisky.xyz/distributed/spanner/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/distributed/spanner/</guid>
+      <description>Spanner是Google提供的跨区域/跨数据中心的关系型分布式数据库，在满足事务一致性的同时还具备极强的可扩展性，结合了传统关系数据库和</description>
+    </item>
+    
+    <item>
+      <title>阿里云RDS</title>
+      <link>https://feisky.xyz/distributed/aliyun-rds/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/distributed/aliyun-rds/</guid>
+      <description>阿里云RDS 但是那些 RDS 用户的数据量也是在持续增长的，对于云服务提供商来说不能眼睁睁的看着这些 RDS 用户数据量一大就走掉或者自己维护数据库集群。因</description>
+    </item>
+    
+    <item>
+      <title>高可用系统</title>
+      <link>https://feisky.xyz/distributed/ha/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/distributed/ha/</guid>
+      <description>关于高可用的系统&amp;ndash;酷壳</description>
+    </item>
+    
+  </channel>
+</rss>

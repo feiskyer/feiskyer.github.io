@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Kubernetes中的服务发现与负载均衡 - Feisky</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Feisky" />
+  <meta name="description" content="Kubernetes在设计之初就充分考虑了针对容器的服务发现与负载均衡机制，提供了Service资源，并通过kube-proxy配合clou" />
+
+  <meta name="keywords" content="Kubernetes, Cloud, SDN" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.37.1" />
+
+
+<link rel="canonical" href="https://feisky.xyz/post/2016-09-11-kubernetes%E4%B8%AD%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0%E4%B8%8E%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+<link href="/dist/even.min.css?v=3.1.1" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+
+
+<meta property="og:title" content="Kubernetes中的服务发现与负载均衡" />
+<meta property="og:description" content="Kubernetes在设计之初就充分考虑了针对容器的服务发现与负载均衡机制，提供了Service资源，并通过kube-proxy配合clou" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://feisky.xyz/post/2016-09-11-kubernetes%E4%B8%AD%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0%E4%B8%8E%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" />
+
+
+
+<meta property="article:published_time" content="2016-09-11T09:48:09&#43;00:00"/>
+
+<meta property="article:modified_time" content="2016-09-11T09:48:09&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="Kubernetes中的服务发现与负载均衡">
+<meta itemprop="description" content="Kubernetes在设计之初就充分考虑了针对容器的服务发现与负载均衡机制，提供了Service资源，并通过kube-proxy配合clou">
+
+
+<meta itemprop="datePublished" content="2016-09-11T09:48:09&#43;00:00" />
+<meta itemprop="dateModified" content="2016-09-11T09:48:09&#43;00:00" />
+<meta itemprop="wordCount" content="1719">
+
+
+
+<meta itemprop="keywords" content="kubernetes," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Kubernetes中的服务发现与负载均衡"/>
+<meta name="twitter:description" content="Kubernetes在设计之初就充分考虑了针对容器的服务发现与负载均衡机制，提供了Service资源，并通过kube-proxy配合clou"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Feisky</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="https://kubernetes.feisky.xyz">
+        <li class="mobile-menu-item">Kubernetes</li>
+      </a><a href="https://sdn.feisky.xyz">
+        <li class="mobile-menu-item">SDN</li>
+      </a><a href="/distributed/">
+        <li class="mobile-menu-item">分布式系统</li>
+      </a><a href="/container/">
+        <li class="mobile-menu-item">容器</li>
+      </a><a href="/machine-learning/">
+        <li class="mobile-menu-item">机器学习</li>
+      </a><a href="https://zhuanlan.zhihu.com/kubernetes">
+        <li class="mobile-menu-item">知乎</li>
+      </a><a href="/docs/">
+        <li class="mobile-menu-item">读书笔记</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Feisky</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="https://kubernetes.feisky.xyz">Kubernetes</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://sdn.feisky.xyz">SDN</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/distributed/">分布式系统</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/container/">容器</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/machine-learning/">机器学习</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://zhuanlan.zhihu.com/kubernetes">知乎</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/docs/">读书笔记</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Kubernetes中的服务发现与负载均衡</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2016-09-11 </span>
+        
+        <span class="more-meta"> 1719 words </span>
+        <span class="more-meta"> 4 mins read </span>
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#service">Service</a></li>
+<li><a href="#ingress-controller">Ingress Controller</a></li>
+<li><a href="#service-load-balancer">Service Load Balancer</a></li>
+<li><a href="#custom-load-balancer">Custom Load Balancer</a></li>
+<li><a href="#参考资料">参考资料</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      
+
+<p>Kubernetes在设计之初就充分考虑了针对容器的服务发现与负载均衡机制，提供了Service资源，并通过kube-proxy配合cloud provider来适应不同的应用场景。随着kubernetes用户的激增，用户场景的不断丰富，又产生了一些新的负载均衡机制。目前，kubernetes中的负载均衡大致可以分为以下几种机制，每种机制都有其特定的应用场景：</p>
+
+<ul>
+<li>Service：直接用Service提供cluster内部的负载均衡，并借助cloud provider提供的LB提供外部访问</li>
+<li>Ingress Controller：还是用Service提供cluster内部的负载均衡，但是通过自定义LB提供外部访问</li>
+<li>Service Load Balancer：把load balancer直接跑在容器中，实现Bare Metal的Service Load Balancer</li>
+<li>Custom Load Balancer：自定义负载均衡，并替代kube-proxy，一般在物理部署Kubernetes时使用，方便接入公司已有的外部服务</li>
+</ul>
+
+<h2 id="service">Service</h2>
+
+<p><img src="/images/k8s-service.png" alt="" /></p>
+
+<p>Service是对一组提供相同功能的Pods的抽象，并为它们提供一个统一的入口。借助Service，应用可以方便的实现服务发现与负载均衡，并实现应用的零宕机升级。Service通过标签来选取服务后端，一般配合Replication Controller或者Deployment来保证后端容器的正常运行。</p>
+
+<p>Service有三种类型：</p>
+
+<ul>
+<li>ClusterIP：默认类型，自动分配一个仅cluster内部可以访问的虚拟IP</li>
+<li>NodePort：在ClusterIP基础上为Service在每台机器上绑定一个端口，这样就可以通过<code>&lt;NodeIP&gt;:NodePort</code>来访问改服务</li>
+<li>LoadBalancer：在NodePort的基础上，借助cloud provider创建一个外部的负载均衡器，并将请求转发到<code>&lt;NodeIP&gt;:NodePort</code></li>
+</ul>
+
+<p>另外，也可以讲已有的服务以Service的形式加入到Kubernetes集群中来，只需要在创建Service的时候不指定Label selector，而是在Service创建好后手动为其添加endpoint。</p>
+
+<h2 id="ingress-controller">Ingress Controller</h2>
+
+<p>Service虽然解决了服务发现和负载均衡的问题，但它在使用上还是有一些限制，比如</p>
+
+<p>－ 只支持4层负载均衡，没有7层功能
+－ 对外访问的时候，NodePort类型需要在外部搭建额外的负载均衡，而LoadBalancer要求kubernetes必须跑在支持的cloud provider上面</p>
+
+<p>Ingress就是为了解决这些限制而引入的新资源，主要用来将服务暴露到cluster外面，并且可以自定义服务的访问策略。比如想要通过负载均衡器实现不同子域名到不同服务的访问：</p>
+
+<pre><code>foo.bar.com --|                 |-&gt; foo.bar.com s1:80
+              | 178.91.123.132  |
+bar.foo.com --|                 |-&gt; bar.foo.com s2:80
+</code></pre>
+
+<p>可以这样来定义Ingress：</p>
+
+<pre><code class="language-yaml">apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: test
+spec:
+  rules:
+  - host: foo.bar.com
+    http:
+      paths:
+      - backend:
+          serviceName: s1
+          servicePort: 80
+  - host: bar.foo.com
+    http:
+      paths:
+      - backend:
+          serviceName: s2
+          servicePort: 80
+</code></pre>
+
+<p>注意Ingress本身并不会自动创建负载均衡器，cluster中需要运行一个ingress controller来根据Ingress的定义来管理负载均衡器。目前社区提供了nginx和gce的参考实现。</p>
+
+<h2 id="service-load-balancer">Service Load Balancer</h2>
+
+<p>在Ingress出现以前，Service Load Balancer是推荐的解决Service局限性的方式。Service Load Balancer将haproxy跑在容器中，并监控service和endpoint的变化，通过容器IP对外提供4层和7层负载均衡服务。</p>
+
+<p>社区提供的Service Load Balancer支持四种负载均衡协议：TCP、HTTP、HTTPS和SSL TERMINATION，并支持ACL访问控制。</p>
+
+<h2 id="custom-load-balancer">Custom Load Balancer</h2>
+
+<p>虽然Kubernetes提供了丰富的负载均衡机制，但在实际使用的时候，还是会碰到一些复杂的场景是它不能支持的，比如</p>
+
+<ul>
+<li>接入已有的负载均衡设备</li>
+<li>多租户网络情况下，容器网络和主机网络是隔离的，这样<code>kube-proxy</code>就不能正常工作</li>
+</ul>
+
+<p>这个时候就可以自定义组件，并代替kube-proxy来做负载均衡。基本的思路是监控kubernetes中service和endpoints的变化，并根据这些变化来配置负载均衡器。比如weave flux、nginx plus、kube2haproxy等</p>
+
+<h2 id="参考资料">参考资料</h2>
+
+<ul>
+<li><a href="http://kubernetes.io/docs/user-guide/services/">http://kubernetes.io/docs/user-guide/services/</a></li>
+<li><a href="http://kubernetes.io/docs/user-guide/ingress/">http://kubernetes.io/docs/user-guide/ingress/</a></li>
+<li><a href="https://github.com/kubernetes/contrib/tree/master/service-loadbalancer">https://github.com/kubernetes/contrib/tree/master/service-loadbalancer</a></li>
+<li><a href="https://www.nginx.com/blog/load-balancing-kubernetes-services-nginx-plus/">https://www.nginx.com/blog/load-balancing-kubernetes-services-nginx-plus/</a></li>
+<li><a href="https://github.com/weaveworks/flux">https://github.com/weaveworks/flux</a></li>
+<li><a href="https://github.com/AdoHe/kube2haproxy">https://github.com/AdoHe/kube2haproxy</a></li>
+</ul>
+
+    </div>
+
+    
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Feisky</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">2016-09-11</span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">License</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a></span>
+  </p>
+</div>
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          
+          <a href="/tags/kubernetes/">kubernetes</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/2016-09-25-kubernetes-container-runtime-interface/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Kubernetes container runtime interface</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        
+          <a class="next" href="/post/2016-08-24-%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8%E4%B8%80%E4%B8%AAkubernetes%E9%9B%86%E7%BE%A4/">
+            <span class="next-text nav-default">如何快速启动一个Kubernetes集群</span>
+            <span class="prev-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    (function() {
+      
+      
+      if (window.location.hostname === 'localhost') return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = 'feisky';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://twitter.com/feisky" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="https://github.com/feiskyer" class="iconfont icon-github" title="github"></a>
+      <a href="https://weibo.com/371069890" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://www.zhihu.com/people/feisky" class="iconfont icon-zhihu" title="zhihu"></a>
+  <a href="https://feisky.xyz/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    
+      2014 - 
+    2018
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Feisky</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+<script src="/lib/highlight/highlight.pack.js?v=20171001"></script><script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script><script></script>
+<script src="https://cdn.jsdelivr.net/npm/raphael@2.2.7/raphael.min.js" integrity="sha256-67By+NpOtm9ka1R6xpUefeGOY8kWWHHRAKlvaTJ7ONI=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/flowchart.js@1.8.0/release/flowchart.min.js" integrity="sha256-zNGWjubXoY6rb5MnmpBNefO0RgoVYfle9p0tvOQM+6k=" crossorigin="anonymous"></script><script></script>
+<script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+<script type="text/javascript" src="/dist/even.min.js?v=3.1.1"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-69699206-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+<script id="baidu_analytics">
+  var _hmt = _hmt || [];
+  (function() {
+    if (window.location.hostname === 'localhost') return;
+    var hm = document.createElement("script"); hm.async = true;
+    hm.src = "https://hm.baidu.com/hm.js?d2f4aad4d3f8dc2de9170fa1df3fcbcf";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+<script id="baidu_push">
+  (function(){
+    if (window.location.hostname === 'localhost') return;
+    var bp = document.createElement('script'); bp.async = true;
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+
+
+</body>
+</html>

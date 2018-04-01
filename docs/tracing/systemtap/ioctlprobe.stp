@@ -1,0 +1,108 @@
+/*
+ * By Dominic Duval, Red Hat Inc.
+ * dduval@redhat.com
+ * 
+ * Monitors ioctl's invoked in compat mode, which can be slower
+ * than regular unlocked ioctl's, and print information about
+ * what process invoked them.
+ *
+ * USAGE: stap -g ioctlprobe.stp
+ *
+ */
+
+
+
+global start, timer, args, filename
+
+%{
+#include <linux/file.h>
+#include <linux/dcache.h>
+#include <linux/mount.h>
+#include <linux/fs.h>
+#include <linux/err.h>
+
+%}
+
+function fd_to_name:string(fd:long)
+%{ /* pure */
+        struct file *file;
+        struct files_struct *files;
+        struct inode *inode;
+        struct task_struct *task;
+        const unsigned char *name;
+        char buffer[MAXSTRINGLEN];
+
+/* Can't use the following function (not exported!). */
+/* Re-implementing here */
+/*      files = get_files_struct(current); */
+        task_lock(current);
+        files = current->files;
+        if (files)
+                atomic_inc(&files->count);
+        task_unlock(current);
+
+        if (!files)
+                goto outnolock;
+
+
+        spin_lock(&files->file_lock);
+        file = fcheck_files(files, THIS->fd);
+        if (!file)
+                goto out_unlock;
+
+        name = d_path(file->f_dentry,file->f_vfsmnt, buffer,MAXSTRINGLEN);
+
+        if (IS_ERR(name)) {
+                goto out_unlock;
+                printk("d_path did not work!\n");
+        }
+        strlcpy (THIS->__retvalue, name, MAXSTRINGLEN);
+
+out_unlock:
+        spin_unlock(&files->file_lock);
+
+outnolock:
+        put_files_struct(files);
+
+%}
+
+
+function timestamp:long() {
+	return gettimeofday_us() - start
+}
+
+function proc:string() {
+	return sprintf("%d (%s)", pid(), execname() )
+}
+
+probe begin {
+	start = gettimeofday_us()
+}
+
+probe syscall.ioctl {
+	if ( probefunc() == "compat_sys_ioctl") {
+		t = gettimeofday_us();
+		p = pid()
+		timer[p] = t
+		args[p] = argstr
+		filename[p] = fd_to_name(fd)
+	}
+}
+
+probe syscall.ioctl.return {
+	if ( probefunc() == "compat_sys_ioctl") {
+		t = gettimeofday_us();
+		p = pid()
+		elapsed_time = t - timer[p]
+		printf("At %15d us: %25s Length: %15d us\n", timestamp(), proc(), elapsed_time)
+		printf("%s %s\n",filename[p], args[p])
+		delete timer[p]
+		delete args[p]
+		delete filename[p]
+	}
+}
+
+probe timer.ms(120000) {
+	exit()
+}
+

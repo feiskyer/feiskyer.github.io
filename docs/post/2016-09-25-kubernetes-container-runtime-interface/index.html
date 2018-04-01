@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Kubernetes container runtime interface - Feisky</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Feisky" />
+  <meta name="description" content="题记：最近一段时间在做Kubernetes容器引擎接口（Container Runtime Interface， CRI）的重构，并支持以插件的方式引入外部容" />
+
+  <meta name="keywords" content="Kubernetes, Cloud, SDN" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.37.1" />
+
+
+<link rel="canonical" href="https://feisky.xyz/post/2016-09-25-kubernetes-container-runtime-interface/" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+<link href="/dist/even.min.css?v=3.1.1" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+
+
+<meta property="og:title" content="Kubernetes container runtime interface" />
+<meta property="og:description" content="题记：最近一段时间在做Kubernetes容器引擎接口（Container Runtime Interface， CRI）的重构，并支持以插件的方式引入外部容" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://feisky.xyz/post/2016-09-25-kubernetes-container-runtime-interface/" />
+
+
+
+<meta property="article:published_time" content="2016-09-25T06:59:31&#43;00:00"/>
+
+<meta property="article:modified_time" content="2018-04-01T22:42:21&#43;08:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="Kubernetes container runtime interface">
+<meta itemprop="description" content="题记：最近一段时间在做Kubernetes容器引擎接口（Container Runtime Interface， CRI）的重构，并支持以插件的方式引入外部容">
+
+
+<meta itemprop="datePublished" content="2016-09-25T06:59:31&#43;00:00" />
+<meta itemprop="dateModified" content="2016-09-25T06:59:31&#43;00:00" />
+<meta itemprop="wordCount" content="2262">
+
+
+
+<meta itemprop="keywords" content="kubernetes," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Kubernetes container runtime interface"/>
+<meta name="twitter:description" content="题记：最近一段时间在做Kubernetes容器引擎接口（Container Runtime Interface， CRI）的重构，并支持以插件的方式引入外部容"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Feisky</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="https://kubernetes.feisky.xyz">
+        <li class="mobile-menu-item">Kubernetes</li>
+      </a><a href="https://sdn.feisky.xyz">
+        <li class="mobile-menu-item">SDN</li>
+      </a><a href="/distributed/">
+        <li class="mobile-menu-item">分布式系统</li>
+      </a><a href="/container/">
+        <li class="mobile-menu-item">容器</li>
+      </a><a href="/machine-learning/">
+        <li class="mobile-menu-item">机器学习</li>
+      </a><a href="https://zhuanlan.zhihu.com/kubernetes">
+        <li class="mobile-menu-item">知乎</li>
+      </a><a href="/docs/">
+        <li class="mobile-menu-item">读书笔记</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Feisky</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="https://kubernetes.feisky.xyz">Kubernetes</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://sdn.feisky.xyz">SDN</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/distributed/">分布式系统</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/container/">容器</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/machine-learning/">机器学习</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://zhuanlan.zhihu.com/kubernetes">知乎</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/docs/">读书笔记</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Kubernetes container runtime interface</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2016-09-25 </span>
+        
+        <span class="more-meta"> 2262 words </span>
+        <span class="more-meta"> 5 mins read </span>
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#什么是cri">什么是CRI</a></li>
+<li><a href="#cri是如何工作的">CRI是如何工作的</a></li>
+<li><a href="#cri带了什么">CRI带了什么</a></li>
+<li><a href="#cri的未来">CRI的未来</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      
+
+<p>题记：最近一段时间在做Kubernetes容器引擎接口（Container Runtime Interface， CRI）的重构，并支持以插件的方式引入外部容器引擎。CRI还在紧张有序的开发中，预计在v1.5发布第一个alpha版。</p>
+
+<h2 id="什么是cri">什么是CRI</h2>
+
+<p>CRI是Kubelet（负责管理容器生命周期的服务）与容器引擎之间的接口。为了适应多种不同的容器引擎，Kubelet在加入rkt的时候就已经在docker API的基础上抽象了一个Runtime接口，只是由于一些特定的缺陷，在这个接口上不太容易引入其他新的容器引擎：</p>
+
+<ul>
+<li>Runtime接口的抽象度太高，导致一些原本该在Kubelet控制的逻辑被放到了Runtime实现里面。比如在当前的实现中，rkt和docker的<code>SyncPod</code>（负责Pod创建的接口）存在大量重复的逻辑，每次修改docker部分的时，都有可能需要同时修改rkt部分。这样，如果再加入新的容器引擎的话，同时修改多个Runtime部分的代码是没法维护的。</li>
+<li>Runtime接口是集成在Kubelet内部的，集成容器引擎相关的代码需要放到Kubernetes代码库里面，这同样带来了维护的问题：代码维护麻烦，任何一个容器引擎修改了代码都需要发布新的kubelet；集成测试麻烦，要为每个不同的容器引擎部署不同的集成测试环境。</li>
+<li>没有提供容器创建的接口，无法直接在Kubelet里面做到对容器的精细控制。</li>
+<li>耦合了镜像和容器管理，而它们的生命周期本来就是独立的。</li>
+</ul>
+
+<p>既然Runtime接口有很多问题，并且有很多容器引擎想要集成到Kubernetes中，所以有必要重新定义CRI，并且提供一种插件机制，允许容器引擎以外部独立进程的方式接入。所以，Brendan Burns在<a href="http://hypercontainer.io">Hyper</a>集成的时候就提供了一种以客户端/服务器方式接入外部容器引擎的思路。在大量的社区讨论后，Node team重新抽象了容器引擎接口（也就是CRI），并决定以gRPC的方式接入外部容器引擎。</p>
+
+<h2 id="cri是如何工作的">CRI是如何工作的</h2>
+
+<p>CRI比Runtime接口提供了更细粒度的抽象，解耦了镜像管理和容器管理，并为Pod和Container提供了独立的操作接口。CRI以gRPC的方式接入，Kubelet是gPRC API的客户端，而容器引擎则是gRPC API的服务端。gRPC已经自动实现了它们之间交互的细节，容器引擎只需要实现每个具体的API。</p>
+
+<p>一个典型的启动Pod的流程为</p>
+
+<p><img src="/images/createpod.png" alt="createpod" /></p>
+
+<p>而停止Pod的流程为</p>
+
+<p><img src="/images/killpod.png" alt="killpod" /></p>
+
+<h2 id="cri带了什么">CRI带了什么</h2>
+
+<p>CRI解决了上述提到的Runtime接口的问题，使得新的容器引擎可以更方便的集成到Kubernetes中来，这必将给Kubernetes社区带来新一轮的变革，并促进Kubernetes走入更多的应用场景中。比如，Redhat借助OCI容器引擎runc摆脱对docker依赖，Hyper以虚拟化的方式解决多租户场景下的容器隔离问题，甚至Mirantis直接用Kubernetes来管理原生的虚拟机。</p>
+
+<p>CRI也解耦了容器和镜像的管理，可以方便的扩展其他镜像格式，比如ACI等。</p>
+
+<p>CRI还在着力解决一些很有挑战的问题，比如</p>
+
+<ul>
+<li>容器日志的管理，包括日志格式化规范、日志文件rotate、日志文件磁盘IO控制以及日志的统一收集处理等。</li>
+<li>解除streaming API（exec、attach、logs等）对kubelet的网络压力。当前所有的streaming API都是从<code>apiserver-&gt;kubelet-&gt;runtime</code>，apiserver是无状态的，可以水平扩展，但kubelet和runtime则是每台机器只能有一个，streaming API有可能会给他们带来处理的瓶颈。所以在CRI中，将会考虑使用一个独立进程（需要对apiserver开放端口）来单独处理这些请求<code>apiserver-&gt;newStreamProcess</code>，释放kubelet来做更核心的事情。</li>
+<li>更灵活的网络配置，将Pod网络的配置完全交给容器引擎，而Kubernetes只需要最终的网络状态。</li>
+</ul>
+
+<h2 id="cri的未来">CRI的未来</h2>
+
+<p>虽然CRI还在持续开发中（目前还没有任何release），但已经有很多厂商已经开始了引入新容器引擎的进程：</p>
+
+<ul>
+<li>Frakti：为解决多租户场景下的容器隔离问题，Hyper以虚拟化的方式运行容器。关于frakti的更多细节见<a href="https://github.com/kubernetes/frakti。">https://github.com/kubernetes/frakti。</a></li>
+<li>OCI-O：为解耦对docker的依赖，Redhat提供对OCI容器引擎的支持（目前主要是runc）。关于oci-o的更多细节见<a href="https://github.com/kubernetes-incubator/oci-o。">https://github.com/kubernetes-incubator/oci-o。</a></li>
+<li>Rktlet：为了加速rkt容器引擎的开发维护，CoreOS提议将rkt集成的代码独立出Kubelet（vendor到kubelet，同集成到kubelet内部便于发布），并重构rkt以适应CRI的变化。关于rktlet的更多细节见<a href="https://github.com/kubernetes-incubator/rktlet。">https://github.com/kubernetes-incubator/rktlet。</a></li>
+<li>Virtlet：为了支持原生的虚拟机管理，Mirantis提议直接用Kubernetes来管理原生的虚拟机（需要将docker镜像替换成qcow2镜像）。关于virtlet的更多细节见<a href="https://github.com/Mirantis/virtlet。">https://github.com/Mirantis/virtlet。</a></li>
+<li>当然，docker相关的代码还会继续保留在kubelet内部，只不过要重构到CRI上面来。</li>
+</ul>
+
+<p>CRI预计在Kubernetes v1.5发布第一个alpha版。届时，上面各个容器引擎的实现也将会发布第一个release。</p>
+
+    </div>
+
+    
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Feisky</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">2018-04-01</span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">License</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a></span>
+  </p>
+</div>
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          
+          <a href="/tags/kubernetes/">kubernetes</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/2016-11-14-kubecon-2016%E8%A7%81%E9%97%BB/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">KubeCon/CloudNativeCon 2016见闻</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        
+          <a class="next" href="/post/2016-09-11-kubernetes%E4%B8%AD%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0%E4%B8%8E%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/">
+            <span class="next-text nav-default">Kubernetes中的服务发现与负载均衡</span>
+            <span class="prev-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    (function() {
+      
+      
+      if (window.location.hostname === 'localhost') return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = 'feisky';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://twitter.com/feisky" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="https://github.com/feiskyer" class="iconfont icon-github" title="github"></a>
+      <a href="https://weibo.com/371069890" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://www.zhihu.com/people/feisky" class="iconfont icon-zhihu" title="zhihu"></a>
+  <a href="https://feisky.xyz/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    
+      2014 - 
+    2018
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Feisky</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+<script src="/lib/highlight/highlight.pack.js?v=20171001"></script><script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script><script></script>
+<script src="https://cdn.jsdelivr.net/npm/raphael@2.2.7/raphael.min.js" integrity="sha256-67By+NpOtm9ka1R6xpUefeGOY8kWWHHRAKlvaTJ7ONI=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/flowchart.js@1.8.0/release/flowchart.min.js" integrity="sha256-zNGWjubXoY6rb5MnmpBNefO0RgoVYfle9p0tvOQM+6k=" crossorigin="anonymous"></script><script></script>
+<script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+<script type="text/javascript" src="/dist/even.min.js?v=3.1.1"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-69699206-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+<script id="baidu_analytics">
+  var _hmt = _hmt || [];
+  (function() {
+    if (window.location.hostname === 'localhost') return;
+    var hm = document.createElement("script"); hm.async = true;
+    hm.src = "https://hm.baidu.com/hm.js?d2f4aad4d3f8dc2de9170fa1df3fcbcf";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+<script id="baidu_push">
+  (function(){
+    if (window.location.hostname === 'localhost') return;
+    var bp = document.createElement('script'); bp.async = true;
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+
+
+</body>
+</html>
