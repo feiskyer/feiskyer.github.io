@@ -1,0 +1,3459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Go语言技巧 - Feisky</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Feisky" />
+  <meta name="description" content="Go语言技巧 常用工具 go fmt golint go vet goimports https://goreportcard.com/ 惯用法 注释用完整句子，以方法或包名开头 每行控制80字节长度 error字符串首字母小写 多个相同变量的返回值加" />
+
+  <meta name="keywords" content="Kubernetes, Cloud, SDN" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.37.1" />
+
+
+<link rel="canonical" href="https://feisky.xyz/programing/go/" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+<link href="/dist/even.min.css?v=3.1.1" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+
+
+<meta property="og:title" content="Go语言技巧" />
+<meta property="og:description" content="Go语言技巧 常用工具 go fmt golint go vet goimports https://goreportcard.com/ 惯用法 注释用完整句子，以方法或包名开头 每行控制80字节长度 error字符串首字母小写 多个相同变量的返回值加" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://feisky.xyz/programing/go/" />
+
+
+
+<meta property="article:published_time" content="2016-09-18T14:20:54&#43;00:00"/>
+
+<meta property="article:modified_time" content="2018-04-01T22:45:12&#43;08:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="Go语言技巧">
+<meta itemprop="description" content="Go语言技巧 常用工具 go fmt golint go vet goimports https://goreportcard.com/ 惯用法 注释用完整句子，以方法或包名开头 每行控制80字节长度 error字符串首字母小写 多个相同变量的返回值加">
+
+
+<meta itemprop="datePublished" content="2016-09-18T14:20:54&#43;00:00" />
+<meta itemprop="dateModified" content="2016-09-18T14:20:54&#43;00:00" />
+<meta itemprop="wordCount" content="16985">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Go语言技巧"/>
+<meta name="twitter:description" content="Go语言技巧 常用工具 go fmt golint go vet goimports https://goreportcard.com/ 惯用法 注释用完整句子，以方法或包名开头 每行控制80字节长度 error字符串首字母小写 多个相同变量的返回值加"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Feisky</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="https://kubernetes.feisky.xyz">
+        <li class="mobile-menu-item">Kubernetes</li>
+      </a><a href="https://sdn.feisky.xyz">
+        <li class="mobile-menu-item">SDN</li>
+      </a><a href="/distributed/">
+        <li class="mobile-menu-item">分布式系统</li>
+      </a><a href="/container/">
+        <li class="mobile-menu-item">容器</li>
+      </a><a href="/machine-learning/">
+        <li class="mobile-menu-item">机器学习</li>
+      </a><a href="https://zhuanlan.zhihu.com/kubernetes">
+        <li class="mobile-menu-item">知乎</li>
+      </a><a href="/docs/">
+        <li class="mobile-menu-item">读书笔记</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Feisky</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="https://kubernetes.feisky.xyz">Kubernetes</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://sdn.feisky.xyz">SDN</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/distributed/">分布式系统</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/container/">容器</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/machine-learning/">机器学习</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://zhuanlan.zhihu.com/kubernetes">知乎</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/docs/">读书笔记</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+  <div class="post-content">
+      
+
+<h1 id="go语言技巧">Go语言技巧</h1>
+
+<h2 id="常用工具">常用工具</h2>
+
+<ul>
+<li>go fmt</li>
+<li>golint</li>
+<li>go vet</li>
+<li>goimports</li>
+<li><a href="https://goreportcard.com/">https://goreportcard.com/</a></li>
+</ul>
+
+<h2 id="惯用法">惯用法</h2>
+
+<ul>
+<li>注释用完整句子，以方法或包名开头</li>
+<li>每行控制80字节长度</li>
+<li>error字符串首字母小写</li>
+<li>多个相同变量的返回值加上名字以便清晰</li>
+<li>创建空slice：<code>var t []int</code></li>
+</ul>
+
+<h2 id="技巧汇总">技巧汇总</h2>
+
+<h3 id="避免循环中的变量逃逸到循环外">避免循环中的变量逃逸到循环外</h3>
+
+<pre><code class="language-go">func print(pi *int) { 
+    fmt.Println(*pi) 
+}
+
+for i := 0; i &lt; 10; i++ {  
+    defer fmt.Println(i) // 预期的结果; 打印 9 ... 0
+    defer func(){ fmt.Println(i) }() // 错误的结果; 打印10个&quot;10&quot;
+    defer func(i int){ fmt.Println(i) }(i) // 正确的预期结果
+    defer print(&amp;i) // 错误的结果; 打印10个&quot;10&quot;
+    go fmt.Println(i) // 正确; 但是打印 0-9之间的顺序不保证
+    go func(){ fmt.Println(i) }() // 错误; 完全不可预知.
+}
+
+for key, value := range myMap {  
+    // Same for key &amp; value as i!
+}
+</code></pre>
+
+<p>每个人期望这些值和循环内的值相同，但是Go重用了每次循环的变量. 这就意味着你绝对不要让<code>key，value，i</code>这些值的地址逃逸出循环。使用匿名函数<code>func() { /* do something with i */ } (a &quot;closure&quot;)</code>是一个微妙的解决地址逃逸问题的方法，因为在Go里面函数调用的参数是值copy。</p>
+
+<p>另外一个例子：</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+type T struct {
+	ID int
+}
+
+func (t *T) PrintID() {
+	fmt.Println(t.ID)
+}
+
+func F1() {
+	ts := []T{{1}, {2}, {3}}
+	for _, t := range ts {
+		defer t.PrintID() // prints always 3
+	}
+}
+
+// a method call is equivalent to a regular function call 
+// with the receiver passed as an argument. Since the argument
+// is evaluated at the time the defer statement is invoked,
+// you get different values of t each time.
+func F2() {
+	ts := []*T{&amp;T{1}, &amp;T{2}, &amp;T{3}}
+	for _, t := range ts {
+		defer t.PrintID() // prints 3, 2, 1
+	}
+}
+
+func main() {
+	fmt.Println(&quot;F1()&quot;)
+	F1()
+	fmt.Println()
+	fmt.Println(&quot;F2()&quot;)
+	F2()
+}
+</code></pre>
+
+<h3 id="区分nil-interface跟nil指针成员的不同">区分nil interface跟nil指针成员的不同</h3>
+
+<pre><code class="language-go">type Cat interface {
+  Meow()
+}
+
+type Tabby struct {}
+func (*Tabby) Meow() { fmt.Println(&quot;meow&quot;) }
+
+func GetACat() Cat {
+  var myTabby *Tabby = nil
+  // Oops, we forgot to set myTabby to a real value
+  return myTabby
+}
+
+func TestGetACat(t *testing.T) {
+  if GetACat() == nil {
+    t.Errorf(&quot;Forgot to return a real cat!&quot;)
+  }
+}
+</code></pre>
+
+<p>大家猜猜会怎么样? 上面的这个测试讲永远不会检测到空指针。这是因为interface作为一个指针的容器来使用了，因此GetACat可以返回一个指针或者空指针.</p>
+
+<pre><code>An interface value is nil only if the inner value and type are both unset, `(nil, nil)`. In particular, a nil interface will always hold a nil type. If we store a nil pointer of type `*int` inside an interface value, the inner type will be *int regardless of the value of the pointer: `(*int, nil)`. Such an interface value will therefore be non-nil even when the pointer inside is nil.
+</code></pre>
+
+<p>这种错误在err里面也是经常见 (详见 <a href="http://golang.org/doc/faq#nil_error">http://golang.org/doc/faq#nil_error</a>)</p>
+
+<pre><code class="language-go">func returnsError() error {
+	var p *MyError = nil
+	if bad() {
+		p = ErrBad
+	}
+	return p // Will always return a non-nil error.
+}
+</code></pre>
+
+<p>正确的做法是显式返回nil:</p>
+
+<pre><code class="language-go">func returnsError() error {
+	if bad() {
+		return ErrBad
+	}
+	return nil
+}
+</code></pre>
+
+<h3 id="影子变量带来的困惑">影子变量带来的困惑</h3>
+
+<pre><code class="language-go">var ErrDidNotWork = errors.New(&quot;did not work&quot;)
+func DoTheThing(reallyDoIt bool) (err error) {  
+    if reallyDoIt {    
+       result, err := tryTheThing()    
+       if err != nil || result != &quot;it worked&quot; {
+         err = ErrDidNotWork
+       }
+    }  
+   return err //永远返回nil
+}
+</code></pre>
+
+<p>上面的代码永远返回nil，这是因为循环内的err变量是一个函数返回err变量的影子变量. 所以上面的代码解决方案是添加一个<code>var result string</code>，而不要在内部使用<code>:=</code>来定义什么新变量。</p>
+
+<p><del>2016-10-08补充</del></p>
+
+<p>即使在同一个scope之内，也会出现影子变量问题，比如：</p>
+
+<pre><code class="language-go">package main
+
+import (
+    &quot;fmt&quot;
+)
+
+func trivial() (string, string) {
+    return &quot;hello&quot;, &quot;world&quot;
+}
+
+func main() {
+    var he = &quot;hello, a&quot;
+    defer fmt.Println(&quot;defer: &quot;, he)
+    he, wo := trivial()
+    fmt.Println(he, wo)
+}
+</code></pre>
+
+<p>上述代码输出如下：</p>
+
+<pre><code>hello world
+defer:  hello, a
+</code></pre>
+
+<h3 id="开大括号不能放在单独的一行">开大括号不能放在单独的一行</h3>
+
+<p>在大多数其他使用大括号的语言中，你需要选择放置它们的位置。Go的方式不同。你可以为此感谢下自动分号的注入（没有预读）。是的，Go中也是有分号的：-）</p>
+
+<p>Fails:</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+func main()  
+{ //error, can't have the opening brace on a separate line
+    fmt.Println(&quot;hello there!&quot;)
+}
+</code></pre>
+
+<p>Compile Error:</p>
+
+<blockquote>
+<p>/tmp/sandbox826898458/main.go:6: syntax error: unexpected semicolon or newline before {</p>
+</blockquote>
+
+<p>Works:</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+func main() {  
+    fmt.Println(&quot;works!&quot;)
+}
+</code></pre>
+
+<h3 id="未使用的变量">未使用的变量</h3>
+
+<p>如果你有未使用的变量，代码将编译失败。当然也有例外。在函数内一定要使用声明的变量，但未使用的全局变量是没问题的。如果你给未使用的变量分配了一个新的值，代码还是会编译失败。你需要在某个地方使用这个变量，才能让编译器愉快的编译。</p>
+
+<p>Fails:</p>
+
+<pre><code class="language-go">package main
+
+var gvar int //not an error
+
+func main() {  
+    var one int   //error, unused variable
+    two := 2      //error, unused variable
+    var three int //error, even though it's assigned 3 on the next line
+    three = 3
+
+    func(unused string) {
+        fmt.Println(&quot;Unused arg. No compile error&quot;)
+    }(&quot;what?&quot;)
+}
+</code></pre>
+
+<p>Compile Errors:</p>
+
+<blockquote>
+<p>/tmp/sandbox473116179/main.go:6: one declared and not used
+/tmp/sandbox473116179/main.go:7: two declared and not used
+/tmp/sandbox473116179/main.go:8: three declared and not used</p>
+</blockquote>
+
+<p>Works:</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+func main() {  
+    var one int
+    _ = one
+
+    two := 2 
+    fmt.Println(two)
+
+    var three int 
+    three = 3
+    one = three
+
+    var four int
+    four = four
+}
+</code></pre>
+
+<p>另一个选择是注释掉或者移除未使用的变量 ：-）</p>
+
+<h3 id="未使用的imports">未使用的Imports</h3>
+
+<p>如果你引入一个包，而没有使用其中的任何函数、接口、结构体或者变量的话，代码将会编译失败。如果你真的需要引入的包，你可以添加一个下划线标记符<code>_</code>来作为这个包的名字，从而避免编译失败。</p>
+
+<p>Fails:</p>
+
+<pre><code class="language-go">package main
+
+import (  
+    &quot;fmt&quot;
+    &quot;log&quot;
+    &quot;time&quot;
+)
+
+func main() {  
+}
+</code></pre>
+
+<p>Compile Errors:</p>
+
+<blockquote>
+<p>/tmp/sandbox627475386/main.go:4: imported and not used: &ldquo;fmt&rdquo;
+/tmp/sandbox627475386/main.go:5: imported and not used: &ldquo;log&rdquo;
+/tmp/sandbox627475386/main.go:6: imported and not used: &ldquo;time&rdquo;</p>
+</blockquote>
+
+<p>Works:</p>
+
+<pre><code class="language-go">package main
+
+import (  
+    _ &quot;fmt&quot;
+    &quot;log&quot;
+    &quot;time&quot;
+)
+
+var _ = log.Println
+
+func main() {  
+    _ = time.Now
+}
+</code></pre>
+
+<p>另一个选择是移除或者注释掉未使用的imports， <a href="http://godoc.org/golang.org/x/tools/cmd/goimports"><code>goimports</code></a>可以帮你来干这个活.</p>
+
+<h3 id="简式的变量声明仅可以在函数内部使用">简式的变量声明仅可以在函数内部使用</h3>
+
+<p>Fails:</p>
+
+<pre><code class="language-go">package main
+
+myvar := 1 //error
+
+func main() {  
+}
+</code></pre>
+
+<p>Compile Error:</p>
+
+<blockquote>
+<p>/tmp/sandbox265716165/main.go:3: non-declaration statement outside function body</p>
+</blockquote>
+
+<p>Works:</p>
+
+<pre><code class="language-go">package main
+
+var myvar = 1
+
+func main() {  
+}
+</code></pre>
+
+<h3 id="使用简式声明重复声明变量">使用简式声明重复声明变量</h3>
+
+<p>你不能在一个单独的声明中重复声明一个变量，但在多变量声明中这是允许的，其中至少要有一个新的声明变量。</p>
+
+<p>重复变量需要在相同的代码块内，否则你将得到一个隐藏变量。</p>
+
+<p>Fails:</p>
+
+<pre><code class="language-go">package main
+
+func main() {  
+    one := 0
+    one := 1 //error
+}
+</code></pre>
+
+<p>Compile Error:</p>
+
+<blockquote>
+<p>/tmp/sandbox706333626/main.go:5: no new variables on left side of :=</p>
+</blockquote>
+
+<p>Works:</p>
+
+<pre><code class="language-go">package main
+
+func main() {  
+    one := 0
+    one, two := 1,2
+
+    one,two = two,one
+}
+</code></pre>
+
+<h3 id="不能使用简式声明来设置成员变量">不能使用简式声明来设置成员变量</h3>
+
+<p>Fails:</p>
+
+<pre><code class="language-go">package main
+
+import (  
+  &quot;fmt&quot;
+)
+
+type info struct {  
+  result int
+}
+
+func work() (int,error) {  
+    return 13,nil  
+  }
+
+func main() {  
+  var data info
+
+  data.result, err := work() //error
+  fmt.Printf(&quot;info: %+v\n&quot;,data)
+}
+</code></pre>
+
+<p>Compile Error:</p>
+
+<blockquote>
+<p>prog.go:18: non-name data.result on left side of :=</p>
+</blockquote>
+
+<p>解决方式是使用局部变量:</p>
+
+<p>Works:</p>
+
+<pre><code class="language-go">package main
+
+import (  
+  &quot;fmt&quot;
+)
+
+type info struct {  
+  result int
+}
+
+func work() (int,error) {  
+    return 13,nil  
+  }
+
+func main() {  
+  var data info
+
+  var err error
+  data.result, err = work() //ok
+  if err != nil {
+    fmt.Println(err)
+    return
+  }
+
+  fmt.Printf(&quot;info: %+v\n&quot;,data) //prints: info: {result:13}
+}
+</code></pre>
+
+<h3 id="accidental-variable-shadowing">Accidental Variable Shadowing</h3>
+
+<p>短式变量声明的语法如此的方便（尤其对于那些使用过动态语言的开发者而言），很容易让人把它当成一个正常的分配操作。如果你在一个新的代码块中犯了这个错误，将不会出现编译错误，但你的应用将不会做你所期望的事情。</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+func main() {  
+    x := 1
+    fmt.Println(x)     //prints 1
+    {
+        fmt.Println(x) //prints 1
+        x := 2
+        fmt.Println(x) //prints 2
+    }
+    fmt.Println(x)     //prints 1 (bad if you need 2)
+}
+</code></pre>
+
+<p>即使对于经验丰富的Go开发者而言，这也是一个非常常见的陷阱。这个坑很容易挖，但又很难发现。</p>
+
+<p>可以借助<a href="http://godoc.org/golang.org/x/tools/cmd/vet"><code>vet</code></a>来排查这种问题，<code>go tool vet -shadow your_file.go</code>。</p>
+
+<p>Note that the <code>vet</code> command will not report all shadowed variables. Use <a href="https://github.com/barakmich/go-nyet"><code>go-nyet</code></a> for more aggressive shadowed variable detection.</p>
+
+<h3 id="不使用显式类型-无法使用-nil-来初始化变量">不使用显式类型，无法使用“nil”来初始化变量</h3>
+
+<p>“nil”标志符用于表示interface、函数、maps、slices和channels的“零值”。如果你不指定变量的类型，编译器将无法编译你的代码，因为它猜不出具体的类型。</p>
+
+<p>Fails:</p>
+
+<pre><code class="language-go">package main
+
+func main() {  
+    var x = nil //error
+
+    _ = x
+}
+</code></pre>
+
+<p>Compile Error:</p>
+
+<blockquote>
+<p>/tmp/sandbox188239583/main.go:4: use of untyped nil</p>
+</blockquote>
+
+<p>Works:</p>
+
+<pre><code class="language-go">package main
+
+func main() {  
+    var x interface{} = nil
+
+    _ = x
+}
+</code></pre>
+
+<h3 id="using-nil-slices-and-maps">Using &ldquo;nil&rdquo; Slices and Maps</h3>
+
+<p>在一个“nil”的slice中添加元素是没问题的，但对一个map做同样的事将会生成一个运行时的panic。</p>
+
+<p>Works:</p>
+
+<pre><code class="language-go">package main
+
+func main() {  
+    var s []int
+    s = append(s,1)
+}
+</code></pre>
+
+<p>Fails:</p>
+
+<pre><code class="language-go">package main
+
+func main() {  
+    var m map[string]int
+    m[&quot;one&quot;] = 1 //error
+
+}
+</code></pre>
+
+<h3 id="map-capacity">Map Capacity</h3>
+
+<p>你可以在map创建时指定它的容量，但你无法在map上使用cap()函数。</p>
+
+<p>Fails:</p>
+
+<pre><code class="language-go">package main
+
+func main() {  
+    m := make(map[string]int,99)
+    cap(m) //error
+}
+</code></pre>
+
+<p>Compile Error:</p>
+
+<blockquote>
+<p>/tmp/sandbox326543983/main.go:5: invalid argument m (type map[string]int) for cap</p>
+</blockquote>
+
+<h3 id="strings-can-t-be-nil">Strings Can&rsquo;t Be &ldquo;nil&rdquo;</h3>
+
+<p>这对于经常使用“nil”分配字符串变量的开发者而言是个需要注意的地方。</p>
+
+<p>Fails:</p>
+
+<pre><code class="language-go">package main
+
+func main() {  
+    var x string = nil //error
+
+    if x == nil { //error
+        x = &quot;default&quot;
+    }
+}
+</code></pre>
+
+<p>Compile Errors:</p>
+
+<blockquote>
+<p>/tmp/sandbox630560459/main.go:4: cannot use nil as type string in assignment
+/tmp/sandbox630560459/main.go:6: invalid operation: x == nil (mismatched types string and nil)</p>
+</blockquote>
+
+<p>Works:</p>
+
+<pre><code class="language-go">package main
+
+func main() {  
+    var x string //defaults to &quot;&quot; (zero value)
+
+    if x == &quot;&quot; {
+        x = &quot;default&quot;
+    }
+}
+</code></pre>
+
+<h3 id="array-function-arguments">Array Function Arguments</h3>
+
+<p>如果你是一个C或则C++开发者，那么数组对你而言就是指针。当你向函数中传递数组时，函数会参照相同的内存区域，这样它们就可以修改原始的数据。Go中的数组是数值，因此当你向函数中传递数组时，函数会得到原始数组数据的一份复制。如果你打算更新数组的数据，这将会是个问题。</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+func main() {  
+    x := [3]int{1,2,3}
+
+    func(arr [3]int) {
+        arr[0] = 7
+        fmt.Println(arr) //prints [7 2 3]
+    }(x)
+
+    fmt.Println(x) //prints [1 2 3] (not ok if you need [7 2 3])
+}
+</code></pre>
+
+<p>如果你需要更新原始数组的数据，你可以使用数组指针类型。</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+func main() {  
+    x := [3]int{1,2,3}
+
+    func(arr *[3]int) {
+        (*arr)[0] = 7
+        fmt.Println(arr) //prints &amp;[7 2 3]
+    }(&amp;x)
+
+    fmt.Println(x) //prints [7 2 3]
+}
+</code></pre>
+
+<p>另一个选择是使用slice。即使你的函数得到了slice变量的一份拷贝，它依旧会参照原始的数据。</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+func main() {  
+    x := []int{1,2,3}
+
+    func(arr []int) {
+        arr[0] = 7
+        fmt.Println(arr) //prints [7 2 3]
+    }(x)
+
+    fmt.Println(x) //prints [7 2 3]
+}
+</code></pre>
+
+<h3 id="unexpected-values-in-slice-and-array-range-clauses">Unexpected Values in Slice and Array &ldquo;range&rdquo; Clauses</h3>
+
+<p>如果你在其他的语言中使用“for-in”或者“foreach”语句时会发生这种情况。Go中的“range”语法不太一样。它会得到两个值：第一个值是元素的索引，而另一个值是元素的数据。</p>
+
+<p>Bad:</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+func main() {  
+    x := []string{&quot;a&quot;,&quot;b&quot;,&quot;c&quot;}
+
+    for v := range x {
+        fmt.Println(v) //prints 0, 1, 2
+    }
+}
+</code></pre>
+
+<p>Good:</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+func main() {  
+    x := []string{&quot;a&quot;,&quot;b&quot;,&quot;c&quot;}
+
+    for _, v := range x {
+        fmt.Println(v) //prints a, b, c
+    }
+}
+</code></pre>
+
+<h3 id="slices-and-arrays-are-one-dimensional">Slices and Arrays Are One-Dimensional</h3>
+
+<p>看起来Go好像支持多维的Array和Slice，但不是这样的。尽管可以创建数组的数组或者切片的切片。对于依赖于动态多维数组的数值计算应用而言，Go在性能和复杂度上还相距甚远。</p>
+
+<p>你可以使用纯一维数组、“独立”切片的切片，“共享数据”切片的切片来构建动态的多维数组。</p>
+
+<p>如果你使用纯一维的数组，你需要处理索引、边界检查、当数组需要变大时的内存重新分配。</p>
+
+<p>使用“独立”slice来创建一个动态的多维数组需要两步。首先，你需要创建一个外部的slice。然后，你需要分配每个内部的slice。内部的slice相互之间独立。你可以增加减少它们，而不会影响其他内部的slice。</p>
+
+<pre><code class="language-go">package main
+
+func main() {  
+    x := 2
+    y := 4
+
+    table := make([][]int,x)
+    for i:= range table {
+        table[i] = make([]int,y)
+    }
+}
+</code></pre>
+
+<p>使用“共享数据”slice的slice来创建一个动态的多维数组需要三步。首先，你需要创建一个用于存放原始数据的数据“容器”。然后，你再创建外部的slice。最后，通过重新切片原始数据slice来初始化各个内部的slice。</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+func main() {  
+    h, w := 2, 4
+
+    raw := make([]int,h*w)
+    for i := range raw {
+        raw[i] = i
+    }
+    fmt.Println(raw,&amp;raw[4])
+    //prints: [0 1 2 3 4 5 6 7] &lt;ptr_addr_x&gt;
+
+    table := make([][]int,h)
+    for i:= range table {
+        table[i] = raw[i*w:i*w + w]
+    }
+
+    fmt.Println(table,&amp;table[1][0])
+    //prints: [[0 1 2 3] [4 5 6 7]] &lt;ptr_addr_x&gt;
+}
+</code></pre>
+
+<h3 id="accessing-non-existing-map-keys">Accessing Non-Existing Map Keys</h3>
+
+<p>这对于那些希望得到“nil”标示符的开发者而言是个技巧（和其他语言中做的一样）。如果对应的数据类型的“零值”是“nil”，那返回的值将会是“nil”，但对于其他的数据类型是不一样的。检测对应的“零值”可以用于确定map中的记录是否存在，但这并不总是可信（比如，如果在二值的map中“零值”是false，这时你要怎么做）。检测给定map中的记录是否存在的最可信的方法是，通过map的访问操作，检查第二个返回的值。</p>
+
+<p>Bad:</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+func main() {  
+    x := map[string]string{&quot;one&quot;:&quot;a&quot;,&quot;two&quot;:&quot;&quot;,&quot;three&quot;:&quot;c&quot;}
+
+    if v := x[&quot;two&quot;]; v == &quot;&quot; { //incorrect
+        fmt.Println(&quot;no entry&quot;)
+    }
+}
+</code></pre>
+
+<p>Good:</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+func main() {  
+    x := map[string]string{&quot;one&quot;:&quot;a&quot;,&quot;two&quot;:&quot;&quot;,&quot;three&quot;:&quot;c&quot;}
+
+    if _,ok := x[&quot;two&quot;]; !ok {
+        fmt.Println(&quot;no entry&quot;)
+    }
+}
+</code></pre>
+
+<h3 id="strings-are-immutable">Strings Are Immutable</h3>
+
+<p>尝试使用索引操作来更新字符串变量中的单个字符将会失败。string是只读的byte slice（和一些额外的属性）。如果你确实需要更新一个字符串，那么使用byte slice，并在需要时把它转换为string类型。</p>
+
+<p>Fails:</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+func main() {  
+    x := &quot;text&quot;
+    x[0] = 'T'
+
+    fmt.Println(x)
+}
+</code></pre>
+
+<p>Compile Error:</p>
+
+<blockquote>
+<p>/tmp/sandbox305565531/main.go:7: cannot assign to x[0]</p>
+</blockquote>
+
+<p>Works:</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+func main() {  
+    x := &quot;text&quot;
+    xbytes := []byte(x)
+    xbytes[0] = 'T'
+
+    fmt.Println(string(xbytes)) //prints Text
+}
+</code></pre>
+
+<p>需要注意的是：这并不是在文字string中更新字符的正确方式，因为给定的字符可能会存储在多个byte中。如果你确实需要更新一个文字string，先把它转换为一个rune slice。即使使用rune slice，单个字符也可能会占据多个rune，比如当你的字符有特定的重音符号时就是这种情况。这种复杂又模糊的“字符”本质是Go字符串使用byte序列表示的原因。</p>
+
+<h3 id="conversions-between-strings-and-byte-slices">Conversions Between Strings and Byte Slices</h3>
+
+<ul>
+<li>level: beginner</li>
+</ul>
+
+<p>当你把一个字符串转换为一个byte slice（或者反之）时，你就得到了一个原始数据的完整拷贝。这和其他语言中cast操作不同，也和新的slice变量指向原始byte slice使用的相同数组时的重新slice操作不同。</p>
+
+<p>Go在<code>[]byte</code>到<code>string</code>和<code>string</code>到<code>[]byte</code>的转换中确实使用了一些优化来避免额外的分配（在todo列表中有更多的优化）。</p>
+
+<p>第一个优化避免了当<code>[]byte</code>key用于在<code>map[string]</code>集合中查询时的额外分配:<code>m[string(key)]</code>。</p>
+
+<p>第二个优化避免了字符串转换为<code>[]byte</code>后在<code>for range</code>语句中的额外分配：<code>for i,v := range []byte(str) {...}</code>。</p>
+
+<h3 id="strings-and-index-operator">Strings and Index Operator</h3>
+
+<p>字符串上的索引操作返回一个byte值，而不是一个字符（和其他语言中的做法一样）。</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+func main() {  
+    x := &quot;text&quot;
+    fmt.Println(x[0]) //print 116
+    fmt.Printf(&quot;%T&quot;,x[0]) //prints uint8
+}
+</code></pre>
+
+<p>如果你需要访问特定的字符串“字符”（unicode编码的points/runes），使用<code>for range</code>。官方的“unicode/utf8”包和实验中的utf8string包（golang.org/x/exp/utf8string）也可以用。utf8string包中包含了一个很方便的<code>At()</code>方法。把字符串转换为rune的切片也是一个选项。</p>
+
+<h3 id="strings-are-not-always-utf8-text">Strings Are Not Always UTF8 Text</h3>
+
+<p>字符串的值不需要是UTF8的文本。它们可以包含任意的字节。只有在string literal使用时，字符串才会是UTF8。即使之后它们可以使用转义序列来包含其他的数据。</p>
+
+<p>为了知道字符串是否是UTF8，你可以使用“unicode/utf8”包中的<code>ValidString()</code>函数。</p>
+
+<pre><code class="language-go">package main
+
+import (  
+    &quot;fmt&quot;
+    &quot;unicode/utf8&quot;
+)
+
+func main() {  
+    data1 := &quot;ABC&quot;
+    fmt.Println(utf8.ValidString(data1)) //prints: true
+
+    data2 := &quot;A\xfeC&quot;
+    fmt.Println(utf8.ValidString(data2)) //prints: false
+}
+</code></pre>
+
+<h3 id="string-length">String Length</h3>
+
+<p>让我们假设你是Python开发者，你有下面这段代码：</p>
+
+<pre><code class="language-go">data = u'♥'  
+print(len(data)) #prints: 1
+</code></pre>
+
+<p>当把它转换为Go代码时，你可能会大吃一惊。</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+func main() {  
+    data := &quot;♥&quot;
+    fmt.Println(len(data)) //prints: 3
+}
+</code></pre>
+
+<p>内建的<code>len()</code>函数返回byte的数量，而不是像Python中计算好的unicode字符串中字符的数量。</p>
+
+<p>要在Go中得到相同的结果，可以使用“unicode/utf8”包中的<code>RuneCountInString()</code>函数:</p>
+
+<pre><code class="language-go">package main
+
+import (  
+    &quot;fmt&quot;
+    &quot;unicode/utf8&quot;
+)
+
+func main() {  
+    data := &quot;♥&quot;
+    fmt.Println(utf8.RuneCountInString(data)) //prints: 1
+</code></pre>
+
+<p>理论上说<code>RuneCountInString()</code>函数并不返回字符的数量，因为单个字符可能占用多个rune。</p>
+
+<pre><code class="language-go">package main
+
+import (  
+    &quot;fmt&quot;
+    &quot;unicode/utf8&quot;
+)
+
+func main() {  
+    data := &quot;é&quot;
+    fmt.Println(len(data))                    //prints: 3
+    fmt.Println(utf8.RuneCountInString(data)) //prints: 2
+}
+</code></pre>
+
+<h3 id="missing-comma-in-multi-line-slice-array-and-map-literals">Missing Comma In Multi-Line Slice, Array, and Map Literals</h3>
+
+<p>Fails:</p>
+
+<pre><code class="language-go">package main
+
+func main() {  
+    x := []int{
+    1,
+    2 //error
+    }
+    _ = x
+}
+</code></pre>
+
+<p>Compile Errors:</p>
+
+<blockquote>
+<p>/tmp/sandbox367520156/main.go:6: syntax error: need trailing comma before newline in composite literal
+/tmp/sandbox367520156/main.go:8: non-declaration statement outside function body
+/tmp/sandbox367520156/main.go:9: syntax error: unexpected }</p>
+</blockquote>
+
+<p>Works:</p>
+
+<pre><code class="language-go">package main
+
+func main() {  
+    x := []int{
+    1,
+    2,
+    }
+    x = x
+
+    y := []int{3,4,} //no error
+    y = y
+}
+</code></pre>
+
+<p>当你把声明折叠到单行时，如果你没加末尾的逗号，你将不会得到编译错误。</p>
+
+<h3 id="log-fatal-and-log-panic-do-more-than-log">log.Fatal and log.Panic Do More Than Log</h3>
+
+<p>Logging库一般提供不同的log等级。与这些logging库不同，Go中log包在你调用它的<code>Fatal*()</code>和<code>Panic*()</code>函数时，可以做的不仅仅是log。当你的应用调用这些函数时，Go也将会终止应用 :-)</p>
+
+<pre><code class="language-go">package main
+
+import &quot;log&quot;
+
+func main() {  
+    log.Fatalln(&quot;Fatal Level: log entry&quot;) //app exits here
+    log.Println(&quot;Normal Level: log entry&quot;)
+}
+</code></pre>
+
+<h3 id="built-in-data-structure-operations-are-not-synchronized">Built-in Data Structure Operations Are Not Synchronized</h3>
+
+<p>即使Go本身有很多特性来支持并发，并发安全的数据集合并不是其中之一 :-)确保数据集合以原子的方式更新是你的职责。Goroutines和channels是实现这些原子操作的推荐方式，但你也可以使用“sync”包，如果它对你的应用有意义的话。</p>
+
+<h3 id="iteration-values-for-strings-in-range-clauses">Iteration Values For Strings in &ldquo;range&rdquo; Clauses</h3>
+
+<p>索引值（“range”操作返回的第一个值）是返回的第二个值的当前“字符”（unicode编码的point/rune）的第一个byte的索引。它不是当前“字符”的索引，这与其他语言不同。注意真实的字符可能会由多个rune表示。如果你需要处理字符，确保你使用了“norm”包（golang.org/x/text/unicode/norm）。</p>
+
+<p>string变量的<code>for range</code>语句将会尝试把数据翻译为UTF8文本。对于它无法理解的任何byte序列，它将返回0xfffd runes（即unicode替换字符），而不是真实的数据。如果你任意（非UTF8文本）的数据保存在string变量中，确保把它们转换为byte slice，以得到所有保存的数据。</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+func main() {  
+    data := &quot;A\xfe\x02\xff\x04&quot;
+    for _,v := range data {
+        fmt.Printf(&quot;%#x &quot;,v)
+    }
+    //prints: 0x41 0xfffd 0x2 0xfffd 0x4 (not ok)
+
+    fmt.Println()
+    for _,v := range []byte(data) {
+        fmt.Printf(&quot;%#x &quot;,v)
+    }
+    //prints: 0x41 0xfe 0x2 0xff 0x4 (good)
+}
+</code></pre>
+
+<h3 id="iterating-through-a-map-using-a-for-range-clause">Iterating Through a Map Using a &ldquo;for range&rdquo; Clause</h3>
+
+<p>如果你希望以某个顺序（比如，按key值排序）的方式得到元素，就需要这个技巧。每次的map迭代将会生成不同的结果。Go的runtime有心尝试随机化迭代顺序，但并不总会成功，这样你可能得到一些相同的map迭代结果。所以如果连续看到5个相同的迭代结果，不要惊讶。</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+func main() {  
+    m := map[string]int{&quot;one&quot;:1,&quot;two&quot;:2,&quot;three&quot;:3,&quot;four&quot;:4}
+    for k,v := range m {
+        fmt.Println(k,v)
+    }
+}
+</code></pre>
+
+<p>而且如果你使用Go的playground（<a href="https://play.golang.org/)，你将总会得到同样的结果，因为除非你修改代码，否则它不会重新编译代码。">https://play.golang.org/)，你将总会得到同样的结果，因为除非你修改代码，否则它不会重新编译代码。</a></p>
+
+<h3 id="fallthrough-behavior-in-switch-statements">Fallthrough Behavior in &ldquo;switch&rdquo; Statements</h3>
+
+<p>在“switch”声明语句中的“case”语句块在默认情况下会break。这和其他语言中的进入下一个“next”代码块的默认行为不同。</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+func main() {  
+    isSpace := func(ch byte) bool {
+        switch(ch) {
+        case ' ': //error
+        case '\t':
+            return true
+        }
+        return false
+    }
+
+    fmt.Println(isSpace('\t')) //prints true (ok)
+    fmt.Println(isSpace(' '))  //prints false (not ok)
+}
+</code></pre>
+
+<p>你可以通过在每个“case”块的结尾使用“fallthrough”，来强制“case”代码块进入。你也可以重写switch语句，来使用“case”块中的表达式列表。</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+func main() {  
+    isSpace := func(ch byte) bool {
+        switch(ch) {
+        case ' ', '\t':
+            return true
+        }
+        return false
+    }
+
+    fmt.Println(isSpace('\t')) //prints true (ok)
+    fmt.Println(isSpace(' '))  //prints true (ok)
+}
+</code></pre>
+
+<h3 id="increments-and-decrements">Increments and Decrements</h3>
+
+<p>许多语言都有自增和自减操作。不像其他语言，Go不支持前置版本的操作。你也无法在表达式中使用这两个操作符。</p>
+
+<p>Fails:</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+func main() {  
+    data := []int{1,2,3}
+    i := 0
+    ++i //error
+    fmt.Println(data[i++]) //error
+}
+</code></pre>
+
+<p>Compile Errors:</p>
+
+<blockquote>
+<p>/tmp/sandbox101231828/main.go:8: syntax error: unexpected ++
+/tmp/sandbox101231828/main.go:9: syntax error: unexpected ++, expecting :</p>
+</blockquote>
+
+<p>Works:</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+func main() {  
+    data := []int{1,2,3}
+    i := 0
+    i++
+    fmt.Println(data[i])
+}
+</code></pre>
+
+<h3 id="bitwise-not-operator">Bitwise NOT Operator</h3>
+
+<p>许多语言使用 <code>~</code> 作为一元的NOT操作符（即按位补足），但Go为了这个重用了XOR操作符（<code>^</code>）。</p>
+
+<p>Fails:</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+func main() {  
+    fmt.Println(~2) //error
+}
+</code></pre>
+
+<p>Compile Error:</p>
+
+<blockquote>
+<p>/tmp/sandbox965529189/main.go:6: the bitwise complement operator is ^</p>
+</blockquote>
+
+<p>Works:</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+func main() {  
+    var d uint8 = 2
+    fmt.Printf(&quot;%08b\n&quot;,^d)
+}
+</code></pre>
+
+<p>Go依旧使用<code>^</code>作为XOR的操作符，这可能会让一些人迷惑。</p>
+
+<p>如果你愿意，你可以使用一个二元的XOR操作（如， 0x02 XOR 0xff）来表示一个一元的NOT操作（如，NOT 0x02）。这可以解释为什么<code>^</code>被重用来表示一元的NOT操作。</p>
+
+<p>Go也有特殊的‘AND NOT’按位操作（<code>&amp;^</code>），这也让NOT操作更加的让人迷惑。这看起来需要特殊的特性/hack来支持 <code>A AND (NOT B)</code>，而无需括号。</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+func main() {  
+    var a uint8 = 0x82
+    var b uint8 = 0x02
+    fmt.Printf(&quot;%08b [A]\n&quot;,a)
+    fmt.Printf(&quot;%08b [B]\n&quot;,b)
+
+    fmt.Printf(&quot;%08b (NOT B)\n&quot;,^b)
+    fmt.Printf(&quot;%08b ^ %08b = %08b [B XOR 0xff]\n&quot;,b,0xff,b ^ 0xff)
+
+    fmt.Printf(&quot;%08b ^ %08b = %08b [A XOR B]\n&quot;,a,b,a ^ b)
+    fmt.Printf(&quot;%08b &amp; %08b = %08b [A AND B]\n&quot;,a,b,a &amp; b)
+    fmt.Printf(&quot;%08b &amp;^%08b = %08b [A 'AND NOT' B]\n&quot;,a,b,a &amp;^ b)
+    fmt.Printf(&quot;%08b&amp;(^%08b)= %08b [A AND (NOT B)]\n&quot;,a,b,a &amp; (^b))
+}
+</code></pre>
+
+<h3 id="operator-precedence-differences">Operator Precedence Differences</h3>
+
+<p>除了”bit clear“操作（<code>&amp;^</code>），Go也一个与许多其他语言共享的标准操作符的集合。尽管操作优先级并不总是一样。</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+func main() {  
+    fmt.Printf(&quot;0x2 &amp; 0x2 + 0x4 -&gt; %#x\n&quot;,0x2 &amp; 0x2 + 0x4)
+    //prints: 0x2 &amp; 0x2 + 0x4 -&gt; 0x6
+    //Go:    (0x2 &amp; 0x2) + 0x4
+    //C++:    0x2 &amp; (0x2 + 0x4) -&gt; 0x2
+
+    fmt.Printf(&quot;0x2 + 0x2 &lt;&lt; 0x1 -&gt; %#x\n&quot;,0x2 + 0x2 &lt;&lt; 0x1)
+    //prints: 0x2 + 0x2 &lt;&lt; 0x1 -&gt; 0x6
+    //Go:     0x2 + (0x2 &lt;&lt; 0x1)
+    //C++:   (0x2 + 0x2) &lt;&lt; 0x1 -&gt; 0x8
+
+    fmt.Printf(&quot;0xf | 0x2 ^ 0x2 -&gt; %#x\n&quot;,0xf | 0x2 ^ 0x2)
+    //prints: 0xf | 0x2 ^ 0x2 -&gt; 0xd
+    //Go:    (0xf | 0x2) ^ 0x2
+    //C++:    0xf | (0x2 ^ 0x2) -&gt; 0xf
+}
+</code></pre>
+
+<h3 id="unexported-structure-fields-are-not-encoded">Unexported Structure Fields Are Not Encoded</h3>
+
+<p>以小写字母开头的结构体将不会被（json、xml、gob等）编码，因此当你编码这些未导出的结构体时，你将会得到零值。</p>
+
+<pre><code class="language-go">package main
+
+import (  
+    &quot;fmt&quot;
+    &quot;encoding/json&quot;
+)
+
+type MyData struct {  
+    One int
+    two string
+}
+
+func main() {  
+    in := MyData{1,&quot;two&quot;}
+    fmt.Printf(&quot;%#v\n&quot;,in) //prints main.MyData{One:1, two:&quot;two&quot;}
+
+    encoded,_ := json.Marshal(in)
+    fmt.Println(string(encoded)) //prints {&quot;One&quot;:1}
+
+    var out MyData
+    json.Unmarshal(encoded,&amp;out)
+
+    fmt.Printf(&quot;%#v\n&quot;,out) //prints main.MyData{One:1, two:&quot;&quot;}
+}
+</code></pre>
+
+<h3 id="app-exits-with-active-goroutines">App Exits With Active Goroutines</h3>
+
+<p>应用将不会等所有的goroutines完成。这对于初学者而言是个很常见的错误。每个人都是以某个程度开始，因此如果犯了初学者的错误也没神马好丢脸的 :-)</p>
+
+<pre><code class="language-go">package main
+
+import (  
+    &quot;fmt&quot;
+    &quot;time&quot;
+)
+
+func main() {  
+    workerCount := 2
+
+    for i := 0; i &lt; workerCount; i++ {
+        go doit(i)
+    }
+    time.Sleep(1 * time.Second)
+    fmt.Println(&quot;all done!&quot;)
+}
+
+func doit(workerId int) {  
+    fmt.Printf(&quot;[%v] is running\n&quot;,workerId)
+    time.Sleep(3 * time.Second)
+    fmt.Printf(&quot;[%v] is done\n&quot;,workerId)
+}
+</code></pre>
+
+<p>You&rsquo;ll see:</p>
+
+<blockquote>
+<p>[0] is running<br />
+[1] is running<br />
+all done!</p>
+</blockquote>
+
+<p>一个最常见的解决方法是使用“WaitGroup”变量。它将会让主goroutine等待所有的worker goroutine完成。如果你的应用有长时运行的消息处理循环的worker，你也将需要一个方法向这些goroutine发送信号，让它们退出。你可以给各个worker发送一个“kill”消息。另一个选项是关闭一个所有worker都接收的channel。这是一次向所有goroutine发送信号的简单方式。</p>
+
+<pre><code class="language-go">package main
+
+import (  
+    &quot;fmt&quot;
+    &quot;sync&quot;
+)
+
+func main() {  
+    var wg sync.WaitGroup
+    done := make(chan struct{})
+    workerCount := 2
+
+    for i := 0; i &lt; workerCount; i++ {
+        wg.Add(1)
+        go doit(i,done,wg)
+    }
+
+    close(done)
+    wg.Wait()
+    fmt.Println(&quot;all done!&quot;)
+}
+
+func doit(workerId int,done &lt;-chan struct{},wg sync.WaitGroup) {  
+    fmt.Printf(&quot;[%v] is running\n&quot;,workerId)
+    defer wg.Done()
+    &lt;- done
+    fmt.Printf(&quot;[%v] is done\n&quot;,workerId)
+}
+</code></pre>
+
+<p>如果你运行这个应用，你将会看到：</p>
+
+<blockquote>
+<p>[0] is running<br />
+[0] is done<br />
+[1] is running<br />
+[1] is done</p>
+</blockquote>
+
+<p>看起来所有的worker在主goroutine退出前都完成了。棒！然而，你也将会看到这个：</p>
+
+<blockquote>
+<p>fatal error: all goroutines are asleep - deadlock!</p>
+</blockquote>
+
+<p>这可不太好 :-) 发送了神马？为什么会出现死锁？worker退出了，它们也执行了wg.Done()。应用应该没问题啊。</p>
+
+<p>死锁发生是因为各个worker都得到了原始的“WaitGroup”变量的一个拷贝。当worker执行wg.Done()时，并没有在主goroutine上的“WaitGroup”变量上生效。</p>
+
+<pre><code class="language-go">package main
+
+import (  
+    &quot;fmt&quot;
+    &quot;sync&quot;
+)
+
+func main() {  
+    var wg sync.WaitGroup
+    done := make(chan struct{})
+    wq := make(chan interface{})
+    workerCount := 2
+
+    for i := 0; i &lt; workerCount; i++ {
+        wg.Add(1)
+        go doit(i,wq,done,&amp;wg)
+    }
+
+    for i := 0; i &lt; workerCount; i++ {
+        wq &lt;- i
+    }
+
+    close(done)
+    wg.Wait()
+    fmt.Println(&quot;all done!&quot;)
+}
+
+func doit(workerId int, wq &lt;-chan interface{},done &lt;-chan struct{},wg *sync.WaitGroup) {  
+    fmt.Printf(&quot;[%v] is running\n&quot;,workerId)
+    defer wg.Done()
+    for {
+        select {
+        case m := &lt;- wq:
+            fmt.Printf(&quot;[%v] m =&gt; %v\n&quot;,workerId,m)
+        case &lt;- done:
+            fmt.Printf(&quot;[%v] is done\n&quot;,workerId)
+            return
+        }
+    }
+}
+</code></pre>
+
+<h3 id="sending-to-an-unbuffered-channel-returns-as-soon-as-the-target-receiver-is-ready">Sending to an Unbuffered Channel Returns As Soon As the Target Receiver Is Ready</h3>
+
+<p>发送者将不会被阻塞，除非消息正在被接收者处理。根据你运行代码的机器的不同，接收者的goroutine可能会或者不会有足够的时间，在发送者继续执行前处理消息。</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+func main() {  
+    ch := make(chan string)
+
+    go func() {
+        for m := range ch {
+            fmt.Println(&quot;processed:&quot;,m)
+        }
+    }()
+
+    ch &lt;- &quot;cmd.1&quot;
+    ch &lt;- &quot;cmd.2&quot; //won't be processed
+}
+</code></pre>
+
+<h3 id="use-time-newtimer-instead-of-time-after">Use time.NewTimer instead of time.After</h3>
+
+<pre><code class="language-go">package main
+
+import (
+    &quot;fmt&quot;
+    &quot;time&quot;
+)
+
+func main() {
+    ch := make(chan error)
+    // time.After is not very efficient
+    // The underlying Timer is not recovered by the garbage collector
+    // until the timer fires. If efficiency is a concern, use NewTimer
+    // instead and call Timer.Stop if the timer is no longer needed.
+    timer := time.NewTimer(time.Second)
+    defer timer.Stop()
+    
+    go func() {
+        ch &lt;- fmt.Errorf(&quot;done&quot;)
+    }()
+    
+    select {
+    case err := &lt;- ch:
+        fmt.Println(err)
+    case &lt;-timer.C:
+        fmt.Println(&quot;timeout&quot;)
+    }
+}
+</code></pre>
+
+<h3 id="sending-to-an-closed-channel-causes-a-panic">Sending to an Closed Channel Causes a Panic</h3>
+
+<p>从一个关闭的channel接收是安全的。在接收状态下的<code>ok</code>的返回值将被设置为<code>false</code>，这意味着没有数据被接收。如果你从一个有缓存的channel接收，你将会首先得到缓存的数据，一旦它为空，返回的<code>ok</code>值将变为<code>false</code>。</p>
+
+<p>向关闭的channel中发送数据会引起panic。这个行为有文档说明，但对于新的Go开发者的直觉不同，他们可能希望发送行为与接收行为很像。</p>
+
+<pre><code class="language-go">package main
+
+import (  
+    &quot;fmt&quot;
+    &quot;time&quot;
+)
+
+func main() {  
+    ch := make(chan int)
+    for i := 0; i &lt; 3; i++ {
+        go func(idx int) {
+            ch &lt;- (idx + 1) * 2
+        }(i)
+    }
+
+    //get the first result
+    fmt.Println(&lt;-ch)
+    close(ch) //not ok (you still have other senders)
+    //do other work
+    time.Sleep(2 * time.Second)
+}
+</code></pre>
+
+<p>根据不同的应用，修复方法也将不同。可能是很小的代码修改，也可能需要修改应用的设计。无论是哪种方法，你都需要确保你的应用不会向关闭的channel中发送数据。</p>
+
+<p>上面那个有bug的例子可以通过使用一个特殊的废弃的channel来向剩余的worker发送不再需要它们的结果的信号来修复。</p>
+
+<pre><code class="language-go">package main
+
+import (  
+    &quot;fmt&quot;
+    &quot;time&quot;
+)
+
+func main() {  
+    ch := make(chan int)
+    done := make(chan struct{})
+    for i := 0; i &lt; 3; i++ {
+        go func(idx int) {
+            select {
+            case ch &lt;- (idx + 1) * 2: fmt.Println(idx,&quot;sent result&quot;)
+            case &lt;- done: fmt.Println(idx,&quot;exiting&quot;)
+            }
+        }(i)
+    }
+
+    //get first result
+    fmt.Println(&quot;result:&quot;,&lt;-ch)
+    close(done)
+    //do other work
+    time.Sleep(3 * time.Second)
+}
+</code></pre>
+
+<h3 id="using-nil-channels">Using &ldquo;nil&rdquo; Channels</h3>
+
+<p>在一个nil的channel上发送和接收操作会被永久阻塞。这个行为有详细的文档解释，但它对于新的Go开发者而言是个惊喜。</p>
+
+<pre><code class="language-go">package main
+
+import (  
+    &quot;fmt&quot;
+    &quot;time&quot;
+)
+
+func main() {  
+    var ch chan int
+    for i := 0; i &lt; 3; i++ {
+        go func(idx int) {
+            ch &lt;- (idx + 1) * 2
+        }(i)
+    }
+
+    //get first result
+    fmt.Println(&quot;result:&quot;,&lt;-ch)
+    //do other work
+    time.Sleep(2 * time.Second)
+}
+</code></pre>
+
+<p>如果运行代码你将会看到一个runtime错误： <code>fatal error: all goroutines are asleep - deadlock!</code></p>
+
+<p>这个行为可以在select声明中用于动态开启和关闭case代码块的方法。</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;  
+import &quot;time&quot;
+
+func main() {  
+    inch := make(chan int)
+    outch := make(chan int)
+
+    go func() {
+        var in &lt;- chan int = inch
+        var out chan &lt;- int
+        var val int
+        for {
+            select {
+            case out &lt;- val:
+                out = nil
+                in = inch
+            case val = &lt;- in:
+                out = outch
+                in = nil
+            }
+        }
+    }()
+
+    go func() {
+        for r := range outch {
+            fmt.Println(&quot;result:&quot;,r)
+        }
+    }()
+
+    time.Sleep(0)
+    inch &lt;- 1
+    inch &lt;- 2
+    time.Sleep(3 * time.Second)
+}
+</code></pre>
+
+<h3 id="methods-with-value-receivers-can-t-change-the-original-value">Methods with Value Receivers Can&rsquo;t Change the Original Value</h3>
+
+<p>方法的接收者就像常规的函数参数。如果声明为值，那么你的函数/方法得到的是接收者参数的拷贝。这意味着对接收者所做的修改将不会影响原有的值，除非接收者是一个map或者slice变量，而你更新了集合中的元素，或者你更新的域的接收者是指针。</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+type data struct {  
+    num int
+    key *string
+    items map[string]bool
+}
+
+func (this *data) pmethod() {  
+    this.num = 7
+}
+
+func (this data) vmethod() {  
+    this.num = 8
+    *this.key = &quot;v.key&quot;
+    this.items[&quot;vmethod&quot;] = true
+}
+
+func main() {  
+    key := &quot;key.1&quot;
+    d := data{1,&amp;key,make(map[string]bool)}
+
+    fmt.Printf(&quot;num=%v key=%v items=%v\n&quot;,d.num,*d.key,d.items)
+    //prints num=1 key=key.1 items=map[]
+
+    d.pmethod()
+    fmt.Printf(&quot;num=%v key=%v items=%v\n&quot;,d.num,*d.key,d.items) 
+    //prints num=7 key=key.1 items=map[]
+
+    d.vmethod()
+    fmt.Printf(&quot;num=%v key=%v items=%v\n&quot;,d.num,*d.key,d.items)
+    //prints num=7 key=v.key items=map[vmethod:true]
+}
+</code></pre>
+
+<h3 id="closing-http-response-body">Closing HTTP Response Body</h3>
+
+<p>当你使用标准http库发起请求时，你得到一个http的响应变量。如果你不读取响应主体，你依旧需要关闭它。注意对于空的响应你也一定要这么做。对于新的Go开发者而言，这个很容易就会忘掉。</p>
+
+<p>一些新的Go开发者确实尝试关闭响应主体，但他们在错误的地方做。</p>
+
+<pre><code class="language-go">package main
+
+import (  
+    &quot;fmt&quot;
+    &quot;net/http&quot;
+    &quot;io/ioutil&quot;
+)
+
+func main() {  
+    resp, err := http.Get(&quot;https://api.ipify.org?format=json&quot;)
+    defer resp.Body.Close()//not ok
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+
+    body, err := ioutil.ReadAll(resp.Body)
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+
+    fmt.Println(string(body))
+}
+</code></pre>
+
+<p>这段代码对于成功的请求没问题，但如果http的请求失败，resp变量可能会是nil，这将导致一个runtime panic。</p>
+
+<p>最常见的关闭响应主体的方法是在http响应的错误检查后调用defer。</p>
+
+<pre><code class="language-go">package main
+
+import (  
+    &quot;fmt&quot;
+    &quot;net/http&quot;
+    &quot;io/ioutil&quot;
+)
+
+func main() {  
+    resp, err := http.Get(&quot;https://api.ipify.org?format=json&quot;)
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+
+    defer resp.Body.Close()//ok, most of the time :-)
+    body, err := ioutil.ReadAll(resp.Body)
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+
+    fmt.Println(string(body))
+}
+</code></pre>
+
+<p>大多数情况下，当你的http响应失败时，resp变量将为nil，而err变量将是non-nil。然而，当你得到一个重定向的错误时，两个变量都将是non-nil。这意味着你最后依然会内存泄露。</p>
+
+<p>通过在http响应错误处理中添加一个关闭non-nil响应主体的的调用来修复这个问题。另一个方法是使用一个defer调用来关闭所有失败和成功的请求的响应主体。</p>
+
+<pre><code class="language-go">package main
+
+import (  
+    &quot;fmt&quot;
+    &quot;net/http&quot;
+    &quot;io/ioutil&quot;
+)
+
+func main() {  
+    resp, err := http.Get(&quot;https://api.ipify.org?format=json&quot;)
+    if resp != nil {
+        defer resp.Body.Close()
+    }
+
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+
+    body, err := ioutil.ReadAll(resp.Body)
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+
+    fmt.Println(string(body))
+}
+</code></pre>
+
+<p><code>resp.Body.Close()</code>的原始实现也会读取并丢弃剩余的响应主体数据。这确保了http的链接在keepalive http连接行为开启的情况下，可以被另一个请求复用。最新的http客户端的行为是不同的。现在读取并丢弃剩余的响应数据是你的职责。如果你不这么做，http的连接可能会关闭，而无法被重用。这个小技巧应该会写在Go 1.5的文档中。</p>
+
+<p>如果http连接的重用对你的应用很重要，你可能需要在响应处理逻辑的后面添加像下面的代码：</p>
+
+<pre><code class="language-go">_, err = io.Copy(ioutil.Discard, resp.Body)
+</code></pre>
+
+<p>如果你不立即读取整个响应将是必要的，这可能在你处理json API响应时会发生：</p>
+
+<pre><code class="language-go">json.NewDecoder(resp.Body).Decode(&amp;data)
+</code></pre>
+
+<h3 id="closing-http-connections">Closing HTTP Connections</h3>
+
+<p>一些HTTP服务器保持会保持一段时间的网络连接（根据HTTP 1.1的说明和服务器端的“keep-alive”配置）。默认情况下，标准http库只在目标HTTP服务器要求关闭时才会关闭网络连接。这意味着你的应用在某些条件下消耗完sockets/file的描述符。</p>
+
+<p>你可以通过设置请求变量中的<code>Close</code>域的值为<code>true</code>，来让http库在请求完成时关闭连接。</p>
+
+<p>另一个选项是添加一个<code>Connection</code>的请求头，并设置为<code>close</code>。目标HTTP服务器应该也会响应一个<code>Connection: close</code>的头。当http库看到这个响应头时，它也将会关闭连接。</p>
+
+<pre><code class="language-go">package main
+
+import (  
+    &quot;fmt&quot;
+    &quot;net/http&quot;
+    &quot;io/ioutil&quot;
+)
+
+func main() {  
+    req, err := http.NewRequest(&quot;GET&quot;,&quot;http://golang.org&quot;,nil)
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+
+    req.Close = true
+    //or do this:
+    //req.Header.Add(&quot;Connection&quot;, &quot;close&quot;)
+
+    resp, err := http.DefaultClient.Do(req)
+    if resp != nil {
+        defer resp.Body.Close()
+    }
+
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+
+    body, err := ioutil.ReadAll(resp.Body)
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+
+    fmt.Println(len(string(body)))
+}
+</code></pre>
+
+<p>你也可以取消http的全局连接复用。你将需要为此创建一个自定义的http传输配置。</p>
+
+<pre><code class="language-go">package main
+
+import (  
+    &quot;fmt&quot;
+    &quot;net/http&quot;
+    &quot;io/ioutil&quot;
+)
+
+func main() {  
+    tr := &amp;http.Transport{DisableKeepAlives: true}
+    client := &amp;http.Client{Transport: tr}
+
+    resp, err := client.Get(&quot;http://golang.org&quot;)
+    if resp != nil {
+        defer resp.Body.Close()
+    }
+
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+
+    fmt.Println(resp.StatusCode)
+
+    body, err := ioutil.ReadAll(resp.Body)
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+
+    fmt.Println(len(string(body)))
+}
+</code></pre>
+
+<p>如果你向同一个HTTP服务器发送大量的请求，那么把保持网络连接的打开是没问题的。然而，如果你的应用在短时间内向大量不同的HTTP服务器发送一两个请求，那么在引用收到响应后立刻关闭网络连接是一个好主意。增加打开文件的限制数可能也是个好主意。当然，正确的选择源自于应用。</p>
+
+<h3 id="unmarshalling-json-numbers-into-interface-values">Unmarshalling JSON Numbers into Interface Values</h3>
+
+<p>默认情况下，Go认为JSON中的数字是<code>float64</code>，下面这样json.Unmarshal会panic:</p>
+
+<pre><code class="language-go">package main
+
+import (  
+  &quot;encoding/json&quot;
+  &quot;fmt&quot;
+)
+
+func main() {  
+  var data = []byte(`{&quot;status&quot;: 200}`)
+
+  var result map[string]interface{}
+  if err := json.Unmarshal(data, &amp;result); err != nil {
+    fmt.Println(&quot;error:&quot;, err)
+    return
+  }
+
+  var status = result[&quot;status&quot;].(int) //error
+  fmt.Println(&quot;status value:&quot;,status)
+}
+</code></pre>
+
+<p>Runtime Panic:</p>
+
+<blockquote>
+<p>panic: interface conversion: interface is float64, not int</p>
+</blockquote>
+
+<p>If the JSON value you are trying to decode is an integer you have serveral options.</p>
+
+<p>Option one: use the float value as-is :-)</p>
+
+<p>Option two: convert the float value to the integer type you need.</p>
+
+<pre><code class="language-go">package main
+
+import (  
+  &quot;encoding/json&quot;
+  &quot;fmt&quot;
+)
+
+func main() {  
+  var data = []byte(`{&quot;status&quot;: 200}`)
+
+  var result map[string]interface{}
+  if err := json.Unmarshal(data, &amp;result); err != nil {
+    fmt.Println(&quot;error:&quot;, err)
+    return
+  }
+
+  var status = uint64(result[&quot;status&quot;].(float64)) //ok
+  fmt.Println(&quot;status value:&quot;,status)
+}
+</code></pre>
+
+<p>Option three: use a <code>Decoder</code> type to unmarshal JSON and tell it to represent JSON numbers using the <code>Number</code> interface type.</p>
+
+<pre><code class="language-go">package main
+
+import (  
+  &quot;encoding/json&quot;
+  &quot;bytes&quot;
+  &quot;fmt&quot;
+)
+
+func main() {  
+  var data = []byte(`{&quot;status&quot;: 200}`)
+
+  var result map[string]interface{}
+  var decoder = json.NewDecoder(bytes.NewReader(data))
+  decoder.UseNumber()
+
+  if err := decoder.Decode(&amp;result); err != nil {
+    fmt.Println(&quot;error:&quot;, err)
+    return
+  }
+
+  var status,_ = result[&quot;status&quot;].(json.Number).Int64() //ok
+  fmt.Println(&quot;status value:&quot;,status)
+}
+</code></pre>
+
+<p>You can use the string representation of your <code>Number</code> value to unmarshal it to a different numeric type:</p>
+
+<pre><code class="language-go">package main
+
+import (  
+  &quot;encoding/json&quot;
+  &quot;bytes&quot;
+  &quot;fmt&quot;
+)
+
+func main() {  
+  var data = []byte(`{&quot;status&quot;: 200}`)
+
+  var result map[string]interface{}
+  var decoder = json.NewDecoder(bytes.NewReader(data))
+  decoder.UseNumber()
+
+  if err := decoder.Decode(&amp;result); err != nil {
+    fmt.Println(&quot;error:&quot;, err)
+    return
+  }
+
+  var status uint64
+  if err := json.Unmarshal([]byte(result[&quot;status&quot;].(json.Number).String()), &amp;status); err != nil {
+    fmt.Println(&quot;error:&quot;, err)
+    return
+  }
+
+  fmt.Println(&quot;status value:&quot;,status)
+}
+</code></pre>
+
+<p>Option four: use a <code>struct</code> type that maps your numeric value to the numeric type you need.</p>
+
+<pre><code class="language-go">package main
+
+import (  
+  &quot;encoding/json&quot;
+  &quot;bytes&quot;
+  &quot;fmt&quot;
+)
+
+func main() {  
+  var data = []byte(`{&quot;status&quot;: 200}`)
+
+  var result struct {
+    Status uint64 `json:&quot;status&quot;`
+  }
+
+  if err := json.NewDecoder(bytes.NewReader(data)).Decode(&amp;result); err != nil {
+    fmt.Println(&quot;error:&quot;, err)
+    return
+  }
+
+  fmt.Printf(&quot;result =&gt; %+v&quot;,result)
+  //prints: result =&gt; {Status:200}
+}
+</code></pre>
+
+<p>Option five: use a <code>struct</code> that maps your numeric value to the <code>json.RawMessage</code> type if you need to defer the value decoding.</p>
+
+<p>This option is useful if you have to perform conditional JSON field decoding where the field type or structure might change.</p>
+
+<pre><code class="language-go">package main
+
+import (  
+  &quot;encoding/json&quot;
+  &quot;bytes&quot;
+  &quot;fmt&quot;
+)
+
+func main() {  
+  records := [][]byte{
+    []byte(`{&quot;status&quot;: 200, &quot;tag&quot;:&quot;one&quot;}`),
+    []byte(`{&quot;status&quot;:&quot;ok&quot;, &quot;tag&quot;:&quot;two&quot;}`),
+  }
+
+  for idx, record := range records {
+    var result struct {
+      StatusCode uint64
+      StatusName string
+      Status json.RawMessage `json:&quot;status&quot;`
+      Tag string             `json:&quot;tag&quot;`
+    }
+
+    if err := json.NewDecoder(bytes.NewReader(record)).Decode(&amp;result); err != nil {
+      fmt.Println(&quot;error:&quot;, err)
+      return
+    }
+
+    var sstatus string
+    if err := json.Unmarshal(result.Status, &amp;sstatus); err == nil {
+      result.StatusName = sstatus
+    }
+
+    var nstatus uint64
+    if err := json.Unmarshal(result.Status, &amp;nstatus); err == nil {
+      result.StatusCode = nstatus
+    }
+
+    fmt.Printf(&quot;[%v] result =&gt; %+v\n&quot;,idx,result)
+  }
+}
+</code></pre>
+
+<h3 id="comparing-structs-arrays-slices-and-maps">Comparing Structs, Arrays, Slices, and Maps</h3>
+
+<p>如果结构体中的各个元素都可以用你可以使用等号来比较的话，那就可以使用相号, ==，来比较结构体变量。</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+type data struct {  
+    num int
+    fp float32
+    complex complex64
+    str string
+    char rune
+    yes bool
+    events &lt;-chan string
+    handler interface{}
+    ref *byte
+    raw [10]byte
+}
+
+func main() {  
+    v1 := data{}
+    v2 := data{}
+    fmt.Println(&quot;v1 == v2:&quot;,v1 == v2) //prints: v1 == v2: true
+}
+</code></pre>
+
+<p>如果结构体中的元素无法比较，那使用等号将导致编译错误。注意数组仅在它们的数据元素可比较的情况下才可以比较。</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+type data struct {  
+    num int                //ok
+    checks [10]func() bool //not comparable
+    doit func() bool       //not comparable
+    m map[string] string   //not comparable
+    bytes []byte           //not comparable
+}
+
+func main() {  
+    v1 := data{}
+    v2 := data{}
+    fmt.Println(&quot;v1 == v2:&quot;,v1 == v2)
+}
+</code></pre>
+
+<p>Go确实提供了一些助手函数，用于比较那些无法使用等号比较的变量。最常用的方法是使用<code>reflect</code>包中的<code>DeepEqual()</code>函数。</p>
+
+<pre><code class="language-go">package main
+
+import (  
+    &quot;fmt&quot;
+    &quot;reflect&quot;
+)
+
+type data struct {  
+    num int                //ok
+    checks [10]func() bool //not comparable
+    doit func() bool       //not comparable
+    m map[string] string   //not comparable
+    bytes []byte           //not comparable
+}
+
+func main() {  
+    v1 := data{}
+    v2 := data{}
+    fmt.Println(&quot;v1 == v2:&quot;,reflect.DeepEqual(v1,v2)) //prints: v1 == v2: true
+
+    m1 := map[string]string{&quot;one&quot;: &quot;a&quot;,&quot;two&quot;: &quot;b&quot;}
+    m2 := map[string]string{&quot;two&quot;: &quot;b&quot;, &quot;one&quot;: &quot;a&quot;}
+    fmt.Println(&quot;m1 == m2:&quot;,reflect.DeepEqual(m1, m2)) //prints: m1 == m2: true
+
+    s1 := []int{1, 2, 3}
+    s2 := []int{1, 2, 3}
+    fmt.Println(&quot;s1 == s2:&quot;,reflect.DeepEqual(s1, s2)) //prints: s1 == s2: true
+}
+</code></pre>
+
+<p>除了很慢（这个可能会也可能不会影响你的应用），<code>DeepEqual()</code>也有其他自身的技巧。</p>
+
+<pre><code class="language-go">package main
+
+import (  
+    &quot;fmt&quot;
+    &quot;reflect&quot;
+)
+
+func main() {  
+    var b1 []byte = nil
+    b2 := []byte{}
+    fmt.Println(&quot;b1 == b2:&quot;,reflect.DeepEqual(b1, b2)) //prints: b1 == b2: false
+}
+</code></pre>
+
+<p><code>DeepEqual()</code>不会认为空的slice与“nil”的slice相等。这个行为与你使用<code>bytes.Equal()</code>函数的行为不同。<code>bytes.Equal()</code>认为“nil”和空的slice是相等的。</p>
+
+<pre><code class="language-go">package main
+
+import (  
+    &quot;fmt&quot;
+    &quot;bytes&quot;
+)
+
+func main() {  
+    var b1 []byte = nil
+    b2 := []byte{}
+    fmt.Println(&quot;b1 == b2:&quot;,bytes.Equal(b1, b2)) //prints: b1 == b2: true
+}
+</code></pre>
+
+<p><code>DeepEqual()</code> isn&rsquo;t always perfect comparing slices.</p>
+
+<pre><code class="language-go">package main
+
+import (  
+    &quot;fmt&quot;
+    &quot;reflect&quot;
+    &quot;encoding/json&quot;
+)
+
+func main() {  
+    var str string = &quot;one&quot;
+    var in interface{} = &quot;one&quot;
+    fmt.Println(&quot;str == in:&quot;,str == in,reflect.DeepEqual(str, in)) 
+    //prints: str == in: true true
+
+    v1 := []string{&quot;one&quot;,&quot;two&quot;}
+    v2 := []interface{}{&quot;one&quot;,&quot;two&quot;}
+    fmt.Println(&quot;v1 == v2:&quot;,reflect.DeepEqual(v1, v2)) 
+    //prints: v1 == v2: false (not ok)
+
+    data := map[string]interface{}{
+        &quot;code&quot;: 200,
+        &quot;value&quot;: []string{&quot;one&quot;,&quot;two&quot;},
+    }
+    encoded, _ := json.Marshal(data)
+    var decoded map[string]interface{}
+    json.Unmarshal(encoded, &amp;decoded)
+    fmt.Println(&quot;data == decoded:&quot;,reflect.DeepEqual(data, decoded)) 
+    //prints: data == decoded: false (not ok)
+}
+</code></pre>
+
+<p>如果你的byte slice（或者字符串）中包含文字数据，而当你要不区分大小写形式的值时（在使用<code>==</code>，<code>bytes.Equal()</code>，或者<code>bytes.Compare()</code>），你可能会尝试使用“bytes”和“string”包中的<code>ToUpper()</code>或者<code>ToLower()</code>函数。对于英语文本，这么做是没问题的，但对于许多其他的语言来说就不行了。这时应该使用<code>strings.EqualFold()</code>和<code>bytes.EqualFold()</code>。</p>
+
+<p>如果你的byte slice中包含需要验证用户数据的隐私信息（比如，加密哈希、tokens等），不要使用<code>reflect.DeepEqual()</code>、<code>bytes.Equal()</code>，或者<code>bytes.Compare()</code>，因为这些函数将会让你的应用易于被定时攻击。为了避免泄露时间信息，使用<code>'crypto/subtle'</code>包中的函数（即，<code>subtle.ConstantTimeCompare()</code>）。</p>
+
+<h3 id="recovering-from-a-panic">Recovering From a Panic</h3>
+
+<p><code>recover()</code>函数可以用于获取/拦截panic。仅当在一个defer函数中被完成时，调用<code>recover()</code>将会完成这个小技巧。</p>
+
+<p>Incorrect:</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+func main() {  
+    recover() //doesn't do anything
+    panic(&quot;not good&quot;)
+    recover() //won't be executed :)
+    fmt.Println(&quot;ok&quot;)
+}
+</code></pre>
+
+<p>Works:</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+func main() {  
+    defer func() {
+        fmt.Println(&quot;recovered:&quot;,recover())
+    }()
+
+    panic(&quot;not good&quot;)
+}
+</code></pre>
+
+<p><code>recover()</code>的调用仅当它在defer函数中被直接调用时才有效。</p>
+
+<p>Fails:</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+func doRecover() {  
+    fmt.Println(&quot;recovered =&gt;&quot;,recover()) //prints: recovered =&gt; &lt;nil&gt;
+}
+
+func main() {  
+    defer func() {
+        doRecover() //panic is not recovered
+    }()
+
+    panic(&quot;not good&quot;)
+}
+</code></pre>
+
+<h3 id="updating-and-referencing-item-values-in-slice-array-and-map-range-clauses">Updating and Referencing Item Values in Slice, Array, and Map &ldquo;range&rdquo; Clauses</h3>
+
+<p>在“range”语句中生成的数据的值是真实集合元素的拷贝。它们不是原有元素的引用。这意味着更新这些值将不会修改原来的数据。同时也意味着使用这些值的地址将不会得到原有数据的指针。</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+func main() {  
+    data := []int{1,2,3}
+    for _,v := range data {
+        v *= 10 //original item is not changed
+    }
+
+    fmt.Println(&quot;data:&quot;,data) //prints data: [1 2 3]
+}
+</code></pre>
+
+<p>如果你需要更新原有集合中的数据，使用索引操作符来获得数据。</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+func main() {  
+    data := []int{1,2,3}
+    for i,_ := range data {
+        data[i] *= 10
+    }
+
+    fmt.Println(&quot;data:&quot;,data) //prints data: [10 20 30]
+}
+</code></pre>
+
+<p>如果你的集合保存的是指针，那规则会稍有不同。如果要更新原有记录指向的数据，你依然需要使用索引操作，但你可以使用<code>for range</code>语句中的第二个值来更新存储在目标位置的数据。</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+func main() {  
+    data := []*struct{num int} {{1},{2},{3}}
+
+    for _,v := range data {
+        v.num *= 10
+    }
+
+    fmt.Println(data[0],data[1],data[2]) //prints &amp;{10} &amp;{20} &amp;{30}
+}
+</code></pre>
+
+<h3 id="hidden-data-in-slices">&ldquo;Hidden&rdquo; Data in Slices</h3>
+
+<p>当你重新划分一个slice时，新的slice将引用原有slice的数组。如果你忘了这个行为的话，在你的应用分配大量临时的slice用于创建新的slice来引用原有数据的一小部分时，会导致难以预期的内存使用。</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+func get() []byte {  
+    raw := make([]byte,10000)
+    fmt.Println(len(raw),cap(raw),&amp;raw[0]) //prints: 10000 10000 &lt;byte_addr_x&gt;
+    return raw[:3]
+}
+
+func main() {  
+    data := get()
+    fmt.Println(len(data),cap(data),&amp;data[0]) //prints: 3 10000 &lt;byte_addr_x&gt;
+}
+</code></pre>
+
+<p>为了避免这个陷阱，你需要从临时的slice中拷贝数据（而不是重新划分slice）。</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+func get() []byte {  
+    raw := make([]byte,10000)
+    fmt.Println(len(raw),cap(raw),&amp;raw[0]) //prints: 10000 10000 &lt;byte_addr_x&gt;
+    res := make([]byte,3)
+    copy(res,raw[:3])
+    return res
+}
+
+func main() {  
+    data := get()
+    fmt.Println(len(data),cap(data),&amp;data[0]) //prints: 3 3 &lt;byte_addr_y&gt;
+}
+</code></pre>
+
+<h3 id="slice-data-corruption">Slice Data &ldquo;Corruption&rdquo;</h3>
+
+<p>比如说你需要重新一个路径（在slice中保存）。你通过修改第一个文件夹的名字，然后把名字合并来创建新的路劲，来重新划分指向各个文件夹的路径。</p>
+
+<pre><code class="language-go">package main
+
+import (  
+    &quot;fmt&quot;
+    &quot;bytes&quot;
+)
+
+func main() {  
+    path := []byte(&quot;AAAA/BBBBBBBBB&quot;)
+    sepIndex := bytes.IndexByte(path,'/')
+    dir1 := path[:sepIndex]
+    dir2 := path[sepIndex+1:]
+    fmt.Println(&quot;dir1 =&gt;&quot;,string(dir1)) //prints: dir1 =&gt; AAAA
+    fmt.Println(&quot;dir2 =&gt;&quot;,string(dir2)) //prints: dir2 =&gt; BBBBBBBBB
+
+    dir1 = append(dir1,&quot;suffix&quot;...)
+    path = bytes.Join([][]byte{dir1,dir2},[]byte{'/'})
+
+    fmt.Println(&quot;dir1 =&gt;&quot;,string(dir1)) //prints: dir1 =&gt; AAAAsuffix
+    fmt.Println(&quot;dir2 =&gt;&quot;,string(dir2)) //prints: dir2 =&gt; uffixBBBB (not ok)
+
+    fmt.Println(&quot;new path =&gt;&quot;,string(path))
+}
+</code></pre>
+
+<p>结果与你想的不一样。与&rdquo;AAAAsuffix/BBBBBBBBB&rdquo;相反，你将会得到&rdquo;AAAAsuffix/uffixBBBB&rdquo;。这个情况的发生是因为两个文件夹的slice都潜在的引用了同一个原始的路径slice。这意味着原始路径也被修改了。根据你的应用，这也许会是个问题。</p>
+
+<p>通过分配新的slice并拷贝需要的数据，你可以修复这个问题。另一个选择是使用完整的slice表达式。</p>
+
+<pre><code class="language-go">package main
+
+import (  
+    &quot;fmt&quot;
+    &quot;bytes&quot;
+)
+
+func main() {  
+    path := []byte(&quot;AAAA/BBBBBBBBB&quot;)
+    sepIndex := bytes.IndexByte(path,'/')
+    dir1 := path[:sepIndex:sepIndex] //full slice expression
+    dir2 := path[sepIndex+1:]
+    fmt.Println(&quot;dir1 =&gt;&quot;,string(dir1)) //prints: dir1 =&gt; AAAA
+    fmt.Println(&quot;dir2 =&gt;&quot;,string(dir2)) //prints: dir2 =&gt; BBBBBBBBB
+
+    dir1 = append(dir1,&quot;suffix&quot;...)
+    path = bytes.Join([][]byte{dir1,dir2},[]byte{'/'})
+
+    fmt.Println(&quot;dir1 =&gt;&quot;,string(dir1)) //prints: dir1 =&gt; AAAAsuffix
+    fmt.Println(&quot;dir2 =&gt;&quot;,string(dir2)) //prints: dir2 =&gt; BBBBBBBBB (ok now)
+
+    fmt.Println(&quot;new path =&gt;&quot;,string(path))
+}
+</code></pre>
+
+<p>完整的slice表达式中的额外参数可以控制新的slice的容量。现在在那个slice后添加元素将会触发一个新的buffer分配，而不是覆盖第二个slice中的数据。</p>
+
+<h3 id="stale-slices">&ldquo;Stale&rdquo; Slices</h3>
+
+<p>多个slice可以引用同一个数据。比如，当你从一个已有的slice创建一个新的slice时，这就会发生。如果你的应用功能需要这种行为，那么你将需要关注下“走味的”slice。</p>
+
+<p>在某些情况下，在一个slice中添加新的数据，在原有数组无法保持更多新的数据时，将导致分配一个新的数组。而现在其他的slice还指向老的数组（和老的数据）。</p>
+
+<pre><code class="language-go">import &quot;fmt&quot;
+
+func main() {  
+    s1 := []int{1,2,3}
+    fmt.Println(len(s1),cap(s1),s1) //prints 3 3 [1 2 3]
+
+    s2 := s1[1:]
+    fmt.Println(len(s2),cap(s2),s2) //prints 2 2 [2 3]
+
+    for i := range s2 { s2[i] += 20 }
+
+    //still referencing the same array
+    fmt.Println(s1) //prints [1 22 23]
+    fmt.Println(s2) //prints [22 23]
+
+    s2 = append(s2,4)
+
+    for i := range s2 { s2[i] += 10 }
+
+    //s1 is now &quot;stale&quot;
+    fmt.Println(s1) //prints [1 22 23]
+    fmt.Println(s2) //prints [32 33 14]
+}
+</code></pre>
+
+<h3 id="type-declarations-and-methods">Type Declarations and Methods</h3>
+
+<p>当你通过把一个现有（非interface）的类型定义为一个新的类型时，新的类型不会继承现有类型的方法。</p>
+
+<p>Fails:</p>
+
+<pre><code class="language-go">package main
+
+import &quot;sync&quot;
+
+type myMutex sync.Mutex
+
+func main() {  
+    var mtx myMutex
+    mtx.Lock() //error
+    mtx.Unlock() //error  
+}
+</code></pre>
+
+<p>Compile Errors:</p>
+
+<blockquote>
+<p>/tmp/sandbox106401185/main.go:9: mtx.Lock undefined (type myMutex has no field or method Lock)
+/tmp/sandbox106401185/main.go:10: mtx.Unlock undefined (type myMutex has no field or method Unlock)</p>
+</blockquote>
+
+<p>如果你确实需要原有类型的方法，你可以定义一个新的struct类型，用匿名方式把原有类型嵌入其中。</p>
+
+<p>Works:</p>
+
+<pre><code class="language-go">package main
+
+import &quot;sync&quot;
+
+type myLocker struct {  
+    sync.Mutex
+}
+
+func main() {  
+    var lock myLocker
+    lock.Lock() //ok
+    lock.Unlock() //ok
+}
+</code></pre>
+
+<p>interface类型的声明也会保留它们的方法集合。</p>
+
+<p>Works:</p>
+
+<pre><code class="language-go">package main
+
+import &quot;sync&quot;
+
+type myLocker sync.Locker
+
+func main() {  
+    var lock myLocker = new(sync.Mutex)
+    lock.Lock() //ok
+    lock.Unlock() //ok
+}
+</code></pre>
+
+<h3 id="breaking-out-of-for-switch-and-for-select-code-blocks">Breaking Out of &ldquo;for switch&rdquo; and &ldquo;for select&rdquo; Code Blocks</h3>
+
+<p>没有标签的“break”声明只能从内部的switch/select代码块中跳出来。如果无法使用“return”声明的话，那就为外部循环定义一个标签是另一个好的选择。</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+func main() {  
+    loop:
+        for {
+            switch {
+            case true:
+                fmt.Println(&quot;breaking out...&quot;)
+                break loop
+            }
+        }
+
+    fmt.Println(&quot;out!&quot;)
+}
+</code></pre>
+
+<p>A &ldquo;goto&rdquo; statement will do the trick too&hellip;</p>
+
+<h3 id="iteration-variables-and-closures-in-for-statements">Iteration Variables and Closures in &ldquo;for&rdquo; Statements</h3>
+
+<p>这在Go中是个很常见的技巧。<code>for</code>语句中的迭代变量在每次迭代时被重新使用。这就意味着你在<code>for</code>循环中创建的闭包（即函数字面量）将会引用同一个变量（而在那些goroutine开始执行时就会得到那个变量的值）。</p>
+
+<p>Incorrect:</p>
+
+<pre><code class="language-go">package main
+
+import (  
+    &quot;fmt&quot;
+    &quot;time&quot;
+)
+
+func main() {  
+    data := []string{&quot;one&quot;,&quot;two&quot;,&quot;three&quot;}
+
+    for _,v := range data {
+        go func() {
+            fmt.Println(v)
+        }()
+    }
+
+    time.Sleep(3 * time.Second)
+    //goroutines print: three, three, three
+}
+</code></pre>
+
+<p>最简单的解决方法（不需要修改goroutine）是，在for循环代码块内把当前迭代的变量值保存到一个局部变量中。</p>
+
+<p>Works:</p>
+
+<pre><code class="language-go">package main
+
+import (  
+    &quot;fmt&quot;
+    &quot;time&quot;
+)
+
+func main() {  
+    data := []string{&quot;one&quot;,&quot;two&quot;,&quot;three&quot;}
+
+    for _,v := range data {
+        vcopy := v //
+        go func() {
+            fmt.Println(vcopy)
+        }()
+    }
+
+    time.Sleep(3 * time.Second)
+    //goroutines print: one, two, three
+}
+</code></pre>
+
+<p>另一个解决方法是把当前的迭代变量作为匿名goroutine的参数。</p>
+
+<p>Works:</p>
+
+<pre><code class="language-go">package main
+
+import (  
+    &quot;fmt&quot;
+    &quot;time&quot;
+)
+
+func main() {  
+    data := []string{&quot;one&quot;,&quot;two&quot;,&quot;three&quot;}
+
+    for _,v := range data {
+        go func(in string) {
+            fmt.Println(in)
+        }(v)
+    }
+
+    time.Sleep(3 * time.Second)
+    //goroutines print: one, two, three
+}
+</code></pre>
+
+<p>下面这个陷阱稍微复杂一些的版本。</p>
+
+<p>Incorrect:</p>
+
+<pre><code class="language-go">package main
+
+import (  
+    &quot;fmt&quot;
+    &quot;time&quot;
+)
+
+type field struct {  
+    name string
+}
+
+func (p *field) print() {  
+    fmt.Println(p.name)
+}
+
+func main() {  
+    data := []field{{&quot;one&quot;},{&quot;two&quot;},{&quot;three&quot;}}
+
+    for _,v := range data {
+        go v.print()
+    }
+
+    time.Sleep(3 * time.Second)
+    //goroutines print: three, three, three
+}
+</code></pre>
+
+<p>Works:</p>
+
+<pre><code class="language-go">package main
+
+import (  
+    &quot;fmt&quot;
+    &quot;time&quot;
+)
+
+type field struct {  
+    name string
+}
+
+func (p *field) print() {  
+    fmt.Println(p.name)
+}
+
+func main() {  
+    data := []field{{&quot;one&quot;},{&quot;two&quot;},{&quot;three&quot;}}
+
+    for _,v := range data {
+        v := v
+        go v.print()
+    }
+
+    time.Sleep(3 * time.Second)
+    //goroutines print: one, two, three
+}
+</code></pre>
+
+<p>What do you think you&rsquo;ll see when you run this code (and why)?</p>
+
+<pre><code class="language-go">package main
+
+import (  
+    &quot;fmt&quot;
+    &quot;time&quot;
+)
+
+type field struct {  
+    name string
+}
+
+func (p *field) print() {  
+    fmt.Println(p.name)
+}
+
+func main() {  
+    data := []*field{{&quot;one&quot;},{&quot;two&quot;},{&quot;three&quot;}}
+
+    for _,v := range data {
+        go v.print()
+    }
+
+    time.Sleep(3 * time.Second)
+}
+</code></pre>
+
+<h3 id="deferred-function-call-argument-evaluation">Deferred Function Call Argument Evaluation</h3>
+
+<p>Arguments for a deferred function call are evaluated when the <code>defer</code> statement is evaluated (not when the function is actually executing).</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+func main() {  
+    var i int = 1
+
+    defer fmt.Println(&quot;result =&gt;&quot;,func() int { return i * 2 }())
+    i++
+    //prints: result =&gt; 2 (not ok if you expected 4)
+}
+</code></pre>
+
+<h3 id="deferred-function-call-execution">Deferred Function Call Execution</h3>
+
+<p>被defer的调用会在包含的函数的末尾执行，而不是包含代码块的末尾。对于Go新手而言，一个很常犯的错误就是无法区分被defer的代码执行规则和变量作用规则。如果你有一个长时运行的函数，而函数内有一个for循环试图在每次迭代时都defer资源清理调用，那就会出现问题。</p>
+
+<pre><code class="language-go">package main
+
+import (  
+    &quot;fmt&quot;
+    &quot;os&quot;
+    &quot;path/filepath&quot;
+)
+
+func main() {  
+    if len(os.Args) != 2 {
+        os.Exit(-1)
+    }
+
+    start, err := os.Stat(os.Args[1])
+    if err != nil || !start.IsDir(){
+        os.Exit(-1)
+    }
+
+    var targets []string
+    filepath.Walk(os.Args[1], func(fpath string, fi os.FileInfo, err error) error {
+        if err != nil {
+            return err
+        }
+
+        if !fi.Mode().IsRegular() {
+            return nil
+        }
+
+        targets = append(targets,fpath)
+        return nil
+    })
+
+    for _,target := range targets {
+        f, err := os.Open(target)
+        if err != nil {
+            fmt.Println(&quot;bad target:&quot;,target,&quot;error:&quot;,err) //prints error: too many open files
+            break
+        }
+        defer f.Close() //will not be closed at the end of this code block
+        //do something with the file...
+    }
+}
+</code></pre>
+
+<p>解决这个问题的一个方法是把代码块写成一个函数。</p>
+
+<pre><code class="language-go">package main
+
+import (  
+    &quot;fmt&quot;
+    &quot;os&quot;
+    &quot;path/filepath&quot;
+)
+
+func main() {  
+    if len(os.Args) != 2 {
+        os.Exit(-1)
+    }
+
+    start, err := os.Stat(os.Args[1])
+    if err != nil || !start.IsDir(){
+        os.Exit(-1)
+    }
+
+    var targets []string
+    filepath.Walk(os.Args[1], func(fpath string, fi os.FileInfo, err error) error {
+        if err != nil {
+            return err
+        }
+
+        if !fi.Mode().IsRegular() {
+            return nil
+        }
+
+        targets = append(targets,fpath)
+        return nil
+    })
+
+    for _,target := range targets {
+        func() {
+            f, err := os.Open(target)
+            if err != nil {
+                fmt.Println(&quot;bad target:&quot;,target,&quot;error:&quot;,err)
+                return
+            }
+            defer f.Close() //ok
+            //do something with the file...
+        }()
+    }
+}
+</code></pre>
+
+<p>另一个方法是去掉defer语句 :-)</p>
+
+<h3 id="failed-type-assertions">Failed Type Assertions</h3>
+
+<p>失败的类型断言返回断言声明中使用的目标类型的“零值”。这在与隐藏变量混合时，会发生未知情况。</p>
+
+<p>Incorrect:</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+func main() {  
+    var data interface{} = &quot;great&quot;
+
+    if data, ok := data.(int); ok {
+        fmt.Println(&quot;[is an int] value =&gt;&quot;,data)
+    } else {
+        fmt.Println(&quot;[not an int] value =&gt;&quot;,data) 
+        //prints: [not an int] value =&gt; 0 (not &quot;great&quot;)
+    }
+}
+</code></pre>
+
+<p>Works:</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+func main() {  
+    var data interface{} = &quot;great&quot;
+
+    if res, ok := data.(int); ok {
+        fmt.Println(&quot;[is an int] value =&gt;&quot;,res)
+    } else {
+        fmt.Println(&quot;[not an int] value =&gt;&quot;,data) 
+        //prints: [not an int] value =&gt; great (as expected)
+    }
+}
+</code></pre>
+
+<h3 id="blocked-goroutines-and-resource-leaks">Blocked Goroutines and Resource Leaks</h3>
+
+<p>Rob Pike talked about a number of fundamental concurrency patterns in his <a href="https://talks.golang.org/2012/concurrency.slide#1">&ldquo;Go Concurrency Patterns&rdquo;</a> presentation at Google I/O in 2012. Fetching the first result from a number of targets is one of them.</p>
+
+<pre><code class="language-go">func First(query string, replicas ...Search) Result {  
+    c := make(chan Result)
+    searchReplica := func(i int) { c &lt;- replicas[i](query) }
+    for i := range replicas {
+        go searchReplica(i)
+    }
+    return &lt;-c
+}
+</code></pre>
+
+<p>这个函数在每次搜索重复时都会起一个goroutine。每个goroutine把它的搜索结果发送到结果的channel中。结果channel的第一个值被返回。</p>
+
+<p>那其他goroutine的结果会怎样呢？还有那些goroutine自身呢？</p>
+
+<p>在<code>First()</code>函数中的结果channel是没缓存的。这意味着只有第一个goroutine返回。其他的goroutine会困在尝试发送结果的过程中。这意味着，如果你有不止一个的重复时，每个调用将会泄露资源。</p>
+
+<p>为了避免泄露，你需要确保所有的goroutine退出。一个不错的方法是使用一个有足够保存所有缓存结果的channel。</p>
+
+<pre><code class="language-go">func First(query string, replicas ...Search) Result {  
+    c := make(chan Result,len(replicas))
+    searchReplica := func(i int) { c &lt;- replicas[i](query) }
+    for i := range replicas {
+        go searchReplica(i)
+    }
+    return &lt;-c
+}
+</code></pre>
+
+<p>另一个不错的解决方法是使用一个有<code>default</code>情况的<code>select</code>语句和一个保存一个缓存结果的channel。<code>default</code>情况保证了即使当结果channel无法收到消息的情况下，goroutine也不会堵塞。</p>
+
+<pre><code class="language-go">func First(query string, replicas ...Search) Result {  
+    c := make(chan Result,1)
+    searchReplica := func(i int) { 
+        select {
+        case c &lt;- replicas[i](query):
+        default:
+        }
+    }
+    for i := range replicas {
+        go searchReplica(i)
+    }
+    return &lt;-c
+}
+</code></pre>
+
+<p>你也可以使用特殊的取消channel来终止workers。</p>
+
+<pre><code class="language-go">func First(query string, replicas ...Search) Result {  
+    c := make(chan Result)
+    done := make(chan struct{})
+    defer close(done)
+    searchReplica := func(i int) { 
+        select {
+        case c &lt;- replicas[i](query):
+        case &lt;- done:
+        }
+    }
+    for i := range replicas {
+        go searchReplica(i)
+    }
+
+    return &lt;-c
+}
+</code></pre>
+
+<p>为何在演讲中会包含这些bug？Rob Pike仅仅是不想把演示复杂化。这么作是合理的，但对于Go新手而言，可能会直接使用代码，而不去思考它可能有问题。</p>
+
+<h3 id="using-pointer-receiver-methods-on-value-instances">Using Pointer Receiver Methods On Value Instances</h3>
+
+<p>只要值是可取址的，那在这个值上调用指针接收方法是没问题的。换句话说，在某些情况下，你不需要在有一个接收值的方法版本。</p>
+
+<p>然而并不是所有的变量是可取址的。Map的元素就不是。通过interface引用的变量也不是。</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+type data struct {  
+    name string
+}
+
+func (p *data) print() {  
+    fmt.Println(&quot;name:&quot;,p.name)
+}
+
+type printer interface {  
+    print()
+}
+
+func main() {  
+    d1 := data{&quot;one&quot;}
+    d1.print() //ok
+
+    var in printer = data{&quot;two&quot;} //error
+    in.print()
+
+    m := map[string]data {&quot;x&quot;:data{&quot;three&quot;}}
+    m[&quot;x&quot;].print() //error
+}
+</code></pre>
+
+<p>Compile Errors:</p>
+
+<blockquote>
+<p>/tmp/sandbox017696142/main.go:21: cannot use data literal (type data) as type printer in assignment:
+data does not implement printer (print method has pointer receiver)<br />
+/tmp/sandbox017696142/main.go:25: cannot call pointer method on m[&ldquo;x&rdquo;]
+/tmp/sandbox017696142/main.go:25: cannot take the address of m[&ldquo;x&rdquo;]</p>
+</blockquote>
+
+<h3 id="updating-map-value-fields">Updating Map Value Fields</h3>
+
+<p>如果你有一个struct值的map，你无法更新单个的struct值。</p>
+
+<p>Fails:</p>
+
+<pre><code class="language-go">package main
+
+type data struct {  
+    name string
+}
+
+func main() {  
+    m := map[string]data {&quot;x&quot;:{&quot;one&quot;}}
+    m[&quot;x&quot;].name = &quot;two&quot; //error
+}
+</code></pre>
+
+<p>Compile Error:</p>
+
+<blockquote>
+<p>/tmp/sandbox380452744/main.go:9: cannot assign to m[&ldquo;x&rdquo;].name</p>
+</blockquote>
+
+<p>这个操作无效是因为map元素是无法取址的。</p>
+
+<p>而让Go新手更加困惑的是slice元素是可以取址的。</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+type data struct {  
+    name string
+}
+
+func main() {  
+    s := []data {{&quot;one&quot;}}
+    s[0].name = &quot;two&quot; //ok
+    fmt.Println(s)    //prints: [{two}]
+}
+</code></pre>
+
+<p>注意在不久之前，使用编译器之一（gccgo）是可以更新map的元素值的，但这一行为很快就被修复了 :-)它也被认为是Go 1.3的潜在特性。在那时还不是要急需支持的，但依旧在todo list中。</p>
+
+<p>第一个有效的方法是使用一个临时变量。</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+type data struct {  
+    name string
+}
+
+func main() {  
+    m := map[string]data {&quot;x&quot;:{&quot;one&quot;}}
+    r := m[&quot;x&quot;]
+    r.name = &quot;two&quot;
+    m[&quot;x&quot;] = r
+    fmt.Printf(&quot;%v&quot;,m) //prints: map[x:{two}]
+}
+</code></pre>
+
+<p>另一个有效的方法是使用指针的map。</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+type data struct {  
+    name string
+}
+
+func main() {  
+    m := map[string]*data {&quot;x&quot;:{&quot;one&quot;}}
+    m[&quot;x&quot;].name = &quot;two&quot; //ok
+    fmt.Println(m[&quot;x&quot;]) //prints: &amp;{two}
+}
+</code></pre>
+
+<p>By the way, what happens when you run this code?</p>
+
+<pre><code class="language-go">package main
+
+type data struct {  
+    name string
+}
+
+func main() {  
+    m := map[string]*data {&quot;x&quot;:{&quot;one&quot;}}
+    m[&quot;z&quot;].name = &quot;what?&quot; //???
+}
+</code></pre>
+
+<h3 id="nil-interfaces-and-nil-interfaces-values">&ldquo;nil&rdquo; Interfaces and &ldquo;nil&rdquo; Interfaces Values</h3>
+
+<p>这在Go中是第二最常见的技巧，因为interface虽然看起来像指针，但并不是指针。interface变量仅在类型和值为“nil”时才为“nil”。</p>
+
+<p>interface的类型和值会根据用于创建对应interface变量的类型和值的变化而变化。当你检查一个interface变量是否等于“nil”时，这就会导致未预期的行为。</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+func main() {  
+    var data *byte
+    var in interface{}
+
+    fmt.Println(data,data == nil) //prints: &lt;nil&gt; true
+    fmt.Println(in,in == nil)     //prints: &lt;nil&gt; true
+
+    in = data
+    fmt.Println(in,in == nil)     //prints: &lt;nil&gt; false
+    //'data' is 'nil', but 'in' is not 'nil'
+}
+</code></pre>
+
+<p>当你的函数返回interface时，小心这个陷阱。</p>
+
+<p>Incorrect:</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+func main() {  
+    doit := func(arg int) interface{} {
+        var result *struct{} = nil
+
+        if(arg &gt; 0) {
+            result = &amp;struct{}{}
+        }
+
+        return result
+    }
+
+    if res := doit(-1); res != nil {
+        fmt.Println(&quot;good result:&quot;,res) //prints: good result: &lt;nil&gt;
+        //'res' is not 'nil', but its value is 'nil'
+    }
+}
+</code></pre>
+
+<p>Works:</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+func main() {  
+    doit := func(arg int) interface{} {
+        var result *struct{} = nil
+
+        if(arg &gt; 0) {
+            result = &amp;struct{}{}
+        } else {
+            return nil //return an explicit 'nil'
+        }
+
+        return result
+    }
+
+    if res := doit(-1); res != nil {
+        fmt.Println(&quot;good result:&quot;,res)
+    } else {
+        fmt.Println(&quot;bad result (res is nil)&quot;) //here as expected
+    }
+}
+</code></pre>
+
+<h3 id="stack-and-heap-variables">Stack and Heap Variables</h3>
+
+<p>你并不总是知道变量是分配到栈还是堆上。在C++中，使用<code>new</code>创建的变量总是在堆上。在Go中，即使是使用<code>new()</code>或者<code>make()</code>函数来分配，变量的位置还是由编译器决定。编译器根据变量的大小和“泄露分析”的结果来决定其位置。这也意味着在局部变量上返回引用是没问题的，而这在C或者C++这样的语言中是不行的。</p>
+
+<p>如果你想知道变量分配的位置，在“go build”或“go run”上传入“-m“ gc标志（即，<code>go run -gcflags -m app.go</code>）。</p>
+
+<h3 id="gomaxprocs-concurrency-and-parallelism">GOMAXPROCS, Concurrency, and Parallelism</h3>
+
+<p>Go 1.4 and below uses only one execution context / OS thread. This means that only one goroutine can execute at any given time. Starting with 1.5 Go sets the number of execution contexts to the number of logical CPU cores returned by <code>runtime.NumCPU()</code>. That number may or may not match the total number of logical CPU cores on your system depending on the CPU affinity settings of your process.  You can adjust this number by changing the <code>GOMAXPROCS</code> environment variable or by calling the <code>runtime.GOMAXPROCS()</code> function.</p>
+
+<p>There&rsquo;s a common misconception that <code>GOMAXPROCS</code> represents the number of CPUs Go will use to run goroutines. The <code>runtime.GOMAXPROCS()</code> function documentation adds more to the confusion. The <code>GOMAXPROCS</code> variable description (<a href="https://golang.org/pkg/runtime/">https://golang.org/pkg/runtime/</a>) does a better job talking about OS threads.</p>
+
+<p>You can set <code>GOMAXPROCS</code> to more than the number of your CPUs. The max value for <code>GOMAXPROCS</code> is 256.</p>
+
+<pre><code class="language-go">package main
+
+import (  
+    &quot;fmt&quot;
+    &quot;runtime&quot;
+)
+
+func main() {  
+    fmt.Println(runtime.GOMAXPROCS(-1)) //prints: X (1 on play.golang.org)
+    fmt.Println(runtime.NumCPU())       //prints: X (1 on play.golang.org)
+    runtime.GOMAXPROCS(20)
+    fmt.Println(runtime.GOMAXPROCS(-1)) //prints: 20
+    runtime.GOMAXPROCS(300)
+    fmt.Println(runtime.GOMAXPROCS(-1)) //prints: 256
+}
+</code></pre>
+
+<h3 id="read-and-write-operation-reordering">Read and Write Operation Reordering</h3>
+
+<p>Go可能会对某些操作进行重新排序，但它能保证在一个goroutine内的所有行为顺序是不变的。然而，它并不保证多goroutine的执行顺序。</p>
+
+<pre><code class="language-go">package main
+
+import (  
+    &quot;runtime&quot;
+    &quot;time&quot;
+)
+
+var _ = runtime.GOMAXPROCS(3)
+
+var a, b int
+
+func u1() {  
+    a = 1
+    b = 2
+}
+
+func u2() {  
+    a = 3
+    b = 4
+}
+
+func p() {  
+    println(a)
+    println(b)
+}
+
+func main() {  
+    go u1()
+    go u2()
+    go p()
+    time.Sleep(1 * time.Second)
+}
+</code></pre>
+
+<p>If you run this code a few times you might see these <code>a</code> and <code>b</code> variable combinations:</p>
+
+<blockquote>
+<p>1<br />
+2</p>
+
+<p>3<br />
+4</p>
+
+<p>0<br />
+2</p>
+
+<p>0<br />
+0</p>
+
+<p>1<br />
+4</p>
+</blockquote>
+
+<p>The most interesting combination for <code>a</code> and <code>b</code> is &ldquo;02&rdquo;. It shows that <code>b</code> was updated before <code>a</code>.</p>
+
+<p>如果你需要在多goroutine内放置读写顺序的变化，你将需要使用channel，或者使用&rdquo;sync&rdquo;包构建合适的结构体。</p>
+
+<h3 id="preemptive-scheduling">Preemptive Scheduling</h3>
+
+<p>It&rsquo;s possible to have a rogue goroutine that prevents other goroutines from running. It can happen if you have a <code>for</code> loop that doesn&rsquo;t allow the scheduler to run.</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+func main() {  
+    done := false
+
+    go func(){
+        done = true
+    }()
+
+    for !done {
+    }
+    fmt.Println(&quot;done!&quot;)
+}
+</code></pre>
+
+<p>The <code>for</code> loop doesn&rsquo;t have to be empty. It&rsquo;ll be a problem as long as it contains code that doesn&rsquo;t trigger the scheduler execution.</p>
+
+<p>The scheduler will run after GC, &ldquo;go&rdquo; statements, blocking channel operations, blocking system calls, and lock operations. It may also run when a non-inlined function is called.</p>
+
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+func main() {  
+    done := false
+
+    go func(){
+        done = true
+    }()
+
+    for !done {
+        fmt.Println(&quot;not done!&quot;) //not inlined
+    }
+    fmt.Println(&quot;done!&quot;)
+}
+</code></pre>
+
+<p>To find out if the function you call in the <code>for</code> loop is inlined pass the &ldquo;-m&rdquo; gc flag to &ldquo;go build&rdquo; or &ldquo;go run&rdquo; (e.g., <code>go build -gcflags -m</code>).</p>
+
+<p>Another option is to invoke the scheduler explicitly. You can do it with the <code>Gosched()</code> function from the &ldquo;runtime&rdquo; package.</p>
+
+<pre><code class="language-go">package main
+
+import (  
+    &quot;fmt&quot;
+    &quot;runtime&quot;
+)
+
+func main() {  
+    done := false
+
+    go func(){
+        done = true
+    }()
+
+    for !done {
+        runtime.Gosched()
+    }
+    fmt.Println(&quot;done!&quot;)
+}
+</code></pre>
+
+<p>If you made it here and you have comments or ideas feel free to add a note to <a href="https://www.reddit.com/r/golang/comments/360vlb/draft_traps_gotchas_and_common_mistakes_in_go/">this Reddit discussion</a>.</p>
+
+<h3 id="参考文档">参考文档</h3>
+
+<ul>
+<li><a href="http://devs.cloudimmunity.com/gotchas-and-common-mistakes-in-go-golang/">http://devs.cloudimmunity.com/gotchas-and-common-mistakes-in-go-golang/</a></li>
+<li><a href="https://gist.github.com/lavalamp/4bd23295a9f32706a48f">https://gist.github.com/lavalamp/4bd23295a9f32706a48f</a></li>
+<li><a href="https://golang.org/doc/faq#nil_error">https://golang.org/doc/faq#nil_error</a></li>
+<li><a href="https://go-talks.appspot.com/github.com/davecheney/high-performance-go-workshop/high-performance-go-workshop.slide">https://go-talks.appspot.com/github.com/davecheney/high-performance-go-workshop/high-performance-go-workshop.slide</a></li>
+</ul>
+
+  </div>
+</article>
+        </div>
+        
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    (function() {
+      
+      
+      if (window.location.hostname === 'localhost') return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = 'feisky';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://twitter.com/feisky" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="https://github.com/feiskyer" class="iconfont icon-github" title="github"></a>
+      <a href="https://weibo.com/371069890" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://www.zhihu.com/people/feisky" class="iconfont icon-zhihu" title="zhihu"></a>
+  <a href="https://feisky.xyz/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    
+      2014 - 
+    2018
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Feisky</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+<script src="/lib/highlight/highlight.pack.js?v=20171001"></script><script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script><script></script>
+<script src="https://cdn.jsdelivr.net/npm/raphael@2.2.7/raphael.min.js" integrity="sha256-67By+NpOtm9ka1R6xpUefeGOY8kWWHHRAKlvaTJ7ONI=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/flowchart.js@1.8.0/release/flowchart.min.js" integrity="sha256-zNGWjubXoY6rb5MnmpBNefO0RgoVYfle9p0tvOQM+6k=" crossorigin="anonymous"></script><script></script>
+<script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+<script type="text/javascript" src="/dist/even.min.js?v=3.1.1"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-69699206-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+<script id="baidu_analytics">
+  var _hmt = _hmt || [];
+  (function() {
+    if (window.location.hostname === 'localhost') return;
+    var hm = document.createElement("script"); hm.async = true;
+    hm.src = "https://hm.baidu.com/hm.js?d2f4aad4d3f8dc2de9170fa1df3fcbcf";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+<script id="baidu_push">
+  (function(){
+    if (window.location.hostname === 'localhost') return;
+    var bp = document.createElement('script'); bp.async = true;
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+
+
+</body>
+</html>

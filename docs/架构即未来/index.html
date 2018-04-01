@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>架构即未来 - Feisky</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Feisky" />
+  <meta name="description" content="架构即未来笔记 讲师：陈斌 易宝支付有限公司CTO 互联网企业要成功，除了在业务模式上要有优势以外，也需要在技术管理方面形成不断向上的良性循环。这" />
+
+  <meta name="keywords" content="Kubernetes, Cloud, SDN" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.37.1" />
+
+
+<link rel="canonical" href="https://feisky.xyz/docs/%E6%9E%B6%E6%9E%84%E5%8D%B3%E6%9C%AA%E6%9D%A5/" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+<link href="/dist/even.min.css?v=3.1.1" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+
+
+<meta property="og:title" content="架构即未来" />
+<meta property="og:description" content="架构即未来笔记 讲师：陈斌 易宝支付有限公司CTO 互联网企业要成功，除了在业务模式上要有优势以外，也需要在技术管理方面形成不断向上的良性循环。这" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://feisky.xyz/docs/%E6%9E%B6%E6%9E%84%E5%8D%B3%E6%9C%AA%E6%9D%A5/" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="架构即未来">
+<meta itemprop="description" content="架构即未来笔记 讲师：陈斌 易宝支付有限公司CTO 互联网企业要成功，除了在业务模式上要有优势以外，也需要在技术管理方面形成不断向上的良性循环。这">
+
+
+
+<meta itemprop="wordCount" content="864">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="架构即未来"/>
+<meta name="twitter:description" content="架构即未来笔记 讲师：陈斌 易宝支付有限公司CTO 互联网企业要成功，除了在业务模式上要有优势以外，也需要在技术管理方面形成不断向上的良性循环。这"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Feisky</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="https://kubernetes.feisky.xyz">
+        <li class="mobile-menu-item">Kubernetes</li>
+      </a><a href="https://sdn.feisky.xyz">
+        <li class="mobile-menu-item">SDN</li>
+      </a><a href="/distributed/">
+        <li class="mobile-menu-item">分布式系统</li>
+      </a><a href="/container/">
+        <li class="mobile-menu-item">容器</li>
+      </a><a href="/machine-learning/">
+        <li class="mobile-menu-item">机器学习</li>
+      </a><a href="https://zhuanlan.zhihu.com/kubernetes">
+        <li class="mobile-menu-item">知乎</li>
+      </a><a href="/docs/">
+        <li class="mobile-menu-item">读书笔记</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Feisky</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="https://kubernetes.feisky.xyz">Kubernetes</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://sdn.feisky.xyz">SDN</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/distributed/">分布式系统</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/container/">容器</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/machine-learning/">机器学习</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://zhuanlan.zhihu.com/kubernetes">知乎</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/docs/">读书笔记</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+  <div class="post-content">
+      
+
+<h1 id="架构即未来笔记">架构即未来笔记</h1>
+
+<p>讲师：陈斌 易宝支付有限公司CTO</p>
+
+<p>互联网企业要成功，除了在业务模式上要有优势以外，也需要在技术管理方面形成不断向上的良性循环。这种良性循环的形成需要有合适的技术人才，合适的组织结构，合适的管控流程以及合适的技术决策。如何鉴别和培养合适的人才，如何设计合适的组织结构，如何营造创新的技术氛围，如何拥有产品思维而不是IT思维，如何鼓励认知冲突避免感性冲突是互联网公司技术领导者的一系列重要课题。</p>
+
+<h2 id="非技术设计">非技术设计</h2>
+
+<p>误区：以产品代替技术，考虑技术而不是真实需求；堆砌不同产品，整合成系统</p>
+
+<p>回归事物的本源</p>
+
+<ul>
+<li>不考虑技术</li>
+<li>聚焦用户需求</li>
+<li>设计原理</li>
+<li>创新</li>
+<li>简单</li>
+</ul>
+
+<h2 id="技术人员与业务人员之间的不同背景">技术人员与业务人员之间的不同背景</h2>
+
+<p>沟通鸿沟：技术主管主动学习业务知识</p>
+
+<h2 id="it思维与产品思维的差别-目标">IT思维与产品思维的差别-目标</h2>
+
+<p>降低成本  ➡️  提高收入
+公司、员工、培训  ➡️ 市场、客户、试错
+规则、流程  ➡️  创新、开放</p>
+
+<h2 id="80-20规则">80-20规则</h2>
+
+<p><img src="/images/14836298378739.jpg" alt="" /></p>
+
+<p>做减法、少即是多</p>
+
+<ul>
+<li>有限20%的项目</li>
+<li>聚焦20%的功能</li>
+<li>关注20%的人员</li>
+</ul>
+
+<h2 id="scale-out而不是scale-up">Scale out而不是Scale up</h2>
+
+<ul>
+<li>scale out 横向扩展</li>
+<li>微服务化</li>
+<li>数据库扩展：分库分表、哈希</li>
+</ul>
+
+<h2 id="架构师的成长">架构师的成长</h2>
+
+<p><img src="/images/14836297911190.jpg" alt="" /></p>
+
+<p><img src="/images/14836298033296.jpg" alt="" /></p>
+
+<h2 id="案例">案例</h2>
+
+<ol>
+<li>引入ITIL管理体系，规范研发和运维人员的行为。引入“三思而后行计划”，对所有涉及生产环境的人员进行系统性的培训。</li>
+<li>调整组织结构，解散一些无效的团队，把功能测试人员纳入研发团队。成立专业的项目管理部。</li>
+<li>改变技术人员的绩效考核方式，以OKR取代KCI。</li>
+<li>引入CTO简报，每个月固定时间发出，以CTO的名义表扬遵守规范、创新向上、尽责主动的技术人员。</li>
+<li>引入创新24小时活动，每半年组织集团有创新想法的技术和产品人员分租参与24小时的创新活动，活跃研发人员的创新思路。</li>
+<li>引入专业职级，特别是明确技术人员的成长途径。</li>
+<li>评审提拔研发架构师、信息安全架构师、运维架构师、数据架构师。</li>
+<li>成立联合架构委员会，由所有的架构师参与每个重大技术架构的评审，确保架构的严谨性。</li>
+<li>成立技术委员会，由核心技术领导和核心架构师组成，定期对技术发展方向以及技术人员的重大问题进行讨论。</li>
+<li>引进20多项硅谷的最新技术，按照兴趣组织技术人员参与不同的技术活动。从而在短时间内，成功地把这些技术消化吸收并应用到生产实践当中。</li>
+<li>从无到有建立大数据研发团队和技术平台，并快速培养出了一批大数据人才，形成了集团大数据技术的能力核心，并由此产生了数据应用团队。</li>
+<li>积极鼓励核心技术骨干参与行业内的技术交流活动。每年派出至少四人去硅谷同步技术，带领架构师参加互联网技术行业的各项交流活动。</li>
+</ol>
+
+  </div>
+</article>
+        </div>
+        
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    (function() {
+      
+      
+      if (window.location.hostname === 'localhost') return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = 'feisky';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://twitter.com/feisky" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="https://github.com/feiskyer" class="iconfont icon-github" title="github"></a>
+      <a href="https://weibo.com/371069890" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://www.zhihu.com/people/feisky" class="iconfont icon-zhihu" title="zhihu"></a>
+  <a href="https://feisky.xyz/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    
+      2014 - 
+    2018
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Feisky</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+<script src="/lib/highlight/highlight.pack.js?v=20171001"></script><script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script><script></script>
+<script src="https://cdn.jsdelivr.net/npm/raphael@2.2.7/raphael.min.js" integrity="sha256-67By+NpOtm9ka1R6xpUefeGOY8kWWHHRAKlvaTJ7ONI=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/flowchart.js@1.8.0/release/flowchart.min.js" integrity="sha256-zNGWjubXoY6rb5MnmpBNefO0RgoVYfle9p0tvOQM+6k=" crossorigin="anonymous"></script><script></script>
+<script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+<script type="text/javascript" src="/dist/even.min.js?v=3.1.1"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-69699206-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+<script id="baidu_analytics">
+  var _hmt = _hmt || [];
+  (function() {
+    if (window.location.hostname === 'localhost') return;
+    var hm = document.createElement("script"); hm.async = true;
+    hm.src = "https://hm.baidu.com/hm.js?d2f4aad4d3f8dc2de9170fa1df3fcbcf";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+<script id="baidu_push">
+  (function(){
+    if (window.location.hostname === 'localhost') return;
+    var bp = document.createElement('script'); bp.async = true;
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+
+
+</body>
+</html>
