@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>docs - Feisky</title>
+  <title>Tips for cgo - Feisky</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -17,7 +17,7 @@
 
 
 <meta name="author" content="Feisky" />
-  <meta name="description" content="一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器" />
+  <meta name="description" content="cgo的一些tips 基本类型 The standard C numeric types are available under the names C.char, C.schar (signed char), C.uchar (unsigned char), C.short, C.ushort (unsigned short), C.int, C.uint (unsigned int), C.long, C.ulong (unsigned long), C.longlong (long long), C.ulonglong (unsigned long long), C.float, C.double, C.complexfloat (complex float), and C.complexdouble (complex double). The C type void* is represented by Go&amp;rsquo;s unsafe.Pointer. The C" />
 
   <meta name="keywords" content="Kubernetes, Cloud, SDN" />
 
@@ -29,7 +29,7 @@
 <meta name="generator" content="Hugo 0.37.1" />
 
 
-<link rel="canonical" href="https://feisky.xyz/docs/" />
+<link rel="canonical" href="https://feisky.xyz/post/2016-04-24-tips-for-cgo/" />
 
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -49,13 +49,14 @@
 
 
 
-<meta property="og:title" content="docs" />
-<meta property="og:description" content="一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器" />
+<meta property="og:title" content="Tips for cgo" />
+<meta property="og:description" content="cgo的一些tips 基本类型 The standard C numeric types are available under the names C.char, C.schar (signed char), C.uchar (unsigned char), C.short, C.ushort (unsigned short), C.int, C.uint (unsigned int), C.long, C.ulong (unsigned long), C.longlong (long long), C.ulonglong (unsigned long long), C.float, C.double, C.complexfloat (complex float), and C.complexdouble (complex double). The C type void* is represented by Go&rsquo;s unsafe.Pointer. The C" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://feisky.xyz/docs/" />
+<meta property="og:url" content="https://feisky.xyz/post/2016-04-24-tips-for-cgo/" />
 
 
 
+<meta property="article:published_time" content="2016-04-24T08:29:02&#43;00:00"/>
 
 <meta property="article:modified_time" content="2018-04-01T22:45:12&#43;08:00"/>
 
@@ -69,19 +70,20 @@
 
 
 
-<meta itemprop="name" content="docs">
-<meta itemprop="description" content="一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器">
+<meta itemprop="name" content="Tips for cgo">
+<meta itemprop="description" content="cgo的一些tips 基本类型 The standard C numeric types are available under the names C.char, C.schar (signed char), C.uchar (unsigned char), C.short, C.ushort (unsigned short), C.int, C.uint (unsigned int), C.long, C.ulong (unsigned long), C.longlong (long long), C.ulonglong (unsigned long long), C.float, C.double, C.complexfloat (complex float), and C.complexdouble (complex double). The C type void* is represented by Go&rsquo;s unsafe.Pointer. The C">
+
+
+<meta itemprop="datePublished" content="2016-04-24T08:29:02&#43;00:00" />
+<meta itemprop="dateModified" content="2016-04-24T08:29:02&#43;00:00" />
+<meta itemprop="wordCount" content="557">
 
 
 
-<meta itemprop="wordCount" content="137">
-
-
-
-<meta itemprop="keywords" content="" />
+<meta itemprop="keywords" content="go," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="docs"/>
-<meta name="twitter:description" content="一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器"/>
+<meta name="twitter:title" content="Tips for cgo"/>
+<meta name="twitter:description" content="cgo的一些tips 基本类型 The standard C numeric types are available under the names C.char, C.schar (signed char), C.uchar (unsigned char), C.short, C.ushort (unsigned short), C.int, C.uint (unsigned int), C.long, C.ulong (unsigned long), C.longlong (long long), C.ulonglong (unsigned long long), C.float, C.double, C.complexfloat (complex float), and C.complexdouble (complex double). The C type void* is represented by Go&rsquo;s unsafe.Pointer. The C"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -155,69 +157,206 @@
       <div class="content-wrapper">
         <div id="content" class="content">
           <article class="post">
-  <div class="post-content">
+    
+    <header class="post-header">
+      <h1 class="post-title">Tips for cgo</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2016-04-24 </span>
+        
+        <span class="more-meta"> 557 words </span>
+        <span class="more-meta"> 2 mins read </span>
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#基本类型">基本类型</a></li>
+<li><a href="#字符串类型转换">字符串类型转换</a></li>
+<li><a href="#数组的使用">数组的使用</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
       
 
-<p><em>一些读书笔记和有趣的文章</em></p>
+<p>cgo的一些tips</p>
 
-<h2 id="容器的世界">容器的世界</h2>
+<h2 id="基本类型">基本类型</h2>
 
-<ul>
-<li><a href="http://feisky.xyz/k8s/">Kubernetes指南</a></li>
-<li><a href="http://feisky.xyz/kubernetes-dev/">Kubernetes开发环境指南</a></li>
-<li><a href="/container/cri-o/">CRI-O</a></li>
-<li><a href="/2016/02/26/Notes-about-serverless/">Serverless</a></li>
-<li><a href="http://calcotestudios.com/ccco">容器编排系统对比</a></li>
-<li><a href="https://leecalcote.github.io/ccco/overlay-underlay-betting-on-container-networking.html">容器网络方案对比</a></li>
-<li><a href="http://dockerconrecap-leecalcote.rhcloud.com/#/">Docker 1.12</a></li>
-<li><a href="/container/selinux/">SELinux</a></li>
-<li><a href="jd-container/">京东容器建设之路</a></li>
-<li><a href="networking-namespace/">Network namespace</a></li>
-</ul>
+<p>The standard C numeric types are available under the names C.char, C.schar (signed char), C.uchar (unsigned char), C.short, C.ushort (unsigned short), C.int, C.uint (unsigned int), C.long, C.ulong (unsigned long), C.longlong (long long), C.ulonglong (unsigned long long), C.float, C.double, C.complexfloat (complex float), and C.complexdouble (complex double). The C type void* is represented by Go&rsquo;s unsafe.Pointer. The C types <code>__int128_t</code> and <code>__uint128_t</code> are represented by [16]byte.</p>
 
-<h2 id="虚拟化">虚拟化</h2>
+<p>To access a struct, union, or enum type directly, prefix it with struct<em>, union</em>, or enum_, as in C.struct_stat.</p>
 
-<ul>
-<li><a href="/virtualization/GPU/">GPU虚拟化</a></li>
-<li><a href="/virtualization/SR-IOV/">SR-IOV</a></li>
-<li><a href="http://awilliam.github.io/presentations/KVM-Forum-2016/">VFIO</a></li>
-</ul>
+<p>The size of any C type T is available as C.sizeof_T, as in C.sizeof_struct_stat.</p>
 
-<h2 id="分布式系统">分布式系统</h2>
+<p>As Go doesn&rsquo;t have support for C&rsquo;s union type in the general case, C&rsquo;s union types are represented as a Go byte array with the same length.</p>
 
-<ul>
-<li><a href="http://feisky.xyz/distributed/">分布式系统简介</a></li>
-<li><a href="http://feisky.xyz/distributed/paxos/">Paxos</a></li>
-<li><a href="http://feisky.xyz/distributed/raft/">Raft</a></li>
-<li><a href="http://feisky.xyz/distributed/zab/">Zab</a></li>
-</ul>
+<p>Go structs cannot embed fields with C types.</p>
 
-<h2 id="sdn网络">SDN网络</h2>
+<p>Any C function (even void functions) may be called in a multiple assignment context to retrieve both the return value (if any) and the C errno variable as an error (use _ to skip the result value if the function returns void). For example:</p>
 
-<ul>
-<li><a href="http://feisky.xyz/sdn/">SDN网络</a></li>
-<li><a href="http://feisky.xyz/sdn/dpdk/">DPDK</a></li>
-</ul>
+<pre><code>n, err := C.sqrt(-1)
+_, err := C.voidFunc()
+</code></pre>
 
-<h2 id="机器学习">机器学习</h2>
+<h2 id="字符串类型转换">字符串类型转换</h2>
 
-<ul>
-<li><a href="http://feisky.xyz/machine-learning/">机器学习笔记</a></li>
-<li><a href="http://feisky.xyz/machine-learning/visualization/">数据可视化</a></li>
-<li><a href="http://feisky.xyz/machine-learning/cnn/">CNN</a></li>
-<li><a href="http://feisky.xyz/machine-learning/rnn/">RNN</a></li>
-<li><a href="http://feisky.xyz/machine-learning/tensorflow/">Tensorflow</a></li>
-</ul>
+<p><code>C.CString</code>和<code>C.GoString</code>都会对原始数据做拷贝，不要忘记释放CString创建的内存：</p>
 
-<h2 id="其他">其他</h2>
+<pre><code class="language-go">// Go string to C string
+// The C string is allocated in the C heap using malloc.
+// It is the caller's responsibility to arrange for it to be
+// freed, such as by calling C.free (be sure to include stdlib.h
+// if C.free is needed).
+func C.CString(string) *C.char
 
-<ul>
-<li><a href="amazon-leadership/">Amazon Leadership Principles</a></li>
-<li><a href="架构即未来/">架构即未来</a></li>
-</ul>
+// C string to Go string
+func C.GoString(*C.char) string
 
-  </div>
-</article>
+// C data with explicit length to Go string
+func C.GoStringN(*C.char, C.int) string
+
+// C data with explicit length to Go []byte
+func C.GoBytes(unsafe.Pointer, C.int) []byte
+</code></pre>
+
+<p><code>C.CString</code>使用示例：</p>
+
+<pre><code class="language-go">ch := C.CString(str)
+defer C.free(unsafe.Pointer(ch))
+....
+</code></pre>
+
+<h2 id="数组的使用">数组的使用</h2>
+
+<p>Go切片转为C数组：</p>
+
+<pre><code class="language-go">/*
+#include &lt;stdio.h&gt;
+void foo(double *arr, int len) {
+	for(int i=0;i&lt;len;i++) {
+		printf(&quot;%f\n&quot;, arr[i]);
+	}
+}
+*/
+import &quot;C&quot;
+
+func main() {
+	arr := []float64{1, 2, 3, 4, 5}
+	carr := (*C.double)(unsafe.Pointer(&amp;arr[0]))
+	C.foo(carr, C.int(len(arr)))
+
+}
+</code></pre>
+
+<p>C数组转为Go切片</p>
+
+<pre><code class="language-go">import &quot;unsafe&quot;
+import &quot;fmt&quot;
+
+/*
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+double* get_array(int n) {
+	double *arr;
+	arr = (double*)malloc(n*sizeof(arr));
+	for(int i=0;i&lt;n;i++)
+	{
+		arr[i]=i;
+	}
+	return arr;
+}
+*/
+import &quot;C&quot;
+
+func main() {
+	size := 10
+	carr := C.get_array(C.int(size))
+	defer C.free(unsafe.Pointer(carr))
+	arr := (*[1 &lt;&lt; 30]float64)(unsafe.Pointer(carr))[:size:size]
+	fmt.Println(arr)
+}
+</code></pre>
+
+<p>C指针操作</p>
+
+<pre><code class="language-go">size := 10
+carr := C.get_array(C.int(size))
+defer C.free(unsafe.Pointer(carr))
+
+// To go slice
+arr := (*[1 &lt;&lt; 30]float64)(unsafe.Pointer(carr))[:size:size]
+for index := 0; index &lt; size; index++ {
+    // get value by C pointer operation
+    value := *(*C.double)(unsafe.Pointer(uintptr(unsafe.Pointer(carr)) + uintptr(index)*unsafe.Sizeof(carr)))
+    // get value by Go slice index
+    gvalue := arr[index]
+    fmt.Println(value, &quot; == &quot;, gvalue)
+}
+</code></pre>
+
+<p>更多文档见<a href="https://golang.org/cmd/cgo/">https://golang.org/cmd/cgo/</a></p>
+
+    </div>
+
+    
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Feisky</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">2018-04-01</span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">License</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a></span>
+  </p>
+</div>
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          
+          <a href="/tags/go/">go</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/2016-04-24-dpdk-introduction/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">DPDK Introduction</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        
+          <a class="next" href="/post/2016-04-19-cgo-in-go-1-6/">
+            <span class="next-text nav-default">cgo in go 1.6</span>
+            <span class="prev-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
         </div>
         
   <div id="disqus_thread"></div>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>docs - Feisky</title>
+  <title>Kubernetes指南 - Feisky</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -17,7 +17,7 @@
 
 
 <meta name="author" content="Feisky" />
-  <meta name="description" content="一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器" />
+  <meta name="description" content="Kubernetes是谷歌开源的容器集群管理系统，是Google多年大规模容器管理技术Borg的开源版本，也是CNCF最重要的项目之一，主要" />
 
   <meta name="keywords" content="Kubernetes, Cloud, SDN" />
 
@@ -29,7 +29,7 @@
 <meta name="generator" content="Hugo 0.37.1" />
 
 
-<link rel="canonical" href="https://feisky.xyz/docs/" />
+<link rel="canonical" href="https://feisky.xyz/k8s/" />
 
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -49,13 +49,14 @@
 
 
 
-<meta property="og:title" content="docs" />
-<meta property="og:description" content="一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器" />
+<meta property="og:title" content="Kubernetes指南" />
+<meta property="og:description" content="Kubernetes是谷歌开源的容器集群管理系统，是Google多年大规模容器管理技术Borg的开源版本，也是CNCF最重要的项目之一，主要" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://feisky.xyz/docs/" />
+<meta property="og:url" content="https://feisky.xyz/k8s/" />
 
 
 
+<meta property="article:published_time" content="2017-06-21T16:11:07&#43;00:00"/>
 
 <meta property="article:modified_time" content="2018-04-01T22:45:12&#43;08:00"/>
 
@@ -69,19 +70,20 @@
 
 
 
-<meta itemprop="name" content="docs">
-<meta itemprop="description" content="一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器">
+<meta itemprop="name" content="Kubernetes指南">
+<meta itemprop="description" content="Kubernetes是谷歌开源的容器集群管理系统，是Google多年大规模容器管理技术Borg的开源版本，也是CNCF最重要的项目之一，主要">
 
 
-
-<meta itemprop="wordCount" content="137">
+<meta itemprop="datePublished" content="2017-06-21T16:11:07&#43;00:00" />
+<meta itemprop="dateModified" content="2017-06-21T16:11:07&#43;00:00" />
+<meta itemprop="wordCount" content="454">
 
 
 
 <meta itemprop="keywords" content="" />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="docs"/>
-<meta name="twitter:description" content="一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器"/>
+<meta name="twitter:title" content="Kubernetes指南"/>
+<meta name="twitter:description" content="Kubernetes是谷歌开源的容器集群管理系统，是Google多年大规模容器管理技术Borg的开源版本，也是CNCF最重要的项目之一，主要"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -158,63 +160,33 @@
   <div class="post-content">
       
 
-<p><em>一些读书笔记和有趣的文章</em></p>
-
-<h2 id="容器的世界">容器的世界</h2>
+<p>Kubernetes是谷歌开源的容器集群管理系统，是Google多年大规模容器管理技术Borg的开源版本，也是CNCF最重要的项目之一，主要功能包括：</p>
 
 <ul>
-<li><a href="http://feisky.xyz/k8s/">Kubernetes指南</a></li>
-<li><a href="http://feisky.xyz/kubernetes-dev/">Kubernetes开发环境指南</a></li>
-<li><a href="/container/cri-o/">CRI-O</a></li>
-<li><a href="/2016/02/26/Notes-about-serverless/">Serverless</a></li>
-<li><a href="http://calcotestudios.com/ccco">容器编排系统对比</a></li>
-<li><a href="https://leecalcote.github.io/ccco/overlay-underlay-betting-on-container-networking.html">容器网络方案对比</a></li>
-<li><a href="http://dockerconrecap-leecalcote.rhcloud.com/#/">Docker 1.12</a></li>
-<li><a href="/container/selinux/">SELinux</a></li>
-<li><a href="jd-container/">京东容器建设之路</a></li>
-<li><a href="networking-namespace/">Network namespace</a></li>
+<li>基于容器的应用部署、维护和滚动升级</li>
+<li>负载均衡和服务发现</li>
+<li>跨机器和跨地区的集群调度</li>
+<li>自动伸缩</li>
+<li>无状态服务和有状态服务</li>
+<li>广泛的Volume支持</li>
+<li>插件机制保证扩展性</li>
 </ul>
 
-<h2 id="虚拟化">虚拟化</h2>
+<p>Kubernetes发展非常迅速，已经成为容器编排领域的领导者。Kubernetes的中文资料也非常丰富，但系统化和紧跟社区更新的则就比较少见了。《Kubernetes指南》开源电子书旨在整理平时在开发和使用Kubernetes时的参考指南和实践总结，形成一个系统化的参考指南以方便查阅。欢迎大家关注和添加完善内容。</p>
 
-<ul>
-<li><a href="/virtualization/GPU/">GPU虚拟化</a></li>
-<li><a href="/virtualization/SR-IOV/">SR-IOV</a></li>
-<li><a href="http://awilliam.github.io/presentations/KVM-Forum-2016/">VFIO</a></li>
-</ul>
+<h2 id="在线阅读">在线阅读</h2>
 
-<h2 id="分布式系统">分布式系统</h2>
+<p>可以通过<a href="https://feisky.gitbooks.io/kubernetes">GitBook</a>或者<a href="https://github.com/feiskyer/kubernetes-handbook/blob/master/SUMMARY.md">Github</a>来在线阅读。</p>
 
-<ul>
-<li><a href="http://feisky.xyz/distributed/">分布式系统简介</a></li>
-<li><a href="http://feisky.xyz/distributed/paxos/">Paxos</a></li>
-<li><a href="http://feisky.xyz/distributed/raft/">Raft</a></li>
-<li><a href="http://feisky.xyz/distributed/zab/">Zab</a></li>
-</ul>
+<p>也可以点击<a href="http://www.infoq.com/cn/minibooks/Kubernetes-handbook">这里</a>下载InfoQ帮助制作和发布的ePub、PDF和MOBI电子书。</p>
 
-<h2 id="sdn网络">SDN网络</h2>
+<h2 id="项目源码">项目源码</h2>
 
-<ul>
-<li><a href="http://feisky.xyz/sdn/">SDN网络</a></li>
-<li><a href="http://feisky.xyz/sdn/dpdk/">DPDK</a></li>
-</ul>
+<p>项目源码存放于Github上，<a href="https://github.com/feiskyer/kubernetes-handbook">https://github.com/feiskyer/kubernetes-handbook</a>。</p>
 
-<h2 id="机器学习">机器学习</h2>
+<h2 id="排错指南">排错指南</h2>
 
-<ul>
-<li><a href="http://feisky.xyz/machine-learning/">机器学习笔记</a></li>
-<li><a href="http://feisky.xyz/machine-learning/visualization/">数据可视化</a></li>
-<li><a href="http://feisky.xyz/machine-learning/cnn/">CNN</a></li>
-<li><a href="http://feisky.xyz/machine-learning/rnn/">RNN</a></li>
-<li><a href="http://feisky.xyz/machine-learning/tensorflow/">Tensorflow</a></li>
-</ul>
-
-<h2 id="其他">其他</h2>
-
-<ul>
-<li><a href="amazon-leadership/">Amazon Leadership Principles</a></li>
-<li><a href="架构即未来/">架构即未来</a></li>
-</ul>
+<p>参见 <a href="troubleshooting/">Troubleshooting Kubernetes</a>。</p>
 
   </div>
 </article>

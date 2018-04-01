@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>docs - Feisky</title>
+  <title>Kubernetes sig-node (Asia) meeting notes - Feisky</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -17,7 +17,7 @@
 
 
 <meta name="author" content="Feisky" />
-  <meta name="description" content="一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器" />
+  <meta name="description" content="Kubernetes 1.2 Status Update (@dchen) Deployment object and HPA scale还有一些P0和P1的问题待解决 aws还有挺多的问题（应该要超过20个） 整个v1.2还有超过100个issue，但" />
 
   <meta name="keywords" content="Kubernetes, Cloud, SDN" />
 
@@ -29,7 +29,7 @@
 <meta name="generator" content="Hugo 0.37.1" />
 
 
-<link rel="canonical" href="https://feisky.xyz/docs/" />
+<link rel="canonical" href="https://feisky.xyz/post/2016-03-02-kubernetes-sig-node-asia-meeting-nodes/" />
 
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -49,13 +49,14 @@
 
 
 
-<meta property="og:title" content="docs" />
-<meta property="og:description" content="一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器" />
+<meta property="og:title" content="Kubernetes sig-node (Asia) meeting notes" />
+<meta property="og:description" content="Kubernetes 1.2 Status Update (@dchen) Deployment object and HPA scale还有一些P0和P1的问题待解决 aws还有挺多的问题（应该要超过20个） 整个v1.2还有超过100个issue，但" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://feisky.xyz/docs/" />
+<meta property="og:url" content="https://feisky.xyz/post/2016-03-02-kubernetes-sig-node-asia-meeting-nodes/" />
 
 
 
+<meta property="article:published_time" content="2016-03-02T17:07:00&#43;00:00"/>
 
 <meta property="article:modified_time" content="2018-04-01T22:45:12&#43;08:00"/>
 
@@ -69,19 +70,20 @@
 
 
 
-<meta itemprop="name" content="docs">
-<meta itemprop="description" content="一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器">
+<meta itemprop="name" content="Kubernetes sig-node (Asia) meeting notes">
+<meta itemprop="description" content="Kubernetes 1.2 Status Update (@dchen) Deployment object and HPA scale还有一些P0和P1的问题待解决 aws还有挺多的问题（应该要超过20个） 整个v1.2还有超过100个issue，但">
+
+
+<meta itemprop="datePublished" content="2016-03-02T17:07:00&#43;00:00" />
+<meta itemprop="dateModified" content="2016-03-02T17:07:00&#43;00:00" />
+<meta itemprop="wordCount" content="511">
 
 
 
-<meta itemprop="wordCount" content="137">
-
-
-
-<meta itemprop="keywords" content="" />
+<meta itemprop="keywords" content="kubernetes,hyper,rkt," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="docs"/>
-<meta name="twitter:description" content="一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器"/>
+<meta name="twitter:title" content="Kubernetes sig-node (Asia) meeting notes"/>
+<meta name="twitter:description" content="Kubernetes 1.2 Status Update (@dchen) Deployment object and HPA scale还有一些P0和P1的问题待解决 aws还有挺多的问题（应该要超过20个） 整个v1.2还有超过100个issue，但"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -155,69 +157,138 @@
       <div class="content-wrapper">
         <div id="content" class="content">
           <article class="post">
-  <div class="post-content">
+    
+    <header class="post-header">
+      <h1 class="post-title">Kubernetes sig-node (Asia) meeting notes</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2016-03-02 </span>
+        
+        <span class="more-meta"> 511 words </span>
+        <span class="more-meta"> 2 mins read </span>
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#kubernetes-1-2-status-update-dchen">Kubernetes 1.2 Status Update (@dchen)</a></li>
+<li><a href="#huawei-conformance-test-liangchenye">Huawei Conformance Test (@liangchenye)</a></li>
+<li><a href="#hyper-integration-feiskyer">Hyper integration (@feiskyer)</a></li>
+<li><a href="#etcd">etcd</a></li>
+<li><a href="#more-notes-taken-by-lantao">More notes taken by @lantao</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
       
 
-<p><em>一些读书笔记和有趣的文章</em></p>
-
-<h2 id="容器的世界">容器的世界</h2>
+<h2 id="kubernetes-1-2-status-update-dchen">Kubernetes 1.2 Status Update (@dchen)</h2>
 
 <ul>
-<li><a href="http://feisky.xyz/k8s/">Kubernetes指南</a></li>
-<li><a href="http://feisky.xyz/kubernetes-dev/">Kubernetes开发环境指南</a></li>
-<li><a href="/container/cri-o/">CRI-O</a></li>
-<li><a href="/2016/02/26/Notes-about-serverless/">Serverless</a></li>
-<li><a href="http://calcotestudios.com/ccco">容器编排系统对比</a></li>
-<li><a href="https://leecalcote.github.io/ccco/overlay-underlay-betting-on-container-networking.html">容器网络方案对比</a></li>
-<li><a href="http://dockerconrecap-leecalcote.rhcloud.com/#/">Docker 1.12</a></li>
-<li><a href="/container/selinux/">SELinux</a></li>
-<li><a href="jd-container/">京东容器建设之路</a></li>
-<li><a href="networking-namespace/">Network namespace</a></li>
+<li>Deployment object and HPA scale还有一些P0和P1的问题待解决</li>
+<li>aws还有挺多的问题（应该要超过20个）</li>
+<li>整个v1.2还有超过100个issue，但大部分都不是block issue</li>
+<li>v1.2推荐使用Docker v1.9.1，Docker v1.10 validation <a href="https://github.com/kubernetes/kubernetes/issues/19720">https://github.com/kubernetes/kubernetes/issues/19720</a></li>
+<li>Docker v1.10最大的问题是镜像格式变化，需要某种转换镜像的管理机制</li>
 </ul>
 
-<h2 id="虚拟化">虚拟化</h2>
+<h2 id="huawei-conformance-test-liangchenye">Huawei Conformance Test (@liangchenye)</h2>
 
-<ul>
-<li><a href="/virtualization/GPU/">GPU虚拟化</a></li>
-<li><a href="/virtualization/SR-IOV/">SR-IOV</a></li>
-<li><a href="http://awilliam.github.io/presentations/KVM-Forum-2016/">VFIO</a></li>
-</ul>
+<p>关于Pod运行和删除的PR已经merge，但是image的test还在开发中。主要的问题是没有文档指导rkt环境的搭建。</p>
 
-<h2 id="分布式系统">分布式系统</h2>
+<h2 id="hyper-integration-feiskyer">Hyper integration (@feiskyer)</h2>
 
-<ul>
-<li><a href="http://feisky.xyz/distributed/">分布式系统简介</a></li>
-<li><a href="http://feisky.xyz/distributed/paxos/">Paxos</a></li>
-<li><a href="http://feisky.xyz/distributed/raft/">Raft</a></li>
-<li><a href="http://feisky.xyz/distributed/zab/">Zab</a></li>
-</ul>
+<p>Hypernetes e2e test有一个单机环境的<a href="https://gist.github.com/feiskyer/ecb7eab17ef41f134353">测试结果</a>，但由于GCE环境的问题，多机环境的搭建还没有完成。还有一个Hyper日志&rdquo;\n&rdquo;处理的bug需要修复。</p>
 
-<h2 id="sdn网络">SDN网络</h2>
+<h2 id="etcd">etcd</h2>
 
-<ul>
-<li><a href="http://feisky.xyz/sdn/">SDN网络</a></li>
-<li><a href="http://feisky.xyz/sdn/dpdk/">DPDK</a></li>
-</ul>
+<p>etcd计划在4月份发布v3.0 alpha，并争取kubernetes v1.3升级到etcd 3.0 stable。</p>
 
-<h2 id="机器学习">机器学习</h2>
+<h2 id="more-notes-taken-by-lantao">More notes taken by @lantao</h2>
 
-<ul>
-<li><a href="http://feisky.xyz/machine-learning/">机器学习笔记</a></li>
-<li><a href="http://feisky.xyz/machine-learning/visualization/">数据可视化</a></li>
-<li><a href="http://feisky.xyz/machine-learning/cnn/">CNN</a></li>
-<li><a href="http://feisky.xyz/machine-learning/rnn/">RNN</a></li>
-<li><a href="http://feisky.xyz/machine-learning/tensorflow/">Tensorflow</a></li>
-</ul>
+<p>Release Brain Storm</p>
 
-<h2 id="其他">其他</h2>
+<p>@hongchao: Over-commit? -&gt; In 1.3 roadmap today, but not finalized.In fact we can do over-commit today, but reliablility and QoS should be guranteed.(@dchen)
+Detect out of resource
+Decide which pod should be killed
+Well-defined eviction policy is needed.</p>
 
-<ul>
-<li><a href="amazon-leadership/">Amazon Leadership Principles</a></li>
-<li><a href="架构即未来/">架构即未来</a></li>
-</ul>
+<p>Q&amp;A
+@dchen: Etcd v3.0 alpha version in April; stable version in May or June; Try to ship with kubernetes 1.3.</p>
 
-  </div>
-</article>
+<p>@xiang:
+New node metric api merged? Yeah.
+Is the new metric api added for better scheduling? No, necessary information for scheduling is available on kubelet side from v1.0.
+Hardware level metrics?</p>
+
+<p>@feiskyer: Pod level data in cadvisor? At cgroup level, we could do that. But at API level, it is still in disicussion. Internally shareable resource between containers is very powerful but quite complex. If customers don’t ask for that now, we may want to defer it. @dchen: How to define extra overhide of rkt and hyper in api, should it be visible for user?
+Related issue: <a href="https://github.com/coreos/rkt/issues/1788">https://github.com/coreos/rkt/issues/1788</a></p>
+
+<p>Previous notes is recorded at <a href="https://docs.google.com/document/d/1L8s6Nyu5hNJxCOZLqJsuVEFAScWKhbwcis0X-j-upDc/edit#heading=h.jgbd25swf99j">https://docs.google.com/document/d/1L8s6Nyu5hNJxCOZLqJsuVEFAScWKhbwcis0X-j-upDc/edit#heading=h.jgbd25swf99j</a></p>
+
+    </div>
+
+    
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Feisky</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">2018-04-01</span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">License</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a></span>
+  </p>
+</div>
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          
+          <a href="/tags/kubernetes/">kubernetes</a>
+          
+          <a href="/tags/hyper/">hyper</a>
+          
+          <a href="/tags/rkt/">rkt</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/2016-03-04-docker-overlay-network-dive/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Docker overlay network dive</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        
+          <a class="next" href="/post/2016-03-01-10-things-to-avoid-in-docker-containers/">
+            <span class="next-text nav-default">10 things to avoid in docker containers</span>
+            <span class="prev-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
         </div>
         
   <div id="disqus_thread"></div>

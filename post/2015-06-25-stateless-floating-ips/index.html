@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>docs - Feisky</title>
+  <title>Stateless Floating IPs - Feisky</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -17,7 +17,7 @@
 
 
 <meta name="author" content="Feisky" />
-  <meta name="description" content="一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器" />
+  <meta name="description" content="Neutron里面的Floating IPs目前是基于iptables NAT来实现的，它使用ip_conntrack来跟踪所有连接（五元组），" />
 
   <meta name="keywords" content="Kubernetes, Cloud, SDN" />
 
@@ -29,7 +29,7 @@
 <meta name="generator" content="Hugo 0.37.1" />
 
 
-<link rel="canonical" href="https://feisky.xyz/docs/" />
+<link rel="canonical" href="https://feisky.xyz/post/2015-06-25-stateless-floating-ips/" />
 
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -49,10 +49,10 @@
 
 
 
-<meta property="og:title" content="docs" />
-<meta property="og:description" content="一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器" />
+<meta property="og:title" content="Stateless Floating IPs" />
+<meta property="og:description" content="Neutron里面的Floating IPs目前是基于iptables NAT来实现的，它使用ip_conntrack来跟踪所有连接（五元组），" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://feisky.xyz/docs/" />
+<meta property="og:url" content="https://feisky.xyz/post/2015-06-25-stateless-floating-ips/" />
 
 
 
@@ -69,19 +69,19 @@
 
 
 
-<meta itemprop="name" content="docs">
-<meta itemprop="description" content="一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器">
+<meta itemprop="name" content="Stateless Floating IPs">
+<meta itemprop="description" content="Neutron里面的Floating IPs目前是基于iptables NAT来实现的，它使用ip_conntrack来跟踪所有连接（五元组），">
 
 
 
-<meta itemprop="wordCount" content="137">
+<meta itemprop="wordCount" content="549">
 
 
 
 <meta itemprop="keywords" content="" />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="docs"/>
-<meta name="twitter:description" content="一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器"/>
+<meta name="twitter:title" content="Stateless Floating IPs"/>
+<meta name="twitter:description" content="Neutron里面的Floating IPs目前是基于iptables NAT来实现的，它使用ip_conntrack来跟踪所有连接（五元组），"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -155,69 +155,131 @@
       <div class="content-wrapper">
         <div id="content" class="content">
           <article class="post">
-  <div class="post-content">
+    
+    <header class="post-header">
+      <h1 class="post-title">Stateless Floating IPs</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 0001-01-01 </span>
+        
+        <span class="more-meta"> 549 words </span>
+        <span class="more-meta"> 2 mins read </span>
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  
+  <div class="post-toc-content">
+    
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      <p>Neutron里面的Floating IPs目前是基于iptables NAT来实现的，它使用ip_conntrack来跟踪所有连接（五元组），而ip_conntrack会大大降低NAT的性能，并且也有一些安全问题（比如<a href="https://review.openstack.org/#/c/124375/">conntrack未释放问题</a>）。从Floating IPs的作用来看，它只需要完成源目的IP地址的转换即可，完全可以不需要conntrack，因而就有了一个<a href="https://blueprints.launchpad.net/neutron/+spec/stateless-floatingips">Stateless Floating IPs</a>的BP,</p>
+
+<p>Stateless Floating IPs的大致实现方法是使用iptables将特定的包跳过conntrack，然后再用tc执行源目的地址的转换：</p>
+
+<pre><code>iptables -t raw -A PREROUTING -d 212.201.100.135/32 -j NOTRACK
+iptables -t raw -A PREROUTING -s 199.181.132.25/32 -j NOTRACK
+
+###### ingress
+# to do once
+tc qdisc add dev qg-xxxx ingress handle ffff:
+# to do for each floating-ip,fixed-ip tuple
+tc filter add dev qg-xxxx parent ffff: protocol ip prio 10 u32 match ip dst 212.201.100.135/32 action nat ingress 212.201.100.135/32 199.181.132.250
+
+###### egress
+# to do once
+tc qdisc add dev qg-xxxx root handle 10: htb
+# to do for each floating-ip,fixed-ip tuple
+tc filter add dev qg-xxxx parent 10: protocol ip prio 10 u32 match ip src 199.181.132.25/32 action nat egress 199.181.132.250/32 212.201.100.135
+</code></pre>
+
+<p>当然，这种方法也还是有很多限制的：</p>
+
+<blockquote>
+<p>stateless NAT always rewrites egress packets;
+an external machine sending packets to the fixed-ip of a natted vm/port will
+receive packets with the floating-ip as source ip.  So external machines must
+use floating-ips of natted vms/ports.</p>
+
+<p>There is a shared SNAT feature of neutron routers for ports which do not have
+an associated floating ip.  This shared SNAT will still use conntrack (i.e. it
+will still use the iptables nat table with SNAT and DNAT targets).  It is
+necessary to demultiplex return traffic back to the various ports using it.</p>
+</blockquote>
+
+<p>对于较老的内核，还可以使用下面的方法来实现stateless nat：</p>
+
+<p>The kernel once had stateless nat built in to the routing rules feature [#]_.
+This was removed (or deprecated) long ago and so it is not viable::</p>
+
+<pre><code>--&gt; ip rule add nat 205.254.211.17 from 192.168.100.17
+     Warning: route NAT is deprecated
+
+--&gt; ip route add nat 205.254.211.17 via 192.168.100.17
+    RTNETLINK answers: Invalid argument
+</code></pre>
+
+<p><a href="http://linux-ip.net/html/nat-stateless.html">http://linux-ip.net/html/nat-stateless.html</a></p>
+
+<p>The Xtables-addons project [#]_ had an implementation for performing stateless
+NAT in the iptables raw table::</p>
+
+<pre><code>-t raw -A PREROUTING -i lan0 -d 212.201.100.135 -j RAWDNAT --to-destination 199.181.132.250
+-t rawpost -A POSTROUTING -o lan0 -s 199.181.132.250 -j RAWSNAT --to-source 212.201.100.135
+</code></pre>
+
+<p>But RAWSNAT/RAWDNAT were removed in recent xtable-addons (for kernel &gt;= 3.13)
+because the feature was unmaintained.</p>
+
+    </div>
+
+    
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Feisky</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">2018-04-01</span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">License</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a></span>
+  </p>
+</div>
+
+    
+    
+
+    <footer class="post-footer">
       
 
-<p><em>一些读书笔记和有趣的文章</em></p>
-
-<h2 id="容器的世界">容器的世界</h2>
-
-<ul>
-<li><a href="http://feisky.xyz/k8s/">Kubernetes指南</a></li>
-<li><a href="http://feisky.xyz/kubernetes-dev/">Kubernetes开发环境指南</a></li>
-<li><a href="/container/cri-o/">CRI-O</a></li>
-<li><a href="/2016/02/26/Notes-about-serverless/">Serverless</a></li>
-<li><a href="http://calcotestudios.com/ccco">容器编排系统对比</a></li>
-<li><a href="https://leecalcote.github.io/ccco/overlay-underlay-betting-on-container-networking.html">容器网络方案对比</a></li>
-<li><a href="http://dockerconrecap-leecalcote.rhcloud.com/#/">Docker 1.12</a></li>
-<li><a href="/container/selinux/">SELinux</a></li>
-<li><a href="jd-container/">京东容器建设之路</a></li>
-<li><a href="networking-namespace/">Network namespace</a></li>
-</ul>
-
-<h2 id="虚拟化">虚拟化</h2>
-
-<ul>
-<li><a href="/virtualization/GPU/">GPU虚拟化</a></li>
-<li><a href="/virtualization/SR-IOV/">SR-IOV</a></li>
-<li><a href="http://awilliam.github.io/presentations/KVM-Forum-2016/">VFIO</a></li>
-</ul>
-
-<h2 id="分布式系统">分布式系统</h2>
-
-<ul>
-<li><a href="http://feisky.xyz/distributed/">分布式系统简介</a></li>
-<li><a href="http://feisky.xyz/distributed/paxos/">Paxos</a></li>
-<li><a href="http://feisky.xyz/distributed/raft/">Raft</a></li>
-<li><a href="http://feisky.xyz/distributed/zab/">Zab</a></li>
-</ul>
-
-<h2 id="sdn网络">SDN网络</h2>
-
-<ul>
-<li><a href="http://feisky.xyz/sdn/">SDN网络</a></li>
-<li><a href="http://feisky.xyz/sdn/dpdk/">DPDK</a></li>
-</ul>
-
-<h2 id="机器学习">机器学习</h2>
-
-<ul>
-<li><a href="http://feisky.xyz/machine-learning/">机器学习笔记</a></li>
-<li><a href="http://feisky.xyz/machine-learning/visualization/">数据可视化</a></li>
-<li><a href="http://feisky.xyz/machine-learning/cnn/">CNN</a></li>
-<li><a href="http://feisky.xyz/machine-learning/rnn/">RNN</a></li>
-<li><a href="http://feisky.xyz/machine-learning/tensorflow/">Tensorflow</a></li>
-</ul>
-
-<h2 id="其他">其他</h2>
-
-<ul>
-<li><a href="amazon-leadership/">Amazon Leadership Principles</a></li>
-<li><a href="架构即未来/">架构即未来</a></li>
-</ul>
-
-  </div>
-</article>
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/2015-09-23-something-about-kubernetes-authentication/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Something about kubernetes authentication</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        
+          <a class="next" href="/post/2015-11-04-use-kubectl-to-connect-kubernetes-cluster/">
+            <span class="next-text nav-default">Use kubectl to connect kubernetes cluster</span>
+            <span class="prev-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
         </div>
         
   <div id="disqus_thread"></div>

@@ -1,0 +1,1073 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml-stylesheet type="text/xsl" href="https://feisky.xyz/sitemap.xsl"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>https://feisky.xyz/about/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2017-11-27-aci/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2017-11-23-acs-introduction/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2017-11-17-aks/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2017-10-19-docker-mta-program/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2017-10-17-docker-ce-ee-%E5%8E%9F%E7%94%9F%E6%94%AF%E6%8C%81kubernetes/</loc>
+    <lastmod>2017-10-17T17:18:31+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2017-10-16-%E9%87%8D%E6%96%B0%E5%BC%80%E5%90%AFhttps/</loc>
+    <lastmod>2017-10-16T10:14:39+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/k8s/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/kubernetes/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/tensorflow/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/sdn/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2017-05-21-start-kubernetes-handbook/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2017-02-14-debugging-application-in-containers/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2017-01-09-%E4%BD%BF%E7%94%A8docker-dind%E5%88%9B%E5%BB%BAswarm%E9%9B%86%E7%BE%A4/</loc>
+    <lastmod>2017-01-09T21:01:18+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2017-01-05-grumpy-%E4%BD%BF%E7%94%A8go%E6%9D%A5%E8%BF%90%E8%A1%8Cpython%E7%A8%8B%E5%BA%8F/</loc>
+    <lastmod>2017-01-05T17:11:09+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2016-12-13-kubernetes-v1-5-0-release/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2016-12-08-weekly-reading-list/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2016-12-05-weekly-reading-list/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2016-11-14-kubecon-2016%E8%A7%81%E9%97%BB/</loc>
+    <lastmod>2016-11-14T09:49:52+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/tracing/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/kubernetes-dev/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/distributed/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2016-09-25-kubernetes-container-runtime-interface/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/programing/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2016-09-11-kubernetes%E4%B8%AD%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0%E4%B8%8E%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/</loc>
+    <lastmod>2016-09-11T09:48:09+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2016-08-24-%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8%E4%B8%80%E4%B8%AAkubernetes%E9%9B%86%E7%BE%A4/</loc>
+    <lastmod>2016-08-24T14:48:44+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2016-07-19-setup-hyperd-with-flannel-network/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2016-06-24-play-with-docker-v1-12/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2016-06-17-playing-docker-with-hypervisor-container-runtime-runv/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2016-06-07-kubernetes-mesos-architecture/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2016-06-06-hypernetes-bringing-security-and-multi-tenancy-to-kubernetes/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2016-05-11-how-docker-1-11-share-network-accross-containers/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2016-05-06-go-performance-optimize/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2016-05-05-the-rise-of-cloud-computing-systems-jeff-dean/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2016-04-29-reading-notes-of-week-17/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2016-04-28-runc/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2016-04-28-docker-1-11-runtime/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2016-04-24-dpdk-introduction/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2016-04-24-tips-for-cgo/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2016-04-19-cgo-in-go-1-6/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2016-03-04-borg-omega-and-kubernetes-acm-queue/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2016-03-04-docker-overlay-network-dive/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2016-03-02-kubernetes-sig-node-asia-meeting-nodes/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2016-03-01-10-things-to-avoid-in-docker-containers/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2016-02-29-carina-by-rackspace/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2015-11-18-hypernetes%E7%AE%80%E4%BB%8B-feisky/</loc>
+    <lastmod>2015-11-18T17:12:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2014-11-19-kubernetes%E5%A4%9A%E8%8A%82%E7%82%B9%E9%83%A8%E7%BD%B2%E8%A7%A3%E6%9E%90-feisky/</loc>
+    <lastmod>2014-11-19T21:12:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2014-11-19-docker%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84%E8%A7%A3%E6%9E%90-feisky/</loc>
+    <lastmod>2014-11-19T21:11:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2014-11-19-docker%E5%BA%95%E5%B1%82%E6%8A%80%E6%9C%AF%E6%A6%82%E8%A7%88-feisky/</loc>
+    <lastmod>2014-11-19T21:11:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2014-11-18-openstack%E9%83%A8%E7%BD%B2%E5%B7%A5%E5%85%B7%E6%80%BB%E7%BB%93-feisky/</loc>
+    <lastmod>2014-11-18T21:48:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2014-11-18-%E4%BD%BF%E7%94%A8-device-mapper%E6%9D%A5%E6%94%B9%E5%8F%98docker%E5%AE%B9%E5%99%A8%E7%9A%84%E5%A4%A7%E5%B0%8F-feisky/</loc>
+    <lastmod>2014-11-18T21:47:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2014-11-18-%E4%BB%8Eveth%E7%9C%8B%E8%99%9A%E6%8B%9F%E7%BD%91%E7%BB%9C%E8%AE%BE%E5%A4%87%E7%9A%84qdisc-feisky/</loc>
+    <lastmod>2014-11-18T21:26:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2014-11-18-kubernetes%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E7%AE%80%E4%BB%8B-feisky/</loc>
+    <lastmod>2014-11-18T18:17:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2014-11-18-docker%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93-feisky/</loc>
+    <lastmod>2014-11-18T18:17:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2014-11-16-%E9%9B%86%E7%BE%A4%E5%B7%A5%E5%85%B7ansible%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-feisky/</loc>
+    <lastmod>2014-11-16T22:44:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2017-02-13-software-engineering-at-google/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2017-03-03-aws-s3%E6%95%85%E9%9A%9C%E5%9B%9E%E9%A1%BE%E5%92%8C%E6%80%BB%E7%BB%93/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2017-03-03-gitlab%E6%95%85%E9%9A%9C%E5%9B%9E%E9%A1%BE%E5%92%8C%E6%80%BB%E7%BB%93/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2017-03-15-kubernetes-ha/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2017-04-19-linuxkit/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/alpine-linux/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/docker-datacenter/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/googles-transition-from-single-datacenter-to-failover-to-a-native-multihomed-architecture/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/hello-world-to-docker-mac/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/kubernetes-drain/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/kubernetes-network-policy/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/notes-about-serverless/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/upgrade-centos-kernel/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/404/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2015-02-06-apachemesosgooglekubernetes-/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/tags/azure/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/tags/blockchain/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/tags/book/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/tags/borg/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/categories/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/tags/cloud/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/tags/cluster/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/tags/container/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2015-02-05-deploy-a-mesos-cluster-using-docker/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2015-03-03-dive-in-linux-capabilites/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/tags/docker/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2015-01-27-docker/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2015-03-05-docker-acquires-sdn-startup-socketplane/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2015-02-13-docker-intro/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/tags/dpdk/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/tags/flannel/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/tags/go/</loc>
+    <lastmod>2017-01-05T17:11:09+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2015-02-26-going-native-with-openstack-centric-applications-murano/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2015-02-26-going-native-with-openstack-centric-applications-overview/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2015-01-20-hello-world/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2015-03-02-how-enable-openstack-allinone-vm-to-access-external-network/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2015-03-18-how-to-disable-ubuntu-services/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2015-02-12-how-to-use-docker-compose-to-deploy-a-flask-app/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/tags/https/</loc>
+    <lastmod>2017-10-16T10:14:39+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/tags/hyper/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2015-11-04-hypernetes---the-multi-tenant-kubernetes-distribution/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2015-11-12-hypernetes-wechat-share/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2015-02-15-installing-realtek-rltwifi-driver-for-ubuntu-1410/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2015-02-13-installing-nova-docker-on-openstack-juno/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2015-02-26-integrating-openstack-and-kubernetes-with-murano/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/tags/kubecon/</loc>
+    <lastmod>2016-11-14T09:49:52+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/tags/kubernetes/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/tags/linux/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2015-03-04-linux-kernel-network-call-flow/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2015-02-12-linux-netcat-examples/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/container/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/tags/mesos/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2015-03-17-microservice-infrastructure/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2015-06-04-mininet-links/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2015-01-27-neutron-layer-3-high-availability/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2015-03-04-ovs-20-call-flow/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2015-03-02-open-vswitch-over-dpdk-on-ubuntu/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2015-06-24-openstack-magnum/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/tags/openstack/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/tags/ovs/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2015-02-10-perform-consistent-snapshots-with-qemu-guest-agent/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2015-01-27-pluribus-networks/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2015-02-11-ios-blog-resources/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/tags/python/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2015-03-05-python-not-defined-problem/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/tags/rackspace/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2015-03-06-redhat-atomic-host/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/tags/rkt/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/tags/runc/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/tags/runv/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/serverless/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2015-03-02-setting-up-gre-for-kubernetes/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/sre/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2015-09-23-something-about-kubernetes-authentication/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2015-06-25-stateless-floating-ips/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/tags/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/tags/ubuntu/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2015-11-04-use-kubectl-to-connect-kubernetes-cluster/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2015-03-13-usging-cadvisor-to-monitor-docker/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/tags/vagrant/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2015-06-10-weekly-reading-list-20150607/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2015-06-24-weekly-reading-list-20150626/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2015-03-20-awesome-quick-start/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2015-01-28-awk-examples/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2015-01-27-bigdata/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2015-02-10-cannot-change-locale/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2015-03-20-docker-in-tencent/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2015-01-27-docker-internal/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/docs/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2015-06-05-git-commit/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2015-01-28-reverse-shell/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2015-06-24-sysdig/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2015-01-27-vagrant/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2015-02-06-mesosdocker/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/post/2015-02-11-good-books/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/virtualization/</loc>
+    <lastmod>2018-04-01T22:45:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+</urlset>

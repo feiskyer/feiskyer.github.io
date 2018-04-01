@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>docs - Feisky</title>
+  <title>Site Reliability Engineering (SRE) - Feisky</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -17,7 +17,7 @@
 
 
 <meta name="author" content="Feisky" />
-  <meta name="description" content="一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器" />
+  <meta name="description" content="SRE的目标 系统运维本质上是一个人与计算机共同参与的一项系统性工程。无论对一个软件系统运行原理掌握得多么彻底，都不能阻止人犯意外错误。Sit" />
 
   <meta name="keywords" content="Kubernetes, Cloud, SDN" />
 
@@ -29,7 +29,7 @@
 <meta name="generator" content="Hugo 0.37.1" />
 
 
-<link rel="canonical" href="https://feisky.xyz/docs/" />
+<link rel="canonical" href="https://feisky.xyz/sre/" />
 
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -49,10 +49,10 @@
 
 
 
-<meta property="og:title" content="docs" />
-<meta property="og:description" content="一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器" />
+<meta property="og:title" content="Site Reliability Engineering (SRE)" />
+<meta property="og:description" content="SRE的目标 系统运维本质上是一个人与计算机共同参与的一项系统性工程。无论对一个软件系统运行原理掌握得多么彻底，都不能阻止人犯意外错误。Sit" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://feisky.xyz/docs/" />
+<meta property="og:url" content="https://feisky.xyz/sre/" />
 
 
 
@@ -69,19 +69,19 @@
 
 
 
-<meta itemprop="name" content="docs">
-<meta itemprop="description" content="一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器">
+<meta itemprop="name" content="Site Reliability Engineering (SRE)">
+<meta itemprop="description" content="SRE的目标 系统运维本质上是一个人与计算机共同参与的一项系统性工程。无论对一个软件系统运行原理掌握得多么彻底，都不能阻止人犯意外错误。Sit">
 
 
 
-<meta itemprop="wordCount" content="137">
+<meta itemprop="wordCount" content="752">
 
 
 
 <meta itemprop="keywords" content="" />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="docs"/>
-<meta name="twitter:description" content="一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器"/>
+<meta name="twitter:title" content="Site Reliability Engineering (SRE)"/>
+<meta name="twitter:description" content="SRE的目标 系统运维本质上是一个人与计算机共同参与的一项系统性工程。无论对一个软件系统运行原理掌握得多么彻底，都不能阻止人犯意外错误。Sit"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -158,63 +158,69 @@
   <div class="post-content">
       
 
-<p><em>一些读书笔记和有趣的文章</em></p>
+<h2 id="sre的目标">SRE的目标</h2>
 
-<h2 id="容器的世界">容器的世界</h2>
-
-<ul>
-<li><a href="http://feisky.xyz/k8s/">Kubernetes指南</a></li>
-<li><a href="http://feisky.xyz/kubernetes-dev/">Kubernetes开发环境指南</a></li>
-<li><a href="/container/cri-o/">CRI-O</a></li>
-<li><a href="/2016/02/26/Notes-about-serverless/">Serverless</a></li>
-<li><a href="http://calcotestudios.com/ccco">容器编排系统对比</a></li>
-<li><a href="https://leecalcote.github.io/ccco/overlay-underlay-betting-on-container-networking.html">容器网络方案对比</a></li>
-<li><a href="http://dockerconrecap-leecalcote.rhcloud.com/#/">Docker 1.12</a></li>
-<li><a href="/container/selinux/">SELinux</a></li>
-<li><a href="jd-container/">京东容器建设之路</a></li>
-<li><a href="networking-namespace/">Network namespace</a></li>
-</ul>
-
-<h2 id="虚拟化">虚拟化</h2>
+<p>系统运维本质上是一个人与计算机共同参与的一项系统性工程。无论对一个软件系统运行原理掌握得多么彻底，都不能阻止人犯意外错误。Site Reliability Engineering (SRE)的关注焦点在于可靠性（平均失败时间MTTF和平均恢复时间MTTR的函数），用软件工程的思维和方法论完成以前由系统管理员团队手动完成的任务。</p>
 
 <ul>
-<li><a href="/virtualization/GPU/">GPU虚拟化</a></li>
-<li><a href="/virtualization/SR-IOV/">SR-IOV</a></li>
-<li><a href="http://awilliam.github.io/presentations/KVM-Forum-2016/">VFIO</a></li>
+<li>可用性改进</li>
+<li>延迟优化</li>
+<li>性能优化</li>
+<li>效率优化</li>
+<li>变更管理</li>
+<li>监控</li>
+<li>紧急事务处理</li>
+<li>容量规划与管理</li>
 </ul>
 
-<h2 id="分布式系统">分布式系统</h2>
+<h2 id="sre方法论">SRE方法论</h2>
 
 <ul>
-<li><a href="http://feisky.xyz/distributed/">分布式系统简介</a></li>
-<li><a href="http://feisky.xyz/distributed/paxos/">Paxos</a></li>
-<li><a href="http://feisky.xyz/distributed/raft/">Raft</a></li>
-<li><a href="http://feisky.xyz/distributed/zab/">Zab</a></li>
+<li>确保长期关注研发工作（运维工作限制在50%以内）</li>
+<li>在保障服务SLO的前提下最大化迭代速度，基于错误预算（1-可靠性目标）解决研发团队与SRE团队冲突</li>
+<li>监控系统不应该依赖人来分析报警信息，而是应该由系统自动分析，仅当需要用户执行某种操作的时候才通知（但要记录完善的日志以供需要时查询）</li>
+<li>自动化恢复系统，需要手工处理的应急事件纪录“运维手册”</li>
+<li>自动化变更管理：渐进式发布、迅速准确定位问题、异常时迅速回退</li>
+<li>基于需求预测（自然增长和新功能发布、商业推广等非自然增长）规划系统容量，改进软件提供资源利用率</li>
 </ul>
 
-<h2 id="sdn网络">SDN网络</h2>
+<h2 id="目录">目录</h2>
+
+<ol>
+<li><a href="guideline/">SRE指导思想</a></li>
+<li><a href="google/">Google生产环境</a></li>
+<li><a href="monitor/">监控与告警</a></li>
+<li><a href="oncall/">on-call轮值</a></li>
+<li><a href="diagnose/">故障排查</a></li>
+<li><a href="testing/">软件测试</a></li>
+<li><a href="lb/">负载均衡</a></li>
+<li><a href="cascading/">避免连锁故障</a></li>
+<li><a href="distributed-consensus/">分布式共识</a></li>
+<li><a href="cron/">定时任务</a></li>
+<li><a href="pipeline/">数据流水线</a></li>
+<li><a href="integrity/">数据完整性</a></li>
+<li><a href="deploy/">可靠发布</a></li>
+<li><a href="manage/">SRE管理</a></li>
+<li><a href="appendix/">附录</a></li>
+</ol>
+
+<p><strong>SRE层级模型</strong></p>
+
+<p><img src="sre.png" alt="" /></p>
+
+<p><strong>SRE book</strong></p>
+
+<p>Google已经放出了SRE的免费电子书，可以直接在线阅读，<a href="http://landing.google.com/sre/book/index.html">http://landing.google.com/sre/book/index.html</a>。全书共分为五个部分：</p>
 
 <ul>
-<li><a href="http://feisky.xyz/sdn/">SDN网络</a></li>
-<li><a href="http://feisky.xyz/sdn/dpdk/">DPDK</a></li>
+<li><a href="http://landing.google.com/sre/book/chapters/part1.html">Part I - Introduction</a>介绍SRE的概念以及在Google的应用</li>
+<li><a href="http://landing.google.com/sre/book/chapters/part2.html">Part II - Principles</a>介绍SRE的原则和机制</li>
+<li><a href="http://landing.google.com/sre/book/chapters/part3.html">Part III - Practices</a>介绍SRE实践</li>
+<li><a href="http://landing.google.com/sre/book/chapters/part4.html">Part IV - Management</a>介绍如何管理和协调组织内的各个团队</li>
+<li><a href="http://landing.google.com/sre/book/chapters/part5.html">Part V - Conclusions</a>最后是总结</li>
 </ul>
 
-<h2 id="机器学习">机器学习</h2>
-
-<ul>
-<li><a href="http://feisky.xyz/machine-learning/">机器学习笔记</a></li>
-<li><a href="http://feisky.xyz/machine-learning/visualization/">数据可视化</a></li>
-<li><a href="http://feisky.xyz/machine-learning/cnn/">CNN</a></li>
-<li><a href="http://feisky.xyz/machine-learning/rnn/">RNN</a></li>
-<li><a href="http://feisky.xyz/machine-learning/tensorflow/">Tensorflow</a></li>
-</ul>
-
-<h2 id="其他">其他</h2>
-
-<ul>
-<li><a href="amazon-leadership/">Amazon Leadership Principles</a></li>
-<li><a href="架构即未来/">架构即未来</a></li>
-</ul>
+<p><strong>参考</strong> _<a href="https://landing.google.com/sre/">Site Reliability Engineering: How Google Runs Production Systems</a>_。</p>
 
   </div>
 </article>

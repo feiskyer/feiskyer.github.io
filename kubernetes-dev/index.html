@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>docs - Feisky</title>
+  <title>Kubernetes Development - Feisky</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -17,7 +17,7 @@
 
 
 <meta name="author" content="Feisky" />
-  <meta name="description" content="一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器" />
+  <meta name="description" content="Tips for kubernetes development Setup development virtual machine apt-get install -y gcc make socat git # install docker curl -fsSL https://get.docker.com/ | sh # install etcd curl -L https://github.com/coreos/etcd/releases/download/v3.0.10/etcd-v3.0.10-linux-amd64.tar.gz -o etcd-v3.0.10-linux-amd64.tar.gz &amp;amp;&amp;amp; tar xzvf etcd-v3.0.10-linux-amd64.tar.gz &amp;amp;&amp;amp; /bin/cp -f etcd-v3.0.10-linux-amd64/{etcd,etcdctl} /usr/bin &amp;amp;&amp;amp; rm -rf etcd-v3.0.10-linux-amd64* # install golang curl -sL https://storage.googleapis.com/golang/go1.8.linux-amd64.tar.gz | tar -C /usr/local -zxf - export GOPATH=/gopath export PATH=$PATH:$GOPATH/bin:/usr/local/bin:/usr/local/go/bin/ # Get kubernetes code mkdir -p $GOPATH/src/k8s.io git clone https://github." />
 
   <meta name="keywords" content="Kubernetes, Cloud, SDN" />
 
@@ -29,7 +29,7 @@
 <meta name="generator" content="Hugo 0.37.1" />
 
 
-<link rel="canonical" href="https://feisky.xyz/docs/" />
+<link rel="canonical" href="https://feisky.xyz/kubernetes-dev/" />
 
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -49,13 +49,14 @@
 
 
 
-<meta property="og:title" content="docs" />
-<meta property="og:description" content="一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器" />
+<meta property="og:title" content="Kubernetes Development" />
+<meta property="og:description" content="Tips for kubernetes development Setup development virtual machine apt-get install -y gcc make socat git # install docker curl -fsSL https://get.docker.com/ | sh # install etcd curl -L https://github.com/coreos/etcd/releases/download/v3.0.10/etcd-v3.0.10-linux-amd64.tar.gz -o etcd-v3.0.10-linux-amd64.tar.gz &amp;&amp; tar xzvf etcd-v3.0.10-linux-amd64.tar.gz &amp;&amp; /bin/cp -f etcd-v3.0.10-linux-amd64/{etcd,etcdctl} /usr/bin &amp;&amp; rm -rf etcd-v3.0.10-linux-amd64* # install golang curl -sL https://storage.googleapis.com/golang/go1.8.linux-amd64.tar.gz | tar -C /usr/local -zxf - export GOPATH=/gopath export PATH=$PATH:$GOPATH/bin:/usr/local/bin:/usr/local/go/bin/ # Get kubernetes code mkdir -p $GOPATH/src/k8s.io git clone https://github." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://feisky.xyz/docs/" />
+<meta property="og:url" content="https://feisky.xyz/kubernetes-dev/" />
 
 
 
+<meta property="article:published_time" content="2016-10-21T16:11:07&#43;00:00"/>
 
 <meta property="article:modified_time" content="2018-04-01T22:45:12&#43;08:00"/>
 
@@ -69,19 +70,20 @@
 
 
 
-<meta itemprop="name" content="docs">
-<meta itemprop="description" content="一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器">
+<meta itemprop="name" content="Kubernetes Development">
+<meta itemprop="description" content="Tips for kubernetes development Setup development virtual machine apt-get install -y gcc make socat git # install docker curl -fsSL https://get.docker.com/ | sh # install etcd curl -L https://github.com/coreos/etcd/releases/download/v3.0.10/etcd-v3.0.10-linux-amd64.tar.gz -o etcd-v3.0.10-linux-amd64.tar.gz &amp;&amp; tar xzvf etcd-v3.0.10-linux-amd64.tar.gz &amp;&amp; /bin/cp -f etcd-v3.0.10-linux-amd64/{etcd,etcdctl} /usr/bin &amp;&amp; rm -rf etcd-v3.0.10-linux-amd64* # install golang curl -sL https://storage.googleapis.com/golang/go1.8.linux-amd64.tar.gz | tar -C /usr/local -zxf - export GOPATH=/gopath export PATH=$PATH:$GOPATH/bin:/usr/local/bin:/usr/local/go/bin/ # Get kubernetes code mkdir -p $GOPATH/src/k8s.io git clone https://github.">
 
 
-
-<meta itemprop="wordCount" content="137">
+<meta itemprop="datePublished" content="2016-10-21T16:11:07&#43;00:00" />
+<meta itemprop="dateModified" content="2016-10-21T16:11:07&#43;00:00" />
+<meta itemprop="wordCount" content="422">
 
 
 
 <meta itemprop="keywords" content="" />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="docs"/>
-<meta name="twitter:description" content="一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器"/>
+<meta name="twitter:title" content="Kubernetes Development"/>
+<meta name="twitter:description" content="Tips for kubernetes development Setup development virtual machine apt-get install -y gcc make socat git # install docker curl -fsSL https://get.docker.com/ | sh # install etcd curl -L https://github.com/coreos/etcd/releases/download/v3.0.10/etcd-v3.0.10-linux-amd64.tar.gz -o etcd-v3.0.10-linux-amd64.tar.gz &amp;&amp; tar xzvf etcd-v3.0.10-linux-amd64.tar.gz &amp;&amp; /bin/cp -f etcd-v3.0.10-linux-amd64/{etcd,etcdctl} /usr/bin &amp;&amp; rm -rf etcd-v3.0.10-linux-amd64* # install golang curl -sL https://storage.googleapis.com/golang/go1.8.linux-amd64.tar.gz | tar -C /usr/local -zxf - export GOPATH=/gopath export PATH=$PATH:$GOPATH/bin:/usr/local/bin:/usr/local/go/bin/ # Get kubernetes code mkdir -p $GOPATH/src/k8s.io git clone https://github."/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -158,63 +160,135 @@
   <div class="post-content">
       
 
-<p><em>一些读书笔记和有趣的文章</em></p>
+<h1 id="tips-for-kubernetes-development">Tips for kubernetes development</h1>
 
-<h2 id="容器的世界">容器的世界</h2>
+<h2 id="setup-development-virtual-machine">Setup development virtual machine</h2>
+
+<pre><code class="language-sh">apt-get install -y gcc make socat git
+
+# install docker
+curl -fsSL https://get.docker.com/ | sh
+
+# install etcd
+curl -L https://github.com/coreos/etcd/releases/download/v3.0.10/etcd-v3.0.10-linux-amd64.tar.gz -o etcd-v3.0.10-linux-amd64.tar.gz &amp;&amp; tar xzvf etcd-v3.0.10-linux-amd64.tar.gz &amp;&amp; /bin/cp -f etcd-v3.0.10-linux-amd64/{etcd,etcdctl} /usr/bin &amp;&amp; rm -rf etcd-v3.0.10-linux-amd64*
+
+# install golang
+curl -sL https://storage.googleapis.com/golang/go1.8.linux-amd64.tar.gz | tar -C /usr/local -zxf -
+export GOPATH=/gopath
+export PATH=$PATH:$GOPATH/bin:/usr/local/bin:/usr/local/go/bin/
+
+# Get kubernetes code
+mkdir -p $GOPATH/src/k8s.io
+git clone https://github.com/kubernetes/kubernetes $GOPATH/src/k8s.io/kubernetes
+cd $GOPATH/src/k8s.io/kubernetes
+
+# Start a local cluster
+export KUBERNETES_PROVIDER=local
+hack/local-up-cluster.sh
+</code></pre>
+
+<p>Setup kubectl in another shell:</p>
+
+<pre><code class="language-sh">export KUBERNETES_PROVIDER=local
+cluster/kubectl.sh config set-cluster local --server=http://127.0.0.1:8080 --insecure-skip-tls-verify=true
+cluster/kubectl.sh config set-context local --cluster=local
+cluster/kubectl.sh config use-context local
+</code></pre>
+
+<h2 id="kubelet-dockershim-mode">Kubelet dockershim mode</h2>
+
+<pre><code>kubelet --experimental-dockershim --v=3 --logtostderr
+</code></pre>
+
+<h2 id="unit-tests">Unit tests</h2>
+
+<pre><code class="language-sh"># unit test a special package
+go test -v k8s.io/kubernetes/pkg/kubelet/kuberuntime
+</code></pre>
+
+<h2 id="running-e2e-test-locally">Running e2e test locally</h2>
+
+<pre><code class="language-sh">make WHAT='test/e2e/e2e.test'
+make ginkgo
+
+export KUBERNETES_PROVIDER=local
+go run hack/e2e.go -v -test --test_args='--ginkgo.focus=Port\sforwarding'
+go run hack/e2e.go -v -test --test_args='--ginkgo.focus=Feature:SecurityContext'
+</code></pre>
+
+<p>go test with ginkgo focus</p>
+
+<pre><code>go test -v -ginkgo.focus='Test streaming in container'
+</code></pre>
+
+<h2 id="running-node-e2e-locally">Running node e2e locally</h2>
+
+<pre><code class="language-sh"># running a node e2e with frakti runtime
+export KUBERNETES_PROVIDER=local
+make test-e2e-node PARALLELISM=2 CONTAINER_RUNTIME_ENDPOINT=/var/run/frakti.sock RUNTIME=remote FOCUS=&quot;\[Conformance\]&quot;
+</code></pre>
+
+<h2 id="bot-commands">Bot commands</h2>
 
 <ul>
-<li><a href="http://feisky.xyz/k8s/">Kubernetes指南</a></li>
-<li><a href="http://feisky.xyz/kubernetes-dev/">Kubernetes开发环境指南</a></li>
-<li><a href="/container/cri-o/">CRI-O</a></li>
-<li><a href="/2016/02/26/Notes-about-serverless/">Serverless</a></li>
-<li><a href="http://calcotestudios.com/ccco">容器编排系统对比</a></li>
-<li><a href="https://leecalcote.github.io/ccco/overlay-underlay-betting-on-container-networking.html">容器网络方案对比</a></li>
-<li><a href="http://dockerconrecap-leecalcote.rhcloud.com/#/">Docker 1.12</a></li>
-<li><a href="/container/selinux/">SELinux</a></li>
-<li><a href="jd-container/">京东容器建设之路</a></li>
-<li><a href="networking-namespace/">Network namespace</a></li>
+<li>Run all tests: <code>@k8s-bot test this</code></li>
+<li>Allow PR author to test: <code>@k8s-bot ok to test</code></li>
+<li>Jenkins Bazel Build <code>@k8s-bot bazel test this</code></li>
+<li>Jenkins unit/integration <code>@k8s-bot unit test this</code></li>
+<li>Jenkins GKE smoke e2e <code>@k8s-bot cvm gke e2e test this</code></li>
+<li>Jenkins non-CRI GCE Node e2e <code>@k8s-bot non-cri node e2e test this</code></li>
+<li>Jenkins kops AWS e2e <code>@k8s-bot kops aws e2e test this</code></li>
+<li>Jenkins GCE etcd3 e2e <code>@k8s-bot gce etcd3 e2e test this</code></li>
+<li>Jenkins GCI GKE smoke e2e <code>@k8s-bot gci gke e2e test this</code></li>
+<li>Jenkins GCI GCE e2e <code>@k8s-bot gci gce e2e test this</code></li>
+<li>Jenkins GCE e2e    <code>@k8s-bot cvm gce e2e test this</code></li>
+<li>Jenkins non-CRI GCE  <code>@k8s-bot non-cri e2e test this</code></li>
+<li>Jenkins GCE Node e2e <code>@k8s-bot node e2e test this</code></li>
+<li>Jenkins Kubemark GCE e2e <code>@k8s-bot kubemark e2e test this</code></li>
+<li>See more commands at <a href="https://github.com/kubernetes/test-infra/blob/master/prow/jobs.yaml">https://github.com/kubernetes/test-infra/blob/master/prow/jobs.yaml</a></li>
 </ul>
 
-<h2 id="虚拟化">虚拟化</h2>
+<p><strong>Auto LGTM (only applied if you are one of assignees):</strong></p>
 
 <ul>
-<li><a href="/virtualization/GPU/">GPU虚拟化</a></li>
-<li><a href="/virtualization/SR-IOV/">SR-IOV</a></li>
-<li><a href="http://awilliam.github.io/presentations/KVM-Forum-2016/">VFIO</a></li>
+<li><code>/lgtm</code> and <code>/lgtm cancel</code></li>
+<li><code>/assign @userA @userB</code> and <code>/unassign</code></li>
+<li><code>/close</code></li>
+<li><code>/release-note</code></li>
+<li><code>/release-note-none</code></li>
 </ul>
 
-<h2 id="分布式系统">分布式系统</h2>
+<p>Check more commands at <a href="https://github.com/kubernetes/test-infra/blob/master/prow/commands.md">kubernetes test-infra</a>.</p>
 
-<ul>
-<li><a href="http://feisky.xyz/distributed/">分布式系统简介</a></li>
-<li><a href="http://feisky.xyz/distributed/paxos/">Paxos</a></li>
-<li><a href="http://feisky.xyz/distributed/raft/">Raft</a></li>
-<li><a href="http://feisky.xyz/distributed/zab/">Zab</a></li>
-</ul>
+<h2 id="tips-for-git">Tips for git</h2>
 
-<h2 id="sdn网络">SDN网络</h2>
+<p>Fetch a pull request to local:</p>
 
-<ul>
-<li><a href="http://feisky.xyz/sdn/">SDN网络</a></li>
-<li><a href="http://feisky.xyz/sdn/dpdk/">DPDK</a></li>
-</ul>
+<pre><code class="language-sh">git fetch upstream pull/324/head:branch
+git fetch upstream pull/365/merge:branch
+</code></pre>
 
-<h2 id="机器学习">机器学习</h2>
+<p>Or add following config to <code>.git/config</code> and run <code>git fetch</code> for all pull requests:</p>
 
-<ul>
-<li><a href="http://feisky.xyz/machine-learning/">机器学习笔记</a></li>
-<li><a href="http://feisky.xyz/machine-learning/visualization/">数据可视化</a></li>
-<li><a href="http://feisky.xyz/machine-learning/cnn/">CNN</a></li>
-<li><a href="http://feisky.xyz/machine-learning/rnn/">RNN</a></li>
-<li><a href="http://feisky.xyz/machine-learning/tensorflow/">Tensorflow</a></li>
-</ul>
+<pre><code>    fetch = +refs/pull/*:refs/remotes/origin/pull/*
+</code></pre>
 
-<h2 id="其他">其他</h2>
+<h2 id="start-a-vm-on-gce-via-docker-machine">Start a VM on GCE via docker-machine</h2>
 
-<ul>
-<li><a href="amazon-leadership/">Amazon Leadership Principles</a></li>
-<li><a href="架构即未来/">架构即未来</a></li>
-</ul>
+<pre><code class="language-sh">docker-machine create --driver google --google-project xxxx --google-machine-type n1-standard-2 --google-disk-size 30 kubernetes
+</code></pre>
+
+<h2 id="minikube-for-starting-local-cluster">Minikube for starting local cluster</h2>
+
+<pre><code class="language-sh">$ minikube get-k8s-versions
+The following Kubernetes versions are available:
+    - v1.5.1
+    - v1.4.3
+    ...
+
+# http proxy is required in China
+$ minikube start --docker-env HTTP_PROXY=http://proxy-ip:port --docker-env HTTPS_PROXY=http://proxy-ip:port --vm-driver=xhyve
+</code></pre>
 
   </div>
 </article>

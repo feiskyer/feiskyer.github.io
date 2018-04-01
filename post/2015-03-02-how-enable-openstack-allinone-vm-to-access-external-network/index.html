@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>docs - Feisky</title>
+  <title>How enable OpenStack allinone vm to access external network - Feisky</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -17,7 +17,7 @@
 
 
 <meta name="author" content="Feisky" />
-  <meta name="description" content="一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器" />
+  <meta name="description" content="首先需要为OpenStack添加一个公网网络，假设All-in-one环境建的公网网段为10.10.10.0/24，公网网关为10.10.1" />
 
   <meta name="keywords" content="Kubernetes, Cloud, SDN" />
 
@@ -29,7 +29,7 @@
 <meta name="generator" content="Hugo 0.37.1" />
 
 
-<link rel="canonical" href="https://feisky.xyz/docs/" />
+<link rel="canonical" href="https://feisky.xyz/post/2015-03-02-how-enable-openstack-allinone-vm-to-access-external-network/" />
 
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -49,10 +49,10 @@
 
 
 
-<meta property="og:title" content="docs" />
-<meta property="og:description" content="一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器" />
+<meta property="og:title" content="How enable OpenStack allinone vm to access external network" />
+<meta property="og:description" content="首先需要为OpenStack添加一个公网网络，假设All-in-one环境建的公网网段为10.10.10.0/24，公网网关为10.10.1" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://feisky.xyz/docs/" />
+<meta property="og:url" content="https://feisky.xyz/post/2015-03-02-how-enable-openstack-allinone-vm-to-access-external-network/" />
 
 
 
@@ -69,19 +69,19 @@
 
 
 
-<meta itemprop="name" content="docs">
-<meta itemprop="description" content="一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器">
+<meta itemprop="name" content="How enable OpenStack allinone vm to access external network">
+<meta itemprop="description" content="首先需要为OpenStack添加一个公网网络，假设All-in-one环境建的公网网段为10.10.10.0/24，公网网关为10.10.1">
 
 
 
-<meta itemprop="wordCount" content="137">
+<meta itemprop="wordCount" content="333">
 
 
 
-<meta itemprop="keywords" content="" />
+<meta itemprop="keywords" content="OpenStack," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="docs"/>
-<meta name="twitter:description" content="一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器"/>
+<meta name="twitter:title" content="How enable OpenStack allinone vm to access external network"/>
+<meta name="twitter:description" content="首先需要为OpenStack添加一个公网网络，假设All-in-one环境建的公网网段为10.10.10.0/24，公网网关为10.10.1"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -155,69 +155,105 @@
       <div class="content-wrapper">
         <div id="content" class="content">
           <article class="post">
-  <div class="post-content">
-      
+    
+    <header class="post-header">
+      <h1 class="post-title">How enable OpenStack allinone vm to access external network</h1>
 
-<p><em>一些读书笔记和有趣的文章</em></p>
+      <div class="post-meta">
+        <span class="post-time"> 0001-01-01 </span>
+        
+        <span class="more-meta"> 333 words </span>
+        <span class="more-meta"> 1 min read </span>
+        
+      </div>
+    </header>
 
-<h2 id="容器的世界">容器的世界</h2>
-
-<ul>
-<li><a href="http://feisky.xyz/k8s/">Kubernetes指南</a></li>
-<li><a href="http://feisky.xyz/kubernetes-dev/">Kubernetes开发环境指南</a></li>
-<li><a href="/container/cri-o/">CRI-O</a></li>
-<li><a href="/2016/02/26/Notes-about-serverless/">Serverless</a></li>
-<li><a href="http://calcotestudios.com/ccco">容器编排系统对比</a></li>
-<li><a href="https://leecalcote.github.io/ccco/overlay-underlay-betting-on-container-networking.html">容器网络方案对比</a></li>
-<li><a href="http://dockerconrecap-leecalcote.rhcloud.com/#/">Docker 1.12</a></li>
-<li><a href="/container/selinux/">SELinux</a></li>
-<li><a href="jd-container/">京东容器建设之路</a></li>
-<li><a href="networking-namespace/">Network namespace</a></li>
-</ul>
-
-<h2 id="虚拟化">虚拟化</h2>
-
-<ul>
-<li><a href="/virtualization/GPU/">GPU虚拟化</a></li>
-<li><a href="/virtualization/SR-IOV/">SR-IOV</a></li>
-<li><a href="http://awilliam.github.io/presentations/KVM-Forum-2016/">VFIO</a></li>
-</ul>
-
-<h2 id="分布式系统">分布式系统</h2>
-
-<ul>
-<li><a href="http://feisky.xyz/distributed/">分布式系统简介</a></li>
-<li><a href="http://feisky.xyz/distributed/paxos/">Paxos</a></li>
-<li><a href="http://feisky.xyz/distributed/raft/">Raft</a></li>
-<li><a href="http://feisky.xyz/distributed/zab/">Zab</a></li>
-</ul>
-
-<h2 id="sdn网络">SDN网络</h2>
-
-<ul>
-<li><a href="http://feisky.xyz/sdn/">SDN网络</a></li>
-<li><a href="http://feisky.xyz/sdn/dpdk/">DPDK</a></li>
-</ul>
-
-<h2 id="机器学习">机器学习</h2>
-
-<ul>
-<li><a href="http://feisky.xyz/machine-learning/">机器学习笔记</a></li>
-<li><a href="http://feisky.xyz/machine-learning/visualization/">数据可视化</a></li>
-<li><a href="http://feisky.xyz/machine-learning/cnn/">CNN</a></li>
-<li><a href="http://feisky.xyz/machine-learning/rnn/">RNN</a></li>
-<li><a href="http://feisky.xyz/machine-learning/tensorflow/">Tensorflow</a></li>
-</ul>
-
-<h2 id="其他">其他</h2>
-
-<ul>
-<li><a href="amazon-leadership/">Amazon Leadership Principles</a></li>
-<li><a href="架构即未来/">架构即未来</a></li>
-</ul>
-
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  
+  <div class="post-toc-content">
+    
   </div>
-</article>
+</div>
+
+    
+    <div class="post-content">
+      <p>首先需要为OpenStack添加一个公网网络，假设All-in-one环境建的公网网段为10.10.10.0/24，公网网关为10.10.10.1。这样为虚拟机绑定公网IP后，由于网关是不存在的，虚拟机无法访问外网。那虚拟机如果想访问外网怎么办呢？</p>
+
+<pre><code>#添加FAKE公网网关
+ovs-vsctl add-port br-ex gwp -- set interface gwp type=internal
+ifconfig gwp 10.10.10.1 netmask 255.255.255.0
+#添加SNAT规则允许虚拟机访问外网 
+iptables -t nat -A POSTROUTING -s 10.10.10.0/24 -j MASQUERADE
+#允许转发，添加允许转发或者删除默认的REJECT规则都可以
+#iptables -D FORWARD -j REJECT --reject-with icmp-host-prohibited
+iptables -t filter -I FORWARD -j ACCEPT
+
+#开启内核转发
+sysctl -w net.ipv4.conf.eth0.rp_filter=0
+sysctl -w net.ipv4.conf.gwp.rp_filter=0
+sysctl -w net.ipv4.ip_forward=1
+</code></pre>
+
+<p>如果想从外部访问虚拟机的话，可以通过类似的方法将虚拟机的22端口映射到主机的eth0上来：</p>
+
+<pre><code>#假设eth0的ip地址为192.168.33.22
+iptables -t nat -I OUTPUT -d 192.168.33.22/32 -p tcp -m tcp --dport 2222 -j DNAT --to-destination 10.10.10.5:22
+iptables -t nat -I FORWORD ! -i enp1s0f0 ! -o enp1s0f0 -m conntrack ! --ctstate DNAT -j ACCEPT
+iptables -t nat -I PREROUTING -d 192.168.33.22/32 -p tcp -m tcp --dport 2222 -j DNAT --to-destination 10.10.10.5:22
+
+#iptables -t nat -I POSTROUTING -s 10.10.10.5/32 -p tcp -m tcp --sport 2222 -j SNAT --to-source 192.168.33.22:22
+#iptables -t nat -I POSTROUTING -s 10.10.10.0/24 -j SNAT --to-source 192.168.33.22
+</code></pre>
+
+    </div>
+
+    
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Feisky</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">2018-04-01</span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">License</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a></span>
+  </p>
+</div>
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          
+          <a href="/tags/openstack/">OpenStack</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/2015-01-20-hello-world/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Hello World</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        
+          <a class="next" href="/post/2015-03-18-how-to-disable-ubuntu-services/">
+            <span class="next-text nav-default">How to disable ubuntu services</span>
+            <span class="prev-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
         </div>
         
   <div id="disqus_thread"></div>

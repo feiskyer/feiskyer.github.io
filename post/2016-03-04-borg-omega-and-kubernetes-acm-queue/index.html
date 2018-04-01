@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>docs - Feisky</title>
+  <title>Borg, Omega, and Kubernetes (ACM Queue) - Feisky</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -17,7 +17,7 @@
 
 
 <meta name="author" content="Feisky" />
-  <meta name="description" content="一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器" />
+  <meta name="description" content="Brendan Burns, Brian Grant等在Borg, Omega, and Kubernetes - Lessons learned from three container-management systems over a decade分享了Google在容器管理的经验教训。 在谷歌的历史上，开发了三种容器管理" />
 
   <meta name="keywords" content="Kubernetes, Cloud, SDN" />
 
@@ -29,7 +29,7 @@
 <meta name="generator" content="Hugo 0.37.1" />
 
 
-<link rel="canonical" href="https://feisky.xyz/docs/" />
+<link rel="canonical" href="https://feisky.xyz/post/2016-03-04-borg-omega-and-kubernetes-acm-queue/" />
 
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -49,13 +49,14 @@
 
 
 
-<meta property="og:title" content="docs" />
-<meta property="og:description" content="一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器" />
+<meta property="og:title" content="Borg, Omega, and Kubernetes (ACM Queue)" />
+<meta property="og:description" content="Brendan Burns, Brian Grant等在Borg, Omega, and Kubernetes - Lessons learned from three container-management systems over a decade分享了Google在容器管理的经验教训。 在谷歌的历史上，开发了三种容器管理" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://feisky.xyz/docs/" />
+<meta property="og:url" content="https://feisky.xyz/post/2016-03-04-borg-omega-and-kubernetes-acm-queue/" />
 
 
 
+<meta property="article:published_time" content="2016-03-04T15:46:28&#43;00:00"/>
 
 <meta property="article:modified_time" content="2018-04-01T22:45:12&#43;08:00"/>
 
@@ -69,19 +70,20 @@
 
 
 
-<meta itemprop="name" content="docs">
-<meta itemprop="description" content="一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器">
+<meta itemprop="name" content="Borg, Omega, and Kubernetes (ACM Queue)">
+<meta itemprop="description" content="Brendan Burns, Brian Grant等在Borg, Omega, and Kubernetes - Lessons learned from three container-management systems over a decade分享了Google在容器管理的经验教训。 在谷歌的历史上，开发了三种容器管理">
+
+
+<meta itemprop="datePublished" content="2016-03-04T15:46:28&#43;00:00" />
+<meta itemprop="dateModified" content="2016-03-04T15:46:28&#43;00:00" />
+<meta itemprop="wordCount" content="315">
 
 
 
-<meta itemprop="wordCount" content="137">
-
-
-
-<meta itemprop="keywords" content="" />
+<meta itemprop="keywords" content="kubernetes,borg," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="docs"/>
-<meta name="twitter:description" content="一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器"/>
+<meta name="twitter:title" content="Borg, Omega, and Kubernetes (ACM Queue)"/>
+<meta name="twitter:description" content="Brendan Burns, Brian Grant等在Borg, Omega, and Kubernetes - Lessons learned from three container-management systems over a decade分享了Google在容器管理的经验教训。 在谷歌的历史上，开发了三种容器管理"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -155,69 +157,91 @@
       <div class="content-wrapper">
         <div id="content" class="content">
           <article class="post">
-  <div class="post-content">
-      
+    
+    <header class="post-header">
+      <h1 class="post-title">Borg, Omega, and Kubernetes (ACM Queue)</h1>
 
-<p><em>一些读书笔记和有趣的文章</em></p>
+      <div class="post-meta">
+        <span class="post-time"> 2016-03-04 </span>
+        
+        <span class="more-meta"> 315 words </span>
+        <span class="more-meta"> 1 min read </span>
+        
+      </div>
+    </header>
 
-<h2 id="容器的世界">容器的世界</h2>
-
-<ul>
-<li><a href="http://feisky.xyz/k8s/">Kubernetes指南</a></li>
-<li><a href="http://feisky.xyz/kubernetes-dev/">Kubernetes开发环境指南</a></li>
-<li><a href="/container/cri-o/">CRI-O</a></li>
-<li><a href="/2016/02/26/Notes-about-serverless/">Serverless</a></li>
-<li><a href="http://calcotestudios.com/ccco">容器编排系统对比</a></li>
-<li><a href="https://leecalcote.github.io/ccco/overlay-underlay-betting-on-container-networking.html">容器网络方案对比</a></li>
-<li><a href="http://dockerconrecap-leecalcote.rhcloud.com/#/">Docker 1.12</a></li>
-<li><a href="/container/selinux/">SELinux</a></li>
-<li><a href="jd-container/">京东容器建设之路</a></li>
-<li><a href="networking-namespace/">Network namespace</a></li>
-</ul>
-
-<h2 id="虚拟化">虚拟化</h2>
-
-<ul>
-<li><a href="/virtualization/GPU/">GPU虚拟化</a></li>
-<li><a href="/virtualization/SR-IOV/">SR-IOV</a></li>
-<li><a href="http://awilliam.github.io/presentations/KVM-Forum-2016/">VFIO</a></li>
-</ul>
-
-<h2 id="分布式系统">分布式系统</h2>
-
-<ul>
-<li><a href="http://feisky.xyz/distributed/">分布式系统简介</a></li>
-<li><a href="http://feisky.xyz/distributed/paxos/">Paxos</a></li>
-<li><a href="http://feisky.xyz/distributed/raft/">Raft</a></li>
-<li><a href="http://feisky.xyz/distributed/zab/">Zab</a></li>
-</ul>
-
-<h2 id="sdn网络">SDN网络</h2>
-
-<ul>
-<li><a href="http://feisky.xyz/sdn/">SDN网络</a></li>
-<li><a href="http://feisky.xyz/sdn/dpdk/">DPDK</a></li>
-</ul>
-
-<h2 id="机器学习">机器学习</h2>
-
-<ul>
-<li><a href="http://feisky.xyz/machine-learning/">机器学习笔记</a></li>
-<li><a href="http://feisky.xyz/machine-learning/visualization/">数据可视化</a></li>
-<li><a href="http://feisky.xyz/machine-learning/cnn/">CNN</a></li>
-<li><a href="http://feisky.xyz/machine-learning/rnn/">RNN</a></li>
-<li><a href="http://feisky.xyz/machine-learning/tensorflow/">Tensorflow</a></li>
-</ul>
-
-<h2 id="其他">其他</h2>
-
-<ul>
-<li><a href="amazon-leadership/">Amazon Leadership Principles</a></li>
-<li><a href="架构即未来/">架构即未来</a></li>
-</ul>
-
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  
+  <div class="post-toc-content">
+    
   </div>
-</article>
+</div>
+
+    
+    <div class="post-content">
+      <p>Brendan Burns, Brian Grant等在<a href="http://queue.acm.org/detail.cfm?id=2898444">Borg, Omega, and Kubernetes - Lessons learned from three container-management systems over a decade</a>分享了Google在容器管理的经验教训。</p>
+
+<p>在谷歌的历史上，开发了三种容器管理调度系统：</p>
+
+<ul>
+<li>Borg：管理both long-running services and batch jobs，它们以前是由两个不同系统来管理的，分别是Babysitter和the Global Work Queue；而Borg基于Linux container开发，提高了资源的利用率，并衍生了大量的上层的配置管理工具。</li>
+<li>Omega：Borg的后代，集群状态维护在 a centralized Paxos-based transaction-oriented store中，并且using optimistic concurrency control to handle the occasional conflicts，去除了单master的问题</li>
+<li>Kubernetes：开源的容器调度系统，design goal is to make it easy to deploy and manage complex distributed systems, while still benefiting from the improved utilization that containers enable.</li>
+</ul>
+
+<p>论文全文见<a href="/assets/Borg-Omega-and-Kubernetes.pdf">Borg, Omega, and Kubernetes</a>.</p>
+
+    </div>
+
+    
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Feisky</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">2018-04-01</span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">License</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a></span>
+  </p>
+</div>
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          
+          <a href="/tags/kubernetes/">kubernetes</a>
+          
+          <a href="/tags/borg/">borg</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/2016-04-19-cgo-in-go-1-6/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">cgo in go 1.6</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        
+          <a class="next" href="/post/2016-03-04-docker-overlay-network-dive/">
+            <span class="next-text nav-default">Docker overlay network dive</span>
+            <span class="prev-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
         </div>
         
   <div id="disqus_thread"></div>

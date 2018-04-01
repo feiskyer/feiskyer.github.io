@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>docs - Feisky</title>
+  <title>Installing Realtek rltwifi driver for Ubuntu 14.10 - Feisky</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -17,7 +17,7 @@
 
 
 <meta name="author" content="Feisky" />
-  <meta name="description" content="一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器" />
+  <meta name="description" content="安装方法 Ubuntu 14默认内核版本没有带RTL8192ee的网卡驱动，因而就无法通过无线网络联网，并且Reltek官方网站也没有提供合适的驱动。而最" />
 
   <meta name="keywords" content="Kubernetes, Cloud, SDN" />
 
@@ -29,7 +29,7 @@
 <meta name="generator" content="Hugo 0.37.1" />
 
 
-<link rel="canonical" href="https://feisky.xyz/docs/" />
+<link rel="canonical" href="https://feisky.xyz/post/2015-02-15-installing-realtek-rltwifi-driver-for-ubuntu-1410/" />
 
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -49,10 +49,10 @@
 
 
 
-<meta property="og:title" content="docs" />
-<meta property="og:description" content="一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器" />
+<meta property="og:title" content="Installing Realtek rltwifi driver for Ubuntu 14.10" />
+<meta property="og:description" content="安装方法 Ubuntu 14默认内核版本没有带RTL8192ee的网卡驱动，因而就无法通过无线网络联网，并且Reltek官方网站也没有提供合适的驱动。而最" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://feisky.xyz/docs/" />
+<meta property="og:url" content="https://feisky.xyz/post/2015-02-15-installing-realtek-rltwifi-driver-for-ubuntu-1410/" />
 
 
 
@@ -69,19 +69,19 @@
 
 
 
-<meta itemprop="name" content="docs">
-<meta itemprop="description" content="一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器">
+<meta itemprop="name" content="Installing Realtek rltwifi driver for Ubuntu 14.10">
+<meta itemprop="description" content="安装方法 Ubuntu 14默认内核版本没有带RTL8192ee的网卡驱动，因而就无法通过无线网络联网，并且Reltek官方网站也没有提供合适的驱动。而最">
 
 
 
-<meta itemprop="wordCount" content="137">
+<meta itemprop="wordCount" content="290">
 
 
 
-<meta itemprop="keywords" content="" />
+<meta itemprop="keywords" content="Linux," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="docs"/>
-<meta name="twitter:description" content="一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器"/>
+<meta name="twitter:title" content="Installing Realtek rltwifi driver for Ubuntu 14.10"/>
+<meta name="twitter:description" content="安装方法 Ubuntu 14默认内核版本没有带RTL8192ee的网卡驱动，因而就无法通过无线网络联网，并且Reltek官方网站也没有提供合适的驱动。而最"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -155,69 +155,137 @@
       <div class="content-wrapper">
         <div id="content" class="content">
           <article class="post">
-  <div class="post-content">
+    
+    <header class="post-header">
+      <h1 class="post-title">Installing Realtek rltwifi driver for Ubuntu 14.10</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 0001-01-01 </span>
+        
+        <span class="more-meta"> 290 words </span>
+        <span class="more-meta"> 1 min read </span>
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#安装方法">安装方法</a></li>
+<li><a href="#无线网卡管理">无线网卡管理</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
       
 
-<p><em>一些读书笔记和有趣的文章</em></p>
+<h3 id="安装方法">安装方法</h3>
 
-<h2 id="容器的世界">容器的世界</h2>
+<p>Ubuntu 14默认内核版本没有带RTL8192ee的网卡驱动，因而就无法通过无线网络联网，并且Reltek官方网站也没有提供合适的驱动。而最新的Linux内核已经带了相应驱动，所以一般建议修复的方法就是升级内核版本到最新。但如果不想内核升级咋办呢？幸好Github上已经有人将这个驱动写好了，直接安装即可：</p>
 
-<ul>
-<li><a href="http://feisky.xyz/k8s/">Kubernetes指南</a></li>
-<li><a href="http://feisky.xyz/kubernetes-dev/">Kubernetes开发环境指南</a></li>
-<li><a href="/container/cri-o/">CRI-O</a></li>
-<li><a href="/2016/02/26/Notes-about-serverless/">Serverless</a></li>
-<li><a href="http://calcotestudios.com/ccco">容器编排系统对比</a></li>
-<li><a href="https://leecalcote.github.io/ccco/overlay-underlay-betting-on-container-networking.html">容器网络方案对比</a></li>
-<li><a href="http://dockerconrecap-leecalcote.rhcloud.com/#/">Docker 1.12</a></li>
-<li><a href="/container/selinux/">SELinux</a></li>
-<li><a href="jd-container/">京东容器建设之路</a></li>
-<li><a href="networking-namespace/">Network namespace</a></li>
-</ul>
+<pre><code>git clone git@github.com:lwfinger/rtlwifi_new.git
+cd rtlwifi_new
+make
+sudo make install
+</code></pre>
 
-<h2 id="虚拟化">虚拟化</h2>
+<h3 id="无线网卡管理">无线网卡管理</h3>
 
 <ul>
-<li><a href="/virtualization/GPU/">GPU虚拟化</a></li>
-<li><a href="/virtualization/SR-IOV/">SR-IOV</a></li>
-<li><a href="http://awilliam.github.io/presentations/KVM-Forum-2016/">VFIO</a></li>
+<li>打卡无线网卡电源 <code>iwconfig wlan0 txpower on</code></li>
+<li>扫描无线网络     <code>iwlist wlan0 scan</code></li>
+<li>连接到无线网络   <code>iwconfig wlan0 essid 'wifi' key '123456'</code></li>
+<li>查看无线网卡状态 <code>iwconfig wlan0</code></li>
+<li>通过DHCP为网卡分配IP <code>dhclient wlan0</code></li>
 </ul>
 
-<h2 id="分布式系统">分布式系统</h2>
+<p>注意，iwconfig不支持为WPA/WPA2类型的无线网络配置密码，对于WPA类型的网络，可通过下面的方法配置：</p>
 
-<ul>
-<li><a href="http://feisky.xyz/distributed/">分布式系统简介</a></li>
-<li><a href="http://feisky.xyz/distributed/paxos/">Paxos</a></li>
-<li><a href="http://feisky.xyz/distributed/raft/">Raft</a></li>
-<li><a href="http://feisky.xyz/distributed/zab/">Zab</a></li>
-</ul>
+<pre><code>#/etc/network/interfaces
+iface wlan1 inet dhcp
+wpa-driver wext
+wpa-ssid TP-LINK_043A
+wpa-psk bda9a9d988e666a78889089a098c8689a
 
-<h2 id="sdn网络">SDN网络</h2>
+其中wpa-psk是由wpa-passphrase [ssid] [passphrase] 产生的
 
-<ul>
-<li><a href="http://feisky.xyz/sdn/">SDN网络</a></li>
-<li><a href="http://feisky.xyz/sdn/dpdk/">DPDK</a></li>
-</ul>
+修改完后重启网络 sudo /etc/init.d/networking restart
+</code></pre>
 
-<h2 id="机器学习">机器学习</h2>
+<p>附注：对应wep类型的网络配置为</p>
 
-<ul>
-<li><a href="http://feisky.xyz/machine-learning/">机器学习笔记</a></li>
-<li><a href="http://feisky.xyz/machine-learning/visualization/">数据可视化</a></li>
-<li><a href="http://feisky.xyz/machine-learning/cnn/">CNN</a></li>
-<li><a href="http://feisky.xyz/machine-learning/rnn/">RNN</a></li>
-<li><a href="http://feisky.xyz/machine-learning/tensorflow/">Tensorflow</a></li>
-</ul>
+<pre><code>#/etc/network/interfaces
+auto wlan0
+iface wlan0 inet static
+wireless-essid TP08129
+wireless_keymode restricted
+wireless-key 0812992180
+address 192.168.1.60
+netmask 255.255.255.0
+gateway 192.168.1.1
+broadcast 192.168.1.255
+</code></pre>
 
-<h2 id="其他">其他</h2>
+    </div>
 
-<ul>
-<li><a href="amazon-leadership/">Amazon Leadership Principles</a></li>
-<li><a href="架构即未来/">架构即未来</a></li>
-</ul>
+    
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Feisky</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">2018-04-01</span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">License</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a></span>
+  </p>
+</div>
 
-  </div>
-</article>
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          
+          <a href="/tags/linux/">Linux</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/2015-11-12-hypernetes-wechat-share/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Hypernetes wechat share</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        
+          <a class="next" href="/post/2015-02-13-installing-nova-docker-on-openstack-juno/">
+            <span class="next-text nav-default">Installing nova docker on OpenStack Juno</span>
+            <span class="prev-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
         </div>
         
   <div id="disqus_thread"></div>

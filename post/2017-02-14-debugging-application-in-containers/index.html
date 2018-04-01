@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>docs - Feisky</title>
+  <title>Debugging application in containers - Feisky</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -17,7 +17,7 @@
 
 
 <meta name="author" content="Feisky" />
-  <meta name="description" content="一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器" />
+  <meta name="description" content="对于普通的服务器进程，我们可以很方便的使用宿主机上的各种工具来调试；但容器经常是仅包含必要的应用程序，一般不包含常用的调试工具，那如何在线调" />
 
   <meta name="keywords" content="Kubernetes, Cloud, SDN" />
 
@@ -29,7 +29,7 @@
 <meta name="generator" content="Hugo 0.37.1" />
 
 
-<link rel="canonical" href="https://feisky.xyz/docs/" />
+<link rel="canonical" href="https://feisky.xyz/post/2017-02-14-debugging-application-in-containers/" />
 
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -49,13 +49,14 @@
 
 
 
-<meta property="og:title" content="docs" />
-<meta property="og:description" content="一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器" />
+<meta property="og:title" content="Debugging application in containers" />
+<meta property="og:description" content="对于普通的服务器进程，我们可以很方便的使用宿主机上的各种工具来调试；但容器经常是仅包含必要的应用程序，一般不包含常用的调试工具，那如何在线调" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://feisky.xyz/docs/" />
+<meta property="og:url" content="https://feisky.xyz/post/2017-02-14-debugging-application-in-containers/" />
 
 
 
+<meta property="article:published_time" content="2017-02-14T21:24:48&#43;00:00"/>
 
 <meta property="article:modified_time" content="2018-04-01T22:45:12&#43;08:00"/>
 
@@ -69,19 +70,20 @@
 
 
 
-<meta itemprop="name" content="docs">
-<meta itemprop="description" content="一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器">
+<meta itemprop="name" content="Debugging application in containers">
+<meta itemprop="description" content="对于普通的服务器进程，我们可以很方便的使用宿主机上的各种工具来调试；但容器经常是仅包含必要的应用程序，一般不包含常用的调试工具，那如何在线调">
+
+
+<meta itemprop="datePublished" content="2017-02-14T21:24:48&#43;00:00" />
+<meta itemprop="dateModified" content="2017-02-14T21:24:48&#43;00:00" />
+<meta itemprop="wordCount" content="899">
 
 
 
-<meta itemprop="wordCount" content="137">
-
-
-
-<meta itemprop="keywords" content="" />
+<meta itemprop="keywords" content="docker," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="docs"/>
-<meta name="twitter:description" content="一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器"/>
+<meta name="twitter:title" content="Debugging application in containers"/>
+<meta name="twitter:description" content="对于普通的服务器进程，我们可以很方便的使用宿主机上的各种工具来调试；但容器经常是仅包含必要的应用程序，一般不包含常用的调试工具，那如何在线调"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -155,69 +157,213 @@
       <div class="content-wrapper">
         <div id="content" class="content">
           <article class="post">
-  <div class="post-content">
+    
+    <header class="post-header">
+      <h1 class="post-title">Debugging application in containers</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2017-02-14 </span>
+        
+        <span class="more-meta"> 899 words </span>
+        <span class="more-meta"> 2 mins read </span>
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#webserver容器">webserver容器</a></li>
+<li><a href="#新建一个容器调试webserver">新建一个容器调试webserver</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
       
 
-<p><em>一些读书笔记和有趣的文章</em></p>
+<p>对于普通的服务器进程，我们可以很方便的使用宿主机上的各种工具来调试；但容器经常是仅包含必要的应用程序，一般不包含常用的调试工具，那如何在线调试容器中的进程呢？最简单的方法是再起一个新的包含了调试工具的容器。</p>
 
-<h2 id="容器的世界">容器的世界</h2>
+<p>来看一个最简单的web容器如何调试。</p>
 
-<ul>
-<li><a href="http://feisky.xyz/k8s/">Kubernetes指南</a></li>
-<li><a href="http://feisky.xyz/kubernetes-dev/">Kubernetes开发环境指南</a></li>
-<li><a href="/container/cri-o/">CRI-O</a></li>
-<li><a href="/2016/02/26/Notes-about-serverless/">Serverless</a></li>
-<li><a href="http://calcotestudios.com/ccco">容器编排系统对比</a></li>
-<li><a href="https://leecalcote.github.io/ccco/overlay-underlay-betting-on-container-networking.html">容器网络方案对比</a></li>
-<li><a href="http://dockerconrecap-leecalcote.rhcloud.com/#/">Docker 1.12</a></li>
-<li><a href="/container/selinux/">SELinux</a></li>
-<li><a href="jd-container/">京东容器建设之路</a></li>
-<li><a href="networking-namespace/">Network namespace</a></li>
-</ul>
+<h3 id="webserver容器">webserver容器</h3>
 
-<h2 id="虚拟化">虚拟化</h2>
+<p>用Go编写一个最简单的webserver：</p>
 
-<ul>
-<li><a href="/virtualization/GPU/">GPU虚拟化</a></li>
-<li><a href="/virtualization/SR-IOV/">SR-IOV</a></li>
-<li><a href="http://awilliam.github.io/presentations/KVM-Forum-2016/">VFIO</a></li>
-</ul>
+<pre><code class="language-go">// go-examples/basic/webserver
+package main
 
-<h2 id="分布式系统">分布式系统</h2>
+import &quot;net/http&quot;
+import &quot;fmt&quot;
+import &quot;log&quot;
 
-<ul>
-<li><a href="http://feisky.xyz/distributed/">分布式系统简介</a></li>
-<li><a href="http://feisky.xyz/distributed/paxos/">Paxos</a></li>
-<li><a href="http://feisky.xyz/distributed/raft/">Raft</a></li>
-<li><a href="http://feisky.xyz/distributed/zab/">Zab</a></li>
-</ul>
+func index(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintln(w, &quot;Hello World&quot;)
+}
 
-<h2 id="sdn网络">SDN网络</h2>
+func main() {
+	http.HandleFunc(&quot;/&quot;, index)
+	err := http.ListenAndServe(&quot;:80&quot;, nil)
+	if err != nil {
 
-<ul>
-<li><a href="http://feisky.xyz/sdn/">SDN网络</a></li>
-<li><a href="http://feisky.xyz/sdn/dpdk/">DPDK</a></li>
-</ul>
+		log.Println(err)
+	}
+}
+</code></pre>
 
-<h2 id="机器学习">机器学习</h2>
+<p>以linux平台方式编译</p>
 
-<ul>
-<li><a href="http://feisky.xyz/machine-learning/">机器学习笔记</a></li>
-<li><a href="http://feisky.xyz/machine-learning/visualization/">数据可视化</a></li>
-<li><a href="http://feisky.xyz/machine-learning/cnn/">CNN</a></li>
-<li><a href="http://feisky.xyz/machine-learning/rnn/">RNN</a></li>
-<li><a href="http://feisky.xyz/machine-learning/tensorflow/">Tensorflow</a></li>
-</ul>
+<pre><code class="language-sh">GOOS=linux go build -o webserver
+</code></pre>
 
-<h2 id="其他">其他</h2>
+<p>然后用下面的Docker build一个docker镜像：</p>
 
-<ul>
-<li><a href="amazon-leadership/">Amazon Leadership Principles</a></li>
-<li><a href="架构即未来/">架构即未来</a></li>
-</ul>
+<pre><code>FROM scratch
 
-  </div>
-</article>
+COPY ./webserver /
+CMD [&quot;/webserver&quot;]
+</code></pre>
+
+<pre><code class="language-sh"># docker build -t feisky/hello-world .
+Sending build context to Docker daemon 5.655 MB
+Step 1/3 : FROM scratch
+ ---&gt;
+Step 2/3 : COPY ./webserver /
+ ---&gt; 184eb7c074b5
+Removing intermediate container abf107844295
+Step 3/3 : CMD /webserver
+ ---&gt; Running in fe9fa4841e70
+ ---&gt; dca5ec00b3e7
+Removing intermediate container fe9fa4841e70
+Successfully built dca5ec00b3e7
+</code></pre>
+
+<p>最后启动webserver容器</p>
+
+<pre><code class="language-sh">docker run -itd --name webserver -p 80:80 feisky/hello-world
+</code></pre>
+
+<p>访问映射后的80端口，webserver容器正常返回&rdquo;Hello World&rdquo;</p>
+
+<pre><code class="language-sh"># curl http://$(hostname):80
+Hello World
+</code></pre>
+
+<h3 id="新建一个容器调试webserver">新建一个容器调试webserver</h3>
+
+<p>用一个包含调试工具或者方便安装调试工具的镜像（如alpine）创建一个新的container，为了便于获取webserver进程的状态，新的容器共享webserver容器的pid namespace和net namespace，并增加必要的capability：</p>
+
+<pre><code class="language-sh">docker run -it --rm --pid=container:webserver --net=container:webserver --cap-add sys_admin --cap-add sys_ptrace alpine sh
+/ # ps -ef
+PID   USER     TIME   COMMAND
+    1 root       0:00 /webserver
+   13 root       0:00 sh
+   18 root       0:00 ps -ef
+</code></pre>
+
+<p>这样，新的容器可以直接attach到webserver进程上来在线调试，比如strace到webserver进程</p>
+
+<pre><code class="language-sh"># 继续在刚创建的新容器sh中执行
+/ # apk update &amp;&amp; apk add strace
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.5/main/x86_64/APKINDEX.tar.gz
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.5/community/x86_64/APKINDEX.tar.gz
+v3.5.1-34-g1d3b13bd53 [http://dl-cdn.alpinelinux.org/alpine/v3.5/main]
+v3.5.1-29-ga981b1f149 [http://dl-cdn.alpinelinux.org/alpine/v3.5/community]
+OK: 7958 distinct packages available
+(1/1) Installing strace (4.14-r0)
+Executing busybox-1.25.1-r0.trigger
+OK: 5 MiB in 12 packages
+/ # strace -p 1
+strace: Process 1 attached
+epoll_wait(4,
+^Cstrace: Process 1 detached
+ &lt;detached ...&gt;
+</code></pre>
+
+<p>也可以获取webserver容器的网络状态</p>
+
+<pre><code class="language-sh"># 继续在刚创建的新容器sh中执行
+/ # apk add lsof
+(1/1) Installing lsof (4.89-r0)
+Executing busybox-1.25.1-r0.trigger
+OK: 5 MiB in 13 packages
+/ # lsof -i TCP
+COMMAND   PID USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
+webserver   1 root    3u  IPv6  14233      0t0  TCP *:http (LISTEN)
+</code></pre>
+
+<p>当然，也可以访问webserver容器的文件系统</p>
+
+<pre><code class="language-sh">/ # ls -l /proc/1/root/
+total 5524
+drwxr-xr-x    5 root     root           360 Feb 14 13:16 dev
+drwxr-xr-x    2 root     root          4096 Feb 14 13:16 etc
+dr-xr-xr-x  128 root     root             0 Feb 14 13:16 proc
+dr-xr-xr-x   13 root     root             0 Feb 14 13:16 sys
+-rwxr-xr-x    1 root     root       5651357 Feb 14 13:15 webserver
+</code></pre>
+
+<p>Kubernetes社区也在提议增加一个<code>kubectl debug</code>命令，用类似的方式在Pod中启动一个新容器来调试运行中的进程，可以参见<a href="https://github.com/kubernetes/kubernetes/pull/35584">https://github.com/kubernetes/kubernetes/pull/35584</a>。</p>
+
+    </div>
+
+    
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Feisky</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">2018-04-01</span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">License</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a></span>
+  </p>
+</div>
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          
+          <a href="/tags/docker/">docker</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/2017-05-21-start-kubernetes-handbook/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">开始一本开源电子书《Kubernetes指南》</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        
+          <a class="next" href="/post/2017-01-09-%E4%BD%BF%E7%94%A8docker-dind%E5%88%9B%E5%BB%BAswarm%E9%9B%86%E7%BE%A4/">
+            <span class="next-text nav-default">使用docker dind创建swarm集群</span>
+            <span class="prev-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
         </div>
         
   <div id="disqus_thread"></div>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>docs - Feisky</title>
+  <title>Apache的Mesos和Google的Kubernetes 有什么区别 - Feisky</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -17,7 +17,7 @@
 
 
 <meta name="author" content="Feisky" />
-  <meta name="description" content="一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器" />
+  <meta name="description" content="Kubernetes是一个开源项目，它把谷歌的集群管理工具引入到虚拟机和裸机场景中。它可以完美运行在现代的操作系统环境（比如CoreOS和R" />
 
   <meta name="keywords" content="Kubernetes, Cloud, SDN" />
 
@@ -29,7 +29,7 @@
 <meta name="generator" content="Hugo 0.37.1" />
 
 
-<link rel="canonical" href="https://feisky.xyz/docs/" />
+<link rel="canonical" href="https://feisky.xyz/post/2015-02-06-apachemesosgooglekubernetes-/" />
 
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -49,10 +49,10 @@
 
 
 
-<meta property="og:title" content="docs" />
-<meta property="og:description" content="一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器" />
+<meta property="og:title" content="Apache的Mesos和Google的Kubernetes 有什么区别" />
+<meta property="og:description" content="Kubernetes是一个开源项目，它把谷歌的集群管理工具引入到虚拟机和裸机场景中。它可以完美运行在现代的操作系统环境（比如CoreOS和R" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://feisky.xyz/docs/" />
+<meta property="og:url" content="https://feisky.xyz/post/2015-02-06-apachemesosgooglekubernetes-/" />
 
 
 
@@ -69,19 +69,19 @@
 
 
 
-<meta itemprop="name" content="docs">
-<meta itemprop="description" content="一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器">
+<meta itemprop="name" content="Apache的Mesos和Google的Kubernetes 有什么区别">
+<meta itemprop="description" content="Kubernetes是一个开源项目，它把谷歌的集群管理工具引入到虚拟机和裸机场景中。它可以完美运行在现代的操作系统环境（比如CoreOS和R">
 
 
 
-<meta itemprop="wordCount" content="137">
+<meta itemprop="wordCount" content="1354">
 
 
 
-<meta itemprop="keywords" content="" />
+<meta itemprop="keywords" content="docker,mesos," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="docs"/>
-<meta name="twitter:description" content="一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器"/>
+<meta name="twitter:title" content="Apache的Mesos和Google的Kubernetes 有什么区别"/>
+<meta name="twitter:description" content="Kubernetes是一个开源项目，它把谷歌的集群管理工具引入到虚拟机和裸机场景中。它可以完美运行在现代的操作系统环境（比如CoreOS和R"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -155,69 +155,107 @@
       <div class="content-wrapper">
         <div id="content" class="content">
           <article class="post">
-  <div class="post-content">
-      
+    
+    <header class="post-header">
+      <h1 class="post-title">Apache的Mesos和Google的Kubernetes 有什么区别</h1>
 
-<p><em>一些读书笔记和有趣的文章</em></p>
+      <div class="post-meta">
+        <span class="post-time"> 0001-01-01 </span>
+        
+        <span class="more-meta"> 1354 words </span>
+        <span class="more-meta"> 3 mins read </span>
+        
+      </div>
+    </header>
 
-<h2 id="容器的世界">容器的世界</h2>
-
-<ul>
-<li><a href="http://feisky.xyz/k8s/">Kubernetes指南</a></li>
-<li><a href="http://feisky.xyz/kubernetes-dev/">Kubernetes开发环境指南</a></li>
-<li><a href="/container/cri-o/">CRI-O</a></li>
-<li><a href="/2016/02/26/Notes-about-serverless/">Serverless</a></li>
-<li><a href="http://calcotestudios.com/ccco">容器编排系统对比</a></li>
-<li><a href="https://leecalcote.github.io/ccco/overlay-underlay-betting-on-container-networking.html">容器网络方案对比</a></li>
-<li><a href="http://dockerconrecap-leecalcote.rhcloud.com/#/">Docker 1.12</a></li>
-<li><a href="/container/selinux/">SELinux</a></li>
-<li><a href="jd-container/">京东容器建设之路</a></li>
-<li><a href="networking-namespace/">Network namespace</a></li>
-</ul>
-
-<h2 id="虚拟化">虚拟化</h2>
-
-<ul>
-<li><a href="/virtualization/GPU/">GPU虚拟化</a></li>
-<li><a href="/virtualization/SR-IOV/">SR-IOV</a></li>
-<li><a href="http://awilliam.github.io/presentations/KVM-Forum-2016/">VFIO</a></li>
-</ul>
-
-<h2 id="分布式系统">分布式系统</h2>
-
-<ul>
-<li><a href="http://feisky.xyz/distributed/">分布式系统简介</a></li>
-<li><a href="http://feisky.xyz/distributed/paxos/">Paxos</a></li>
-<li><a href="http://feisky.xyz/distributed/raft/">Raft</a></li>
-<li><a href="http://feisky.xyz/distributed/zab/">Zab</a></li>
-</ul>
-
-<h2 id="sdn网络">SDN网络</h2>
-
-<ul>
-<li><a href="http://feisky.xyz/sdn/">SDN网络</a></li>
-<li><a href="http://feisky.xyz/sdn/dpdk/">DPDK</a></li>
-</ul>
-
-<h2 id="机器学习">机器学习</h2>
-
-<ul>
-<li><a href="http://feisky.xyz/machine-learning/">机器学习笔记</a></li>
-<li><a href="http://feisky.xyz/machine-learning/visualization/">数据可视化</a></li>
-<li><a href="http://feisky.xyz/machine-learning/cnn/">CNN</a></li>
-<li><a href="http://feisky.xyz/machine-learning/rnn/">RNN</a></li>
-<li><a href="http://feisky.xyz/machine-learning/tensorflow/">Tensorflow</a></li>
-</ul>
-
-<h2 id="其他">其他</h2>
-
-<ul>
-<li><a href="amazon-leadership/">Amazon Leadership Principles</a></li>
-<li><a href="架构即未来/">架构即未来</a></li>
-</ul>
-
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  
+  <div class="post-toc-content">
+    
   </div>
-</article>
+</div>
+
+    
+    <div class="post-content">
+      <p>Kubernetes是一个开源项目，它把谷歌的集群管理工具引入到虚拟机和裸机场景中。它可以完美运行在现代的操作系统环境（比如CoreOS和Red Hat Atomic），并提供可以被你管控的轻量级的计算节点。Kubernetes使用Golang开发，具有轻量化、模块化、便携以及可扩展的特点。我们（Kubernetes开发团队）正在和一些不同的技术公司（包括维护着Mesos项目的MesoSphere）合作来把Kubernetes升级为一种与计算集群交互的标准方式。Kubernetes重新实现了Google在构建集群应用时积累的经验。这些概念包括如下内容：</p>
+
+<ul>
+<li>Pods：一种将容器组织在一起的方法；</li>
+<li>Replication Controllers：一种控制容器生命周期的方法（译者注：Replication Controller确保任何时候Kubernetes集群中有指定数量的pod副本(replicas)在运行）；</li>
+<li>Labels：一种可以找到和查询容器的方法；</li>
+<li>Services：一个用于实现某一特定功能的容器组；<br /></li>
+</ul>
+
+<p>因此，只要使用Kubernetes你就能够简单并快速的启动、移植并扩展集群。在这种情况下，集群就像是类似虚拟机一样灵活的资源，它是一个逻辑运算单元。打开它，使用它，调整它的大小，然后关闭它，就是这么快，就是这么简单。</p>
+
+<p>Mesos和Kubernetes的愿景差不多，但是它们在不同的生命周期中各有不同的优势。Mesos是分布式系统内核，它可以将不同的机器整合在一个逻辑计算机上面。当你拥有很多的物理资源并想构建一个巨大的静态的计算集群的时候，Mesos就派上用场了。有很多的现代化可扩展性的数据处理应用都可以在Mesos上运行，包括Hadoop、Kafka、Spark等，同时你可以通过容器技术将所有的数据处理应用都运行在一个基础的资源池中。在某个方面来看，Mesos是一个比Kubernetes更加重量级的项目，但是得益于那些像Mesosphere一样的贡献者，Mesos正在变得更加简单并且容易管理。</p>
+
+<p>有趣的是Mesos正在接受Kubernetes的理念，并已经开始支持Kubernetes API。因此如果你需要它们的话，它将是对你的Kubernetes应用去获得更多能力的一个便捷方式（比如高可用的主干、更加高级的调度命令、去管控很大数目结点的能力），同时能够很好的适用于产品级工作环境中（毕竟Kubernetes仍然还是一个初始版本）。</p>
+
+<p>当被问到区别的时候，我会这样回答：</p>
+
+<ol>
+<li>
+如果你是一个集群世界的新手，那Kubernetes是一个很棒的开始。它可以用最快的、最简单的、最轻量级的方式来解决你的问题，并帮助你进行面向集群的开发。它提供了一个高水平的可移植方案，因为很多厂商已经开始支持Kubernetes，例如微软、IBM、Red Hat、CoreOS、MesoSphere、VMWare等。</li>
+<li>
+如果你拥有已经存在的工作任务（Hadoop、Spark、Kafka等），那Mesos可以给你提供了一个将不同工作任务相互交错的框架，然后还可以加入一些新的东西，比如Kubernetes应用。</li>
+<li>
+如果你想使用的功能Kuberntes还没实现，那Mesos是一个不错的替代品，毕竟它已经成熟。<br /></li>
+</ol>
+
+<p><strong>原文链接：<a href="http://stackoverflow.com/questions/26705201/whats-the-difference-between-apaches-mesos-and-googles-kubernetes">Whats the difference between Apaches Mesos and Googles Kubernetes</a> （翻译：刘凯宁 校对：李颖杰）</strong></p>
+
+    </div>
+
+    
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Feisky</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">2018-04-01</span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">License</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a></span>
+  </p>
+</div>
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          
+          <a href="/tags/docker/">docker</a>
+          
+          <a href="/tags/mesos/">mesos</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/upgrade-centos-kernel/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default"></span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        
+          <a class="next" href="/post/2015-02-05-deploy-a-mesos-cluster-using-docker/">
+            <span class="next-text nav-default">Deploy a Mesos Cluster Using Docker</span>
+            <span class="prev-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
         </div>
         
   <div id="disqus_thread"></div>

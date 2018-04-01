@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>docs - Feisky</title>
+  <title>cannot change locale - Feisky</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -17,7 +17,7 @@
 
 
 <meta name="author" content="Feisky" />
-  <meta name="description" content="一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器" />
+  <meta name="description" content="运行locale命令 LANG= LANGUAGE= LC_CTYPE=&amp;ldquo;POSIX&amp;rdquo; LC_NUMERIC=&amp;ldquo;POSIX&amp;rdquo; LC_TIME=&amp;ldquo;POSIX&amp;rdquo; LC_COLLATE=&amp;ldquo;POSIX&amp;rdquo; LC_MONETARY=&amp;ldquo;POSIX&amp;rdquo; LC_MESSAGES=&amp;ldquo;POSIX&amp;rdquo; LC_PAPER=&amp;ldquo;POSIX&amp;rdquo; LC_NAME=&amp;ldquo;POSIX&amp;rdquo; LC_ADDRESS=&amp;ldquo;POSIX&amp;rdquo; LC_TELEPHONE=&amp;ldquo;POSIX&amp;rdquo; LC_MEASUREMENT=&amp;ldquo;POSIX&amp;rdquo; LC_IDENTIFICATION=&amp;ldquo;POSIX&amp;rdquo; LC_ALL= 修改profile vi /etc/profile 添加如下内容 export LC_ALL=en_US.UTF-8 source /etc/profile 得到错误 setlocale: LC_ALL: cannot change locale (en_US.UTF-8): No such file or directory &amp;nbsp;运行 dpkg-reconfigure" />
 
   <meta name="keywords" content="Kubernetes, Cloud, SDN" />
 
@@ -29,7 +29,7 @@
 <meta name="generator" content="Hugo 0.37.1" />
 
 
-<link rel="canonical" href="https://feisky.xyz/docs/" />
+<link rel="canonical" href="https://feisky.xyz/post/2015-02-10-cannot-change-locale/" />
 
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -49,10 +49,10 @@
 
 
 
-<meta property="og:title" content="docs" />
-<meta property="og:description" content="一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器" />
+<meta property="og:title" content="cannot change locale" />
+<meta property="og:description" content="运行locale命令 LANG= LANGUAGE= LC_CTYPE=&ldquo;POSIX&rdquo; LC_NUMERIC=&ldquo;POSIX&rdquo; LC_TIME=&ldquo;POSIX&rdquo; LC_COLLATE=&ldquo;POSIX&rdquo; LC_MONETARY=&ldquo;POSIX&rdquo; LC_MESSAGES=&ldquo;POSIX&rdquo; LC_PAPER=&ldquo;POSIX&rdquo; LC_NAME=&ldquo;POSIX&rdquo; LC_ADDRESS=&ldquo;POSIX&rdquo; LC_TELEPHONE=&ldquo;POSIX&rdquo; LC_MEASUREMENT=&ldquo;POSIX&rdquo; LC_IDENTIFICATION=&ldquo;POSIX&rdquo; LC_ALL= 修改profile vi /etc/profile 添加如下内容 export LC_ALL=en_US.UTF-8 source /etc/profile 得到错误 setlocale: LC_ALL: cannot change locale (en_US.UTF-8): No such file or directory &nbsp;运行 dpkg-reconfigure" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://feisky.xyz/docs/" />
+<meta property="og:url" content="https://feisky.xyz/post/2015-02-10-cannot-change-locale/" />
 
 
 
@@ -69,19 +69,19 @@
 
 
 
-<meta itemprop="name" content="docs">
-<meta itemprop="description" content="一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器">
+<meta itemprop="name" content="cannot change locale">
+<meta itemprop="description" content="运行locale命令 LANG= LANGUAGE= LC_CTYPE=&ldquo;POSIX&rdquo; LC_NUMERIC=&ldquo;POSIX&rdquo; LC_TIME=&ldquo;POSIX&rdquo; LC_COLLATE=&ldquo;POSIX&rdquo; LC_MONETARY=&ldquo;POSIX&rdquo; LC_MESSAGES=&ldquo;POSIX&rdquo; LC_PAPER=&ldquo;POSIX&rdquo; LC_NAME=&ldquo;POSIX&rdquo; LC_ADDRESS=&ldquo;POSIX&rdquo; LC_TELEPHONE=&ldquo;POSIX&rdquo; LC_MEASUREMENT=&ldquo;POSIX&rdquo; LC_IDENTIFICATION=&ldquo;POSIX&rdquo; LC_ALL= 修改profile vi /etc/profile 添加如下内容 export LC_ALL=en_US.UTF-8 source /etc/profile 得到错误 setlocale: LC_ALL: cannot change locale (en_US.UTF-8): No such file or directory &nbsp;运行 dpkg-reconfigure">
 
 
 
-<meta itemprop="wordCount" content="137">
+<meta itemprop="wordCount" content="206">
 
 
 
-<meta itemprop="keywords" content="" />
+<meta itemprop="keywords" content="Linux," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="docs"/>
-<meta name="twitter:description" content="一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器"/>
+<meta name="twitter:title" content="cannot change locale"/>
+<meta name="twitter:description" content="运行locale命令 LANG= LANGUAGE= LC_CTYPE=&ldquo;POSIX&rdquo; LC_NUMERIC=&ldquo;POSIX&rdquo; LC_TIME=&ldquo;POSIX&rdquo; LC_COLLATE=&ldquo;POSIX&rdquo; LC_MONETARY=&ldquo;POSIX&rdquo; LC_MESSAGES=&ldquo;POSIX&rdquo; LC_PAPER=&ldquo;POSIX&rdquo; LC_NAME=&ldquo;POSIX&rdquo; LC_ADDRESS=&ldquo;POSIX&rdquo; LC_TELEPHONE=&ldquo;POSIX&rdquo; LC_MEASUREMENT=&ldquo;POSIX&rdquo; LC_IDENTIFICATION=&ldquo;POSIX&rdquo; LC_ALL= 修改profile vi /etc/profile 添加如下内容 export LC_ALL=en_US.UTF-8 source /etc/profile 得到错误 setlocale: LC_ALL: cannot change locale (en_US.UTF-8): No such file or directory &nbsp;运行 dpkg-reconfigure"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -155,69 +155,155 @@
       <div class="content-wrapper">
         <div id="content" class="content">
           <article class="post">
-  <div class="post-content">
-      
+    
+    <header class="post-header">
+      <h1 class="post-title">cannot change locale</h1>
 
-<p><em>一些读书笔记和有趣的文章</em></p>
+      <div class="post-meta">
+        <span class="post-time"> 0001-01-01 </span>
+        
+        <span class="more-meta"> 206 words </span>
+        <span class="more-meta"> 1 min read </span>
+        
+      </div>
+    </header>
 
-<h2 id="容器的世界">容器的世界</h2>
-
-<ul>
-<li><a href="http://feisky.xyz/k8s/">Kubernetes指南</a></li>
-<li><a href="http://feisky.xyz/kubernetes-dev/">Kubernetes开发环境指南</a></li>
-<li><a href="/container/cri-o/">CRI-O</a></li>
-<li><a href="/2016/02/26/Notes-about-serverless/">Serverless</a></li>
-<li><a href="http://calcotestudios.com/ccco">容器编排系统对比</a></li>
-<li><a href="https://leecalcote.github.io/ccco/overlay-underlay-betting-on-container-networking.html">容器网络方案对比</a></li>
-<li><a href="http://dockerconrecap-leecalcote.rhcloud.com/#/">Docker 1.12</a></li>
-<li><a href="/container/selinux/">SELinux</a></li>
-<li><a href="jd-container/">京东容器建设之路</a></li>
-<li><a href="networking-namespace/">Network namespace</a></li>
-</ul>
-
-<h2 id="虚拟化">虚拟化</h2>
-
-<ul>
-<li><a href="/virtualization/GPU/">GPU虚拟化</a></li>
-<li><a href="/virtualization/SR-IOV/">SR-IOV</a></li>
-<li><a href="http://awilliam.github.io/presentations/KVM-Forum-2016/">VFIO</a></li>
-</ul>
-
-<h2 id="分布式系统">分布式系统</h2>
-
-<ul>
-<li><a href="http://feisky.xyz/distributed/">分布式系统简介</a></li>
-<li><a href="http://feisky.xyz/distributed/paxos/">Paxos</a></li>
-<li><a href="http://feisky.xyz/distributed/raft/">Raft</a></li>
-<li><a href="http://feisky.xyz/distributed/zab/">Zab</a></li>
-</ul>
-
-<h2 id="sdn网络">SDN网络</h2>
-
-<ul>
-<li><a href="http://feisky.xyz/sdn/">SDN网络</a></li>
-<li><a href="http://feisky.xyz/sdn/dpdk/">DPDK</a></li>
-</ul>
-
-<h2 id="机器学习">机器学习</h2>
-
-<ul>
-<li><a href="http://feisky.xyz/machine-learning/">机器学习笔记</a></li>
-<li><a href="http://feisky.xyz/machine-learning/visualization/">数据可视化</a></li>
-<li><a href="http://feisky.xyz/machine-learning/cnn/">CNN</a></li>
-<li><a href="http://feisky.xyz/machine-learning/rnn/">RNN</a></li>
-<li><a href="http://feisky.xyz/machine-learning/tensorflow/">Tensorflow</a></li>
-</ul>
-
-<h2 id="其他">其他</h2>
-
-<ul>
-<li><a href="amazon-leadership/">Amazon Leadership Principles</a></li>
-<li><a href="架构即未来/">架构即未来</a></li>
-</ul>
-
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  
+  <div class="post-toc-content">
+    
   </div>
-</article>
+</div>
+
+    
+    <div class="post-content">
+      <p>运行locale命令<span id="more-912"></span><br />
+LANG=<br />
+LANGUAGE=<br />
+LC_CTYPE=&ldquo;POSIX&rdquo;<br />
+LC_NUMERIC=&ldquo;POSIX&rdquo;<br />
+LC_TIME=&ldquo;POSIX&rdquo;<br />
+LC_COLLATE=&ldquo;POSIX&rdquo;<br />
+LC_MONETARY=&ldquo;POSIX&rdquo;<br />
+LC_MESSAGES=&ldquo;POSIX&rdquo;<br />
+LC_PAPER=&ldquo;POSIX&rdquo;<br />
+LC_NAME=&ldquo;POSIX&rdquo;<br />
+LC_ADDRESS=&ldquo;POSIX&rdquo;<br />
+LC_TELEPHONE=&ldquo;POSIX&rdquo;<br />
+LC_MEASUREMENT=&ldquo;POSIX&rdquo;<br />
+LC_IDENTIFICATION=&ldquo;POSIX&rdquo;<br />
+LC_ALL=</p>
+
+<p>修改profile</p>
+
+<p>vi /etc/profile</p>
+
+<p>添加如下内容</p>
+
+<p>export LC_ALL=en_US.UTF-8</p>
+
+<p>source /etc/profile</p>
+
+<p>得到错误 setlocale: LC_ALL: cannot change locale (en_US.UTF-8): No such file or directory<br />
+&nbsp;运行 dpkg-reconfigure locales</p>
+
+<p>得到错误</p>
+
+<p>perl: warning: Setting locale failed.<br />
+perl: warning: Please check that your locale settings:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LANGUAGE = (unset),<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LC_ALL = &ldquo;en_US.UTF-8&rdquo;,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LANG = &ldquo;en_US.UTF-8&rdquo;<br />
+&nbsp;&nbsp;&nbsp; are supported and installed on your system.<br />
+perl: warning: Falling back to the standard locale (&ldquo;C&rdquo;).<br />
+locale: Cannot set LC_CTYPE to default locale: No such file or directory<br />
+locale: Cannot set LC_MESSAGES to default locale: No such file or directory<br />
+locale: Cannot set LC_ALL to default locale: No such file or directory<br />
+/bin/bash: warning: setlocale: LC_ALL: cannot change locale (en_US.UTF-8)</p>
+
+<p>解决办法</p>
+
+<p>apt-get purge locales</p>
+
+<p>apt-get autoclean</p>
+
+<p>apt-get install locales</p>
+
+<p>cd /usr/share/locales</p>
+
+<p>./install-language-pack en_US.UTF-8</p>
+
+<p>dpkg-reconfigure locales</p>
+
+<p>修复完成</p>
+
+<p>运行locale</p>
+
+<p>LANG=en_US.UTF-8<br />
+LANGUAGE=<br />
+LC_CTYPE=&ldquo;en_US.UTF-8&rdquo;<br />
+LC_NUMERIC=&ldquo;en_US.UTF-8&rdquo;<br />
+LC_TIME=&ldquo;en_US.UTF-8&rdquo;<br />
+LC_COLLATE=&ldquo;en_US.UTF-8&rdquo;<br />
+LC_MONETARY=&ldquo;en_US.UTF-8&rdquo;<br />
+LC_MESSAGES=&ldquo;en_US.UTF-8&rdquo;<br />
+LC_PAPER=&ldquo;en_US.UTF-8&rdquo;<br />
+LC_NAME=&ldquo;en_US.UTF-8&rdquo;<br />
+LC_ADDRESS=&ldquo;en_US.UTF-8&rdquo;<br />
+LC_TELEPHONE=&ldquo;en_US.UTF-8&rdquo;<br />
+LC_MEASUREMENT=&ldquo;en_US.UTF-8&rdquo;<br />
+LC_IDENTIFICATION=&ldquo;en_US.UTF-8&rdquo;<br />
+LC_ALL=en_US.UTF-8</p>
+
+    </div>
+
+    
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Feisky</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">2018-04-01</span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">License</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a></span>
+  </p>
+</div>
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          
+          <a href="/tags/linux/">Linux</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/2015-01-27-bigdata/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">bigdata</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        
+          <a class="next" href="/post/2015-03-20-docker-in-tencent/">
+            <span class="next-text nav-default">docker in tencent</span>
+            <span class="prev-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
         </div>
         
   <div id="disqus_thread"></div>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>docs - Feisky</title>
+  <title>tracing - Feisky</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -17,7 +17,9 @@
 
 
 <meta name="author" content="Feisky" />
-  <meta name="description" content="一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器" />
+  <meta name="description" content=" Tracing tools of Linux Tools:
+ bcc perf-tools sysdig systemtap perf  Links:
+ http://www.brendangregg.com http://www.sysdig.org https://github.com/iovisor/bcc https://sourceware.org/systemtap/wiki https://github.com/brendangregg/FlameGraph https://github.com/openresty/stapxx http://dtrace.org/blogs/about/  " />
 
   <meta name="keywords" content="Kubernetes, Cloud, SDN" />
 
@@ -29,7 +31,7 @@
 <meta name="generator" content="Hugo 0.37.1" />
 
 
-<link rel="canonical" href="https://feisky.xyz/docs/" />
+<link rel="canonical" href="https://feisky.xyz/tracing/" />
 
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -49,13 +51,16 @@
 
 
 
-<meta property="og:title" content="docs" />
-<meta property="og:description" content="一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器" />
+<meta property="og:title" content="tracing" />
+<meta property="og:description" content=" Tracing tools of Linux Tools:
+ bcc perf-tools sysdig systemtap perf  Links:
+ http://www.brendangregg.com http://www.sysdig.org https://github.com/iovisor/bcc https://sourceware.org/systemtap/wiki https://github.com/brendangregg/FlameGraph https://github.com/openresty/stapxx http://dtrace.org/blogs/about/  " />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://feisky.xyz/docs/" />
+<meta property="og:url" content="https://feisky.xyz/tracing/" />
 
 
 
+<meta property="article:published_time" content="2016-10-21T17:27:47&#43;00:00"/>
 
 <meta property="article:modified_time" content="2018-04-01T22:45:12&#43;08:00"/>
 
@@ -69,19 +74,24 @@
 
 
 
-<meta itemprop="name" content="docs">
-<meta itemprop="description" content="一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器">
+<meta itemprop="name" content="tracing">
+<meta itemprop="description" content=" Tracing tools of Linux Tools:
+ bcc perf-tools sysdig systemtap perf  Links:
+ http://www.brendangregg.com http://www.sysdig.org https://github.com/iovisor/bcc https://sourceware.org/systemtap/wiki https://github.com/brendangregg/FlameGraph https://github.com/openresty/stapxx http://dtrace.org/blogs/about/  ">
 
 
-
-<meta itemprop="wordCount" content="137">
+<meta itemprop="datePublished" content="2016-10-21T17:27:47&#43;00:00" />
+<meta itemprop="dateModified" content="2016-10-21T17:27:47&#43;00:00" />
+<meta itemprop="wordCount" content="18">
 
 
 
 <meta itemprop="keywords" content="" />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="docs"/>
-<meta name="twitter:description" content="一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器"/>
+<meta name="twitter:title" content="tracing"/>
+<meta name="twitter:description" content=" Tracing tools of Linux Tools:
+ bcc perf-tools sysdig systemtap perf  Links:
+ http://www.brendangregg.com http://www.sysdig.org https://github.com/iovisor/bcc https://sourceware.org/systemtap/wiki https://github.com/brendangregg/FlameGraph https://github.com/openresty/stapxx http://dtrace.org/blogs/about/  "/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -158,63 +168,42 @@
   <div class="post-content">
       
 
-<p><em>一些读书笔记和有趣的文章</em></p>
+<h1 id="tracing-tools-of-linux">Tracing tools of Linux</h1>
 
-<h2 id="容器的世界">容器的世界</h2>
-
-<ul>
-<li><a href="http://feisky.xyz/k8s/">Kubernetes指南</a></li>
-<li><a href="http://feisky.xyz/kubernetes-dev/">Kubernetes开发环境指南</a></li>
-<li><a href="/container/cri-o/">CRI-O</a></li>
-<li><a href="/2016/02/26/Notes-about-serverless/">Serverless</a></li>
-<li><a href="http://calcotestudios.com/ccco">容器编排系统对比</a></li>
-<li><a href="https://leecalcote.github.io/ccco/overlay-underlay-betting-on-container-networking.html">容器网络方案对比</a></li>
-<li><a href="http://dockerconrecap-leecalcote.rhcloud.com/#/">Docker 1.12</a></li>
-<li><a href="/container/selinux/">SELinux</a></li>
-<li><a href="jd-container/">京东容器建设之路</a></li>
-<li><a href="networking-namespace/">Network namespace</a></li>
-</ul>
-
-<h2 id="虚拟化">虚拟化</h2>
+<p><strong>Tools:</strong></p>
 
 <ul>
-<li><a href="/virtualization/GPU/">GPU虚拟化</a></li>
-<li><a href="/virtualization/SR-IOV/">SR-IOV</a></li>
-<li><a href="http://awilliam.github.io/presentations/KVM-Forum-2016/">VFIO</a></li>
+<li><a href="bcc">bcc</a></li>
+<li><a href="https://github.com/brendangregg/perf-tools">perf-tools</a></li>
+<li><a href="sysdig">sysdig</a></li>
+<li><a href="systemtap">systemtap</a></li>
+<li><a href="perf">perf</a></li>
 </ul>
 
-<h2 id="分布式系统">分布式系统</h2>
+<p><strong>Links:</strong></p>
 
 <ul>
-<li><a href="http://feisky.xyz/distributed/">分布式系统简介</a></li>
-<li><a href="http://feisky.xyz/distributed/paxos/">Paxos</a></li>
-<li><a href="http://feisky.xyz/distributed/raft/">Raft</a></li>
-<li><a href="http://feisky.xyz/distributed/zab/">Zab</a></li>
+<li><a href="http://www.brendangregg.com">http://www.brendangregg.com</a></li>
+<li><a href="http://www.sysdig.org">http://www.sysdig.org</a></li>
+<li><a href="https://github.com/iovisor/bcc">https://github.com/iovisor/bcc</a></li>
+<li><a href="https://sourceware.org/systemtap/wiki">https://sourceware.org/systemtap/wiki</a></li>
+<li><a href="https://github.com/brendangregg/FlameGraph">https://github.com/brendangregg/FlameGraph</a></li>
+<li><a href="https://github.com/openresty/stapxx">https://github.com/openresty/stapxx</a></li>
+<li><a href="http://dtrace.org/blogs/about/">http://dtrace.org/blogs/about/</a></li>
 </ul>
 
-<h2 id="sdn网络">SDN网络</h2>
+<p><img src="/images/14770421314697.png" alt="" /></p>
 
-<ul>
-<li><a href="http://feisky.xyz/sdn/">SDN网络</a></li>
-<li><a href="http://feisky.xyz/sdn/dpdk/">DPDK</a></li>
-</ul>
+<p><img src="/images/14770421384424.png" alt="" /></p>
 
-<h2 id="机器学习">机器学习</h2>
+<p><img src="/images/14770421460365.png" alt="" />
+<img src="/images/14770421514060.png" alt="" /></p>
 
-<ul>
-<li><a href="http://feisky.xyz/machine-learning/">机器学习笔记</a></li>
-<li><a href="http://feisky.xyz/machine-learning/visualization/">数据可视化</a></li>
-<li><a href="http://feisky.xyz/machine-learning/cnn/">CNN</a></li>
-<li><a href="http://feisky.xyz/machine-learning/rnn/">RNN</a></li>
-<li><a href="http://feisky.xyz/machine-learning/tensorflow/">Tensorflow</a></li>
-</ul>
+<p><img src="/images/14770421583345.png" alt="" /></p>
 
-<h2 id="其他">其他</h2>
+<p><img src="/images/14770421636595.png" alt="" /></p>
 
-<ul>
-<li><a href="amazon-leadership/">Amazon Leadership Principles</a></li>
-<li><a href="架构即未来/">架构即未来</a></li>
-</ul>
+<p><img src="/images/14770421697329.png" alt="" /></p>
 
   </div>
 </article>
