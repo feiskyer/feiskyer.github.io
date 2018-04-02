@@ -1,2 +1,1 @@
 User-agent: *
-Sitemap: https://feisky.xyz/sitemap.xml

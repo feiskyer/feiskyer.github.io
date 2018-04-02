@@ -1,337 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-cn" lang="zh-cn">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Docker 笔记 - Feisky</title>
-  <meta name="renderer" content="webkit" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.37.1" />
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-<meta name="theme-color" content="#f8f5ec" />
-<meta name="msapplication-navbutton-color" content="#f8f5ec">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
-
-
-<meta name="author" content="Feisky" /><meta name="description" content="docker 学习笔记" />
-
-  <meta name="keywords" content="Kubernetes, Cloud, SDN" />
-
-
-
-
-
-
-<meta name="generator" content="Hugo 0.37.1" />
-
-
-<link rel="canonical" href="https://feisky.xyz/post/2015-02-13-docker-intro/" />
-
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/manifest.json">
-<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-
-
-
-
-
-
-
-<link href="/dist/even.min.css?v=3.1.1" rel="stylesheet">
-<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
-
-
-
-
-<meta property="og:title" content="Docker 笔记" />
-<meta property="og:description" content="docker 学习笔记" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://feisky.xyz/post/2015-02-13-docker-intro/" />
-
-
-
-
-<meta property="article:modified_time" content="2018-04-01T22:45:12&#43;08:00"/>
-
-
-
-
-
-
-
-
-
-
-
-<meta itemprop="name" content="Docker 笔记">
-<meta itemprop="description" content="docker 学习笔记">
-
-
-
-<meta itemprop="wordCount" content="14581">
-
-
-
-<meta itemprop="keywords" content="Docker," />
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Docker 笔记"/>
-<meta name="twitter:description" content="docker 学习笔记"/>
-
-<!--[if lte IE 9]>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
-<![endif]-->
-
-<!--[if lt IE 9]>
-  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
-<![endif]-->
-
-</head>
-<body>
-  <div id="mobile-navbar" class="mobile-navbar">
-  <div class="mobile-header-logo">
-    <a href="/" class="logo">Feisky</a>
-  </div>
-  <div class="mobile-navbar-icon">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-</div>
-<nav id="mobile-menu" class="mobile-menu slideout-menu">
-  <ul class="mobile-menu-list">
-    <a href="https://kubernetes.feisky.xyz">
-        <li class="mobile-menu-item">Kubernetes指南</li>
-      </a><a href="https://sdn.feisky.xyz">
-        <li class="mobile-menu-item">SDN</li>
-      </a><a href="/distributed/">
-        <li class="mobile-menu-item">分布式系统</li>
-      </a><a href="/container/">
-        <li class="mobile-menu-item">容器</li>
-      </a><a href="/machine-learning/">
-        <li class="mobile-menu-item">机器学习</li>
-      </a><a href="https://zhuanlan.zhihu.com/kubernetes">
-        <li class="mobile-menu-item">知乎</li>
-      </a><a href="/docs/">
-        <li class="mobile-menu-item">读书笔记</li>
-      </a>
-  </ul>
-</nav>
-  <div class="container" id="mobile-panel">
-    <header id="header" class="header">
-        <div class="logo-wrapper">
-  <a href="/" class="logo">Feisky</a>
-</div>
-
-<nav class="site-navbar">
-  <ul id="menu" class="menu">
-    <li class="menu-item">
-        <a class="menu-item-link" href="https://kubernetes.feisky.xyz">Kubernetes指南</a>
-      </li><li class="menu-item">
-        <a class="menu-item-link" href="https://sdn.feisky.xyz">SDN</a>
-      </li><li class="menu-item">
-        <a class="menu-item-link" href="/distributed/">分布式系统</a>
-      </li><li class="menu-item">
-        <a class="menu-item-link" href="/container/">容器</a>
-      </li><li class="menu-item">
-        <a class="menu-item-link" href="/machine-learning/">机器学习</a>
-      </li><li class="menu-item">
-        <a class="menu-item-link" href="https://zhuanlan.zhihu.com/kubernetes">知乎</a>
-      </li><li class="menu-item">
-        <a class="menu-item-link" href="/docs/">读书笔记</a>
-      </li>
-  </ul>
-</nav>
-
-    </header>
-
-    <main id="main" class="main">
-      <div class="content-wrapper">
-        <div id="content" class="content">
-          <article class="post">
-    
-    <header class="post-header">
-      <h1 class="post-title">Docker 笔记</h1>
-
-      <div class="post-meta">
-        <span class="post-time"> 0001-01-01 </span>
-        
-        <span class="more-meta"> 14581 words </span>
-        <span class="more-meta"> 30 mins read </span>
-        
-      </div>
-    </header>
-
-    
-    
-<div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Contents</h2>
   
-  <div class="post-toc-content">
-    <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#一-docker-简介">一、Docker 简介</a>
-<ul>
-<li><a href="#1-1-docker-守护进程">1.1 Docker 守护进程</a></li>
-<li><a href="#1-2-docker-客户端">1.2 Docker 客户端</a></li>
-<li><a href="#1-3-docker-内部">1.3 Docker 内部</a>
-<ul>
-<li><a href="#docker-镜像">Docker 镜像</a></li>
-<li><a href="#docker-仓库">Docker 仓库</a></li>
-<li><a href="#docker-容器">Docker 容器</a></li>
-</ul></li>
-<li><a href="#1-4-libcontainer">1.4 libcontainer</a></li>
-<li><a href="#1-5-命名空间-namespaces">1.5 命名空间「Namespaces」</a>
-<ul>
-<li><a href="#pid-namespace">pid namespace</a></li>
-<li><a href="#mnt-namespace">mnt namespace</a></li>
-<li><a href="#net-namespace">net namespace</a></li>
-<li><a href="#uts-namespace">uts namespace</a></li>
-<li><a href="#ipc-namespace">ipc namespace</a></li>
-<li><a href="#user-namespace">user namespace</a></li>
-<li><a href="#reference">Reference</a></li>
-</ul></li>
-<li><a href="#1-6-资源配额-cgroups">1.6 资源配额「cgroups」</a></li>
-</ul></li>
-<li><a href="#二-docker-安装">二、Docker 安装</a></li>
-<li><a href="#三-docker-基础用法">三、Docker 基础用法</a>
-<ul>
-<li><a href="#3-1-search-images">3.1 Search images</a></li>
-<li><a href="#3-2-pull-images">3.2 Pull images</a></li>
-<li><a href="#3-3-running-an-interactive-shell">3.3 Running an interactive shell</a></li>
-<li><a href="#3-4-相关快捷键">3.4 相关快捷键</a></li>
-</ul></li>
-<li><a href="#四-docker-命令帮助">四、Docker 命令帮助</a>
-<ul>
-<li><a href="#4-1-docker-help">4.1 docker help</a>
-<ul>
-<li><a href="#docker-command">docker command</a></li>
-<li><a href="#docker-option">docker option</a></li>
-</ul></li>
-<li><a href="#4-2-docker-search">4.2 docker search</a></li>
-<li><a href="#4-3-docker-info">4.3 docker info</a></li>
-<li><a href="#4-4-docker-pull-docker-push">4.4 docker pull &amp;&amp; docker push</a></li>
-<li><a href="#4-5-docker-images">4.5 docker images</a></li>
-<li><a href="#4-6-docker-rmi">4.6 docker rmi</a></li>
-<li><a href="#4-7-docker-run">4.7 docker run</a></li>
-<li><a href="#4-8-docker-start-stop-kill">4.8 docker start|stop|kill&hellip; &hellip;</a></li>
-<li><a href="#4-9-docker-1-3-新增特性和命令">4.9 Docker 1.3 新增特性和命令</a>
-<ul>
-<li><a href="#digital-signature-verification">Digital Signature Verification</a></li>
-<li><a href="#inject-new-processes-with-docker-exec">Inject new processes with <code>docker exec</code></a></li>
-<li><a href="#tune-container-lifecycles-with-docker-create">Tune container lifecycles with <code>docker create</code></a></li>
-<li><a href="#security-options">Security Options</a></li>
-</ul></li>
-<li><a href="#4-10-docker-1-5-新特性">4.10 Docker 1.5 新特性</a></li>
-</ul></li>
-<li><a href="#五-docker-端口映射">五、Docker 端口映射</a>
-<ul>
-<li><a href="#5-1-自动映射端口">5.1 自动映射端口</a></li>
-<li><a href="#5-2-绑定端口到指定接口">5.2 绑定端口到指定接口</a>
-<ul>
-<li><a href="#绑定-tcp-端口">绑定 TCP 端口</a></li>
-<li><a href="#绑定-udp-端口">绑定 UDP 端口</a></li>
-</ul></li>
-</ul></li>
-<li><a href="#六-docker-网络配置">六、Docker 网络配置</a>
-<ul>
-<li><a href="#6-1-docker-四种网络模式">6.1 Docker 四种网络模式</a>
-<ul>
-<li><a href="#host-模式">host 模式</a></li>
-<li><a href="#container-模式">container 模式</a></li>
-<li><a href="#none模式">none模式</a></li>
-<li><a href="#bridge模式">bridge模式</a></li>
-</ul></li>
-<li><a href="#6-2-列出当前主机网桥">6.2 列出当前主机网桥</a></li>
-<li><a href="#6-3-查看当前-docker0-ip">6.3 查看当前 docker0 ip</a></li>
-<li><a href="#6-4-运行一个容器">6.4 运行一个容器</a>
-<ul>
-<li><a href="#使用特定范围的-ip">使用特定范围的 IP</a></li>
-</ul></li>
-<li><a href="#6-5-不同主机间容器通信">6.5 不同主机间容器通信</a>
-<ul>
-<li><a href="#安装相应依赖软件">安装相应依赖软件</a></li>
-<li><a href="#桥接网络">桥接网络</a></li>
-<li><a href="#pipework">pipework</a></li>
-</ul></li>
-</ul></li>
-<li><a href="#七-dockerfile">七、Dockerfile</a>
-<ul>
-<li><a href="#7-1-from">7.1 FROM</a></li>
-<li><a href="#7-2-maintainer">7.2 MAINTAINER</a></li>
-<li><a href="#7-3-cmd">7.3 CMD</a></li>
-<li><a href="#7-4-expose">7.4 EXPOSE</a></li>
-<li><a href="#7-5-env">7.5 ENV</a></li>
-<li><a href="#7-6-add">7.6 ADD</a></li>
-<li><a href="#7-7-copy">7.7 COPY</a></li>
-<li><a href="#7-8-entrypoint">7.8 ENTRYPOINT</a>
-<ul>
-<li><a href="#exec-form-entrypoint-例子">Exec form ENTRYPOINT 例子</a></li>
-<li><a href="#shell-form-entrypoint-例子">Shell form ENTRYPOINT 例子</a></li>
-</ul></li>
-<li><a href="#7-9-volume">7.9 VOLUME</a></li>
-<li><a href="#7-10-user">7.10 USER</a></li>
-<li><a href="#7-11-workdir">7.11 WORKDIR</a></li>
-<li><a href="#7-12-onbuild">7.12 ONBUILD</a></li>
-<li><a href="#7-13-dockerfile-examples">7.13 Dockerfile Examples</a></li>
-<li><a href="#7-14-docker-build">7.14 docker build</a></li>
-<li><a href="#7-15-dockerfile-最佳实践">7.15 dockerfile 最佳实践</a>
-<ul>
-<li><a href="#dockerfile-指令">Dockerfile 指令</a></li>
-</ul></li>
-</ul></li>
-<li><a href="#八-容器数据管理">八、容器数据管理</a>
-<ul>
-<li><a href="#8-1-数据卷">8.1 数据卷</a>
-<ul>
-<li><a href="#添加一个数据卷">添加一个数据卷</a></li>
-<li><a href="#挂载宿主机目录为一个数据卷">挂载宿主机目录为一个数据卷</a></li>
-</ul></li>
-<li><a href="#8-2-创建和挂载一个数据卷容器">8.2 创建和挂载一个数据卷容器</a></li>
-<li><a href="#8-3-备份-恢复或迁移数据卷">8.3 备份、恢复或迁移数据卷</a>
-<ul>
-<li><a href="#备份">备份</a></li>
-<li><a href="#恢复">恢复</a></li>
-</ul></li>
-<li><a href="#8-4-删除-volumes">8.4 删除 Volumes</a></li>
-</ul></li>
-<li><a href="#九-链接容器">九、链接容器</a>
-<ul>
-<li><a href="#9-1-容器命名">9.1 容器命名</a></li>
-<li><a href="#9-2-链接容器">9.2 链接容器</a>
-<ul>
-<li><a href="#环境变量">环境变量</a></li>
-<li><a href="#更新-etc-hosts-文件">更新 <code>/etc/hosts</code> 文件</a></li>
-</ul></li>
-</ul></li>
-<li><a href="#十-构建私有库">十、构建私有库</a>
-<ul>
-<li><a href="#10-1-快速构建">10.1 快速构建</a></li>
-<li><a href="#10-2-不使用容器构建-registry">10.2 不使用容器构建 registry</a>
-<ul>
-<li><a href="#安装必要的软件">安装必要的软件</a></li>
-<li><a href="#配置-docker-registry">配置 docker-registry</a></li>
-<li><a href="#运行">运行</a></li>
-<li><a href="#高级启动方式-不推荐">高级启动方式 [不推荐]</a></li>
-</ul></li>
-<li><a href="#10-3-提交指定容器到私有库">10.3 提交指定容器到私有库</a></li>
-</ul></li>
-</ul></li>
-</ul>
-</nav>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Docker 笔记 &middot; Feisky</title>
+
+  
+  <link type="text/css" rel="stylesheet" href="https://feisky.xyz/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://feisky.xyz/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://feisky.xyz/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://feisky.xyz/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Feisky" />
+
+  
+</head>
+
+  <body class=" ">
+  <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://feisky.xyz/"><h1>Feisky</h1></a>
+      <p class="lead">
+       Notes about anything 
+      </p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="https://feisky.xyz/">Home</a> </li>
+      <li><a href="/container/"> Containers </a></li><li><a href="https://kubernetes.feisky.xyz"> Kubernetes </a></li><li><a href="/distributed/"> Distributed </a></li><li><a href="/docs/"> Readings </a></li><li><a href="/machine-learning/"> 机器学习 </a></li><li><a href="https://sdn.feisky.xyz"> SDN </a></li><li><a href="/about/"> About </a></li>
+    </ul>
+
+    <p>&copy; 2018. All rights reserved. </p>
   </div>
 </div>
 
-    
-    <div class="post-content">
-      
+    <div class="content container">
+    <div class="post">
+  <h1>Docker 笔记</h1>
+  <span class="post-date">Mon, Jan 1, 0001</span>
+  
 
 <h2 id="一-docker-简介">一、Docker 简介</h2>
 
@@ -2005,145 +1725,38 @@ $ docker push 私有库IP:5000/ubuntu
 <li><a href="https://github.com/docker/docker-registry/blob/master/ADVANCED.md">Docker-Registry advanced use</a></li>
 </ul>
 
-    </div>
-
-    
-    <div class="post-copyright">
-  <p class="copyright-item">
-    <span class="item-title">Author</span>
-    <span class="item-content">Feisky</span>
-  </p>
-  <p class="copyright-item">
-    <span class="item-title">LastMod</span>
-    <span class="item-content">2018-04-01</span>
-  </p>
-  
-  <p class="copyright-item">
-    <span class="item-title">License</span>
-    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a></span>
-  </p>
 </div>
 
+<h2>Comments</h2>
+<div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
     
     
-
-    <footer class="post-footer">
-      <div class="post-tags">
-          
-          <a href="/tags/docker/">Docker</a>
-          
-        </div>
-
-      
-      <nav class="post-nav">
-        
-          <a class="prev" href="/post/2015-03-05-docker-acquires-sdn-startup-socketplane/">
-            <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">Docker acquires SDN startup SocketPlane</span>
-            <span class="prev-text nav-mobile">Prev</span>
-          </a>
-        
-          <a class="next" href="/post/2015-02-26-going-native-with-openstack-centric-applications-murano/">
-            <span class="next-text nav-default">Going Native with OpenStack Centric Applications: Murano</span>
-            <span class="prev-text nav-mobile">Next</span>
-            <i class="iconfont icon-right"></i>
-          </a>
-      </nav>
-    </footer>
-  </article>
-        </div>
-        
-  <div id="disqus_thread"></div>
-    <script type="text/javascript">
-    (function() {
-      
-      
-      if (window.location.hostname === 'localhost') return;
-
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      var disqus_shortname = 'feisky';
-      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="social-links">
-      <a href="https://twitter.com/feisky" class="iconfont icon-twitter" title="twitter"></a>
-      <a href="https://github.com/feiskyer" class="iconfont icon-github" title="github"></a>
-      <a href="https://weibo.com/371069890" class="iconfont icon-weibo" title="weibo"></a>
-      <a href="https://www.zhihu.com/people/feisky" class="iconfont icon-zhihu" title="zhihu"></a>
-  <a href="https://feisky.xyz/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
-</div>
-
-<div class="copyright">
-  <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
-  </span>
-  <span class="division">|</span>
-  <span class="theme-info">
-    Theme - 
-    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
-  </span>
-
-  
-
-  <span class="copyright-year">
-    &copy; 
     
-      2014 - 
-    2018
-    <span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">Feisky</span>
-  </span>
-</div>
-    </footer>
-
-    <div class="back-to-top" id="back-to-top">
-      <i class="iconfont icon-up"></i>
-    </div>
-  </div>
-  
-<script src="/lib/highlight/highlight.pack.js?v=20171001"></script><script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
-  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
-  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
-<script type="text/javascript" src="/dist/even.min.js?v=3.1.1"></script>
-  <script type="text/javascript">
-    window.MathJax = {
-      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
-      showProcessingMessages: false,
-      messageStyle: 'none'
     };
-  </script>
-  <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "feisky" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
 
-
+    
 <script>
 window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
 ga('create', 'UA-69699206-1', 'auto');
 ga('send', 'pageview');
 </script>
 <script async src='//www.google-analytics.com/analytics.js'></script>
-<script id="baidu_analytics">
-  var _hmt = _hmt || [];
-  (function() {
-    if (window.location.hostname === 'localhost') return;
-    var hm = document.createElement("script"); hm.async = true;
-    hm.src = "https://hm.baidu.com/hm.js?d2f4aad4d3f8dc2de9170fa1df3fcbcf";
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(hm, s);
-  })();
-</script>
 
-
-
-
-
-
-</body>
+  </body>
 </html>
