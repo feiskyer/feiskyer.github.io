@@ -5,6 +5,8 @@ category: cluster
 tags: [cloud, container, cluster]
 ---
 
+# Serverless
+
 Serverless，即无服务器架构，将大家从服务器中解放了出来，只需要关注业务逻辑本身。用户只需要关注数据和业务逻辑，无需维护服务器，也不需要关心系统的容量和扩容。Serverless本质上是一种更简单易用的PaaS，包含两种含义：
 
 - 仅依赖云端服务来管理业务逻辑和状态的应用或服务，一般称为BaaS (Backend as a Service)

@@ -25,30 +25,11 @@ type: page
 * 自动化变更管理：渐进式发布、迅速准确定位问题、异常时迅速回退
 * 基于需求预测（自然增长和新功能发布、商业推广等非自然增长）规划系统容量，改进软件提供资源利用率
 
-## 目录
-
-1. [SRE指导思想](guideline/)
-1. [Google生产环境](google/)
-1. [监控与告警](monitor/)
-1. [on-call轮值](oncall/)
-1. [故障排查](diagnose/)
-1. [软件测试](testing/)
-1. [负载均衡](lb/)
-1. [避免连锁故障](cascading/)
-1. [分布式共识](distributed-consensus/)
-1. [定时任务](cron/)
-1. [数据流水线](pipeline/)
-1. [数据完整性](integrity/)
-1. [可靠发布](deploy/)
-1. [SRE管理](manage/)
-1. [附录](appendix/)
-
-
 **SRE层级模型**
 
 ![](sre.png)
 
-**SRE book**
+## SRE book
 
 Google已经放出了SRE的免费电子书，可以直接在线阅读，<http://landing.google.com/sre/book/index.html>。全书共分为五个部分：
 
@@ -58,5 +39,4 @@ Google已经放出了SRE的免费电子书，可以直接在线阅读，<http://
 - [Part IV - Management](http://landing.google.com/sre/book/chapters/part4.html)介绍如何管理和协调组织内的各个团队
 - [Part V - Conclusions](http://landing.google.com/sre/book/chapters/part5.html)最后是总结
 
-
-**参考** _[Site Reliability Engineering: How Google Runs Production Systems](https://landing.google.com/sre/)_。
+详细目录和中文内容为

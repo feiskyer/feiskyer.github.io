@@ -1,5 +1,5 @@
 ---
-title: cri-o (ocid)
+title: cri-o
 type: page
 ---
 

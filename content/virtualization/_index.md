@@ -6,8 +6,8 @@ type: page
 # 虚拟化的世界
 
 
-- [GPU](GPU)
-- [SR-IOV](SR-IOV)
+- [GPU](gpu)
+- [SR-IOV](sr-iov)
 - [pvcall](pvcall)
 - [vsocks](vsocks)
 
