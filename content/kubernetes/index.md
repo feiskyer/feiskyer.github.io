@@ -1,7 +1,7 @@
 ---
 title: Kubernetes指南
 date: 2017-06-21 16:11:07
-layout: "post"
+type: page
 ---
 
 Kubernetes是谷歌开源的容器集群管理系统，是Google多年大规模容器管理技术Borg的开源版本，也是CNCF最重要的项目之一，主要功能包括：

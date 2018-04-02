@@ -1,5 +1,5 @@
 ---
-layout: post
+type: page
 title: Kubernetes 任意文件访问漏洞
 date: 2018-03-21 20:17:18
 tags: kubernetes
@@ -160,4 +160,3 @@ d-----         3/7/2018   4:43 AM                volumeplugins
 -a----         3/7/2018   4:43 AM            635 azure.json
 -a----         3/7/2018   4:43 AM           9446 config
 ```
-

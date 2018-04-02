@@ -1,6 +1,6 @@
 ---
 title: "Google生产环境"
-layout: "post"
+type: page
 ---
 
 # Google生产环境

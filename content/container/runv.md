@@ -1,6 +1,6 @@
 ---
 title: "runV"
-layout: "post"
+type: page
 ---
 
 [runV](https://github.com/hyperhq/runv) 是[Open Container Initiative (OCI) 标准](https://github.com/opencontainers/runtime-spec) 的一个实现（其他实现包括[runc](runc.html)和[clear container](https://github.com/01org/cc-oci-runtime)等）。与runc不同的是，runV是一个基于虚拟化的OCI引擎，支持kvm、kvmtool、Xen、QEMU等各种虚拟化技术，并通过Xen 4.9+提供的xenpv驱动、KSM、精简内核、无需Guest OS、vhostuser等技术大大提升了虚拟化的性能（所谓的轻量级虚拟化）。此外，runV也支持x86、ARM等多种不同的平台。
@@ -94,4 +94,3 @@ systemctl restart docker
 docker info|grep Runtime # should show runv in the list
 docker run --rm -it busybox sh
 ```
-

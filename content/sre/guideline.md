@@ -1,6 +1,6 @@
 ---
 title: "SRE指导思想"
-layout: "post"
+type: page
 ---
 
 ## 拥抱风险

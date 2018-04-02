@@ -1,5 +1,6 @@
 ---
 title: '一致性'
+type: page
 ---
 
 

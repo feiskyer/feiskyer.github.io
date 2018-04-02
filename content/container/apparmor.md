@@ -1,6 +1,6 @@
 ---
 title: "AppArmor"
-layout: "post"
+type: page
 ---
 
 [AppArmor (Application Armor)](http://wiki.apparmor.net/index.php/AppArmor_Core_Policy_Reference) 是Linux内核的一个安全模块，允许系统管理员将每个程序与一个安全配置文件关联，从而限制程序的功能。通过它你可以指定程序可以读、写或运行哪些文件，是否可以打开网络端口等。作为对传统Unix的自主访问控制模块的补充，AppArmor提供了强制访问控制机制。
@@ -47,4 +47,3 @@ $ kubectl exec hello-apparmor touch /tmp/test
 touch: /tmp/test: Permission denied
 error: error executing remote command: command terminated with non-zero exit code: Error executing in Docker Container: 1
 ```
-

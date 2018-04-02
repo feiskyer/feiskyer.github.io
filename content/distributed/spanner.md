@@ -1,6 +1,6 @@
 ---
 title: spanner
-layout: "post"
+type: page
 ---
 
 [Spanner](https://research.google.com/archive/spanner.html)是Google提供的跨区域/跨数据中心的关系型分布式数据库，在满足事务一致性的同时还具备极强的可扩展性，结合了传统关系数据库和NoSQL数据库的优点。
@@ -59,5 +59,3 @@ Spanner 近乎完美的一个分布式存储，在 Google 内部也是的 BigTab
 - [Inside Cloud Spanner and the CAP Theorem](https://cloudplatform.googleblog.com/2017/02/inside-Cloud-Spanner-and-the-CAP-Theorem.html)
 - [Spanner, TrueTime and the CAP Theorem](https://research.google.com/pubs/pub45855.html)
 - [Hacker News讨论](https://news.ycombinator.com/item?id=13644959)
-
-

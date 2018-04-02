@@ -1,7 +1,7 @@
 ---
 title: tracing
 date: 2016-10-21 17:27:47
-layout: "post"
+type: page
 ---
 
 # Tracing tools of Linux
@@ -36,4 +36,3 @@ layout: "post"
 ![](/images/14770421636595.png)
 
 ![](/images/14770421697329.png)
-

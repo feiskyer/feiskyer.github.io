@@ -1,6 +1,6 @@
 ---
 title: "Serverless案例"
-layout: "post"
+type: page
 ---
 
 
@@ -15,4 +15,3 @@ layout: "post"
 ## 实时流数据处理
 
 ![](/images/14872488779810.png)
-

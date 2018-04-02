@@ -1,6 +1,6 @@
 ---
 title: Etcd
-layout: "post"
+type: page
 ---
 
 Etcd是CoreOS基于Raft开发的分布式key-value存储，可用于服务发现、共享配置以及一致性保障（如数据库选主、分布式锁等）。
@@ -39,7 +39,7 @@ Etcd v2 和 v3 本质上是共享同一套 raft 协议代码的两个独立的�
 Etcd v2 是个纯内存的实现，并未实时将数据写入到磁盘，持久化机制很简单，就是将store整合序列化成json写入文件。数据在内存中是一个简单的树结构。比如以下数据存储到 Etcd 中的结构就如图所示。
 
 ```
-/nodes/1/name  node1  
+/nodes/1/name  node1
 /nodes/1/ip    192.168.1.1
 ```
 
@@ -71,9 +71,9 @@ Etcd v3 store 分为两部分，一部分是内存中的索引，kvindex，是�
 用etcdctl通过批量接口写入两条记录：
 
 ```
-etcdctl txn <<<' 
-put key1 "v1" 
-put key2 "v2" 
+etcdctl txn <<<'
+put key1 "v1"
+put key2 "v2"
 
 '
 ```
@@ -81,9 +81,9 @@ put key2 "v2"
 再通过批量接口更新这两条记录：
 
 ```
-etcdctl txn <<<' 
-put key1 "v12" 
-put key2 "v22" 
+etcdctl txn <<<'
+put key1 "v12"
+put key2 "v22"
 
 '
 ```
@@ -91,9 +91,9 @@ put key2 "v22"
 boltdb中其实有了4条数据：
 
 ```
-rev={3 0}, key=key1, value="v1" 
-rev={3 1}, key=key2, value="v2" 
-rev={4 0}, key=key1, value="v12" 
+rev={3 0}, key=key1, value="v1"
+rev={3 1}, key=key2, value="v2"
+rev={4 0}, key=key1, value="v12"
 rev={4 1}, key=key2, value="v22"
 ```
 
@@ -128,39 +128,39 @@ Etcd 和 Zookeeper 提供的能力非常相似，都是通用的一致性元信�
 
 ### Etcd 的周边工具
 
-1.  **Confd**  
+1.  **Confd**
 
-     在分布式系统中，理想情况下是应用程序直接和 Etcd 这样的服务发现/配置中心交互，通过监听 Etcd 进行服务发现以及配置变更。但我们还有许多历史遗留的程序，服务发现以及配置大多都是通过变更配置文件进行的。Etcd 自己的定位是通用的kv存储，所以并没有像 Consul 那样提供实现配置变更的机制和工具，而 Confd 就是用来实现这个目标的工具。  
+     在分布式系统中，理想情况下是应用程序直接和 Etcd 这样的服务发现/配置中心交互，通过监听 Etcd 进行服务发现以及配置变更。但我们还有许多历史遗留的程序，服务发现以及配置大多都是通过变更配置文件进行的。Etcd 自己的定位是通用的kv存储，所以并没有像 Consul 那样提供实现配置变更的机制和工具，而 Confd 就是用来实现这个目标的工具。
 
-     Confd 通过watch机制监听 Etcd 的变更，然后将数据同步到自己的一个本地存储。用户可以通过配置定义自己关注那些key的变更，同时提供一个配置文件模板。Confd 一旦发现数据变更就使用最新数据渲染模板生成配置文件，如果新旧配置文件有变化，则进行替换，同时触发用户提供的reload脚本，让应用程序重新加载配置。  
+     Confd 通过watch机制监听 Etcd 的变更，然后将数据同步到自己的一个本地存储。用户可以通过配置定义自己关注那些key的变更，同时提供一个配置文件模板。Confd 一旦发现数据变更就使用最新数据渲染模板生成配置文件，如果新旧配置文件有变化，则进行替换，同时触发用户提供的reload脚本，让应用程序重新加载配置。
 
      Confd 相当于实现了部分 Consul 的agent以及consul-template的功能，作者是kubernetes的Kelsey Hightower，但大神貌似很忙，没太多时间关注这个项目了，很久没有发布版本，我们着急用，所以fork了一份自己更新维护，主要增加了一些新的模板函数以及对metad后端的支持。[confd](https://github.com/yunify/confd)
 
-2.  **Metad**  
+2.  **Metad**
 
-     服务注册的实现模式一般分为两种，一种是调度系统代为注册，一种是应用程序自己注册。调度系统代为注册的情况下，应用程序启动后需要有一种机制让应用程序知道『我是谁』，然后发现自己所在的集群以及自己的配置。Metad 提供这样一种机制，客户端请求 Metad 的一个固定的接口 /self，由 Metad 告知应用程序其所属的元信息，简化了客户端的服务发现和配置变更逻辑。  
+     服务注册的实现模式一般分为两种，一种是调度系统代为注册，一种是应用程序自己注册。调度系统代为注册的情况下，应用程序启动后需要有一种机制让应用程序知道『我是谁』，然后发现自己所在的集群以及自己的配置。Metad 提供这样一种机制，客户端请求 Metad 的一个固定的接口 /self，由 Metad 告知应用程序其所属的元信息，简化了客户端的服务发现和配置变更逻辑。
 
      Metad 通过保存一个ip到元信息路径的映射关系来做到这一点，当前后端支持Etcd v3，提供简单好用的 http rest 接口。 它会把 Etcd 的数据通过watch机制同步到本地内存中，相当于 Etcd 的一个代理。所以也可以把它当做Etcd 的代理来使用，适用于不方便使用 Etcd v3的rpc接口或者想降低 Etcd 压力的场景。  [metad](https://github.com/yunify/metad)
 
-3.  Etcd 集群一键搭建脚本  
+3.  Etcd 集群一键搭建脚本
 
      Etcd 官方那个一键搭建脚本有bug，我自己整理了一个脚本，通过docker的network功能，一键搭建一个本地的 Etcd 集群便于测试和试验。[一键搭建脚本](https://gist.github.com/jolestar/6644dee696dcdce432caa46705ddc7ba)
 
 ### Etcd 使用注意事项
 
-1.  Etcd cluster 初始化的问题  
+1.  Etcd cluster 初始化的问题
 
      如果集群第一次初始化启动的时候，有一台节点未启动，通过v3的接口访问的时候，会报告Error:  Etcdserver: not capable 错误。这是为兼容性考虑，集群启动时默认的API版本是2.3，只有当集群中的所有节点都加入了，确认所有节点都支持v3接口时，才提升集群版本到v3。这个只有第一次初始化集群的时候会遇到，如果集群已经初始化完毕，再挂掉节点，或者集群关闭重启（关闭重启的时候会从持久化数据中加载集群API版本），都不会有影响。
 
-2.  Etcd 读请求的机制  
+2.  Etcd 读请求的机制
 
-     v2  quorum=true 的时候，读取是通过raft进行的，通过cli请求，该参数默认为true。  
+     v2  quorum=true 的时候，读取是通过raft进行的，通过cli请求，该参数默认为true。
 
-     v3  –consistency=“l” 的时候（默认）通过raft读取，否则读取本地数据。sdk 代码里则是通过是否打开：WithSerializable option 来控制。  
+     v3  –consistency=“l” 的时候（默认）通过raft读取，否则读取本地数据。sdk 代码里则是通过是否打开：WithSerializable option 来控制。
 
      一致性读取的情况下，每次读取也需要走一次raft协议，能保证一致性，但性能有损失，如果出现网络分区，集群的少数节点是不能提供一致性读取的。但如果不设置该参数，则是直接从本地的store里读取，这样就损失了一致性。使用的时候需要注意根据应用场景设置这个参数，在一致性和可用性之间进行取舍。
 
-3.  Etcd 的 compact 机制  
+3.  Etcd 的 compact 机制
 
      Etcd 默认不会自动 compact，需要设置启动参数，或者通过命令进行compact，如果变更频繁建议设置，否则会导致空间和内存的浪费以及错误。Etcd v3 的默认的 backend quota 2GB，如果不 compact，boltdb 文件大小超过这个限制后，就会报错：”Error:  etcdserver: mvcc: database space exceeded”，导致数据无法写入。
 
@@ -168,11 +168,11 @@ Etcd 和 Zookeeper 提供的能力非常相似，都是通用的一致性元信�
 
 自动上次 Elasticsearch 的文章之后，给自己安排了一个作业，每次分析源码后需要提出几个发散思维的想法，开个脑洞。
 
-1.  并发代码调用分析追踪工具  
+1.  并发代码调用分析追踪工具
 
      当前IDE的代码调用分析追踪都是通过静态的代码分析来追踪方法调用链实现的，对阅读分析代码非常有用。但程序如果充分使用CSP或者Actor模型后，都通过消息进行调用，没有了明确的方法调用链，给阅读和理解代码带来了困难。如果语言或者IDE能支持这样的消息投递追踪分析，那应该非常有用。当然我这个只是脑洞，不考虑实现的可能性和复杂度。
 
-2.  实现一个通用的 multiple group raft库  
+2.  实现一个通用的 multiple group raft库
 
      当前 Etcd 的raft实现保证了多个节点数据之间的同步，但明显的一个问题就是扩充节点不能解决容量问题。要想解决容量问题，只能进行分片，但分片后如何使用raft同步数据？只能实现一个 multiple group raft，每个分片的多个副本组成一个虚拟的raft group，通过raft实现数据同步。当前实现了multiple group raft的有 TiKV 和 Cockroachdb，但尚未一个独立通用的。理论上来说，如果有了这套 multiple group raft，后面挂个持久化的kv就是一个分布式kv存储，挂个内存kv就是分布式缓存，挂个lucene就是分布式搜索引擎。当然这只是理论上，要真实现复杂度还是不小。
 
@@ -197,7 +197,7 @@ Etcd在Zookeeper已经奠定江湖地位的情况下，硬是重新造了一个�
 **问：etcd和eureka、consul 的异同，以及各自的适用场景，以及选型原则。这个问题其实可以把zk也包括进来，这些都有相同之处。**
 
 答：etcd和zk的选型前面讲到了，二者的定位都是通用的一致性kv存储，而eureka和consul的定位则是专做服务注册和发现。前二者的优势当然是通用性，应用广泛，部署运维的时候容易和已有的服务一起共用，而同时缺点也是太通用了，每个应用的服务注册都有自己的一套元数据格式，互相整合起来就比较麻烦了，比如想做个通用的api gateway就会遇到元数据格式兼容问题。这也成为后二者的优势。同时因为后二者的目标比较具体，所以可以做一些更高级的功能，比如consul的DNS支持，consul-template工具，eureka的事件订阅过滤机制。Eureka本身的实现是一个AP系统，也就是说牺牲了一致性，它认为在服务发现和配置中心这个场景下，可用性和分区容错比一致性更重要。
-我个人其实更期待后二者的这种专门的解决方案，要是能形成服务注册标准，那以后应用之间互相交互就容易了。但也有个可能是这种标准由集群调度系统来形成事实标准。  
+我个人其实更期待后二者的这种专门的解决方案，要是能形成服务注册标准，那以后应用之间互相交互就容易了。但也有个可能是这种标准由集群调度系统来形成事实标准。
 后二者我了解的也不深入，感觉可以另起一篇文章了。
 
 **问：接上面，etcd和zk各自都有哪些坑可能会被踩到，都有多坑。掉进去了如何爬起来？**
@@ -241,5 +241,3 @@ _注：本文转自http://jolestar.com/etcd-architecture/_
 * [Etcd github](https://github.com/coreos/etcd/)
 * [Projects using etcd](https://github.com/coreos/etcd/blob/master/Documentation/libraries-and-tools.md)
 * http://jolestar.com/etcd-architecture/
-
-

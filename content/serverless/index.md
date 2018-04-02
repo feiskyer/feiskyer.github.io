@@ -1,5 +1,5 @@
 ---
-layout: "post"
+type: page
 title: "Serverless"
 category: cluster
 tags: [cloud, container, cluster]

@@ -1,6 +1,6 @@
 ---
 title: "gPRC"
-layout: "post"
+type: page
 ---
 
 gPRC是基于HTTP/2的开源高性能PRC框架，它基于Protocol Buffer序列化协议，并支持Java、Go、C++、Python、Node.js、Ruby、PHP等主流编程语言。

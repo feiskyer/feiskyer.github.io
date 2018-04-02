@@ -1,6 +1,9 @@
-# Amazon RDS
+---
+title: Amazon RDS
+type: page
+---
 
-Amazon Relational Database Service (Amazon RDS) 是最早的云数据库产品，提供托管的关系数据库，包括Amazon Aurora、PostgreSQL、MySQL、MariaDB、Oracle 和 Microsoft SQL Server。 
+Amazon Relational Database Service (Amazon RDS) 是最早的云数据库产品，提供托管的关系数据库，包括Amazon Aurora、PostgreSQL、MySQL、MariaDB、Oracle 和 Microsoft SQL Server。
 
 Amazon RDS 的架构类似在底层的数据库上构建了一个中间层，这个中间层负责路由客户端的 SQL 请求发往实际的数据库存储节点，因为将业务端的请求通过中间层代理，所以可以对底层的数据库实例进行很多运维工作，比如备份，迁移到磁盘更大或者 IO 更空闲的物理机等。这些工作因为隐藏在中间层后边，业务层可以做到基本没有感知，另外这个中间路由层基本只是简单的转发请求，所以底层可以连接各种类型的数据库。所以一般来说，RDS 基本都会支持 MySQL / SQLServer / MariaDB / PostgreSQL 等流行的数据库，对兼容性基本没有损失，而且在这个 Proxy 层设计良好的情况下，对性能的损失是比较小的。另外有一层中间层隔离底层的资源池，对于资源的利用和调度上可以做不少事情。
 
@@ -11,5 +14,3 @@ Amazon RDS 的架构类似在底层的数据库上构建了一个中间层，这
 **链接**
 
 - [Amazon RDS](https://aws.amazon.com/cn/rds/details/)
-
-

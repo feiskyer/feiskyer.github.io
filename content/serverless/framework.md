@@ -1,6 +1,6 @@
 ---
 title: Serverless开源框架
-layout: "post"
+type: page
 ---
 
 常见的Serverless开源框架简介。
@@ -39,4 +39,3 @@ OpenWhisk是IBM发布的开源事件驱动计算平台，剑指AWS Lambda，其�
 * [lambdoku](https://github.com/kubek2k/lambdoku) - Heroku-like experience when using AWS Lambda
 * [IronFunctions](https://github.com/iron-io/functions) - The Serverless Microservices platform
 * [PyWren](https://github.com/ericmjonas/pywren) - provides the ability to parse out Python-based scientific workloads across many different Lambda services
-

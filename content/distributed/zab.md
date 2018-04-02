@@ -1,6 +1,7 @@
 ---
 title: Zab
 date: 2016-10-21 16:11:07
+type: page
 ---
 
 # Zab
@@ -31,5 +32,3 @@ Zab通过约束事务先后顺序达到强一致性，先广播的事务先commi
 - [Architecture of ZAB – ZooKeeper Atomic Broadcast protocol](https://distributedalgorithm.wordpress.com/2015/06/20/architecture-of-zab-zookeeper-atomic-broadcast-protocol/)
 - http://www.cnblogs.com/bangerlee/p/5991417.html
 - http://blog.xiaohansong.com/2016/08/25/zab/
-
-

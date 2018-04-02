@@ -1,6 +1,7 @@
 ---
 title: PV Calls
 date: 2016-10-14 14:03:04
+type: page
 ---
 
 PV Calls is a paravirtualized protocol that allows the implementation of
@@ -27,7 +28,7 @@ Specifically, PV Calls for networking offer these advantages:
   addresses
 * localhost becomes a secure namespace for inter-VMs communications
 
-PV Calls to forward POSIX calls from DomU to Dom0. The initial set of calls covers socket, connect, accept, listen, recvmsg, sendmsg and poll. The frontend driver forwards syscalls requests over a ring. The backend implements the syscalls, then returns success or failure to the caller. The protocol creates a new ring for each active socket. The ring size is configurable on a per socket basis. Receiving data is copied to the ring by the backend, while sending data is copied to the ring by the frontend. An event channel per ring is used to notify the other end of any activity. 
+PV Calls to forward POSIX calls from DomU to Dom0. The initial set of calls covers socket, connect, accept, listen, recvmsg, sendmsg and poll. The frontend driver forwards syscalls requests over a ring. The backend implements the syscalls, then returns success or failure to the caller. The protocol creates a new ring for each active socket. The ring size is configurable on a per socket basis. Receiving data is copied to the ring by the backend, while sending data is copied to the ring by the frontend. An event channel per ring is used to notify the other end of any activity.
 
 ![](/images/14764251600989.png)
 
@@ -47,4 +48,3 @@ PV Calls to forward POSIX calls from DomU to Dom0. The initial set of calls cove
 [1] https://blog.xenproject.org/tag/pv-calls/
 [2] http://www.slideshare.net/xen_com_mgr/xpds16-a-paravirtualized-interface-for-socket-syscalls-dimitri-stiliadis-aporeto?ref=https://blog.xenproject.org/tag/pv-calls/
 [3] https://patchwork.kernel.org/patch/9332691/
-

@@ -1,5 +1,6 @@
 ---
 title: "Site Reliability Engineering (SRE)"
+type: page
 ---
 
 ## SRE的目标

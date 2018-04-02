@@ -1,4 +1,7 @@
-# 云原生框架
+---
+title: 云原生框架
+type: page
+---
 
 ## API
 
@@ -16,4 +19,3 @@
 - [OpenAPI](https://www.openapis.org/)
 - [GitBook](https://www.gitbook.com/)
 - [Daux.io](https://github.com/justinwalsh/daux.io)
-

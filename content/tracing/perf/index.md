@@ -1,6 +1,6 @@
 ---
 title: "perf"
-layout: "post"
+type: page
 ---
 
 ## perf简介

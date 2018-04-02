@@ -1,6 +1,6 @@
 ---
 title: "数据完整性"
-layout: "post"
+type: page
 ---
 
 数据完整性（data integrity）意味着服务可用性和数据可访问性，二者缺一不可。

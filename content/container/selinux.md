@@ -1,7 +1,6 @@
 ---
 title: SELinux
-date: 2016-10-21 16:41:20
-layout: "post"
+type: page
 ---
 
 SELinux (Security-Enhanced Linux) 是一种强制访问控制（mandatory access control）的实现。它的作法是以最小权限原则（principle of least privilege）为基础，在Linux核心中使用Linux安全模块（Linux Security Modules）。SELinux主要由美国国家安全局开发，并于2000年12月22日发行给开放源代码的开发社区。
@@ -42,7 +41,7 @@ $ touch /html/index.html
 $ ls -Z /html/index.html
 -rw-r--r--  root root user_u:object_r:default_t        /html/index.html
 $ ls -Z | grep html
-drwxr-xr-x  root root user_u:object_r:default_t        html 
+drwxr-xr-x  root root user_u:object_r:default_t        html
 
 # Relabel
 $ chcon -v --type=httpd_sys_content_t /html
@@ -52,7 +51,7 @@ context of /html/index.html changed to user_u:object_r:httpd_sys_content_t
 $ ls -Z /html/index.html
 -rw-r--r--  root root user_u:object_r:httpd_sys_content_t    /html/index.html
 $ ls -Z | grep html
-drwxr-xr-x  root root user_u:object_r:httpd_sys_content_t    html 
+drwxr-xr-x  root root user_u:object_r:httpd_sys_content_t    html
 ```
 
 ## Docker中的SELinux
@@ -99,7 +98,7 @@ spec:
     emptyDir: {}
 ```
 
-这会自动给容器生成如下的`HostConfig.Binds`: 
+这会自动给容器生成如下的`HostConfig.Binds`:
 
 - `/var/lib/kubelet/pods/f734678c-95de-11e6-89b0-42010a8c0002/volumes/kubernetes.io~empty-dir/test-volume:/mounted_volume:Z`
 - `/var/lib/kubelet/pods/f734678c-95de-11e6-89b0-42010a8c0002/volumes/kubernetes.io~secret/default-token-88xxa:/var/run/secrets/kubernetes.io/serviceaccount:ro,Z`

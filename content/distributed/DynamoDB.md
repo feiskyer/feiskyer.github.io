@@ -1,4 +1,7 @@
-# Amazon DynamoDB
+---
+title: Amazon DynamoDB
+type: page
+---
 
 > Amazon DynamoDB 是一项快速灵活的 NoSQL 数据库服务，适合所有需要一致性且延迟低于 10 毫秒的任意规模的应用程序。它是完全托管的云数据库，支持文档和键值存储模型。灵活的数据模型和可靠的性能使其成为移动、Web、游戏、广告技术、物联网和众多其他应用的不二之选
 
@@ -12,5 +15,3 @@ Dynamo 对外主打的特点是水平扩展能力和通过多副本实现（3副
 **链接**
 
 - [Amazon DynamoDB](https://aws.amazon.com/cn/dynamodb/)
-
-

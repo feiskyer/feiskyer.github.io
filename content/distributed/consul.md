@@ -1,5 +1,4 @@
 ---
 title: Consul
-layout: "post"
+type: page
 ---
-

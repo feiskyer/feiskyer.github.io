@@ -1,6 +1,6 @@
 ---
 title: "API Design"
-layout: "post"
+type: page
 ---
 
 - [Google API Design Guide](https://cloud.google.com/apis/design/)
@@ -8,4 +8,3 @@ layout: "post"
 - [Swagger](http://swagger.io)
 - [KONG](https://getkong.org)
 - [Tyk](https://tyk.io)
-

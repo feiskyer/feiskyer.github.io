@@ -1,10 +1,11 @@
 ---
 title: 京东容器集群建设之路
+type: page
 ---
 
 ## 从0诞生
 
-**2013年初，京东商城研发布局虚拟化技术方向。那时的我们从0起步。从几人小团队开始起航。** 
+**2013年初，京东商城研发布局虚拟化技术方向。那时的我们从0起步。从几人小团队开始起航。**
 
 在物理机时代，应用上线等待分配物理机时间平均在一周。应用混部要看脸看颜值的，没有隔离的应用混部如履薄冰，所以在物理机时代混部的比例平均每台物理机低于9个不同应用的tomcat实例。
 
@@ -144,4 +145,3 @@ Openstack对VM支持是天生的最好，所以接入第一个核心业务，就
 * Spider；京东东西向无阻塞网络，有效支持分布式系统在容器运行运行
 
 转载自[京东容器集群建设之路](https://mp.weixin.qq.com/s?__biz=MzI1NzQyOTM3Ng==&mid=2247483912&idx=1&sn=7a87f80d179dc54c26a3d7745db60d18&scene=0&key=564c3e9811aee0ab691d1db106d05a91f0fbd8b1fb068937f32bdbb8c6bfc267cbcbb2965ab0ea35f1395ccc882ea528f021a5811150af42f0987430d90bef9751759f58d0840c3d7d41e73801a7e6f7&ascene=0&uin=MTMxMzgxNQ%3D%3D&devicetype=iMac+MacBookPro11%2C1+OSX+OSX+10.12.2+build(16C67)&version=12010110&nettype=WIFI&fontScale=100&pass_ticket=CAWHAQte8XQdOCW2aS3ki7Km3bb%2BZDE1jee6RIWG%2Bl0%3D)
-

@@ -1,5 +1,6 @@
 ---
 title: "Docker笔记"
+type: page
 ---
 
 - [Docker networking](networking/)

@@ -1,6 +1,6 @@
 ---
 title: "分布式共识提高可靠性"
-layout: "post"
+type: page
 ---
 
 [CAP理论](https://en.wikipedia.org/wiki/CAP_theorem)指出在分布式系统中，最多只能满足以下三条中的两个：
@@ -71,7 +71,7 @@ Paxos算法是莱斯利·兰伯特于1990年提出的一种基于消息传递且
 **论文**
 
 1. [The Part-Time Parliament](http://research.microsoft.com/en-us/um/people/lamport/pubs/lamport-paxos.pdf)
-2. [Paxos Made Simple](http://research.microsoft.com/en-us/um/people/lamport/pubs/paxos-simple.pdf) 
+2. [Paxos Made Simple](http://research.microsoft.com/en-us/um/people/lamport/pubs/paxos-simple.pdf)
 3. [Paxos Made Live](http://static.googleusercontent.com/media/research.google.com/zh-CN//archive/paxos_made_live.pdf)
 3. [CONSENSUS: BRIDGING THEORY AND PRACTICE](https://ramcloud.stanford.edu/~ongaro/thesis.pdf)
 
@@ -267,4 +267,3 @@ Paxos的应用简明来讲就是由算法确定一个操作系列，通过编写
 ## Raft
 
 参考[这里](../distributed/raft.html)。
-

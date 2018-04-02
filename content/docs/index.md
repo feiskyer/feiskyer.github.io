@@ -9,7 +9,7 @@ title: "docs"
 * [Kubernetes指南](http://feisky.xyz/k8s/)
 * [Kubernetes开发环境指南](http://feisky.xyz/kubernetes-dev/)
 * [CRI-O](/container/cri-o/)
-* [Serverless](/2016/02/26/Notes-about-serverless/)
+* [Serverless](/serverless/)
 * [容器编排系统对比](http://calcotestudios.com/ccco)
 * [容器网络方案对比](https://leecalcote.github.io/ccco/overlay-underlay-betting-on-container-networking.html)
 * [Docker 1.12](http://dockerconrecap-leecalcote.rhcloud.com/#/)

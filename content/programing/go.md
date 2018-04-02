@@ -1,7 +1,7 @@
 ---
 title: Go语言技巧
 date: 2016-09-18 14:20:54
-layout: "post"
+type: page
 ---
 
 # Go语言技巧
@@ -27,11 +27,11 @@ layout: "post"
 ### 避免循环中的变量逃逸到循环外
 
 ```go
-func print(pi *int) { 
-    fmt.Println(*pi) 
+func print(pi *int) {
+    fmt.Println(*pi)
 }
 
-for i := 0; i < 10; i++ {  
+for i := 0; i < 10; i++ {
     defer fmt.Println(i) // 预期的结果; 打印 9 ... 0
     defer func(){ fmt.Println(i) }() // 错误的结果; 打印10个"10"
     defer func(i int){ fmt.Println(i) }(i) // 正确的预期结果
@@ -40,7 +40,7 @@ for i := 0; i < 10; i++ {
     go func(){ fmt.Println(i) }() // 错误; 完全不可预知.
 }
 
-for key, value := range myMap {  
+for key, value := range myMap {
     // Same for key & value as i!
 }
 ```
@@ -69,7 +69,7 @@ func F1() {
 	}
 }
 
-// a method call is equivalent to a regular function call 
+// a method call is equivalent to a regular function call
 // with the receiver passed as an argument. Since the argument
 // is evaluated at the time the defer statement is invoked,
 // you get different values of t each time.
@@ -112,7 +112,7 @@ func TestGetACat(t *testing.T) {
 }
 ```
 
-大家猜猜会怎么样? 上面的这个测试讲永远不会检测到空指针。这是因为interface作为一个指针的容器来使用了，因此GetACat可以返回一个指针或者空指针. 
+大家猜猜会怎么样? 上面的这个测试讲永远不会检测到空指针。这是因为interface作为一个指针的容器来使用了，因此GetACat可以返回一个指针或者空指针.
 
     An interface value is nil only if the inner value and type are both unset, `(nil, nil)`. In particular, a nil interface will always hold a nil type. If we store a nil pointer of type `*int` inside an interface value, the inner type will be *int regardless of the value of the pointer: `(*int, nil)`. Such an interface value will therefore be non-nil even when the pointer inside is nil.
 
@@ -144,13 +144,13 @@ func returnsError() error {
 
 ```go
 var ErrDidNotWork = errors.New("did not work")
-func DoTheThing(reallyDoIt bool) (err error) {  
-    if reallyDoIt {    
-       result, err := tryTheThing()    
+func DoTheThing(reallyDoIt bool) (err error) {
+    if reallyDoIt {
+       result, err := tryTheThing()
        if err != nil || result != "it worked" {
          err = ErrDidNotWork
        }
-    }  
+    }
    return err //永远返回nil
 }
 ```
@@ -191,32 +191,32 @@ defer:  hello, a
 
 在大多数其他使用大括号的语言中，你需要选择放置它们的位置。Go的方式不同。你可以为此感谢下自动分号的注入（没有预读）。是的，Go中也是有分号的：-）
 
-Fails:  
+Fails:
 
 ```go
 package main
 
 import "fmt"
 
-func main()  
+func main()
 { //error, can't have the opening brace on a separate line
     fmt.Println("hello there!")
 }
 ```
 
-Compile Error:  
+Compile Error:
 
 > /tmp/sandbox826898458/main.go:6: syntax error: unexpected semicolon or newline before {
 >
 
-Works:  
+Works:
 
 ```go
 package main
 
 import "fmt"
 
-func main() {  
+func main() {
     fmt.Println("works!")
 }
 ```
@@ -225,14 +225,14 @@ func main() {
 
 如果你有未使用的变量，代码将编译失败。当然也有例外。在函数内一定要使用声明的变量，但未使用的全局变量是没问题的。如果你给未使用的变量分配了一个新的值，代码还是会编译失败。你需要在某个地方使用这个变量，才能让编译器愉快的编译。
 
-Fails:  
+Fails:
 
 ```go
 package main
 
 var gvar int //not an error
 
-func main() {  
+func main() {
     var one int   //error, unused variable
     two := 2      //error, unused variable
     var three int //error, even though it's assigned 3 on the next line
@@ -244,28 +244,28 @@ func main() {
 }
 ```
 
-Compile Errors:  
+Compile Errors:
 
 > /tmp/sandbox473116179/main.go:6: one declared and not used
 > /tmp/sandbox473116179/main.go:7: two declared and not used
 > /tmp/sandbox473116179/main.go:8: three declared and not used
 >
 
-Works:  
+Works:
 
 ```go
 package main
 
 import "fmt"
 
-func main() {  
+func main() {
     var one int
     _ = one
 
-    two := 2 
+    two := 2
     fmt.Println(two)
 
-    var three int 
+    var three int
     three = 3
     one = three
 
@@ -280,34 +280,34 @@ func main() {
 
 如果你引入一个包，而没有使用其中的任何函数、接口、结构体或者变量的话，代码将会编译失败。如果你真的需要引入的包，你可以添加一个下划线标记符`_`来作为这个包的名字，从而避免编译失败。
 
-Fails:  
+Fails:
 
 ```go
 package main
 
-import (  
+import (
     "fmt"
     "log"
     "time"
 )
 
-func main() {  
+func main() {
 }
 ```
 
-Compile Errors:  
+Compile Errors:
 
 > /tmp/sandbox627475386/main.go:4: imported and not used: "fmt"
 > /tmp/sandbox627475386/main.go:5: imported and not used: "log"
 > /tmp/sandbox627475386/main.go:6: imported and not used: "time"
 >
 
-Works:  
+Works:
 
 ```go
 package main
 
-import (  
+import (
     _ "fmt"
     "log"
     "time"
@@ -315,7 +315,7 @@ import (
 
 var _ = log.Println
 
-func main() {  
+func main() {
     _ = time.Now
 }
 ```
@@ -324,30 +324,30 @@ func main() {
 
 ### 简式的变量声明仅可以在函数内部使用
 
-Fails:  
+Fails:
 
 ```go
 package main
 
 myvar := 1 //error
 
-func main() {  
+func main() {
 }
 ```
 
-Compile Error:  
+Compile Error:
 
 > /tmp/sandbox265716165/main.go:3: non-declaration statement outside function body
 >
 
-Works:  
+Works:
 
 ```go
 package main
 
 var myvar = 1
 
-func main() {  
+func main() {
 }
 ```
 
@@ -357,28 +357,28 @@ func main() {
 
 重复变量需要在相同的代码块内，否则你将得到一个隐藏变量。
 
-Fails:  
+Fails:
 
 ```go
 package main
 
-func main() {  
+func main() {
     one := 0
     one := 1 //error
 }
 ```
 
-Compile Error:  
+Compile Error:
 
 > /tmp/sandbox706333626/main.go:5: no new variables on left side of :=
 >
 
-Works:  
+Works:
 
 ```go
 package main
 
-func main() {  
+func main() {
     one := 0
     one, two := 1,2
 
@@ -388,24 +388,24 @@ func main() {
 
 ### 不能使用简式声明来设置成员变量
 
-Fails:  
+Fails:
 
 ```go
 package main
 
-import (  
+import (
   "fmt"
 )
 
-type info struct {  
+type info struct {
   result int
 }
 
-func work() (int,error) {  
-    return 13,nil  
+func work() (int,error) {
+    return 13,nil
   }
 
-func main() {  
+func main() {
   var data info
 
   data.result, err := work() //error
@@ -413,31 +413,31 @@ func main() {
 }
 ```
 
-Compile Error:  
+Compile Error:
 
-> prog.go:18: non-name data.result on left side of :=   
+> prog.go:18: non-name data.result on left side of :=
 >
 
 解决方式是使用局部变量:
 
-Works:  
+Works:
 
 ```go
 package main
 
-import (  
+import (
   "fmt"
 )
 
-type info struct {  
+type info struct {
   result int
 }
 
-func work() (int,error) {  
-    return 13,nil  
+func work() (int,error) {
+    return 13,nil
   }
 
-func main() {  
+func main() {
   var data info
 
   var err error
@@ -460,7 +460,7 @@ package main
 
 import "fmt"
 
-func main() {  
+func main() {
     x := 1
     fmt.Println(x)     //prints 1
     {
@@ -482,29 +482,29 @@ Note that the `vet` command will not report all shadowed variables. Use [`go-nye
 
 “nil”标志符用于表示interface、函数、maps、slices和channels的“零值”。如果你不指定变量的类型，编译器将无法编译你的代码，因为它猜不出具体的类型。
 
-Fails:  
+Fails:
 
 ```go
 package main
 
-func main() {  
+func main() {
     var x = nil //error
 
     _ = x
 }
 ```
 
-Compile Error:  
+Compile Error:
 
 > /tmp/sandbox188239583/main.go:4: use of untyped nil
 >
 
-Works:  
+Works:
 
 ```go
 package main
 
-func main() {  
+func main() {
     var x interface{} = nil
 
     _ = x
@@ -516,23 +516,23 @@ func main() {
 在一个“nil”的slice中添加元素是没问题的，但对一个map做同样的事将会生成一个运行时的panic。
 
 
-Works:  
+Works:
 
 ```go
 package main
 
-func main() {  
+func main() {
     var s []int
     s = append(s,1)
 }
 ```
 
-Fails:  
+Fails:
 
 ```go
 package main
 
-func main() {  
+func main() {
     var m map[string]int
     m["one"] = 1 //error
 
@@ -543,18 +543,18 @@ func main() {
 
 你可以在map创建时指定它的容量，但你无法在map上使用cap()函数。
 
-Fails:  
+Fails:
 
 ```go
 package main
 
-func main() {  
+func main() {
     m := make(map[string]int,99)
     cap(m) //error
 }
 ```
 
-Compile Error:  
+Compile Error:
 
 > /tmp/sandbox326543983/main.go:5: invalid argument m (type map[string]int) for cap
 >
@@ -563,12 +563,12 @@ Compile Error:
 
 这对于经常使用“nil”分配字符串变量的开发者而言是个需要注意的地方。
 
-Fails:  
+Fails:
 
 ```go
 package main
 
-func main() {  
+func main() {
     var x string = nil //error
 
     if x == nil { //error
@@ -577,18 +577,18 @@ func main() {
 }
 ```
 
-Compile Errors:  
+Compile Errors:
 
 > /tmp/sandbox630560459/main.go:4: cannot use nil as type string in assignment
 > /tmp/sandbox630560459/main.go:6: invalid operation: x == nil (mismatched types string and nil)
 >
 
-Works:  
+Works:
 
 ```go
 package main
 
-func main() {  
+func main() {
     var x string //defaults to "" (zero value)
 
     if x == "" {
@@ -606,7 +606,7 @@ package main
 
 import "fmt"
 
-func main() {  
+func main() {
     x := [3]int{1,2,3}
 
     func(arr [3]int) {
@@ -626,7 +626,7 @@ package main
 
 import "fmt"
 
-func main() {  
+func main() {
     x := [3]int{1,2,3}
 
     func(arr *[3]int) {
@@ -645,7 +645,7 @@ package main
 
 import "fmt"
 
-func main() {  
+func main() {
     x := []int{1,2,3}
 
     func(arr []int) {
@@ -661,14 +661,14 @@ func main() {
 
 如果你在其他的语言中使用“for-in”或者“foreach”语句时会发生这种情况。Go中的“range”语法不太一样。它会得到两个值：第一个值是元素的索引，而另一个值是元素的数据。
 
-Bad:  
+Bad:
 
 ```go
 package main
 
 import "fmt"
 
-func main() {  
+func main() {
     x := []string{"a","b","c"}
 
     for v := range x {
@@ -677,14 +677,14 @@ func main() {
 }
 ```
 
-Good:  
+Good:
 
 ```go
 package main
 
 import "fmt"
 
-func main() {  
+func main() {
     x := []string{"a","b","c"}
 
     for _, v := range x {
@@ -706,7 +706,7 @@ func main() {
 ```go
 package main
 
-func main() {  
+func main() {
     x := 2
     y := 4
 
@@ -724,7 +724,7 @@ package main
 
 import "fmt"
 
-func main() {  
+func main() {
     h, w := 2, 4
 
     raw := make([]int,h*w)
@@ -748,14 +748,14 @@ func main() {
 
 这对于那些希望得到“nil”标示符的开发者而言是个技巧（和其他语言中做的一样）。如果对应的数据类型的“零值”是“nil”，那返回的值将会是“nil”，但对于其他的数据类型是不一样的。检测对应的“零值”可以用于确定map中的记录是否存在，但这并不总是可信（比如，如果在二值的map中“零值”是false，这时你要怎么做）。检测给定map中的记录是否存在的最可信的方法是，通过map的访问操作，检查第二个返回的值。
 
-Bad:  
+Bad:
 
 ```go
 package main
 
 import "fmt"
 
-func main() {  
+func main() {
     x := map[string]string{"one":"a","two":"","three":"c"}
 
     if v := x["two"]; v == "" { //incorrect
@@ -764,14 +764,14 @@ func main() {
 }
 ```
 
-Good:  
+Good:
 
 ```go
 package main
 
 import "fmt"
 
-func main() {  
+func main() {
     x := map[string]string{"one":"a","two":"","three":"c"}
 
     if _,ok := x["two"]; !ok {
@@ -784,14 +784,14 @@ func main() {
 
 尝试使用索引操作来更新字符串变量中的单个字符将会失败。string是只读的byte slice（和一些额外的属性）。如果你确实需要更新一个字符串，那么使用byte slice，并在需要时把它转换为string类型。
 
-Fails:  
+Fails:
 
 ```go
 package main
 
 import "fmt"
 
-func main() {  
+func main() {
     x := "text"
     x[0] = 'T'
 
@@ -799,19 +799,19 @@ func main() {
 }
 ```
 
-Compile Error:  
+Compile Error:
 
 > /tmp/sandbox305565531/main.go:7: cannot assign to x[0]
 >
 
-Works:  
+Works:
 
 ```go
 package main
 
 import "fmt"
 
-func main() {  
+func main() {
     x := "text"
     xbytes := []byte(x)
     xbytes[0] = 'T'
@@ -843,7 +843,7 @@ package main
 
 import "fmt"
 
-func main() {  
+func main() {
     x := "text"
     fmt.Println(x[0]) //print 116
     fmt.Printf("%T",x[0]) //prints uint8
@@ -861,12 +861,12 @@ func main() {
 ```go
 package main
 
-import (  
+import (
     "fmt"
     "unicode/utf8"
 )
 
-func main() {  
+func main() {
     data1 := "ABC"
     fmt.Println(utf8.ValidString(data1)) //prints: true
 
@@ -880,7 +880,7 @@ func main() {
 让我们假设你是Python开发者，你有下面这段代码：
 
 ```go
-data = u'♥'  
+data = u'♥'
 print(len(data)) #prints: 1
 ```
 
@@ -891,7 +891,7 @@ package main
 
 import "fmt"
 
-func main() {  
+func main() {
     data := "♥"
     fmt.Println(len(data)) //prints: 3
 }
@@ -904,12 +904,12 @@ func main() {
 ```go
 package main
 
-import (  
+import (
     "fmt"
     "unicode/utf8"
 )
 
-func main() {  
+func main() {
     data := "♥"
     fmt.Println(utf8.RuneCountInString(data)) //prints: 1
 ```
@@ -919,12 +919,12 @@ func main() {
 ```go
 package main
 
-import (  
+import (
     "fmt"
     "unicode/utf8"
 )
 
-func main() {  
+func main() {
     data := "é"
     fmt.Println(len(data))                    //prints: 3
     fmt.Println(utf8.RuneCountInString(data)) //prints: 2
@@ -934,12 +934,12 @@ func main() {
 ### Missing Comma In Multi-Line Slice, Array, and Map Literals
 
 
-Fails:  
+Fails:
 
 ```go
 package main
 
-func main() {  
+func main() {
     x := []int{
     1,
     2 //error
@@ -948,19 +948,19 @@ func main() {
 }
 ```
 
-Compile Errors:  
+Compile Errors:
 
 > /tmp/sandbox367520156/main.go:6: syntax error: need trailing comma before newline in composite literal
 > /tmp/sandbox367520156/main.go:8: non-declaration statement outside function body
 > /tmp/sandbox367520156/main.go:9: syntax error: unexpected }
 >
 
-Works:  
+Works:
 
 ```go
 package main
 
-func main() {  
+func main() {
     x := []int{
     1,
     2,
@@ -983,7 +983,7 @@ package main
 
 import "log"
 
-func main() {  
+func main() {
     log.Fatalln("Fatal Level: log entry") //app exits here
     log.Println("Normal Level: log entry")
 }
@@ -1004,7 +1004,7 @@ package main
 
 import "fmt"
 
-func main() {  
+func main() {
     data := "A\xfe\x02\xff\x04"
     for _,v := range data {
         fmt.Printf("%#x ",v)
@@ -1028,7 +1028,7 @@ package main
 
 import "fmt"
 
-func main() {  
+func main() {
     m := map[string]int{"one":1,"two":2,"three":3,"four":4}
     for k,v := range m {
         fmt.Println(k,v)
@@ -1047,7 +1047,7 @@ package main
 
 import "fmt"
 
-func main() {  
+func main() {
     isSpace := func(ch byte) bool {
         switch(ch) {
         case ' ': //error
@@ -1069,7 +1069,7 @@ package main
 
 import "fmt"
 
-func main() {  
+func main() {
     isSpace := func(ch byte) bool {
         switch(ch) {
         case ' ', '\t':
@@ -1087,14 +1087,14 @@ func main() {
 
 许多语言都有自增和自减操作。不像其他语言，Go不支持前置版本的操作。你也无法在表达式中使用这两个操作符。
 
-Fails:  
+Fails:
 
 ```go
 package main
 
 import "fmt"
 
-func main() {  
+func main() {
     data := []int{1,2,3}
     i := 0
     ++i //error
@@ -1102,20 +1102,20 @@ func main() {
 }
 ```
 
-Compile Errors:  
+Compile Errors:
 
 > /tmp/sandbox101231828/main.go:8: syntax error: unexpected ++
 > /tmp/sandbox101231828/main.go:9: syntax error: unexpected ++, expecting :
 >
 
-Works:  
+Works:
 
 ```go
 package main
 
 import "fmt"
 
-func main() {  
+func main() {
     data := []int{1,2,3}
     i := 0
     i++
@@ -1127,31 +1127,31 @@ func main() {
 
 许多语言使用 `~` 作为一元的NOT操作符（即按位补足），但Go为了这个重用了XOR操作符（`^`）。
 
-Fails:  
+Fails:
 
 ```go
 package main
 
 import "fmt"
 
-func main() {  
+func main() {
     fmt.Println(~2) //error
 }
 ```
 
-Compile Error:  
+Compile Error:
 
 > /tmp/sandbox965529189/main.go:6: the bitwise complement operator is ^
 >
 
-Works:  
+Works:
 
 ```go
 package main
 
 import "fmt"
 
-func main() {  
+func main() {
     var d uint8 = 2
     fmt.Printf("%08b\n",^d)
 }
@@ -1168,7 +1168,7 @@ package main
 
 import "fmt"
 
-func main() {  
+func main() {
     var a uint8 = 0x82
     var b uint8 = 0x02
     fmt.Printf("%08b [A]\n",a)
@@ -1193,7 +1193,7 @@ package main
 
 import "fmt"
 
-func main() {  
+func main() {
     fmt.Printf("0x2 & 0x2 + 0x4 -> %#x\n",0x2 & 0x2 + 0x4)
     //prints: 0x2 & 0x2 + 0x4 -> 0x6
     //Go:    (0x2 & 0x2) + 0x4
@@ -1218,17 +1218,17 @@ func main() {
 ```go
 package main
 
-import (  
+import (
     "fmt"
     "encoding/json"
 )
 
-type MyData struct {  
+type MyData struct {
     One int
     two string
 }
 
-func main() {  
+func main() {
     in := MyData{1,"two"}
     fmt.Printf("%#v\n",in) //prints main.MyData{One:1, two:"two"}
 
@@ -1249,12 +1249,12 @@ func main() {
 ```go
 package main
 
-import (  
+import (
     "fmt"
     "time"
 )
 
-func main() {  
+func main() {
     workerCount := 2
 
     for i := 0; i < workerCount; i++ {
@@ -1264,30 +1264,30 @@ func main() {
     fmt.Println("all done!")
 }
 
-func doit(workerId int) {  
+func doit(workerId int) {
     fmt.Printf("[%v] is running\n",workerId)
     time.Sleep(3 * time.Second)
     fmt.Printf("[%v] is done\n",workerId)
 }
 ```
 
-You'll see:  
+You'll see:
 
-> [0] is running   
-> [1] is running   
-> all done!  
+> [0] is running
+> [1] is running
+> all done!
 
 一个最常见的解决方法是使用“WaitGroup”变量。它将会让主goroutine等待所有的worker goroutine完成。如果你的应用有长时运行的消息处理循环的worker，你也将需要一个方法向这些goroutine发送信号，让它们退出。你可以给各个worker发送一个“kill”消息。另一个选项是关闭一个所有worker都接收的channel。这是一次向所有goroutine发送信号的简单方式。
 
 ```go
 package main
 
-import (  
+import (
     "fmt"
     "sync"
 )
 
-func main() {  
+func main() {
     var wg sync.WaitGroup
     done := make(chan struct{})
     workerCount := 2
@@ -1302,7 +1302,7 @@ func main() {
     fmt.Println("all done!")
 }
 
-func doit(workerId int,done <-chan struct{},wg sync.WaitGroup) {  
+func doit(workerId int,done <-chan struct{},wg sync.WaitGroup) {
     fmt.Printf("[%v] is running\n",workerId)
     defer wg.Done()
     <- done
@@ -1312,10 +1312,10 @@ func doit(workerId int,done <-chan struct{},wg sync.WaitGroup) {
 
 如果你运行这个应用，你将会看到：
 
-> [0] is running   
-> [0] is done   
-> [1] is running   
-> [1] is done  
+> [0] is running
+> [0] is done
+> [1] is running
+> [1] is done
 
 看起来所有的worker在主goroutine退出前都完成了。棒！然而，你也将会看到这个：
 
@@ -1328,12 +1328,12 @@ func doit(workerId int,done <-chan struct{},wg sync.WaitGroup) {
 ```go
 package main
 
-import (  
+import (
     "fmt"
     "sync"
 )
 
-func main() {  
+func main() {
     var wg sync.WaitGroup
     done := make(chan struct{})
     wq := make(chan interface{})
@@ -1353,7 +1353,7 @@ func main() {
     fmt.Println("all done!")
 }
 
-func doit(workerId int, wq <-chan interface{},done <-chan struct{},wg *sync.WaitGroup) {  
+func doit(workerId int, wq <-chan interface{},done <-chan struct{},wg *sync.WaitGroup) {
     fmt.Printf("[%v] is running\n",workerId)
     defer wg.Done()
     for {
@@ -1377,7 +1377,7 @@ package main
 
 import "fmt"
 
-func main() {  
+func main() {
     ch := make(chan string)
 
     go func() {
@@ -1409,11 +1409,11 @@ func main() {
     // instead and call Timer.Stop if the timer is no longer needed.
     timer := time.NewTimer(time.Second)
     defer timer.Stop()
-    
+
     go func() {
         ch <- fmt.Errorf("done")
     }()
-    
+
     select {
     case err := <- ch:
         fmt.Println(err)
@@ -1432,12 +1432,12 @@ func main() {
 ```go
 package main
 
-import (  
+import (
     "fmt"
     "time"
 )
 
-func main() {  
+func main() {
     ch := make(chan int)
     for i := 0; i < 3; i++ {
         go func(idx int) {
@@ -1460,12 +1460,12 @@ func main() {
 ```go
 package main
 
-import (  
+import (
     "fmt"
     "time"
 )
 
-func main() {  
+func main() {
     ch := make(chan int)
     done := make(chan struct{})
     for i := 0; i < 3; i++ {
@@ -1492,12 +1492,12 @@ func main() {
 ```go
 package main
 
-import (  
+import (
     "fmt"
     "time"
 )
 
-func main() {  
+func main() {
     var ch chan int
     for i := 0; i < 3; i++ {
         go func(idx int) {
@@ -1519,10 +1519,10 @@ func main() {
 ```go
 package main
 
-import "fmt"  
+import "fmt"
 import "time"
 
-func main() {  
+func main() {
     inch := make(chan int)
     outch := make(chan int)
 
@@ -1564,23 +1564,23 @@ package main
 
 import "fmt"
 
-type data struct {  
+type data struct {
     num int
     key *string
     items map[string]bool
 }
 
-func (this *data) pmethod() {  
+func (this *data) pmethod() {
     this.num = 7
 }
 
-func (this data) vmethod() {  
+func (this data) vmethod() {
     this.num = 8
     *this.key = "v.key"
     this.items["vmethod"] = true
 }
 
-func main() {  
+func main() {
     key := "key.1"
     d := data{1,&key,make(map[string]bool)}
 
@@ -1588,7 +1588,7 @@ func main() {
     //prints num=1 key=key.1 items=map[]
 
     d.pmethod()
-    fmt.Printf("num=%v key=%v items=%v\n",d.num,*d.key,d.items) 
+    fmt.Printf("num=%v key=%v items=%v\n",d.num,*d.key,d.items)
     //prints num=7 key=key.1 items=map[]
 
     d.vmethod()
@@ -1606,13 +1606,13 @@ func main() {
 ```go
 package main
 
-import (  
+import (
     "fmt"
     "net/http"
     "io/ioutil"
 )
 
-func main() {  
+func main() {
     resp, err := http.Get("https://api.ipify.org?format=json")
     defer resp.Body.Close()//not ok
     if err != nil {
@@ -1637,13 +1637,13 @@ func main() {
 ```go
 package main
 
-import (  
+import (
     "fmt"
     "net/http"
     "io/ioutil"
 )
 
-func main() {  
+func main() {
     resp, err := http.Get("https://api.ipify.org?format=json")
     if err != nil {
         fmt.Println(err)
@@ -1668,13 +1668,13 @@ func main() {
 ```go
 package main
 
-import (  
+import (
     "fmt"
     "net/http"
     "io/ioutil"
 )
 
-func main() {  
+func main() {
     resp, err := http.Get("https://api.ipify.org?format=json")
     if resp != nil {
         defer resp.Body.Close()
@@ -1720,13 +1720,13 @@ json.NewDecoder(resp.Body).Decode(&data)
 ```go
 package main
 
-import (  
+import (
     "fmt"
     "net/http"
     "io/ioutil"
 )
 
-func main() {  
+func main() {
     req, err := http.NewRequest("GET","http://golang.org",nil)
     if err != nil {
         fmt.Println(err)
@@ -1762,13 +1762,13 @@ func main() {
 ```go
 package main
 
-import (  
+import (
     "fmt"
     "net/http"
     "io/ioutil"
 )
 
-func main() {  
+func main() {
     tr := &http.Transport{DisableKeepAlives: true}
     client := &http.Client{Transport: tr}
 
@@ -1803,12 +1803,12 @@ func main() {
 ```go
 package main
 
-import (  
+import (
   "encoding/json"
   "fmt"
 )
 
-func main() {  
+func main() {
   var data = []byte(`{"status": 200}`)
 
   var result map[string]interface{}
@@ -1822,9 +1822,9 @@ func main() {
 }
 ```
 
-Runtime Panic:  
+Runtime Panic:
 
-> panic: interface conversion: interface is float64, not int   
+> panic: interface conversion: interface is float64, not int
 >
 
 If the JSON value you are trying to decode is an integer you have serveral options.
@@ -1836,12 +1836,12 @@ Option two: convert the float value to the integer type you need.
 ```go
 package main
 
-import (  
+import (
   "encoding/json"
   "fmt"
 )
 
-func main() {  
+func main() {
   var data = []byte(`{"status": 200}`)
 
   var result map[string]interface{}
@@ -1860,13 +1860,13 @@ Option three: use a `Decoder` type to unmarshal JSON and tell it to represent JS
 ```go
 package main
 
-import (  
+import (
   "encoding/json"
   "bytes"
   "fmt"
 )
 
-func main() {  
+func main() {
   var data = []byte(`{"status": 200}`)
 
   var result map[string]interface{}
@@ -1888,13 +1888,13 @@ You can use the string representation of your `Number` value to unmarshal it to 
 ```go
 package main
 
-import (  
+import (
   "encoding/json"
   "bytes"
   "fmt"
 )
 
-func main() {  
+func main() {
   var data = []byte(`{"status": 200}`)
 
   var result map[string]interface{}
@@ -1921,13 +1921,13 @@ Option four: use a `struct` type that maps your numeric value to the numeric typ
 ```go
 package main
 
-import (  
+import (
   "encoding/json"
   "bytes"
   "fmt"
 )
 
-func main() {  
+func main() {
   var data = []byte(`{"status": 200}`)
 
   var result struct {
@@ -1951,13 +1951,13 @@ This option is useful if you have to perform conditional JSON field decoding whe
 ```go
 package main
 
-import (  
+import (
   "encoding/json"
   "bytes"
   "fmt"
 )
 
-func main() {  
+func main() {
   records := [][]byte{
     []byte(`{"status": 200, "tag":"one"}`),
     []byte(`{"status":"ok", "tag":"two"}`),
@@ -2000,7 +2000,7 @@ package main
 
 import "fmt"
 
-type data struct {  
+type data struct {
     num int
     fp float32
     complex complex64
@@ -2013,7 +2013,7 @@ type data struct {
     raw [10]byte
 }
 
-func main() {  
+func main() {
     v1 := data{}
     v2 := data{}
     fmt.Println("v1 == v2:",v1 == v2) //prints: v1 == v2: true
@@ -2027,7 +2027,7 @@ package main
 
 import "fmt"
 
-type data struct {  
+type data struct {
     num int                //ok
     checks [10]func() bool //not comparable
     doit func() bool       //not comparable
@@ -2035,7 +2035,7 @@ type data struct {
     bytes []byte           //not comparable
 }
 
-func main() {  
+func main() {
     v1 := data{}
     v2 := data{}
     fmt.Println("v1 == v2:",v1 == v2)
@@ -2047,12 +2047,12 @@ Go确实提供了一些助手函数，用于比较那些无法使用等号比较
 ```go
 package main
 
-import (  
+import (
     "fmt"
     "reflect"
 )
 
-type data struct {  
+type data struct {
     num int                //ok
     checks [10]func() bool //not comparable
     doit func() bool       //not comparable
@@ -2060,7 +2060,7 @@ type data struct {
     bytes []byte           //not comparable
 }
 
-func main() {  
+func main() {
     v1 := data{}
     v2 := data{}
     fmt.Println("v1 == v2:",reflect.DeepEqual(v1,v2)) //prints: v1 == v2: true
@@ -2080,12 +2080,12 @@ func main() {
 ```go
 package main
 
-import (  
+import (
     "fmt"
     "reflect"
 )
 
-func main() {  
+func main() {
     var b1 []byte = nil
     b2 := []byte{}
     fmt.Println("b1 == b2:",reflect.DeepEqual(b1, b2)) //prints: b1 == b2: false
@@ -2097,12 +2097,12 @@ func main() {
 ```go
 package main
 
-import (  
+import (
     "fmt"
     "bytes"
 )
 
-func main() {  
+func main() {
     var b1 []byte = nil
     b2 := []byte{}
     fmt.Println("b1 == b2:",bytes.Equal(b1, b2)) //prints: b1 == b2: true
@@ -2114,21 +2114,21 @@ func main() {
 ```go
 package main
 
-import (  
+import (
     "fmt"
     "reflect"
     "encoding/json"
 )
 
-func main() {  
+func main() {
     var str string = "one"
     var in interface{} = "one"
-    fmt.Println("str == in:",str == in,reflect.DeepEqual(str, in)) 
+    fmt.Println("str == in:",str == in,reflect.DeepEqual(str, in))
     //prints: str == in: true true
 
     v1 := []string{"one","two"}
     v2 := []interface{}{"one","two"}
-    fmt.Println("v1 == v2:",reflect.DeepEqual(v1, v2)) 
+    fmt.Println("v1 == v2:",reflect.DeepEqual(v1, v2))
     //prints: v1 == v2: false (not ok)
 
     data := map[string]interface{}{
@@ -2138,7 +2138,7 @@ func main() {
     encoded, _ := json.Marshal(data)
     var decoded map[string]interface{}
     json.Unmarshal(encoded, &decoded)
-    fmt.Println("data == decoded:",reflect.DeepEqual(data, decoded)) 
+    fmt.Println("data == decoded:",reflect.DeepEqual(data, decoded))
     //prints: data == decoded: false (not ok)
 }
 ```
@@ -2151,14 +2151,14 @@ func main() {
 
 `recover()`函数可以用于获取/拦截panic。仅当在一个defer函数中被完成时，调用`recover()`将会完成这个小技巧。
 
-Incorrect:  
+Incorrect:
 
 ```go
 package main
 
 import "fmt"
 
-func main() {  
+func main() {
     recover() //doesn't do anything
     panic("not good")
     recover() //won't be executed :)
@@ -2166,14 +2166,14 @@ func main() {
 }
 ```
 
-Works:  
+Works:
 
 ```go
 package main
 
 import "fmt"
 
-func main() {  
+func main() {
     defer func() {
         fmt.Println("recovered:",recover())
     }()
@@ -2184,18 +2184,18 @@ func main() {
 
 `recover()`的调用仅当它在defer函数中被直接调用时才有效。
 
-Fails:  
+Fails:
 
 ```go
 package main
 
 import "fmt"
 
-func doRecover() {  
+func doRecover() {
     fmt.Println("recovered =>",recover()) //prints: recovered => <nil>
 }
 
-func main() {  
+func main() {
     defer func() {
         doRecover() //panic is not recovered
     }()
@@ -2213,7 +2213,7 @@ package main
 
 import "fmt"
 
-func main() {  
+func main() {
     data := []int{1,2,3}
     for _,v := range data {
         v *= 10 //original item is not changed
@@ -2230,7 +2230,7 @@ package main
 
 import "fmt"
 
-func main() {  
+func main() {
     data := []int{1,2,3}
     for i,_ := range data {
         data[i] *= 10
@@ -2247,7 +2247,7 @@ package main
 
 import "fmt"
 
-func main() {  
+func main() {
     data := []*struct{num int} {{1},{2},{3}}
 
     for _,v := range data {
@@ -2267,13 +2267,13 @@ package main
 
 import "fmt"
 
-func get() []byte {  
+func get() []byte {
     raw := make([]byte,10000)
     fmt.Println(len(raw),cap(raw),&raw[0]) //prints: 10000 10000 <byte_addr_x>
     return raw[:3]
 }
 
-func main() {  
+func main() {
     data := get()
     fmt.Println(len(data),cap(data),&data[0]) //prints: 3 10000 <byte_addr_x>
 }
@@ -2286,7 +2286,7 @@ package main
 
 import "fmt"
 
-func get() []byte {  
+func get() []byte {
     raw := make([]byte,10000)
     fmt.Println(len(raw),cap(raw),&raw[0]) //prints: 10000 10000 <byte_addr_x>
     res := make([]byte,3)
@@ -2294,7 +2294,7 @@ func get() []byte {
     return res
 }
 
-func main() {  
+func main() {
     data := get()
     fmt.Println(len(data),cap(data),&data[0]) //prints: 3 3 <byte_addr_y>
 }
@@ -2307,12 +2307,12 @@ func main() {
 ```go
 package main
 
-import (  
+import (
     "fmt"
     "bytes"
 )
 
-func main() {  
+func main() {
     path := []byte("AAAA/BBBBBBBBB")
     sepIndex := bytes.IndexByte(path,'/')
     dir1 := path[:sepIndex]
@@ -2337,12 +2337,12 @@ func main() {
 ```go
 package main
 
-import (  
+import (
     "fmt"
     "bytes"
 )
 
-func main() {  
+func main() {
     path := []byte("AAAA/BBBBBBBBB")
     sepIndex := bytes.IndexByte(path,'/')
     dir1 := path[:sepIndex:sepIndex] //full slice expression
@@ -2371,7 +2371,7 @@ func main() {
 ```go
 import "fmt"
 
-func main() {  
+func main() {
     s1 := []int{1,2,3}
     fmt.Println(len(s1),cap(s1),s1) //prints 3 3 [1 2 3]
 
@@ -2398,7 +2398,7 @@ func main() {
 
 当你通过把一个现有（非interface）的类型定义为一个新的类型时，新的类型不会继承现有类型的方法。
 
-Fails:  
+Fails:
 
 ```go
 package main
@@ -2407,14 +2407,14 @@ import "sync"
 
 type myMutex sync.Mutex
 
-func main() {  
+func main() {
     var mtx myMutex
     mtx.Lock() //error
-    mtx.Unlock() //error  
+    mtx.Unlock() //error
 }
 ```
 
-Compile Errors:  
+Compile Errors:
 
 > /tmp/sandbox106401185/main.go:9: mtx.Lock undefined (type myMutex has no field or method Lock)
 > /tmp/sandbox106401185/main.go:10: mtx.Unlock undefined (type myMutex has no field or method Unlock)
@@ -2422,18 +2422,18 @@ Compile Errors:
 
 如果你确实需要原有类型的方法，你可以定义一个新的struct类型，用匿名方式把原有类型嵌入其中。
 
-Works:  
+Works:
 
 ```go
 package main
 
 import "sync"
 
-type myLocker struct {  
+type myLocker struct {
     sync.Mutex
 }
 
-func main() {  
+func main() {
     var lock myLocker
     lock.Lock() //ok
     lock.Unlock() //ok
@@ -2442,7 +2442,7 @@ func main() {
 
 interface类型的声明也会保留它们的方法集合。
 
-Works:  
+Works:
 
 ```go
 package main
@@ -2451,7 +2451,7 @@ import "sync"
 
 type myLocker sync.Locker
 
-func main() {  
+func main() {
     var lock myLocker = new(sync.Mutex)
     lock.Lock() //ok
     lock.Unlock() //ok
@@ -2468,7 +2468,7 @@ package main
 
 import "fmt"
 
-func main() {  
+func main() {
     loop:
         for {
             switch {
@@ -2488,17 +2488,17 @@ A "goto" statement will do the trick too...
 
 这在Go中是个很常见的技巧。`for`语句中的迭代变量在每次迭代时被重新使用。这就意味着你在`for`循环中创建的闭包（即函数字面量）将会引用同一个变量（而在那些goroutine开始执行时就会得到那个变量的值）。
 
-Incorrect:  
+Incorrect:
 
 ```go
 package main
 
-import (  
+import (
     "fmt"
     "time"
 )
 
-func main() {  
+func main() {
     data := []string{"one","two","three"}
 
     for _,v := range data {
@@ -2514,17 +2514,17 @@ func main() {
 
 最简单的解决方法（不需要修改goroutine）是，在for循环代码块内把当前迭代的变量值保存到一个局部变量中。
 
-Works:  
+Works:
 
 ```go
 package main
 
-import (  
+import (
     "fmt"
     "time"
 )
 
-func main() {  
+func main() {
     data := []string{"one","two","three"}
 
     for _,v := range data {
@@ -2541,17 +2541,17 @@ func main() {
 
 另一个解决方法是把当前的迭代变量作为匿名goroutine的参数。
 
-Works:  
+Works:
 
 ```go
 package main
 
-import (  
+import (
     "fmt"
     "time"
 )
 
-func main() {  
+func main() {
     data := []string{"one","two","three"}
 
     for _,v := range data {
@@ -2567,25 +2567,25 @@ func main() {
 
 下面这个陷阱稍微复杂一些的版本。
 
-Incorrect:  
+Incorrect:
 
 ```go
 package main
 
-import (  
+import (
     "fmt"
     "time"
 )
 
-type field struct {  
+type field struct {
     name string
 }
 
-func (p *field) print() {  
+func (p *field) print() {
     fmt.Println(p.name)
 }
 
-func main() {  
+func main() {
     data := []field{{"one"},{"two"},{"three"}}
 
     for _,v := range data {
@@ -2597,25 +2597,25 @@ func main() {
 }
 ```
 
-Works:  
+Works:
 
 ```go
 package main
 
-import (  
+import (
     "fmt"
     "time"
 )
 
-type field struct {  
+type field struct {
     name string
 }
 
-func (p *field) print() {  
+func (p *field) print() {
     fmt.Println(p.name)
 }
 
-func main() {  
+func main() {
     data := []field{{"one"},{"two"},{"three"}}
 
     for _,v := range data {
@@ -2633,20 +2633,20 @@ What do you think you'll see when you run this code (and why)?
 ```go
 package main
 
-import (  
+import (
     "fmt"
     "time"
 )
 
-type field struct {  
+type field struct {
     name string
 }
 
-func (p *field) print() {  
+func (p *field) print() {
     fmt.Println(p.name)
 }
 
-func main() {  
+func main() {
     data := []*field{{"one"},{"two"},{"three"}}
 
     for _,v := range data {
@@ -2666,7 +2666,7 @@ package main
 
 import "fmt"
 
-func main() {  
+func main() {
     var i int = 1
 
     defer fmt.Println("result =>",func() int { return i * 2 }())
@@ -2682,13 +2682,13 @@ func main() {
 ```go
 package main
 
-import (  
+import (
     "fmt"
     "os"
     "path/filepath"
 )
 
-func main() {  
+func main() {
     if len(os.Args) != 2 {
         os.Exit(-1)
     }
@@ -2729,13 +2729,13 @@ func main() {
 ```go
 package main
 
-import (  
+import (
     "fmt"
     "os"
     "path/filepath"
 )
 
-func main() {  
+func main() {
     if len(os.Args) != 2 {
         os.Exit(-1)
     }
@@ -2780,39 +2780,39 @@ func main() {
 失败的类型断言返回断言声明中使用的目标类型的“零值”。这在与隐藏变量混合时，会发生未知情况。
 
 
-Incorrect:  
+Incorrect:
 
 ```go
 package main
 
 import "fmt"
 
-func main() {  
+func main() {
     var data interface{} = "great"
 
     if data, ok := data.(int); ok {
         fmt.Println("[is an int] value =>",data)
     } else {
-        fmt.Println("[not an int] value =>",data) 
+        fmt.Println("[not an int] value =>",data)
         //prints: [not an int] value => 0 (not "great")
     }
 }
 ```
 
-Works:  
+Works:
 
 ```go
 package main
 
 import "fmt"
 
-func main() {  
+func main() {
     var data interface{} = "great"
 
     if res, ok := data.(int); ok {
         fmt.Println("[is an int] value =>",res)
     } else {
-        fmt.Println("[not an int] value =>",data) 
+        fmt.Println("[not an int] value =>",data)
         //prints: [not an int] value => great (as expected)
     }
 }
@@ -2823,7 +2823,7 @@ func main() {
 Rob Pike talked about a number of fundamental concurrency patterns in his ["Go Concurrency Patterns"](https://talks.golang.org/2012/concurrency.slide#1) presentation at Google I/O in 2012. Fetching the first result from a number of targets is one of them.
 
 ```go
-func First(query string, replicas ...Search) Result {  
+func First(query string, replicas ...Search) Result {
     c := make(chan Result)
     searchReplica := func(i int) { c <- replicas[i](query) }
     for i := range replicas {
@@ -2842,7 +2842,7 @@ func First(query string, replicas ...Search) Result {
 为了避免泄露，你需要确保所有的goroutine退出。一个不错的方法是使用一个有足够保存所有缓存结果的channel。
 
 ```go
-func First(query string, replicas ...Search) Result {  
+func First(query string, replicas ...Search) Result {
     c := make(chan Result,len(replicas))
     searchReplica := func(i int) { c <- replicas[i](query) }
     for i := range replicas {
@@ -2855,9 +2855,9 @@ func First(query string, replicas ...Search) Result {
 另一个不错的解决方法是使用一个有`default`情况的`select`语句和一个保存一个缓存结果的channel。`default`情况保证了即使当结果channel无法收到消息的情况下，goroutine也不会堵塞。
 
 ```go
-func First(query string, replicas ...Search) Result {  
+func First(query string, replicas ...Search) Result {
     c := make(chan Result,1)
-    searchReplica := func(i int) { 
+    searchReplica := func(i int) {
         select {
         case c <- replicas[i](query):
         default:
@@ -2873,11 +2873,11 @@ func First(query string, replicas ...Search) Result {
 你也可以使用特殊的取消channel来终止workers。
 
 ```go
-func First(query string, replicas ...Search) Result {  
+func First(query string, replicas ...Search) Result {
     c := make(chan Result)
     done := make(chan struct{})
     defer close(done)
-    searchReplica := func(i int) { 
+    searchReplica := func(i int) {
         select {
         case c <- replicas[i](query):
         case <- done:
@@ -2904,19 +2904,19 @@ package main
 
 import "fmt"
 
-type data struct {  
+type data struct {
     name string
 }
 
-func (p *data) print() {  
+func (p *data) print() {
     fmt.Println("name:",p.name)
 }
 
-type printer interface {  
+type printer interface {
     print()
 }
 
-func main() {  
+func main() {
     d1 := data{"one"}
     d1.print() //ok
 
@@ -2928,10 +2928,10 @@ func main() {
 }
 ```
 
-Compile Errors:  
+Compile Errors:
 
 > /tmp/sandbox017696142/main.go:21: cannot use data literal (type data) as type printer in assignment:
-> data does not implement printer (print method has pointer receiver)  
+> data does not implement printer (print method has pointer receiver)
 > /tmp/sandbox017696142/main.go:25: cannot call pointer method on m["x"]
 > /tmp/sandbox017696142/main.go:25: cannot take the address of m["x"]
 >
@@ -2940,22 +2940,22 @@ Compile Errors:
 
 如果你有一个struct值的map，你无法更新单个的struct值。
 
-Fails:  
+Fails:
 
 ```go
 package main
 
-type data struct {  
+type data struct {
     name string
 }
 
-func main() {  
+func main() {
     m := map[string]data {"x":{"one"}}
     m["x"].name = "two" //error
 }
 ```
 
-Compile Error:  
+Compile Error:
 
 > /tmp/sandbox380452744/main.go:9: cannot assign to m["x"].name
 >
@@ -2969,11 +2969,11 @@ package main
 
 import "fmt"
 
-type data struct {  
+type data struct {
     name string
 }
 
-func main() {  
+func main() {
     s := []data {{"one"}}
     s[0].name = "two" //ok
     fmt.Println(s)    //prints: [{two}]
@@ -2989,11 +2989,11 @@ package main
 
 import "fmt"
 
-type data struct {  
+type data struct {
     name string
 }
 
-func main() {  
+func main() {
     m := map[string]data {"x":{"one"}}
     r := m["x"]
     r.name = "two"
@@ -3009,11 +3009,11 @@ package main
 
 import "fmt"
 
-type data struct {  
+type data struct {
     name string
 }
 
-func main() {  
+func main() {
     m := map[string]*data {"x":{"one"}}
     m["x"].name = "two" //ok
     fmt.Println(m["x"]) //prints: &{two}
@@ -3025,11 +3025,11 @@ By the way, what happens when you run this code?
 ```go
 package main
 
-type data struct {  
+type data struct {
     name string
 }
 
-func main() {  
+func main() {
     m := map[string]*data {"x":{"one"}}
     m["z"].name = "what?" //???
 }
@@ -3046,7 +3046,7 @@ package main
 
 import "fmt"
 
-func main() {  
+func main() {
     var data *byte
     var in interface{}
 
@@ -3061,14 +3061,14 @@ func main() {
 
 当你的函数返回interface时，小心这个陷阱。
 
-Incorrect:  
+Incorrect:
 
 ```go
 package main
 
 import "fmt"
 
-func main() {  
+func main() {
     doit := func(arg int) interface{} {
         var result *struct{} = nil
 
@@ -3086,14 +3086,14 @@ func main() {
 }
 ```
 
-Works:  
+Works:
 
 ```go
 package main
 
 import "fmt"
 
-func main() {  
+func main() {
     doit := func(arg int) interface{} {
         var result *struct{} = nil
 
@@ -3131,12 +3131,12 @@ You can set `GOMAXPROCS` to more than the number of your CPUs. The max value for
 ```go
 package main
 
-import (  
+import (
     "fmt"
     "runtime"
 )
 
-func main() {  
+func main() {
     fmt.Println(runtime.GOMAXPROCS(-1)) //prints: X (1 on play.golang.org)
     fmt.Println(runtime.NumCPU())       //prints: X (1 on play.golang.org)
     runtime.GOMAXPROCS(20)
@@ -3153,7 +3153,7 @@ Go可能会对某些操作进行重新排序，但它能保证在一个goroutine
 ```go
 package main
 
-import (  
+import (
     "runtime"
     "time"
 )
@@ -3162,22 +3162,22 @@ var _ = runtime.GOMAXPROCS(3)
 
 var a, b int
 
-func u1() {  
+func u1() {
     a = 1
     b = 2
 }
 
-func u2() {  
+func u2() {
     a = 3
     b = 4
 }
 
-func p() {  
+func p() {
     println(a)
     println(b)
 }
 
-func main() {  
+func main() {
     go u1()
     go u2()
     go p()
@@ -3187,20 +3187,20 @@ func main() {
 
 If you run this code a few times you might see these `a` and `b` variable combinations:
 
-> 1   
-> 2  
+> 1
+> 2
 >
-> 3   
-> 4  
+> 3
+> 4
 >
-> 0   
-> 2  
+> 0
+> 2
 >
-> 0   
-> 0  
+> 0
+> 0
 >
-> 1   
-> 4    
+> 1
+> 4
 
 The most interesting combination for `a` and `b` is "02". It shows that `b` was updated before `a`.
 
@@ -3215,7 +3215,7 @@ package main
 
 import "fmt"
 
-func main() {  
+func main() {
     done := false
 
     go func(){
@@ -3237,7 +3237,7 @@ package main
 
 import "fmt"
 
-func main() {  
+func main() {
     done := false
 
     go func(){
@@ -3258,12 +3258,12 @@ Another option is to invoke the scheduler explicitly. You can do it with the `Go
 ```go
 package main
 
-import (  
+import (
     "fmt"
     "runtime"
 )
 
-func main() {  
+func main() {
     done := false
 
     go func(){
@@ -3286,4 +3286,3 @@ If you made it here and you have comments or ideas feel free to add a note to [t
 * <https://gist.github.com/lavalamp/4bd23295a9f32706a48f>
 * <https://golang.org/doc/faq#nil_error>
 * <https://go-talks.appspot.com/github.com/davecheney/high-performance-go-workshop/high-performance-go-workshop.slide>
-

@@ -1,6 +1,7 @@
 ---
 title: GPU虚拟化
 date: 2016-10-15 17:19:19
+type: page
 ---
 
 # GPU虚拟化
@@ -38,7 +39,7 @@ Intel支持三种GPU虚拟化方法：
 
 ![](/images/14765251831216.jpg)
 
-远程API 方法分为前端和后端两个部分。前端以动态库的形式被虚拟机中的CUDA程序加载，后端则是运行在宿主机中的一个程序。在这种机制下，首先由前端将虚拟机中的CUDA API重写，将API的名称和相应参数传递给后端。然后后端为前端每个CUDA应用程序创建一个进程，在该进程中转 换来自前端重写后的API，获得API的名称和参数，接着使用宿主机上真实的GPU硬件设备执行相应的API，最后将 API执行结果返回给前端。  
+远程API 方法分为前端和后端两个部分。前端以动态库的形式被虚拟机中的CUDA程序加载，后端则是运行在宿主机中的一个程序。在这种机制下，首先由前端将虚拟机中的CUDA API重写，将API的名称和相应参数传递给后端。然后后端为前端每个CUDA应用程序创建一个进程，在该进程中转 换来自前端重写后的API，获得API的名称和参数，接着使用宿主机上真实的GPU硬件设备执行相应的API，最后将 API执行结果返回给前端。
 
 这种方法需要进行大量虚拟机与宿主机之间的数据传输，导致GPU虚拟化的性能严重下降。在CUDA程序规模较小时，这些GPU虚拟化框架的性能下降并不太明显。但在进行实际应用中的高性能计算时性能下降非常明显。
 
@@ -124,7 +125,7 @@ echo 8086 1520 > /sys/bus/pci/drivers/vfio-pci/new_id
 qemu:
 
 ```
-qemu-kvm -m 16G -smp 8 -net none -device vfio-pci,host=81:10.0 -drive file=/var/lib/libvirt/images/rhel7.1.img,if=virtio -nographic 
+qemu-kvm -m 16G -smp 8 -net none -device vfio-pci,host=81:10.0 -drive file=/var/lib/libvirt/images/rhel7.1.img,if=virtio -nographic
 ```
 
 libvirt:
@@ -147,7 +148,3 @@ $ virsh attach-device vfio_test net2.xml --config
 - [GPU-Accelerated Applications](http://www.nvidia.com/content/gpu-applications/PDF/GPU-apps-catalog-mar2015.pdf)
 - [NVIDIA Grid vGPU User Guide](http://images.nvidia.com/content/pdf/grid/guides/GRID-vGPU-User-Guide.pdf)
 - [OpenStack 企业私有云的若干需求（1）：Nova 虚机支持 GPU](http://www.cnblogs.com/sammyliu/p/5179414.html)
-
-
-
-

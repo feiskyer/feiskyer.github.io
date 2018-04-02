@@ -1,6 +1,7 @@
 ---
 title: Virtio vsock
 date: 2016-10-14 13:55:34
+type: page
 ---
 
 virtio-vsock is a host/guest communications device. It allows applications in the guest and host to communicate. This can be used to implement hypervisor services and guest agents (like qemu-guest-agent or SPICE vdagent).
@@ -22,5 +23,3 @@ Sockets are created with the AF_VSOCK address family. The SOCK_STREAM socket typ
 
 [1] http://qemu-project.org/Features/VirtioVsock
 [2] http://vmsplice.net/~stefan/stefanha-kvm-forum-2015.pdf
-
-

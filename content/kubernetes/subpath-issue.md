@@ -1,8 +1,8 @@
 ---
-layout: post
+type: page
 title: Kubernetes 任意文件访问漏洞
 date: 2018-03-21 20:17:18
-tags: kubernetes
+tags: [kubernetes]
 ---
 
 前段时间 Kubernetes 发布了一系列的安全更新，修复了一个因 subpath 处理不当导致的任意文件访问漏洞（[CVE-2017-1002101](https://github.com/kubernetes/kubernetes/issues/60814)和 [CVE-2017-1002102](https://github.com/kubernetes/kubernetes/issues/60814)）。受该漏洞影响的版本包括
@@ -160,4 +160,3 @@ d-----         3/7/2018   4:43 AM                volumeplugins
 -a----         3/7/2018   4:43 AM            635 azure.json
 -a----         3/7/2018   4:43 AM           9446 config
 ```
-

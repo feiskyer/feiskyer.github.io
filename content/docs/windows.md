@@ -1,5 +1,6 @@
 ---
 title: 常用 Windows 10 快捷键
+type: page
 ---
 
 - Windows Key + Ctrl + D：创建一个新的虚拟桌面

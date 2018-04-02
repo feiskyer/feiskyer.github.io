@@ -1,6 +1,7 @@
 ---
 title: SR-IOV
 date: 2016-10-15 17:19:46
+type: page
 ---
 
 # SR-IOV
@@ -47,7 +48,7 @@ modprobe igb max_vfs=7
 echo "options igb max_vfs=7" >>/etc/modprobe.d/igb.conf
 ```
 
-查找Virtual Function： 
+查找Virtual Function：
 
 ```sh
 # lspci | grep 82576
@@ -153,5 +154,3 @@ $ virsh attach-device MyGuest /tmp/interface. xml --live --config
 - [SDN Fundamentails for NFV, Openstack and Containers](http://www.slideshare.net/nyechiel/sdn-fundamentals-for-nfv-open-stack-and-containers-red-hat-summit-20161)
 - [I/O设备直接分配和SRIOV](http://www.cnblogs.com/sammyliu/p/4548194.html)
 - [Libvirt PCI passthrough of host network devices](http://wiki.libvirt.org/page/Networking#PCI_Passthrough_of_host_network_devices)
-
-

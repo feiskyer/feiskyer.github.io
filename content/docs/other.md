@@ -1,5 +1,6 @@
 ---
 title: 其他链接
+type: page
 ---
 
 *一些非常有趣的文章*
@@ -17,5 +18,3 @@ title: 其他链接
 
 - [Python Paste](PythonPaste.html)
 - [Python copy](python-copy.html)
-
-

@@ -1,6 +1,6 @@
 ---
 title: "可靠发布"
-layout: "post"
+type: page
 ---
 
 **发布协调工程师**

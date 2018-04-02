@@ -1,6 +1,6 @@
 ---
 title: "分布式定时任务"
-layout: "post"
+type: page
 ---
 
 定时任务的目标是在指定的时间或间隔来周期性启动任务。在Linux系统上，经常用`crontab`来管理定时任务。

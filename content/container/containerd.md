@@ -1,6 +1,6 @@
 ---
 title: "containerd"
-layout: "post"
+type: page
 ---
 
 [containerd](https://containerd.io/) 是为了兼容OCI标准而从Docker中拆分出来专门负责镜像管理和容器执行的组件。它向上对Docker提供gRPC接口，向下借助containerd-shim使用runc运行和管理容器。这样带来的好处包括

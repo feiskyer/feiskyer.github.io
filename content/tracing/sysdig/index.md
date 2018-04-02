@@ -1,6 +1,7 @@
 ---
 title: sysdig
 date: 2016-10-21 17:26:05
+type: page
 ---
 
 # Tips of sysdig
@@ -171,4 +172,3 @@ as ASCII:
 * Applied use of sysdig for forensics analysis:
   * [Fishing for Hackers: Analysis of a Linux Server Attack](http://draios.com/fishing-for-hackers/)
   * [Fishing for Hackers (Part 2): Quickly Identify Suspicious Activity With Sysdig](http://draios.com/fishing-for-hackers-part-2/)
-

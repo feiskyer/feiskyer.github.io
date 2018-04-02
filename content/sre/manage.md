@@ -1,6 +1,6 @@
 ---
 title: "SRE管理"
-layout: "post"
+type: page
 ---
 
 **培训新人**

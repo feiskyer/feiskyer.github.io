@@ -1,5 +1,6 @@
 ---
 title: screen tips
+type: page
 ---
 
 ### 简介 {#_1}

@@ -1,6 +1,6 @@
 ---
 title: PyWren
-layout: "post"
+type: page
 ---
 
 [PyWren](https://github.com/ericmjonas/pywren)是一个基于AWS Lambda的Python计算框架，模拟了[Python futures](http://pythonhosted.org/futures/)包的map/reduce功能，非常适用于机器学习参数调优（parameter tuning）等科学计算任务。
@@ -51,4 +51,3 @@ pywren.wait(futures)
 - [PyWren Github](https://github.com/ericmjonas/pywren)
 - [PyWren examples](https://github.com/ericmjonas/pywren/tree/master/examples)
 - [With PyWren, AWS Lambda Finds an Unexpected Market in Scientific Computing](https://thenewstack.io/aws-lambda-finds-unexpected-market-scientific-computing/)
-

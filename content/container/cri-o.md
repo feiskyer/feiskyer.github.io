@@ -1,7 +1,6 @@
 ---
 title: cri-o (ocid)
-date: 2016-10-16 15:58:21
-layout: "post"
+type: page
 ---
 
 # cri-o

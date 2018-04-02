@@ -1,6 +1,6 @@
 ---
 title: Serverless平台
-layout: "post"
+type: page
 ---
 
 ## AWS Lambda
@@ -100,4 +100,3 @@ Facebook在2013年将其收购，并于今年一月份宣布关闭Parse服务并
 * [Brightwork](http://www.brightwork.io/) - Backend in a box for Developers
 * [OpenComponents](https://github.com/opentable/oc) - Serverless microservices for front-end components
 * [Kloudbit](http://www.kloudbit.com/) - Kloudbit helps developers build robust applications without the hassle of backend coding and server management.
-

@@ -1,6 +1,6 @@
 ---
 title: "容器资源列表"
-layout: "post"
+type: page
 ---
 
 - [Awesome Docker](https://github.com/veggiemonk/awesome-docker)
@@ -23,4 +23,3 @@ layout: "post"
 
 - [DockerHub](https://hub.docker.com/)
 - [Quay](https://quay.io)
-

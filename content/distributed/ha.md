@@ -1,6 +1,6 @@
 ---
 title: "高可用系统"
-layout: "post"
+type: page
 ---
 
 

@@ -1,6 +1,7 @@
 ---
 title: Paxos
 date: 2016-10-21 16:11:07
+type: page
 ---
 
 # Paxos
@@ -10,7 +11,7 @@ Paxos算法是莱斯利·兰伯特于1990年提出的一种基于消息传递且
 **论文**
 
 1. [The Part-Time Parliament](http://research.microsoft.com/en-us/um/people/lamport/pubs/lamport-paxos.pdf)
-2. [Paxos Made Simple](http://research.microsoft.com/en-us/um/people/lamport/pubs/paxos-simple.pdf) 
+2. [Paxos Made Simple](http://research.microsoft.com/en-us/um/people/lamport/pubs/paxos-simple.pdf)
 3. [Paxos Made Live](http://static.googleusercontent.com/media/research.google.com/zh-CN//archive/paxos_made_live.pdf)
 3. [CONSENSUS: BRIDGING THEORY AND PRACTICE](https://ramcloud.stanford.edu/~ongaro/thesis.pdf)
 
@@ -215,11 +216,9 @@ Paxos的应用简明来讲就是由算法确定一个操作系列，通过编写
 
 **参考文档**
 
-- [Paxos Made Simple](http://research.microsoft.com/en-us/um/people/lamport/pubs/paxos-simple.pdf) 
+- [Paxos Made Simple](http://research.microsoft.com/en-us/um/people/lamport/pubs/paxos-simple.pdf)
 - [CONSENSUS: BRIDGING THEORY AND PRACTICE](https://ramcloud.stanford.edu/~ongaro/thesis.pdf)
 - [Wikipedia](https://en.wikipedia.org/wiki/Paxos_(computer_science))
 - [分布式系统的事务处理](http://coolshell.cn/articles/10910.html)
 - [一步一步理解Paxos算法](http://mp.weixin.qq.com/s?__biz=MjM5MDg2NjIyMA==&mid=203607654&idx=1&sn=bfe71374fbca7ec5adf31bd3500ab95a&key=8ea74966bf01cfb6684dc066454e04bb5194d780db67f87b55480b52800238c2dfae323218ee8645f0c094e607ea7e6f&ascene=1&uin=MjA1MDk3Njk1&devicetype=webwx&version=70000001&pass_ticket=2ivcW%2FcENyzkz%2FGjIaPDdMzzf%2Bberd36%2FR3FYecikmo%3D)
 - [浅谈basic-paxos,multi-paxos和raft](http://lemon0910.github.io/2016/05/06/paxos-raft/)
-
-

@@ -1,6 +1,6 @@
 ---
 title: "runc"
-layout: "post"
+type: page
 ---
 
 [runc](https://github.com/opencontainers/runc) 是[Open Container Initiative (OCI) 标准](https://github.com/opencontainers/runtime-spec) 的一个实现（其他实现包括[runv](runv.html)和[clear container](https://github.com/01org/cc-oci-runtime)等），也是Docker管理容器的默认后端实现。
@@ -289,4 +289,3 @@ PIDFile=/run/mycontainerid.pid
 [Install]
 WantedBy=multi-user.target
 ```
-

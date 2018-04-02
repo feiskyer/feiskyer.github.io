@@ -1,6 +1,6 @@
 ---
 title: "Gitlab故障回顾和总结"
-layout: "post"
+type: page
 ---
 
 ## Gitlab故障回顾

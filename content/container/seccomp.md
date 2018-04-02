@@ -1,6 +1,6 @@
 ---
 title: "Seccomp"
-layout: "post"
+type: page
 ---
 
 Seccomp是Secure computing mode的缩写，它是Linux内核提供的一个操作，用于限制一个进程可以执行的系统调用．Seccomp需要有一个配置文件来指明容器进程允许和禁止执行的系统调用。
@@ -54,4 +54,3 @@ spec:
       image: sotrustworthy:latest
 EOF
 ```
-

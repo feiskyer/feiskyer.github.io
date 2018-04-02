@@ -1,7 +1,7 @@
 ---
 title: DPDK
 date: 2017-06-01 12:12:12
-layout: "post"
+type: page
 ---
 
 Intel DPDK全称Intel Data Plane Development
@@ -90,4 +90,3 @@ Virtual)、QoS
 
 
 **更多关于DPDK的文档见[《SDN指南》](https://sdn.feisky.xyz/dpdk/)**。
-

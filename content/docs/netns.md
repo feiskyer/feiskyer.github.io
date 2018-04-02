@@ -1,5 +1,6 @@
 ---
 title: "net-ns"
+type: page
 ---
 
 ### 简介

@@ -1,4 +1,7 @@
-# Amazon Aurora
+---
+title: Amazon Aurora
+type: page
+---
 
 > Amazon Aurora 是与 MySQL 兼容的关系数据库引擎，既具备高端商用数据库的速度和可用性，又有开源数据库的简单性和成本效益。Amazon Aurora 的性能最高可达到 MySQL 的五倍，并且能以十分之一的成本提供商用数据库的安全性、可用性和可靠性。
 
@@ -17,5 +20,3 @@ Aurora 另辟蹊径，由于公开的资料不多，我猜想 Aurora 在 MySQL �
 **链接**
 
 - [Amazon Aurora](https://aws.amazon.com/cn/rds/aurora/)
-
-

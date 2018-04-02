@@ -1,4 +1,7 @@
-# systemtap
+---
+title: systemtap
+type: page
+---
 
 SystemTap是DTrace的Linux实现，它把用户提供的脚本转换为内核模块来执行，用来监测和跟踪内核事件。
 
@@ -30,4 +33,3 @@ SystemTap是DTrace的Linux实现，它把用户提供的脚本转换为内核模
 - Documentation: https://sourceware.org/systemtap/documentation.html
 - Examples: https://sourceware.org/systemtap/wiki
 - https://taozj.org/201703/systemtap-intro.html
-

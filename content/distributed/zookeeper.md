@@ -1,5 +1,4 @@
 ---
 title: Zookeeper
-layout: "post"
+type: page
 ---
-

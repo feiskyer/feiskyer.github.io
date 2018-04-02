@@ -1,6 +1,6 @@
 ---
 title: "AWS S3故障回顾和总结"
-layout: "post"
+type: page
 ---
 
 ## S3故障回顾

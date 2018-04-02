@@ -1,6 +1,6 @@
 ---
 title: "on-call轮值"
-layout: "post"
+type: page
 ---
 
 on-call轮值是运维团队的重要职责，目标是保障服务的可靠性和可用性。

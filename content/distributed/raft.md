@@ -1,7 +1,6 @@
 ---
 title: Raft
-layout: "post"
-date: 2016-10-21 16:11:07
+type: page
 ---
 
 # Raft
@@ -107,6 +106,3 @@ _以上转自<http://www.infoq.com/cn/articles/etcd-interpretation-application-s
 - http://www.infoq.com/cn/articles/etcd-interpretation-application-scenario-implement-principle
 - http://www.cnblogs.com/bangerlee/p/5991417.html
 - [Raft: The Understandable Distributed Consensus Protocol](https://speakerdeck.com/benbjohnson/raft-the-understandable-distributed-consensus-protocol)
-
-
-

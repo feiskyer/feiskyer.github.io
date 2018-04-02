@@ -1,5 +1,6 @@
 ---
 title: nas
+type: page
 ---
 
 NAS

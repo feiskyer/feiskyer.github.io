@@ -1,7 +1,7 @@
 ---
 title: bcc
 date: 2016-12-14 17:27:47
-layout: "post"
+type: page
 ---
 
 # BPF Compiler Collection (BCC) - Tools for BPF-based Linux IO analysis, networking, monitoring
@@ -238,7 +238,7 @@ TIME      PID    COMM                  LATms HOST
 
 BPF, as in Berkeley Packet Filter, was initially conceived in 1992 so as to provide a way to filter packets and to avoid useless packet copies from kernel to userspace. It initially consisted in a simple bytecode that is injected from userspace into the kernel, where it is checked by a verifier—to prevent kernel crashes or security issues—and attached to a socket, then run on each received packet.The simplicity of the language as well as the existence of an in-kernel Just-In-Time (JIT) compiling machine for BPF were factors for the excellent performances of this tool.
 
-Then in 2013, Alexei Starovoitov completely reshaped it, started to add new functionalities and to improve the performances of BPF. This new version is designated as eBPF (for “extended BPF”), while the former becomes cBPF (“classic” BPF). New features such as maps and tail calls appeared. The JIT machines were rewritten. 
+Then in 2013, Alexei Starovoitov completely reshaped it, started to add new functionalities and to improve the performances of BPF. This new version is designated as eBPF (for “extended BPF”), while the former becomes cBPF (“classic” BPF). New features such as maps and tail calls appeared. The JIT machines were rewritten.
 
 ## IO Visor
 
@@ -259,4 +259,3 @@ XDP or eXpress Data Path provides a high performance, programmable network data 
 - https://suchakra.wordpress.com/2015/08/12/bpf-internals-ii/
 - https://qmonnet.github.io/whirl-offload/2016/09/01/dive-into-bpf/
 - https://github.com/cilium/cilium
-

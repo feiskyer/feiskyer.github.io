@@ -1,6 +1,6 @@
 ---
 title: "数据处理流水线"
-layout: "post"
+type: page
 ---
 
 数据处理流水线(Data Processing Pipeline)与UNIX管道类似，程序读取输入、处理、最后输出新的数据，多个程序串联起来执行就构成了流水线。串联程序的数量被称为流水线的深度（depth）。

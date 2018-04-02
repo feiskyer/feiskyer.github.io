@@ -1,4 +1,7 @@
-# Ceph
+---
+title: Ceph
+type: page
+---
 
 Ceph是一个开源的分布式存储系统，同时提供了对象存储、块存储和文件系统存储，主要特点包括:
 
@@ -44,4 +47,3 @@ mount -t ceph 192.168.33.2:6789:/ /mnt/cephfs -o name=admin,secret=AQCeqZFXl96IF
 **参考文档**
 
 - <https://www.ustack.com/blog/ceph_infra/>
-
