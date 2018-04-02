@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>分布式系统理论 on Feisky</title>
+    <link>https://feisky.xyz/distributed/distributed/</link>
+    <description>Recent content in 分布式系统理论 on Feisky</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 21 Oct 2016 16:11:07 +0000</lastBuildDate>
+    
+	<atom:link href="https://feisky.xyz/distributed/distributed/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Paxos</title>
+      <link>https://feisky.xyz/distributed/distributed/paxos/</link>
+      <pubDate>Fri, 21 Oct 2016 16:11:07 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/distributed/distributed/paxos/</guid>
+      <description>Paxos Paxos算法是莱斯利·兰伯特于1990年提出的一种基于消息传递且具有高度容错特性的一致性算法。 论文 The Part-Time Parliament Paxos Made Simple Paxos Made Live CONSENSUS: BRIDGING THEORY AND PRACTICE Paxos</description>
+    </item>
+    
+    <item>
+      <title>Zab</title>
+      <link>https://feisky.xyz/distributed/distributed/zab/</link>
+      <pubDate>Fri, 21 Oct 2016 16:11:07 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/distributed/distributed/zab/</guid>
+      <description>Zab Zab (Zookeeper atomic broadcast protocol)是Zookeeper内部用到的一致性协议。相比Paxos，Zab最大的特点是保证强一致性(strong consi</description>
+    </item>
+    
+    <item>
+      <title>分布式系统的一致性</title>
+      <link>https://feisky.xyz/distributed/distributed/consistent/</link>
+      <pubDate>Fri, 21 Oct 2016 16:11:07 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/distributed/distributed/consistent/</guid>
+      <description>考虑在数据冗余情况下一致性和性能的问题，即： 1）要想让数据有高可用性，就得写多份数据。 2）写多份的问题会导致数据一致性的问题。 3）数据一致性</description>
+    </item>
+    
+    <item>
+      <title>2PC/3PC</title>
+      <link>https://feisky.xyz/distributed/distributed/2pc-3pc/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/distributed/distributed/2pc-3pc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>CAP</title>
+      <link>https://feisky.xyz/distributed/distributed/cap/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/distributed/distributed/cap/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Raft</title>
+      <link>https://feisky.xyz/distributed/distributed/raft/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/distributed/distributed/raft/</guid>
+      <description>Raft Raft可以在高效的解决分布式系统中各个节点日志内容一致性问题的同时，也使得集群具备一定的容错能力。即使集群中出现部分节点故障、网络故障等</description>
+    </item>
+    
+    <item>
+      <title>可用性和扩展性</title>
+      <link>https://feisky.xyz/distributed/distributed/availability/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/distributed/distributed/availability/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>网络分区</title>
+      <link>https://feisky.xyz/distributed/distributed/network-partition/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/distributed/distributed/network-partition/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

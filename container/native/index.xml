@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>云原生应用 on Feisky</title>
+    <link>https://feisky.xyz/container/native/</link>
+    <description>Recent content in 云原生应用 on Feisky</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 13 Oct 2016 22:48:12 +0000</lastBuildDate>
+    
+	<atom:link href="https://feisky.xyz/container/native/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>云原生（Cloud Native）</title>
+      <link>https://feisky.xyz/container/native/cloud-native/</link>
+      <pubDate>Thu, 13 Oct 2016 22:48:12 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/container/native/cloud-native/</guid>
+      <description>Cloud Native is structuring teams, culture and technology to utilize automation and architectures to manage complexity and unlock velocity. 云原生应用，是指原生为在云平台上部署运行而设计开发的应用。公平的说，大多数传统的应用，不做任何改动，都</description>
+    </item>
+    
+    <item>
+      <title>gPRC</title>
+      <link>https://feisky.xyz/container/native/grpc/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/container/native/grpc/</guid>
+      <description>gPRC是基于HTTP/2的开源高性能PRC框架，它基于Protocol Buffer序列化协议，并支持Java、Go、C++、Python、</description>
+    </item>
+    
+  </channel>
+</rss>

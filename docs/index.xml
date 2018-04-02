@@ -1,31 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Feisky</title>
+    <title>读书笔记 on Feisky</title>
     <link>https://feisky.xyz/docs/</link>
-    <description>Recent content on Feisky</description>
+    <description>Recent content in 读书笔记 on Feisky</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-Hans</language>
+    <language>zh-cn</language>
     
 	<atom:link href="https://feisky.xyz/docs/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title></title>
+      <title>Amazon Leadership Principles</title>
       <link>https://feisky.xyz/docs/amazon-leadership/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://feisky.xyz/docs/amazon-leadership/</guid>
-      <description>Amazon Leadership Principles 顾客至尚 领导者从客户入手，再反向推动工作。他们努力工作，赢得并维系客户对他们的信任。虽然领导者会关注竞争对手，但是他们更关注客户 。 主人</description>
-    </item>
-    
-    <item>
-      <title>docs</title>
-      <link>https://feisky.xyz/docs/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://feisky.xyz/docs/</guid>
-      <description>一些读书笔记和有趣的文章 容器的世界 Kubernetes指南 Kubernetes开发环境指南 CRI-O Serverless 容器编排系统对比 容器网络方案对比 Docker 1.12 SELinux 京东容器</description>
+      <description>顾客至尚 领导者从客户入手，再反向推动工作。他们努力工作，赢得并维系客户对他们的信任。虽然领导者会关注竞争对手，但是他们更关注客户 。 主人翁精神</description>
     </item>
     
     <item>
@@ -71,15 +62,6 @@
       
       <guid>https://feisky.xyz/docs/jd-container/</guid>
       <description>从0诞生 2013年初，京东商城研发布局虚拟化技术方向。那时的我们从0起步。从几人小团队开始起航。 在物理机时代，应用上线等待分配物理机时间平均</description>
-    </item>
-    
-    <item>
-      <title>其他链接</title>
-      <link>https://feisky.xyz/docs/other/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://feisky.xyz/docs/other/</guid>
-      <description>一些非常有趣的文章 容器相关 京东容器建设之路 Network Namespace 软件架构 架构即未来 编程语言 Python Paste Python copy</description>
     </item>
     
     <item>

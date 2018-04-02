@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>分布式系统经验教训 on Feisky</title>
+    <link>https://feisky.xyz/distributed/lessons/</link>
+    <description>Recent content in 分布式系统经验教训 on Feisky</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    
+	<atom:link href="https://feisky.xyz/distributed/lessons/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>AWS S3故障回顾和总结</title>
+      <link>https://feisky.xyz/distributed/lessons/aws-s3-2.28/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/distributed/lessons/aws-s3-2.28/</guid>
+      <description>S3故障回顾 2月28日，AWS工程师在排查Northern Virginia (US-EAST-1) Region的一个S3计费问题时，因敲错了一条playbook的参数而误删了大</description>
+    </item>
+    
+    <item>
+      <title>Gitlab故障回顾和总结</title>
+      <link>https://feisky.xyz/distributed/lessons/gitlab-1.31/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/distributed/lessons/gitlab-1.31/</guid>
+      <description>Gitlab故障回顾 1月31日，Giblab在修复一个PostgreSQL数据同步问题（DB Replication lagged too far behind）时，误将生产环境的数据删除</description>
+    </item>
+    
+  </channel>
+</rss>

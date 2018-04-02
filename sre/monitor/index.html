@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-cn" lang="zh-cn">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.37.1" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>监控与告警 &middot; Feisky</title>
+
+  
+  <link type="text/css" rel="stylesheet" href="https://feisky.xyz/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://feisky.xyz/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://feisky.xyz/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://feisky.xyz/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Feisky" />
+
+  
+</head>
+
+  <body class=" ">
+  <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://feisky.xyz/"><h1>Feisky</h1></a>
+      <p class="lead">
+       Notes about anything 
+      </p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="https://feisky.xyz/">Home</a> </li>
+      <li><a href="/container/"> Containers </a></li><li><a href="https://kubernetes.feisky.xyz"> Kubernetes </a></li><li><a href="/distributed/"> Distributed </a></li><li><a href="/docs/"> Readings </a></li><li><a href="/machine-learning/"> 机器学习 </a></li><li><a href="https://sdn.feisky.xyz"> SDN </a></li><li><a href="/about/"> About </a></li>
+    </ul>
+
+    <p>&copy; 2018. All rights reserved. </p>
+  </div>
+</div>
+
+    <div class="content container">
+    <div class="post">
+  <h1>监控与告警</h1>
+  <span class="post-date">Mon, Jan 1, 0001</span>
+  
+
+<p>监控一个大规模的系统是一个非常有挑战的事情，组件多，分析繁杂，而又要求监控系统本身的维护非常低。在大规模系统部署下，任何一个单机问题的报警都没有任何意义，因为这发生的太多太频繁。Google监控系统从传统的探针模型（脚本测试，检查结果继而报警）与图形化趋势展示演变为一个基于时间序列数据（Borgmon，类似开源产品有Prometheus等）并使用标准数据分析进行报警的新模型。</p>
+
+<ul>
+<li>监控系统要解决“什么东西出现故障”和“为什么出故障”这两个问题</li>
+<li>黄金指标
+
+<ul>
+<li>延迟，区分成功和失败很重要</li>
+<li>流量</li>
+<li>错误，包括显式失败（比如500）、隐式失败（比如200回复中包含了错误内容）和策略原因导致的失败（比如超时）</li>
+<li>饱和度，系统在达到100%利用率之前会出现性能的严重下降</li>
+</ul></li>
+<li><strong>系统指标应该以“分布”而不是平均值来定义</strong></li>
+<li>简化告警系统
+
+<ul>
+<li>避免告警太多导致“狼来了”效应</li>
+<li>每个告警都应该是可以具体操作的</li>
+<li>每个紧急告警的回复都应该包括某种智力分析过程，否则不应该成为紧急警报</li>
+<li>应对紧急警报经常会牺牲短期内的可用性和性能，以换取未来整体系统性能的提升</li>
+</ul></li>
+</ul>
+
+<h2 id="白盒监控-基于时间序列有效报警-borgmon">白盒监控：基于时间序列有效报警（Borgmon）</h2>
+
+<ul>
+<li>标准监控格式：HTTP请求<code>/varz</code>，响应为文本方式的监控数据，比如<code>http_requests 37</code>或者
+<code>http_responses map:code 200:25 404:0 500:12</code></li>
+<li>每个服务都对监控系统系统一个HTTP服务<code>/varz</code></li>
+<li>Borgmon通过配置文件配置需要收集的目标列表，并定期抓取<code>/varz</code> URI</li>
+<li>抓取的数据以时间序列方式存储</li>
+<li>Borgmon编程语言提供查询和汇总计算服务：监控计算的结果还是一个时间序列，可以存储或图表方式展现；而报警规则的结果则是true或false，当true时报警</li>
+<li>分片机制应对大规模系统，比如Borgmon划分为收集层、汇总层和全局层，上层直接接收下层的时间序列数据</li>
+</ul>
+
+<h2 id="黑盒监控">黑盒监控</h2>
+
+<p>黑盒监控用户监控最终用户访问服务的情况，基于探针实现。探针可以探测前端，也可以探测负载均衡后面的服务，这可以非常方便的发现某个数据中心的问题，而整个系统的服务依然正常工作。</p>
+
+</div>
+
+<h2>Comments</h2>
+<div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "feisky" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+
+    
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-69699206-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+  </body>
+</html>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>分布式计算 on Feisky</title>
+    <link>https://feisky.xyz/distributed/compute/</link>
+    <description>Recent content in 分布式计算 on Feisky</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    
+	<atom:link href="https://feisky.xyz/distributed/compute/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title></title>
+      <link>https://feisky.xyz/distributed/compute/beam/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/distributed/compute/beam/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://feisky.xyz/distributed/compute/cloud-dataflow/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/distributed/compute/cloud-dataflow/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://feisky.xyz/distributed/compute/hadoop/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/distributed/compute/hadoop/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://feisky.xyz/distributed/compute/spark/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/distributed/compute/spark/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

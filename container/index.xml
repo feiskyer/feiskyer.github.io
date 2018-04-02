@@ -1,14 +1,113 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Feisky</title>
+    <title>Linux容器 on Feisky</title>
     <link>https://feisky.xyz/container/</link>
-    <description>Recent content on Feisky</description>
+    <description>Recent content in Linux容器 on Feisky</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-Hans</language>
+    <language>zh-cn</language>
     
 	<atom:link href="https://feisky.xyz/container/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>AppArmor</title>
+      <link>https://feisky.xyz/container/apparmor/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/container/apparmor/</guid>
+      <description>AppArmor (Application Armor) 是Linux内核的一个安全模块，允许系统管理员将每个程序与一个安全配置文件关联，从而限制程序的功能。通过它你可以指定程序可以读、写或运</description>
+    </item>
+    
+    <item>
+      <title>Ceph</title>
+      <link>https://feisky.xyz/container/ceph/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/container/ceph/</guid>
+      <description>Ceph是一个开源的分布式存储系统，同时提供了对象存储、块存储和文件系统存储，主要特点包括: 高扩展性：使用普通x86服务器，支持10~100</description>
+    </item>
+    
+    <item>
+      <title>Containerd</title>
+      <link>https://feisky.xyz/container/containerd/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/container/containerd/</guid>
+      <description>containerd 是为了兼容OCI标准而从Docker中拆分出来专门负责镜像管理和容器执行的组件。它向上对Docker提供gRPC接口，向下借助contai</description>
+    </item>
+    
+    <item>
+      <title>Drawbridge</title>
+      <link>https://feisky.xyz/container/drawbridge/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/container/drawbridge/</guid>
+      <description>{% pdf http://feisky.xyz/container/drawbridge.pdf %}</description>
+    </item>
+    
+    <item>
+      <title>SELinux</title>
+      <link>https://feisky.xyz/container/selinux/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/container/selinux/</guid>
+      <description>SELinux (Security-Enhanced Linux) 是一种强制访问控制（mandatory access control）的实现。它的作法是以最小权限原则（principle of least privilege）为</description>
+    </item>
+    
+    <item>
+      <title>Seccomp</title>
+      <link>https://feisky.xyz/container/seccomp/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/container/seccomp/</guid>
+      <description>Seccomp是Secure computing mode的缩写，它是Linux内核提供的一个操作，用于限制一个进程可以执行的系统调用．Seccomp需要有一个</description>
+    </item>
+    
+    <item>
+      <title>cri-o</title>
+      <link>https://feisky.xyz/container/cri-o/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/container/cri-o/</guid>
+      <description>cri-o cri-o基于Kubelet容器运行时接口（CRI）为Kubernetes带来了原生的OCI运行时(目前仅支持runc)。cri-o还在紧</description>
+    </item>
+    
+    <item>
+      <title>runV</title>
+      <link>https://feisky.xyz/container/runv/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/container/runv/</guid>
+      <description>runV 是Open Container Initiative (OCI) 标准 的一个实现（其他实现包括runc和clear container等）。与runc不同的是，runV是一个基于虚拟化的OC</description>
+    </item>
+    
+    <item>
+      <title>runc</title>
+      <link>https://feisky.xyz/container/runc/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/container/runc/</guid>
+      <description>runc 是Open Container Initiative (OCI) 标准 的一个实现（其他实现包括runv和clear container等），也是Docker管理容器的默认后端实现。 OCI标准</description>
+    </item>
+    
+    <item>
+      <title>云原生框架</title>
+      <link>https://feisky.xyz/container/tools/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/container/tools/</guid>
+      <description>API Google API Design Guide OpenAPI Swagger KONG Tyk gRPC - A high performance, open source, general-purpose RPC framework Finagle - A fault tolerant, protocol-agnostic RPC system 文档 Google Developer Documentation Style Guide OpenAPI GitBook Daux.io</description>
+    </item>
+    
+    <item>
+      <title>容器资源列表</title>
+      <link>https://feisky.xyz/container/resources/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/container/resources/</guid>
+      <description>Awesome Docker Awesome Kubernetes Kubernetes Handbook 调度编排 Kubernetes Mesosphere DC/OS SwarmKit Tectonic Rancher Platform9 Kitmatic Deis OpenShift 镜像管理 DockerHub Quay</description>
+    </item>
     
   </channel>
 </rss>

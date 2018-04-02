@@ -58,7 +58,7 @@ $ docker pull busybox $ mkdir rootfs $ docker export $(docker create busybox) | 
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://feisky.xyz/serverless/</guid>
-      <description>Serverless，即无服务器架构，将大家从服务器中解放了出来，只需要关注业务逻辑本身。用户只需要关注数据和业务逻辑，无需维护服务器，也不</description>
+      <description>Serverless Serverless，即无服务器架构，将大家从服务器中解放了出来，只需要关注业务逻辑本身。用户只需要关注数据和业务逻辑，无需维护服务器，也</description>
     </item>
     
   </channel>

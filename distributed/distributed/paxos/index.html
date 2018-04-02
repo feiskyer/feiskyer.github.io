@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-cn" lang="zh-cn">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.37.1" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Paxos &middot; Feisky</title>
+
+  
+  <link type="text/css" rel="stylesheet" href="https://feisky.xyz/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://feisky.xyz/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://feisky.xyz/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://feisky.xyz/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Feisky" />
+
+  
+</head>
+
+  <body class=" ">
+  <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://feisky.xyz/"><h1>Feisky</h1></a>
+      <p class="lead">
+       Notes about anything 
+      </p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="https://feisky.xyz/">Home</a> </li>
+      <li><a href="/container/"> Containers </a></li><li><a href="https://kubernetes.feisky.xyz"> Kubernetes </a></li><li><a href="/distributed/"> Distributed </a></li><li><a href="/docs/"> Readings </a></li><li><a href="/machine-learning/"> 机器学习 </a></li><li><a href="https://sdn.feisky.xyz"> SDN </a></li><li><a href="/about/"> About </a></li>
+    </ul>
+
+    <p>&copy; 2018. All rights reserved. </p>
+  </div>
+</div>
+
+    <div class="content container">
+    <div class="post">
+  <h1>Paxos</h1>
+  <span class="post-date">Fri, Oct 21, 2016</span>
+  
+
+<h1 id="paxos">Paxos</h1>
+
+<p>Paxos算法是莱斯利·兰伯特于1990年提出的一种基于消息传递且具有高度容错特性的一致性算法。</p>
+
+<p><strong>论文</strong></p>
+
+<ol>
+<li><a href="http://research.microsoft.com/en-us/um/people/lamport/pubs/lamport-paxos.pdf">The Part-Time Parliament</a></li>
+<li><a href="http://research.microsoft.com/en-us/um/people/lamport/pubs/paxos-simple.pdf">Paxos Made Simple</a></li>
+<li><a href="http://static.googleusercontent.com/media/research.google.com/zh-CN//archive/paxos_made_live.pdf">Paxos Made Live</a></li>
+<li><a href="https://ramcloud.stanford.edu/~ongaro/thesis.pdf">CONSENSUS: BRIDGING THEORY AND PRACTICE</a></li>
+</ol>
+
+<h2 id="paxos算法">Paxos算法</h2>
+
+<p><strong>基本问题</strong></p>
+
+<p>解决分布式系统中多个节点之间就某个值（提案）达成一致（决议）。</p>
+
+<p><strong>基本假设</strong></p>
+
+<ul>
+<li>集群中有多数派节点$(N/2+1)$存活并且他们之间的网络通信正常</li>
+<li>存储是可靠的，没有数据丢失和错误</li>
+<li>允许消息丢失和消息乱序</li>
+</ul>
+
+<p><strong>基本原则</strong></p>
+
+<p>安全原则&mdash;保证不能做错的事</p>
+
+<ol>
+<li>只能有一个值被批准，不能出现第二个值把第一个覆盖的情况</li>
+<li>每个节点只能学习到已经被批准的值，不能学习没有被批准的值</li>
+</ol>
+
+<p>存活原则&mdash;只要有多数服务器存活并且彼此间可以通信最终都要做到的事</p>
+
+<ol>
+<li>最终会批准某个被提议的值</li>
+<li>一个值被批准了，其他服务器最终会学习到这个值</li>
+</ol>
+
+<p><strong>4个角色</strong></p>
+
+<ul>
+<li>Proposer: 提议发起者，处理客户端请求，将客户端的请求发送到集群中，以便决定这个值是否可以被批准。</li>
+<li>Acceptor: 提议批准者，负责处理接收到的提议，他们的回复就是一次投票</li>
+<li>Learner: 不参与提议的处理，学习提议的处理结果，并相应客户端请求</li>
+<li>Client: 分布式系统的客户端，也不参与提议的处理</li>
+</ul>
+
+<p><strong>协议内容</strong></p>
+
+<pre><code>Client   Proposer      Acceptor     Learner
+   |         |          |  |  |       |  |
+   X--------&gt;|          |  |  |       |  |  Request
+   |         X---------&gt;|-&gt;|-&gt;|       |  |  Prepare(1)
+   |         |&lt;---------X--X--X       |  |  Promise(1,{Va,Vb,Vc})
+   |         X---------&gt;|-&gt;|-&gt;|       |  |  Accept!(1,Vn)
+   |         |&lt;---------X--X--X------&gt;|-&gt;|  Accepted(1,Vn)
+   |&lt;---------------------------------X--X  Response
+   |         |          |  |  |       |  |
+</code></pre>
+
+<p>1、第一阶段 Prepare</p>
+
+<p>(1.1) Proposer发送Prepare: Proposer 生成全局唯一且递增的提案 ID（Proposal id，以高位时间戳 + 低位机器 IP 可以保证唯一性和递增性），向Paxos集群的所有机器发送PrepareRequest，这里无需携带提案内容，只携带 Proposal id 即可。
+(1.2) Acceptor应答Prepare: Acceptor收到PrepareRequest后，做出“两个承诺，一个应答”。</p>
+
+<p>两个承诺：</p>
+
+<p>*第一，不再应答 Proposal id 小于等于当前请求的PrepareRequest*；
+*第二，不再应答 Proposal id 小于当前请求的AcceptRequest*。</p>
+
+<p>一个应答：</p>
+
+<p><em>返回自己已经Accept过的提案中ProposalID最大的那个提案的内容，如果没有则返回空值</em>;</p>
+
+<p>注意：这“两个承诺”中，蕴含两个要点：<strong>就是应答当前请求前，也要按照“两个承诺”检查是否会违背之前处理 PrepareRequest时做出的承诺；应答前要在本地持久化当前Propsal id</strong>。</p>
+
+<p>2、第二阶段 Accept</p>
+
+<p>(2.1) Proposer发送Accept: Proposer收集到多数派应答的PrepareResponse后，从中选择proposal id最大的提案内容，作为要发起Accept的提案，如果这个提案为空值，则可以自己随意决定提案内容。然后携带上当前 Proposal id，向Paxos集群的所有机器发送 AccpetRequest。
+(2.2) Acceptor应答Accept: Accpetor收到AccpetRequest后，检查不违背自己之前作出的“两个承诺”情况下，持久化当前 Proposal id 和提案内容。
+(2.3) Proposer收集到多数派应答的AcceptResponse后，形成决议。</p>
+
+<p>注意，*一条超时未形成多数派应答的提案，我们即不能认为它已形成决议，也不能认为它未形成决议。只有当你观察它（执行Paxos协议）的时候，你才能得到确定的结果。因此无论如何都对这条日志重新执行Paxos（这也是为什么在恢复的时候，我们要对每条日志都执行Paxos的原因）*。</p>
+
+<h2 id="错误处理">错误处理</h2>
+
+<p><strong>Acceptor或者Learner失效</strong></p>
+
+<p>这个时候不影响整个提议的处理过程，不需要任何额外恢复处理。</p>
+
+<pre><code>Client   Proposer      Acceptor     Learner
+   |         |          |  |  |       |  |
+   X--------&gt;|          |  |  |       |  |  Request
+   |         X---------&gt;|-&gt;|-&gt;|       |  |  Prepare(1)
+   |         |          |  |  !       |  |  !! FAIL !!
+   |         |&lt;---------X--X          |  |  Promise(1,{null,null})
+   |         X---------&gt;|-&gt;|          |  |  Accept!(1,V)
+   |         |&lt;---------X--X---------&gt;|-&gt;|  Accepted(1,V)
+   |&lt;---------------------------------X--X  Response
+   |         |          |  |          |  |
+         (Quorum size = 2 Acceptors)
+</code></pre>
+
+<p><strong>Proposer失效</strong></p>
+
+<p>Proposer在提议达成之前失效，这时另一个Proposer再次发起整个提议过程。</p>
+
+<pre><code>Client  Proposer        Acceptor     Learner
+   |      |             |  |  |       |  |
+   X-----&gt;|             |  |  |       |  |  Request
+   |      X------------&gt;|-&gt;|-&gt;|       |  |  Prepare(1)
+   |      |&lt;------------X--X--X       |  |  Promise(1,{null, null, null})
+   |      |             |  |  |       |  |
+   |      |             |  |  |       |  |  !! Leader fails during broadcast !!
+   |      X------------&gt;|  |  |       |  |  Accept!(1,Va)
+   |      !             |  |  |       |  |
+   |         |          |  |  |       |  |  !! NEW LEADER !!
+   |         X---------&gt;|-&gt;|-&gt;|       |  |  Prepare(2)
+   |         |&lt;---------X--X--X       |  |  Promise(2,{null, null, null})
+   |         X---------&gt;|-&gt;|-&gt;|       |  |  Accept!(2,V)
+   |         |&lt;---------X--X--X------&gt;|-&gt;|  Accepted(2,V)
+   |&lt;---------------------------------X--X  Response
+   |         |          |  |  |       |  |
+</code></pre>
+
+<p><strong>多个Proposers竞争</strong></p>
+
+<p>当多个Proposers都觉得它们自己应该是leader的时候最为复杂。比如当前的leader可能失效后又恢复，而恢复之前已经有新的leader选举出来了，这个时候就有可能很难达成一致（这时Latency会非常高，解决方法时Multi Paxos）：</p>
+
+<pre><code>Client   Proposer        Acceptor     Learner
+   |      |             |  |  |       |  |
+   X-----&gt;|             |  |  |       |  |  Request
+   |      X------------&gt;|-&gt;|-&gt;|       |  |  Prepare(1)
+   |      |&lt;------------X--X--X       |  |  Promise(1,{null,null,null})
+   |      !             |  |  |       |  |  !! LEADER FAILS
+   |         |          |  |  |       |  |  !! NEW LEADER (knows last number was 1)
+   |         X---------&gt;|-&gt;|-&gt;|       |  |  Prepare(2)
+   |         |&lt;---------X--X--X       |  |  Promise(2,{null,null,null})
+   |      |  |          |  |  |       |  |  !! OLD LEADER recovers
+   |      |  |          |  |  |       |  |  !! OLD LEADER tries 2, denied
+   |      X------------&gt;|-&gt;|-&gt;|       |  |  Prepare(2)
+   |      |&lt;------------X--X--X       |  |  Nack(2)
+   |      |  |          |  |  |       |  |  !! OLD LEADER tries 3
+   |      X------------&gt;|-&gt;|-&gt;|       |  |  Prepare(3)
+   |      |&lt;------------X--X--X       |  |  Promise(3,{null,null,null})
+   |      |  |          |  |  |       |  |  !! NEW LEADER proposes, denied
+   |      |  X---------&gt;|-&gt;|-&gt;|       |  |  Accept!(2,Va)
+   |      |  |&lt;---------X--X--X       |  |  Nack(3)
+   |      |  |          |  |  |       |  |  !! NEW LEADER tries 4
+   |      |  X---------&gt;|-&gt;|-&gt;|       |  |  Prepare(4)
+   |      |  |&lt;---------X--X--X       |  |  Promise(4,{null,null,null})
+   |      |  |          |  |  |       |  |  !! OLD LEADER proposes, denied
+   |      X------------&gt;|-&gt;|-&gt;|       |  |  Accept!(3,Vb)
+   |      |&lt;------------X--X--X       |  |  Nack(4)
+   |      |  |          |  |  |       |  |  ... and so on ...
+</code></pre>
+
+<h2 id="multi-paxos">Multi Paxos</h2>
+
+<p>朴素Paxos算法的Latency很高，Multi-Paxos通过改变Promised的生效范围至全局的Instance（收到来自其他节点的Accept，则进行一段时间的拒绝提交请求），从而使得一些唯一节点的连续提交获得去Prepare的效果。这将原来2-Phase过程简化为了1-Phase，从而加快了提交速度。</p>
+
+<p>Multi Paxos一边先运行一次完整的paxos算法选举出leader，有leader处理所有的读写请求，然后省略掉prepare过程：</p>
+
+<pre><code>Client   Proposer      Acceptor     Learner
+   |         |          |  |  |       |  | --- First Request ---
+   X--------&gt;|          |  |  |       |  |  Request
+   |         X---------&gt;|-&gt;|-&gt;|       |  |  Prepare(N)
+   |         |&lt;---------X--X--X       |  |  Promise(N,I,{Va,Vb,Vc})
+   |         X---------&gt;|-&gt;|-&gt;|       |  |  Accept!(N,I,Vm)
+   |         |&lt;---------X--X--X------&gt;|-&gt;|  Accepted(N,I,Vm)
+   |&lt;---------------------------------X--X  Response
+   |         |          |  |  |       |  |
+</code></pre>
+
+<p>Multi Paxos要求在各个Proposer中有唯一的Leader，并由这个Leader唯一地提交value给各Acceptor进行表决，在系统中仅有一个Leader进行value提交的情况下，Prepare的过程就可以被跳过：</p>
+
+<pre><code>Client   Proposer       Acceptor     Learner
+   |         |          |  |  |       |  |  --- Following Requests ---
+   X--------&gt;|          |  |  |       |  |  Request
+   |         X---------&gt;|-&gt;|-&gt;|       |  |  Accept!(N,I+1,W)
+   |         |&lt;---------X--X--X------&gt;|-&gt;|  Accepted(N,I+1,W)
+   |&lt;---------------------------------X--X  Response
+   |         |          |  |  |       |  |
+</code></pre>
+
+<h2 id="fast-paxos">Fast Paxos</h2>
+
+<h2 id="cheap-paxos">Cheap Paxos</h2>
+
+<h2 id="fast-paxos-1">Fast Paxos</h2>
+
+<h2 id="与raft对比">与raft对比</h2>
+
+<p>从上面的描述中可以看出basic-paxos无法和raft进行比较，一次basic-paxos的过程只相当于同步raft算法中的一个日志项的过程。multi-paxos和raft的流程才是相似的。根据我上面的描述可以看出，raft算法其实是对multi-paxos的流程做了更加严格的限制：</p>
+
+<p>raft中发送的请求（日志项）必须是连续的,而paxos中使可以并发的（就是说paxos可以同时发送日志项2,3，3不需要等待2处理完才能发送，但在状态集中日志顺序还是不变的，有点类似于TCP中的数据发送）
+raft选主是有限制的, 必须有最新，最全的日志节点才可以当选. 而multi-paxos中是随意的。所以raft 可以看成是简化版本的multi-paxos(这里multi-paxos因为允许并发的写日志,因此不存在一个最新，最全的日志节点，因此只能这么做。这样带来的麻烦就是选主以后, 需要将主里面没有的日志给补全, 并执行commit 过程)
+根据上面可以看出，raft更加的简单，paxos支持日志并发，更加的灵活。</p>
+
+<h2 id="主要应用">主要应用</h2>
+
+<ul>
+<li>Zookeeper</li>
+<li>Chubby</li>
+<li><a href="https://github.com/tencent-wechat/phxpaxos">Wechat</a></li>
+</ul>
+
+<p>Paxos的应用简明来讲就是由算法确定一个操作系列，通过编写这些操作系列的callback（也就是状态机的状态转移函数），使得节点进行相同顺序的callback，从而保证各个节点的状态一致。</p>
+
+<p><img src="/images/14803289545403.jpg" alt="" /></p>
+
+<p><strong>参考文档</strong></p>
+
+<ul>
+<li><a href="http://research.microsoft.com/en-us/um/people/lamport/pubs/paxos-simple.pdf">Paxos Made Simple</a></li>
+<li><a href="https://ramcloud.stanford.edu/~ongaro/thesis.pdf">CONSENSUS: BRIDGING THEORY AND PRACTICE</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Paxos_(computer_science)">Wikipedia</a></li>
+<li><a href="http://coolshell.cn/articles/10910.html">分布式系统的事务处理</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5MDg2NjIyMA==&amp;mid=203607654&amp;idx=1&amp;sn=bfe71374fbca7ec5adf31bd3500ab95a&amp;key=8ea74966bf01cfb6684dc066454e04bb5194d780db67f87b55480b52800238c2dfae323218ee8645f0c094e607ea7e6f&amp;ascene=1&amp;uin=MjA1MDk3Njk1&amp;devicetype=webwx&amp;version=70000001&amp;pass_ticket=2ivcW%2FcENyzkz%2FGjIaPDdMzzf%2Bberd36%2FR3FYecikmo%3D">一步一步理解Paxos算法</a></li>
+<li><a href="http://lemon0910.github.io/2016/05/06/paxos-raft/">浅谈basic-paxos,multi-paxos和raft</a></li>
+</ul>
+
+</div>
+
+<h2>Comments</h2>
+<div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "feisky" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+
+    
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-69699206-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+  </body>
+</html>

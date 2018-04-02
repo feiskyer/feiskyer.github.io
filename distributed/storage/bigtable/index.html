@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-cn" lang="zh-cn">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.37.1" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Google BigTable &middot; Feisky</title>
+
+  
+  <link type="text/css" rel="stylesheet" href="https://feisky.xyz/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://feisky.xyz/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://feisky.xyz/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://feisky.xyz/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Feisky" />
+
+  
+</head>
+
+  <body class=" ">
+  <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://feisky.xyz/"><h1>Feisky</h1></a>
+      <p class="lead">
+       Notes about anything 
+      </p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="https://feisky.xyz/">Home</a> </li>
+      <li><a href="/container/"> Containers </a></li><li><a href="https://kubernetes.feisky.xyz"> Kubernetes </a></li><li><a href="/distributed/"> Distributed </a></li><li><a href="/docs/"> Readings </a></li><li><a href="/machine-learning/"> 机器学习 </a></li><li><a href="https://sdn.feisky.xyz"> SDN </a></li><li><a href="/about/"> About </a></li>
+    </ul>
+
+    <p>&copy; 2018. All rights reserved. </p>
+  </div>
+</div>
+
+    <div class="content container">
+    <div class="post">
+  <h1>Google BigTable</h1>
+  <span class="post-date">Mon, Jan 1, 0001</span>
+  <p>Google 作为大数据的祖宗一样的存在，对于云真是错过了一波又一波：虚拟化错过一波让 VMWare 和 Docker 抢先了（Google 早在十年前就开始容器的方案，要知道容器赖以生存的 cgroups 的 patch 就是 Google 提交的）；云服务错过一波让 Amazon 抢先了（Google App Engine 真是可惜）：大数据存储错过一波让开源的 Hadoop 拿下了事实标准，以至于我觉得 Google Cloud BigTable 服务中兼容 Hadoop HBase API 的决定，当时实现这些 Hadoop API for BigTable 的工程师心中应该是滴血的 :)</p>
+
+<p>不过在被 Amazon / Docker / Hadoop 刺激到以后，Google 终于意识到社区和云化的力量，开始对 Google Cloud 输出 Google 内部各种牛逼的基础设施，2015 年终于在 Google Cloud Platform 上正式亮相。对于 BigTable 的架构相信大多数分布式存储系统工程师都比较了解，毕竟 BigTable 的论文也是和 Amazon Dynamo 一样是必读的经典，我就不赘述了。</p>
+
+<p>BigTable 云服务的 API 和 HBase 兼容，所以也是 <code>{Key : 二维表格结构}</code>，由于在 Tablet Server 这个层次还是一个主从的结构，对一个 Tablet 的读写默认都只能通过 Tablet Master 进行，这样使得 BigTable 是一个强一致的系统。这里的强一致指的是对于单 Key 的写入，如果服务端返回成功，接下来发生的读取，都能是最新的值。</p>
+
+<p>由于 BigTable 仍然不支持 ACID 事务，所以这里的强一致只是对于单 Key 的操作而言的。对于水平扩展能力来说， BigTable 其实并没有什么限制，文档里很嚣张的号称 Incredible scalability，但是 BigTable 并没有提供跨数据中心（Zone）高可用和跨 Zone 访问的能力。</p>
+
+<p>也就是说，一个 BigTable 集群只能部署在一个数据中心内部。这其实看得出 BigTable 在 Google 内部的定位，就是一个高性能低延迟的分布式存储服务，如果需要做跨 Zone 高可用需要业务层自己做复制在两个 Zone 之间同步，构建一个镜像的 BigTable 集群。</p>
+
+<p>其实 Google 很多业务在  MegaStore 和 Spanner 出来之前，就是这么搞的。对于 BigTable 来说，如果需要搞跨数据中心高可用，强一致，还要保证低延迟那是不太可能的，也不符合 BigTable 的定位。另外值得吐槽的是 BigTable 团队发过一个 Blog ：
+（<a href="https://cloudplatform.googleblog.com/2015/05/introducing-Google-Cloud-Bigtable.html）。里面把">https://cloudplatform.googleblog.com/2015/05/introducing-Google-Cloud-Bigtable.html）。里面把</a> HBase 的延迟黑得够呛，一个 .99 的响应延迟 6 ms, HBase 280ms。其实看平均响应延迟的差距不会那么大&hellip;.BigTable 由于是 C++ 写的，优势就是延迟是相当平稳的。但是据我所知 HBase 社区也在做很多工作将 GC 带来的影响降到最小，比如 off-heap 等优化做完以后，HBase 的延迟表现会好一些。</p>
+
+</div>
+
+<h2>Comments</h2>
+<div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "feisky" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+
+    
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-69699206-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+  </body>
+</html>

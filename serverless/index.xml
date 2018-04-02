@@ -1,14 +1,50 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Feisky</title>
+    <title>Serverless on Feisky</title>
     <link>https://feisky.xyz/serverless/</link>
-    <description>Recent content on Feisky</description>
+    <description>Recent content in Serverless on Feisky</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-Hans</language>
+    <language>zh-cn</language>
     
 	<atom:link href="https://feisky.xyz/serverless/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>PyWren</title>
+      <link>https://feisky.xyz/serverless/pywren/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/serverless/pywren/</guid>
+      <description>PyWren是一个基于AWS Lambda的Python计算框架，模拟了Python futures包的map/reduce功能，非常适用于机器</description>
+    </item>
+    
+    <item>
+      <title>Serverless平台</title>
+      <link>https://feisky.xyz/serverless/platform/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/serverless/platform/</guid>
+      <description>AWS Lambda AWS Lambda是目前最有影响力的serverless产品，它依据事件响应触发用户自定义的Lambda函数，并自动管理后端的服务器、高可用</description>
+    </item>
+    
+    <item>
+      <title>Serverless开源框架</title>
+      <link>https://feisky.xyz/serverless/framework/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/serverless/framework/</guid>
+      <description>常见的Serverless开源框架简介。 基于Kuberetes的Serverless框架 Fission Funktion: 通过fabric8-maven-plugin生成</description>
+    </item>
+    
+    <item>
+      <title>Serverless案例</title>
+      <link>https://feisky.xyz/serverless/usecase/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/serverless/usecase/</guid>
+      <description>Web应用和后端 大数据处理 实时流数据处理</description>
+    </item>
     
   </channel>
 </rss>

@@ -1,164 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-cn" lang="zh-cn">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Go语言技巧 - Feisky</title>
-  <meta name="renderer" content="webkit" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.37.1" />
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-<meta name="theme-color" content="#f8f5ec" />
-<meta name="msapplication-navbutton-color" content="#f8f5ec">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+  <title>Go语言技巧 &middot; Feisky</title>
 
-
-<meta name="author" content="Feisky" />
-  <meta name="description" content="Go语言技巧 常用工具 go fmt golint go vet goimports https://goreportcard.com/ 惯用法 注释用完整句子，以方法或包名开头 每行控制80字节长度 error字符串首字母小写 多个相同变量的返回值加" />
-
-  <meta name="keywords" content="Kubernetes, Cloud, SDN" />
+  
+  <link type="text/css" rel="stylesheet" href="https://feisky.xyz/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://feisky.xyz/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://feisky.xyz/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://feisky.xyz/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
 
 
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
 
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Feisky" />
 
-
-
-<meta name="generator" content="Hugo 0.37.1" />
-
-
-<link rel="canonical" href="https://feisky.xyz/programing/go/" />
-
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/manifest.json">
-<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-
-
-
-
-
-
-
-<link href="/dist/even.min.css?v=3.1.1" rel="stylesheet">
-<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
-
-
-
-
-<meta property="og:title" content="Go语言技巧" />
-<meta property="og:description" content="Go语言技巧 常用工具 go fmt golint go vet goimports https://goreportcard.com/ 惯用法 注释用完整句子，以方法或包名开头 每行控制80字节长度 error字符串首字母小写 多个相同变量的返回值加" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://feisky.xyz/programing/go/" />
-
-
-
-<meta property="article:published_time" content="2016-09-18T14:20:54&#43;00:00"/>
-
-<meta property="article:modified_time" content="2018-04-01T22:45:12&#43;08:00"/>
-
-
-
-
-
-
-
-
-
-
-
-<meta itemprop="name" content="Go语言技巧">
-<meta itemprop="description" content="Go语言技巧 常用工具 go fmt golint go vet goimports https://goreportcard.com/ 惯用法 注释用完整句子，以方法或包名开头 每行控制80字节长度 error字符串首字母小写 多个相同变量的返回值加">
-
-
-<meta itemprop="datePublished" content="2016-09-18T14:20:54&#43;00:00" />
-<meta itemprop="dateModified" content="2016-09-18T14:20:54&#43;00:00" />
-<meta itemprop="wordCount" content="16985">
-
-
-
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Go语言技巧"/>
-<meta name="twitter:description" content="Go语言技巧 常用工具 go fmt golint go vet goimports https://goreportcard.com/ 惯用法 注释用完整句子，以方法或包名开头 每行控制80字节长度 error字符串首字母小写 多个相同变量的返回值加"/>
-
-<!--[if lte IE 9]>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
-<![endif]-->
-
-<!--[if lt IE 9]>
-  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
-<![endif]-->
-
+  
 </head>
-<body>
-  <div id="mobile-navbar" class="mobile-navbar">
-  <div class="mobile-header-logo">
-    <a href="/" class="logo">Feisky</a>
-  </div>
-  <div class="mobile-navbar-icon">
-    <span></span>
-    <span></span>
-    <span></span>
+
+  <body class=" ">
+  <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://feisky.xyz/"><h1>Feisky</h1></a>
+      <p class="lead">
+       Notes about anything 
+      </p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="https://feisky.xyz/">Home</a> </li>
+      <li><a href="/container/"> Containers </a></li><li><a href="https://kubernetes.feisky.xyz"> Kubernetes </a></li><li><a href="/distributed/"> Distributed </a></li><li><a href="/docs/"> Readings </a></li><li><a href="/machine-learning/"> 机器学习 </a></li><li><a href="https://sdn.feisky.xyz"> SDN </a></li><li><a href="/about/"> About </a></li>
+    </ul>
+
+    <p>&copy; 2018. All rights reserved. </p>
   </div>
 </div>
-<nav id="mobile-menu" class="mobile-menu slideout-menu">
-  <ul class="mobile-menu-list">
-    <a href="https://kubernetes.feisky.xyz">
-        <li class="mobile-menu-item">Kubernetes</li>
-      </a><a href="https://sdn.feisky.xyz">
-        <li class="mobile-menu-item">SDN</li>
-      </a><a href="/distributed/">
-        <li class="mobile-menu-item">分布式系统</li>
-      </a><a href="/container/">
-        <li class="mobile-menu-item">容器</li>
-      </a><a href="/machine-learning/">
-        <li class="mobile-menu-item">机器学习</li>
-      </a><a href="https://zhuanlan.zhihu.com/kubernetes">
-        <li class="mobile-menu-item">知乎</li>
-      </a><a href="/docs/">
-        <li class="mobile-menu-item">读书笔记</li>
-      </a>
-  </ul>
-</nav>
-  <div class="container" id="mobile-panel">
-    <header id="header" class="header">
-        <div class="logo-wrapper">
-  <a href="/" class="logo">Feisky</a>
-</div>
 
-<nav class="site-navbar">
-  <ul id="menu" class="menu">
-    <li class="menu-item">
-        <a class="menu-item-link" href="https://kubernetes.feisky.xyz">Kubernetes</a>
-      </li><li class="menu-item">
-        <a class="menu-item-link" href="https://sdn.feisky.xyz">SDN</a>
-      </li><li class="menu-item">
-        <a class="menu-item-link" href="/distributed/">分布式系统</a>
-      </li><li class="menu-item">
-        <a class="menu-item-link" href="/container/">容器</a>
-      </li><li class="menu-item">
-        <a class="menu-item-link" href="/machine-learning/">机器学习</a>
-      </li><li class="menu-item">
-        <a class="menu-item-link" href="https://zhuanlan.zhihu.com/kubernetes">知乎</a>
-      </li><li class="menu-item">
-        <a class="menu-item-link" href="/docs/">读书笔记</a>
-      </li>
-  </ul>
-</nav>
-
-    </header>
-
-    <main id="main" class="main">
-      <div class="content-wrapper">
-        <div id="content" class="content">
-          <article class="post">
-  <div class="post-content">
-      
+    <div class="content container">
+    <div class="post">
+  <h1>Go语言技巧</h1>
+  <span class="post-date">Sun, Sep 18, 2016</span>
+  
 
 <h1 id="go语言技巧">Go语言技巧</h1>
 
@@ -186,11 +79,11 @@
 
 <h3 id="避免循环中的变量逃逸到循环外">避免循环中的变量逃逸到循环外</h3>
 
-<pre><code class="language-go">func print(pi *int) { 
-    fmt.Println(*pi) 
+<pre><code class="language-go">func print(pi *int) {
+    fmt.Println(*pi)
 }
 
-for i := 0; i &lt; 10; i++ {  
+for i := 0; i &lt; 10; i++ {
     defer fmt.Println(i) // 预期的结果; 打印 9 ... 0
     defer func(){ fmt.Println(i) }() // 错误的结果; 打印10个&quot;10&quot;
     defer func(i int){ fmt.Println(i) }(i) // 正确的预期结果
@@ -199,7 +92,7 @@ for i := 0; i &lt; 10; i++ {
     go func(){ fmt.Println(i) }() // 错误; 完全不可预知.
 }
 
-for key, value := range myMap {  
+for key, value := range myMap {
     // Same for key &amp; value as i!
 }
 </code></pre>
@@ -227,7 +120,7 @@ func F1() {
 	}
 }
 
-// a method call is equivalent to a regular function call 
+// a method call is equivalent to a regular function call
 // with the receiver passed as an argument. Since the argument
 // is evaluated at the time the defer statement is invoked,
 // you get different values of t each time.
@@ -298,13 +191,13 @@ func TestGetACat(t *testing.T) {
 <h3 id="影子变量带来的困惑">影子变量带来的困惑</h3>
 
 <pre><code class="language-go">var ErrDidNotWork = errors.New(&quot;did not work&quot;)
-func DoTheThing(reallyDoIt bool) (err error) {  
-    if reallyDoIt {    
-       result, err := tryTheThing()    
+func DoTheThing(reallyDoIt bool) (err error) {
+    if reallyDoIt {
+       result, err := tryTheThing()
        if err != nil || result != &quot;it worked&quot; {
          err = ErrDidNotWork
        }
-    }  
+    }
    return err //永远返回nil
 }
 </code></pre>
@@ -349,7 +242,7 @@ defer:  hello, a
 
 import &quot;fmt&quot;
 
-func main()  
+func main()
 { //error, can't have the opening brace on a separate line
     fmt.Println(&quot;hello there!&quot;)
 }
@@ -367,7 +260,7 @@ func main()
 
 import &quot;fmt&quot;
 
-func main() {  
+func main() {
     fmt.Println(&quot;works!&quot;)
 }
 </code></pre>
@@ -382,7 +275,7 @@ func main() {
 
 var gvar int //not an error
 
-func main() {  
+func main() {
     var one int   //error, unused variable
     two := 2      //error, unused variable
     var three int //error, even though it's assigned 3 on the next line
@@ -408,14 +301,14 @@ func main() {
 
 import &quot;fmt&quot;
 
-func main() {  
+func main() {
     var one int
     _ = one
 
-    two := 2 
+    two := 2
     fmt.Println(two)
 
-    var three int 
+    var three int
     three = 3
     one = three
 
@@ -434,13 +327,13 @@ func main() {
 
 <pre><code class="language-go">package main
 
-import (  
+import (
     &quot;fmt&quot;
     &quot;log&quot;
     &quot;time&quot;
 )
 
-func main() {  
+func main() {
 }
 </code></pre>
 
@@ -456,7 +349,7 @@ func main() {
 
 <pre><code class="language-go">package main
 
-import (  
+import (
     _ &quot;fmt&quot;
     &quot;log&quot;
     &quot;time&quot;
@@ -464,7 +357,7 @@ import (
 
 var _ = log.Println
 
-func main() {  
+func main() {
     _ = time.Now
 }
 </code></pre>
@@ -479,7 +372,7 @@ func main() {
 
 myvar := 1 //error
 
-func main() {  
+func main() {
 }
 </code></pre>
 
@@ -495,7 +388,7 @@ func main() {
 
 var myvar = 1
 
-func main() {  
+func main() {
 }
 </code></pre>
 
@@ -509,7 +402,7 @@ func main() {
 
 <pre><code class="language-go">package main
 
-func main() {  
+func main() {
     one := 0
     one := 1 //error
 }
@@ -525,7 +418,7 @@ func main() {
 
 <pre><code class="language-go">package main
 
-func main() {  
+func main() {
     one := 0
     one, two := 1,2
 
@@ -539,19 +432,19 @@ func main() {
 
 <pre><code class="language-go">package main
 
-import (  
+import (
   &quot;fmt&quot;
 )
 
-type info struct {  
+type info struct {
   result int
 }
 
-func work() (int,error) {  
-    return 13,nil  
+func work() (int,error) {
+    return 13,nil
   }
 
-func main() {  
+func main() {
   var data info
 
   data.result, err := work() //error
@@ -571,19 +464,19 @@ func main() {
 
 <pre><code class="language-go">package main
 
-import (  
+import (
   &quot;fmt&quot;
 )
 
-type info struct {  
+type info struct {
   result int
 }
 
-func work() (int,error) {  
-    return 13,nil  
+func work() (int,error) {
+    return 13,nil
   }
 
-func main() {  
+func main() {
   var data info
 
   var err error
@@ -605,7 +498,7 @@ func main() {
 
 import &quot;fmt&quot;
 
-func main() {  
+func main() {
     x := 1
     fmt.Println(x)     //prints 1
     {
@@ -631,7 +524,7 @@ func main() {
 
 <pre><code class="language-go">package main
 
-func main() {  
+func main() {
     var x = nil //error
 
     _ = x
@@ -648,7 +541,7 @@ func main() {
 
 <pre><code class="language-go">package main
 
-func main() {  
+func main() {
     var x interface{} = nil
 
     _ = x
@@ -663,7 +556,7 @@ func main() {
 
 <pre><code class="language-go">package main
 
-func main() {  
+func main() {
     var s []int
     s = append(s,1)
 }
@@ -673,7 +566,7 @@ func main() {
 
 <pre><code class="language-go">package main
 
-func main() {  
+func main() {
     var m map[string]int
     m[&quot;one&quot;] = 1 //error
 
@@ -688,7 +581,7 @@ func main() {
 
 <pre><code class="language-go">package main
 
-func main() {  
+func main() {
     m := make(map[string]int,99)
     cap(m) //error
 }
@@ -708,7 +601,7 @@ func main() {
 
 <pre><code class="language-go">package main
 
-func main() {  
+func main() {
     var x string = nil //error
 
     if x == nil { //error
@@ -728,7 +621,7 @@ func main() {
 
 <pre><code class="language-go">package main
 
-func main() {  
+func main() {
     var x string //defaults to &quot;&quot; (zero value)
 
     if x == &quot;&quot; {
@@ -745,7 +638,7 @@ func main() {
 
 import &quot;fmt&quot;
 
-func main() {  
+func main() {
     x := [3]int{1,2,3}
 
     func(arr [3]int) {
@@ -763,7 +656,7 @@ func main() {
 
 import &quot;fmt&quot;
 
-func main() {  
+func main() {
     x := [3]int{1,2,3}
 
     func(arr *[3]int) {
@@ -781,7 +674,7 @@ func main() {
 
 import &quot;fmt&quot;
 
-func main() {  
+func main() {
     x := []int{1,2,3}
 
     func(arr []int) {
@@ -803,7 +696,7 @@ func main() {
 
 import &quot;fmt&quot;
 
-func main() {  
+func main() {
     x := []string{&quot;a&quot;,&quot;b&quot;,&quot;c&quot;}
 
     for v := range x {
@@ -818,7 +711,7 @@ func main() {
 
 import &quot;fmt&quot;
 
-func main() {  
+func main() {
     x := []string{&quot;a&quot;,&quot;b&quot;,&quot;c&quot;}
 
     for _, v := range x {
@@ -839,7 +732,7 @@ func main() {
 
 <pre><code class="language-go">package main
 
-func main() {  
+func main() {
     x := 2
     y := 4
 
@@ -856,7 +749,7 @@ func main() {
 
 import &quot;fmt&quot;
 
-func main() {  
+func main() {
     h, w := 2, 4
 
     raw := make([]int,h*w)
@@ -886,7 +779,7 @@ func main() {
 
 import &quot;fmt&quot;
 
-func main() {  
+func main() {
     x := map[string]string{&quot;one&quot;:&quot;a&quot;,&quot;two&quot;:&quot;&quot;,&quot;three&quot;:&quot;c&quot;}
 
     if v := x[&quot;two&quot;]; v == &quot;&quot; { //incorrect
@@ -901,7 +794,7 @@ func main() {
 
 import &quot;fmt&quot;
 
-func main() {  
+func main() {
     x := map[string]string{&quot;one&quot;:&quot;a&quot;,&quot;two&quot;:&quot;&quot;,&quot;three&quot;:&quot;c&quot;}
 
     if _,ok := x[&quot;two&quot;]; !ok {
@@ -920,7 +813,7 @@ func main() {
 
 import &quot;fmt&quot;
 
-func main() {  
+func main() {
     x := &quot;text&quot;
     x[0] = 'T'
 
@@ -940,7 +833,7 @@ func main() {
 
 import &quot;fmt&quot;
 
-func main() {  
+func main() {
     x := &quot;text&quot;
     xbytes := []byte(x)
     xbytes[0] = 'T'
@@ -973,7 +866,7 @@ func main() {
 
 import &quot;fmt&quot;
 
-func main() {  
+func main() {
     x := &quot;text&quot;
     fmt.Println(x[0]) //print 116
     fmt.Printf(&quot;%T&quot;,x[0]) //prints uint8
@@ -990,12 +883,12 @@ func main() {
 
 <pre><code class="language-go">package main
 
-import (  
+import (
     &quot;fmt&quot;
     &quot;unicode/utf8&quot;
 )
 
-func main() {  
+func main() {
     data1 := &quot;ABC&quot;
     fmt.Println(utf8.ValidString(data1)) //prints: true
 
@@ -1008,7 +901,7 @@ func main() {
 
 <p>让我们假设你是Python开发者，你有下面这段代码：</p>
 
-<pre><code class="language-go">data = u'♥'  
+<pre><code class="language-go">data = u'♥'
 print(len(data)) #prints: 1
 </code></pre>
 
@@ -1018,7 +911,7 @@ print(len(data)) #prints: 1
 
 import &quot;fmt&quot;
 
-func main() {  
+func main() {
     data := &quot;♥&quot;
     fmt.Println(len(data)) //prints: 3
 }
@@ -1030,12 +923,12 @@ func main() {
 
 <pre><code class="language-go">package main
 
-import (  
+import (
     &quot;fmt&quot;
     &quot;unicode/utf8&quot;
 )
 
-func main() {  
+func main() {
     data := &quot;♥&quot;
     fmt.Println(utf8.RuneCountInString(data)) //prints: 1
 </code></pre>
@@ -1044,12 +937,12 @@ func main() {
 
 <pre><code class="language-go">package main
 
-import (  
+import (
     &quot;fmt&quot;
     &quot;unicode/utf8&quot;
 )
 
-func main() {  
+func main() {
     data := &quot;é&quot;
     fmt.Println(len(data))                    //prints: 3
     fmt.Println(utf8.RuneCountInString(data)) //prints: 2
@@ -1062,7 +955,7 @@ func main() {
 
 <pre><code class="language-go">package main
 
-func main() {  
+func main() {
     x := []int{
     1,
     2 //error
@@ -1083,7 +976,7 @@ func main() {
 
 <pre><code class="language-go">package main
 
-func main() {  
+func main() {
     x := []int{
     1,
     2,
@@ -1105,7 +998,7 @@ func main() {
 
 import &quot;log&quot;
 
-func main() {  
+func main() {
     log.Fatalln(&quot;Fatal Level: log entry&quot;) //app exits here
     log.Println(&quot;Normal Level: log entry&quot;)
 }
@@ -1125,7 +1018,7 @@ func main() {
 
 import &quot;fmt&quot;
 
-func main() {  
+func main() {
     data := &quot;A\xfe\x02\xff\x04&quot;
     for _,v := range data {
         fmt.Printf(&quot;%#x &quot;,v)
@@ -1148,7 +1041,7 @@ func main() {
 
 import &quot;fmt&quot;
 
-func main() {  
+func main() {
     m := map[string]int{&quot;one&quot;:1,&quot;two&quot;:2,&quot;three&quot;:3,&quot;four&quot;:4}
     for k,v := range m {
         fmt.Println(k,v)
@@ -1166,7 +1059,7 @@ func main() {
 
 import &quot;fmt&quot;
 
-func main() {  
+func main() {
     isSpace := func(ch byte) bool {
         switch(ch) {
         case ' ': //error
@@ -1187,7 +1080,7 @@ func main() {
 
 import &quot;fmt&quot;
 
-func main() {  
+func main() {
     isSpace := func(ch byte) bool {
         switch(ch) {
         case ' ', '\t':
@@ -1211,7 +1104,7 @@ func main() {
 
 import &quot;fmt&quot;
 
-func main() {  
+func main() {
     data := []int{1,2,3}
     i := 0
     ++i //error
@@ -1232,7 +1125,7 @@ func main() {
 
 import &quot;fmt&quot;
 
-func main() {  
+func main() {
     data := []int{1,2,3}
     i := 0
     i++
@@ -1250,7 +1143,7 @@ func main() {
 
 import &quot;fmt&quot;
 
-func main() {  
+func main() {
     fmt.Println(~2) //error
 }
 </code></pre>
@@ -1267,7 +1160,7 @@ func main() {
 
 import &quot;fmt&quot;
 
-func main() {  
+func main() {
     var d uint8 = 2
     fmt.Printf(&quot;%08b\n&quot;,^d)
 }
@@ -1283,7 +1176,7 @@ func main() {
 
 import &quot;fmt&quot;
 
-func main() {  
+func main() {
     var a uint8 = 0x82
     var b uint8 = 0x02
     fmt.Printf(&quot;%08b [A]\n&quot;,a)
@@ -1307,7 +1200,7 @@ func main() {
 
 import &quot;fmt&quot;
 
-func main() {  
+func main() {
     fmt.Printf(&quot;0x2 &amp; 0x2 + 0x4 -&gt; %#x\n&quot;,0x2 &amp; 0x2 + 0x4)
     //prints: 0x2 &amp; 0x2 + 0x4 -&gt; 0x6
     //Go:    (0x2 &amp; 0x2) + 0x4
@@ -1331,17 +1224,17 @@ func main() {
 
 <pre><code class="language-go">package main
 
-import (  
+import (
     &quot;fmt&quot;
     &quot;encoding/json&quot;
 )
 
-type MyData struct {  
+type MyData struct {
     One int
     two string
 }
 
-func main() {  
+func main() {
     in := MyData{1,&quot;two&quot;}
     fmt.Printf(&quot;%#v\n&quot;,in) //prints main.MyData{One:1, two:&quot;two&quot;}
 
@@ -1361,12 +1254,12 @@ func main() {
 
 <pre><code class="language-go">package main
 
-import (  
+import (
     &quot;fmt&quot;
     &quot;time&quot;
 )
 
-func main() {  
+func main() {
     workerCount := 2
 
     for i := 0; i &lt; workerCount; i++ {
@@ -1376,7 +1269,7 @@ func main() {
     fmt.Println(&quot;all done!&quot;)
 }
 
-func doit(workerId int) {  
+func doit(workerId int) {
     fmt.Printf(&quot;[%v] is running\n&quot;,workerId)
     time.Sleep(3 * time.Second)
     fmt.Printf(&quot;[%v] is done\n&quot;,workerId)
@@ -1386,8 +1279,8 @@ func doit(workerId int) {
 <p>You&rsquo;ll see:</p>
 
 <blockquote>
-<p>[0] is running<br />
-[1] is running<br />
+<p>[0] is running
+[1] is running
 all done!</p>
 </blockquote>
 
@@ -1395,12 +1288,12 @@ all done!</p>
 
 <pre><code class="language-go">package main
 
-import (  
+import (
     &quot;fmt&quot;
     &quot;sync&quot;
 )
 
-func main() {  
+func main() {
     var wg sync.WaitGroup
     done := make(chan struct{})
     workerCount := 2
@@ -1415,7 +1308,7 @@ func main() {
     fmt.Println(&quot;all done!&quot;)
 }
 
-func doit(workerId int,done &lt;-chan struct{},wg sync.WaitGroup) {  
+func doit(workerId int,done &lt;-chan struct{},wg sync.WaitGroup) {
     fmt.Printf(&quot;[%v] is running\n&quot;,workerId)
     defer wg.Done()
     &lt;- done
@@ -1426,9 +1319,9 @@ func doit(workerId int,done &lt;-chan struct{},wg sync.WaitGroup) {
 <p>如果你运行这个应用，你将会看到：</p>
 
 <blockquote>
-<p>[0] is running<br />
-[0] is done<br />
-[1] is running<br />
+<p>[0] is running
+[0] is done
+[1] is running
 [1] is done</p>
 </blockquote>
 
@@ -1444,12 +1337,12 @@ func doit(workerId int,done &lt;-chan struct{},wg sync.WaitGroup) {
 
 <pre><code class="language-go">package main
 
-import (  
+import (
     &quot;fmt&quot;
     &quot;sync&quot;
 )
 
-func main() {  
+func main() {
     var wg sync.WaitGroup
     done := make(chan struct{})
     wq := make(chan interface{})
@@ -1469,7 +1362,7 @@ func main() {
     fmt.Println(&quot;all done!&quot;)
 }
 
-func doit(workerId int, wq &lt;-chan interface{},done &lt;-chan struct{},wg *sync.WaitGroup) {  
+func doit(workerId int, wq &lt;-chan interface{},done &lt;-chan struct{},wg *sync.WaitGroup) {
     fmt.Printf(&quot;[%v] is running\n&quot;,workerId)
     defer wg.Done()
     for {
@@ -1492,7 +1385,7 @@ func doit(workerId int, wq &lt;-chan interface{},done &lt;-chan struct{},wg *syn
 
 import &quot;fmt&quot;
 
-func main() {  
+func main() {
     ch := make(chan string)
 
     go func() {
@@ -1523,11 +1416,11 @@ func main() {
     // instead and call Timer.Stop if the timer is no longer needed.
     timer := time.NewTimer(time.Second)
     defer timer.Stop()
-    
+
     go func() {
         ch &lt;- fmt.Errorf(&quot;done&quot;)
     }()
-    
+
     select {
     case err := &lt;- ch:
         fmt.Println(err)
@@ -1545,12 +1438,12 @@ func main() {
 
 <pre><code class="language-go">package main
 
-import (  
+import (
     &quot;fmt&quot;
     &quot;time&quot;
 )
 
-func main() {  
+func main() {
     ch := make(chan int)
     for i := 0; i &lt; 3; i++ {
         go func(idx int) {
@@ -1572,12 +1465,12 @@ func main() {
 
 <pre><code class="language-go">package main
 
-import (  
+import (
     &quot;fmt&quot;
     &quot;time&quot;
 )
 
-func main() {  
+func main() {
     ch := make(chan int)
     done := make(chan struct{})
     for i := 0; i &lt; 3; i++ {
@@ -1603,12 +1496,12 @@ func main() {
 
 <pre><code class="language-go">package main
 
-import (  
+import (
     &quot;fmt&quot;
     &quot;time&quot;
 )
 
-func main() {  
+func main() {
     var ch chan int
     for i := 0; i &lt; 3; i++ {
         go func(idx int) {
@@ -1629,10 +1522,10 @@ func main() {
 
 <pre><code class="language-go">package main
 
-import &quot;fmt&quot;  
+import &quot;fmt&quot;
 import &quot;time&quot;
 
-func main() {  
+func main() {
     inch := make(chan int)
     outch := make(chan int)
 
@@ -1673,23 +1566,23 @@ func main() {
 
 import &quot;fmt&quot;
 
-type data struct {  
+type data struct {
     num int
     key *string
     items map[string]bool
 }
 
-func (this *data) pmethod() {  
+func (this *data) pmethod() {
     this.num = 7
 }
 
-func (this data) vmethod() {  
+func (this data) vmethod() {
     this.num = 8
     *this.key = &quot;v.key&quot;
     this.items[&quot;vmethod&quot;] = true
 }
 
-func main() {  
+func main() {
     key := &quot;key.1&quot;
     d := data{1,&amp;key,make(map[string]bool)}
 
@@ -1697,7 +1590,7 @@ func main() {
     //prints num=1 key=key.1 items=map[]
 
     d.pmethod()
-    fmt.Printf(&quot;num=%v key=%v items=%v\n&quot;,d.num,*d.key,d.items) 
+    fmt.Printf(&quot;num=%v key=%v items=%v\n&quot;,d.num,*d.key,d.items)
     //prints num=7 key=key.1 items=map[]
 
     d.vmethod()
@@ -1714,13 +1607,13 @@ func main() {
 
 <pre><code class="language-go">package main
 
-import (  
+import (
     &quot;fmt&quot;
     &quot;net/http&quot;
     &quot;io/ioutil&quot;
 )
 
-func main() {  
+func main() {
     resp, err := http.Get(&quot;https://api.ipify.org?format=json&quot;)
     defer resp.Body.Close()//not ok
     if err != nil {
@@ -1744,13 +1637,13 @@ func main() {
 
 <pre><code class="language-go">package main
 
-import (  
+import (
     &quot;fmt&quot;
     &quot;net/http&quot;
     &quot;io/ioutil&quot;
 )
 
-func main() {  
+func main() {
     resp, err := http.Get(&quot;https://api.ipify.org?format=json&quot;)
     if err != nil {
         fmt.Println(err)
@@ -1774,13 +1667,13 @@ func main() {
 
 <pre><code class="language-go">package main
 
-import (  
+import (
     &quot;fmt&quot;
     &quot;net/http&quot;
     &quot;io/ioutil&quot;
 )
 
-func main() {  
+func main() {
     resp, err := http.Get(&quot;https://api.ipify.org?format=json&quot;)
     if resp != nil {
         defer resp.Body.Close()
@@ -1823,13 +1716,13 @@ func main() {
 
 <pre><code class="language-go">package main
 
-import (  
+import (
     &quot;fmt&quot;
     &quot;net/http&quot;
     &quot;io/ioutil&quot;
 )
 
-func main() {  
+func main() {
     req, err := http.NewRequest(&quot;GET&quot;,&quot;http://golang.org&quot;,nil)
     if err != nil {
         fmt.Println(err)
@@ -1864,13 +1757,13 @@ func main() {
 
 <pre><code class="language-go">package main
 
-import (  
+import (
     &quot;fmt&quot;
     &quot;net/http&quot;
     &quot;io/ioutil&quot;
 )
 
-func main() {  
+func main() {
     tr := &amp;http.Transport{DisableKeepAlives: true}
     client := &amp;http.Client{Transport: tr}
 
@@ -1904,12 +1797,12 @@ func main() {
 
 <pre><code class="language-go">package main
 
-import (  
+import (
   &quot;encoding/json&quot;
   &quot;fmt&quot;
 )
 
-func main() {  
+func main() {
   var data = []byte(`{&quot;status&quot;: 200}`)
 
   var result map[string]interface{}
@@ -1937,12 +1830,12 @@ func main() {
 
 <pre><code class="language-go">package main
 
-import (  
+import (
   &quot;encoding/json&quot;
   &quot;fmt&quot;
 )
 
-func main() {  
+func main() {
   var data = []byte(`{&quot;status&quot;: 200}`)
 
   var result map[string]interface{}
@@ -1960,13 +1853,13 @@ func main() {
 
 <pre><code class="language-go">package main
 
-import (  
+import (
   &quot;encoding/json&quot;
   &quot;bytes&quot;
   &quot;fmt&quot;
 )
 
-func main() {  
+func main() {
   var data = []byte(`{&quot;status&quot;: 200}`)
 
   var result map[string]interface{}
@@ -1987,13 +1880,13 @@ func main() {
 
 <pre><code class="language-go">package main
 
-import (  
+import (
   &quot;encoding/json&quot;
   &quot;bytes&quot;
   &quot;fmt&quot;
 )
 
-func main() {  
+func main() {
   var data = []byte(`{&quot;status&quot;: 200}`)
 
   var result map[string]interface{}
@@ -2019,13 +1912,13 @@ func main() {
 
 <pre><code class="language-go">package main
 
-import (  
+import (
   &quot;encoding/json&quot;
   &quot;bytes&quot;
   &quot;fmt&quot;
 )
 
-func main() {  
+func main() {
   var data = []byte(`{&quot;status&quot;: 200}`)
 
   var result struct {
@@ -2048,13 +1941,13 @@ func main() {
 
 <pre><code class="language-go">package main
 
-import (  
+import (
   &quot;encoding/json&quot;
   &quot;bytes&quot;
   &quot;fmt&quot;
 )
 
-func main() {  
+func main() {
   records := [][]byte{
     []byte(`{&quot;status&quot;: 200, &quot;tag&quot;:&quot;one&quot;}`),
     []byte(`{&quot;status&quot;:&quot;ok&quot;, &quot;tag&quot;:&quot;two&quot;}`),
@@ -2096,7 +1989,7 @@ func main() {
 
 import &quot;fmt&quot;
 
-type data struct {  
+type data struct {
     num int
     fp float32
     complex complex64
@@ -2109,7 +2002,7 @@ type data struct {
     raw [10]byte
 }
 
-func main() {  
+func main() {
     v1 := data{}
     v2 := data{}
     fmt.Println(&quot;v1 == v2:&quot;,v1 == v2) //prints: v1 == v2: true
@@ -2122,7 +2015,7 @@ func main() {
 
 import &quot;fmt&quot;
 
-type data struct {  
+type data struct {
     num int                //ok
     checks [10]func() bool //not comparable
     doit func() bool       //not comparable
@@ -2130,7 +2023,7 @@ type data struct {
     bytes []byte           //not comparable
 }
 
-func main() {  
+func main() {
     v1 := data{}
     v2 := data{}
     fmt.Println(&quot;v1 == v2:&quot;,v1 == v2)
@@ -2141,12 +2034,12 @@ func main() {
 
 <pre><code class="language-go">package main
 
-import (  
+import (
     &quot;fmt&quot;
     &quot;reflect&quot;
 )
 
-type data struct {  
+type data struct {
     num int                //ok
     checks [10]func() bool //not comparable
     doit func() bool       //not comparable
@@ -2154,7 +2047,7 @@ type data struct {
     bytes []byte           //not comparable
 }
 
-func main() {  
+func main() {
     v1 := data{}
     v2 := data{}
     fmt.Println(&quot;v1 == v2:&quot;,reflect.DeepEqual(v1,v2)) //prints: v1 == v2: true
@@ -2173,12 +2066,12 @@ func main() {
 
 <pre><code class="language-go">package main
 
-import (  
+import (
     &quot;fmt&quot;
     &quot;reflect&quot;
 )
 
-func main() {  
+func main() {
     var b1 []byte = nil
     b2 := []byte{}
     fmt.Println(&quot;b1 == b2:&quot;,reflect.DeepEqual(b1, b2)) //prints: b1 == b2: false
@@ -2189,12 +2082,12 @@ func main() {
 
 <pre><code class="language-go">package main
 
-import (  
+import (
     &quot;fmt&quot;
     &quot;bytes&quot;
 )
 
-func main() {  
+func main() {
     var b1 []byte = nil
     b2 := []byte{}
     fmt.Println(&quot;b1 == b2:&quot;,bytes.Equal(b1, b2)) //prints: b1 == b2: true
@@ -2205,21 +2098,21 @@ func main() {
 
 <pre><code class="language-go">package main
 
-import (  
+import (
     &quot;fmt&quot;
     &quot;reflect&quot;
     &quot;encoding/json&quot;
 )
 
-func main() {  
+func main() {
     var str string = &quot;one&quot;
     var in interface{} = &quot;one&quot;
-    fmt.Println(&quot;str == in:&quot;,str == in,reflect.DeepEqual(str, in)) 
+    fmt.Println(&quot;str == in:&quot;,str == in,reflect.DeepEqual(str, in))
     //prints: str == in: true true
 
     v1 := []string{&quot;one&quot;,&quot;two&quot;}
     v2 := []interface{}{&quot;one&quot;,&quot;two&quot;}
-    fmt.Println(&quot;v1 == v2:&quot;,reflect.DeepEqual(v1, v2)) 
+    fmt.Println(&quot;v1 == v2:&quot;,reflect.DeepEqual(v1, v2))
     //prints: v1 == v2: false (not ok)
 
     data := map[string]interface{}{
@@ -2229,7 +2122,7 @@ func main() {
     encoded, _ := json.Marshal(data)
     var decoded map[string]interface{}
     json.Unmarshal(encoded, &amp;decoded)
-    fmt.Println(&quot;data == decoded:&quot;,reflect.DeepEqual(data, decoded)) 
+    fmt.Println(&quot;data == decoded:&quot;,reflect.DeepEqual(data, decoded))
     //prints: data == decoded: false (not ok)
 }
 </code></pre>
@@ -2248,7 +2141,7 @@ func main() {
 
 import &quot;fmt&quot;
 
-func main() {  
+func main() {
     recover() //doesn't do anything
     panic(&quot;not good&quot;)
     recover() //won't be executed :)
@@ -2262,7 +2155,7 @@ func main() {
 
 import &quot;fmt&quot;
 
-func main() {  
+func main() {
     defer func() {
         fmt.Println(&quot;recovered:&quot;,recover())
     }()
@@ -2279,11 +2172,11 @@ func main() {
 
 import &quot;fmt&quot;
 
-func doRecover() {  
+func doRecover() {
     fmt.Println(&quot;recovered =&gt;&quot;,recover()) //prints: recovered =&gt; &lt;nil&gt;
 }
 
-func main() {  
+func main() {
     defer func() {
         doRecover() //panic is not recovered
     }()
@@ -2300,7 +2193,7 @@ func main() {
 
 import &quot;fmt&quot;
 
-func main() {  
+func main() {
     data := []int{1,2,3}
     for _,v := range data {
         v *= 10 //original item is not changed
@@ -2316,7 +2209,7 @@ func main() {
 
 import &quot;fmt&quot;
 
-func main() {  
+func main() {
     data := []int{1,2,3}
     for i,_ := range data {
         data[i] *= 10
@@ -2332,7 +2225,7 @@ func main() {
 
 import &quot;fmt&quot;
 
-func main() {  
+func main() {
     data := []*struct{num int} {{1},{2},{3}}
 
     for _,v := range data {
@@ -2351,13 +2244,13 @@ func main() {
 
 import &quot;fmt&quot;
 
-func get() []byte {  
+func get() []byte {
     raw := make([]byte,10000)
     fmt.Println(len(raw),cap(raw),&amp;raw[0]) //prints: 10000 10000 &lt;byte_addr_x&gt;
     return raw[:3]
 }
 
-func main() {  
+func main() {
     data := get()
     fmt.Println(len(data),cap(data),&amp;data[0]) //prints: 3 10000 &lt;byte_addr_x&gt;
 }
@@ -2369,7 +2262,7 @@ func main() {
 
 import &quot;fmt&quot;
 
-func get() []byte {  
+func get() []byte {
     raw := make([]byte,10000)
     fmt.Println(len(raw),cap(raw),&amp;raw[0]) //prints: 10000 10000 &lt;byte_addr_x&gt;
     res := make([]byte,3)
@@ -2377,7 +2270,7 @@ func get() []byte {
     return res
 }
 
-func main() {  
+func main() {
     data := get()
     fmt.Println(len(data),cap(data),&amp;data[0]) //prints: 3 3 &lt;byte_addr_y&gt;
 }
@@ -2389,12 +2282,12 @@ func main() {
 
 <pre><code class="language-go">package main
 
-import (  
+import (
     &quot;fmt&quot;
     &quot;bytes&quot;
 )
 
-func main() {  
+func main() {
     path := []byte(&quot;AAAA/BBBBBBBBB&quot;)
     sepIndex := bytes.IndexByte(path,'/')
     dir1 := path[:sepIndex]
@@ -2418,12 +2311,12 @@ func main() {
 
 <pre><code class="language-go">package main
 
-import (  
+import (
     &quot;fmt&quot;
     &quot;bytes&quot;
 )
 
-func main() {  
+func main() {
     path := []byte(&quot;AAAA/BBBBBBBBB&quot;)
     sepIndex := bytes.IndexByte(path,'/')
     dir1 := path[:sepIndex:sepIndex] //full slice expression
@@ -2451,7 +2344,7 @@ func main() {
 
 <pre><code class="language-go">import &quot;fmt&quot;
 
-func main() {  
+func main() {
     s1 := []int{1,2,3}
     fmt.Println(len(s1),cap(s1),s1) //prints 3 3 [1 2 3]
 
@@ -2486,10 +2379,10 @@ import &quot;sync&quot;
 
 type myMutex sync.Mutex
 
-func main() {  
+func main() {
     var mtx myMutex
     mtx.Lock() //error
-    mtx.Unlock() //error  
+    mtx.Unlock() //error
 }
 </code></pre>
 
@@ -2508,11 +2401,11 @@ func main() {
 
 import &quot;sync&quot;
 
-type myLocker struct {  
+type myLocker struct {
     sync.Mutex
 }
 
-func main() {  
+func main() {
     var lock myLocker
     lock.Lock() //ok
     lock.Unlock() //ok
@@ -2529,7 +2422,7 @@ import &quot;sync&quot;
 
 type myLocker sync.Locker
 
-func main() {  
+func main() {
     var lock myLocker = new(sync.Mutex)
     lock.Lock() //ok
     lock.Unlock() //ok
@@ -2544,7 +2437,7 @@ func main() {
 
 import &quot;fmt&quot;
 
-func main() {  
+func main() {
     loop:
         for {
             switch {
@@ -2568,12 +2461,12 @@ func main() {
 
 <pre><code class="language-go">package main
 
-import (  
+import (
     &quot;fmt&quot;
     &quot;time&quot;
 )
 
-func main() {  
+func main() {
     data := []string{&quot;one&quot;,&quot;two&quot;,&quot;three&quot;}
 
     for _,v := range data {
@@ -2593,12 +2486,12 @@ func main() {
 
 <pre><code class="language-go">package main
 
-import (  
+import (
     &quot;fmt&quot;
     &quot;time&quot;
 )
 
-func main() {  
+func main() {
     data := []string{&quot;one&quot;,&quot;two&quot;,&quot;three&quot;}
 
     for _,v := range data {
@@ -2619,12 +2512,12 @@ func main() {
 
 <pre><code class="language-go">package main
 
-import (  
+import (
     &quot;fmt&quot;
     &quot;time&quot;
 )
 
-func main() {  
+func main() {
     data := []string{&quot;one&quot;,&quot;two&quot;,&quot;three&quot;}
 
     for _,v := range data {
@@ -2644,20 +2537,20 @@ func main() {
 
 <pre><code class="language-go">package main
 
-import (  
+import (
     &quot;fmt&quot;
     &quot;time&quot;
 )
 
-type field struct {  
+type field struct {
     name string
 }
 
-func (p *field) print() {  
+func (p *field) print() {
     fmt.Println(p.name)
 }
 
-func main() {  
+func main() {
     data := []field{{&quot;one&quot;},{&quot;two&quot;},{&quot;three&quot;}}
 
     for _,v := range data {
@@ -2673,20 +2566,20 @@ func main() {
 
 <pre><code class="language-go">package main
 
-import (  
+import (
     &quot;fmt&quot;
     &quot;time&quot;
 )
 
-type field struct {  
+type field struct {
     name string
 }
 
-func (p *field) print() {  
+func (p *field) print() {
     fmt.Println(p.name)
 }
 
-func main() {  
+func main() {
     data := []field{{&quot;one&quot;},{&quot;two&quot;},{&quot;three&quot;}}
 
     for _,v := range data {
@@ -2703,20 +2596,20 @@ func main() {
 
 <pre><code class="language-go">package main
 
-import (  
+import (
     &quot;fmt&quot;
     &quot;time&quot;
 )
 
-type field struct {  
+type field struct {
     name string
 }
 
-func (p *field) print() {  
+func (p *field) print() {
     fmt.Println(p.name)
 }
 
-func main() {  
+func main() {
     data := []*field{{&quot;one&quot;},{&quot;two&quot;},{&quot;three&quot;}}
 
     for _,v := range data {
@@ -2735,7 +2628,7 @@ func main() {
 
 import &quot;fmt&quot;
 
-func main() {  
+func main() {
     var i int = 1
 
     defer fmt.Println(&quot;result =&gt;&quot;,func() int { return i * 2 }())
@@ -2750,13 +2643,13 @@ func main() {
 
 <pre><code class="language-go">package main
 
-import (  
+import (
     &quot;fmt&quot;
     &quot;os&quot;
     &quot;path/filepath&quot;
 )
 
-func main() {  
+func main() {
     if len(os.Args) != 2 {
         os.Exit(-1)
     }
@@ -2796,13 +2689,13 @@ func main() {
 
 <pre><code class="language-go">package main
 
-import (  
+import (
     &quot;fmt&quot;
     &quot;os&quot;
     &quot;path/filepath&quot;
 )
 
-func main() {  
+func main() {
     if len(os.Args) != 2 {
         os.Exit(-1)
     }
@@ -2852,13 +2745,13 @@ func main() {
 
 import &quot;fmt&quot;
 
-func main() {  
+func main() {
     var data interface{} = &quot;great&quot;
 
     if data, ok := data.(int); ok {
         fmt.Println(&quot;[is an int] value =&gt;&quot;,data)
     } else {
-        fmt.Println(&quot;[not an int] value =&gt;&quot;,data) 
+        fmt.Println(&quot;[not an int] value =&gt;&quot;,data)
         //prints: [not an int] value =&gt; 0 (not &quot;great&quot;)
     }
 }
@@ -2870,13 +2763,13 @@ func main() {
 
 import &quot;fmt&quot;
 
-func main() {  
+func main() {
     var data interface{} = &quot;great&quot;
 
     if res, ok := data.(int); ok {
         fmt.Println(&quot;[is an int] value =&gt;&quot;,res)
     } else {
-        fmt.Println(&quot;[not an int] value =&gt;&quot;,data) 
+        fmt.Println(&quot;[not an int] value =&gt;&quot;,data)
         //prints: [not an int] value =&gt; great (as expected)
     }
 }
@@ -2886,7 +2779,7 @@ func main() {
 
 <p>Rob Pike talked about a number of fundamental concurrency patterns in his <a href="https://talks.golang.org/2012/concurrency.slide#1">&ldquo;Go Concurrency Patterns&rdquo;</a> presentation at Google I/O in 2012. Fetching the first result from a number of targets is one of them.</p>
 
-<pre><code class="language-go">func First(query string, replicas ...Search) Result {  
+<pre><code class="language-go">func First(query string, replicas ...Search) Result {
     c := make(chan Result)
     searchReplica := func(i int) { c &lt;- replicas[i](query) }
     for i := range replicas {
@@ -2904,7 +2797,7 @@ func main() {
 
 <p>为了避免泄露，你需要确保所有的goroutine退出。一个不错的方法是使用一个有足够保存所有缓存结果的channel。</p>
 
-<pre><code class="language-go">func First(query string, replicas ...Search) Result {  
+<pre><code class="language-go">func First(query string, replicas ...Search) Result {
     c := make(chan Result,len(replicas))
     searchReplica := func(i int) { c &lt;- replicas[i](query) }
     for i := range replicas {
@@ -2916,9 +2809,9 @@ func main() {
 
 <p>另一个不错的解决方法是使用一个有<code>default</code>情况的<code>select</code>语句和一个保存一个缓存结果的channel。<code>default</code>情况保证了即使当结果channel无法收到消息的情况下，goroutine也不会堵塞。</p>
 
-<pre><code class="language-go">func First(query string, replicas ...Search) Result {  
+<pre><code class="language-go">func First(query string, replicas ...Search) Result {
     c := make(chan Result,1)
-    searchReplica := func(i int) { 
+    searchReplica := func(i int) {
         select {
         case c &lt;- replicas[i](query):
         default:
@@ -2933,11 +2826,11 @@ func main() {
 
 <p>你也可以使用特殊的取消channel来终止workers。</p>
 
-<pre><code class="language-go">func First(query string, replicas ...Search) Result {  
+<pre><code class="language-go">func First(query string, replicas ...Search) Result {
     c := make(chan Result)
     done := make(chan struct{})
     defer close(done)
-    searchReplica := func(i int) { 
+    searchReplica := func(i int) {
         select {
         case c &lt;- replicas[i](query):
         case &lt;- done:
@@ -2963,19 +2856,19 @@ func main() {
 
 import &quot;fmt&quot;
 
-type data struct {  
+type data struct {
     name string
 }
 
-func (p *data) print() {  
+func (p *data) print() {
     fmt.Println(&quot;name:&quot;,p.name)
 }
 
-type printer interface {  
+type printer interface {
     print()
 }
 
-func main() {  
+func main() {
     d1 := data{&quot;one&quot;}
     d1.print() //ok
 
@@ -2991,7 +2884,7 @@ func main() {
 
 <blockquote>
 <p>/tmp/sandbox017696142/main.go:21: cannot use data literal (type data) as type printer in assignment:
-data does not implement printer (print method has pointer receiver)<br />
+data does not implement printer (print method has pointer receiver)
 /tmp/sandbox017696142/main.go:25: cannot call pointer method on m[&ldquo;x&rdquo;]
 /tmp/sandbox017696142/main.go:25: cannot take the address of m[&ldquo;x&rdquo;]</p>
 </blockquote>
@@ -3004,11 +2897,11 @@ data does not implement printer (print method has pointer receiver)<br />
 
 <pre><code class="language-go">package main
 
-type data struct {  
+type data struct {
     name string
 }
 
-func main() {  
+func main() {
     m := map[string]data {&quot;x&quot;:{&quot;one&quot;}}
     m[&quot;x&quot;].name = &quot;two&quot; //error
 }
@@ -3028,11 +2921,11 @@ func main() {
 
 import &quot;fmt&quot;
 
-type data struct {  
+type data struct {
     name string
 }
 
-func main() {  
+func main() {
     s := []data {{&quot;one&quot;}}
     s[0].name = &quot;two&quot; //ok
     fmt.Println(s)    //prints: [{two}]
@@ -3047,11 +2940,11 @@ func main() {
 
 import &quot;fmt&quot;
 
-type data struct {  
+type data struct {
     name string
 }
 
-func main() {  
+func main() {
     m := map[string]data {&quot;x&quot;:{&quot;one&quot;}}
     r := m[&quot;x&quot;]
     r.name = &quot;two&quot;
@@ -3066,11 +2959,11 @@ func main() {
 
 import &quot;fmt&quot;
 
-type data struct {  
+type data struct {
     name string
 }
 
-func main() {  
+func main() {
     m := map[string]*data {&quot;x&quot;:{&quot;one&quot;}}
     m[&quot;x&quot;].name = &quot;two&quot; //ok
     fmt.Println(m[&quot;x&quot;]) //prints: &amp;{two}
@@ -3081,11 +2974,11 @@ func main() {
 
 <pre><code class="language-go">package main
 
-type data struct {  
+type data struct {
     name string
 }
 
-func main() {  
+func main() {
     m := map[string]*data {&quot;x&quot;:{&quot;one&quot;}}
     m[&quot;z&quot;].name = &quot;what?&quot; //???
 }
@@ -3101,7 +2994,7 @@ func main() {
 
 import &quot;fmt&quot;
 
-func main() {  
+func main() {
     var data *byte
     var in interface{}
 
@@ -3122,7 +3015,7 @@ func main() {
 
 import &quot;fmt&quot;
 
-func main() {  
+func main() {
     doit := func(arg int) interface{} {
         var result *struct{} = nil
 
@@ -3146,7 +3039,7 @@ func main() {
 
 import &quot;fmt&quot;
 
-func main() {  
+func main() {
     doit := func(arg int) interface{} {
         var result *struct{} = nil
 
@@ -3183,12 +3076,12 @@ func main() {
 
 <pre><code class="language-go">package main
 
-import (  
+import (
     &quot;fmt&quot;
     &quot;runtime&quot;
 )
 
-func main() {  
+func main() {
     fmt.Println(runtime.GOMAXPROCS(-1)) //prints: X (1 on play.golang.org)
     fmt.Println(runtime.NumCPU())       //prints: X (1 on play.golang.org)
     runtime.GOMAXPROCS(20)
@@ -3204,7 +3097,7 @@ func main() {
 
 <pre><code class="language-go">package main
 
-import (  
+import (
     &quot;runtime&quot;
     &quot;time&quot;
 )
@@ -3213,22 +3106,22 @@ var _ = runtime.GOMAXPROCS(3)
 
 var a, b int
 
-func u1() {  
+func u1() {
     a = 1
     b = 2
 }
 
-func u2() {  
+func u2() {
     a = 3
     b = 4
 }
 
-func p() {  
+func p() {
     println(a)
     println(b)
 }
 
-func main() {  
+func main() {
     go u1()
     go u2()
     go p()
@@ -3239,19 +3132,19 @@ func main() {
 <p>If you run this code a few times you might see these <code>a</code> and <code>b</code> variable combinations:</p>
 
 <blockquote>
-<p>1<br />
+<p>1
 2</p>
 
-<p>3<br />
+<p>3
 4</p>
 
-<p>0<br />
+<p>0
 2</p>
 
-<p>0<br />
+<p>0
 0</p>
 
-<p>1<br />
+<p>1
 4</p>
 </blockquote>
 
@@ -3267,7 +3160,7 @@ func main() {
 
 import &quot;fmt&quot;
 
-func main() {  
+func main() {
     done := false
 
     go func(){
@@ -3288,7 +3181,7 @@ func main() {
 
 import &quot;fmt&quot;
 
-func main() {  
+func main() {
     done := false
 
     go func(){
@@ -3308,12 +3201,12 @@ func main() {
 
 <pre><code class="language-go">package main
 
-import (  
+import (
     &quot;fmt&quot;
     &quot;runtime&quot;
 )
 
-func main() {  
+func main() {
     done := false
 
     go func(){
@@ -3338,122 +3231,38 @@ func main() {
 <li><a href="https://go-talks.appspot.com/github.com/davecheney/high-performance-go-workshop/high-performance-go-workshop.slide">https://go-talks.appspot.com/github.com/davecheney/high-performance-go-workshop/high-performance-go-workshop.slide</a></li>
 </ul>
 
-  </div>
-</article>
-        </div>
-        
-  <div id="disqus_thread"></div>
-    <script type="text/javascript">
-    (function() {
-      
-      
-      if (window.location.hostname === 'localhost') return;
-
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      var disqus_shortname = 'feisky';
-      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="social-links">
-      <a href="https://twitter.com/feisky" class="iconfont icon-twitter" title="twitter"></a>
-      <a href="https://github.com/feiskyer" class="iconfont icon-github" title="github"></a>
-      <a href="https://weibo.com/371069890" class="iconfont icon-weibo" title="weibo"></a>
-      <a href="https://www.zhihu.com/people/feisky" class="iconfont icon-zhihu" title="zhihu"></a>
-  <a href="https://feisky.xyz/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
-<div class="copyright">
-  <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
-  </span>
-  <span class="division">|</span>
-  <span class="theme-info">
-    Theme - 
-    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
-  </span>
-
-  
-
-  <span class="copyright-year">
-    &copy; 
+<h2>Comments</h2>
+<div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
     
-      2014 - 
-    2018
-    <span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">Feisky</span>
-  </span>
-</div>
-    </footer>
-
-    <div class="back-to-top" id="back-to-top">
-      <i class="iconfont icon-up"></i>
-    </div>
-  </div>
-  
-<script src="/lib/highlight/highlight.pack.js?v=20171001"></script><script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
-  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
-  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script><script></script>
-<script src="https://cdn.jsdelivr.net/npm/raphael@2.2.7/raphael.min.js" integrity="sha256-67By+NpOtm9ka1R6xpUefeGOY8kWWHHRAKlvaTJ7ONI=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/flowchart.js@1.8.0/release/flowchart.min.js" integrity="sha256-zNGWjubXoY6rb5MnmpBNefO0RgoVYfle9p0tvOQM+6k=" crossorigin="anonymous"></script><script></script>
-<script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
-<script type="text/javascript" src="/dist/even.min.js?v=3.1.1"></script>
-  <script type="text/javascript">
-    window.MathJax = {
-      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
-      showProcessingMessages: false,
-      messageStyle: 'none'
+    
+    
     };
-  </script>
-  <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "feisky" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
 
-
+    
 <script>
 window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
 ga('create', 'UA-69699206-1', 'auto');
 ga('send', 'pageview');
 </script>
 <script async src='//www.google-analytics.com/analytics.js'></script>
-<script id="baidu_analytics">
-  var _hmt = _hmt || [];
-  (function() {
-    if (window.location.hostname === 'localhost') return;
-    var hm = document.createElement("script"); hm.async = true;
-    hm.src = "https://hm.baidu.com/hm.js?d2f4aad4d3f8dc2de9170fa1df3fcbcf";
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(hm, s);
-  })();
-</script>
 
-<script id="baidu_push">
-  (function(){
-    if (window.location.hostname === 'localhost') return;
-    var bp = document.createElement('script'); bp.async = true;
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-    }
-    else {
-      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-  })();
-</script>
-
-
-
-
-</body>
+  </body>
 </html>

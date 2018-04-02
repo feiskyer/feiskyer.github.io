@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-cn" lang="zh-cn">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.37.1" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Google F1 &middot; Feisky</title>
+
+  
+  <link type="text/css" rel="stylesheet" href="https://feisky.xyz/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://feisky.xyz/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://feisky.xyz/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://feisky.xyz/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Feisky" />
+
+  
+</head>
+
+  <body class=" ">
+  <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://feisky.xyz/"><h1>Feisky</h1></a>
+      <p class="lead">
+       Notes about anything 
+      </p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="https://feisky.xyz/">Home</a> </li>
+      <li><a href="/container/"> Containers </a></li><li><a href="https://kubernetes.feisky.xyz"> Kubernetes </a></li><li><a href="/distributed/"> Distributed </a></li><li><a href="/docs/"> Readings </a></li><li><a href="/machine-learning/"> 机器学习 </a></li><li><a href="https://sdn.feisky.xyz"> SDN </a></li><li><a href="/about/"> About </a></li>
+    </ul>
+
+    <p>&copy; 2018. All rights reserved. </p>
+  </div>
+</div>
+
+    <div class="content container">
+    <div class="post">
+  <h1>Google F1</h1>
+  <span class="post-date">Mon, Jan 1, 0001</span>
+  <p>在 Spanner 项目开始的同时，Google 启动了另外一个和 Spanner 配套使用的分布式 SQL 引擎的项目 F1，底层有那么一个强一致高性能的 Spanner，那么就可以在上层尝试将 OLTP 和部分的 OLAP 打通。F1 其实论文题目说是一个数据库，但是它并不存储数据，数据都在 Spanner 上，它只是一个分布式查询引擎，底层依赖 Spanner 提供的事务接口，将用户的 SQL 请求翻译成分布式执行计划。</p>
+
+<p>Google F1 提供了一种可能性，这是在其他的数据库中一直没有实现过的：OLTP 与 OLAP 融合的可能性。因为 Google F1 设计目标是给 Google 的广告系统使用，广告投放系统这类系统一是对于一致性要求很高，压力也很大，是典型的 OLTP 场景；第二是可能会有很多复杂的广告投放效果评估的查询，而且这类的查询越是实时越好，这又有点实时 OLAP 的意思。</p>
+
+<p>传统的做法是 OLTP 的数据库将数据每隔一段时间同步一份到数据仓库中，在数据仓库中离线的进行计算，稍微好点的使用一些流式计算框架进行实时计算。第一种使用数据仓库的方案，实时性是比较差的，倒腾数据是很麻烦的事情；至于使用流式计算框架的方案，一是灵活性不好，很多查询逻辑需要提前写好，没法做很多 Ad-hoc 的事情，另外因为两边是异构的存储，导致 ETL 也是很麻烦的工作。</p>
+
+<p>F1 其实依靠 Spanner 的 ACID 事务和 MVCC 的特性实现了 100% 的 OLTP，并且自身作为一个分布式 SQL 引擎，可以利用集群的计算资源实现分布式的 OLAP 查询。这带来的好处就是并不需要额外在设置一个数据仓库进行数据分析，而是直接在同一个数据库里实时分析，另外由于 Spanner 的 MVCC 和多副本带来的 Lock-free snapshot read 的特性，这类 OLAP 查询并不会影响正常 OLTP 的操作。</p>
+
+<p>对于 OLTP 来说，瓶颈经常出现在 IO 上。对于 OLAP 来说，瓶颈反而经常出现在 CPU 也就是计算上。其实看上去是能融合起来，提升整个集群的资源利用率，这也是我看好 Google F1 + Spanner 这个组合的原因，未来的数据库可能会融合数据仓库，提供更完整且更实时的体验。</p>
+
+<p><img src="/images/14871594680306.jpg" alt="" /></p>
+
+<p>(其实这个下面的 GFS 不太准确，现在应该是 Colossus)</p>
+
+</div>
+
+<h2>Comments</h2>
+<div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "feisky" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+
+    
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-69699206-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+  </body>
+</html>
