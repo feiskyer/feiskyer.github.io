@@ -14,23 +14,21 @@ type: page
   - Mount the container’s root filesystem inside the bundle
   - Call containerd to start container
 
-
-
-![](docker-v11.png)
+![](/images/docker-v11.png)
 
 ## containerd架构
 
 架构组成
 
-![](containerd.png)
+![](/images/containerd.png)
 
 组件结构
 
-![](chart-a.png)
+![](/images/chart-a.png)
 
 在docker中的角色和功能
 
-![](chart-d.png)
+![](/images/chart-d.png)
 
 ## 安装
 

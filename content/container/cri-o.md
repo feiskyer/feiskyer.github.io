@@ -11,15 +11,15 @@ cri-o基于Kubelet容器运行时接口（CRI）为Kubernetes带来了原生的O
 
 主要组成
 
-![](ocid1.png)
+![](/images/ocid1.png)
 
 Pod结构
 
-![](ocid2.png)
+![](/images/ocid2.png)
 
 conmon
 
-![](conmon.png)
+![](/images/conmon.png)
 
 ## 编译安装
 
@@ -152,7 +152,7 @@ CONTAINER_RUNTIME=remote CONTAINER_RUNTIME_ENDPOINT='/var/run/crio.sock --runtim
 
 Intel [Clear Container](https://github.com/clearcontainers/runtime) 是一个OCI标准的容器引擎，它将容器运行在基于Intel VT-x的虚拟机中，并通过KSM内存共享、mini-OS等方法加快启动速度。
 
-![](clearcontainer.png)
+![](/images/clearcontainer.png)
 
 Clear Container支持在dockerd中运行，配置方法为
 
@@ -167,7 +167,7 @@ runtime_untrusted_workload = "/usr/local/bin/cc-runtime"
 default_workload_trust = "untrusted"
 ```
 
-![](cc-runtime.png)
+![](/images/cc-runtime.png)
 
 ## 参考文档
 
