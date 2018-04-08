@@ -3,16 +3,21 @@ title: "perf"
 type: page
 ---
 
-## perf简介
+## 简介
 
 perf是Linux内核自带的性能分析工具。通过它，应用程序可以利用 PMU，tracepoint 和内核中的特殊计数器来进行性能统计。它不但可以分析指定应用程序的性能问题 (per thread)，也可以用来分析内核的性能问题，当然也可以同时分析应用代码和内核，从而全面理解应用程序中的性能瓶颈。
 
-       Performance counters for Linux are a new kernel-based subsystem that provide a framework for all things performance analysis. It covers hardware
-       level (CPU/PMU, Performance Monitoring Unit) features and software features (software counters, tracepoints) as well.
+    Performance counters for Linux are a new kernel-based subsystem that provide a framework for all things performance analysis. It covers hardware level (CPU/PMU, Performance Monitoring Unit) features and software features (software counters, tracepoints) as well.
+
+## 安装
+
+```sh
+sudo apt-get install linux-tools-common linux-tools-`uname -r`
+```
 
 ## perf list
 
-`perf list` 查询perf所支持的事件，在其他命令中可以使用`-e`指定事件
+`perf list` 查询perf所支持的事件，在其他命令中可以使用`-e`指定事件。
 
 ## perf top
 
@@ -32,9 +37,15 @@ Overhead  Shared Object            Symbol
 * 第三列 `[.]`表示应用程序, `[k]`表示内核
 * 第四列 符号名，无符号时显示为地址
 
+可以使用 `perf top -g` 显示调用图。
+
 ## perf stat
 
-## perf record/report/annotate
+用于分析指定程序的性能概况。
+
+## perf record/report
+
+`perf record` 收集采样信息并保存到文件中；`perf report` 则用来分析已保存的采样文件。 
 
 ## 参考文档
 
