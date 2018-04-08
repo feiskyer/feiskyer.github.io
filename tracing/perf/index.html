@@ -53,17 +53,21 @@
   <span class="post-date">Mon, Jan 1, 0001</span>
   
 
-<h2 id="perf简介">perf简介</h2>
+<h2 id="简介">简介</h2>
 
 <p>perf是Linux内核自带的性能分析工具。通过它，应用程序可以利用 PMU，tracepoint 和内核中的特殊计数器来进行性能统计。它不但可以分析指定应用程序的性能问题 (per thread)，也可以用来分析内核的性能问题，当然也可以同时分析应用代码和内核，从而全面理解应用程序中的性能瓶颈。</p>
 
-<pre><code>   Performance counters for Linux are a new kernel-based subsystem that provide a framework for all things performance analysis. It covers hardware
-   level (CPU/PMU, Performance Monitoring Unit) features and software features (software counters, tracepoints) as well.
+<pre><code>Performance counters for Linux are a new kernel-based subsystem that provide a framework for all things performance analysis. It covers hardware level (CPU/PMU, Performance Monitoring Unit) features and software features (software counters, tracepoints) as well.
+</code></pre>
+
+<h2 id="安装">安装</h2>
+
+<pre><code class="language-sh">sudo apt-get install linux-tools-common linux-tools-`uname -r`
 </code></pre>
 
 <h2 id="perf-list">perf list</h2>
 
-<p><code>perf list</code> 查询perf所支持的事件，在其他命令中可以使用<code>-e</code>指定事件</p>
+<p><code>perf list</code> 查询perf所支持的事件，在其他命令中可以使用<code>-e</code>指定事件。</p>
 
 <h2 id="perf-top">perf top</h2>
 
@@ -84,9 +88,15 @@ Overhead  Shared Object            Symbol
 <li>第四列 符号名，无符号时显示为地址</li>
 </ul>
 
+<p>可以使用 <code>perf top -g</code> 显示调用图。</p>
+
 <h2 id="perf-stat">perf stat</h2>
 
-<h2 id="perf-record-report-annotate">perf record/report/annotate</h2>
+<p>用于分析指定程序的性能概况。</p>
+
+<h2 id="perf-record-report">perf record/report</h2>
+
+<p><code>perf record</code> 收集采样信息并保存到文件中；<code>perf report</code> 则用来分析已保存的采样文件。</p>
 
 <h2 id="参考文档">参考文档</h2>
 

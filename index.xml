@@ -1550,7 +1550,7 @@ Your contributions are always welcome!
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://feisky.xyz/tracing/perf/</guid>
-      <description>perf简介 perf是Linux内核自带的性能分析工具。通过它，应用程序可以利用 PMU，tracepoint 和内核中的特殊计数器来进行性能统</description>
+      <description>简介 perf是Linux内核自带的性能分析工具。通过它，应用程序可以利用 PMU，tracepoint 和内核中的特殊计数器来进行性能统计。它不</description>
     </item>
     
     <item>
