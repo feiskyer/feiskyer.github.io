@@ -1,0 +1,10 @@
+{{ define "main" -}}
+{{.Content}}
+<ul class="posts">
+{{ range .Data.Pages -}}
+  <li>
+    <span><a href="{{ .Permalink }}">{{ .Title }}</a></span>
+  </li>
+{{- end }}
+</ul>
+{{- end }}
