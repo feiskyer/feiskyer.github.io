@@ -3,7 +3,7 @@
 <head>
   <link href="http://gmpg.org/xfn/11" rel="profile">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <meta name="generator" content="Hugo 0.41-DEV" />
+  <meta name="generator" content="Hugo 0.43-DEV" />
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
@@ -50,7 +50,9 @@
     <div class="content container">
     
 
-<p>Kubernetes是谷歌开源的容器集群管理系统，是Google多年大规模容器管理技术Borg的开源版本，也是CNCF最重要的项目之一，主要功能包括：</p>
+<h1 id="kubernetes指南">Kubernetes指南</h1>
+
+<p>Kubernetes 是谷歌开源的容器集群管理系统，是 Google 多年大规模容器管理技术 Borg 的开源版本，也是 CNCF 最重要的项目之一，主要功能包括：</p>
 
 <ul>
 <li>基于容器的应用部署、维护和滚动升级</li>
@@ -58,25 +60,36 @@
 <li>跨机器和跨地区的集群调度</li>
 <li>自动伸缩</li>
 <li>无状态服务和有状态服务</li>
-<li>广泛的Volume支持</li>
+<li>广泛的 Volume 支持</li>
 <li>插件机制保证扩展性</li>
 </ul>
 
-<p>Kubernetes发展非常迅速，已经成为容器编排领域的领导者。Kubernetes的中文资料也非常丰富，但系统化和紧跟社区更新的则就比较少见了。《Kubernetes指南》开源电子书旨在整理平时在开发和使用Kubernetes时的参考指南和实践总结，形成一个系统化的参考指南以方便查阅。欢迎大家关注和添加完善内容。</p>
+<p>Kubernetes 发展非常迅速，已经成为容器编排领域的领导者。Kubernetes 的中文资料也非常丰富，但系统化和紧跟社区更新的则就比较少见了。《Kubernetes 指南》开源电子书旨在整理平时在开发和使用 Kubernetes 时的参考指南和实践总结，形成一个系统化的参考指南以方便查阅。欢迎大家关注和添加完善内容。</p>
 
 <h2 id="在线阅读">在线阅读</h2>
 
-<p>可以通过<a href="https://feisky.gitbooks.io/kubernetes">GitBook</a>或者<a href="https://github.com/feiskyer/kubernetes-handbook/blob/master/SUMMARY.md">Github</a>来在线阅读。</p>
-
-<p>也可以点击<a href="http://www.infoq.com/cn/minibooks/Kubernetes-handbook">这里</a>下载InfoQ帮助制作和发布的ePub、PDF和MOBI电子书。</p>
+<ul>
+<li>中文：<a href="https://kubernetes.feisky.xyz/zh/">GitBook</a> <a href="https://github.com/feiskyer/kubernetes-handbook/blob/master/zh/SUMMARY.md">Github</a> <a href="http://www.infoq.com/cn/minibooks/Kubernetes-handbook">InfoQ</a></li>
+<li>English：<a href="https://kubernetes.feisky.xyz/en/">GitBook</a> <a href="https://github.com/feiskyer/kubernetes-handbook/blob/master/en/SUMMARY.md">Github</a></li>
+</ul>
 
 <h2 id="项目源码">项目源码</h2>
 
-<p>项目源码存放于Github上，<a href="https://github.com/feiskyer/kubernetes-handbook">https://github.com/feiskyer/kubernetes-handbook</a>。</p>
+<p>项目源码存放于 Github 上，<a href="https://github.com/feiskyer/kubernetes-handbook">https://github.com/feiskyer/kubernetes-handbook</a>。</p>
 
-<h2 id="排错指南">排错指南</h2>
+<h3 id="本书版本更新记录">本书版本更新记录</h3>
 
-<p>参见 <a href="troubleshooting/">Troubleshooting Kubernetes</a>。</p>
+<p>如无特殊说明，本指南所有文档仅适用于 Kubernetes v1.6 及以上版本。详细更新记录见 <a href="https://github.com/feiskyer/kubernetes-handbook/blob/master/zh/CHANGELOG.md">CHANGELOG</a>。</p>
+
+<h2 id="微信公众号">微信公众号</h2>
+
+<p>扫码关注微信公众号，回复关键字即可在微信中查看相关章节。</p>
+
+<p><p align="center"> <img src="/images/k8s-mp-qrcode.jpg"></p>
+
+<h2 id="贡献者">贡献者</h2>
+
+<p>欢迎参与贡献和完善内容，贡献方法参考 <a href="https://github.com/feiskyer/kubernetes-handbook/blob/master/CONTRIBUTING.md">CONTRIBUTING</a>。感谢所有的贡献者，贡献者列表见 <a href="https://github.com/feiskyer/kubernetes-handbook/graphs/contributors">contributors</a>。</p>
 
 <ul class="posts">
 <li>
@@ -87,11 +100,15 @@
 
     
 <script>
-window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-ga('create', 'UA-69699206-1', 'auto');
-ga('send', 'pageview');
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-69699206-1', 'auto');
+	
+	ga('send', 'pageview');
+}
 </script>
-<script async src='//www.google-analytics.com/analytics.js'></script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 
   </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
   <link href="http://gmpg.org/xfn/11" rel="profile">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <meta name="generator" content="Hugo 0.41-DEV" />
+  <meta name="generator" content="Hugo 0.43-DEV" />
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
@@ -356,107 +356,113 @@ training/webapp python app.py
 
 <p>也可以挂载一个本地主机文件作为数据卷：</p>
 
-<p><code>$ sudo docker run --rm -it -v ~/.bash_history:/.bash_history ubuntu /bin/bash</code>
-，注意这会导致报错误信息，最好还是直接挂载文件的父目录</p>
+<pre><code class="language-$">，注意这会导致报错误信息，最好还是直接挂载文件的父目录
 
-<p>如果你有一些持续更新的数据需要在容器之间共享，最好创建数据卷容器。数据卷容器，其实就是一个正常的容器，专门用来提供数据卷供其它容器挂载的：</p>
-
-<pre><code>$ sudo docker run -d -v /dbdata --name dbdata training/postgres echo Data-only container for postgres
+如果你有一些持续更新的数据需要在容器之间共享，最好创建数据卷容器。数据卷容器，其实就是一个正常的容器，专门用来提供数据卷供其它容器挂载的：
 </code></pre>
 
-<p>然后，在其他容器中使用&ndash;volumes-from来挂载dbdata容器中的数据卷。</p>
+<p>$ sudo docker run -d -v /dbdata &ndash;name dbdata training/postgres echo Data-only container for postgres</p>
 
-<pre><code>$ sudo docker run -d --volumes-from dbdata --name db1 training/postgres
-$ sudo docker run -d --volumes-from dbdata --name db2 training/postgres
+<pre><code>
+然后，在其他容器中使用--volumes-from来挂载dbdata容器中的数据卷。
 </code></pre>
 
-<ol>
-<li>网络管理</li>
-</ol>
+<p>$ sudo docker run -d &ndash;volumes-from dbdata &ndash;name db1 training/postgres
+$ sudo docker run -d &ndash;volumes-from dbdata &ndash;name db2 training/postgres</p>
 
-<p>当Docker启动时，会自动在主机上创建一个docker0虚拟网桥，实际上是Linux的一个bridge，可以理解为一个软件交换机。它会在挂载到它的网口之间进行转发。</p>
+<pre><code>
+7. 网络管理
 
-<p>同时，Docker随机分配一个本地未占用的私有网段（在RFC1918中定义）中的一个地址给docker0接口。比如典型的172.17.42.1，掩码为255.255.0.0。此后启动的容器内的网口也会自动分配一个同一网段.</p>
+当Docker启动时，会自动在主机上创建一个docker0虚拟网桥，实际上是Linux的一个bridge，可以理解为一个软件交换机。它会在挂载到它的网口之间进行转发。
 
-<p>① 端口映射: 使用docker port 来查看当前映射的端口配置</p>
+同时，Docker随机分配一个本地未占用的私有网段（在RFC1918中定义）中的一个地址给docker0接口。比如典型的172.17.42.1，掩码为255.255.0.0。此后启动的容器内的网口也会自动分配一个同一网段.
 
-<pre><code>$ sudo docker run -P ... #随机映射一个49000~49900的端口到内部容器开放的网络端口
+① 端口映射: 使用docker port 来查看当前映射的端口配置
+</code></pre>
+
+<p>$ sudo docker run -P &hellip; #随机映射一个49000~49900的端口到内部容器开放的网络端口
 $ sudo docker run -d -p 5000:5000 #映射到指定端口
 $ sudo docker run -d -p 127.0.0.1:5000:5000 #映射到指定HOST＋端口
 $ sudo docker run -d -p 127.0.0.1::5000 #映射到指定HOST，端口随机生成
-$ sudo docker run -d -p 127.0.0.1:5000:5000/udp #映射到指定UDP端口
+$ sudo docker run -d -p 127.0.0.1:5000:5000/udp #映射到指定UDP端口</p>
+
+<pre><code>
+② 容器互联
+
+启动容器时指定容器名称：
 </code></pre>
 
-<p>② 容器互联</p>
+<p>$ sudo docker run -d &ndash;name db training/postgres</p>
 
-<p>启动容器时指定容器名称：</p>
-
-<pre><code>$ sudo docker run -d --name db training/postgres
+<pre><code>根据名称连接db容器
 </code></pre>
 
-<p>根据名称连接db容器</p>
+<p>$ sudo docker run -d -P &ndash;name web &ndash;link db:db training/webapp python app.py</p>
 
-<pre><code>$ sudo docker run -d -P --name web --link db:db training/webapp python app.py
+<pre><code>注意：--link参数的格式为--link name:alias，其中name是要链接的容器的名称，alias是这个连接的别名；如果名称未知，可以通过下面的命令查询：
 </code></pre>
 
-<p>注意：&ndash;link参数的格式为&ndash;link name:alias，其中name是要链接的容器的名称，alias是这个连接的别名；如果名称未知，可以通过下面的命令查询：</p>
+<p>$ sudo docker inspect -f &ldquo;{{ .Name }}&rdquo; aed84ee21bde</p>
 
-<pre><code>$ sudo docker inspect -f &quot;{{ .Name }}&quot; aed84ee21bde
+<pre><code>Docker在两个互联的容器之间创建了一个安全隧道，而且不用映射它们的端口到宿主主机上。在启动db容器的时候并没有使用-p和-P标记，从而避免了暴露数据库端口到外部网络上。
+
+Docker 通过2种方式为容器公开连接信息：
+
+其一是环境变量：
 </code></pre>
 
-<p>Docker在两个互联的容器之间创建了一个安全隧道，而且不用映射它们的端口到宿主主机上。在启动db容器的时候并没有使用-p和-P标记，从而避免了暴露数据库端口到外部网络上。</p>
-
-<p>Docker 通过2种方式为容器公开连接信息：</p>
-
-<p>其一是环境变量：</p>
-
-<pre><code>$ sudo docker run --rm --name web2 --link db:db training/webapp env
-. . .
+<p>$ sudo docker run &ndash;rm &ndash;name web2 &ndash;link db:db training/webapp env
+&hellip;
 DB_NAME=/web2/db
 DB_PORT=tcp://172.17.0.5:5432
 DB_PORT_5000_TCP=tcp://172.17.0.5:5432
 DB_PORT_5000_TCP_PROTO=tcp
 DB_PORT_5000_TCP_PORT=5432
 DB_PORT_5000_TCP_ADDR=172.17.0.5
-. . .
+&hellip;</p>
+
+<pre><code>
+其二是hosts：
 </code></pre>
 
-<p>其二是hosts：</p>
-
-<pre><code>$ sudo docker run -t -i --rm --link db:db training/webapp /bin/bash
+<p>$ sudo docker run -t -i &ndash;rm &ndash;link db:db training/webapp /bin/bash
 root@aed84ee21bde:/opt/webapp# cat /etc/hosts
 172.17.0.7  aed84ee21bde
-. . .
-172.17.0.5  db
+&hellip;
+172.17.0.5  db</p>
+
+<pre><code>③ 其他选项
+
+只有在Docker服务启动的时候才能配置:
+
 </code></pre>
 
-<p>③ 其他选项</p>
+<p>-b BRIDGE or &ndash;bridge=BRIDGE &ndash;指定容器挂载的网桥
+&ndash;bip=CIDR &ndash;定制docker0的掩码
+-H SOCKET&hellip; or &ndash;host=SOCKET&hellip; &ndash;Docker服务端接收命令的通道
+&ndash;icc=true|false &ndash;是否支持容器之间进行通信
+&ndash;ip-forward=true|false &ndash;请看下文容器之间的通信
+-iptables=true|false &ndash;禁止Docker添加iptables规则
+&ndash;mtu=BYTES &ndash;容器网络中的MTU</p>
 
-<p>只有在Docker服务启动的时候才能配置:</p>
+<pre><code>
+既可以在启动服务时指定，也可以Docker容器启动（docker run）时候指定:
 
-<pre><code>-b BRIDGE or --bridge=BRIDGE --指定容器挂载的网桥
---bip=CIDR --定制docker0的掩码
--H SOCKET... or --host=SOCKET... --Docker服务端接收命令的通道
---icc=true|false --是否支持容器之间进行通信
---ip-forward=true|false --请看下文容器之间的通信
--iptables=true|false --禁止Docker添加iptables规则
---mtu=BYTES --容器网络中的MTU
 </code></pre>
 
-<p>既可以在启动服务时指定，也可以Docker容器启动（docker run）时候指定:</p>
+<p>&ndash;dns=IP_ADDRESS&hellip; &ndash;使用指定的DNS服务器
+&ndash;dns-search=DOMAIN&hellip; &ndash;指定DNS搜索域</p>
 
-<pre><code>--dns=IP_ADDRESS... --使用指定的DNS服务器
---dns-search=DOMAIN... --指定DNS搜索域
+<pre><code>
+只有在docker run执行时使用:
 </code></pre>
 
-<p>只有在docker run执行时使用:</p>
-
-<pre><code>-h HOSTNAME or --hostname=HOSTNAME --配置容器主机名
---link=CONTAINER_NAME:ALIAS --添加到另一个容器的连接
---net=bridge|none|container:NAME_or_ID|host --配置容器的桥接模式
--p SPEC or --publish=SPEC --映射容器端口到宿主主机
--P or --publish-all=true|false --映射容器所有端口到宿主主机
-</code></pre>
+<p>-h HOSTNAME or &ndash;hostname=HOSTNAME &ndash;配置容器主机名
+&ndash;link=CONTAINER_NAME:ALIAS &ndash;添加到另一个容器的连接
+&ndash;net=bridge|none|container:NAME_or_ID|host &ndash;配置容器的桥接模式
+-p SPEC or &ndash;publish=SPEC &ndash;映射容器端口到宿主主机
+-P or &ndash;publish-all=true|false &ndash;映射容器所有端口到宿主主机
+```</p>
 
 </div>
 
@@ -485,11 +491,15 @@ root@aed84ee21bde:/opt/webapp# cat /etc/hosts
 
     
 <script>
-window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-ga('create', 'UA-69699206-1', 'auto');
-ga('send', 'pageview');
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-69699206-1', 'auto');
+	
+	ga('send', 'pageview');
+}
 </script>
-<script async src='//www.google-analytics.com/analytics.js'></script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 
   </body>
 </html>
