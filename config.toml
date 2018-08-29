@@ -22,24 +22,9 @@ enableRobotsTXT = true
   filename = "sitemap.xml"
 
 [[menu.main]]
-    name = "Distributed"
-    weight = -6
-    url = "/distributed/"
-
-[[menu.main]]
-    name = "Readings"
-    weight = -5
-    url = "/docs/"
-
-[[menu.main]]
     name = "机器学习"
     weight = -4
     url = "/machine-learning/"
-
-[[menu.main]]
-    name = "Containers"
-    weight = -100
-    url = "/container/"
 
 [[menu.main]]
     name = "SDN"
