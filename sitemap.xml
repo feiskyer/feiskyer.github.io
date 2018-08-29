@@ -3,20 +3,6 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://feisky.xyz/k8s/subpath-issue/</loc>
-    <lastmod>2018-03-21T20:17:18+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/kubernetes/subpath-issue/</loc>
-    <lastmod>2018-03-21T20:17:18+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://feisky.xyz/post/2017-11-27-aci/</loc>
     <lastmod>2017-11-27T21:30:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -59,41 +45,6 @@
   </url>
   
   <url>
-    <loc>https://feisky.xyz/k8s/</loc>
-    <lastmod>2017-06-21T16:11:07+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/kubernetes/</loc>
-    <lastmod>2017-06-21T16:11:07+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/tensorflow/</loc>
-    <lastmod>2017-06-21T16:11:07+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/sdn/dpdk/</loc>
-    <lastmod>2017-06-01T12:12:12+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/sdn/</loc>
-    <lastmod>2017-06-01T12:12:12+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://feisky.xyz/post/2017-05-21-start-kubernetes-handbook/</loc>
     <lastmod>2017-05-21T17:42:34+00:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -117,13 +68,6 @@
   <url>
     <loc>https://feisky.xyz/post/2017-01-05-grumpy-%E4%BD%BF%E7%94%A8go%E6%9D%A5%E8%BF%90%E8%A1%8Cpython%E7%A8%8B%E5%BA%8F/</loc>
     <lastmod>2017-01-05T17:11:09+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/tracing/bcc/</loc>
-    <lastmod>2016-12-14T17:27:47+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -157,106 +101,8 @@
   </url>
   
   <url>
-    <loc>https://feisky.xyz/tracing/</loc>
-    <lastmod>2016-10-21T17:27:47+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/tracing/sysdig/</loc>
-    <lastmod>2016-10-21T17:26:05+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/kubernetes-dev/</loc>
-    <lastmod>2016-10-21T16:11:07+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/distributed/distributed/paxos/</loc>
-    <lastmod>2016-10-21T16:11:07+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/distributed/distributed/zab/</loc>
-    <lastmod>2016-10-21T16:11:07+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/distributed/distributed/consistent/</loc>
-    <lastmod>2016-10-21T16:11:07+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/virtualization/sr-iov/</loc>
-    <lastmod>2016-10-15T17:19:46+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/virtualization/gpu/</loc>
-    <lastmod>2016-10-15T17:19:19+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/virtualization/pvcall/</loc>
-    <lastmod>2016-10-14T14:03:04+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/virtualization/vsocks/</loc>
-    <lastmod>2016-10-14T13:55:34+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/container/native/cloud-native/</loc>
-    <lastmod>2016-10-13T22:48:12+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/container/docker/swarmkit/</loc>
-    <lastmod>2016-10-13T22:47:27+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://feisky.xyz/post/2016-09-25-kubernetes-container-runtime-interface/</loc>
     <lastmod>2016-09-25T06:59:31+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/programing/go/</loc>
-    <lastmod>2016-09-18T14:20:54+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/programing/</loc>
-    <lastmod>2016-09-18T14:20:54+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -487,31 +333,7 @@
   
   <url>
     <loc>https://feisky.xyz/</loc>
-    <lastmod>2018-03-21T20:17:18+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/distributed/compute/beam/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/distributed/compute/cloud-dataflow/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/distributed/compute/hadoop/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/distributed/compute/spark/</loc>
+    <lastmod>2017-11-27T21:30:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -595,61 +417,13 @@
   </url>
   
   <url>
-    <loc>https://feisky.xyz/distributed/distributed/2pc-3pc/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://feisky.xyz/404/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://feisky.xyz/programing/api/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/distributed/lessons/aws-s3-2.28/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/distributed/storage/aurora/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/distributed/storage/dynamodb/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/docs/amazon-leadership/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/distributed/storage/aws-rds/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://feisky.xyz/post/2015-02-06-apachemesosgooglekubernetes-/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/container/apparmor/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -682,45 +456,9 @@
   </url>
   
   <url>
-    <loc>https://feisky.xyz/distributed/distributed/cap/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://feisky.xyz/categories/</loc>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/container/ceph/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/tags/cloud/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/tags/cluster/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/distributed/storage/cockroachdb/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/distributed/message/consul/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   
   <url>
@@ -728,18 +466,6 @@
     <lastmod>2016-07-19T15:58:26+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/container/containerd/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/distributed/storage/cosmos/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   
   <url>
@@ -774,20 +500,7 @@
   </url>
   
   <url>
-    <loc>https://feisky.xyz/container/docker/storage/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://feisky.xyz/post/2015-02-13-docker-intro/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/container/docker/</loc>
-    <lastmod>2016-10-13T22:47:27+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -800,28 +513,10 @@
   </url>
   
   <url>
-    <loc>https://feisky.xyz/container/drawbridge/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/distributed/message/etcd/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://feisky.xyz/tags/flannel/</loc>
     <lastmod>2016-07-19T15:58:26+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/distributed/lessons/gitlab-1.31/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   
   <url>
@@ -839,30 +534,6 @@
   
   <url>
     <loc>https://feisky.xyz/post/2015-02-26-going-native-with-openstack-centric-applications-overview/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/distributed/storage/bigtable/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/distributed/storage/datastore/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/distributed/storage/f1/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/sre/google/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -936,12 +607,6 @@
   </url>
   
   <url>
-    <loc>https://feisky.xyz/distributed/message/kafka/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://feisky.xyz/tags/kubecon/</loc>
     <lastmod>2016-11-14T09:49:52+00:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -950,7 +615,7 @@
   
   <url>
     <loc>https://feisky.xyz/tags/kubernetes/</loc>
-    <lastmod>2018-03-21T20:17:18+00:00</lastmod>
+    <lastmod>2017-11-27T21:30:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -969,12 +634,6 @@
   
   <url>
     <loc>https://feisky.xyz/post/2015-02-12-linux-netcat-examples/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/container/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -1060,12 +719,6 @@
   </url>
   
   <url>
-    <loc>https://feisky.xyz/serverless/pywren/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://feisky.xyz/tags/python/</loc>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
@@ -1082,12 +735,6 @@
     <lastmod>2016-02-29T19:20:27+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/distributed/distributed/raft/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   
   <url>
@@ -1118,61 +765,7 @@
   </url>
   
   <url>
-    <loc>https://feisky.xyz/container/selinux/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/sre/guideline/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/sre/manage/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/container/seccomp/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/serverless/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/serverless/platform/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/serverless/framework/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/serverless/usecase/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://feisky.xyz/post/2015-03-02-setting-up-gre-for-kubernetes/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/sre/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -1194,12 +787,6 @@
     <lastmod>2017-11-27T21:30:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/distributed/storage/tidb/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   
   <url>
@@ -1239,12 +826,6 @@
   </url>
   
   <url>
-    <loc>https://feisky.xyz/distributed/message/zookeeper/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://feisky.xyz/post/2015-03-20-awesome-quick-start/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -1269,12 +850,6 @@
   </url>
   
   <url>
-    <loc>https://feisky.xyz/container/cri-o/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://feisky.xyz/post/2015-03-20-docker-in-tencent/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -1287,43 +862,7 @@
   </url>
   
   <url>
-    <loc>https://feisky.xyz/container/docker/networking/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/container/native/grpc/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://feisky.xyz/post/2015-06-05-git-commit/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/docs/nas_san/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/docs/netns/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/sre/oncall/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/tracing/perf/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -1335,37 +874,7 @@
   </url>
   
   <url>
-    <loc>https://feisky.xyz/container/runv/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/container/runc/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/docs/screen/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/distributed/storage/spanner/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://feisky.xyz/post/2015-06-24-sysdig/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/tracing/systemtap/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -1377,202 +886,13 @@
   </url>
   
   <url>
-    <loc>https://feisky.xyz/docs/consistency/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/container/native/</loc>
-    <lastmod>2016-10-13T22:48:12+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/container/tools/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/docs/jd-container/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://feisky.xyz/post/2015-02-06-mesosdocker/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://feisky.xyz/sre/distributed-consensus/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/distributed/storage/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/sre/cron/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/distributed/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/distributed/practice/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/distributed/distributed/</loc>
-    <lastmod>2016-10-21T16:11:07+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/distributed/lessons/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/distributed/compute/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/distributed/message/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/distributed/distributed/availability/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/sre/deploy/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://feisky.xyz/post/2015-02-11-good-books/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/container/resources/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/docs/windows/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/sre/diagnose/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/sre/pipeline/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/sre/integrity/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/docs/%E6%9E%B6%E6%9E%84%E5%8D%B3%E6%9C%AA%E6%9D%A5/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/sre/testing/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/distributed/message/message-queue/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/sre/monitor/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/distributed/distributed/network-partition/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/virtualization/</loc>
-    <lastmod>2016-10-15T17:19:46+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/docs/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/sre/lb/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/sre/cascading/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/distributed/storage/aliyun-rds/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/sre/appendix/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>

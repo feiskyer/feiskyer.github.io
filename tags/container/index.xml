@@ -52,14 +52,5 @@ $ docker pull busybox $ mkdir rootfs $ docker export $(docker create busybox) | 
       <description>Docker v1.11正式集成了runc（终于支持OCI了），并将原来的一个二进制文件拆分为多个，同时还保持docker CLI和API不变： docker docker-containerd docker-containerd-shim docker-runc docker-containerd-ctr</description>
     </item>
     
-    <item>
-      <title>Serverless</title>
-      <link>https://feisky.xyz/serverless/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://feisky.xyz/serverless/</guid>
-      <description>Serverless Serverless，即无服务器架构，将大家从服务器中解放了出来，只需要关注业务逻辑本身。用户只需要关注数据和业务逻辑，无需维护服务器，也</description>
-    </item>
-    
   </channel>
 </rss>

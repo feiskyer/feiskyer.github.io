@@ -3,7 +3,7 @@
 <head>
   <link href="http://gmpg.org/xfn/11" rel="profile">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <meta name="generator" content="Hugo 0.43-DEV" />
+  <meta name="generator" content="Hugo 0.49-DEV" />
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
@@ -40,7 +40,7 @@
 
     <ul class="sidebar-nav">
       <li><a href="https://feisky.xyz/">Home</a> </li>
-      <li><a href="/container/"> Containers </a></li><li><a href="https://kubernetes.feisky.xyz"> Kubernetes </a></li><li><a href="/distributed/"> Distributed </a></li><li><a href="/docs/"> Readings </a></li><li><a href="/machine-learning/"> 机器学习 </a></li><li><a href="https://sdn.feisky.xyz"> SDN </a></li><li><a href="/about/"> About </a></li>
+      <li><a href="https://kubernetes.feisky.xyz"> Kubernetes </a></li><li><a href="/machine-learning/"> 机器学习 </a></li><li><a href="https://sdn.feisky.xyz"> SDN </a></li><li><a href="/about/"> About </a></li>
     </ul>
 
     <p>&copy; 2018. All rights reserved. </p>
@@ -50,28 +50,6 @@
     <div class="content container">
     <div class="posts">
 <div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/k8s/subpath-issue/">Kubernetes 任意文件访问漏洞</a>
-  </h1>
-  <span class="post-date">Wed, Mar 21, 2018</span>
-  前段时间 Kubernetes 发布了一系列的安全更新，修复了一个因 subpath 处理不当导致的任意文件访问漏洞（CVE-2017-1002101和 CVE-2017-1002
-  
-  <div class="read-more-link">
-    <a href="/k8s/subpath-issue/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/kubernetes/subpath-issue/">Kubernetes 任意文件访问漏洞</a>
-  </h1>
-  <span class="post-date">Wed, Mar 21, 2018</span>
-  前段时间 Kubernetes 发布了一系列的安全更新，修复了一个因 subpath 处理不当导致的任意文件访问漏洞（CVE-2017-1002101和 CVE-2017-1002
-  
-  <div class="read-more-link">
-    <a href="/kubernetes/subpath-issue/">Read More…</a>
-  </div>
-  
-</div><div class="post">
   <h1 class="post-title">
     <a href="https://feisky.xyz/post/2017-11-27-aci/">Azure Container Instance (ACI)</a>
   </h1>
@@ -139,17 +117,6 @@
   
 </div><div class="post">
   <h1 class="post-title">
-    <a href="https://feisky.xyz/tensorflow/">Tensorflow实践</a>
-  </h1>
-  <span class="post-date">Wed, Jun 21, 2017</span>
-  Tensorflow是谷歌在2015年11月开源的机器学习框架，来源于Google内部的深度学习框架DistBelief。由于其良好的架构、
-  
-  <div class="read-more-link">
-    <a href="/tensorflow/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
     <a href="https://feisky.xyz/post/2017-05-21-start-kubernetes-handbook/">开始一本开源电子书《Kubernetes指南》</a>
   </h1>
   <span class="post-date">Sun, May 21, 2017</span>
@@ -190,19 +157,6 @@
   
   <div class="read-more-link">
     <a href="/post/2017-01-05-grumpy-%E4%BD%BF%E7%94%A8go%E6%9D%A5%E8%BF%90%E8%A1%8Cpython%E7%A8%8B%E5%BA%8F/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/tracing/bcc/">bcc</a>
-  </h1>
-  <span class="post-date">Wed, Dec 14, 2016</span>
-  BPF Compiler Collection (BCC) - Tools for BPF-based Linux IO analysis, networking, monitoring  Website: https://github.com/iovisor/bcc  Basic usage of bcc （tutorial） Install bcc:
-echo -e '[iovisor]\nbaseurl=https://repo.iovisor.org/yum/nightly/f23/$basearch\nenabled=1\ngpgcheck=0' | sudo tee /etc/yum.repos.d/iovisor.repo yum install bcc-tools  Now bcc is installed at /usr/share/bcc/tools.
-# ls /usr/share/bcc/tools argdist cachestat ext4dist hardirqs offwaketime softirqs tcpconnect vfscount bashreadline cachetop ext4slower killsnoop old solisten tcpconnlat vfsstat biolatency capable filelife llcstat oomkill sslsniff tcplife wakeuptime biosnoop cpudist fileslower mdflush opensnoop stackcount tcpretrans xfsdist biotop dcsnoop filetop memleak pidpersec stacksnoop tcptop xfsslower bitesize dcstat funccount mountsnoop profile statsnoop tplist zfsdist btrfsdist doc funclatency mysqld_qslower runqlat syncsnoop trace zfsslower btrfsslower execsnoop gethostlatency offcputime slabratetop tcpaccept ttysnoop  capable
-  
-  <div class="read-more-link">
-    <a href="/tracing/bcc/">Read More…</a>
   </div>
   
 </div><div class="post">
@@ -254,118 +208,6 @@ Due to a serious security problem, kubernetes v1.5.0 is not recommanded. Kuberne
   
 </div><div class="post">
   <h1 class="post-title">
-    <a href="https://feisky.xyz/tracing/sysdig/">sysdig</a>
-  </h1>
-  <span class="post-date">Fri, Oct 21, 2016</span>
-  Tips of sysdig Sysdig captures system calls and other system level events using a linux kernel facility called tracepoints, providing a rich set of real-time, system-level information.
-Sysdig &ldquo;packetizes&rdquo; this information, so that you can do things like save it into trace files and easily filter it, a bit like you would do with tcpdump. This makes it very flexible to explore what processes are doing.
-Sysdig instruments your physical and virtual machines at the OS level by installing into the Linux kernel and capturing system calls and other OS events.
-  
-  <div class="read-more-link">
-    <a href="/tracing/sysdig/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/kubernetes-dev/">Kubernetes Development</a>
-  </h1>
-  <span class="post-date">Fri, Oct 21, 2016</span>
-  Tips for kubernetes development Setup development virtual machine apt-get install -y gcc make socat git # install docker curl -fsSL https://get.docker.com/ | sh # install etcd curl -L https://github.com/coreos/etcd/releases/download/v3.0.10/etcd-v3.0.10-linux-amd64.tar.gz -o etcd-v3.0.10-linux-amd64.tar.gz &amp;&amp; tar xzvf etcd-v3.0.10-linux-amd64.tar.gz &amp;&amp; /bin/cp -f etcd-v3.0.10-linux-amd64/{etcd,etcdctl} /usr/bin &amp;&amp; rm -rf etcd-v3.0.10-linux-amd64* # install golang curl -sL https://storage.googleapis.com/golang/go1.8.linux-amd64.tar.gz | tar -C /usr/local -zxf - export GOPATH=/gopath export PATH=$PATH:$GOPATH/bin:/usr/local/bin:/usr/local/go/bin/ # Get kubernetes code mkdir -p $GOPATH/src/k8s.io git clone https://github.
-  
-  <div class="read-more-link">
-    <a href="/kubernetes-dev/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/distributed/distributed/paxos/">Paxos</a>
-  </h1>
-  <span class="post-date">Fri, Oct 21, 2016</span>
-  Paxos Paxos算法是莱斯利·兰伯特于1990年提出的一种基于消息传递且具有高度容错特性的一致性算法。 论文 The Part-Time Parliament Paxos Made Simple Paxos Made Live CONSENSUS: BRIDGING THEORY AND PRACTICE Paxos
-  
-  <div class="read-more-link">
-    <a href="/distributed/distributed/paxos/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/distributed/distributed/zab/">Zab</a>
-  </h1>
-  <span class="post-date">Fri, Oct 21, 2016</span>
-  Zab Zab (Zookeeper atomic broadcast protocol)是Zookeeper内部用到的一致性协议。相比Paxos，Zab最大的特点是保证强一致性(strong consi
-  
-  <div class="read-more-link">
-    <a href="/distributed/distributed/zab/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/distributed/distributed/consistent/">分布式系统的一致性</a>
-  </h1>
-  <span class="post-date">Fri, Oct 21, 2016</span>
-  考虑在数据冗余情况下一致性和性能的问题，即： 1）要想让数据有高可用性，就得写多份数据。 2）写多份的问题会导致数据一致性的问题。 3）数据一致性
-  
-  <div class="read-more-link">
-    <a href="/distributed/distributed/consistent/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/virtualization/sr-iov/">SR-IOV</a>
-  </h1>
-  <span class="post-date">Sat, Oct 15, 2016</span>
-  SR-IOV SR-IOV（Single Root I/O Virtualization）是一个将PCIe共享给虚拟机的标准，通过为虚拟机提供独立的内存空间、中断、DM
-  
-  <div class="read-more-link">
-    <a href="/virtualization/sr-iov/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/virtualization/pvcall/">PV Calls</a>
-  </h1>
-  <span class="post-date">Fri, Oct 14, 2016</span>
-  PV Calls is a paravirtualized protocol that allows the implementation of a set of POSIX functions in a different domain. The PV Calls frontend sends POSIX function calls to the backend, which implements them and returns a value to the frontend. This version of the document covers networking function calls, such as connect, accept, bind, release, listen, poll, recvmsg and sendmsg; but the protocol is meant to be easily extended
-  
-  <div class="read-more-link">
-    <a href="/virtualization/pvcall/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/virtualization/vsocks/">Virtio vsock</a>
-  </h1>
-  <span class="post-date">Fri, Oct 14, 2016</span>
-  virtio-vsock is a host/guest communications device. It allows applications in the guest and host to communicate. This can be used to implement hypervisor services and guest agents (like qemu-guest-agent or SPICE vdagent). Unlike virtio-serial, virtio-vsock supports the POSIX Sockets API so existing networking applications require minimal modification. The Sockets API allows N:1 connections so multiple clients can connect to a server simultaneously. The device has an address assigned automatically so
-  
-  <div class="read-more-link">
-    <a href="/virtualization/vsocks/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/container/native/cloud-native/">云原生（Cloud Native）</a>
-  </h1>
-  <span class="post-date">Thu, Oct 13, 2016</span>
-  Cloud Native is structuring teams, culture and technology to utilize automation and architectures to manage complexity and unlock velocity. 云原生应用，是指原生为在云平台上部署运行而设计开发的应用。公平的说，大多数传统的应用，不做任何改动，都
-  
-  <div class="read-more-link">
-    <a href="/container/native/cloud-native/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/container/docker/swarmkit/">SwarmKit</a>
-  </h1>
-  <span class="post-date">Thu, Oct 13, 2016</span>
-  SwarmKit SwarmKit是随着docker 1.12发布的集群管理系统，并内置在docker daemon中，主要提供以下的功能： 容器调度、健康检查和
-  
-  <div class="read-more-link">
-    <a href="/container/docker/swarmkit/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
     <a href="https://feisky.xyz/post/2016-09-25-kubernetes-container-runtime-interface/">Kubernetes container runtime interface</a>
   </h1>
   <span class="post-date">Sun, Sep 25, 2016</span>
@@ -373,17 +215,6 @@ Sysdig instruments your physical and virtual machines at the OS level by install
   
   <div class="read-more-link">
     <a href="/post/2016-09-25-kubernetes-container-runtime-interface/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/programing/go/">Go语言技巧</a>
-  </h1>
-  <span class="post-date">Sun, Sep 18, 2016</span>
-  Go语言技巧 常用工具 go fmt golint go vet goimports https://goreportcard.com/ 惯用法 注释用完整句子，以方法或包名开头 每行控制80字节长度 error字符串首字母小写 多个相同变量的返回值加
-  
-  <div class="read-more-link">
-    <a href="/programing/go/">Read More…</a>
   </div>
   
 </div><div class="post">
@@ -737,34 +568,6 @@ Your containers run in a bare-metal environment, which avoids the &ldquo;hypervi
   
 </div><div class="post">
   <h1 class="post-title">
-    <a href="https://feisky.xyz/distributed/compute/beam/"></a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/distributed/compute/cloud-dataflow/"></a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/distributed/compute/hadoop/"></a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/distributed/compute/spark/"></a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  
-  
-</div><div class="post">
-  <h1 class="post-title">
     <a href="https://feisky.xyz/post/2017-02-13-software-engineering-at-google/"></a>
   </h1>
   <span class="post-date">Mon, Jan 1, 0001</span>
@@ -911,79 +714,10 @@ tags: [highscalability, google] The main idea of the paper is that the typical f
   
 </div><div class="post">
   <h1 class="post-title">
-    <a href="https://feisky.xyz/distributed/distributed/2pc-3pc/">2PC/3PC</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  
-  
-</div><div class="post">
-  <h1 class="post-title">
     <a href="https://feisky.xyz/404/">404</a>
   </h1>
   <span class="post-date">Mon, Jan 1, 0001</span>
   
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/programing/api/">API Design</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-   Google API Design Guide OpenAPI Swagger KONG Tyk  
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/distributed/lessons/aws-s3-2.28/">AWS S3故障回顾和总结</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  S3故障回顾 2月28日，AWS工程师在排查Northern Virginia (US-EAST-1) Region的一个S3计费问题时，因敲错了一条playbook的参数而误删了大
-  
-  <div class="read-more-link">
-    <a href="/distributed/lessons/aws-s3-2.28/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/distributed/storage/aurora/">Amazon Aurora</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  Amazon Aurora 是与 MySQL 兼容的关系数据库引擎，既具备高端商用数据库的速度和可用性，又有开源数据库的简单性和成本效益。Amazon Aurora 的性能最高可达到 MySQL 的五倍
-  
-  <div class="read-more-link">
-    <a href="/distributed/storage/aurora/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/distributed/storage/dynamodb/">Amazon DynamoDB</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  Amazon DynamoDB 是一项快速灵活的 NoSQL 数据库服务，适合所有需要一致性且延迟低于 10 毫秒的任意规模的应用程序。它是完全托管的云数据库，支持文档和键值存储模型。灵
-  
-  <div class="read-more-link">
-    <a href="/distributed/storage/dynamodb/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/docs/amazon-leadership/">Amazon Leadership Principles</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  顾客至尚 领导者从客户入手，再反向推动工作。他们努力工作，赢得并维系客户对他们的信任。虽然领导者会关注竞争对手，但是他们更关注客户 。 主人翁精神
-  
-  <div class="read-more-link">
-    <a href="/docs/amazon-leadership/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/distributed/storage/aws-rds/">Amazon RDS</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  Amazon Relational Database Service (Amazon RDS) 是最早的云数据库产品，提供托管的关系数据库，包括Amazon Aurora、PostgreSQL、MySQL、MariaDB、Or
-  
-  <div class="read-more-link">
-    <a href="/distributed/storage/aws-rds/">Read More…</a>
-  </div>
   
 </div><div class="post">
   <h1 class="post-title">
@@ -995,67 +729,6 @@ tags: [highscalability, google] The main idea of the paper is that the typical f
   <div class="read-more-link">
     <a href="/post/2015-02-06-apachemesosgooglekubernetes-/">Read More…</a>
   </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/container/apparmor/">AppArmor</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  AppArmor (Application Armor) 是Linux内核的一个安全模块，允许系统管理员将每个程序与一个安全配置文件关联，从而限制程序的功能。通过它你可以指定程序可以读、写或运
-  
-  <div class="read-more-link">
-    <a href="/container/apparmor/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/distributed/distributed/cap/">CAP</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/container/ceph/">Ceph</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  Ceph是一个开源的分布式存储系统，同时提供了对象存储、块存储和文件系统存储，主要特点包括: 高扩展性：使用普通x86服务器，支持10~100
-  
-  <div class="read-more-link">
-    <a href="/container/ceph/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/distributed/storage/cockroachdb/">CockroachDB</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  CockroachDB是一个基于Google Spanner论文打造的一个可伸缩的、跨地域复制且兼容ACID的数据库。 Design Documents
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/distributed/message/consul/">Consul</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/container/containerd/">Containerd</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  containerd 是为了兼容OCI标准而从Docker中拆分出来专门负责镜像管理和容器执行的组件。它向上对Docker提供gRPC接口，向下借助contai
-  
-  <div class="read-more-link">
-    <a href="/container/containerd/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/distributed/storage/cosmos/">Cosmos</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  
   
 </div><div class="post">
   <h1 class="post-title">
@@ -1105,13 +778,6 @@ We never looked to hedge our bets, our success was and obviously still is tied t
   
 </div><div class="post">
   <h1 class="post-title">
-    <a href="https://feisky.xyz/container/docker/storage/">Docker storage</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-     Storage driver Commonly used on Disabled on     overlay ext4 xfs btrfs aufs overlay overlay2 zfs eCryptfs   overlay2 ext4 xfs btrfs aufs overlay overlay2 zfs eCryptfs   aufs ext4 xfs btrfs aufs eCryptfs   btrfs btrfs only N/A   devicemapper direct-lvm N/A   vfs debugging only N/A   zfs zfs only N/A    
-  
-</div><div class="post">
-  <h1 class="post-title">
     <a href="https://feisky.xyz/post/2015-02-13-docker-intro/">Docker 笔记</a>
   </h1>
   <span class="post-date">Mon, Jan 1, 0001</span>
@@ -1119,35 +785,6 @@ We never looked to hedge our bets, our success was and obviously still is tied t
   
   <div class="read-more-link">
     <a href="/post/2015-02-13-docker-intro/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/container/drawbridge/">Drawbridge</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  {% pdf http://feisky.xyz/container/drawbridge.pdf %}
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/distributed/message/etcd/">Etcd</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  Etcd是CoreOS基于Raft开发的分布式key-value存储，可用于服务发现、共享配置以及一致性保障（如数据库选主、分布式锁等）。 E
-  
-  <div class="read-more-link">
-    <a href="/distributed/message/etcd/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/distributed/lessons/gitlab-1.31/">Gitlab故障回顾和总结</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  Gitlab故障回顾 1月31日，Giblab在修复一个PostgreSQL数据同步问题（DB Replication lagged too far behind）时，误将生产环境的数据删除
-  
-  <div class="read-more-link">
-    <a href="/distributed/lessons/gitlab-1.31/">Read More…</a>
   </div>
   
 </div><div class="post">
@@ -1170,50 +807,6 @@ We never looked to hedge our bets, our success was and obviously still is tied t
   
   <div class="read-more-link">
     <a href="/post/2015-02-26-going-native-with-openstack-centric-applications-overview/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/distributed/storage/bigtable/">Google BigTable</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  Google 作为大数据的祖宗一样的存在，对于云真是错过了一波又一波：虚拟化错过一波让 VMWare 和 Docker 抢先了（Google 早在十年前就开始容器的方案，要知道容器赖
-  
-  <div class="read-more-link">
-    <a href="/distributed/storage/bigtable/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/distributed/storage/datastore/">Google Cloud Datastore</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  在 2011 年，Google 发表了 Megastore 的论文，第一次描述了一个支持跨数据中心高可用 + 可以水平扩展 + 支持 ACID 事务语义的分布式存储系统。 Google Megastore 构建在 BigTable 之上，不
-  
-  <div class="read-more-link">
-    <a href="/distributed/storage/datastore/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/distributed/storage/f1/">Google F1</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  在 Spanner 项目开始的同时，Google 启动了另外一个和 Spanner 配套使用的分布式 SQL 引擎的项目 F1，底层有那么一个强一致高性能的 Spanner，那么就可以在
-  
-  <div class="read-more-link">
-    <a href="/distributed/storage/f1/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/sre/google/">Google生产环境</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  Google生产环境 硬件 约10台物理机组成机柜Rack，数台机柜组成机柜排Row，多排机柜组成集群Cluster，多个集群组成数据中心Dat
-  
-  <div class="read-more-link">
-    <a href="/sre/google/">Read More…</a>
   </div>
   
 </div><div class="post">
@@ -1326,17 +919,6 @@ That containers app you wrote needs to run somewhere. This is particularly true 
   
   <div class="read-more-link">
     <a href="/post/2015-02-26-integrating-openstack-and-kubernetes-with-murano/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/distributed/message/kafka/">Kafka</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  Kafka是Linkedin开发的分布式消息系统，因其可水平扩展和高吞吐被广泛使用。其特点包括 快速持久化，常数时间复杂度的访问性能 高吞吐，单
-  
-  <div class="read-more-link">
-    <a href="/distributed/message/kafka/">Read More…</a>
   </div>
   
 </div><div class="post">
@@ -1456,32 +1038,10 @@ The only requirement is to have a virtual machine running the qemu-guest-agent.
   
 </div><div class="post">
   <h1 class="post-title">
-    <a href="https://feisky.xyz/serverless/pywren/">PyWren</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  PyWren是一个基于AWS Lambda的Python计算框架，模拟了Python futures包的map/reduce功能，非常适用于机器
-  
-  <div class="read-more-link">
-    <a href="/serverless/pywren/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
     <a href="https://feisky.xyz/post/2015-03-05-python-not-defined-problem/">Python __file__ not defined problem</a>
   </h1>
   <span class="post-date">Mon, Jan 1, 0001</span>
   file仅在文件中运行的时候才正常，而在交互式命令行中则需要使用变通的方法： import os import inspect import sys if not hasattr(sys.modules[__name__], '__file__'): __file__ = inspect.getfile(inspect.currentframe()) print os.path.dirname(os.path.abspath(__file__))
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/distributed/distributed/raft/">Raft</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  Raft Raft可以在高效的解决分布式系统中各个节点日志内容一致性问题的同时，也使得集群具备一定的容错能力。即使集群中出现部分节点故障、网络故障等
-  
-  <div class="read-more-link">
-    <a href="/distributed/distributed/raft/">Read More…</a>
-  </div>
   
 </div><div class="post">
   <h1 class="post-title">
@@ -1495,75 +1055,6 @@ Specifically Designed to Run Containers Red Hat Enterprise Linux 7 Atomic Host B
   <div class="read-more-link">
     <a href="/post/2015-03-06-redhat-atomic-host/">Read More…</a>
   </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/container/selinux/">SELinux</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  SELinux (Security-Enhanced Linux) 是一种强制访问控制（mandatory access control）的实现。它的作法是以最小权限原则（principle of least privilege）为
-  
-  <div class="read-more-link">
-    <a href="/container/selinux/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/sre/guideline/">SRE指导思想</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  拥抱风险 SRE旨在平衡快速创新和高效服务运营之间的风险，而不是简单的最大化服务在线时间。 管理服务可用性主要在于管理风险，而且管理风险的成本可
-  
-  <div class="read-more-link">
-    <a href="/sre/guideline/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/sre/manage/">SRE管理</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  培训新人 加入on-call 小型项目工作 文档修改 灾难演习 反向工程、随机应变 事后总结 更改真实环境并修复它
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/container/seccomp/">Seccomp</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  Seccomp是Secure computing mode的缩写，它是Linux内核提供的一个操作，用于限制一个进程可以执行的系统调用．Seccomp需要有一个
-  
-  <div class="read-more-link">
-    <a href="/container/seccomp/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/serverless/platform/">Serverless平台</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  AWS Lambda AWS Lambda是目前最有影响力的serverless产品，它依据事件响应触发用户自定义的Lambda函数，并自动管理后端的服务器、高可用
-  
-  <div class="read-more-link">
-    <a href="/serverless/platform/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/serverless/framework/">Serverless开源框架</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  常见的Serverless开源框架简介。 基于Kuberetes的Serverless框架 Fission Funktion: 通过fabric8-maven-plugin生成
-  
-  <div class="read-more-link">
-    <a href="/serverless/framework/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/serverless/usecase/">Serverless案例</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  Web应用和后端 大数据处理 实时流数据处理
   
 </div><div class="post">
   <h1 class="post-title">
@@ -1598,17 +1089,6 @@ Specifically Designed to Run Containers Red Hat Enterprise Linux 7 Atomic Host B
   
   <div class="read-more-link">
     <a href="/post/2015-06-25-stateless-floating-ips/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/distributed/storage/tidb/">TiDB</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  TiDB是 PingCAP 公司基于 Google Spanner / F1 论文实现的开源分布式 NewSQL 数据库。 TiDB 具备如下 NewSQL 核心特性： SQL支持 （TiDB 是 MySQL 兼容的） 水平线性弹性扩展 分布式事务 跨
-  
-  <div class="read-more-link">
-    <a href="/distributed/storage/tidb/">Read More…</a>
   </div>
   
 </div><div class="post">
@@ -1653,13 +1133,6 @@ cAdvisor has native support for Docker containers and should support just about 
   <div class="read-more-link">
     <a href="/post/2015-06-24-weekly-reading-list-20150626/">Read More…</a>
   </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/distributed/message/zookeeper/">Zookeeper</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  
   
 </div><div class="post">
   <h1 class="post-title">
@@ -1709,17 +1182,6 @@ Your contributions are always welcome!
   
 </div><div class="post">
   <h1 class="post-title">
-    <a href="https://feisky.xyz/container/cri-o/">cri-o</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  cri-o cri-o基于Kubelet容器运行时接口（CRI）为Kubernetes带来了原生的OCI运行时(目前仅支持runc)。cri-o还在紧
-  
-  <div class="read-more-link">
-    <a href="/container/cri-o/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
     <a href="https://feisky.xyz/post/2015-03-20-docker-in-tencent/">docker in tencent</a>
   </h1>
   <span class="post-date">Mon, Jan 1, 0001</span>
@@ -1742,24 +1204,6 @@ Your contributions are always welcome!
   
 </div><div class="post">
   <h1 class="post-title">
-    <a href="https://feisky.xyz/container/docker/networking/">docker networking</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  见CNM (Container Networking Model)。
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/container/native/grpc/">gPRC</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  gPRC是基于HTTP/2的开源高性能PRC框架，它基于Protocol Buffer序列化协议，并支持Java、Go、C++、Python、
-  
-  <div class="read-more-link">
-    <a href="/container/native/grpc/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
     <a href="https://feisky.xyz/post/2015-06-05-git-commit/">git commit修改前一次提交的方法</a>
   </h1>
   <span class="post-date">Mon, Jan 1, 0001</span>
@@ -1767,50 +1211,6 @@ Your contributions are always welcome!
   
   <div class="read-more-link">
     <a href="/post/2015-06-05-git-commit/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/docs/nas_san/">nas</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  NAS NAS（Network-Attached Storage，网络附加存储）是指连接到计算机网络的文件级别计算机数据存储，可以为不同客户端提供数
-  
-  <div class="read-more-link">
-    <a href="/docs/nas_san/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/docs/netns/">net-ns</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  简介 在Linux协议栈中引入网络命名空间，是为了支持网络协议栈的多个实例，而这些协议栈的隔离就是由命名空间来实现的(有点像进程的线性地址空间
-  
-  <div class="read-more-link">
-    <a href="/docs/netns/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/sre/oncall/">on-call轮值</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  on-call轮值是运维团队的重要职责，目标是保障服务的可靠性和可用性。 on-call工作平衡 数量平衡：至少50%时间花在软件工程上，其余时
-  
-  <div class="read-more-link">
-    <a href="/sre/oncall/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/tracing/perf/">perf</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  简介 perf是Linux内核自带的性能分析工具。通过它，应用程序可以利用 PMU，tracepoint 和内核中的特殊计数器来进行性能统计。它不
-  
-  <div class="read-more-link">
-    <a href="/tracing/perf/">Read More…</a>
   </div>
   
 </div><div class="post">
@@ -1830,50 +1230,6 @@ Python This was tested under Linux / Python 2.7:
   
 </div><div class="post">
   <h1 class="post-title">
-    <a href="https://feisky.xyz/container/runv/">runV</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  runV 是Open Container Initiative (OCI) 标准 的一个实现（其他实现包括runc和clear container等）。与runc不同的是，runV是一个基于虚拟化的OC
-  
-  <div class="read-more-link">
-    <a href="/container/runv/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/container/runc/">runc</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  runc 是Open Container Initiative (OCI) 标准 的一个实现（其他实现包括runv和clear container等），也是Docker管理容器的默认后端实现。 OCI标准
-  
-  <div class="read-more-link">
-    <a href="/container/runc/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/docs/screen/">screen tips</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  简介 Screen是一个可以在多个进程之间多路复用一个物理终端的窗口管理器。Screen中有会话的概念，用户可以在一个screen会话中创建多
-  
-  <div class="read-more-link">
-    <a href="/docs/screen/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/distributed/storage/spanner/">spanner</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  Spanner是Google提供的跨区域/跨数据中心的关系型分布式数据库，在满足事务一致性的同时还具备极强的可扩展性，结合了传统关系数据库和
-  
-  <div class="read-more-link">
-    <a href="/distributed/storage/spanner/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
     <a href="https://feisky.xyz/post/2015-06-24-sysdig/">sysdig</a>
   </h1>
   <span class="post-date">Mon, Jan 1, 0001</span>
@@ -1883,17 +1239,6 @@ Sysdig instruments your physical and virtual machines at the OS level by install
   
   <div class="read-more-link">
     <a href="/post/2015-06-24-sysdig/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/tracing/systemtap/">systemtap</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  SystemTap是DTrace的Linux实现，它把用户提供的脚本转换为内核模块来执行，用来监测和跟踪内核事件。 安装 注意，较新的内核不支持
-  
-  <div class="read-more-link">
-    <a href="/tracing/systemtap/">Read More…</a>
   </div>
   
 </div><div class="post">
@@ -1909,35 +1254,6 @@ Sysdig instruments your physical and virtual machines at the OS level by install
   
 </div><div class="post">
   <h1 class="post-title">
-    <a href="https://feisky.xyz/docs/consistency/">一致性</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  一致性的解决方法： 排他锁：性能较差 读写锁：读可以并发，但写的时候不能读，读的时候不能写 Copy on write：读写互不影响，效率较高。如果一个人在事
-  
-  <div class="read-more-link">
-    <a href="/docs/consistency/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/container/tools/">云原生框架</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  API Google API Design Guide OpenAPI Swagger KONG Tyk gRPC - A high performance, open source, general-purpose RPC framework Finagle - A fault tolerant, protocol-agnostic RPC system 文档 Google Developer Documentation Style Guide OpenAPI GitBook Daux.io
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/docs/jd-container/">京东容器集群建设之路</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  从0诞生 2013年初，京东商城研发布局虚拟化技术方向。那时的我们从0起步。从几人小团队开始起航。 在物理机时代，应用上线等待分配物理机时间平均
-  
-  <div class="read-more-link">
-    <a href="/docs/jd-container/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
     <a href="https://feisky.xyz/post/2015-02-06-mesosdocker/">使用Mesos来管理Docker集群</a>
   </h1>
   <span class="post-date">Mon, Jan 1, 0001</span>
@@ -1945,46 +1261,6 @@ Sysdig instruments your physical and virtual machines at the OS level by install
   
   <div class="read-more-link">
     <a href="/post/2015-02-06-mesosdocker/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/sre/distributed-consensus/">分布式共识提高可靠性</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  CAP理论指出在分布式系统中，最多只能满足以下三条中的两个： 数据一致性（C），等同于所有节点访问同一份最新的数据副本； 对数据更新具备高可用性
-  
-  <div class="read-more-link">
-    <a href="/sre/distributed-consensus/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/sre/cron/">分布式定时任务</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  定时任务的目标是在指定的时间或间隔来周期性启动任务。在Linux系统上，经常用crontab来管理定时任务。 定时任务与幂等性 定时任务周期性执
-  
-  <div class="read-more-link">
-    <a href="/sre/cron/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/distributed/distributed/availability/">可用性和扩展性</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/sre/deploy/">可靠发布</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  发布协调工程师 审核新产品和内部服务，确保符合可靠性标准和最佳实践 负责发布过程中的所有技术相关问题，发布过程的“守门人” 培训开发者最佳实践 建立
-  
-  <div class="read-more-link">
-    <a href="/sre/deploy/">Read More…</a>
   </div>
   
 </div><div class="post">
@@ -1998,150 +1274,12 @@ Sysdig instruments your physical and virtual machines at the OS level by install
     <a href="/post/2015-02-11-good-books/">Read More…</a>
   </div>
   
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/container/resources/">容器资源列表</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  Awesome Docker Awesome Kubernetes Kubernetes Handbook 调度编排 Kubernetes Mesosphere DC/OS SwarmKit Tectonic Rancher Platform9 Kitmatic Deis OpenShift 镜像管理 DockerHub Quay
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/docs/windows/">常用 Windows 10 快捷键</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  Windows Key + Ctrl + D：创建一个新的虚拟桌面 Windows Key + Ctrl + 左右方向：切换虚拟桌面 Windows Key + Ctrl + F4：关闭虚拟桌面 三指下滑（Windows Key + D或M）最小化所有
-  
-  <div class="read-more-link">
-    <a href="/docs/windows/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/sre/diagnose/">故障排查</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  故障排查可以定义为一个反复“假设-排除”的过程： 常见陷阱 关注了错误的系统现象 不能正确的修改系统配置活着运行环境 过早将任务归结为极不可能的因素
-  
-  <div class="read-more-link">
-    <a href="/sre/diagnose/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/sre/pipeline/">数据处理流水线</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  数据处理流水线(Data Processing Pipeline)与UNIX管道类似，程序读取输入、处理、最后输出新的数据，多个程序串联起来执行就构成了流水线。串
-  
-  <div class="read-more-link">
-    <a href="/sre/pipeline/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/sre/integrity/">数据完整性</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  数据完整性（data integrity）意味着服务可用性和数据可访问性，二者缺一不可。 数据丢失故障 造成数据丢失的事故可以分类为三个因子的24
-  
-  <div class="read-more-link">
-    <a href="/sre/integrity/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/docs/%E6%9E%B6%E6%9E%84%E5%8D%B3%E6%9C%AA%E6%9D%A5/">架构即未来</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  架构即未来笔记 讲师：陈斌 易宝支付有限公司CTO 互联网企业要成功，除了在业务模式上要有优势以外，也需要在技术管理方面形成不断向上的良性循环。这
-  
-  <div class="read-more-link">
-    <a href="/docs/%E6%9E%B6%E6%9E%84%E5%8D%B3%E6%9C%AA%E6%9D%A5/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/sre/testing/">测试</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  测试是证明变更前后系统的某些领域相等性的手段，测试的数量直接取决于系统的可靠性要求。 软件测试可以分为传统测试和生产测试两大类，传统测试用来在
-  
-  <div class="read-more-link">
-    <a href="/sre/testing/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/distributed/message/message-queue/">消息队列</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/sre/monitor/">监控与告警</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  监控一个大规模的系统是一个非常有挑战的事情，组件多，分析繁杂，而又要求监控系统本身的维护非常低。在大规模系统部署下，任何一个单机问题的报警都
-  
-  <div class="read-more-link">
-    <a href="/sre/monitor/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/distributed/distributed/network-partition/">网络分区</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/sre/lb/">负载均衡</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  负载均衡一般包括几个不同层面，分级多次进行： 全球负载均衡系统（GSLB）: 基于地理位置负载均衡DNS 用户服务层面负载均衡 RPC负载均衡 DNS
-  
-  <div class="read-more-link">
-    <a href="/sre/lb/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/sre/cascading/">避免连锁故障</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  连锁故障是由于正反馈循环导致的不断扩大规模的故障，也称为雪崩效应。 故障原因 服务器过载，集群故障时负载均衡或者编排系统会加剧过载进程 资源耗尽 C
-  
-  <div class="read-more-link">
-    <a href="/sre/cascading/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/distributed/storage/aliyun-rds/">阿里云RDS</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  阿里云RDS 但是那些 RDS 用户的数据量也是在持续增长的，对于云服务提供商来说不能眼睁睁的看着这些 RDS 用户数据量一大就走掉或者自己维护数据库集群。因
-  
-  <div class="read-more-link">
-    <a href="/distributed/storage/aliyun-rds/">Read More…</a>
-  </div>
-  
-</div><div class="post">
-  <h1 class="post-title">
-    <a href="https://feisky.xyz/sre/appendix/">附录</a>
-  </h1>
-  <span class="post-date">Mon, Jan 1, 0001</span>
-  可用性时间表 可用性 年 月 日 小时 90% 36.5d 3d 2.4h 6min 95% 18.25d 4.5d 1.2h 3min 99% 3.65d 7.2h 14.4min 36s 99.9% 8.76h 43.2min 1.44min 3.6s 99.99% 52.6min 4.32min 8.64s 0.36s 99.999% 5.26min 25.9s 0.87s 0.04s
-  
 </div>
 </div>
     </div>
 
     
-<script>
+<script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
 	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
