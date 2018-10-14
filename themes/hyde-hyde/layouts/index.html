@@ -1,0 +1,37 @@
+{{ define "header" }}
+  {{ partial "header.html" . }}
+{{ end }}
+
+{{ define "content" }}
+  <div class="post-list">
+    {{ $paginator := .Paginate (where .Data.Pages "Type" "posts") }}
+    {{ range $paginator.Pages }}
+      <div class="post-list__item">
+        <span class="item__title--big">
+          <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+          {{ if .Draft }}<sup><i class="fas fa-comment-dots fa-xs"></i></sup>{{ end }}
+        </span>
+        <span class="item__date">
+          {{ .Date.Format (.Site.Params.dateformat | default "Jan 02, 2006") }}
+        </span>
+        {{ if .Description }}
+        {{ .Description }}
+        {{ else }}
+        {{ .Summary }}
+        {{ end }}
+        {{ if .Truncated }}
+          ... <a class="read-more-symbol" href="{{ .RelPermalink }}">➦</a>
+        {{ end }}
+        </div>
+     {{ end }}
+  </div>
+  {{ partial "pagination.html" . }}
+{{ end }}
+
+{{ define "footer" }}
+  {{ if .Site.GoogleAnalytics }}
+    <!-- Google Analytics -->
+    {{ template "_internal/google_analytics_async.html" . }}
+  {{ end }}
+  {{ partial "footer/font-awesome-js.html" . }}
+{{ end }}

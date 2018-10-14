@@ -1,7 +1,7 @@
 baseURL = "https://feisky.xyz/"
 languageCode = "zh-cn"
 title = "Feisky"
-theme = "hyde"
+theme = "hyde-hyde"
 publishDir = "docs"
 disqusShortname = "feisky"
 hasCJKLanguage = true
@@ -12,9 +12,19 @@ buildDrafts = true
 enableRobotsTXT = true
 
 [params]
-  # themeColor = "theme-base-0d"
+  themeColor = "theme-base-0d"
   description = "Notes about anything"
   paginate = 10
+  toc = "hugo"
+  highlightjs = true
+  postNavigation = true
+  relatedPosts = true
+  disqusShortname = "feisky"
+  googleAnalytics = "UA-69699206-1"
+
+[params.social]
+	twitter = "feisky"
+	github = "feiskyer"
 
 [sitemap]
   changefreq = "weekly"
