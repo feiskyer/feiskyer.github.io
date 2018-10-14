@@ -1,11 +1,7 @@
 #!/bin/bash
 
-go get -u -d github.com/magefile/mage
-cd $GOPATH/src/github.com/magefile/mage
-go run bootstrap.go
-go get github.com/magefile/mage
-go get -d github.com/gohugoio/hugo
-cd ${GOPATH}/src/github.com/gohugoio/hugo
-mage vendor
-mage install
+VERSION="0.49.2"
+wget https://github.com/gohugoio/hugo/releases/download/v${VERSION}/hugo_${VERSION}_Linux-64bit.tar.gz
+tar zxvf hugo_${VERSION}_Linux-64bit.tar.gz
+mv hugo /usr/local/bin
 
