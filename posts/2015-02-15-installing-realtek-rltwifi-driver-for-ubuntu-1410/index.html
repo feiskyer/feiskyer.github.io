@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    
+    
+
+
+    <head>
+    <link href="https://gmpg.org/xfn/11" rel="profile">
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Cache-Control" content="public" />
+<!-- Enable responsiveness on mobile devices -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="generator" content="Hugo 0.49.2" />
+
+    
+    
+    
+
+<title>Installing Realtek rltwifi driver for Ubuntu 14.10 • Feisky</title>
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Installing Realtek rltwifi driver for Ubuntu 14.10"/>
+<meta name="twitter:description" content="安装方法 Ubuntu 14默认内核版本没有带RTL8192ee的网卡驱动，因而就无法通过无线网络联网，并且Reltek官方网站也没有提供合适的驱动。而最"/>
+
+<meta property="og:title" content="Installing Realtek rltwifi driver for Ubuntu 14.10" />
+<meta property="og:description" content="安装方法 Ubuntu 14默认内核版本没有带RTL8192ee的网卡驱动，因而就无法通过无线网络联网，并且Reltek官方网站也没有提供合适的驱动。而最" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://feisky.xyz/posts/2015-02-15-installing-realtek-rltwifi-driver-for-ubuntu-1410/" />
+
+
+    
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://feisky.xyz/scss/hyde-hyde.6f40d28e777b288cb757a1db116a257b6f8dffc63a05e8473d12dc09a52d8d79.css" integrity="sha256-b0DSjnd7KIy3V6HbEWole2&#43;N/8Y6BehHPRLcCaUtjXk=">
+
+
+<link rel="stylesheet" href="https://feisky.xyz/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+
+
+
+
+<link rel="stylesheet" href="https://feisky.xyz/scss/hugo-toc.8549a64d301421b4256ea9a0d5ca8b99178799f569d5d2daeb95f24cef3ce6b7.css" integrity="sha256-hUmmTTAUIbQlbqmg1cqLmReHmfVp1dLa65XyTO885rc=">
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/favicon.png">
+    
+
+</head>
+
+
+    <body class="theme-base-0d ">
+    
+<div class="sidebar">
+  <div class="container ">
+    <div class="sidebar-about">
+      <span class="site__title">
+        <a href="https://feisky.xyz/">Feisky</a>
+      </span>
+      
+      <p class="site__description">
+         Notes about anything 
+      </p>
+    </div>
+    <div class="collapsible-menu">
+      <input type="checkbox" id="menuToggle">
+      <label for="menuToggle">Feisky</label>
+      <div class="menu-content">
+        <div>
+	<ul class="sidebar-nav">
+		 
+		 
+			 
+				<li>
+					<a href="https://kubernetes.feisky.xyz">
+						<span>Kubernetes</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/machine-learning/">
+						<span>机器学习</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://sdn.feisky.xyz">
+						<span>SDN</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/about/">
+						<span>About</span>
+					</a>
+				</li>
+			 
+		
+		</li>
+	</ul>
+</div>
+
+        <section class="social">
+	
+	<a href="https://twitter.com/feisky" rel="me"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	<a href="https://github.com/feiskyer" rel="me"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</section>
+
+      </div>
+    </div>
+    <div class="copyright">
+  &copy; 2018 .
+  <a href="https://creativecommons.org/licenses/by-sa/4.0">Some Rights Reserved</a>.
+  Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+  
+</div>
+
+  </div>
+</div>
+
+        <div class="content container">
+            
+    <article>
+  <header>
+    <h1>Installing Realtek rltwifi driver for Ubuntu 14.10</h1>
+    
+    
+<div class="post__meta">
+    
+    
+    
+    
+    
+    
+      
+      
+          <br/>
+           <i class="fas fa-tags"></i>
+          
+          <a class="badge badge-tag" href="/tags/linux">linux</a>
+          
+      
+    
+    
+    <br/>
+    <i class="fas fa-clock"></i> 1 min read
+</div>
+
+
+  </header>
+  
+  
+  <div class="toc-wrapper">
+    <input type="checkbox" id="tocToggle">
+    <label for="tocToggle">Table of Content</label>
+    
+        <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#安装方法">安装方法</a></li>
+<li><a href="#无线网卡管理">无线网卡管理</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+    
+  </div>
+  
+  <div class="post">
+    
+
+<h3 id="安装方法">安装方法</h3>
+
+<p>Ubuntu 14默认内核版本没有带RTL8192ee的网卡驱动，因而就无法通过无线网络联网，并且Reltek官方网站也没有提供合适的驱动。而最新的Linux内核已经带了相应驱动，所以一般建议修复的方法就是升级内核版本到最新。但如果不想内核升级咋办呢？幸好Github上已经有人将这个驱动写好了，直接安装即可：</p>
+
+<pre><code>git clone git@github.com:lwfinger/rtlwifi_new.git
+cd rtlwifi_new
+make
+sudo make install
+</code></pre>
+
+<h3 id="无线网卡管理">无线网卡管理</h3>
+
+<ul>
+<li>打卡无线网卡电源 <code>iwconfig wlan0 txpower on</code></li>
+<li>扫描无线网络     <code>iwlist wlan0 scan</code></li>
+<li>连接到无线网络   <code>iwconfig wlan0 essid 'wifi' key '123456'</code></li>
+<li>查看无线网卡状态 <code>iwconfig wlan0</code></li>
+<li>通过DHCP为网卡分配IP <code>dhclient wlan0</code></li>
+</ul>
+
+<p>注意，iwconfig不支持为WPA/WPA2类型的无线网络配置密码，对于WPA类型的网络，可通过下面的方法配置：</p>
+
+<pre><code>#/etc/network/interfaces
+iface wlan1 inet dhcp
+wpa-driver wext
+wpa-ssid TP-LINK_043A
+wpa-psk bda9a9d988e666a78889089a098c8689a
+
+其中wpa-psk是由wpa-passphrase [ssid] [passphrase] 产生的
+
+修改完后重启网络 sudo /etc/init.d/networking restart
+</code></pre>
+
+<p>附注：对应wep类型的网络配置为</p>
+
+<pre><code>#/etc/network/interfaces
+auto wlan0
+iface wlan0 inet static
+wireless-essid TP08129
+wireless_keymode restricted
+wireless-key 0812992180
+address 192.168.1.60
+netmask 255.255.255.0
+gateway 192.168.1.1
+broadcast 192.168.1.255
+</code></pre>
+
+  </div>
+  
+
+<div class="navigation navigation-single">
+    
+    <a href="/posts/2015-02-13-installing-nova-docker-on-openstack-juno/" class="navigation-prev">
+      <i aria-hidden="true" class="fa fa-chevron-left"></i>
+      <span class="navigation-tittle">Installing nova docker on OpenStack Juno</span>
+    </a>
+    
+    
+    <a href="/posts/2015-11-12-hypernetes-wechat-share/" class="navigation-next">
+      <span class="navigation-tittle">Hypernetes wechat share</span>
+      <i aria-hidden="true" class="fa fa-chevron-right"></i>
+    </a>
+    
+</div>
+
+
+  
+
+
+<div class="post__related">
+    
+    <h2>Related Articles</h2>
+    <ul class="related-posts">
+        
+<li>
+  <span class="list__title--small">
+    <a href="/posts/2015-03-06-redhat-atomic-host/">Redhat Atomic Host</a>
+      
+  </span>
+</li>
+
+<li>
+  <span class="list__title--small">
+    <a href="/posts/2015-02-12-linux-netcat-examples/">Linux netcat examples</a>
+      
+  </span>
+</li>
+
+<li>
+  <span class="list__title--small">
+    <a href="/posts/2015-03-04-linux-kernel-network-call-flow/">Linux kernel network call flow</a>
+      
+  </span>
+</li>
+
+<li>
+  <span class="list__title--small">
+    <a href="/posts/2015-02-10-cannot-change-locale/">cannot change locale</a>
+      
+  </span>
+</li>
+
+<li>
+  <span class="list__title--small">
+    <a href="/posts/2015-03-03-dive-in-linux-capabilites/">Dive in Linux capabilites</a>
+      
+  </span>
+</li>
+
+    </ul>
+</div>
+
+
+
+  
+    
+        <div id="disqus_thread"></div>
+<script type="text/javascript">
+    
+
+    (function () {
+    if (location.hostname === "localhost" ||
+      location.hostname === "127.0.0.1" ||
+      location.hostname === "") {
+      return;
+    }
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    var disqus_shortname = 'feisky';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || 
+      document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+<noscript>
+  Please enable JavaScript to view the
+  <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by
+  <span class="logo-disqus">Disqus</span>
+</a>
+
+    
+
+
+</article>
+
+
+        </div>
+        
+    
+  
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-69699206-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+<script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"
+  integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy"
+  crossorigin="anonymous">
+</script>
+
+
+    
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        
+    
+    <script type="text/javascript">
+        
+        hljs.initHighlightingOnLoad();
+    </script>
+    
+
+
+
+
+
+
+    
+
+
+
+    </body>
+</html>

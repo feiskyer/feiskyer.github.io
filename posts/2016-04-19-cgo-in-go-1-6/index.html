@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    
+    
+
+
+    <head>
+    <link href="https://gmpg.org/xfn/11" rel="profile">
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Cache-Control" content="public" />
+<!-- Enable responsiveness on mobile devices -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="generator" content="Hugo 0.49.2" />
+
+    
+    
+    
+
+<title>cgo in go 1.6 • Feisky</title>
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="cgo in go 1.6"/>
+<meta name="twitter:description" content="The major change is the definition of rules for sharing Go pointers with C code, to ensure that such C code can coexist with Go&rsquo;s garbage collector. Briefly, Go and C may share memory allocated by Go when a pointer to that memory is passed to C as part of a cgo call, provided that the memory itself contains no pointers to Go-allocated memory, and provided that C does not retain the pointer after the call returns."/>
+
+<meta property="og:title" content="cgo in go 1.6" />
+<meta property="og:description" content="The major change is the definition of rules for sharing Go pointers with C code, to ensure that such C code can coexist with Go&rsquo;s garbage collector. Briefly, Go and C may share memory allocated by Go when a pointer to that memory is passed to C as part of a cgo call, provided that the memory itself contains no pointers to Go-allocated memory, and provided that C does not retain the pointer after the call returns." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://feisky.xyz/posts/2016-04-19-cgo-in-go-1-6/" /><meta property="article:published_time" content="2016-04-19T22:04:48&#43;00:00"/>
+<meta property="article:modified_time" content="2016-04-19T22:04:48&#43;00:00"/>
+
+
+    
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://feisky.xyz/scss/hyde-hyde.6f40d28e777b288cb757a1db116a257b6f8dffc63a05e8473d12dc09a52d8d79.css" integrity="sha256-b0DSjnd7KIy3V6HbEWole2&#43;N/8Y6BehHPRLcCaUtjXk=">
+
+
+<link rel="stylesheet" href="https://feisky.xyz/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+
+
+
+
+<link rel="stylesheet" href="https://feisky.xyz/scss/hugo-toc.8549a64d301421b4256ea9a0d5ca8b99178799f569d5d2daeb95f24cef3ce6b7.css" integrity="sha256-hUmmTTAUIbQlbqmg1cqLmReHmfVp1dLa65XyTO885rc=">
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/favicon.png">
+    
+
+</head>
+
+
+    <body class="theme-base-0d ">
+    
+<div class="sidebar">
+  <div class="container ">
+    <div class="sidebar-about">
+      <span class="site__title">
+        <a href="https://feisky.xyz/">Feisky</a>
+      </span>
+      
+      <p class="site__description">
+         Notes about anything 
+      </p>
+    </div>
+    <div class="collapsible-menu">
+      <input type="checkbox" id="menuToggle">
+      <label for="menuToggle">Feisky</label>
+      <div class="menu-content">
+        <div>
+	<ul class="sidebar-nav">
+		 
+		 
+			 
+				<li>
+					<a href="https://kubernetes.feisky.xyz">
+						<span>Kubernetes</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/machine-learning/">
+						<span>机器学习</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://sdn.feisky.xyz">
+						<span>SDN</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/about/">
+						<span>About</span>
+					</a>
+				</li>
+			 
+		
+		</li>
+	</ul>
+</div>
+
+        <section class="social">
+	
+	<a href="https://twitter.com/feisky" rel="me"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	<a href="https://github.com/feiskyer" rel="me"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</section>
+
+      </div>
+    </div>
+    <div class="copyright">
+  &copy; 2018 .
+  <a href="https://creativecommons.org/licenses/by-sa/4.0">Some Rights Reserved</a>.
+  Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+  
+</div>
+
+  </div>
+</div>
+
+        <div class="content container">
+            
+    <article>
+  <header>
+    <h1>cgo in go 1.6</h1>
+    
+    
+<div class="post__meta">
+    
+    
+      <i class="fas fa-calendar-alt"></i> Apr 19, 2016
+    
+    
+    
+    
+    
+      
+      
+          <br/>
+           <i class="fas fa-tags"></i>
+          
+          <a class="badge badge-tag" href="/tags/go">go</a>
+          
+      
+    
+    
+    <br/>
+    <i class="fas fa-clock"></i> 4 min read
+</div>
+
+
+  </header>
+  
+  
+  <div class="toc-wrapper">
+    <input type="checkbox" id="tocToggle">
+    <label for="tocToggle">Table of Content</label>
+    
+        <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#go-code-may-pass-a-go-pointer-to-c-provided-the-go-memory-to-which-it-points-does-not-contain-any-go-pointers">Go code may pass a Go pointer to C provided the Go memory to which it points does not contain any Go pointers.</a></li>
+<li><a href="#c-code-may-not-keep-a-copy-of-a-go-pointer-after-the-call-returns">C code may not keep a copy of a Go pointer after the call returns.</a></li>
+<li><a href="#a-go-function-called-by-c-code-may-not-return-a-go-pointer">A Go function called by C code may not return a Go pointer.</a></li>
+<li><a href="#go-code-may-not-store-a-go-pointer-in-c-memory-c-code-may-store-go-pointers-in-c-memory-subject-to-the-rule-above-it-must-stop-storing-the-go-pointer-when-the-c-function-returns">Go code may not store a Go pointer in C memory. C code may store Go pointers in C memory, subject to the rule above: it must stop storing the Go pointer when the C function returns.</a></li>
+<li><a href="#these-rules-are-checked-dynamically-at-runtime">These rules are checked dynamically at runtime.</a></li>
+<li><a href="#it-is-possible-to-defeat-this-enforcement-by-using-the-unsafe-package-and-ofcourse-there-is-nothing-stopping-the-c-code-from-doing-anything-it-likes-however-programs-that-break-these-rules-are-likely-to-fail-in-unexpected-and-unpredictable-ways">It is possible to defeat this enforcement by using the unsafe package, and ofcourse there is nothing stopping the C code from doing anything it likes. However, programs that break these rules are likely to fail in unexpected and unpredictable ways.</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+    
+  </div>
+  
+  <div class="post">
+    
+
+<blockquote>
+<p>The major change is the definition of rules for sharing Go pointers with C code, to ensure that such C code can coexist with Go&rsquo;s garbage collector. Briefly, Go and C may share memory allocated by Go when a pointer to that memory is passed to C as part of a cgo call, provided that the memory itself contains no pointers to Go-allocated memory, and provided that C does not retain the pointer after the call returns. These rules are checked by the runtime during program execution: if the runtime detects a violation, it prints a diagnosis and crashes the program. The checks can be disabled by setting the environment variable GODEBUG=cgocheck=0, but note that the vast majority of code identified by the checks is subtly incompatible with garbage collection in one way or another. Disabling the checks will typically only lead to more mysterious failure modes. Fixing the code in question should be strongly preferred over turning off the checks.</p>
+</blockquote>
+
+<p>Because of those change, we must notice the rules for sharing pointers with C code.</p>
+
+<h3 id="go-code-may-pass-a-go-pointer-to-c-provided-the-go-memory-to-which-it-points-does-not-contain-any-go-pointers">Go code may pass a Go pointer to C provided the Go memory to which it points does not contain any Go pointers.</h3>
+
+<p>The C code must preserve this property: it must not store any Go pointers in Go memory, even temporarily. When passing a pointer to a field in a struct, the Go memory in question is the memory occupied by the field, not the entire struct. When passing a pointer to an element in an array or slice, the Go memory in question is the entire array or the entire backing array of the slice.</p>
+
+<pre><code class="language-go">package main
+
+/*
+#include &lt;stdio.h&gt;
+struct Foo{
+    int a;
+    int *p;
+};
+
+void plusOne(struct Foo *f) {
+    (f-&gt;a)++;
+    *(f-&gt;p)++;
+}
+*/
+import &quot;C&quot;
+import &quot;unsafe&quot;
+import &quot;fmt&quot;
+
+func main() {
+    f := &amp;C.struct_Foo{}
+    f.a = 5
+    f.p = (*C.int)((unsafe.Pointer)(new(int)))
+
+    C.plusOne(f)
+    fmt.Println(int(f.a))
+}
+</code></pre>
+
+<pre><code class="language-sh">$ go run test.go
+panic: runtime error: cgo argument has Go pointer to Go pointer
+
+goroutine 1 [running]:
+panic(0x4dc3e0, 0xc82000a280)
+    /usr/local/go/src/runtime/panic.go:464 +0x3e6
+main.main()
+    /go/test.go:24 +0xc1
+exit status 2
+</code></pre>
+
+<pre><code class="language-go">package main
+
+/*
+#include &lt;stdio.h&gt;
+void plusOne(int **i) {
+    (**i)++;
+}
+*/
+import &quot;C&quot;
+import (
+    &quot;fmt&quot;
+    &quot;unsafe&quot;
+)
+
+func main() {
+    sl := make([]*int, 5)
+    var a int = 5
+    sl[1] = &amp;a
+    C.plusOne((**C.int)((unsafe.Pointer)(&amp;sl[0])))
+    fmt.Println(sl[0])
+}
+</code></pre>
+
+<pre><code class="language-sh">$ go run test2.go
+panic: runtime error: cgo argument has Go pointer to Go pointer
+
+goroutine 1 [running]:
+panic(0x4dc260, 0xc82000a270)
+    /usr/local/go/src/runtime/panic.go:464 +0x3e6
+main.main()
+    /go/test2.go:19 +0xe4
+exit status 2
+</code></pre>
+
+<h3 id="c-code-may-not-keep-a-copy-of-a-go-pointer-after-the-call-returns">C code may not keep a copy of a Go pointer after the call returns.</h3>
+
+<h3 id="a-go-function-called-by-c-code-may-not-return-a-go-pointer">A Go function called by C code may not return a Go pointer.</h3>
+
+<p>A Go function called by C code may take C pointers as arguments, and it may store non-pointer or C pointer data through those pointers, but it may not store a Go pointer in memory pointed to by a C pointer.</p>
+
+<p>A Go function called by C code may take a Go pointer as an argument, but it must preserve the property that the Go memory to which it points does not contain any Go pointers.</p>
+
+<pre><code class="language-go">package main
+
+// extern int* goAdd(int, int);
+//
+// static int cAdd(int a, int b) {
+//     int *i = goAdd(a, b);
+//     return *i;
+// }
+import &quot;C&quot;
+import &quot;fmt&quot;
+
+//export goAdd
+func goAdd(a, b C.int) *C.int {
+    c := a + b
+    return &amp;c
+}
+
+func main() {
+    var a, b int = 5, 6
+    i := C.cAdd(C.int(a), C.int(b))
+    fmt.Println(int(i))
+}
+</code></pre>
+
+<pre><code class="language-sh">$ go run test3.go
+panic: runtime error: cgo result has Go pointer
+
+goroutine 1 [running]:
+panic(0x4dc100, 0xc82000a260)
+    /usr/local/go/src/runtime/panic.go:464 +0x3e6
+main._cgoexpwrap_6c682d6da1ed_goAdd.func1(0xc820041d98)
+    command-line-arguments/_obj/_cgo_gotypes.go:64 +0x3a
+main._cgoexpwrap_6c682d6da1ed_goAdd(0x600000005, 0xc82000a23c)
+    command-line-arguments/_obj/_cgo_gotypes.go:66 +0x89
+main._Cfunc_cAdd(0x600000005, 0x0)
+    command-line-arguments/_obj/_cgo_gotypes.go:45 +0x41
+main.main()
+    /go/test3.go:20 +0x35
+exit status 2
+</code></pre>
+
+<h3 id="go-code-may-not-store-a-go-pointer-in-c-memory-c-code-may-store-go-pointers-in-c-memory-subject-to-the-rule-above-it-must-stop-storing-the-go-pointer-when-the-c-function-returns">Go code may not store a Go pointer in C memory. C code may store Go pointers in C memory, subject to the rule above: it must stop storing the Go pointer when the C function returns.</h3>
+
+<h3 id="these-rules-are-checked-dynamically-at-runtime">These rules are checked dynamically at runtime.</h3>
+
+<p>The checking is controlled by the cgocheck setting of the GODEBUG environment variable. The default setting is GODEBUG=cgocheck=1, which implements reasonably cheap dynamic checks. These checks may be disabled entirely using GODEBUG=cgocheck=0. Complete checking of pointer handling, at some cost in run time, is available via GODEBUG=cgocheck=2.</p>
+
+<h3 id="it-is-possible-to-defeat-this-enforcement-by-using-the-unsafe-package-and-ofcourse-there-is-nothing-stopping-the-c-code-from-doing-anything-it-likes-however-programs-that-break-these-rules-are-likely-to-fail-in-unexpected-and-unpredictable-ways">It is possible to defeat this enforcement by using the unsafe package, and ofcourse there is nothing stopping the C code from doing anything it likes. However, programs that break these rules are likely to fail in unexpected and unpredictable ways.</h3>
+
+<p>Reference: <a href="https://golang.org/cmd/cgo/">https://golang.org/cmd/cgo/</a></p>
+
+  </div>
+  
+
+<div class="navigation navigation-single">
+    
+    <a href="/posts/2016-03-04-borg-omega-and-kubernetes-acm-queue/" class="navigation-prev">
+      <i aria-hidden="true" class="fa fa-chevron-left"></i>
+      <span class="navigation-tittle">Borg, Omega, and Kubernetes (ACM Queue)</span>
+    </a>
+    
+    
+    <a href="/posts/2016-04-24-tips-for-cgo/" class="navigation-next">
+      <span class="navigation-tittle">Tips for cgo</span>
+      <i aria-hidden="true" class="fa fa-chevron-right"></i>
+    </a>
+    
+</div>
+
+
+  
+
+
+
+
+  
+    
+        <div id="disqus_thread"></div>
+<script type="text/javascript">
+    
+
+    (function () {
+    if (location.hostname === "localhost" ||
+      location.hostname === "127.0.0.1" ||
+      location.hostname === "") {
+      return;
+    }
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    var disqus_shortname = 'feisky';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || 
+      document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+<noscript>
+  Please enable JavaScript to view the
+  <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by
+  <span class="logo-disqus">Disqus</span>
+</a>
+
+    
+
+
+</article>
+
+
+        </div>
+        
+    
+  
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-69699206-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+<script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"
+  integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy"
+  crossorigin="anonymous">
+</script>
+
+
+    
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        
+    
+    <script type="text/javascript">
+        
+        hljs.initHighlightingOnLoad();
+    </script>
+    
+
+
+
+
+
+
+    
+
+
+
+    </body>
+</html>

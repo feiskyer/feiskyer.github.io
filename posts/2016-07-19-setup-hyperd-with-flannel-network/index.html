@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    
+    
+
+
+    <head>
+    <link href="https://gmpg.org/xfn/11" rel="profile">
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Cache-Control" content="public" />
+<!-- Enable responsiveness on mobile devices -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="generator" content="Hugo 0.49.2" />
+
+    
+    
+    
+
+<title>Setup hyperd with flannel network • Feisky</title>
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Setup hyperd with flannel network"/>
+<meta name="twitter:description" content="Flannel Flannel is a virtual network that gives a subnet to each host for use with container runtimes.
+Platforms like Google&rsquo;s Kubernetes assume that each container (pod) has a unique, routable IP inside the cluster. The advantage of this model is that it reduces the complexity of doing port mapping.
+flannel runs an agent, flanneld, on each host and is responsible for allocating a subnet lease out of a preconfigured address space."/>
+
+<meta property="og:title" content="Setup hyperd with flannel network" />
+<meta property="og:description" content="Flannel Flannel is a virtual network that gives a subnet to each host for use with container runtimes.
+Platforms like Google&rsquo;s Kubernetes assume that each container (pod) has a unique, routable IP inside the cluster. The advantage of this model is that it reduces the complexity of doing port mapping.
+flannel runs an agent, flanneld, on each host and is responsible for allocating a subnet lease out of a preconfigured address space." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://feisky.xyz/posts/2016-07-19-setup-hyperd-with-flannel-network/" /><meta property="article:published_time" content="2016-07-19T15:58:26&#43;00:00"/>
+<meta property="article:modified_time" content="2016-07-19T15:58:26&#43;00:00"/>
+
+
+    
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://feisky.xyz/scss/hyde-hyde.6f40d28e777b288cb757a1db116a257b6f8dffc63a05e8473d12dc09a52d8d79.css" integrity="sha256-b0DSjnd7KIy3V6HbEWole2&#43;N/8Y6BehHPRLcCaUtjXk=">
+
+
+<link rel="stylesheet" href="https://feisky.xyz/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+
+
+
+
+<link rel="stylesheet" href="https://feisky.xyz/scss/hugo-toc.8549a64d301421b4256ea9a0d5ca8b99178799f569d5d2daeb95f24cef3ce6b7.css" integrity="sha256-hUmmTTAUIbQlbqmg1cqLmReHmfVp1dLa65XyTO885rc=">
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/favicon.png">
+    
+
+</head>
+
+
+    <body class="theme-base-0d ">
+    
+<div class="sidebar">
+  <div class="container ">
+    <div class="sidebar-about">
+      <span class="site__title">
+        <a href="https://feisky.xyz/">Feisky</a>
+      </span>
+      
+      <p class="site__description">
+         Notes about anything 
+      </p>
+    </div>
+    <div class="collapsible-menu">
+      <input type="checkbox" id="menuToggle">
+      <label for="menuToggle">Feisky</label>
+      <div class="menu-content">
+        <div>
+	<ul class="sidebar-nav">
+		 
+		 
+			 
+				<li>
+					<a href="https://kubernetes.feisky.xyz">
+						<span>Kubernetes</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/machine-learning/">
+						<span>机器学习</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://sdn.feisky.xyz">
+						<span>SDN</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/about/">
+						<span>About</span>
+					</a>
+				</li>
+			 
+		
+		</li>
+	</ul>
+</div>
+
+        <section class="social">
+	
+	<a href="https://twitter.com/feisky" rel="me"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	<a href="https://github.com/feiskyer" rel="me"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</section>
+
+      </div>
+    </div>
+    <div class="copyright">
+  &copy; 2018 .
+  <a href="https://creativecommons.org/licenses/by-sa/4.0">Some Rights Reserved</a>.
+  Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+  
+</div>
+
+  </div>
+</div>
+
+        <div class="content container">
+            
+    <article>
+  <header>
+    <h1>Setup hyperd with flannel network</h1>
+    
+    
+<div class="post__meta">
+    
+    
+      <i class="fas fa-calendar-alt"></i> Jul 19, 2016
+    
+    
+    
+    
+    
+      
+      
+          <br/>
+           <i class="fas fa-tags"></i>
+          
+          <a class="badge badge-tag" href="/tags/flannel">flannel</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/hyper">hyper</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/container">container</a>
+          
+      
+    
+    
+    <br/>
+    <i class="fas fa-clock"></i> 3 min read
+</div>
+
+
+  </header>
+  
+  
+  <div class="toc-wrapper">
+    <input type="checkbox" id="tocToggle">
+    <label for="tocToggle">Table of Content</label>
+    
+        <nav id="TableOfContents">
+<ul>
+<li><a href="#flannel">Flannel</a></li>
+<li><a href="#flannel-install">Flannel install</a></li>
+<li><a href="#hyperd-install">Hyperd install</a></li>
+<li><a href="#test">Test</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</nav>
+    
+  </div>
+  
+  <div class="post">
+    
+
+<h1 id="flannel">Flannel</h1>
+
+<p>Flannel is a virtual network that gives a subnet to each host for use with container runtimes.</p>
+
+<p>Platforms like Google&rsquo;s Kubernetes assume that each container (pod) has a unique, routable IP inside the cluster. The advantage of this model is that it reduces the complexity of doing port mapping.</p>
+
+<p>flannel runs an agent, flanneld, on each host and is responsible for allocating a subnet lease out of a preconfigured address space. flannel uses etcd to store the network configuration, allocated subnets, and auxiliary data (such as host&rsquo;s IP). The forwarding of packets is achieved using one of several strategies that are known as backends. The simplest backend is udp and uses a TUN device to encapsulate every IP fragment in a UDP packet, forming an overlay network. The following diagram demonstrates the path a packet takes as it traverses the overlay network:</p>
+
+<p><img src="/images/14689151388980.jpg" alt="" /></p>
+
+<h1 id="flannel-install">Flannel install</h1>
+
+<p>First install etcd:</p>
+
+<pre><code class="language-sh">curl -L https://github.com/coreos/etcd/releases/download/v3.0.3/etcd-v3.0.3-linux-amd64.tar.gz -o etcd-v3.0.3-linux-amd64.tar.gz
+tar xzvf etcd-v3.0.3-linux-amd64.tar.gz
+cp etcd-v3.0.3-linux-amd64/{etcd,etcdctl} /usr/bin
+rm -rf etcd-v3.0.3-linux-amd64 etcd-v3.0.3-linux-amd64.tar.gz
+</code></pre>
+
+<p>Then, install flannel:</p>
+
+<pre><code class="language-sh">curl -L https://github.com/coreos/flannel/releases/download/v0.5.5/flannel-0.5.5-linux-amd64.tar.gz -o flannel-0.5.5-linux-amd64.tar.gz
+tar zxvf flannel-0.5.5-linux-amd64.tar.gz
+cp flannel-0.5.5/flanneld /usr/bin
+rm -rf flannel-0.5.5*
+</code></pre>
+
+<p>Start etcd and setup default network:</p>
+
+<pre><code class="language-sh">nohup etcd --advertise-client-urls 'http://192.168.33.10:2379' --listen-client-urls 'http://192.168.33.10:2379' &amp;
+etcdctl --endpoints=192.168.33.10:2379 set /coreos.com/network/config  '{ &quot;Network&quot;: &quot;172.168.0.0/16&quot;, &quot;Backend&quot;: { &quot;Type&quot;: &quot;vxlan&quot;, &quot;VNI&quot;: 2000 } }'
+</code></pre>
+
+<p>Start flanneld on all nodes:</p>
+
+<pre><code class="language-sh">nohup flanneld -etcd-endpoints=http://192.168.33.10:2379 -iface=eth1 &amp;
+</code></pre>
+
+<h1 id="hyperd-install">Hyperd install</h1>
+
+<pre><code class="language-sh">apt-get install qemu-system-x86 -y
+curl -sSL http://hypercontainer.io/install | bash
+</code></pre>
+
+<p>Configure hyperd to use subnet provided by flannel：</p>
+
+<pre><code class="language-sh">source /run/flannel/subnet.env
+brctl addbr docker0
+ip addr add dev docker0 ${FLANNEL_SUBNET}
+ip link set docker0 up
+
+cat &gt;/etc/hyper/config &lt;&lt;EOF
+Kernel=/var/lib/hyper/kernel
+Initrd=/var/lib/hyper/hyper-initrd.img
+Hypervisor=qemu
+StorageDriver=devicemapper
+Bridge=docker0
+BridgeIP=${FLANNEL_SUBNET}
+EOF
+
+nohup hyperd --nondaemon --v=3 &amp;
+</code></pre>
+
+<h1 id="test">Test</h1>
+
+<pre><code class="language-sh">root@s2:~# hyper run -d busybox
+POD id is pod-hZviZLulsb
+Time to run a POD is 3648 ms
+root@s2:~# hyper exec pod-hZviZLulsb ip addr
+1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast qlen 1000
+    link/ether 52:54:51:e5:db:2f brd ff:ff:ff:ff:ff:ff
+    inet 172.168.12.3/24 scope global eth0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::5054:51ff:fee5:db2f/64 scope link
+       valid_lft forever preferred_lft forever
+
+root@s1:~# hyper run -d busybox
+POD id is pod-GbccOdYKjK
+Time to run a POD is 3631 ms
+root@s1:~# hyper exec pod-GbccOdYKjK ip addr
+1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast qlen 1000
+    link/ether 52:54:da:0c:b6:cd brd ff:ff:ff:ff:ff:ff
+    inet 172.168.95.3/24 scope global eth0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::5054:daff:fe0c:b6cd/64 scope link
+       valid_lft forever preferred_lft forever
+root@s1:~# hyper exec pod-GbccOdYKjK ping -c3 172.168.12.3
+PING 172.168.12.3 (172.168.12.3): 56 data bytes
+64 bytes from 172.168.12.3: seq=0 ttl=62 time=57.400 ms
+64 bytes from 172.168.12.3: seq=1 ttl=62 time=6.563 ms
+64 bytes from 172.168.12.3: seq=2 ttl=62 time=1.580 ms
+
+--- 172.168.12.3 ping statistics ---
+3 packets transmitted, 3 packets received, 0% packet loss
+round-trip min/avg/max = 1.580/21.847/57.400 ms
+</code></pre>
+
+<h1 id="reference">Reference</h1>
+
+<ul>
+<li><a href="https://github.com/coreos/flannel">https://github.com/coreos/flannel</a></li>
+<li><a href="http://docs.hypercontainer.io/get_started/install/linux.html">http://docs.hypercontainer.io/get_started/install/linux.html</a></li>
+</ul>
+
+  </div>
+  
+
+<div class="navigation navigation-single">
+    
+    <a href="/posts/2016-06-24-play-with-docker-v1-12/" class="navigation-prev">
+      <i aria-hidden="true" class="fa fa-chevron-left"></i>
+      <span class="navigation-tittle">Play with docker v1.12</span>
+    </a>
+    
+    
+    <a href="/posts/2016-08-24-%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8%E4%B8%80%E4%B8%AAkubernetes%E9%9B%86%E7%BE%A4/" class="navigation-next">
+      <span class="navigation-tittle">如何快速启动一个Kubernetes集群</span>
+      <i aria-hidden="true" class="fa fa-chevron-right"></i>
+    </a>
+    
+</div>
+
+
+  
+
+
+<div class="post__related">
+    
+    <h2>Related Articles</h2>
+    <ul class="related-posts">
+        
+<li>
+  <span class="list__title--small">
+    <a href="/posts/2016-04-29-reading-notes-of-week-17/">Reading notes of week 17</a>
+      
+      <time class="pull-right hidden-tablet">Apr 29 &#39;16</time>
+      
+  </span>
+</li>
+
+<li>
+  <span class="list__title--small">
+    <a href="/posts/2016-04-28-runc/">runc and runV</a>
+      
+      <time class="pull-right hidden-tablet">Apr 28 &#39;16</time>
+      
+  </span>
+</li>
+
+<li>
+  <span class="list__title--small">
+    <a href="/posts/2016-04-28-docker-1-11-runtime/">Container runtime in Docker v1.11</a>
+      
+      <time class="pull-right hidden-tablet">Apr 28 &#39;16</time>
+      
+  </span>
+</li>
+
+<li>
+  <span class="list__title--small">
+    <a href="/posts/2016-03-02-kubernetes-sig-node-asia-meeting-nodes/">Kubernetes sig-node (Asia) meeting notes</a>
+      
+      <time class="pull-right hidden-tablet">Mar 02 &#39;16</time>
+      
+  </span>
+</li>
+
+    </ul>
+</div>
+
+
+
+  
+    
+        <div id="disqus_thread"></div>
+<script type="text/javascript">
+    
+
+    (function () {
+    if (location.hostname === "localhost" ||
+      location.hostname === "127.0.0.1" ||
+      location.hostname === "") {
+      return;
+    }
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    var disqus_shortname = 'feisky';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || 
+      document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+<noscript>
+  Please enable JavaScript to view the
+  <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by
+  <span class="logo-disqus">Disqus</span>
+</a>
+
+    
+
+
+</article>
+
+
+        </div>
+        
+    
+  
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-69699206-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+<script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"
+  integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy"
+  crossorigin="anonymous">
+</script>
+
+
+    
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        
+    
+    <script type="text/javascript">
+        
+        hljs.initHighlightingOnLoad();
+    </script>
+    
+
+
+
+
+
+
+    
+
+
+
+    </body>
+</html>

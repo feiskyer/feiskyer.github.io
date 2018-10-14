@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    
+    
+
+
+    <head>
+    <link href="https://gmpg.org/xfn/11" rel="profile">
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Cache-Control" content="public" />
+<!-- Enable responsiveness on mobile devices -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="generator" content="Hugo 0.49.2" />
+
+    
+    
+    
+
+<title>Azure Container Instance (ACI) • Feisky</title>
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Azure Container Instance (ACI)"/>
+<meta name="twitter:description" content="Azure 容器实例（ACI）提供了在 Azure 中运行容器的最简捷方式，它不需要用户配置任何虚拟机或其它高级服务。ACI 适用于快速突发式增长和资源调整的业务，"/>
+
+<meta property="og:title" content="Azure Container Instance (ACI)" />
+<meta property="og:description" content="Azure 容器实例（ACI）提供了在 Azure 中运行容器的最简捷方式，它不需要用户配置任何虚拟机或其它高级服务。ACI 适用于快速突发式增长和资源调整的业务，" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://feisky.xyz/posts/2017-11-27-aci/" /><meta property="article:published_time" content="2017-11-27T21:30:00&#43;00:00"/>
+<meta property="article:modified_time" content="2017-11-27T21:30:00&#43;00:00"/>
+
+
+    
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://feisky.xyz/scss/hyde-hyde.6f40d28e777b288cb757a1db116a257b6f8dffc63a05e8473d12dc09a52d8d79.css" integrity="sha256-b0DSjnd7KIy3V6HbEWole2&#43;N/8Y6BehHPRLcCaUtjXk=">
+
+
+<link rel="stylesheet" href="https://feisky.xyz/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+
+
+
+
+<link rel="stylesheet" href="https://feisky.xyz/scss/hugo-toc.8549a64d301421b4256ea9a0d5ca8b99178799f569d5d2daeb95f24cef3ce6b7.css" integrity="sha256-hUmmTTAUIbQlbqmg1cqLmReHmfVp1dLa65XyTO885rc=">
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/favicon.png">
+    
+
+</head>
+
+
+    <body class="theme-base-0d ">
+    
+<div class="sidebar">
+  <div class="container ">
+    <div class="sidebar-about">
+      <span class="site__title">
+        <a href="https://feisky.xyz/">Feisky</a>
+      </span>
+      
+      <p class="site__description">
+         Notes about anything 
+      </p>
+    </div>
+    <div class="collapsible-menu">
+      <input type="checkbox" id="menuToggle">
+      <label for="menuToggle">Feisky</label>
+      <div class="menu-content">
+        <div>
+	<ul class="sidebar-nav">
+		 
+		 
+			 
+				<li>
+					<a href="https://kubernetes.feisky.xyz">
+						<span>Kubernetes</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/machine-learning/">
+						<span>机器学习</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://sdn.feisky.xyz">
+						<span>SDN</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/about/">
+						<span>About</span>
+					</a>
+				</li>
+			 
+		
+		</li>
+	</ul>
+</div>
+
+        <section class="social">
+	
+	<a href="https://twitter.com/feisky" rel="me"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	<a href="https://github.com/feiskyer" rel="me"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</section>
+
+      </div>
+    </div>
+    <div class="copyright">
+  &copy; 2018 .
+  <a href="https://creativecommons.org/licenses/by-sa/4.0">Some Rights Reserved</a>.
+  Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+  
+</div>
+
+  </div>
+</div>
+
+        <div class="content container">
+            
+    <article>
+  <header>
+    <h1>Azure Container Instance (ACI)</h1>
+    
+    
+<div class="post__meta">
+    
+    
+      <i class="fas fa-calendar-alt"></i> Nov 27, 2017
+    
+    
+    
+    
+    
+      
+      
+          <br/>
+           <i class="fas fa-tags"></i>
+          
+          <a class="badge badge-tag" href="/tags/azure">azure</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/kubernetes">kubernetes</a>
+          
+      
+    
+    
+    <br/>
+    <i class="fas fa-clock"></i> 4 min read
+</div>
+
+
+  </header>
+  
+  
+  <div class="toc-wrapper">
+    <input type="checkbox" id="tocToggle">
+    <label for="tocToggle">Table of Content</label>
+    
+        <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#入门示例">入门示例</a></li>
+<li><a href="#容器组">容器组</a></li>
+<li><a href="#私有镜像">私有镜像</a></li>
+<li><a href="#持久化存储">持久化存储</a></li>
+<li><a href="#kubernetes集成">Kubernetes集成</a></li>
+<li><a href="#参考文档">参考文档</a></li>
+</ul></li>
+</ul>
+</nav>
+    
+  </div>
+  
+  <div class="post">
+    
+
+<p>Azure 容器实例（ACI）提供了在 Azure 中运行容器的最简捷方式，它不需要用户配置任何虚拟机或其它高级服务。ACI 适用于快速突发式增长和资源调整的业务，但功能相对比较简单。对于需要完整容器集群编排功能的场景建议使用 ACS 或 AKS。</p>
+
+<p>ACI 的优势包括</p>
+
+<ul>
+<li>不需要用户配置和管理虚拟机就可以提供虚拟机级别的安全隔离</li>
+<li>启动快速</li>
+<li>支持自定义大小</li>
+<li>支持绑定公网IP和持久化存储</li>
+<li>支持Linux 和 Windows 容器</li>
+<li>支持容器组将多个容器运行在一起（类似于 Kubernetes Pod），它们共享相同的生命周期、网络协议栈、IP地址以及存储</li>
+<li>可以通过<a href="https://github.com/Azure/aci-connector-k8s">aci-connector-k8s</a>将 ACI 作为 Kubernetes 集群的一个无限 Node 使用</li>
+</ul>
+
+<p>注意：目前 ACI 仅在 westus、eastus 和 westeurope 等区域开放。</p>
+
+<h2 id="入门示例">入门示例</h2>
+
+<pre><code class="language-sh"># 创建资源组
+az group create --name myResourceGroup --location eastus
+
+# 创建容器（对应 docker run）
+az container create --name mycontainer --image microsoft/aci-helloworld --resource-group myResourceGroup --ip-address public
+
+# 查询容器（对应 docker ps或 docker inspect）
+az container show --name mycontainer --resource-group myResourceGroup [-o table/json]
+
+# 查询容器日志
+az container logs --name mycontainer --resource-group myResourceGroup
+
+# 删除容器
+az container delete --name mycontainer --resource-group myResourceGroup
+</code></pre>
+
+<h2 id="容器组">容器组</h2>
+
+<p>支持容器组将多个容器运行在一起（类似于 Kubernetes Pod），它们共享相同的生命周期、网络协议栈、IP地址以及持久化存储。容器组常以 sidecar 模式运行一组功能管理的容器，如应用程序和监控容器、应用程序和日志容器等。</p>
+
+<p><img src="/images/container-groups-example.png" alt="" /></p>
+
+<p>目前，容器组仅支持以模板的方式来运行。模板格式为</p>
+
+<pre><code class="language-json">{
+  &quot;$schema&quot;: &quot;https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#&quot;,
+  &quot;contentVersion&quot;: &quot;1.0.0.0&quot;,
+  &quot;parameters&quot;: {
+  },
+  &quot;variables&quot;: {
+    &quot;container1name&quot;: &quot;aci-tutorial-app&quot;,
+    &quot;container1image&quot;: &quot;microsoft/aci-helloworld:latest&quot;,
+    &quot;container2name&quot;: &quot;aci-tutorial-sidecar&quot;,    
+    &quot;container2image&quot;: &quot;microsoft/aci-tutorial-sidecar&quot;
+  },
+    &quot;resources&quot;: [
+      {
+        &quot;name&quot;: &quot;myContainerGroup&quot;,
+        &quot;type&quot;: &quot;Microsoft.ContainerInstance/containerGroups&quot;,
+        &quot;apiVersion&quot;: &quot;2017-08-01-preview&quot;,
+        &quot;location&quot;: &quot;[resourceGroup().location]&quot;,
+        &quot;properties&quot;: {
+          &quot;containers&quot;: [
+            {
+              &quot;name&quot;: &quot;[variables('container1name')]&quot;,
+              &quot;properties&quot;: {
+                &quot;image&quot;: &quot;[variables('container1image')]&quot;,
+                &quot;resources&quot;: {
+                  &quot;requests&quot;: {
+                    &quot;cpu&quot;: 1,
+                    &quot;memoryInGb&quot;: 1.5
+                    }
+                },
+                &quot;ports&quot;: [
+                  {
+                    &quot;port&quot;: 80
+                  }
+                ]
+              }
+            },
+            {
+              &quot;name&quot;: &quot;[variables('container2name')]&quot;,
+              &quot;properties&quot;: {
+                &quot;image&quot;: &quot;[variables('container2image')]&quot;,
+                &quot;resources&quot;: {
+                  &quot;requests&quot;: {
+                    &quot;cpu&quot;: 1,
+                    &quot;memoryInGb&quot;: 1.5
+                    }
+                }
+              }
+            }
+          ],
+          &quot;osType&quot;: &quot;Linux&quot;,
+          &quot;ipAddress&quot;: {
+            &quot;type&quot;: &quot;Public&quot;,
+            &quot;ports&quot;: [
+              {
+                &quot;protocol&quot;: &quot;tcp&quot;,
+                &quot;port&quot;: &quot;80&quot;
+              }
+            ]
+          }
+        }
+      }
+    ],
+    &quot;outputs&quot;: {
+      &quot;containerIPv4Address&quot;: {
+        &quot;type&quot;: &quot;string&quot;,
+        &quot;value&quot;: &quot;[reference(resourceId('Microsoft.ContainerInstance/containerGroups/', 'myContainerGroup')).ipAddress.ip]&quot;
+      }
+    }
+  }
+</code></pre>
+
+<p>而部署容器组也需要使用 <code>az group deployment</code> 命令</p>
+
+<pre><code class="language-sh">az group deployment create --name myContainerGroup --resource-group myResourceGroup --template-file azuredeploy.json
+</code></pre>
+
+<p>部署成功后就可以通过 <code>az container</code> 命令来查看或操作容器了（使用 <code>--container-name</code> 指定操作的是哪个容器）。</p>
+
+<h2 id="私有镜像">私有镜像</h2>
+
+<p>私有镜像可以存储在 Azure 容器注册表（ACR）中。</p>
+
+<pre><code class="language-sh"># Create ACR
+az acr create --resource-group myResourceGroup --name &lt;acrName&gt; --sku Basic --admin-enabled true
+
+# Login
+az acr login --name &lt;acrName&gt;
+
+# Tag the image.
+az acr list --resource-group myResourceGroup --query &quot;[].{acrLoginServer:loginServer}&quot; --output table
+docker tag azure-vote-front &lt;acrLoginServer&gt;/azure-vote-front:redis-v1
+
+# push image
+docker push &lt;acrLoginServer&gt;/azure-vote-front:redis-v1
+
+# List images.
+az acr repository list --name &lt;acrName&gt; --output table
+</code></pre>
+
+<p>使用私有镜像创建容器时，需要通过 <code>--registry-password</code> 选项给每个容器设置密码（比 docker login 麻烦一些）：</p>
+
+<pre><code class="language-sh"># Query password.
+az acr credential show --name &lt;acrName&gt; --query &quot;passwords[0].value&quot;
+# Create container.
+az container create --name aci-tutorial-app --image &lt;acrLoginServer&gt;/aci-tutorial-app:v1 --cpu 1 --memory 1 --registry-password &lt;acrPassword&gt; --ip-address public --ports 80 -g myResourceGroup
+</code></pre>
+
+<p>或者在部署模板（比如上述容器组示例）中设置</p>
+
+<pre><code class="language-json">&quot;imageRegistryCredentials&quot;: [
+    {
+    &quot;server&quot;: &quot;[parameters('imageRegistryLoginServer')]&quot;,
+    &quot;username&quot;: &quot;[parameters('imageRegistryUsername')]&quot;,
+    &quot;password&quot;: &quot;[parameters('imageRegistryPassword')]&quot;
+    }
+]
+</code></pre>
+
+<h2 id="持久化存储">持久化存储</h2>
+
+<p>必须先创建 Azure 文件共享，才能将其用于 Azure 容器实例。</p>
+
+<pre><code class="language-sh"># Create the storage account
+az storage account create -n mycontainerstorage -g myResourceGroup  --sku Standard_LRS
+
+# Export the connection string as an environment variable, this is used when creating the Azure file share
+AZURE_STORAGE_CONNECTION_STRING=$(az storage account show-connection-string -n mycontainerstorage -g myResourceGroup -o tsv)
+
+# Create the share
+az storage share create -n myacishare
+
+# Get storage account key.
+STORAGE_ACCOUNT=&quot;mycontainerstorage&quot;
+STORAGE_KEY=$(az storage account keys list --resource-group myResourceGroup --account-name mycontainerstorage --query &quot;[0].value&quot; -o tsv)
+</code></pre>
+
+<p>持久化存储也是需要通过模板来引用，创建下面的模板文件</p>
+
+<pre><code class="language-json">{
+  &quot;$schema&quot;: &quot;https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#&quot;,
+  &quot;contentVersion&quot;: &quot;1.0.0.0&quot;,
+  &quot;parameters&quot;: {
+    &quot;storageaccountname&quot;: {
+      &quot;type&quot;: &quot;string&quot;
+    },
+    &quot;storageaccountkey&quot;: {
+      &quot;type&quot;: &quot;securestring&quot;
+    }
+  },
+  &quot;resources&quot;:[{
+    &quot;name&quot;: &quot;hellofiles&quot;,
+    &quot;type&quot;: &quot;Microsoft.ContainerInstance/containerGroups&quot;,
+    &quot;apiVersion&quot;: &quot;2017-08-01-preview&quot;,
+    &quot;location&quot;: &quot;[resourceGroup().location]&quot;,
+    &quot;properties&quot;: {
+      &quot;containers&quot;: [{
+        &quot;name&quot;: &quot;hellofiles&quot;,
+        &quot;properties&quot;: {
+          &quot;image&quot;: &quot;seanmckenna/aci-hellofiles&quot;,
+          &quot;resources&quot;: {
+            &quot;requests&quot;: {
+              &quot;cpu&quot;: 1,
+              &quot;memoryInGb&quot;: 1.5
+            }
+          },
+          &quot;ports&quot;: [{
+            &quot;port&quot;: 80
+          }],
+          &quot;volumeMounts&quot;: [{
+            &quot;name&quot;: &quot;myvolume&quot;,
+            &quot;mountPath&quot;: &quot;/aci/logs/&quot;
+          }]
+        }
+      }],
+      &quot;osType&quot;: &quot;Linux&quot;,
+      &quot;ipAddress&quot;: {
+        &quot;type&quot;: &quot;Public&quot;,
+        &quot;ports&quot;: [{
+          &quot;protocol&quot;: &quot;tcp&quot;,
+          &quot;port&quot;: &quot;80&quot;
+        }]
+      },
+      &quot;volumes&quot;: [{
+        &quot;name&quot;: &quot;myvolume&quot;,
+        &quot;azureFile&quot;: {
+          &quot;shareName&quot;: &quot;myacishare&quot;,
+          &quot;storageAccountName&quot;: &quot;[parameters('storageaccountname')]&quot;,
+          &quot;storageAccountKey&quot;: &quot;[parameters('storageaccountkey')]&quot;
+        }
+      }]
+    }
+  }]
+}
+</code></pre>
+
+<p>最后部署容器</p>
+
+<pre><code class="language-sh"># deploy container group
+az group deployment create --name hellofilesdeployment --template-file hellofiles.json --resource-group myResourceGroup --parameters storageaccountname=$STORAGE_ACCOUN storageaccountkey=$STORAGE_KEY
+
+# list container
+az container list -g myResourceGroup -o table
+</code></pre>
+
+<h2 id="kubernetes集成">Kubernetes集成</h2>
+
+<p><a href="https://github.com/Azure/aci-connector-k8s">aci-connector-k8s</a> 可以将 ACI 作为 Kubernetes 集群的一个无限 Node 使用。</p>
+
+<p>下载 aci-connector-k8s 源码后，可以运行 <code>examples/generateManifest.py</code> 命令自动生成一个部署 aci-connector 的配置（不包含RBAC配置）。</p>
+
+<pre><code class="language-sh">python3 generateManifest.py -g myResourceGroup -s &lt;my-subscription-id&gt; -l westus
+</code></pre>
+
+<p>而在开启RBAC的系统中，需要配置相应的权限，比如使用下面的部署文件</p>
+
+<pre><code class="language-yaml">apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: aci-connector
+  namespace: default
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: aci-connector
+    spec:
+      serviceAccount: aci-connector
+      containers:
+      - name: aci-connector
+        image: microsoft/aci-connector-k8s:latest
+        imagePullPolicy: Always
+        env:
+        - name: AZURE_CLIENT_ID
+          value: &lt;your-client-id&gt;
+        - name: AZURE_CLIENT_KEY
+          value: &lt;your-client-key&gt;
+        - name: AZURE_TENANT_ID
+          value: &lt;your-tenant-id&gt;
+        - name: AZURE_SUBSCRIPTION_ID
+          value: &lt;your-subsription-id&gt;
+        - name: ACI_RESOURCE_GROUP
+          value: &lt;your-resource-group&gt;
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: aci-connector
+---
+apiVersion: v1
+kind: List
+items:
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRole
+  metadata:
+    name: &quot;aci-connector&quot;
+  rules:
+  - apiGroups: [&quot;&quot;]
+    resources: [&quot;namespaces&quot;]
+    verbs:     [&quot;get&quot;, &quot;list&quot;, &quot;watch&quot;]
+  - apiGroups: [&quot;&quot;]
+    resources: [&quot;pods&quot;, &quot;pods/status&quot;]
+    verbs:     [&quot;get&quot;,&quot;list&quot;,&quot;watch&quot;,&quot;create&quot;,&quot;patch&quot;,&quot;update&quot;,&quot;delete&quot;]
+  - apiGroups: [&quot;&quot;]
+    resources: [&quot;nodes&quot;, &quot;nodes/status&quot;]
+    verbs:     [&quot;get&quot;,&quot;list&quot;,&quot;watch&quot;,&quot;create&quot;,&quot;patch&quot;,&quot;update&quot;,&quot;delete&quot;]
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    name: &quot;aci-connector&quot;
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: &quot;aci-connector&quot;
+  subjects:
+  - apiGroup: &quot;&quot;
+    kind: ServiceAccount
+    name: &quot;aci-connector&quot;
+    namespace: &quot;default&quot;
+</code></pre>
+
+<p>这样，Deployment部署后，很快就可以发现它自动创建了一个 aci-connector 的 Node</p>
+
+<pre><code class="language-sh"># kubectl get node aci-connector
+NAME            STATUS    ROLES     AGE       VERSION
+aci-connector   Ready     &lt;none&gt;    1m        v1.6.6
+</code></pre>
+
+<p>这样，Pod可以通过<strong>指定 nodeName 或者容忍 taint <code>azure.com/aci=NoSchedule</code> 调度</strong>到ACI上面：</p>
+
+<pre><code class="language-yaml">apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+    run: nginx
+spec:
+  containers:
+  - image: nginx
+    imagePullPolicy: Always
+    name: nginx
+  dnsPolicy: ClusterFirst
+  nodeName: aci-connector
+</code></pre>
+
+<pre><code class="language-sh"># kubectl get pods -l run=nginx -o wide
+NAME                    READY     STATUS    RESTARTS   AGE       IP              NODE
+nginx                   1/1       Running   0          28s       x.x.x.x         aci-connector
+
+# az container list -g myResourceGroup -o table
+Name    ResourceGroup    ProvisioningState    Image    IP:ports          CPU/Memory       OsType    Location
+------  ---------------  -------------------  -------  ----------------  ---------------  --------  ----------
+nginx   myResourceGroup  Succeeded            nginx    x.x.x.x:80        1.0 core/1.5 gb  Linux     westus
+</code></pre>
+
+<h2 id="参考文档">参考文档</h2>
+
+<ul>
+<li><a href="https://docs.microsoft.com/en-us/azure/container-instances/">Azure Container Instances Documentation</a></li>
+<li><a href="https://github.com/Azure/aci-connector-k8s">Azure Container Instances Connector for Kubernetes (experimental)</a></li>
+</ul>
+
+  </div>
+  
+
+<div class="navigation navigation-single">
+    
+    <a href="/posts/2017-11-23-acs-introduction/" class="navigation-prev">
+      <i aria-hidden="true" class="fa fa-chevron-left"></i>
+      <span class="navigation-tittle">Azure Container Service（ACS）简介</span>
+    </a>
+    
+    
+    <a href="/posts/kubernetes-container-runtime/" class="navigation-next">
+      <span class="navigation-tittle">Kubernetes 容器运行时演进</span>
+      <i aria-hidden="true" class="fa fa-chevron-right"></i>
+    </a>
+    
+</div>
+
+
+  
+
+
+<div class="post__related">
+    
+    <h2>Related Articles</h2>
+    <ul class="related-posts">
+        
+<li>
+  <span class="list__title--small">
+    <a href="/posts/2017-11-23-acs-introduction/">Azure Container Service（ACS）简介</a>
+      
+      <time class="pull-right hidden-tablet">Nov 20 &#39;17</time>
+      
+  </span>
+</li>
+
+<li>
+  <span class="list__title--small">
+    <a href="/posts/2016-08-24-%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8%E4%B8%80%E4%B8%AAkubernetes%E9%9B%86%E7%BE%A4/">如何快速启动一个Kubernetes集群</a>
+      
+      <time class="pull-right hidden-tablet">Aug 24 &#39;16</time>
+      
+  </span>
+</li>
+
+<li>
+  <span class="list__title--small">
+    <a href="/posts/2016-06-06-hypernetes-bringing-security-and-multi-tenancy-to-kubernetes/">Hypernetes: Bringing Security and Multi-tenancy to Kubernetes</a>
+      
+      <time class="pull-right hidden-tablet">Jun 06 &#39;16</time>
+      
+  </span>
+</li>
+
+<li>
+  <span class="list__title--small">
+    <a href="/posts/2015-11-04-hypernetes---the-multi-tenant-kubernetes-distribution/">Hypernetes   The multi tenant Kubernetes distribution</a>
+      
+  </span>
+</li>
+
+    </ul>
+</div>
+
+
+
+  
+    
+        <div id="disqus_thread"></div>
+<script type="text/javascript">
+    
+
+    (function () {
+    if (location.hostname === "localhost" ||
+      location.hostname === "127.0.0.1" ||
+      location.hostname === "") {
+      return;
+    }
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    var disqus_shortname = 'feisky';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || 
+      document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+<noscript>
+  Please enable JavaScript to view the
+  <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by
+  <span class="logo-disqus">Disqus</span>
+</a>
+
+    
+
+
+</article>
+
+
+        </div>
+        
+    
+  
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-69699206-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+<script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"
+  integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy"
+  crossorigin="anonymous">
+</script>
+
+
+    
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        
+    
+    <script type="text/javascript">
+        
+        hljs.initHighlightingOnLoad();
+    </script>
+    
+
+
+
+
+
+
+    
+
+
+
+    </body>
+</html>

@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    
+  <head>
+    <link href="https://gmpg.org/xfn/11" rel="profile">
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Cache-Control" content="public" />
+<!-- Enable responsiveness on mobile devices -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="generator" content="Hugo 0.49.2" />
+
+    
+
+<title>Feisky</title>
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="Notes about anything"/>
+
+<meta property="og:title" content="" />
+<meta property="og:description" content="Notes about anything" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://feisky.xyz/" />
+<meta property="og:updated_time" content="2016-06-17T17:12:38&#43;00:00"/>
+
+
+    
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://feisky.xyz/scss/hyde-hyde.6f40d28e777b288cb757a1db116a257b6f8dffc63a05e8473d12dc09a52d8d79.css" integrity="sha256-b0DSjnd7KIy3V6HbEWole2&#43;N/8Y6BehHPRLcCaUtjXk=">
+
+
+<link rel="stylesheet" href="https://feisky.xyz/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+
+
+
+
+<link rel="stylesheet" href="https://feisky.xyz/scss/hugo-toc.8549a64d301421b4256ea9a0d5ca8b99178799f569d5d2daeb95f24cef3ce6b7.css" integrity="sha256-hUmmTTAUIbQlbqmg1cqLmReHmfVp1dLa65XyTO885rc=">
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/favicon.png">
+    
+
+<link href="https://feisky.xyz/index.xml" rel="alternate" type="application/rss+xml" title="Feisky" />
+<link href="https://feisky.xyz/index.xml" rel="feed" type="application/rss+xml" title="Feisky" />
+
+
+</head>
+
+
+    <body class="theme-base-0d ">
+    
+<div class="sidebar">
+  <div class="container ">
+    <div class="sidebar-about">
+      <span class="site__title">
+        <a href="https://feisky.xyz/">Feisky</a>
+      </span>
+      
+      <p class="site__description">
+         Notes about anything 
+      </p>
+    </div>
+    <div class="collapsible-menu">
+      <input type="checkbox" id="menuToggle">
+      <label for="menuToggle">Feisky</label>
+      <div class="menu-content">
+        <div>
+	<ul class="sidebar-nav">
+		 
+		 
+			 
+				<li>
+					<a href="https://kubernetes.feisky.xyz">
+						<span>Kubernetes</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/machine-learning/">
+						<span>机器学习</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://sdn.feisky.xyz">
+						<span>SDN</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/about/">
+						<span>About</span>
+					</a>
+				</li>
+			 
+		
+		</li>
+	</ul>
+</div>
+
+        <section class="social">
+	
+	<a href="https://twitter.com/feisky" rel="me"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	<a href="https://github.com/feiskyer" rel="me"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</section>
+
+      </div>
+    </div>
+    <div class="copyright">
+  &copy; 2018 .
+  <a href="https://creativecommons.org/licenses/by-sa/4.0">Some Rights Reserved</a>.
+  Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+  
+</div>
+
+  </div>
+</div>
+
+        <div class="content container">
+            
+  <div class="post-list">
+    
+    
+      <div class="post-list__item">
+        <span class="item__title--big">
+          <a href="/posts/2016-06-17-playing-docker-with-hypervisor-container-runtime-runv/">Playing docker with hypervisor container runtime runV</a>
+          
+        </span>
+        <span class="item__date">
+          Jun 17, 2016
+        </span>
+        
+        Table of contents: [TOC] The latest master branch of runV has already supported running as an runtime in docker. Since v1.11, docker introduced OCI contain runtime (runc) integration via containerd. Since runc and runV are both recommended implementation of OCI, it is natural to make runV working with containerd. Now let&rsquo;s have a try. Install runv and docker Docker could be installed via https://docs.docker.com/engine/installation/. Since only master branch of runV
+        
+        
+          ... <a class="read-more-symbol" href="/posts/2016-06-17-playing-docker-with-hypervisor-container-runtime-runv/">➦</a>
+        
+        </div>
+     
+      <div class="post-list__item">
+        <span class="item__title--big">
+          <a href="/posts/2016-06-07-kubernetes-mesos-architecture/">Kubernetes-mesos architecture</a>
+          
+        </span>
+        <span class="item__date">
+          Jun 07, 2016
+        </span>
+        
+        From http://cdn.yongbok.net/ruo91/architecture/k8s/kubernetes_mesos_architecture_v1.x.png
+        
+        
+        </div>
+     
+      <div class="post-list__item">
+        <span class="item__title--big">
+          <a href="/posts/2016-06-06-hypernetes-bringing-security-and-multi-tenancy-to-kubernetes/">Hypernetes: Bringing Security and Multi-tenancy to Kubernetes</a>
+          
+        </span>
+        <span class="item__date">
+          Jun 06, 2016
+        </span>
+        
+        Notes: this post is copied from http://blog.kubernetes.io/2016/05/hypernetes-security-and-multi-tenancy-in-kubernetes.html.
+ Today’s guest post is written by Harry Zhang and Pengfei Ni, engineers at HyperHQ, describing a new hypervisor based container called HyperContainer
+While many developers and security professionals are comfortable with Linux containers as an effective boundary, many users need a stronger degree of isolation, particularly for those running in a multi-tenant environment. Sadly, today, those users are forced to run their containers inside virtual machines, even one VM per container.
+        
+        
+          ... <a class="read-more-symbol" href="/posts/2016-06-06-hypernetes-bringing-security-and-multi-tenancy-to-kubernetes/">➦</a>
+        
+        </div>
+     
+      <div class="post-list__item">
+        <span class="item__title--big">
+          <a href="/posts/2016-05-11-how-docker-1-11-share-network-accross-containers/">How docker 1.11 share network accross containers</a>
+          
+        </span>
+        <span class="item__date">
+          May 11, 2016
+        </span>
+        
+        Docker 1.11 has moved to runc with containerd, I am interested in how it processing shared netns accross containers.
+For example, I have already running a container 75599a6f387b7842c6da57efd38f9742b2ca621782f891402f83852c66dbd706. A new container within same netns can be created with cmd:
+docker run -itd --net=container:75599a6f387b alpine sh  This will generate a runc config.json as follows:
+{ &quot;ociVersion&quot;: &quot;0.6.0-dev&quot;, &quot;platform&quot;: { &quot;os&quot;: &quot;linux&quot;, &quot;arch&quot;: &quot;amd64&quot; }, &quot;process&quot;: { &quot;terminal&quot;: true, &quot;user&quot;: { &quot;additionalGids&quot;: [ 0, 1, 2, 3, 4, 6, 10, 11, 20, 26, 27 ] }, &quot;args&quot;: [ &quot;sh&quot; ], &quot;env&quot;: [ &quot;PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin&quot;, &quot;HOSTNAME=75599a6f387b&quot;, &quot;TERM=xterm&quot; ], &quot;cwd&quot;: &quot;/&quot;, &quot;capabilities&quot;: [ &quot;CAP_CHOWN&quot;, &quot;CAP_DAC_OVERRIDE&quot;, &quot;CAP_FSETID&quot;, &quot;CAP_FOWNER&quot;, &quot;CAP_MKNOD&quot;, &quot;CAP_NET_RAW&quot;, &quot;CAP_SETGID&quot;, &quot;CAP_SETUID&quot;, &quot;CAP_SETFCAP&quot;, &quot;CAP_SETPCAP&quot;, &quot;CAP_NET_BIND_SERVICE&quot;, &quot;CAP_SYS_CHROOT&quot;, &quot;CAP_KILL&quot;, &quot;CAP_AUDIT_WRITE&quot; ] }, &quot;root&quot;: { &quot;path&quot;: &quot;/var/lib/docker/devicemapper/mnt/d33c7932917e64bde482b437fc3ccaad9a00a04e0cf49e39f9d3be5d71991db6/rootfs&quot;, &quot;readonly&quot;: false }, &quot;hostname&quot;: &quot;75599a6f387b&quot;, &quot;mounts&quot;: [ { &quot;destination&quot;: &quot;/proc&quot;, &quot;type&quot;: &quot;proc&quot;, &quot;source&quot;: &quot;proc&quot;, &quot;options&quot;: [ &quot;nosuid&quot;, &quot;noexec&quot;, &quot;nodev&quot; ] }, { &quot;destination&quot;: &quot;/dev&quot;, &quot;type&quot;: &quot;tmpfs&quot;, &quot;source&quot;: &quot;tmpfs&quot;, &quot;options&quot;: [ &quot;nosuid&quot;, &quot;strictatime&quot;, &quot;mode=755&quot; ] }, { &quot;destination&quot;: &quot;/dev/pts&quot;, &quot;type&quot;: &quot;devpts&quot;, &quot;source&quot;: &quot;devpts&quot;, &quot;options&quot;: [ &quot;nosuid&quot;, &quot;noexec&quot;, &quot;newinstance&quot;, &quot;ptmxmode=0666&quot;, &quot;mode=0620&quot;, &quot;gid=5&quot; ] }, { &quot;destination&quot;: &quot;/sys&quot;, &quot;type&quot;: &quot;sysfs&quot;, &quot;source&quot;: &quot;sysfs&quot;, &quot;options&quot;: [ &quot;nosuid&quot;, &quot;noexec&quot;, &quot;nodev&quot;, &quot;ro&quot; ] }, { &quot;destination&quot;: &quot;/sys/fs/cgroup&quot;, &quot;type&quot;: &quot;cgroup&quot;, &quot;source&quot;: &quot;cgroup&quot;, &quot;options&quot;: [ &quot;ro&quot;, &quot;nosuid&quot;, &quot;noexec&quot;, &quot;nodev&quot; ] }, { &quot;destination&quot;: &quot;/dev/mqueue&quot;, &quot;type&quot;: &quot;mqueue&quot;, &quot;source&quot;: &quot;mqueue&quot;, &quot;options&quot;: [ &quot;nosuid&quot;, &quot;noexec&quot;, &quot;nodev&quot; ] }, { &quot;destination&quot;: &quot;/etc/resolv.
+        
+        
+          ... <a class="read-more-symbol" href="/posts/2016-05-11-how-docker-1-11-share-network-accross-containers/">➦</a>
+        
+        </div>
+     
+      <div class="post-list__item">
+        <span class="item__title--big">
+          <a href="/posts/2016-05-06-go-performance-optimize/">Go performance optimize</a>
+          
+        </span>
+        <span class="item__date">
+          May 06, 2016
+        </span>
+        
+        **Go性能优化技巧(By 雨痕) 字符串（string）作为一种不可变类型，在与字节数组（slice, [ ]byte）转换时需付出 “沉重” 代价，
+        
+        
+          ... <a class="read-more-symbol" href="/posts/2016-05-06-go-performance-optimize/">➦</a>
+        
+        </div>
+     
+      <div class="post-list__item">
+        <span class="item__title--big">
+          <a href="/posts/2016-05-05-the-rise-of-cloud-computing-systems-jeff-dean/">The Rise of Cloud Computing Systems - Jeff Dean</a>
+          
+        </span>
+        <span class="item__date">
+          May 05, 2016
+        </span>
+        
+        {% pdf http://feiskyer.github.io/assets/ccs.pdf %}
+        
+        
+        </div>
+     
+      <div class="post-list__item">
+        <span class="item__title--big">
+          <a href="/posts/2016-04-29-reading-notes-of-week-17/">Reading notes of week 17</a>
+          
+        </span>
+        <span class="item__date">
+          Apr 29, 2016
+        </span>
+        
+        SIG-Networking: Kubernetes Network Policy APIs Coming in 1.3 One problem many users have is that the open access network policy of Kubernetes is not suitable for applications that need more precise control over the traffic that accesses a pod or service. Today, this could be a multi-tier application where traffic is only allowed from a tier’s neighbor. But as new Cloud Native applications are built
+        
+        
+          ... <a class="read-more-symbol" href="/posts/2016-04-29-reading-notes-of-week-17/">➦</a>
+        
+        </div>
+     
+      <div class="post-list__item">
+        <span class="item__title--big">
+          <a href="/posts/2016-04-28-runc/">runc and runV</a>
+          
+        </span>
+        <span class="item__date">
+          Apr 28, 2016
+        </span>
+        
+        runc is a CLI tool for spawning and running containers according to the OCI specification, while runV is a hypervisor-based runtime for OCI. Both of them are recommanded (implementations](https://github.com/opencontainers/runtime-spec/blob/master/implementations.md) of OCI.
+Playing with runc Install runc:
+yum install -y libseccomp-devel mkdir -p $GOPATH/src/github.com/opencontainers cd $GOPATH/src/github.com/opencontainers git clone https://github.com/opencontainers/runc cd runc make sudo make install  Run busybox:
+$ docker pull busybox $ mkdir rootfs $ docker export $(docker create busybox) | tar -C rootfs -xvf - $ runc spec .
+        
+        
+          ... <a class="read-more-symbol" href="/posts/2016-04-28-runc/">➦</a>
+        
+        </div>
+     
+      <div class="post-list__item">
+        <span class="item__title--big">
+          <a href="/posts/2016-04-28-docker-1-11-runtime/">Container runtime in Docker v1.11</a>
+          
+        </span>
+        <span class="item__date">
+          Apr 28, 2016
+        </span>
+        
+        Docker v1.11正式集成了runc（终于支持OCI了），并将原来的一个二进制文件拆分为多个，同时还保持docker CLI和API不变： docker docker-containerd docker-containerd-shim docker-runc docker-containerd-ctr
+        
+        
+          ... <a class="read-more-symbol" href="/posts/2016-04-28-docker-1-11-runtime/">➦</a>
+        
+        </div>
+     
+      <div class="post-list__item">
+        <span class="item__title--big">
+          <a href="/posts/2016-04-24-dpdk-introduction/">DPDK Introduction</a>
+          
+        </span>
+        <span class="item__date">
+          Apr 24, 2016
+        </span>
+        
+        DPDK Introduction Intel DPDK全称Intel Data Plane Development Kit，是intel提供的数据平面开发工具集，为Intel architecture（IA）处理器架构下用户
+        
+        
+          ... <a class="read-more-symbol" href="/posts/2016-04-24-dpdk-introduction/">➦</a>
+        
+        </div>
+     
+  </div>
+  
+
+<ul class="pagination">
+    
+    <li class="page-item">
+        <a href="/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+    </li>
+    
+    <li class="page-item">
+    <a href="/page/2/" class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+    </li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/">1</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/page/2/">2</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item active"><a class="page-link" href="/page/3/">3</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/page/4/">4</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item disabled"><span aria-hidden="true">&nbsp;&hellip;&nbsp;</span></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/page/11/">11</a></li>
+    
+    
+    <li class="page-item">
+    <a href="/page/4/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+    </li>
+    
+    <li class="page-item">
+        <a href="/page/11/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+    </li>
+    
+</ul>
+
+
+        </div>
+        
+  
+    
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-69699206-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  
+  <script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"
+  integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy"
+  crossorigin="anonymous">
+</script>
+
+
+    </body>
+</html>

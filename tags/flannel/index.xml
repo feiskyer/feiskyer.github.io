@@ -13,10 +13,10 @@
     
     <item>
       <title>Setup hyperd with flannel network</title>
-      <link>https://feisky.xyz/post/2016-07-19-setup-hyperd-with-flannel-network/</link>
+      <link>https://feisky.xyz/posts/2016-07-19-setup-hyperd-with-flannel-network/</link>
       <pubDate>Tue, 19 Jul 2016 15:58:26 +0000</pubDate>
       
-      <guid>https://feisky.xyz/post/2016-07-19-setup-hyperd-with-flannel-network/</guid>
+      <guid>https://feisky.xyz/posts/2016-07-19-setup-hyperd-with-flannel-network/</guid>
       <description>Flannel Flannel is a virtual network that gives a subnet to each host for use with container runtimes.
 Platforms like Google&amp;rsquo;s Kubernetes assume that each container (pod) has a unique, routable IP inside the cluster. The advantage of this model is that it reduces the complexity of doing port mapping.
 flannel runs an agent, flanneld, on each host and is responsible for allocating a subnet lease out of a preconfigured address space.</description>

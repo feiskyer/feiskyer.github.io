@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    
+  <head>
+    <link href="https://gmpg.org/xfn/11" rel="profile">
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Cache-Control" content="public" />
+<!-- Enable responsiveness on mobile devices -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="generator" content="Hugo 0.49.2" />
+
+    
+
+<title>Feisky</title>
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="Notes about anything"/>
+
+<meta property="og:title" content="" />
+<meta property="og:description" content="Notes about anything" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://feisky.xyz/" />
+<meta property="og:updated_time" content="2016-04-24T08:29:02&#43;00:00"/>
+
+
+    
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://feisky.xyz/scss/hyde-hyde.6f40d28e777b288cb757a1db116a257b6f8dffc63a05e8473d12dc09a52d8d79.css" integrity="sha256-b0DSjnd7KIy3V6HbEWole2&#43;N/8Y6BehHPRLcCaUtjXk=">
+
+
+<link rel="stylesheet" href="https://feisky.xyz/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+
+
+
+
+<link rel="stylesheet" href="https://feisky.xyz/scss/hugo-toc.8549a64d301421b4256ea9a0d5ca8b99178799f569d5d2daeb95f24cef3ce6b7.css" integrity="sha256-hUmmTTAUIbQlbqmg1cqLmReHmfVp1dLa65XyTO885rc=">
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/favicon.png">
+    
+
+<link href="https://feisky.xyz/index.xml" rel="alternate" type="application/rss+xml" title="Feisky" />
+<link href="https://feisky.xyz/index.xml" rel="feed" type="application/rss+xml" title="Feisky" />
+
+
+</head>
+
+
+    <body class="theme-base-0d ">
+    
+<div class="sidebar">
+  <div class="container ">
+    <div class="sidebar-about">
+      <span class="site__title">
+        <a href="https://feisky.xyz/">Feisky</a>
+      </span>
+      
+      <p class="site__description">
+         Notes about anything 
+      </p>
+    </div>
+    <div class="collapsible-menu">
+      <input type="checkbox" id="menuToggle">
+      <label for="menuToggle">Feisky</label>
+      <div class="menu-content">
+        <div>
+	<ul class="sidebar-nav">
+		 
+		 
+			 
+				<li>
+					<a href="https://kubernetes.feisky.xyz">
+						<span>Kubernetes</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/machine-learning/">
+						<span>机器学习</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://sdn.feisky.xyz">
+						<span>SDN</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/about/">
+						<span>About</span>
+					</a>
+				</li>
+			 
+		
+		</li>
+	</ul>
+</div>
+
+        <section class="social">
+	
+	<a href="https://twitter.com/feisky" rel="me"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	<a href="https://github.com/feiskyer" rel="me"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</section>
+
+      </div>
+    </div>
+    <div class="copyright">
+  &copy; 2018 .
+  <a href="https://creativecommons.org/licenses/by-sa/4.0">Some Rights Reserved</a>.
+  Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+  
+</div>
+
+  </div>
+</div>
+
+        <div class="content container">
+            
+  <div class="post-list">
+    
+    
+      <div class="post-list__item">
+        <span class="item__title--big">
+          <a href="/posts/2016-04-24-tips-for-cgo/">Tips for cgo</a>
+          
+        </span>
+        <span class="item__date">
+          Apr 24, 2016
+        </span>
+        
+        cgo的一些tips 基本类型 The standard C numeric types are available under the names C.char, C.schar (signed char), C.uchar (unsigned char), C.short, C.ushort (unsigned short), C.int, C.uint (unsigned int), C.long, C.ulong (unsigned long), C.longlong (long long), C.ulonglong (unsigned long long), C.float, C.double, C.complexfloat (complex float), and C.complexdouble (complex double). The C type void* is represented by Go&rsquo;s unsafe.Pointer. The C
+        
+        
+          ... <a class="read-more-symbol" href="/posts/2016-04-24-tips-for-cgo/">➦</a>
+        
+        </div>
+     
+      <div class="post-list__item">
+        <span class="item__title--big">
+          <a href="/posts/2016-04-19-cgo-in-go-1-6/">cgo in go 1.6</a>
+          
+        </span>
+        <span class="item__date">
+          Apr 19, 2016
+        </span>
+        
+        The major change is the definition of rules for sharing Go pointers with C code, to ensure that such C code can coexist with Go&rsquo;s garbage collector. Briefly, Go and C may share memory allocated by Go when a pointer to that memory is passed to C as part of a cgo call, provided that the memory itself contains no pointers to Go-allocated memory, and provided that C does not retain the pointer after the call returns.
+        
+        
+          ... <a class="read-more-symbol" href="/posts/2016-04-19-cgo-in-go-1-6/">➦</a>
+        
+        </div>
+     
+      <div class="post-list__item">
+        <span class="item__title--big">
+          <a href="/posts/2016-03-04-borg-omega-and-kubernetes-acm-queue/">Borg, Omega, and Kubernetes (ACM Queue)</a>
+          
+        </span>
+        <span class="item__date">
+          Mar 04, 2016
+        </span>
+        
+        Brendan Burns, Brian Grant等在Borg, Omega, and Kubernetes - Lessons learned from three container-management systems over a decade分享了Google在容器管理的经验教训。 在谷歌的历史上，开发了三种容器管理
+        
+        
+          ... <a class="read-more-symbol" href="/posts/2016-03-04-borg-omega-and-kubernetes-acm-queue/">➦</a>
+        
+        </div>
+     
+      <div class="post-list__item">
+        <span class="item__title--big">
+          <a href="/posts/2016-03-04-docker-overlay-network-dive/">Docker overlay network dive</a>
+          
+        </span>
+        <span class="item__date">
+          Mar 04, 2016
+        </span>
+        
+        DON MILLS写的Docker Multi-Host Networking: Overlays to the Rescue对Docker的overlay network做了细致的分析，值得看一看。
+        
+        
+        </div>
+     
+      <div class="post-list__item">
+        <span class="item__title--big">
+          <a href="/posts/2016-03-02-kubernetes-sig-node-asia-meeting-nodes/">Kubernetes sig-node (Asia) meeting notes</a>
+          
+        </span>
+        <span class="item__date">
+          Mar 02, 2016
+        </span>
+        
+        Kubernetes 1.2 Status Update (@dchen) Deployment object and HPA scale还有一些P0和P1的问题待解决 aws还有挺多的问题（应该要超过20个） 整个v1.2还有超过100个issue，但
+        
+        
+          ... <a class="read-more-symbol" href="/posts/2016-03-02-kubernetes-sig-node-asia-meeting-nodes/">➦</a>
+        
+        </div>
+     
+      <div class="post-list__item">
+        <span class="item__title--big">
+          <a href="/posts/2016-03-01-10-things-to-avoid-in-docker-containers/">10 things to avoid in docker containers</a>
+          
+        </span>
+        <span class="item__date">
+          Mar 01, 2016
+        </span>
+        
+        Redhat发布的10 things to avoid in docker containers对于构建基于Container的服务非常有意义。摘录如下： 1) Don’t store data in containers – A container can be
+        
+        
+          ... <a class="read-more-symbol" href="/posts/2016-03-01-10-things-to-avoid-in-docker-containers/">➦</a>
+        
+        </div>
+     
+      <div class="post-list__item">
+        <span class="item__title--big">
+          <a href="/posts/2016-02-29-carina-by-rackspace/">Carina by Rackspace</a>
+          
+        </span>
+        <span class="item__date">
+          Feb 29, 2016
+        </span>
+        
+        What is Carina? Carina is a container runtime environment (currently in Beta) that offers performance, container-native tools, and portability without sacrificing ease of use. You can get started in minutes by using open-source software on managed infrastructure to run your containerized applications.
+Your containers run in a bare-metal environment, which avoids the &ldquo;hypervisor tax&rdquo; on performance. Applications in this environment launch as much as 20 percent faster and run as much as 60 percent faster.
+        
+        
+          ... <a class="read-more-symbol" href="/posts/2016-02-29-carina-by-rackspace/">➦</a>
+        
+        </div>
+     
+      <div class="post-list__item">
+        <span class="item__title--big">
+          <a href="/posts/2015-11-18-hypernetes%E7%AE%80%E4%BB%8B-feisky/">Hypernetes简介 - feisky</a>
+          
+        </span>
+        <span class="item__date">
+          Nov 18, 2015
+        </span>
+        
+        【摘要】好久没有更新博客了，今天给大家介绍下最近在Hypernetes上做的工作，这个也是之前在微信群里的一个分享。Hypernetes是一
+        
+        
+          ... <a class="read-more-symbol" href="/posts/2015-11-18-hypernetes%E7%AE%80%E4%BB%8B-feisky/">➦</a>
+        
+        </div>
+     
+      <div class="post-list__item">
+        <span class="item__title--big">
+          <a href="/posts/2014-11-19-kubernetes%E5%A4%9A%E8%8A%82%E7%82%B9%E9%83%A8%E7%BD%B2%E8%A7%A3%E6%9E%90-feisky/">kubernetes多节点部署解析 - feisky</a>
+          
+        </span>
+        <span class="item__date">
+          Nov 19, 2014
+        </span>
+        
+        【摘要】注：以下操作均基于centos7系统。安装ansibleansilbe可以通过yum或者pip安装，由于kubernetes-ans
+        
+        
+          ... <a class="read-more-symbol" href="/posts/2014-11-19-kubernetes%E5%A4%9A%E8%8A%82%E7%82%B9%E9%83%A8%E7%BD%B2%E8%A7%A3%E6%9E%90-feisky/">➦</a>
+        
+        </div>
+     
+      <div class="post-list__item">
+        <span class="item__title--big">
+          <a href="/posts/2014-11-19-docker%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84%E8%A7%A3%E6%9E%90-feisky/">docker存储结构解析 - feisky</a>
+          
+        </span>
+        <span class="item__date">
+          Nov 19, 2014
+        </span>
+        
+        【摘要】由于aufs并未并入内核，故而目前只有Ubuntu系统上能够使用aufs作为docker的存储引擎，而其他系统上使用lvm thin prov
+        
+        
+          ... <a class="read-more-symbol" href="/posts/2014-11-19-docker%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84%E8%A7%A3%E6%9E%90-feisky/">➦</a>
+        
+        </div>
+     
+  </div>
+  
+
+<ul class="pagination">
+    
+    <li class="page-item">
+        <a href="/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+    </li>
+    
+    <li class="page-item">
+    <a href="/page/3/" class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+    </li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/">1</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/page/2/">2</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/page/3/">3</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item active"><a class="page-link" href="/page/4/">4</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/page/5/">5</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item disabled"><span aria-hidden="true">&nbsp;&hellip;&nbsp;</span></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/page/11/">11</a></li>
+    
+    
+    <li class="page-item">
+    <a href="/page/5/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+    </li>
+    
+    <li class="page-item">
+        <a href="/page/11/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+    </li>
+    
+</ul>
+
+
+        </div>
+        
+  
+    
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-69699206-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  
+  <script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"
+  integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy"
+  crossorigin="anonymous">
+</script>
+
+
+    </body>
+</html>

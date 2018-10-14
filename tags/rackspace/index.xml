@@ -13,10 +13,10 @@
     
     <item>
       <title>Carina by Rackspace</title>
-      <link>https://feisky.xyz/post/2016-02-29-carina-by-rackspace/</link>
+      <link>https://feisky.xyz/posts/2016-02-29-carina-by-rackspace/</link>
       <pubDate>Mon, 29 Feb 2016 19:20:27 +0000</pubDate>
       
-      <guid>https://feisky.xyz/post/2016-02-29-carina-by-rackspace/</guid>
+      <guid>https://feisky.xyz/posts/2016-02-29-carina-by-rackspace/</guid>
       <description>What is Carina? Carina is a container runtime environment (currently in Beta) that offers performance, container-native tools, and portability without sacrificing ease of use. You can get started in minutes by using open-source software on managed infrastructure to run your containerized applications.
 Your containers run in a bare-metal environment, which avoids the &amp;ldquo;hypervisor tax&amp;rdquo; on performance. Applications in this environment launch as much as 20 percent faster and run as much as 60 percent faster.</description>
     </item>

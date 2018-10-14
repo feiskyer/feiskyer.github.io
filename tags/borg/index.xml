@@ -13,10 +13,10 @@
     
     <item>
       <title>Borg, Omega, and Kubernetes (ACM Queue)</title>
-      <link>https://feisky.xyz/post/2016-03-04-borg-omega-and-kubernetes-acm-queue/</link>
+      <link>https://feisky.xyz/posts/2016-03-04-borg-omega-and-kubernetes-acm-queue/</link>
       <pubDate>Fri, 04 Mar 2016 15:46:28 +0000</pubDate>
       
-      <guid>https://feisky.xyz/post/2016-03-04-borg-omega-and-kubernetes-acm-queue/</guid>
+      <guid>https://feisky.xyz/posts/2016-03-04-borg-omega-and-kubernetes-acm-queue/</guid>
       <description>Brendan Burns, Brian Grant等在Borg, Omega, and Kubernetes - Lessons learned from three container-management systems over a decade分享了Google在容器管理的经验教训。 在谷歌的历史上，开发了三种容器管理</description>
     </item>
     

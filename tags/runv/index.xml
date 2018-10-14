@@ -13,10 +13,10 @@
     
     <item>
       <title>Playing docker with hypervisor container runtime runV</title>
-      <link>https://feisky.xyz/post/2016-06-17-playing-docker-with-hypervisor-container-runtime-runv/</link>
+      <link>https://feisky.xyz/posts/2016-06-17-playing-docker-with-hypervisor-container-runtime-runv/</link>
       <pubDate>Fri, 17 Jun 2016 17:12:38 +0000</pubDate>
       
-      <guid>https://feisky.xyz/post/2016-06-17-playing-docker-with-hypervisor-container-runtime-runv/</guid>
+      <guid>https://feisky.xyz/posts/2016-06-17-playing-docker-with-hypervisor-container-runtime-runv/</guid>
       <description>Table of contents: [TOC] The latest master branch of runV has already supported running as an runtime in docker. Since v1.11, docker introduced OCI contain runtime (runc) integration via containerd. Since runc and runV are both recommended implementation of OCI, it is natural to make runV working with containerd. Now let&amp;rsquo;s have a try. Install runv and docker Docker could be installed via https://docs.docker.com/engine/installation/. Since only master branch of runV</description>
     </item>
     

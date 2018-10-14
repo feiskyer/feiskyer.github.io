@@ -12,56 +12,56 @@
     
     <item>
       <title>Dive in Linux capabilites</title>
-      <link>https://feisky.xyz/post/2015-03-03-dive-in-linux-capabilites/</link>
+      <link>https://feisky.xyz/posts/2015-03-03-dive-in-linux-capabilites/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://feisky.xyz/post/2015-03-03-dive-in-linux-capabilites/</guid>
+      <guid>https://feisky.xyz/posts/2015-03-03-dive-in-linux-capabilites/</guid>
       <description>Introduction Capabilities in Linux are flags that tell the kernel what the application is allowed to do, If you have no additional security mechanism in place, the Linux root user has all capabilities assigned to it. As capabilities are a way for running processes with some privileges, without having the need to grant them root privileges, it is important to understand that they exist. Consider the ping utility. It is</description>
     </item>
     
     <item>
       <title>How to disable ubuntu services</title>
-      <link>https://feisky.xyz/post/2015-03-18-how-to-disable-ubuntu-services/</link>
+      <link>https://feisky.xyz/posts/2015-03-18-how-to-disable-ubuntu-services/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://feisky.xyz/post/2015-03-18-how-to-disable-ubuntu-services/</guid>
+      <guid>https://feisky.xyz/posts/2015-03-18-how-to-disable-ubuntu-services/</guid>
       <description>To toggle a service from starting or stopping permanently you would need to:
 echo manual | sudo tee /etc/init/SERVICE.override  where the stanza manual will stop Upstart from automatically loading the service on next boot. Any service with the .override ending will take precedence over the original service file. You will only be able to start the service manually afterwards. If you do not want this then simply delete the .</description>
     </item>
     
     <item>
       <title>Installing Realtek rltwifi driver for Ubuntu 14.10</title>
-      <link>https://feisky.xyz/post/2015-02-15-installing-realtek-rltwifi-driver-for-ubuntu-1410/</link>
+      <link>https://feisky.xyz/posts/2015-02-15-installing-realtek-rltwifi-driver-for-ubuntu-1410/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://feisky.xyz/post/2015-02-15-installing-realtek-rltwifi-driver-for-ubuntu-1410/</guid>
+      <guid>https://feisky.xyz/posts/2015-02-15-installing-realtek-rltwifi-driver-for-ubuntu-1410/</guid>
       <description>安装方法 Ubuntu 14默认内核版本没有带RTL8192ee的网卡驱动，因而就无法通过无线网络联网，并且Reltek官方网站也没有提供合适的驱动。而最</description>
     </item>
     
     <item>
       <title>Linux kernel network call flow</title>
-      <link>https://feisky.xyz/post/2015-03-04-linux-kernel-network-call-flow/</link>
+      <link>https://feisky.xyz/posts/2015-03-04-linux-kernel-network-call-flow/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://feisky.xyz/post/2015-03-04-linux-kernel-network-call-flow/</guid>
+      <guid>https://feisky.xyz/posts/2015-03-04-linux-kernel-network-call-flow/</guid>
       <description>Refer http://blog.csdn.net/night_elf_1020/article/details/19935813</description>
     </item>
     
     <item>
       <title>Linux netcat examples</title>
-      <link>https://feisky.xyz/post/2015-02-12-linux-netcat-examples/</link>
+      <link>https://feisky.xyz/posts/2015-02-12-linux-netcat-examples/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://feisky.xyz/post/2015-02-12-linux-netcat-examples/</guid>
+      <guid>https://feisky.xyz/posts/2015-02-12-linux-netcat-examples/</guid>
       <description>端口扫描 nc -z -v -n 172.31.100.7 21-25 Chat Server Server: nc -l 1567 Client: nc 172.31.100.7 1567 文件传输 Server to Client: Server: nc -l 1567 &amp;lt; file.txt Client: nc -n 172.31.100.7 1567 &amp;gt; file.txt Client to Server: Server: nc -l 1567 &amp;gt; file.txt Client: nc 172.31.100.23 1567 &amp;lt; file.txt 目录传输 Server: tar -cvf - dir_name | nc -l 1567 Client: nc</description>
     </item>
     
     <item>
       <title>Redhat Atomic Host</title>
-      <link>https://feisky.xyz/post/2015-03-06-redhat-atomic-host/</link>
+      <link>https://feisky.xyz/posts/2015-03-06-redhat-atomic-host/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://feisky.xyz/post/2015-03-06-redhat-atomic-host/</guid>
+      <guid>https://feisky.xyz/posts/2015-03-06-redhat-atomic-host/</guid>
       <description>Introduction Red Hat has announced first public beta of Red Hat Enterprise Linux 7 Atomic Host. The beta is available from Red Hat and on Amazon Web Services and Google Compute Platform.
 What can you expect from the Red Hat Enterprise Linux 7 Atomic Host Beta?
 Specifically Designed to Run Containers Red Hat Enterprise Linux 7 Atomic Host Beta provides a streamlined host platform that is optimized to run application containers.</description>
@@ -69,19 +69,19 @@ Specifically Designed to Run Containers Red Hat Enterprise Linux 7 Atomic Host B
     
     <item>
       <title>awesome quick start</title>
-      <link>https://feisky.xyz/post/2015-03-20-awesome-quick-start/</link>
+      <link>https://feisky.xyz/posts/2015-03-20-awesome-quick-start/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://feisky.xyz/post/2015-03-20-awesome-quick-start/</guid>
+      <guid>https://feisky.xyz/posts/2015-03-20-awesome-quick-start/</guid>
       <description>awesome是Linux平台出色的窗口管理器，具有速度快、界面简捷等优点。其安装也比较简单： sudo apt-get install -y awesome awesome-extra gnome-settings-daemon nautilus sudo apt-get install -y --no-install-recommends gnome-session mkdir -p ~/.config/awesome 常用快捷键整</description>
     </item>
     
     <item>
       <title>cannot change locale</title>
-      <link>https://feisky.xyz/post/2015-02-10-cannot-change-locale/</link>
+      <link>https://feisky.xyz/posts/2015-02-10-cannot-change-locale/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://feisky.xyz/post/2015-02-10-cannot-change-locale/</guid>
+      <guid>https://feisky.xyz/posts/2015-02-10-cannot-change-locale/</guid>
       <description>运行locale命令 LANG= LANGUAGE= LC_CTYPE=&amp;ldquo;POSIX&amp;rdquo; LC_NUMERIC=&amp;ldquo;POSIX&amp;rdquo; LC_TIME=&amp;ldquo;POSIX&amp;rdquo; LC_COLLATE=&amp;ldquo;POSIX&amp;rdquo; LC_MONETARY=&amp;ldquo;POSIX&amp;rdquo; LC_MESSAGES=&amp;ldquo;POSIX&amp;rdquo; LC_PAPER=&amp;ldquo;POSIX&amp;rdquo; LC_NAME=&amp;ldquo;POSIX&amp;rdquo; LC_ADDRESS=&amp;ldquo;POSIX&amp;rdquo; LC_TELEPHONE=&amp;ldquo;POSIX&amp;rdquo; LC_MEASUREMENT=&amp;ldquo;POSIX&amp;rdquo; LC_IDENTIFICATION=&amp;ldquo;POSIX&amp;rdquo; LC_ALL= 修改profile vi /etc/profile 添加如下内容 export LC_ALL=en_US.UTF-8 source /etc/profile 得到错误 setlocale: LC_ALL: cannot change locale (en_US.UTF-8): No such file or directory &amp;nbsp;运行 dpkg-reconfigure</description>
     </item>
     

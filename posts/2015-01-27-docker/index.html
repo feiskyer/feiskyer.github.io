@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    
+    
+
+
+    <head>
+    <link href="https://gmpg.org/xfn/11" rel="profile">
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Cache-Control" content="public" />
+<!-- Enable responsiveness on mobile devices -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="generator" content="Hugo 0.49.2" />
+
+    
+    
+    
+
+<title>Docker • Feisky</title>
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Docker"/>
+<meta name="twitter:description" content="简介 Docker 是 dotCloud 最近几个月刚宣布的开源引擎，旨在提供一种应用程序的自动化部署解决方案，简单的说就是，在 Linux 系统上迅速创建一个容器（类似虚拟机）并在容"/>
+
+<meta property="og:title" content="Docker" />
+<meta property="og:description" content="简介 Docker 是 dotCloud 最近几个月刚宣布的开源引擎，旨在提供一种应用程序的自动化部署解决方案，简单的说就是，在 Linux 系统上迅速创建一个容器（类似虚拟机）并在容" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://feisky.xyz/posts/2015-01-27-docker/" />
+
+
+    
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://feisky.xyz/scss/hyde-hyde.6f40d28e777b288cb757a1db116a257b6f8dffc63a05e8473d12dc09a52d8d79.css" integrity="sha256-b0DSjnd7KIy3V6HbEWole2&#43;N/8Y6BehHPRLcCaUtjXk=">
+
+
+<link rel="stylesheet" href="https://feisky.xyz/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+
+
+
+
+<link rel="stylesheet" href="https://feisky.xyz/scss/hugo-toc.8549a64d301421b4256ea9a0d5ca8b99178799f569d5d2daeb95f24cef3ce6b7.css" integrity="sha256-hUmmTTAUIbQlbqmg1cqLmReHmfVp1dLa65XyTO885rc=">
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/favicon.png">
+    
+
+</head>
+
+
+    <body class="theme-base-0d ">
+    
+<div class="sidebar">
+  <div class="container ">
+    <div class="sidebar-about">
+      <span class="site__title">
+        <a href="https://feisky.xyz/">Feisky</a>
+      </span>
+      
+      <p class="site__description">
+         Notes about anything 
+      </p>
+    </div>
+    <div class="collapsible-menu">
+      <input type="checkbox" id="menuToggle">
+      <label for="menuToggle">Feisky</label>
+      <div class="menu-content">
+        <div>
+	<ul class="sidebar-nav">
+		 
+		 
+			 
+				<li>
+					<a href="https://kubernetes.feisky.xyz">
+						<span>Kubernetes</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/machine-learning/">
+						<span>机器学习</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://sdn.feisky.xyz">
+						<span>SDN</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/about/">
+						<span>About</span>
+					</a>
+				</li>
+			 
+		
+		</li>
+	</ul>
+</div>
+
+        <section class="social">
+	
+	<a href="https://twitter.com/feisky" rel="me"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	<a href="https://github.com/feiskyer" rel="me"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</section>
+
+      </div>
+    </div>
+    <div class="copyright">
+  &copy; 2018 .
+  <a href="https://creativecommons.org/licenses/by-sa/4.0">Some Rights Reserved</a>.
+  Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+  
+</div>
+
+  </div>
+</div>
+
+        <div class="content container">
+            
+    <article>
+  <header>
+    <h1>Docker</h1>
+    
+    
+<div class="post__meta">
+    
+    
+    
+    
+    
+    
+      
+      
+          <br/>
+           <i class="fas fa-tags"></i>
+          
+          <a class="badge badge-tag" href="/tags/docker">docker</a>
+          
+      
+    
+    
+    <br/>
+    <i class="fas fa-clock"></i> 9 min read
+</div>
+
+
+  </header>
+  
+  
+  <div class="toc-wrapper">
+    <input type="checkbox" id="tocToggle">
+    <label for="tocToggle">Table of Content</label>
+    
+        <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#简介">简介</a></li>
+<li><a href="#安装-ubuntu-12-04">安装 (ubuntu 12.04)</a></li>
+<li><a href="#创建容器">创建容器</a></li>
+<li><a href="#starting-a-long-running-worker-process">Starting a long-running worker process</a></li>
+<li><a href="#bind-a-service-on-a-tcp-port">Bind a service on a TCP port</a></li>
+<li><a href="#committing-saving-a-container-state">Committing (saving) a container state¶</a></li>
+</ul></li>
+<li><a href="#docker">docker</a></li>
+</ul></li>
+</ul>
+</nav>
+    
+  </div>
+  
+  <div class="post">
+    
+
+<h3 id="简介">简介</h3>
+
+<p>Docker 是 dotCloud 最近几个月刚宣布的开源引擎，旨在提供一种应用程序的自动化部署解决方案，简单的说就是，在 Linux 系统上迅速创建一个容器（类似虚拟机）并在容器上部署和运行应用程序，并通过配置文件可以轻松实现应用程序的自动化安装、部署和升级，非常方便。因为使用了容器，所以可以很方便的把生产环境和开发环境分开，互不影响，这是 docker 最普遍的一个玩法。更多的玩法还有大规模 web 应用、数据库部署、持续部署、集群、测试环境、面向服务的云计算、虚拟桌面 VDI 等等。</p>
+
+<p>Docker 使用 Go 语言编写，用 cgroup 实现资源隔离，容器技术采用 LXC. LXC 已经足够成熟，被多个主流 PaaS 服务商采用（比如 dotCloud），国内的一些互联网公司也在用（比如腾讯）。虽然都是企图解决自动化部署方面的问题，Docker 的解决方式有别于我们常提到的 Puppet/Chef，他们虽然走的是不同的路，但也可以拿来一起用。</p>
+
+<h3 id="安装-ubuntu-12-04">安装 (ubuntu 12.04)</h3>
+
+<p>Due to a bug in LXC, Docker works best on the 3.8 kernel. Precise comes with a 3.2 kernel, so we need to upgrade it. The kernel you’ll install when following these steps comes with AUFS built in. We also include the generic headers to enable packages that depend on them, like ZFS and the VirtualBox guest additions.</p>
+
+<pre><code>sudo apt-get install python-software-properties
+sudo apt-get install linux-image-generic-lts-raring linux-headers-generic-lts-raring
+sudo reboot
+
+</code></pre>
+
+<p>添加docker源并安装docker</p>
+
+<pre><code>sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 36A1D7869245C8950F966E92D8576A8BA88D21E9
+sudo sh -c &quot;echo deb http://get.docker.io/ubuntu docker main &gt; /etc/apt/sources.list.d/docker.list&quot;
+sudo apt-get update
+sudo apt-get install lxc-docker
+</code></pre>
+
+<p>上面两步也可以替换成执行<code>curl -s https://get.docker.io/ubuntu/ | sudo sh</code>，更简单。</p>
+
+<h3 id="创建容器">创建容器</h3>
+
+<p>首先从<a href="https://index.docker.io/">https://index.docker.io/</a>下载一个预定义的镜像</p>
+
+<pre><code>sudo docker pull ubuntu
+</code></pre>
+
+<p>启动一个容器：</p>
+
+<pre><code>sudo docker run -i -t ubuntu /bin/bash
+</code></pre>
+
+<h3 id="starting-a-long-running-worker-process">Starting a long-running worker process</h3>
+
+<pre><code># Start a very useful long-running process
+JOB=$(sudo docker run -d ubuntu /bin/sh -c &quot;while true; do echo Hello world; sleep 1; done&quot;)
+
+# Collect the output of the job so far
+sudo docker logs $JOB
+
+# Kill the job
+sudo docker kill $JOB
+</code></pre>
+
+<h3 id="bind-a-service-on-a-tcp-port">Bind a service on a TCP port</h3>
+
+<pre><code># Bind port 4444 of this container, and tell netcat to listen on it
+JOB=$(sudo docker run -d -p 4444 ubuntu:12.10 /bin/nc -l 4444)
+
+# Which public port is NATed to my container?
+PORT=$(sudo docker port $JOB 4444 | awk -F: '{ print $2 }')
+
+# Connect to the public port
+echo hello world | nc 127.0.0.1 $PORT
+
+# Verify that the network connection worked
+echo &quot;Daemon received: $(sudo docker logs $JOB)&quot;
+</code></pre>
+
+<h3 id="committing-saving-a-container-state">Committing (saving) a container state¶</h3>
+
+<p>Save your containers state to a container image, so the state can be re-used.</p>
+
+<p>When you commit your container only the differences between the image the container was created from and the current state of the container will be stored (as a diff). See which images you already have using the docker images command.</p>
+
+<pre><code># Commit your container to a new named image
+sudo docker commit &lt;container_id&gt; &lt;some_name&gt;
+
+# List your containers
+sudo docker images
+</code></pre>
+
+<p>You now have a image state from which you can create new instances.</p>
+
+<p>更多功能见<a href="http://docs.docker.io/">http://docs.docker.io/</a></p>
+
+<h2 id="docker">docker</h2>
+
+<ol>
+<li>什么是docker</li>
+</ol>
+
+<p>Docker 是 Docker.Inc 公司开源的一个基于LXC技术之上构建的Container容器引擎， 源代码托管在 GitHub 上, 基于Go语言并遵从Apache2.0协议开源。 Docker在2014年6月召开DockerConf 2014技术大会吸引了IBM、Google、RedHat等业界知名公司的关注和技术支持，无论是从 GitHub 上的代码活跃度，还是Redhat宣布在RHEL7中正式支持Docker, 都给业界一个信号，这是一项创新型的技术解决方案。</p>
+
+<p>docker的基本概念</p>
+
+<p>①镜像：用来创建Docker容器的只读模板
+②容器：从镜像创建而来的运行实例，各个容器之间相互隔离
+③仓库：存放镜像的场所，如<a href="https://hub.docker.com/和http://www.dockerpool.com/">https://hub.docker.com/和http://www.dockerpool.com/</a></p>
+
+<ol>
+<li>安装docker</li>
+</ol>
+
+<p>对于centos7，直接执行yum -y install docker即可安装，安装完成后需要执行systemctl start  docker来启动docker服务。</p>
+
+<p>其他操作系统中的安装方法见<a href="https://docs.docker.com/installation/#installation">https://docs.docker.com/installation/#installation</a></p>
+
+<ol>
+<li>获取镜像</li>
+</ol>
+
+<p>从Docker Hub仓库下载一个Ubuntu 12.04操作系统的镜像</p>
+
+<pre><code>$ sudo docker pull ubuntu:12.04
+Pulling repository ubuntu
+ab8e2728644c: Pulling dependent layers
+511136ea3c5a: Download complete
+5f0ffaa9455e: Download complete
+a300658979be: Download complete
+904483ae0c30: Download complete
+ffdaafd1ca50: Download complete
+d047ae21eeaf: Download complete
+</code></pre>
+
+<p>官方镜像比较慢的时候可以从其他仓库下载镜像，如</p>
+
+<pre><code>$ sudo docker pull www.dockerpool.com:5000/library/centos:centos7
+</code></pre>
+
+<p>查询本地已下载的镜像</p>
+
+<pre><code>$ sudo docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+ubuntu              12.04               0a51fcc173d8        2 days ago          111 MB
+centos              httpd               9ad57da2b81c        6 weeks ago         336.5 MB
+&lt;none&gt;              &lt;none&gt;              e01000c7bac8        6 weeks ago         336.5 MB
+centos              latest              b157b77b1a65        8 weeks ago         243.7 MB
+</code></pre>
+
+<p>其中，镜像id唯一标识了镜像，TAG信息用来标记来自同一个仓库的不同镜像。例如ubuntu仓库中有多个镜像，通过TAG信息来区分发行版本，例如10.04、12.04、12.10、13.04、14.04等。创建容器时，如果不指定具体的标记，则默认使用latest标记信息。</p>
+
+<p>除了从容器中下载已有镜像外，也可以根据已有镜像创建新的镜像。创建新镜像有多种方法：</p>
+
+<p>①修改已有镜像后commit</p>
+
+<pre><code>$ sudo docker run -t -i ubuntu:12.04 /bin/bash
+root@a439b6e894bb:/# apt-get update
+root@a439b6e894bb:/# apt-get install nginx
+root@a439b6e894bb:/# /etc/init.d/nginx start
+root@a439b6e894bb:/# exit
+$ sudo docker commit -m 'add ngnix' -a 'feisky' a439b6e894bb ubuntu:nginx
+0a693112c443ce4fb21bc57a26d67f0648b9415e052f929be7e06701f5f3ca2d
+$ sudo docker images
+REPOSITORY                               TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+ubuntu                                   nginx               0a693112c443        9 seconds ago       153.1 MB
+ubuntu                                   12.04               0a51fcc173d8        2 days ago          111 MB
+</code></pre>
+
+<p>②用dockerfile来创建镜像</p>
+
+<p>首先创建一个Dockerfile：</p>
+
+<pre><code>$ cat Dockerfile 
+
+# yet another ngnix
+FROM ubuntu:12.04
+MAINTAINER feisky &lt;feisky@root&gt;
+RUN apt-get update
+RUN apt-get -y install nginx
+# put my local site to /var/www
+ADD index.html /var/www/html/
+# expose httpd port
+EXPOSE 80
+# the command to run
+CMD [&quot;/usr/sbin/nginx&quot;]
+
+$ sudo docker build -t 'ubuntu:www' .
+</code></pre>
+
+<p>③导入已有镜像</p>
+
+<p>要从本地文件系统导入一个镜像，可以使用openvz（容器虚拟化的先锋技术）的模板来创建： openvz的模板下载地址为<a href="http://openvz.org/Download/templates/precreated">http://openvz.org/Download/templates/precreated</a></p>
+
+<p><code>$ sudo cat ubuntu-14.04-x86_64-minimal.tar.gz  |docker import - ubuntu:14.04</code></p>
+
+<p>④导入docker save保存的镜像</p>
+
+<pre><code>$ sudo docker save -o ubuntu_12.04.tar ubuntu:12.04
+$ sudo docker load --input ubuntu_14.04.tar
+$ sudo docker load &lt; ubuntu_14.04.tar  #同上
+</code></pre>
+
+<p>⑤导入已保存的容器</p>
+
+<p>保存一个容器的方法</p>
+
+<pre><code>$ sudo docker ps -a
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                    PORTS               NAMES
+7691a814370e        ubuntu:14.04        &quot;/bin/bash&quot;         36 hours ago        Exited (0) 21 hours ago                       test
+$ sudo docker export 7691a814370e &gt; ubuntu.tar
+</code></pre>
+
+<p>重新作为镜像导入进来</p>
+
+<p><code>$ cat ubuntu.tar | sudo docker import - test/buntu:v1.0</code></p>
+
+<p>注：用户既可以使用docker load来导入镜像存储文件到本地镜像库，也可以使用docker import来导入一个容器快照到本地镜像库。这两者的区别在于容器快照文件将丢弃所有的历史记录和元数据信息（即仅保存容器当时的快照状态），而镜像存储文件将保存完整记录，体积也要大。此外，从容器快照文件导入时可以重新指定标签等元数据信息。</p>
+
+<p>镜像制作好后，可以通过docker push命令，把自己创建的镜像上传到仓库中来共享
+<code>$ sudo docker push ubuntu</code></p>
+
+<p>如果一个镜像不需要了，可以删除它：
+<code>$ sudo docker rmi e01000c7bac8</code></p>
+
+<ol>
+<li>容器管理</li>
+</ol>
+
+<p>容器是独立运行的一个或一组应用，以及它们的运行态环境。</p>
+
+<p>启动容器</p>
+
+<p>下面的命令输出一个&rdquo;Hello World&rdquo;，之后终止容器:</p>
+
+<pre><code>$ sudo docker run ubuntu:nginx /bin/echo 'hello world'
+hello world
+</code></pre>
+
+<p>下面的命令则启动一个bash终端，可以让用户进行交互。
+<code>$ sudo docker run -t -i ubuntu:12.04 /bin/bash</code></p>
+
+<p>其中，-t选项让Docker分配一个伪终端（pseudo-tty）并绑定到容器的标准输入上， -i则让容器的标准输入保持打开。</p>
+
+<p>对于已经停止的容器，可以用start命令重新启动：</p>
+
+<pre><code>$ sudo docker start 7fb349365baf
+7fb349365baf
+$ sudo docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+7fb349365baf        ubuntu:nginx        /bin/bash           29 minutes ago      Up 6 seconds                            goofy_ritchie0
+</code></pre>
+
+<p>docker run的一些有用参数：</p>
+
+<p>①-d：以守护进程形式运行容器</p>
+
+<p>其他命令：</p>
+
+<pre><code>nsenter --target $PID --mount --uts --ipc --net --pid连接容器终端
+docker attach连接容器终端
+docker stop来终止一个运行中的容器
+docker restart命令会将一个运行态的容器终止，然后再重新启动它
+docker logs获取容器的输出信息
+docker ps查看正在运行的容器
+docker ps查看正在运行和已经停止的容器
+</code></pre>
+
+<p>注意：当多个窗口同时attach到同一个容器的时候，所有窗口都会同步显示。当某个窗口因命令阻塞时,其他窗口也无法执行操作了。</p>
+
+<ol>
+<li>仓库管理</li>
+</ol>
+
+<p>对于默认Docker Hub仓库，通过执行docker login命令来输入用户名、密码和邮箱来完成注册和登录。 注册成功后，本地用户目录的.dockercfg中将保存用户的认证信息。</p>
+
+<p>可以通过sudo docker search centos来搜索镜像，通过sudo docker pull centos来下载镜像。</p>
+
+<p><a href="https://registry.hub.docker.com/builds/add/提供的自动构建功能对于需要经常升级程序的镜像比较有用，目前仅支持Github和BitBucket。">https://registry.hub.docker.com/builds/add/提供的自动构建功能对于需要经常升级程序的镜像比较有用，目前仅支持Github和BitBucket。</a></p>
+
+<p>私有仓库的搭建</p>
+
+<pre><code>① $ sudo docker run -d -p 5000:5000 registry
+② $ sudo pip install docker-registry
+③ $ cp config/config_sample.yml config/config.yml
+④ $ sudo gunicorn --access-logfile - --error-logfile - -k gevent -b 0.0.0.0:5000 -w 4 --max-requests 100 docker_registry.wsgi:application
+</code></pre>
+
+<p>如何向私有仓库上传镜像</p>
+
+<p>① <code>$ sudo docker tag ba58 192.168.7.26:5000/test</code>
+② <code>$ sudo docker push 192.168.7.26:5000/test</code></p>
+
+<p>通过<code>$ curl http://192.168.7.26:5000/v1/search</code>可以查询私有仓库的镜像，通过<code>sudo docker pull 192.168.7.26:5000/test</code>可以下载私有仓库的镜像。</p>
+
+<ol>
+<li>数据管理</li>
+</ol>
+
+<p>创建一个web容器，并加载一个数据卷到容器的/webapp目录：</p>
+
+<pre><code>$ sudo docker run -d -P --name web -v /webapp training/webapp python app.py
+</code></pre>
+
+<p>挂载一个主机目录作为数据卷：</p>
+
+<pre><code>$ sudo docker run -d -P --name web -v /src/webapp:/opt/webapp training/webapp python app.py
+</code></pre>
+
+<p>Docker挂载数据卷的默认权限是读写，用户也可以通过:ro指定为只读：</p>
+
+<pre><code>$ sudo docker run -d -P --name web -v /src/webapp:/opt/webapp:ro
+training/webapp python app.py
+</code></pre>
+
+<p>也可以挂载一个本地主机文件作为数据卷：</p>
+
+<pre><code class="language-$">，注意这会导致报错误信息，最好还是直接挂载文件的父目录
+
+如果你有一些持续更新的数据需要在容器之间共享，最好创建数据卷容器。数据卷容器，其实就是一个正常的容器，专门用来提供数据卷供其它容器挂载的：
+</code></pre>
+
+<p>$ sudo docker run -d -v /dbdata &ndash;name dbdata training/postgres echo Data-only container for postgres</p>
+
+<pre><code>
+然后，在其他容器中使用--volumes-from来挂载dbdata容器中的数据卷。
+</code></pre>
+
+<p>$ sudo docker run -d &ndash;volumes-from dbdata &ndash;name db1 training/postgres
+$ sudo docker run -d &ndash;volumes-from dbdata &ndash;name db2 training/postgres</p>
+
+<pre><code>
+7. 网络管理
+
+当Docker启动时，会自动在主机上创建一个docker0虚拟网桥，实际上是Linux的一个bridge，可以理解为一个软件交换机。它会在挂载到它的网口之间进行转发。
+
+同时，Docker随机分配一个本地未占用的私有网段（在RFC1918中定义）中的一个地址给docker0接口。比如典型的172.17.42.1，掩码为255.255.0.0。此后启动的容器内的网口也会自动分配一个同一网段.
+
+① 端口映射: 使用docker port 来查看当前映射的端口配置
+</code></pre>
+
+<p>$ sudo docker run -P &hellip; #随机映射一个49000~49900的端口到内部容器开放的网络端口
+$ sudo docker run -d -p 5000:5000 #映射到指定端口
+$ sudo docker run -d -p 127.0.0.1:5000:5000 #映射到指定HOST＋端口
+$ sudo docker run -d -p 127.0.0.1::5000 #映射到指定HOST，端口随机生成
+$ sudo docker run -d -p 127.0.0.1:5000:5000/udp #映射到指定UDP端口</p>
+
+<pre><code>
+② 容器互联
+
+启动容器时指定容器名称：
+</code></pre>
+
+<p>$ sudo docker run -d &ndash;name db training/postgres</p>
+
+<pre><code>根据名称连接db容器
+</code></pre>
+
+<p>$ sudo docker run -d -P &ndash;name web &ndash;link db:db training/webapp python app.py</p>
+
+<pre><code>注意：--link参数的格式为--link name:alias，其中name是要链接的容器的名称，alias是这个连接的别名；如果名称未知，可以通过下面的命令查询：
+</code></pre>
+
+<p>$ sudo docker inspect -f &ldquo;{{ .Name }}&rdquo; aed84ee21bde</p>
+
+<pre><code>Docker在两个互联的容器之间创建了一个安全隧道，而且不用映射它们的端口到宿主主机上。在启动db容器的时候并没有使用-p和-P标记，从而避免了暴露数据库端口到外部网络上。
+
+Docker 通过2种方式为容器公开连接信息：
+
+其一是环境变量：
+</code></pre>
+
+<p>$ sudo docker run &ndash;rm &ndash;name web2 &ndash;link db:db training/webapp env
+&hellip;
+DB_NAME=/web2/db
+DB_PORT=tcp://172.17.0.5:5432
+DB_PORT_5000_TCP=tcp://172.17.0.5:5432
+DB_PORT_5000_TCP_PROTO=tcp
+DB_PORT_5000_TCP_PORT=5432
+DB_PORT_5000_TCP_ADDR=172.17.0.5
+&hellip;</p>
+
+<pre><code>
+其二是hosts：
+</code></pre>
+
+<p>$ sudo docker run -t -i &ndash;rm &ndash;link db:db training/webapp /bin/bash
+root@aed84ee21bde:/opt/webapp# cat /etc/hosts
+172.17.0.7  aed84ee21bde
+&hellip;
+172.17.0.5  db</p>
+
+<pre><code>③ 其他选项
+
+只有在Docker服务启动的时候才能配置:
+
+</code></pre>
+
+<p>-b BRIDGE or &ndash;bridge=BRIDGE &ndash;指定容器挂载的网桥
+&ndash;bip=CIDR &ndash;定制docker0的掩码
+-H SOCKET&hellip; or &ndash;host=SOCKET&hellip; &ndash;Docker服务端接收命令的通道
+&ndash;icc=true|false &ndash;是否支持容器之间进行通信
+&ndash;ip-forward=true|false &ndash;请看下文容器之间的通信
+-iptables=true|false &ndash;禁止Docker添加iptables规则
+&ndash;mtu=BYTES &ndash;容器网络中的MTU</p>
+
+<pre><code>
+既可以在启动服务时指定，也可以Docker容器启动（docker run）时候指定:
+
+</code></pre>
+
+<p>&ndash;dns=IP_ADDRESS&hellip; &ndash;使用指定的DNS服务器
+&ndash;dns-search=DOMAIN&hellip; &ndash;指定DNS搜索域</p>
+
+<pre><code>
+只有在docker run执行时使用:
+</code></pre>
+
+<p>-h HOSTNAME or &ndash;hostname=HOSTNAME &ndash;配置容器主机名
+&ndash;link=CONTAINER_NAME:ALIAS &ndash;添加到另一个容器的连接
+&ndash;net=bridge|none|container:NAME_or_ID|host &ndash;配置容器的桥接模式
+-p SPEC or &ndash;publish=SPEC &ndash;映射容器端口到宿主主机
+-P or &ndash;publish-all=true|false &ndash;映射容器所有端口到宿主主机
+```</p>
+
+  </div>
+  
+
+<div class="navigation navigation-single">
+    
+    <a href="/posts/2015-03-05-docker-acquires-sdn-startup-socketplane/" class="navigation-prev">
+      <i aria-hidden="true" class="fa fa-chevron-left"></i>
+      <span class="navigation-tittle">Docker acquires SDN startup SocketPlane</span>
+    </a>
+    
+    
+    <a href="/posts/2015-03-03-dive-in-linux-capabilites/" class="navigation-next">
+      <span class="navigation-tittle">Dive in Linux capabilites</span>
+      <i aria-hidden="true" class="fa fa-chevron-right"></i>
+    </a>
+    
+</div>
+
+
+  
+
+
+<div class="post__related">
+    
+    <h2>Related Articles</h2>
+    <ul class="related-posts">
+        
+<li>
+  <span class="list__title--small">
+    <a href="/posts/2017-10-19-docker-mta-program/">Docker MTA Program</a>
+      
+      <time class="pull-right hidden-tablet">Oct 19 &#39;17</time>
+      
+  </span>
+</li>
+
+<li>
+  <span class="list__title--small">
+    <a href="/posts/2017-10-17-docker-ce-ee-%E5%8E%9F%E7%94%9F%E6%94%AF%E6%8C%81kubernetes/">Docker CE/EE 原生支持Kubernetes</a>
+      
+      <time class="pull-right hidden-tablet">Oct 17 &#39;17</time>
+      
+  </span>
+</li>
+
+<li>
+  <span class="list__title--small">
+    <a href="/posts/2017-02-14-debugging-application-in-containers/">Debugging application in containers</a>
+      
+      <time class="pull-right hidden-tablet">Feb 14 &#39;17</time>
+      
+  </span>
+</li>
+
+<li>
+  <span class="list__title--small">
+    <a href="/posts/2016-08-24-%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8%E4%B8%80%E4%B8%AAkubernetes%E9%9B%86%E7%BE%A4/">如何快速启动一个Kubernetes集群</a>
+      
+      <time class="pull-right hidden-tablet">Aug 24 &#39;16</time>
+      
+  </span>
+</li>
+
+<li>
+  <span class="list__title--small">
+    <a href="/posts/2016-06-24-play-with-docker-v1-12/">Play with docker v1.12</a>
+      
+      <time class="pull-right hidden-tablet">Jun 24 &#39;16</time>
+      
+  </span>
+</li>
+
+    </ul>
+</div>
+
+
+
+  
+    
+        <div id="disqus_thread"></div>
+<script type="text/javascript">
+    
+
+    (function () {
+    if (location.hostname === "localhost" ||
+      location.hostname === "127.0.0.1" ||
+      location.hostname === "") {
+      return;
+    }
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    var disqus_shortname = 'feisky';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || 
+      document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+<noscript>
+  Please enable JavaScript to view the
+  <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by
+  <span class="logo-disqus">Disqus</span>
+</a>
+
+    
+
+
+</article>
+
+
+        </div>
+        
+    
+  
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-69699206-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+<script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"
+  integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy"
+  crossorigin="anonymous">
+</script>
+
+
+    
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        
+    
+    <script type="text/javascript">
+        
+        hljs.initHighlightingOnLoad();
+    </script>
+    
+
+
+
+
+
+
+    
+
+
+
+    </body>
+</html>

@@ -12,10 +12,10 @@
     
     <item>
       <title>Python __file__ not defined problem</title>
-      <link>https://feisky.xyz/post/2015-03-05-python-not-defined-problem/</link>
+      <link>https://feisky.xyz/posts/2015-03-05-python-not-defined-problem/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://feisky.xyz/post/2015-03-05-python-not-defined-problem/</guid>
+      <guid>https://feisky.xyz/posts/2015-03-05-python-not-defined-problem/</guid>
       <description>file仅在文件中运行的时候才正常，而在交互式命令行中则需要使用变通的方法： import os import inspect import sys if not hasattr(sys.modules[__name__], &#39;__file__&#39;): __file__ = inspect.getfile(inspect.currentframe()) print os.path.dirname(os.path.abspath(__file__))</description>
     </item>
     

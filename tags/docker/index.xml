@@ -13,55 +13,55 @@
     
     <item>
       <title>Docker MTA Program</title>
-      <link>https://feisky.xyz/post/2017-10-19-docker-mta-program/</link>
+      <link>https://feisky.xyz/posts/2017-10-19-docker-mta-program/</link>
       <pubDate>Thu, 19 Oct 2017 18:10:18 +0000</pubDate>
       
-      <guid>https://feisky.xyz/post/2017-10-19-docker-mta-program/</guid>
+      <guid>https://feisky.xyz/posts/2017-10-19-docker-mta-program/</guid>
       <description>在容器化和云原生的大潮下，很多公司都已经开始了容器化的进程。然而，将已有应用转化为容器和云原生架构并不容易，并且这些遗留应用的维护可能会花费</description>
     </item>
     
     <item>
       <title>Docker CE/EE 原生支持Kubernetes</title>
-      <link>https://feisky.xyz/post/2017-10-17-docker-ce-ee-%E5%8E%9F%E7%94%9F%E6%94%AF%E6%8C%81kubernetes/</link>
+      <link>https://feisky.xyz/posts/2017-10-17-docker-ce-ee-%E5%8E%9F%E7%94%9F%E6%94%AF%E6%8C%81kubernetes/</link>
       <pubDate>Tue, 17 Oct 2017 17:18:31 +0000</pubDate>
       
-      <guid>https://feisky.xyz/post/2017-10-17-docker-ce-ee-%E5%8E%9F%E7%94%9F%E6%94%AF%E6%8C%81kubernetes/</guid>
+      <guid>https://feisky.xyz/posts/2017-10-17-docker-ce-ee-%E5%8E%9F%E7%94%9F%E6%94%AF%E6%8C%81kubernetes/</guid>
       <description>在今年的 DockerCon EU (2017) 上，Solomon、Brendan、Hockin等联合宣布Docker将原生支持Kubernetes，也就是说Kubernet</description>
     </item>
     
     <item>
       <title>Debugging application in containers</title>
-      <link>https://feisky.xyz/post/2017-02-14-debugging-application-in-containers/</link>
+      <link>https://feisky.xyz/posts/2017-02-14-debugging-application-in-containers/</link>
       <pubDate>Tue, 14 Feb 2017 21:24:48 +0000</pubDate>
       
-      <guid>https://feisky.xyz/post/2017-02-14-debugging-application-in-containers/</guid>
+      <guid>https://feisky.xyz/posts/2017-02-14-debugging-application-in-containers/</guid>
       <description>对于普通的服务器进程，我们可以很方便的使用宿主机上的各种工具来调试；但容器经常是仅包含必要的应用程序，一般不包含常用的调试工具，那如何在线调</description>
     </item>
     
     <item>
       <title>使用docker dind创建swarm集群</title>
-      <link>https://feisky.xyz/post/2017-01-09-%E4%BD%BF%E7%94%A8docker-dind%E5%88%9B%E5%BB%BAswarm%E9%9B%86%E7%BE%A4/</link>
+      <link>https://feisky.xyz/posts/2017-01-09-%E4%BD%BF%E7%94%A8docker-dind%E5%88%9B%E5%BB%BAswarm%E9%9B%86%E7%BE%A4/</link>
       <pubDate>Mon, 09 Jan 2017 21:01:18 +0000</pubDate>
       
-      <guid>https://feisky.xyz/post/2017-01-09-%E4%BD%BF%E7%94%A8docker-dind%E5%88%9B%E5%BB%BAswarm%E9%9B%86%E7%BE%A4/</guid>
+      <guid>https://feisky.xyz/posts/2017-01-09-%E4%BD%BF%E7%94%A8docker-dind%E5%88%9B%E5%BB%BAswarm%E9%9B%86%E7%BE%A4/</guid>
       <description>在OS X系统上，由于Docker for Mac只能创建一台虚拟机，所以要创建多节点swarm集群的话，就需要额外启动其他的虚拟机，并手动安装和配置</description>
     </item>
     
     <item>
       <title>如何快速启动一个Kubernetes集群</title>
-      <link>https://feisky.xyz/post/2016-08-24-%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8%E4%B8%80%E4%B8%AAkubernetes%E9%9B%86%E7%BE%A4/</link>
+      <link>https://feisky.xyz/posts/2016-08-24-%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8%E4%B8%80%E4%B8%AAkubernetes%E9%9B%86%E7%BE%A4/</link>
       <pubDate>Wed, 24 Aug 2016 14:48:44 +0000</pubDate>
       
-      <guid>https://feisky.xyz/post/2016-08-24-%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8%E4%B8%80%E4%B8%AAkubernetes%E9%9B%86%E7%BE%A4/</guid>
+      <guid>https://feisky.xyz/posts/2016-08-24-%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8%E4%B8%80%E4%B8%AAkubernetes%E9%9B%86%E7%BE%A4/</guid>
       <description>相比Docker一个二进制文件解决所有问题，Kubernetes则为不同的服务提供了不同的二进制文件，并将一些服务放到了addons中。故而</description>
     </item>
     
     <item>
       <title>Play with docker v1.12</title>
-      <link>https://feisky.xyz/post/2016-06-24-play-with-docker-v1-12/</link>
+      <link>https://feisky.xyz/posts/2016-06-24-play-with-docker-v1-12/</link>
       <pubDate>Fri, 24 Jun 2016 12:39:49 +0000</pubDate>
       
-      <guid>https://feisky.xyz/post/2016-06-24-play-with-docker-v1-12/</guid>
+      <guid>https://feisky.xyz/posts/2016-06-24-play-with-docker-v1-12/</guid>
       <description>[TOC]
 Docker v1.12 brings in its integrated orchestration into docker engine.
  Starting with Docker 1.12, we have added features to the core Docker Engine to make multi-host and multi-container orchestration easy. We’ve added new API objects, like Service and Node, that will let you use the Docker API to deploy and manage apps on a group of Docker Engines called a swarm. With Docker 1.12, the best way to orchestrate Docker is Docker!</description>
@@ -69,19 +69,19 @@ Docker v1.12 brings in its integrated orchestration into docker engine.
     
     <item>
       <title>Playing docker with hypervisor container runtime runV</title>
-      <link>https://feisky.xyz/post/2016-06-17-playing-docker-with-hypervisor-container-runtime-runv/</link>
+      <link>https://feisky.xyz/posts/2016-06-17-playing-docker-with-hypervisor-container-runtime-runv/</link>
       <pubDate>Fri, 17 Jun 2016 17:12:38 +0000</pubDate>
       
-      <guid>https://feisky.xyz/post/2016-06-17-playing-docker-with-hypervisor-container-runtime-runv/</guid>
+      <guid>https://feisky.xyz/posts/2016-06-17-playing-docker-with-hypervisor-container-runtime-runv/</guid>
       <description>Table of contents: [TOC] The latest master branch of runV has already supported running as an runtime in docker. Since v1.11, docker introduced OCI contain runtime (runc) integration via containerd. Since runc and runV are both recommended implementation of OCI, it is natural to make runV working with containerd. Now let&amp;rsquo;s have a try. Install runv and docker Docker could be installed via https://docs.docker.com/engine/installation/. Since only master branch of runV</description>
     </item>
     
     <item>
       <title>How docker 1.11 share network accross containers</title>
-      <link>https://feisky.xyz/post/2016-05-11-how-docker-1-11-share-network-accross-containers/</link>
+      <link>https://feisky.xyz/posts/2016-05-11-how-docker-1-11-share-network-accross-containers/</link>
       <pubDate>Wed, 11 May 2016 10:25:06 +0000</pubDate>
       
-      <guid>https://feisky.xyz/post/2016-05-11-how-docker-1-11-share-network-accross-containers/</guid>
+      <guid>https://feisky.xyz/posts/2016-05-11-how-docker-1-11-share-network-accross-containers/</guid>
       <description>Docker 1.11 has moved to runc with containerd, I am interested in how it processing shared netns accross containers.
 For example, I have already running a container 75599a6f387b7842c6da57efd38f9742b2ca621782f891402f83852c66dbd706. A new container within same netns can be created with cmd:
 docker run -itd --net=container:75599a6f387b alpine sh  This will generate a runc config.json as follows:
@@ -90,19 +90,19 @@ docker run -itd --net=container:75599a6f387b alpine sh  This will generate a run
     
     <item>
       <title>Reading notes of week 17</title>
-      <link>https://feisky.xyz/post/2016-04-29-reading-notes-of-week-17/</link>
+      <link>https://feisky.xyz/posts/2016-04-29-reading-notes-of-week-17/</link>
       <pubDate>Fri, 29 Apr 2016 16:50:14 +0000</pubDate>
       
-      <guid>https://feisky.xyz/post/2016-04-29-reading-notes-of-week-17/</guid>
+      <guid>https://feisky.xyz/posts/2016-04-29-reading-notes-of-week-17/</guid>
       <description>SIG-Networking: Kubernetes Network Policy APIs Coming in 1.3 One problem many users have is that the open access network policy of Kubernetes is not suitable for applications that need more precise control over the traffic that accesses a pod or service. Today, this could be a multi-tier application where traffic is only allowed from a tier’s neighbor. But as new Cloud Native applications are built</description>
     </item>
     
     <item>
       <title>runc and runV</title>
-      <link>https://feisky.xyz/post/2016-04-28-runc/</link>
+      <link>https://feisky.xyz/posts/2016-04-28-runc/</link>
       <pubDate>Thu, 28 Apr 2016 11:15:03 +0000</pubDate>
       
-      <guid>https://feisky.xyz/post/2016-04-28-runc/</guid>
+      <guid>https://feisky.xyz/posts/2016-04-28-runc/</guid>
       <description>runc is a CLI tool for spawning and running containers according to the OCI specification, while runV is a hypervisor-based runtime for OCI. Both of them are recommanded (implementations](https://github.com/opencontainers/runtime-spec/blob/master/implementations.md) of OCI.
 Playing with runc Install runc:
 yum install -y libseccomp-devel mkdir -p $GOPATH/src/github.com/opencontainers cd $GOPATH/src/github.com/opencontainers git clone https://github.com/opencontainers/runc cd runc make sudo make install  Run busybox:
@@ -111,94 +111,94 @@ $ docker pull busybox $ mkdir rootfs $ docker export $(docker create busybox) | 
     
     <item>
       <title>Container runtime in Docker v1.11</title>
-      <link>https://feisky.xyz/post/2016-04-28-docker-1-11-runtime/</link>
+      <link>https://feisky.xyz/posts/2016-04-28-docker-1-11-runtime/</link>
       <pubDate>Thu, 28 Apr 2016 10:07:23 +0000</pubDate>
       
-      <guid>https://feisky.xyz/post/2016-04-28-docker-1-11-runtime/</guid>
+      <guid>https://feisky.xyz/posts/2016-04-28-docker-1-11-runtime/</guid>
       <description>Docker v1.11正式集成了runc（终于支持OCI了），并将原来的一个二进制文件拆分为多个，同时还保持docker CLI和API不变： docker docker-containerd docker-containerd-shim docker-runc docker-containerd-ctr</description>
     </item>
     
     <item>
       <title>Docker overlay network dive</title>
-      <link>https://feisky.xyz/post/2016-03-04-docker-overlay-network-dive/</link>
+      <link>https://feisky.xyz/posts/2016-03-04-docker-overlay-network-dive/</link>
       <pubDate>Fri, 04 Mar 2016 13:41:54 +0000</pubDate>
       
-      <guid>https://feisky.xyz/post/2016-03-04-docker-overlay-network-dive/</guid>
+      <guid>https://feisky.xyz/posts/2016-03-04-docker-overlay-network-dive/</guid>
       <description>DON MILLS写的Docker Multi-Host Networking: Overlays to the Rescue对Docker的overlay network做了细致的分析，值得看一看。</description>
     </item>
     
     <item>
       <title>10 things to avoid in docker containers</title>
-      <link>https://feisky.xyz/post/2016-03-01-10-things-to-avoid-in-docker-containers/</link>
+      <link>https://feisky.xyz/posts/2016-03-01-10-things-to-avoid-in-docker-containers/</link>
       <pubDate>Tue, 01 Mar 2016 16:33:16 +0000</pubDate>
       
-      <guid>https://feisky.xyz/post/2016-03-01-10-things-to-avoid-in-docker-containers/</guid>
+      <guid>https://feisky.xyz/posts/2016-03-01-10-things-to-avoid-in-docker-containers/</guid>
       <description>Redhat发布的10 things to avoid in docker containers对于构建基于Container的服务非常有意义。摘录如下： 1) Don’t store data in containers – A container can be</description>
     </item>
     
     <item>
       <title>Carina by Rackspace</title>
-      <link>https://feisky.xyz/post/2016-02-29-carina-by-rackspace/</link>
+      <link>https://feisky.xyz/posts/2016-02-29-carina-by-rackspace/</link>
       <pubDate>Mon, 29 Feb 2016 19:20:27 +0000</pubDate>
       
-      <guid>https://feisky.xyz/post/2016-02-29-carina-by-rackspace/</guid>
+      <guid>https://feisky.xyz/posts/2016-02-29-carina-by-rackspace/</guid>
       <description>What is Carina? Carina is a container runtime environment (currently in Beta) that offers performance, container-native tools, and portability without sacrificing ease of use. You can get started in minutes by using open-source software on managed infrastructure to run your containerized applications.
 Your containers run in a bare-metal environment, which avoids the &amp;ldquo;hypervisor tax&amp;rdquo; on performance. Applications in this environment launch as much as 20 percent faster and run as much as 60 percent faster.</description>
     </item>
     
     <item>
       <title>Apache的Mesos和Google的Kubernetes 有什么区别</title>
-      <link>https://feisky.xyz/post/2015-02-06-apachemesosgooglekubernetes-/</link>
+      <link>https://feisky.xyz/posts/2015-02-06-apachemesosgooglekubernetes-/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://feisky.xyz/post/2015-02-06-apachemesosgooglekubernetes-/</guid>
+      <guid>https://feisky.xyz/posts/2015-02-06-apachemesosgooglekubernetes-/</guid>
       <description>Kubernetes是一个开源项目，它把谷歌的集群管理工具引入到虚拟机和裸机场景中。它可以完美运行在现代的操作系统环境（比如CoreOS和R</description>
     </item>
     
     <item>
       <title>Deploy a Mesos Cluster Using Docker</title>
-      <link>https://feisky.xyz/post/2015-02-05-deploy-a-mesos-cluster-using-docker/</link>
+      <link>https://feisky.xyz/posts/2015-02-05-deploy-a-mesos-cluster-using-docker/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://feisky.xyz/post/2015-02-05-deploy-a-mesos-cluster-using-docker/</guid>
+      <guid>https://feisky.xyz/posts/2015-02-05-deploy-a-mesos-cluster-using-docker/</guid>
       <description>his tutorial will show you how to bring up a single node Mesos cluster all provisioned out using Docker containers (a future post will show how to easily scale this out to multi nodes or see the update on the bottom). This means that you can startup an entire cluster with 7 commands! Nothing to install except for starting out with a working Docker server.
 This will startup 4 containers:</description>
     </item>
     
     <item>
       <title>Docker</title>
-      <link>https://feisky.xyz/post/2015-01-27-docker/</link>
+      <link>https://feisky.xyz/posts/2015-01-27-docker/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://feisky.xyz/post/2015-01-27-docker/</guid>
+      <guid>https://feisky.xyz/posts/2015-01-27-docker/</guid>
       <description>简介 Docker 是 dotCloud 最近几个月刚宣布的开源引擎，旨在提供一种应用程序的自动化部署解决方案，简单的说就是，在 Linux 系统上迅速创建一个容器（类似虚拟机）并在容</description>
     </item>
     
     <item>
       <title>Docker acquires SDN startup SocketPlane</title>
-      <link>https://feisky.xyz/post/2015-03-05-docker-acquires-sdn-startup-socketplane/</link>
+      <link>https://feisky.xyz/posts/2015-03-05-docker-acquires-sdn-startup-socketplane/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://feisky.xyz/post/2015-03-05-docker-acquires-sdn-startup-socketplane/</guid>
+      <guid>https://feisky.xyz/posts/2015-03-05-docker-acquires-sdn-startup-socketplane/</guid>
       <description>At Socketplane we started out as four guys with a collectively strong belief in open source and open communities. &amp;nbsp;We aligned around a shared vision that we wanted to be a critical part of Docker’s once in a decade disruption. Now that we are part of the Docker team, we couldn’t be happier.
 We never looked to hedge our bets, our success was and obviously still is tied to the success of Docker.</description>
     </item>
     
     <item>
       <title>Docker 笔记</title>
-      <link>https://feisky.xyz/post/2015-02-13-docker-intro/</link>
+      <link>https://feisky.xyz/posts/2015-02-13-docker-intro/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://feisky.xyz/post/2015-02-13-docker-intro/</guid>
+      <guid>https://feisky.xyz/posts/2015-02-13-docker-intro/</guid>
       <description>一、Docker 简介 Docker 两个主要部件： Docker: 开源的容器虚拟化平台 Docker Hub: 用于分享、管理 Docker 容器的 Docker SaaS 平台 &amp;ndash; Docker Hub Docker 使用客户端-服务器 (C/S) 架构模式。Docke</description>
     </item>
     
     <item>
       <title>How to use docker compose to deploy a flask app</title>
-      <link>https://feisky.xyz/post/2015-02-12-how-to-use-docker-compose-to-deploy-a-flask-app/</link>
+      <link>https://feisky.xyz/posts/2015-02-12-how-to-use-docker-compose-to-deploy-a-flask-app/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://feisky.xyz/post/2015-02-12-how-to-use-docker-compose-to-deploy-a-flask-app/</guid>
+      <guid>https://feisky.xyz/posts/2015-02-12-how-to-use-docker-compose-to-deploy-a-flask-app/</guid>
       <description>The flask app is very simple, you have an index page where your can write and read comments.
 To start So what we need ?
 In my case a Digital Ocean droplet (I&amp;rsquo;m using Fedora 21).
@@ -209,10 +209,10 @@ $ yum -y install git docker python-pip $ pip install docker-compose==1.</descrip
     
     <item>
       <title>Installing nova docker on OpenStack Juno</title>
-      <link>https://feisky.xyz/post/2015-02-13-installing-nova-docker-on-openstack-juno/</link>
+      <link>https://feisky.xyz/posts/2015-02-13-installing-nova-docker-on-openstack-juno/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://feisky.xyz/post/2015-02-13-installing-nova-docker-on-openstack-juno/</guid>
+      <guid>https://feisky.xyz/posts/2015-02-13-installing-nova-docker-on-openstack-juno/</guid>
       <description>This post comes about indirectly by a request on IRC in #rdo for help getting nova-docker installed on Fedora 21. I ran through the process from start to finish and decided to write everything down for posterity.
 Getting started I started with the Fedora 21 Cloud Image, because I&amp;rsquo;m installing onto OpenStack and the cloud images include some features that are useful in this environment.
 We&amp;rsquo;ll be using OpenStack packages from the RDO Juno repository.</description>
@@ -220,20 +220,20 @@ We&amp;rsquo;ll be using OpenStack packages from the RDO Juno repository.</descr
     
     <item>
       <title>Integrating Openstack and Kubernetes with Murano</title>
-      <link>https://feisky.xyz/post/2015-02-26-integrating-openstack-and-kubernetes-with-murano/</link>
+      <link>https://feisky.xyz/posts/2015-02-26-integrating-openstack-and-kubernetes-with-murano/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://feisky.xyz/post/2015-02-26-integrating-openstack-and-kubernetes-with-murano/</guid>
+      <guid>https://feisky.xyz/posts/2015-02-26-integrating-openstack-and-kubernetes-with-murano/</guid>
       <description>There’s a perceived competition between OpenStack and containers such as Docker, but in reality, the two technologies are a powerful combination. They both solve similar problems, but on different layers of the stack, so combining the two can give users more scalability and automation than ever before.
 That containers app you wrote needs to run somewhere. This is particularly true for orchestrated container applications, such as those managed by Kubernetes.</description>
     </item>
     
     <item>
       <title>Microservice Infrastructure</title>
-      <link>https://feisky.xyz/post/2015-03-17-microservice-infrastructure/</link>
+      <link>https://feisky.xyz/posts/2015-03-17-microservice-infrastructure/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://feisky.xyz/post/2015-03-17-microservice-infrastructure/</guid>
+      <guid>https://feisky.xyz/posts/2015-03-17-microservice-infrastructure/</guid>
       <description>Microservices Infrastructure Modern platform for rapidly deploying globally distributed services provided by cisco.
 https://github.com/CiscoCloud/microservices-infrastructure
 Features  the ability to deploy applications utilizing resources across multiple datacenters (and even clouds), deploying in a decentralized control model, supporting intelligent endpoints, heavy automation, and the on-demand nature of deploying these services to support business requirements and scale.  Architectural Overview  Mesos cluster manager for efficient resource isolation and sharing across distributed services Marathon for cluster management of long running containerized services Consul for service discovery (By using Consul&amp;rsquo;s inbuilt DNS server) Docker container runtime supported by Marathon Multi-datacenter support High availablity  Single Data Center Architecture The base platform contains control nodes that manage the cluster and any number of compute nodes.</description>
@@ -241,10 +241,10 @@ Features  the ability to deploy applications utilizing resources across multiple
     
     <item>
       <title>Redhat Atomic Host</title>
-      <link>https://feisky.xyz/post/2015-03-06-redhat-atomic-host/</link>
+      <link>https://feisky.xyz/posts/2015-03-06-redhat-atomic-host/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://feisky.xyz/post/2015-03-06-redhat-atomic-host/</guid>
+      <guid>https://feisky.xyz/posts/2015-03-06-redhat-atomic-host/</guid>
       <description>Introduction Red Hat has announced first public beta of Red Hat Enterprise Linux 7 Atomic Host. The beta is available from Red Hat and on Amazon Web Services and Google Compute Platform.
 What can you expect from the Red Hat Enterprise Linux 7 Atomic Host Beta?
 Specifically Designed to Run Containers Red Hat Enterprise Linux 7 Atomic Host Beta provides a streamlined host platform that is optimized to run application containers.</description>
@@ -252,47 +252,47 @@ Specifically Designed to Run Containers Red Hat Enterprise Linux 7 Atomic Host B
     
     <item>
       <title>Setting up GRE for Kubernetes</title>
-      <link>https://feisky.xyz/post/2015-03-02-setting-up-gre-for-kubernetes/</link>
+      <link>https://feisky.xyz/posts/2015-03-02-setting-up-gre-for-kubernetes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://feisky.xyz/post/2015-03-02-setting-up-gre-for-kubernetes/</guid>
+      <guid>https://feisky.xyz/posts/2015-03-02-setting-up-gre-for-kubernetes/</guid>
       <description>首先修改Docker的默认网桥： #停止Docker Daemon进程 systemctl stop docker #设置默认网桥docker0为down，并删除 ip link set dev docker0 down brctl delbr docker0 #新</description>
     </item>
     
     <item>
       <title>Using cAdvisor to monitor docker</title>
-      <link>https://feisky.xyz/post/2015-03-13-usging-cadvisor-to-monitor-docker/</link>
+      <link>https://feisky.xyz/posts/2015-03-13-usging-cadvisor-to-monitor-docker/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://feisky.xyz/post/2015-03-13-usging-cadvisor-to-monitor-docker/</guid>
+      <guid>https://feisky.xyz/posts/2015-03-13-usging-cadvisor-to-monitor-docker/</guid>
       <description>cAdvisor (Container Advisor) provides container users an understanding of the resource usage and performance characteristics of their running containers. It is a running daemon that collects, aggregates, processes, and exports information about running containers. Specifically, for each container it keeps resource isolation parameters, historical resource usage, histograms of complete historical resource usage and network statistics. This data is exported by container and machine-wide.
 cAdvisor has native support for Docker containers and should support just about any other container type out of the box.</description>
     </item>
     
     <item>
       <title>docker in tencent</title>
-      <link>https://feisky.xyz/post/2015-03-20-docker-in-tencent/</link>
+      <link>https://feisky.xyz/posts/2015-03-20-docker-in-tencent/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://feisky.xyz/post/2015-03-20-docker-in-tencent/</guid>
+      <guid>https://feisky.xyz/posts/2015-03-20-docker-in-tencent/</guid>
       <description>腾讯内部对Docker有着广泛的使用，其基于Yarn的代号为Gaia的调度平台可以同时兼容Docker和非Docker类型的应用，并提供高并</description>
     </item>
     
     <item>
       <title>docker internal</title>
-      <link>https://feisky.xyz/post/2015-01-27-docker-internal/</link>
+      <link>https://feisky.xyz/posts/2015-01-27-docker-internal/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://feisky.xyz/post/2015-01-27-docker-internal/</guid>
+      <guid>https://feisky.xyz/posts/2015-01-27-docker-internal/</guid>
       <description>docker-baseAbstract 本文在现有文档的基础上总结了以下几点内容 docker的介绍，包括由来、适用场景等 docker背后的一系列技术 - namespace, cgroup, lxc, aufs等 docker</description>
     </item>
     
     <item>
       <title>使用Mesos来管理Docker集群</title>
-      <link>https://feisky.xyz/post/2015-02-06-mesosdocker/</link>
+      <link>https://feisky.xyz/posts/2015-02-06-mesosdocker/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://feisky.xyz/post/2015-02-06-mesosdocker/</guid>
+      <guid>https://feisky.xyz/posts/2015-02-06-mesosdocker/</guid>
       <description>Introduction Apache Mesos能够在同样的集群机器上运行多种分布式系统类型，更加动态有效率低共享资源。提供失败侦测，任务发布，任务跟踪，任务监控，低层次资源</description>
     </item>
     
