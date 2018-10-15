@@ -507,12 +507,6 @@
   </url>
   
   <url>
-    <loc>https://feisky.xyz/posts/2015-02-13-docker-intro/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://feisky.xyz/tags/dpdk/</loc>
     <lastmod>2016-04-24T19:43:07+00:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -535,12 +529,6 @@
   
   <url>
     <loc>https://feisky.xyz/posts/2015-02-26-going-native-with-openstack-centric-applications-murano/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/posts/2015-02-26-going-native-with-openstack-centric-applications-overview/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -660,12 +648,6 @@
   
   <url>
     <loc>https://feisky.xyz/posts/2015-06-04-mininet-links/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/posts/2015-01-27-neutron-layer-3-high-availability/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -894,12 +876,6 @@
   
   <url>
     <loc>https://feisky.xyz/posts/2015-02-06-mesosdocker/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/posts/2015-02-11-good-books/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>

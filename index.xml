@@ -636,30 +636,12 @@ We never looked to hedge our bets, our success was and obviously still is tied t
     </item>
     
     <item>
-      <title>Docker 笔记</title>
-      <link>https://feisky.xyz/posts/2015-02-13-docker-intro/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://feisky.xyz/posts/2015-02-13-docker-intro/</guid>
-      <description>一、Docker 简介 Docker 两个主要部件： Docker: 开源的容器虚拟化平台 Docker Hub: 用于分享、管理 Docker 容器的 Docker SaaS 平台 &amp;ndash; Docker Hub Docker 使用客户端-服务器 (C/S) 架构模式。Docke</description>
-    </item>
-    
-    <item>
       <title>Going Native with OpenStack Centric Applications: Murano</title>
       <link>https://feisky.xyz/posts/2015-02-26-going-native-with-openstack-centric-applications-murano/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://feisky.xyz/posts/2015-02-26-going-native-with-openstack-centric-applications-murano/</guid>
       <description>Following on our previous discussion surveying the projects supporting applications within OpenStack, let’s continue our review with an in-depth look at the OpenStack-native Application Catalog: Murano, currently an incubation status project, having seen its functionality and core services integration advanced over the past few OpenStack releases. What is it? An application catalog developed by Mirantis, HP and others (now including Cisco), that allows application developers and</description>
-    </item>
-    
-    <item>
-      <title>Going Native with OpenStack Centric Applications: Overview</title>
-      <link>https://feisky.xyz/posts/2015-02-26-going-native-with-openstack-centric-applications-overview/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://feisky.xyz/posts/2015-02-26-going-native-with-openstack-centric-applications-overview/</guid>
-      <description>Cloud infrastructure is useless without applications running atop, providing business services and&amp;nbsp;solving customer needs. So, as applications ascend to the throne as the rightful king of cloud, focus sharpens on their support within OpenStack-based clouds.&amp;nbsp;With this focus, let’s walk through a survey of components and projects supporting applications in OpenStack, understanding what a&amp;nbsp;day in the life of an application in OpenStack is like. We’ll start with an overview of the application ecosystem comprised of a number of supporting projects.</description>
     </item>
     
     <item>
@@ -796,16 +778,6 @@ OpenFlow Tutorial: https://github.com/mininet/openflow-tutorial/wiki
 Mininet walkthrough: http://mininet.org/walkthrough/
 RYU SDN Framework: http://osrg.github.io/ryu-book/en/html/
 A good ryu blog: http://linton.tw/</description>
-    </item>
-    
-    <item>
-      <title>Neutron Layer 3 High Availability</title>
-      <link>https://feisky.xyz/posts/2015-01-27-neutron-layer-3-high-availability/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://feisky.xyz/posts/2015-01-27-neutron-layer-3-high-availability/</guid>
-      <description>L3 Agent Low Availability
-Today, you can utilize multiple network nodes to achieve load sharing, but not high availability or redundancy. Assuming three network nodes, creation of new routers will be scheduled and distributed amongst those three nodes. However, if a node&amp;nbsp;drops, all routers on that node will cease to exist as well as any traffic normally forwarded by those routers. Neutron, in the Icehouse release, doesn’t support any built-in solution.</description>
     </item>
     
     <item>
@@ -1058,15 +1030,6 @@ Sysdig instruments your physical and virtual machines at the OS level by install
       
       <guid>https://feisky.xyz/posts/2015-02-06-mesosdocker/</guid>
       <description>Introduction Apache Mesos能够在同样的集群机器上运行多种分布式系统类型，更加动态有效率低共享资源。提供失败侦测，任务发布，任务跟踪，任务监控，低层次资源</description>
-    </item>
-    
-    <item>
-      <title>好书推荐</title>
-      <link>https://feisky.xyz/posts/2015-02-11-good-books/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://feisky.xyz/posts/2015-02-11-good-books/</guid>
-      <description>推荐最多的书籍 技术书籍 黑客与画家:来自计算机时代的高见 数学之美 多处理器编程的艺术(修订版) 高性能MySQL(第3版) Go Web编程 MacTal</description>
     </item>
     
   </channel>

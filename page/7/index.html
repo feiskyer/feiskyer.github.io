@@ -245,22 +245,6 @@ We never looked to hedge our bets, our success was and obviously still is tied t
      
       <div class="post-list__item">
         <span class="item__title--big">
-          <a href="/posts/2015-02-13-docker-intro/">Docker 笔记</a>
-          
-        </span>
-        <span class="item__date">
-          Jan 01, 0001
-        </span>
-        
-        docker 学习笔记
-        
-        
-          ... <a class="read-more-symbol" href="/posts/2015-02-13-docker-intro/">➦</a>
-        
-        </div>
-     
-      <div class="post-list__item">
-        <span class="item__title--big">
           <a href="/posts/2015-02-26-going-native-with-openstack-centric-applications-murano/">Going Native with OpenStack Centric Applications: Murano</a>
           
         </span>
@@ -272,22 +256,6 @@ We never looked to hedge our bets, our success was and obviously still is tied t
         
         
           ... <a class="read-more-symbol" href="/posts/2015-02-26-going-native-with-openstack-centric-applications-murano/">➦</a>
-        
-        </div>
-     
-      <div class="post-list__item">
-        <span class="item__title--big">
-          <a href="/posts/2015-02-26-going-native-with-openstack-centric-applications-overview/">Going Native with OpenStack Centric Applications: Overview</a>
-          
-        </span>
-        <span class="item__date">
-          Jan 01, 0001
-        </span>
-        
-        Cloud infrastructure is useless without applications running atop, providing business services and&nbsp;solving customer needs. So, as applications ascend to the throne as the rightful king of cloud, focus sharpens on their support within OpenStack-based clouds.&nbsp;With this focus, let’s walk through a survey of components and projects supporting applications in OpenStack, understanding what a&nbsp;day in the life of an application in OpenStack is like. We’ll start with an overview of the application ecosystem comprised of a number of supporting projects.
-        
-        
-          ... <a class="read-more-symbol" href="/posts/2015-02-26-going-native-with-openstack-centric-applications-overview/">➦</a>
         
         </div>
      
@@ -323,6 +291,44 @@ Generate static files $ hexo generate  More info: Generating
         
         
           ... <a class="read-more-symbol" href="/posts/2015-03-02-how-enable-openstack-allinone-vm-to-access-external-network/">➦</a>
+        
+        </div>
+     
+      <div class="post-list__item">
+        <span class="item__title--big">
+          <a href="/posts/2015-03-18-how-to-disable-ubuntu-services/">How to disable ubuntu services</a>
+          
+        </span>
+        <span class="item__date">
+          Jan 01, 0001
+        </span>
+        
+        To toggle a service from starting or stopping permanently you would need to:
+echo manual | sudo tee /etc/init/SERVICE.override  where the stanza manual will stop Upstart from automatically loading the service on next boot. Any service with the .override ending will take precedence over the original service file. You will only be able to start the service manually afterwards. If you do not want this then simply delete the .
+        
+        
+          ... <a class="read-more-symbol" href="/posts/2015-03-18-how-to-disable-ubuntu-services/">➦</a>
+        
+        </div>
+     
+      <div class="post-list__item">
+        <span class="item__title--big">
+          <a href="/posts/2015-02-12-how-to-use-docker-compose-to-deploy-a-flask-app/">How to use docker compose to deploy a flask app</a>
+          
+        </span>
+        <span class="item__date">
+          Jan 01, 0001
+        </span>
+        
+        The flask app is very simple, you have an index page where your can write and read comments.
+To start So what we need ?
+In my case a Digital Ocean droplet (I&rsquo;m using Fedora 21).
+So, first of all we connect to our vm with ssh.
+$ ssh root@yourvmip  Now that we are inside we need to install git, Docker and docker-compose.
+$ yum -y install git docker python-pip $ pip install docker-compose==1.
+        
+        
+          ... <a class="read-more-symbol" href="/posts/2015-02-12-how-to-use-docker-compose-to-deploy-a-flask-app/">➦</a>
         
         </div>
      

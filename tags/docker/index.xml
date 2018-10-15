@@ -185,15 +185,6 @@ We never looked to hedge our bets, our success was and obviously still is tied t
     </item>
     
     <item>
-      <title>Docker 笔记</title>
-      <link>https://feisky.xyz/posts/2015-02-13-docker-intro/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://feisky.xyz/posts/2015-02-13-docker-intro/</guid>
-      <description>一、Docker 简介 Docker 两个主要部件： Docker: 开源的容器虚拟化平台 Docker Hub: 用于分享、管理 Docker 容器的 Docker SaaS 平台 &amp;ndash; Docker Hub Docker 使用客户端-服务器 (C/S) 架构模式。Docke</description>
-    </item>
-    
-    <item>
       <title>How to use docker compose to deploy a flask app</title>
       <link>https://feisky.xyz/posts/2015-02-12-how-to-use-docker-compose-to-deploy-a-flask-app/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

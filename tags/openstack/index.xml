@@ -20,15 +20,6 @@
     </item>
     
     <item>
-      <title>Going Native with OpenStack Centric Applications: Overview</title>
-      <link>https://feisky.xyz/posts/2015-02-26-going-native-with-openstack-centric-applications-overview/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://feisky.xyz/posts/2015-02-26-going-native-with-openstack-centric-applications-overview/</guid>
-      <description>Cloud infrastructure is useless without applications running atop, providing business services and&amp;nbsp;solving customer needs. So, as applications ascend to the throne as the rightful king of cloud, focus sharpens on their support within OpenStack-based clouds.&amp;nbsp;With this focus, let’s walk through a survey of components and projects supporting applications in OpenStack, understanding what a&amp;nbsp;day in the life of an application in OpenStack is like. We’ll start with an overview of the application ecosystem comprised of a number of supporting projects.</description>
-    </item>
-    
-    <item>
       <title>How enable OpenStack allinone vm to access external network</title>
       <link>https://feisky.xyz/posts/2015-03-02-how-enable-openstack-allinone-vm-to-access-external-network/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

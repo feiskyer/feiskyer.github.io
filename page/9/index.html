@@ -163,55 +163,6 @@
     
       <div class="post-list__item">
         <span class="item__title--big">
-          <a href="/posts/2015-06-04-mininet-links/">Mininet links</a>
-          
-        </span>
-        <span class="item__date">
-          Jan 01, 0001
-        </span>
-        
-        Introduction to Mininet: http://mininet.org/walkthrough/
-OpenFlow Tutorial: https://github.com/mininet/openflow-tutorial/wiki
-Mininet walkthrough: http://mininet.org/walkthrough/
-RYU SDN Framework: http://osrg.github.io/ryu-book/en/html/
-A good ryu blog: http://linton.tw/
-        
-        
-        </div>
-     
-      <div class="post-list__item">
-        <span class="item__title--big">
-          <a href="/posts/2015-01-27-neutron-layer-3-high-availability/">Neutron Layer 3 High Availability</a>
-          
-        </span>
-        <span class="item__date">
-          Jan 01, 0001
-        </span>
-        
-        L3 Agent Low Availability
-Today, you can utilize multiple network nodes to achieve load sharing, but not high availability or redundancy. Assuming three network nodes, creation of new routers will be scheduled and distributed amongst those three nodes. However, if a node&nbsp;drops, all routers on that node will cease to exist as well as any traffic normally forwarded by those routers. Neutron, in the Icehouse release, doesn’t support any built-in solution.
-        
-        
-          ... <a class="read-more-symbol" href="/posts/2015-01-27-neutron-layer-3-high-availability/">➦</a>
-        
-        </div>
-     
-      <div class="post-list__item">
-        <span class="item__title--big">
-          <a href="/posts/2015-03-04-ovs-20-call-flow/">OVS 2.0 call flow</a>
-          
-        </span>
-        <span class="item__date">
-          Jan 01, 0001
-        </span>
-        
-        Refer http://blog.csdn.net/night_elf_1020/article/details/37600791
-        
-        
-        </div>
-     
-      <div class="post-list__item">
-        <span class="item__title--big">
           <a href="/posts/2015-03-02-open-vswitch-over-dpdk-on-ubuntu/">Open vSwitch over DPDK on Ubuntu</a>
           
         </span>
@@ -320,6 +271,56 @@ Specifically Designed to Run Containers Red Hat Enterprise Linux 7 Atomic Host B
         
         
           ... <a class="read-more-symbol" href="/posts/2015-03-06-redhat-atomic-host/">➦</a>
+        
+        </div>
+     
+      <div class="post-list__item">
+        <span class="item__title--big">
+          <a href="/posts/2015-03-02-setting-up-gre-for-kubernetes/">Setting up GRE for Kubernetes</a>
+          
+        </span>
+        <span class="item__date">
+          Jan 01, 0001
+        </span>
+        
+        首先修改Docker的默认网桥： #停止Docker Daemon进程 systemctl stop docker #设置默认网桥docker0为down，并删除 ip link set dev docker0 down brctl delbr docker0 #新
+        
+        
+          ... <a class="read-more-symbol" href="/posts/2015-03-02-setting-up-gre-for-kubernetes/">➦</a>
+        
+        </div>
+     
+      <div class="post-list__item">
+        <span class="item__title--big">
+          <a href="/posts/2015-09-23-something-about-kubernetes-authentication/">Something about kubernetes authentication</a>
+          
+        </span>
+        <span class="item__date">
+          Jan 01, 0001
+        </span>
+        
+        You can enable kubernetes authentication by through this documentation. Then you happily access kube-apiserve by curl:
+# curl -k -N -X GET -H &quot;Authorization: Basic XXXXXXXXXX&quot; http://localhost:8080/api/v1/namespaces/default/pods { &quot;kind&quot;: &quot;PodList&quot;, &quot;apiVersion&quot;: &quot;v1&quot;, &quot;metadata&quot;: { &quot;selfLink&quot;: &quot;/api/v1/namespaces/default/pods&quot;, &quot;resourceVersion&quot;: &quot;74034&quot; }, &quot;items&quot;: [] }  Nothing blocks this request! What is wrong? Wait a moment and checkout kubernetes documentation, I find this:
+ The Kubernetes API is served by the Kubernetes apiserver process.
+        
+        
+          ... <a class="read-more-symbol" href="/posts/2015-09-23-something-about-kubernetes-authentication/">➦</a>
+        
+        </div>
+     
+      <div class="post-list__item">
+        <span class="item__title--big">
+          <a href="/posts/2015-06-25-stateless-floating-ips/">Stateless Floating IPs</a>
+          
+        </span>
+        <span class="item__date">
+          Jan 01, 0001
+        </span>
+        
+        Neutron里面的Floating IPs目前是基于iptables NAT来实现的，它使用ip_conntrack来跟踪所有连接（五元组），
+        
+        
+          ... <a class="read-more-symbol" href="/posts/2015-06-25-stateless-floating-ips/">➦</a>
         
         </div>
      
