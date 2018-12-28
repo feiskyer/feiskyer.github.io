@@ -1,7 +1,5 @@
-layout: "post"
+---
 title: "Upgrade CentOS kernel"
-date: "2016-03-30 22:25"
-tags: [linux]
 ---
 
 终于耐不住要升级下kernel了，目前epel提供两个版本: kernel-lt (4.4)和kernel-ml (4.5):

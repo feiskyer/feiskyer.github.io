@@ -1,7 +1,6 @@
-layout: "post"
+---
 title: "Notes about serverless"
 date: "2016-02-26 13:36"
-category: cluster
 ---
 
 “只需要关注数据和业务逻辑，无需维护服务器，也不需要关心系统的容量和扩容”， serverless将大家从server中解放了出来，只需要关注业务逻辑本身。serverless的概念跟PaaS很像，又比传统的PaaS有着更好的易用性。
