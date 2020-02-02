@@ -1,3 +1,5 @@
+[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](https://github.com/htr3n/hyde-hyde/blob/master/LICENSE.md) ![GitHub release](https://img.shields.io/github/release/htr3n/hyde-hyde.svg) ![GitHub stars](https://img.shields.io/github/stars/htr3n/hyde-hyde.svg) ![GitHub forks](https://img.shields.io/github/forks/htr3n/hyde-hyde.svg) ![GitHub issues](https://img.shields.io/github/issues/htr3n/hyde-hyde.svg) ![GitHub issues closed](https://img.shields.io/github/issues-closed/htr3n/hyde-hyde.svg)
+
 # Hyde-hyde
 
 __`Hyde-hyde`__ is a [Hugo](https://gohugo.io)'s theme inspired and derived from @spf13's [Hyde](https://github.com/spf13/hyde.git) and [Nate Finch's blog](https://npf.io). 
@@ -6,14 +8,15 @@ __`Hyde-hyde`__ is a [Hugo](https://gohugo.io)'s theme inspired and derived from
 
 Since version 2.0, __`hyde-hyde`__ has been overhauled and, therefore, might cause some disruptions.
 
-* The main styles are refactored and redeveloped using SCSS (see [_static-src/scss_](https://github.com/htr3n/hyde-hyde/blob/master/static-src/scss)),  `poole.css` and `hyde.css` are no longer needed because `hyde-hyde.scss` already incorporates relevant elements (I still keep them there for reference purpose)
+* The main styles are refactored and redeveloped using SCSS (see [_assets/scss_](https://github.com/htr3n/hyde-hyde/blob/master/assets/scss)),  `poole.css` and `hyde.css` are no longer needed because `hyde-hyde.scss` already incorporates relevant elements (I still keep them there for reference purpose)
+  * Per PR [#45 by [@jd4no](https://github.com/jd4no), `hyde-hyde` can use SCSSs directly in the templates instead of the generated CSSs. The generated CSSs and the generated resources are still kept in `hyde-hyde` in order to ensure the demo on [Hugo theme site](https://themes.gohugo.io) working.
 * The layouts have been heavily restructured and modularised further (see [_layouts_](https://github.com/htr3n/hyde-hyde/blob/master/layouts))
 * Adding '[_Portfolio_](https://github.com/htr3n/hyde-hyde/blob/master/layouts/portfolio)' page inspired by Xiaoying Riley (@3rdwave_themes) [Developer-Theme](https://github.com/xriley/developer-theme)
 * Switching to use system fonts instead of Web fonts (e.g. privacy issues)
 * Experimenting a collapsible menu in mobile mode
 * Adding _Table of Contents_
   * Configure using `.Site.Params.toc` with two possible value: "hugo" (using Hugo `{{ .TableOfContents }}`, and "tocbot" (using [Tocbot](https://tscanlin.github.io/tocbot/)), remove `.Site.Params.toc` to disable TOC
-  * Tocbot can be configured in [_layouts/partials/page-single/footer.html_](_layouts/partials/page-single/footer.html_) with options as described in [its documentation](https://tscanlin.github.io/tocbot/#api)
+  * Tocbot can be configured in [layouts/partials/page-single/footer.html](layouts/partials/page-single/footer.html) with options as described in [its documentation](https://tscanlin.github.io/tocbot/#api)
 
 For more details, please refer to [CHANGELOG](https://github.com/htr3n/hyde-hyde/blob/master/CHANGELOG.md).  A real site in action can be found [here](https://htr3n.github.io) and its [WIP source](https://github.com/htr3n/htr3n-blog) for reference.
 
@@ -66,6 +69,13 @@ __`Hyde-hyde`__ essentially inherits most of Hyde's [options](https://github.com
 
 * `GraphCommentId = "your-graphcomment-id"`: to use [GraphComment](https://graphcomment.com) instead of the built-in [Disqus](https://disqus.com). This option should be used exclusively with `disqusShortname = "disqus-shortname"`.
 
+* `UtterancesRepo = "owner/repo-name"`: to use [Utterances](https://utteranc.es/) instead of the built-in [Disqus](https://disqus.com). This option should be used exclusively with `disqusShortname = "disqus-shortname"`.
+  * `UtterancesIssueTerm = "pathname"` Method for Utterances to match issue's to posts (pathname, url, title, og:title)
+  * `UtterancesTheme = "github-light"` Theme for Utterances (github-light, github-dark)
+
+* `Commento = true`: to use [Commento](https://commento.io/) instead of the built-in [Disqus](https://disqus.com). This option should be used exclusively with `disqusShortname = "disqus-shortname"`.
+  * `CommentoHost = "your-commento-instance"` [Self-hosted Commento](https://docs.commento.io/installation/self-hosting/) instance. This is not required if you're a [Commento.io](https://commento.io) user.
+
 * `[params.social]`: in this section, you can set many social identities such as Twitter, Facebook, Github, Bitbucket, Gitlab, Instagram, LinkedIn, StackOverflow, Medium, Xing, Keybase.
 
   ```toml
@@ -75,11 +85,19 @@ __`Hyde-hyde`__ essentially inherits most of Hyde's [options](https://github.com
   	github = "htr3n"
   	...
   ```
+  
+*  `include_toc = false`: Setting to `false` in FrontMatter will disable too short TOC data as your want. 
 
+  * Per PR [#56](https://github.com/htr3n/hyde-hyde/commit/5ed13e17400bbc09a342b60fd50cd9fe3e6f1525), Gravatar pics can be used exclusively to `.Site.Params.authorimage` via the parameter `.Site.Params.social.gravatar`
+
+    * ```toml
+      [params.social]
+      	gravatar = "your.email@domain.com"
+      ```
 
 ### Customisations
 
-* Most of the customisable SCSS styles in [_static-src/scss/hyde-hyde_](https://github.com/htr3n/hyde-hyde/blob/master/static-src/scss/hyde-hyde) and Hugo templates in [_hyde-hyde/layouts_](https://github.com/htr3n/hyde-hyde/blob/master/layouts) are modularised and can be altered/adapted easily.
+* Most of the customisable SCSS styles in [_assets/scss/hyde-hyde_](https://github.com/htr3n/hyde-hyde/blob/master/assets/scss/hyde-hyde) and Hugo templates in [_hyde-hyde/layouts_](https://github.com/htr3n/hyde-hyde/blob/master/layouts) are modularised and can be altered/adapted easily.
 
 ## Portfolio
 
@@ -139,7 +157,7 @@ Here is a longer summary of the project. You can write as long as you wish.
 > * `featured: true` : when you want to show a project as featured project. It is default to `false`. Note that only one project should be marked `featured: true` , otherwise, the result could be random as [the Hugo template](https://github.com/htr3n/hyde-hyde/blob/master/layouts/partials/portfolio/content.html) will take the first one.
 > * The body of the Markdown file will be the summary of the project.
 
-If you want to adjust the portfolio page to your needs, please have a look at the [main template](https://github.com/htr3n/hyde-hyde/blob/master/layouts/portfolio/list.html), that uses this [partial template](https://github.com/htr3n/hyde-hyde/blob/master/layouts/partials/portfolio/content.html) and [this SCSS style](https://github.com/htr3n/hyde-hyde/blob/master/static-src/scss/hyde-hyde/_project.scss).
+If you want to adjust the portfolio page to your needs, please have a look at the [main template](https://github.com/htr3n/hyde-hyde/blob/master/layouts/portfolio/list.html), that uses this [partial template](https://github.com/htr3n/hyde-hyde/blob/master/layouts/partials/portfolio/content.html) and [this SCSS style](https://github.com/htr3n/hyde-hyde/blob/master/assets/scss/hyde-hyde/_project.scss).
 
 ## Some Screenshots
 

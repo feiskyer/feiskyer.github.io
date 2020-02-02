@@ -1,6 +1,13 @@
+{{ with .Site.Params.copyright }}
 <div class="copyright">
-  {{ with .Site.Params.copyright }}{{.|safeHTML}}{{ else }}&copy; {{ now.Format "2006"}} {{.Site.Params.author}}.
-  <a href="https://creativecommons.org/licenses/by-sa/4.0">Some Rights Reserved</a>.
-  Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+  &copy; {{ now.Format "2006"}} {{ . | safeHTML }}
+  {{ with $.Site.Params.license }}
+    <a href="{{$.Site.Params.licenseURL | safeHTML}}">{{ . | safeHTML }}</a>
   {{end}}
 </div>
+{{ end }}
+{{ with .Site.Params.showBuiltWith }}
+<div class="builtwith">
+Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+</div>
+{{ end }}

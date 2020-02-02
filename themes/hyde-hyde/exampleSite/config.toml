@@ -21,11 +21,23 @@ theme = "hyde-hyde"
     # description = "..."
     authorimage = "/img/hugo.png"
     dateformat = "Jan 2, 2006"
+
+    # sidebar, copyright & license
+    copyright = "htr3n"
+    license = "CC BY-SA 4.0"
+    licenseURL = "https://creativecommons.org/licenses/by-sa/4.0"
+    showBuiltWith = true
+
+    # https://highlightjs.org
     highlightjs = true
     highlightjsstyle = "github"
-    # please choose either GraphComment or Disqus
-    #GraphCommentId = "..."
     
+    # please choose either GraphComment or Disqus or Utterances
+    #GraphCommentId = "..."
+    #UtterancesRepo = "..." # https://utteranc.es/
+    #UtterancesIssueTerm = "..." # pathname, url, title, og:title
+    #UtterancesTheme = "..." # github-light or github-dark
+
     # Table of contents
     #toc = none, "hugo", or "tocbot"
 
@@ -40,6 +52,7 @@ theme = "hyde-hyde"
     stackoverflow = "<username>"
     telegram = "<username>"
     email = "your-email@example.com"
+    # gravatar = "your-email@example.com"
 
 ## Main Menu
 [[menu.main]]

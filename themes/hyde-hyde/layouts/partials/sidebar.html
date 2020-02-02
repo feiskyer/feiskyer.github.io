@@ -5,12 +5,19 @@
       <span class="site__title">
         <a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
       </span>
-      {{ with .Site.Params.authorimage }}
-      {{ $strippedSlash := ($.Site.Params.authorimage | replaceRE "^(/)+(.*)" "$2") }}
-      {{ $authorImage := (printf "%s/%s" $.Site.BaseURL $strippedSlash) }}
-      <div class="author-image">
-        <img src="{{$authorImage}}" alt="Author Image" class="img--circle img--headshot element--center">
-      </div>
+      {{ if and (isset .Site.Params "authorimage") (not (isset .Site.Params.social "gravatar")) }}
+        {{ with .Site.Params.authorimage }}
+        {{ $strippedSlash := ($.Site.Params.authorimage | replaceRE "^(/)+(.*)" "$2") }}
+        {{ $authorImage := (printf "%s%s" $.Site.BaseURL $strippedSlash) }}
+        <div class="author-image">
+          <img src="{{$authorImage}}" alt="Author Image" class="img--circle img--headshot element--center">
+        </div>
+        {{ end }}
+      {{ end }}
+      {{ with .Site.Params.social.gravatar}}
+        <div class="author-image">
+          <img src="https://www.gravatar.com/avatar/{{md5 .}}?s=240&d=mp" class="img--circle img--headshot element--center" alt="gravatar">
+        </div>
       {{ end }}
       <p class="site__description">
         {{ with .Site.Params.description }} {{.}} {{end}}

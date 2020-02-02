@@ -7,7 +7,8 @@ html {
 	box-direction: normal;
 	font-family: $root-font-family;
 	font-size: $small-device-font-size;
-  line-height: $root-line-height;
+	line-height: $root-line-height;
+	font-weight: $root-font-weight;
 }
 
 html, body {
@@ -46,19 +47,18 @@ h5 {
 }
 
 figure {
-	width: 100%;
+	max-width: 100%;
 	margin: 0;
 	padding: 0;
 }
 
 %quotebox {
 	padding: .8889rem;
-	margin-top: 1.4em;
+	margin-top: 1rem;
 	margin-left: 0px;
 	margin-right: 0px;
-	border-radius: 6px;
-	border-left-width: 6px;
-	border-left-style: solid;
+	//border-radius: 6px;
+	border-left: 6px solid;
 	border-right: 6px solid transparent;
 	border-right-width: 6px;
 	border-right-style: solid;

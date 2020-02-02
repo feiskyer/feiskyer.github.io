@@ -11,8 +11,12 @@
 	{{ with .Site.Params.social.bitbucket }}
 	<a href="https://bitbucket.org/{{.}}" rel="me"><i class="fab fa-bitbucket fa-lg" aria-hidden="true"></i></a>
 	{{ end }}
+	{{ $gitlab_domain := "gitlab.com" }}
+	{{ with .Site.Params.social.custom_gitlab_domain }}
+		{{ $gitlab_domain = . }}
+	{{ end }}
 	{{ with .Site.Params.social.gitlab }}
-	<a href="https://gitlab.com/{{.}}" rel="me"><i class="fab fa-gitlab fa-lg" aria-hidden="true"></i></a>
+	<a href="https://{{ $gitlab_domain }}/{{.}}" rel="me"><i class="fab fa-gitlab fa-lg" aria-hidden="true"></i></a>
 	{{ end }}
 	{{ with .Site.Params.social.instagram }}
 	<a href="https://instagram.com/{{.}}" rel="me"><i class="fab fa-instagram fa-lg" aria-hidden="true"></i></a>

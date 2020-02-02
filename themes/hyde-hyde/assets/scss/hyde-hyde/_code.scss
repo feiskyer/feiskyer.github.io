@@ -15,14 +15,13 @@ pre {
 %code-font {
 	font-family: $code-font-family;
 	font-size: $code-font-size;
-	//line-height: $code-line-height;
 }
 
 %code-in-rounded-box {
 	border-radius: 4px;
 	padding: 2px 4px;
-	color: $code-color;
-	background-color: $code-background-color;
+	color: #bf616a;
+	background-color: #f9f2f4;
 }
 
 %code-style-codersblock {
@@ -32,17 +31,16 @@ pre {
 }
 
 %code-style-npf {
-	padding: .25em .5em;
-	color: #bf616a;
-	background-color: #f9f9f9;
+	padding: .1em .1em;
+	color: #ab5979;
 	border-radius: 3px;
 }
 
-//-code {
-//	white-space: pre-wrap;
-//	@extend %code-font;
-//	@extend %code-in-rounded-box;
-//}
+a {
+	code {
+		color: $link-color;
+	}
+}
 
 code {
 	@extend %code-font;
@@ -51,8 +49,9 @@ code {
 
 // highlight.js
 .hljs {
+	font-family: $code-font-family;
 	font-size: $code-fence-font-size;
-	font-weight: 300;
+	line-height: $root-line-height;
 	white-space: pre;
 	border: 1px solid $gray-3;
 	border-radius: 4px;

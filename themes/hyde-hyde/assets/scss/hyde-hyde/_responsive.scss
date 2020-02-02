@@ -10,14 +10,18 @@
     li {
       padding: .1rem 0;
     }
+    .container {
+      padding-left: 0;
+      padding-right: 0;
+    }
   }
   .hidden-tablet {
     display: none;
   }
-  .sidebar-about, 
+  .sidebar-about,
   .copyright {
     display: none;
-  }    
+  }
   .sidebar {
     margin: 0;
     padding: 0;
@@ -28,11 +32,11 @@
     overflow: hidden;
     margin-top: 0; }
   .collapsible-menu {
-    padding: 0px 0px; 
+    padding: 0px 0px;
   }
   .collapsible-menu ul {
     list-style-type: none;
-    padding: 0; 
+    padding: 0;
   }
   .collapsible-menu li {
     display: block;
@@ -42,23 +46,25 @@
     cursor: pointer; }
   .collapsible-menu label {
     background: url(/img/menu-open.svg) no-repeat left center;
+    background-position: 1.5rem;
     display: block;
     cursor: pointer;
     color: #fff;
     padding: 10px 0 10px 0px; }
-  
+
   input#menuToggle {
-    display: none; 
+    display: none;
   }
   input#menuToggle + label {
     font-weight: bold;
   }
 
   input#menuToggle:checked + label {
-    background-image: url(/img/menu-close.svg); 
+    background-image: url(/img/menu-close.svg);
+    background-position: 1.5rem;
     color: #fff;
   }
-  
+
   input#menuToggle:checked ~ .menu-content {
     max-height: 100% !important;
   }
@@ -80,7 +86,7 @@
     position: fixed;
     text-align: left;
     top: 0;
-    width: 18rem;
+    width: $sidebar-width;
   }
   .sidebar-sticky {
     left: 1rem;
@@ -89,9 +95,9 @@
     top: 1rem;
   }
   .content {
-    margin-left: 20rem;
-    margin-right: 2rem;
-    max-width: 38rem;
+    margin-left: $content-margin-left;
+    margin-right: $content-margin-right;
+    max-width: $content-max-width;
   }
   .layout-reverse {
     .sidebar {
@@ -99,8 +105,8 @@
       right: 0;
     }
     .content {
-      margin-left: 2rem;
-      margin-right: 20rem;
+      margin-left: $content-margin-right;
+      margin-right: $content-margin-left;
     }
   }
   .col-sm-8 {
@@ -125,18 +131,12 @@
   }
 }
 
-// Large devices (laptops/desktops, 992px and up) 
+// Large devices (laptops/desktops, 992px and up)
 // ~ 62rem/16px ~ 58.3529rem/17px ~ 55.1111rem/18px
 @media (min-width: 992px) {
   html,
   body {
     font-size: $large-device-font-size;
-  }
-  .content {
-    margin-left: 20rem;
-    margin-right: 2rem;
-    // max-width: 46.056rem;
-    max-width: 38rem; // @ ~70 CPL
   }
   .layout-reverse .content {
     margin-left: 4rem;
@@ -151,7 +151,7 @@
     width: 66.66666667%;
   }
   .portfolio-container {
-    width: 1360px;
+    width: 68rem;
   }
 }
 

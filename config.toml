@@ -1,6 +1,6 @@
+title = "Feisky"
 baseURL = "https://feisky.xyz/"
 languageCode = "zh-cn"
-title = "Feisky"
 theme = "hyde-hyde"
 publishDir = "docs"
 disqusShortname = "feisky"
@@ -12,11 +12,17 @@ buildDrafts = true
 enableRobotsTXT = true
 
 [params]
+  author = "Pengfei Ni"
   themeColor = "theme-base-0d"
   description = "Notes about anything"
-  paginate = 10
-  toc = "hugo"
+  copyright = "feiskyer"
+  license = "CC BY-SA 4.0"
+  licenseURL = "https://creativecommons.org/licenses/by-sa/4.0"
+  showBuiltWith = true
   highlightjs = true
+  highlightjsstyle = "github"
+  paginate = 5
+  toc = "tocbot"
   postNavigation = true
   relatedPosts = true
   disqusShortname = "feisky"
@@ -33,20 +39,25 @@ enableRobotsTXT = true
 
 [[menu.main]]
     name = "机器学习"
-    weight = -4
+    weight = 30
     url = "/machine-learning/"
 
 [[menu.main]]
-    name = "SDN"
+    name = "SDN网络"
     weight = -1
     url = "https://sdn.feisky.xyz"
 
 [[menu.main]]
-    name = "Kubernetes"
+    name = "Kubernetes指南"
     weight = -100
     url = "https://kubernetes.feisky.xyz"
 
 [[menu.main]]
-    name = "About"
+    name = "Linux性能优化实战"
+    weight = -90
+    url = "https://time.geekbang.org/column/intro/100020901"
+
+[[menu.main]]
+    name = "关于我"
     weight = 100
     url = "/about/"
