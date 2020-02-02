@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Go on Feisky</title>
+    <title>go on Feisky</title>
     <link>https://feisky.xyz/tags/go/</link>
-    <description>Recent content in Go on Feisky</description>
+    <description>Recent content in go on Feisky</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Thu, 05 Jan 2017 17:11:09 +0000</lastBuildDate>
@@ -26,7 +26,7 @@
       <pubDate>Fri, 06 May 2016 20:40:06 +0000</pubDate>
       
       <guid>https://feisky.xyz/posts/2016-05-06-go-performance-optimize/</guid>
-      <description>**Go性能优化技巧(By 雨痕) 字符串（string）作为一种不可变类型，在与字节数组（slice, [ ]byte）转换时需付出 “沉重” 代价，</description>
+      <description>**Go性能优化技巧(By 雨痕) 字符串（string）作为一种不可变类型，在与字节数组（slice, byte）转换时需付出 “沉重” 代价，根本</description>
     </item>
     
     <item>
@@ -35,7 +35,7 @@
       <pubDate>Sun, 24 Apr 2016 08:29:02 +0000</pubDate>
       
       <guid>https://feisky.xyz/posts/2016-04-24-tips-for-cgo/</guid>
-      <description>cgo的一些tips 基本类型 The standard C numeric types are available under the names C.char, C.schar (signed char), C.uchar (unsigned char), C.short, C.ushort (unsigned short), C.int, C.uint (unsigned int), C.long, C.ulong (unsigned long), C.longlong (long long), C.ulonglong (unsigned long long), C.float, C.double, C.complexfloat (complex float), and C.complexdouble (complex double). The C type void* is represented by Go&amp;rsquo;s unsafe.Pointer. The C</description>
+      <description>cgo的一些tips 基本类型 The standard C numeric types are available under the names C.char, C.schar (signed char), C.uchar (unsigned char), C.short, C.ushort (unsigned short), C.int, C.uint (unsigned int), C.long, C.ulong (unsigned long), C.longlong (long long), C.ulonglong (unsigned long long), C.float, C.double, C.complexfloat (complex float), and C.complexdouble (complex double). The C type void* is represented by Go&#39;s unsafe.Pointer. The C</description>
     </item>
     
     <item>
@@ -44,7 +44,7 @@
       <pubDate>Tue, 19 Apr 2016 22:04:48 +0000</pubDate>
       
       <guid>https://feisky.xyz/posts/2016-04-19-cgo-in-go-1-6/</guid>
-      <description>The major change is the definition of rules for sharing Go pointers with C code, to ensure that such C code can coexist with Go&amp;rsquo;s garbage collector. Briefly, Go and C may share memory allocated by Go when a pointer to that memory is passed to C as part of a cgo call, provided that the memory itself contains no pointers to Go-allocated memory, and provided that C does not retain the pointer after the call returns.</description>
+      <description>The major change is the definition of rules for sharing Go pointers with C code, to ensure that such C code can coexist with Go&#39;s garbage collector. Briefly, Go and C may share memory allocated by Go when a pointer to that memory is passed to C as part of a cgo call, provided that the memory itself contains no pointers to Go-allocated memory, and provided that C does not retain the pointer after the call returns.</description>
     </item>
     
   </channel>

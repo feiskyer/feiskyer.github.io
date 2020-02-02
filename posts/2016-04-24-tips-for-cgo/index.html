@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.49.2" />
+<meta name="generator" content="Hugo 0.62.2" />
 
     
     
@@ -22,19 +22,20 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Tips for cgo"/>
-<meta name="twitter:description" content="cgo的一些tips 基本类型 The standard C numeric types are available under the names C.char, C.schar (signed char), C.uchar (unsigned char), C.short, C.ushort (unsigned short), C.int, C.uint (unsigned int), C.long, C.ulong (unsigned long), C.longlong (long long), C.ulonglong (unsigned long long), C.float, C.double, C.complexfloat (complex float), and C.complexdouble (complex double). The C type void* is represented by Go&rsquo;s unsafe.Pointer. The C"/>
+<meta name="twitter:description" content="cgo的一些tips 基本类型 The standard C numeric types are available under the names C.char, C.schar (signed char), C.uchar (unsigned char), C.short, C.ushort (unsigned short), C.int, C.uint (unsigned int), C.long, C.ulong (unsigned long), C.longlong (long long), C.ulonglong (unsigned long long), C.float, C.double, C.complexfloat (complex float), and C.complexdouble (complex double). The C type void* is represented by Go&#39;s unsafe.Pointer. The C"/>
 
 <meta property="og:title" content="Tips for cgo" />
-<meta property="og:description" content="cgo的一些tips 基本类型 The standard C numeric types are available under the names C.char, C.schar (signed char), C.uchar (unsigned char), C.short, C.ushort (unsigned short), C.int, C.uint (unsigned int), C.long, C.ulong (unsigned long), C.longlong (long long), C.ulonglong (unsigned long long), C.float, C.double, C.complexfloat (complex float), and C.complexdouble (complex double). The C type void* is represented by Go&rsquo;s unsafe.Pointer. The C" />
+<meta property="og:description" content="cgo的一些tips 基本类型 The standard C numeric types are available under the names C.char, C.schar (signed char), C.uchar (unsigned char), C.short, C.ushort (unsigned short), C.int, C.uint (unsigned int), C.long, C.ulong (unsigned long), C.longlong (long long), C.ulonglong (unsigned long long), C.float, C.double, C.complexfloat (complex float), and C.complexdouble (complex double). The C type void* is represented by Go&#39;s unsafe.Pointer. The C" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://feisky.xyz/posts/2016-04-24-tips-for-cgo/" /><meta property="article:published_time" content="2016-04-24T08:29:02&#43;00:00"/>
-<meta property="article:modified_time" content="2016-04-24T08:29:02&#43;00:00"/>
+<meta property="og:url" content="https://feisky.xyz/posts/2016-04-24-tips-for-cgo/" />
+<meta property="article:published_time" content="2016-04-24T08:29:02+00:00" />
+<meta property="article:modified_time" content="2016-04-24T08:29:02+00:00" />
 
 
     
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
 
 
 
@@ -43,15 +44,15 @@
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hyde-hyde.6f40d28e777b288cb757a1db116a257b6f8dffc63a05e8473d12dc09a52d8d79.css" integrity="sha256-b0DSjnd7KIy3V6HbEWole2&#43;N/8Y6BehHPRLcCaUtjXk=">
+<link rel="stylesheet" href="/scss/hyde-hyde.92c66d107d7b219f0792cfd67223179af884b03f386ac46894f9f735932bbca3.css" integrity="sha256-ksZtEH17IZ8Hks/WciMXmviEsD84asRolPn3NZMrvKM=">
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
 
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hugo-toc.8549a64d301421b4256ea9a0d5ca8b99178799f569d5d2daeb95f24cef3ce6b7.css" integrity="sha256-hUmmTTAUIbQlbqmg1cqLmReHmfVp1dLa65XyTO885rc=">
+<link rel="stylesheet" href="/scss/tocbot.126e7d75240acc946d34d6ccb2982ed4c394a5fe34e73e1a2119ca951bcf119d.css" integrity="sha256-Em59dSQKzJRtNNbMspgu1MOUpf405z4aIRnKlRvPEZ0=">
 
 
 
@@ -63,6 +64,7 @@
     <!-- Icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
     <link rel="shortcut icon" href="/favicon.png">
+    
     
 
 </head>
@@ -76,6 +78,7 @@
       <span class="site__title">
         <a href="https://feisky.xyz/">Feisky</a>
       </span>
+      
       
       <p class="site__description">
          Notes about anything 
@@ -92,7 +95,23 @@
 			 
 				<li>
 					<a href="https://kubernetes.feisky.xyz">
-						<span>Kubernetes</span>
+						<span>Kubernetes指南</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://time.geekbang.org/column/intro/100020901">
+						<span>Linux性能优化实战</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://sdn.feisky.xyz">
+						<span>SDN网络</span>
 					</a>
 				</li>
 			 
@@ -107,21 +126,12 @@
 		 
 			 
 				<li>
-					<a href="https://sdn.feisky.xyz">
-						<span>SDN</span>
-					</a>
-				</li>
-			 
-		 
-			 
-				<li>
 					<a href="/about/">
-						<span>About</span>
+						<span>关于我</span>
 					</a>
 				</li>
 			 
 		
-		</li>
 	</ul>
 </div>
 
@@ -144,23 +154,33 @@
 	
 	
 	
+	
+	
 </section>
 
       </div>
     </div>
-    <div class="copyright">
-  &copy; 2019 .
-  <a href="https://creativecommons.org/licenses/by-sa/4.0">Some Rights Reserved</a>.
-  Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+    
+<div class="copyright">
+  &copy; 2020 feiskyer
+  
+    <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>
   
 </div>
+
+
+<div class="builtwith">
+Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+</div>
+
 
   </div>
 </div>
 
         <div class="content container">
             
-    <article>
+    
+<article>
   <header>
     <h1>Tips for cgo</h1>
     
@@ -192,143 +212,107 @@
   </header>
   
   
-  <div class="toc-wrapper">
-    <input type="checkbox" id="tocToggle">
-    <label for="tocToggle">Table of Content</label>
-    
-        <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#基本类型">基本类型</a></li>
-<li><a href="#字符串类型转换">字符串类型转换</a></li>
-<li><a href="#数组的使用">数组的使用</a></li>
-</ul></li>
-</ul>
-</nav>
-    
-  </div>
+  
+    <div class="toc-wrapper">
+      <input type="checkbox" id="tocToggle">
+      <label for="tocToggle">Table of Content</label>
+      
+        <div class="toc" id="TableOfContents"></div>
+      
+    </div>
+  
   
   <div class="post">
-    
-
-<p>cgo的一些tips</p>
-
+    <p>cgo的一些tips</p>
 <h2 id="基本类型">基本类型</h2>
-
-<p>The standard C numeric types are available under the names C.char, C.schar (signed char), C.uchar (unsigned char), C.short, C.ushort (unsigned short), C.int, C.uint (unsigned int), C.long, C.ulong (unsigned long), C.longlong (long long), C.ulonglong (unsigned long long), C.float, C.double, C.complexfloat (complex float), and C.complexdouble (complex double). The C type void* is represented by Go&rsquo;s unsafe.Pointer. The C types <code>__int128_t</code> and <code>__uint128_t</code> are represented by [16]byte.</p>
-
-<p>To access a struct, union, or enum type directly, prefix it with struct<em>, union</em>, or enum_, as in C.struct_stat.</p>
-
+<p>The standard C numeric types are available under the names C.char, C.schar (signed char), C.uchar (unsigned char), C.short, C.ushort (unsigned short), C.int, C.uint (unsigned int), C.long, C.ulong (unsigned long), C.longlong (long long), C.ulonglong (unsigned long long), C.float, C.double, C.complexfloat (complex float), and C.complexdouble (complex double). The C type void* is represented by Go's unsafe.Pointer. The C types <code>__int128_t</code> and <code>__uint128_t</code> are represented by [16]byte.</p>
+<p>To access a struct, union, or enum type directly, prefix it with struct_, union_, or enum_, as in C.struct_stat.</p>
 <p>The size of any C type T is available as C.sizeof_T, as in C.sizeof_struct_stat.</p>
-
-<p>As Go doesn&rsquo;t have support for C&rsquo;s union type in the general case, C&rsquo;s union types are represented as a Go byte array with the same length.</p>
-
+<p>As Go doesn't have support for C's union type in the general case, C's union types are represented as a Go byte array with the same length.</p>
 <p>Go structs cannot embed fields with C types.</p>
-
 <p>Any C function (even void functions) may be called in a multiple assignment context to retrieve both the return value (if any) and the C errno variable as an error (use _ to skip the result value if the function returns void). For example:</p>
-
 <pre><code>n, err := C.sqrt(-1)
 _, err := C.voidFunc()
-</code></pre>
-
-<h2 id="字符串类型转换">字符串类型转换</h2>
-
+</code></pre><h2 id="字符串类型转换">字符串类型转换</h2>
 <p><code>C.CString</code>和<code>C.GoString</code>都会对原始数据做拷贝，不要忘记释放CString创建的内存：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// Go string to C string
+</span><span style="color:#75715e"></span><span style="color:#75715e">// The C string is allocated in the C heap using malloc.
+</span><span style="color:#75715e"></span><span style="color:#75715e">// It is the caller&#39;s responsibility to arrange for it to be
+</span><span style="color:#75715e"></span><span style="color:#75715e">// freed, such as by calling C.free (be sure to include stdlib.h
+</span><span style="color:#75715e"></span><span style="color:#75715e">// if C.free is needed).
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">C</span>.<span style="color:#a6e22e">CString</span>(<span style="color:#66d9ef">string</span>) <span style="color:#f92672">*</span><span style="color:#a6e22e">C</span>.<span style="color:#a6e22e">char</span>
 
-<pre><code class="language-go">// Go string to C string
-// The C string is allocated in the C heap using malloc.
-// It is the caller's responsibility to arrange for it to be
-// freed, such as by calling C.free (be sure to include stdlib.h
-// if C.free is needed).
-func C.CString(string) *C.char
+<span style="color:#75715e">// C string to Go string
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">C</span>.<span style="color:#a6e22e">GoString</span>(<span style="color:#f92672">*</span><span style="color:#a6e22e">C</span>.<span style="color:#a6e22e">char</span>) <span style="color:#66d9ef">string</span>
 
-// C string to Go string
-func C.GoString(*C.char) string
+<span style="color:#75715e">// C data with explicit length to Go string
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">C</span>.<span style="color:#a6e22e">GoStringN</span>(<span style="color:#f92672">*</span><span style="color:#a6e22e">C</span>.<span style="color:#a6e22e">char</span>, <span style="color:#a6e22e">C</span>.<span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">string</span>
 
-// C data with explicit length to Go string
-func C.GoStringN(*C.char, C.int) string
-
-// C data with explicit length to Go []byte
-func C.GoBytes(unsafe.Pointer, C.int) []byte
-</code></pre>
-
-<p><code>C.CString</code>使用示例：</p>
-
-<pre><code class="language-go">ch := C.CString(str)
-defer C.free(unsafe.Pointer(ch))
-....
-</code></pre>
-
-<h2 id="数组的使用">数组的使用</h2>
-
+<span style="color:#75715e">// C data with explicit length to Go []byte
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">C</span>.<span style="color:#a6e22e">GoBytes</span>(<span style="color:#a6e22e">unsafe</span>.<span style="color:#a6e22e">Pointer</span>, <span style="color:#a6e22e">C</span>.<span style="color:#66d9ef">int</span>) []<span style="color:#66d9ef">byte</span>
+</code></pre></div><p><code>C.CString</code>使用示例：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">ch</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">C</span>.<span style="color:#a6e22e">CString</span>(<span style="color:#a6e22e">str</span>)
+<span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">C</span>.<span style="color:#a6e22e">free</span>(<span style="color:#a6e22e">unsafe</span>.<span style="color:#a6e22e">Pointer</span>(<span style="color:#a6e22e">ch</span>))
+<span style="color:#f92672">...</span>.
+</code></pre></div><h2 id="数组的使用">数组的使用</h2>
 <p>Go切片转为C数组：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">/*
+</span><span style="color:#75715e">#include &lt;stdio.h&gt;
+</span><span style="color:#75715e">void foo(double *arr, int len) {
+</span><span style="color:#75715e">	for(int i=0;i&lt;len;i++) {
+</span><span style="color:#75715e">		printf(&#34;%f\n&#34;, arr[i]);
+</span><span style="color:#75715e">	}
+</span><span style="color:#75715e">}
+</span><span style="color:#75715e">*/</span>
+<span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;C&#34;</span>
 
-<pre><code class="language-go">/*
-#include &lt;stdio.h&gt;
-void foo(double *arr, int len) {
-	for(int i=0;i&lt;len;i++) {
-		printf(&quot;%f\n&quot;, arr[i]);
-	}
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">arr</span> <span style="color:#f92672">:=</span> []<span style="color:#66d9ef">float64</span>{<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>}
+	<span style="color:#a6e22e">carr</span> <span style="color:#f92672">:=</span> (<span style="color:#f92672">*</span><span style="color:#a6e22e">C</span>.<span style="color:#a6e22e">double</span>)(<span style="color:#a6e22e">unsafe</span>.<span style="color:#a6e22e">Pointer</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">arr</span>[<span style="color:#ae81ff">0</span>]))
+	<span style="color:#a6e22e">C</span>.<span style="color:#a6e22e">foo</span>(<span style="color:#a6e22e">carr</span>, <span style="color:#a6e22e">C</span>.int(len(<span style="color:#a6e22e">arr</span>)))
+
 }
-*/
-import &quot;C&quot;
+</code></pre></div><p>C数组转为Go切片</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;unsafe&#34;</span>
+<span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
 
-func main() {
-	arr := []float64{1, 2, 3, 4, 5}
-	carr := (*C.double)(unsafe.Pointer(&amp;arr[0]))
-	C.foo(carr, C.int(len(arr)))
+<span style="color:#75715e">/*
+</span><span style="color:#75715e">#include &lt;stdio.h&gt;
+</span><span style="color:#75715e">#include &lt;stdlib.h&gt;
+</span><span style="color:#75715e">double* get_array(int n) {
+</span><span style="color:#75715e">	double *arr;
+</span><span style="color:#75715e">	arr = (double*)malloc(n*sizeof(arr));
+</span><span style="color:#75715e">	for(int i=0;i&lt;n;i++)
+</span><span style="color:#75715e">	{
+</span><span style="color:#75715e">		arr[i]=i;
+</span><span style="color:#75715e">	}
+</span><span style="color:#75715e">	return arr;
+</span><span style="color:#75715e">}
+</span><span style="color:#75715e">*/</span>
+<span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;C&#34;</span>
 
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">size</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">10</span>
+	<span style="color:#a6e22e">carr</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">C</span>.<span style="color:#a6e22e">get_array</span>(<span style="color:#a6e22e">C</span>.int(<span style="color:#a6e22e">size</span>))
+	<span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">C</span>.<span style="color:#a6e22e">free</span>(<span style="color:#a6e22e">unsafe</span>.<span style="color:#a6e22e">Pointer</span>(<span style="color:#a6e22e">carr</span>))
+	<span style="color:#a6e22e">arr</span> <span style="color:#f92672">:=</span> (<span style="color:#f92672">*</span>[<span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">30</span>]<span style="color:#66d9ef">float64</span>)(<span style="color:#a6e22e">unsafe</span>.<span style="color:#a6e22e">Pointer</span>(<span style="color:#a6e22e">carr</span>))[:<span style="color:#a6e22e">size</span>:<span style="color:#a6e22e">size</span>]
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">arr</span>)
 }
-</code></pre>
+</code></pre></div><p>C指针操作</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">size</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">10</span>
+<span style="color:#a6e22e">carr</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">C</span>.<span style="color:#a6e22e">get_array</span>(<span style="color:#a6e22e">C</span>.int(<span style="color:#a6e22e">size</span>))
+<span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">C</span>.<span style="color:#a6e22e">free</span>(<span style="color:#a6e22e">unsafe</span>.<span style="color:#a6e22e">Pointer</span>(<span style="color:#a6e22e">carr</span>))
 
-<p>C数组转为Go切片</p>
-
-<pre><code class="language-go">import &quot;unsafe&quot;
-import &quot;fmt&quot;
-
-/*
-#include &lt;stdio.h&gt;
-#include &lt;stdlib.h&gt;
-double* get_array(int n) {
-	double *arr;
-	arr = (double*)malloc(n*sizeof(arr));
-	for(int i=0;i&lt;n;i++)
-	{
-		arr[i]=i;
-	}
-	return arr;
+<span style="color:#75715e">// To go slice
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">arr</span> <span style="color:#f92672">:=</span> (<span style="color:#f92672">*</span>[<span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">30</span>]<span style="color:#66d9ef">float64</span>)(<span style="color:#a6e22e">unsafe</span>.<span style="color:#a6e22e">Pointer</span>(<span style="color:#a6e22e">carr</span>))[:<span style="color:#a6e22e">size</span>:<span style="color:#a6e22e">size</span>]
+<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">index</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">index</span> &lt; <span style="color:#a6e22e">size</span>; <span style="color:#a6e22e">index</span><span style="color:#f92672">++</span> {
+    <span style="color:#75715e">// get value by C pointer operation
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">value</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">*</span>(<span style="color:#f92672">*</span><span style="color:#a6e22e">C</span>.<span style="color:#a6e22e">double</span>)(<span style="color:#a6e22e">unsafe</span>.<span style="color:#a6e22e">Pointer</span>(uintptr(<span style="color:#a6e22e">unsafe</span>.<span style="color:#a6e22e">Pointer</span>(<span style="color:#a6e22e">carr</span>)) <span style="color:#f92672">+</span> uintptr(<span style="color:#a6e22e">index</span>)<span style="color:#f92672">*</span><span style="color:#a6e22e">unsafe</span>.<span style="color:#a6e22e">Sizeof</span>(<span style="color:#a6e22e">carr</span>)))
+    <span style="color:#75715e">// get value by Go slice index
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">gvalue</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">arr</span>[<span style="color:#a6e22e">index</span>]
+    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">value</span>, <span style="color:#e6db74">&#34; == &#34;</span>, <span style="color:#a6e22e">gvalue</span>)
 }
-*/
-import &quot;C&quot;
-
-func main() {
-	size := 10
-	carr := C.get_array(C.int(size))
-	defer C.free(unsafe.Pointer(carr))
-	arr := (*[1 &lt;&lt; 30]float64)(unsafe.Pointer(carr))[:size:size]
-	fmt.Println(arr)
-}
-</code></pre>
-
-<p>C指针操作</p>
-
-<pre><code class="language-go">size := 10
-carr := C.get_array(C.int(size))
-defer C.free(unsafe.Pointer(carr))
-
-// To go slice
-arr := (*[1 &lt;&lt; 30]float64)(unsafe.Pointer(carr))[:size:size]
-for index := 0; index &lt; size; index++ {
-    // get value by C pointer operation
-    value := *(*C.double)(unsafe.Pointer(uintptr(unsafe.Pointer(carr)) + uintptr(index)*unsafe.Sizeof(carr)))
-    // get value by Go slice index
-    gvalue := arr[index]
-    fmt.Println(value, &quot; == &quot;, gvalue)
-}
-</code></pre>
-
-<p>更多文档见<a href="https://golang.org/cmd/cgo/">https://golang.org/cmd/cgo/</a></p>
+</code></pre></div><p>更多文档见https://golang.org/cmd/cgo/</p>
 
   </div>
   
@@ -359,12 +343,13 @@ for index := 0; index &lt; size; index++ {
         
 <li>
   <span class="list__title--small">
-    <a href="/posts/2016-04-19-cgo-in-go-1-6/">cgo in go 1.6</a>
+    <a href="/posts/2016-04-19-cgo-in-go-1-6/" >cgo in go 1.6</a>
       
       <time class="pull-right hidden-tablet">Apr 19 &#39;16</time>
       
   </span>
 </li>
+
 
     </ul>
 </div>
@@ -410,6 +395,7 @@ for index := 0; index &lt; size; index++ {
         </div>
         
     
+
   
   
 <script type="application/javascript">
@@ -424,15 +410,12 @@ if (!doNotTrack) {
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
-<script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"
-  integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy"
-  crossorigin="anonymous">
-</script>
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
 
 
     
     
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
         
     
     <script type="text/javascript">
@@ -443,6 +426,21 @@ if (!doNotTrack) {
 
 
 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.js"></script>
+<script type="text/javascript">
+  if (tocbot) {
+    tocbot.init({
+      
+      tocSelector: '.toc',
+      
+      contentSelector: '.post',
+      
+      headingSelector: 'h2, h3, h4',
+      collapseDepth: 4
+    });
+  }
+</script>
 
 
 

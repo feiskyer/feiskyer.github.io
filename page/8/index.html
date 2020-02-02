@@ -8,7 +8,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.49.2" />
+<meta name="generator" content="Hugo 0.62.2" />
 
     
 
@@ -23,12 +23,13 @@
 <meta property="og:description" content="Notes about anything" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://feisky.xyz/" />
+<meta property="og:updated_time" content="2018-10-14T22:08:45+08:00" />
 
 
     
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
 
 
 
@@ -37,15 +38,15 @@
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hyde-hyde.6f40d28e777b288cb757a1db116a257b6f8dffc63a05e8473d12dc09a52d8d79.css" integrity="sha256-b0DSjnd7KIy3V6HbEWole2&#43;N/8Y6BehHPRLcCaUtjXk=">
+<link rel="stylesheet" href="/scss/hyde-hyde.92c66d107d7b219f0792cfd67223179af884b03f386ac46894f9f735932bbca3.css" integrity="sha256-ksZtEH17IZ8Hks/WciMXmviEsD84asRolPn3NZMrvKM=">
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
 
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hugo-toc.8549a64d301421b4256ea9a0d5ca8b99178799f569d5d2daeb95f24cef3ce6b7.css" integrity="sha256-hUmmTTAUIbQlbqmg1cqLmReHmfVp1dLa65XyTO885rc=">
+<link rel="stylesheet" href="/scss/tocbot.126e7d75240acc946d34d6ccb2982ed4c394a5fe34e73e1a2119ca951bcf119d.css" integrity="sha256-Em59dSQKzJRtNNbMspgu1MOUpf405z4aIRnKlRvPEZ0=">
 
 
 
@@ -57,11 +58,9 @@
     <!-- Icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
     <link rel="shortcut icon" href="/favicon.png">
+    <link rel="alternate" type="application/rss+xml" href="https://feisky.xyz/index.xml" title="Feisky" />
+
     
-
-<link href="https://feisky.xyz/index.xml" rel="alternate" type="application/rss+xml" title="Feisky" />
-<link href="https://feisky.xyz/index.xml" rel="feed" type="application/rss+xml" title="Feisky" />
-
 
 </head>
 
@@ -74,6 +73,7 @@
       <span class="site__title">
         <a href="https://feisky.xyz/">Feisky</a>
       </span>
+      
       
       <p class="site__description">
          Notes about anything 
@@ -90,7 +90,23 @@
 			 
 				<li>
 					<a href="https://kubernetes.feisky.xyz">
-						<span>Kubernetes</span>
+						<span>Kubernetes指南</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://time.geekbang.org/column/intro/100020901">
+						<span>Linux性能优化实战</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://sdn.feisky.xyz">
+						<span>SDN网络</span>
 					</a>
 				</li>
 			 
@@ -105,21 +121,12 @@
 		 
 			 
 				<li>
-					<a href="https://sdn.feisky.xyz">
-						<span>SDN</span>
-					</a>
-				</li>
-			 
-		 
-			 
-				<li>
 					<a href="/about/">
-						<span>About</span>
+						<span>关于我</span>
 					</a>
 				</li>
 			 
 		
-		</li>
 	</ul>
 </div>
 
@@ -142,16 +149,25 @@
 	
 	
 	
+	
+	
 </section>
 
       </div>
     </div>
-    <div class="copyright">
-  &copy; 2019 .
-  <a href="https://creativecommons.org/licenses/by-sa/4.0">Some Rights Reserved</a>.
-  Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+    
+<div class="copyright">
+  &copy; 2020 feiskyer
+  
+    <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>
   
 </div>
+
+
+<div class="builtwith">
+Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+</div>
+
 
   </div>
 </div>
@@ -161,168 +177,228 @@
   <div class="post-list">
     
     
+      
+        
+      
       <div class="post-list__item">
         <span class="item__title--big">
-          <a href="/posts/2015-02-15-installing-realtek-rltwifi-driver-for-ubuntu-1410/">Installing Realtek rltwifi driver for Ubuntu 14.10</a>
-          
+          <a href="/posts/2015-02-26-going-native-with-openstack-centric-applications-murano/" >Going Native with OpenStack Centric Applications: Murano</a>
         </span>
         <span class="item__date">
           Jan 01, 0001
         </span>
+        <span >
         
-        安装方法 Ubuntu 14默认内核版本没有带RTL8192ee的网卡驱动，因而就无法通过无线网络联网，并且Reltek官方网站也没有提供合适的驱动。而最
+        Following on our previous discussion surveying the projects supporting applications within OpenStack, let’s continue our review with an in-depth look at the OpenStack-native Application Catalog: Murano, currently an incubation status project, having seen its functionality and core services integration advanced over the past few OpenStack releases. What is it? An application catalog developed by Mirantis, HP and others (now including Cisco), that allows application developers and
         
+        </span>
         
-          ... <a class="read-more-symbol" href="/posts/2015-02-15-installing-realtek-rltwifi-driver-for-ubuntu-1410/">➦</a>
+          ... <a class="read-more-symbol" href="/posts/2015-02-26-going-native-with-openstack-centric-applications-murano/">➦</a>
         
         </div>
+        
      
+      
+        
+      
       <div class="post-list__item">
         <span class="item__title--big">
-          <a href="/posts/2015-02-13-installing-nova-docker-on-openstack-juno/">Installing nova docker on OpenStack Juno</a>
-          
+          <a href="/posts/2015-01-20-hello-world/" >Hello World</a>
         </span>
         <span class="item__date">
           Jan 01, 0001
         </span>
+        <span >
+        
+        Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
+Quick Start Create a new post $ hexo new &#34;My New Post&#34; More info: Writing
+Run server $ hexo server More info: Server
+Generate static files $ hexo generate More info: Generating
+Deploy to remote sites $ hexo deploy More info: Deployment
+        
+        </span>
+        
+        </div>
+        
+     
+      
+        
+      
+      <div class="post-list__item">
+        <span class="item__title--big">
+          <a href="/posts/2015-03-02-how-enable-openstack-allinone-vm-to-access-external-network/" >How enable OpenStack allinone vm to access external network</a>
+        </span>
+        <span class="item__date">
+          Jan 01, 0001
+        </span>
+        <span >
+        
+        首先需要为OpenStack添加一个公网网络，假设All-in-one环境建的公网网段为10.10.10.0/24，公网网关为10.10.1
+        
+        </span>
+        
+          ... <a class="read-more-symbol" href="/posts/2015-03-02-how-enable-openstack-allinone-vm-to-access-external-network/">➦</a>
+        
+        </div>
+        
+     
+      
+        
+      
+      <div class="post-list__item">
+        <span class="item__title--big">
+          <a href="/posts/2015-03-18-how-to-disable-ubuntu-services/" >How to disable ubuntu services</a>
+        </span>
+        <span class="item__date">
+          Jan 01, 0001
+        </span>
+        <span >
+        
+        To toggle a service from starting or stopping permanently you would need to:
+echo manual | sudo tee /etc/init/SERVICE.override  where the stanza manual will stop Upstart from automatically loading the service on next boot. Any service with the .override ending will take precedence over the original service file. You will only be able to start the service manually afterwards. If you do not want this then simply delete the .
+        
+        </span>
+        
+          ... <a class="read-more-symbol" href="/posts/2015-03-18-how-to-disable-ubuntu-services/">➦</a>
+        
+        </div>
+        
+     
+      
+        
+      
+      <div class="post-list__item">
+        <span class="item__title--big">
+          <a href="/posts/2015-02-12-how-to-use-docker-compose-to-deploy-a-flask-app/" >How to use docker compose to deploy a flask app</a>
+        </span>
+        <span class="item__date">
+          Jan 01, 0001
+        </span>
+        <span >
+        
+        The flask app is very simple, you have an index page where your can write and read comments.
+To start So what we need ?
+In my case a Digital Ocean droplet (I'm using Fedora 21).
+So, first of all we connect to our vm with ssh.
+Now that we are inside we need to install git, Docker and docker-compose.
+That's all we need to play with Docker.
+This is our directory tree of our project, quietly standard as you can see.
+        
+        </span>
+        
+          ... <a class="read-more-symbol" href="/posts/2015-02-12-how-to-use-docker-compose-to-deploy-a-flask-app/">➦</a>
+        
+        </div>
+        
+     
+      
+        
+      
+      <div class="post-list__item">
+        <span class="item__title--big">
+          <a href="/posts/2015-11-04-hypernetes-the-multi-tenant-kubernetes-distribution/" >Hypernetes   The multi tenant Kubernetes distribution</a>
+        </span>
+        <span class="item__date">
+          Jan 01, 0001
+        </span>
+        <span >
+        
+        &ldquo;The Caas Revolution&quot;. This is what we believe is happening today in the Cloud ecosystem. This revolution has been started by the now famous project (and company) Docker, and embraced by Cloud providers like Google and AWS.
+However, most multi-tenant CaaS solutions today run on a public IaaS, and use fully isolated virtual machine clusters to schedule containers. This is in contrast to the solely container-based implementation provided in private CaaS deployments.
+        
+        </span>
+        
+          ... <a class="read-more-symbol" href="/posts/2015-11-04-hypernetes-the-multi-tenant-kubernetes-distribution/">➦</a>
+        
+        </div>
+        
+     
+      
+        
+      
+      <div class="post-list__item">
+        <span class="item__title--big">
+          <a href="/posts/2015-11-12-hypernetes-wechat-share/" >Hypernetes wechat share</a>
+        </span>
+        <span class="item__date">
+          Jan 01, 0001
+        </span>
+        <span >
+        
+        今天给大家介绍下最近在Hypernetes上做的工作。 Hypernetes是一个真正多租户的Kubernetes Distro。 Hyperne
+        
+        </span>
+        
+          ... <a class="read-more-symbol" href="/posts/2015-11-12-hypernetes-wechat-share/">➦</a>
+        
+        </div>
+        
+     
+      
+        
+      
+      <div class="post-list__item">
+        <span class="item__title--big">
+          <a href="/posts/2015-02-13-installing-nova-docker-on-openstack-juno/" >Installing nova docker on OpenStack Juno</a>
+        </span>
+        <span class="item__date">
+          Jan 01, 0001
+        </span>
+        <span >
         
         This post comes about indirectly by a request on IRC in #rdo for help getting nova-docker installed on Fedora 21. I ran through the process from start to finish and decided to write everything down for posterity.
-Getting started I started with the Fedora 21 Cloud Image, because I&rsquo;m installing onto OpenStack and the cloud images include some features that are useful in this environment.
-We&rsquo;ll be using OpenStack packages from the RDO Juno repository.
+Getting started I started with the Fedora 21 Cloud Image, because I'm installing onto OpenStack and the cloud images include some features that are useful in this environment.
+We'll be using OpenStack packages from the RDO Juno repository.
         
+        </span>
         
           ... <a class="read-more-symbol" href="/posts/2015-02-13-installing-nova-docker-on-openstack-juno/">➦</a>
         
         </div>
+        
      
+      
+        
+      
       <div class="post-list__item">
         <span class="item__title--big">
-          <a href="/posts/2015-02-26-integrating-openstack-and-kubernetes-with-murano/">Integrating Openstack and Kubernetes with Murano</a>
-          
+          <a href="/posts/2015-02-15-installing-realtek-rltwifi-driver-for-ubuntu-1410/" >Installing Realtek rltwifi driver for Ubuntu 14.10</a>
         </span>
         <span class="item__date">
           Jan 01, 0001
         </span>
+        <span >
+        
+        安装方法 Ubuntu 14默认内核版本没有带RTL8192ee的网卡驱动，因而就无法通过无线网络联网，并且Reltek官方网站也没有提供合适的驱动。而最
+        
+        </span>
+        
+          ... <a class="read-more-symbol" href="/posts/2015-02-15-installing-realtek-rltwifi-driver-for-ubuntu-1410/">➦</a>
+        
+        </div>
+        
+     
+      
+        
+      
+      <div class="post-list__item">
+        <span class="item__title--big">
+          <a href="/posts/2015-02-26-integrating-openstack-and-kubernetes-with-murano/" >Integrating Openstack and Kubernetes with Murano</a>
+        </span>
+        <span class="item__date">
+          Jan 01, 0001
+        </span>
+        <span >
         
         There’s a perceived competition between OpenStack and containers such as Docker, but in reality, the two technologies are a powerful combination. They both solve similar problems, but on different layers of the stack, so combining the two can give users more scalability and automation than ever before.
-That containers app you wrote needs to run somewhere. This is particularly true for orchestrated container applications, such as those managed by Kubernetes.
+That containers app you wrote needs to run somewhere. This is particularly true for orchestrated container applications, such as those managed by Kubernetes. What’s more, if your application is complicated enough that it needs to scale up and down, you need to be running it in an environment that can, itself, scale up and down.
         
+        </span>
         
           ... <a class="read-more-symbol" href="/posts/2015-02-26-integrating-openstack-and-kubernetes-with-murano/">➦</a>
         
         </div>
-     
-      <div class="post-list__item">
-        <span class="item__title--big">
-          <a href="/posts/2015-03-04-linux-kernel-network-call-flow/">Linux kernel network call flow</a>
-          
-        </span>
-        <span class="item__date">
-          Jan 01, 0001
-        </span>
         
-        Refer http://blog.csdn.net/night_elf_1020/article/details/19935813
-        
-        
-        </div>
-     
-      <div class="post-list__item">
-        <span class="item__title--big">
-          <a href="/posts/2015-02-12-linux-netcat-examples/">Linux netcat examples</a>
-          
-        </span>
-        <span class="item__date">
-          Jan 01, 0001
-        </span>
-        
-        端口扫描 nc -z -v -n 172.31.100.7 21-25 Chat Server Server: nc -l 1567 Client: nc 172.31.100.7 1567 文件传输 Server to Client: Server: nc -l 1567 &lt; file.txt Client: nc -n 172.31.100.7 1567 &gt; file.txt Client to Server: Server: nc -l 1567 &gt; file.txt Client: nc 172.31.100.23 1567 &lt; file.txt 目录传输 Server: tar -cvf - dir_name | nc -l 1567 Client: nc
-        
-        
-          ... <a class="read-more-symbol" href="/posts/2015-02-12-linux-netcat-examples/">➦</a>
-        
-        </div>
-     
-      <div class="post-list__item">
-        <span class="item__title--big">
-          <a href="/posts/2015-03-17-microservice-infrastructure/">Microservice Infrastructure</a>
-          
-        </span>
-        <span class="item__date">
-          Jan 01, 0001
-        </span>
-        
-        Microservices Infrastructure Modern platform for rapidly deploying globally distributed services provided by cisco.
-https://github.com/CiscoCloud/microservices-infrastructure
-Features  the ability to deploy applications utilizing resources across multiple datacenters (and even clouds), deploying in a decentralized control model, supporting intelligent endpoints, heavy automation, and the on-demand nature of deploying these services to support business requirements and scale.  Architectural Overview  Mesos cluster manager for efficient resource isolation and sharing across distributed services Marathon for cluster management of long running containerized services Consul for service discovery (By using Consul&rsquo;s inbuilt DNS server) Docker container runtime supported by Marathon Multi-datacenter support High availablity  Single Data Center Architecture The base platform contains control nodes that manage the cluster and any number of compute nodes.
-        
-        
-          ... <a class="read-more-symbol" href="/posts/2015-03-17-microservice-infrastructure/">➦</a>
-        
-        </div>
-     
-      <div class="post-list__item">
-        <span class="item__title--big">
-          <a href="/posts/2015-06-04-mininet-links/">Mininet links</a>
-          
-        </span>
-        <span class="item__date">
-          Jan 01, 0001
-        </span>
-        
-        Introduction to Mininet: http://mininet.org/walkthrough/
-OpenFlow Tutorial: https://github.com/mininet/openflow-tutorial/wiki
-Mininet walkthrough: http://mininet.org/walkthrough/
-RYU SDN Framework: http://osrg.github.io/ryu-book/en/html/
-A good ryu blog: http://linton.tw/
-        
-        
-        </div>
-     
-      <div class="post-list__item">
-        <span class="item__title--big">
-          <a href="/posts/notes-about-serverless/">Notes about serverless</a>
-          
-        </span>
-        <span class="item__date">
-          Jan 01, 0001
-        </span>
-        
-        “只需要关注数据和业务逻辑，无需维护服务器，也不需要关心系统的容量和扩容”， serverless将大家从server中解放了出来，只需要关注
-        
-        
-          ... <a class="read-more-symbol" href="/posts/notes-about-serverless/">➦</a>
-        
-        </div>
-     
-      <div class="post-list__item">
-        <span class="item__title--big">
-          <a href="/posts/2015-03-04-ovs-20-call-flow/">OVS 2.0 call flow</a>
-          
-        </span>
-        <span class="item__date">
-          Jan 01, 0001
-        </span>
-        
-        Refer http://blog.csdn.net/night_elf_1020/article/details/37600791
-        
-        
-        </div>
-     
-      <div class="post-list__item">
-        <span class="item__title--big">
-          <a href="/posts/2015-03-02-open-vswitch-over-dpdk-on-ubuntu/">Open vSwitch over DPDK on Ubuntu</a>
-          
-        </span>
-        <span class="item__date">
-          Jan 01, 0001
-        </span>
-        
-        There are two approaches for using DPDK acceleration in DPDK. One is the openvswitch fork from intel, called dpdk-ovs the other is done directly in openvswitch with a different approach from intel. http://dpdk.org/ml/archives/dev/2014-March/001770.html - https://github.com/01org/dpdk-ovs VirtualBox preparations To run openvswitch with DPDK I used a virtual machine (VirtualBox) because the NIC I had on my laptop was not supported. I created three virtual NICs for my vm, one behind NAT
-        
-        
-          ... <a class="read-more-symbol" href="/posts/2015-03-02-open-vswitch-over-dpdk-on-ubuntu/">➦</a>
-        
-        </div>
      
   </div>
   
@@ -483,10 +559,7 @@ if (!doNotTrack) {
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 
   
-  <script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"
-  integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy"
-  crossorigin="anonymous">
-</script>
+  <script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
 
 
     </body>

@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.49.2" />
+<meta name="generator" content="Hugo 0.62.2" />
 
     
     
@@ -30,10 +30,11 @@
 <meta property="og:url" content="https://feisky.xyz/posts/2015-06-10-weekly-reading-list-20150607/" />
 
 
+
     
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
 
 
 
@@ -42,15 +43,15 @@
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hyde-hyde.6f40d28e777b288cb757a1db116a257b6f8dffc63a05e8473d12dc09a52d8d79.css" integrity="sha256-b0DSjnd7KIy3V6HbEWole2&#43;N/8Y6BehHPRLcCaUtjXk=">
+<link rel="stylesheet" href="/scss/hyde-hyde.92c66d107d7b219f0792cfd67223179af884b03f386ac46894f9f735932bbca3.css" integrity="sha256-ksZtEH17IZ8Hks/WciMXmviEsD84asRolPn3NZMrvKM=">
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
 
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hugo-toc.8549a64d301421b4256ea9a0d5ca8b99178799f569d5d2daeb95f24cef3ce6b7.css" integrity="sha256-hUmmTTAUIbQlbqmg1cqLmReHmfVp1dLa65XyTO885rc=">
+<link rel="stylesheet" href="/scss/tocbot.126e7d75240acc946d34d6ccb2982ed4c394a5fe34e73e1a2119ca951bcf119d.css" integrity="sha256-Em59dSQKzJRtNNbMspgu1MOUpf405z4aIRnKlRvPEZ0=">
 
 
 
@@ -62,6 +63,7 @@
     <!-- Icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
     <link rel="shortcut icon" href="/favicon.png">
+    
     
 
 </head>
@@ -75,6 +77,7 @@
       <span class="site__title">
         <a href="https://feisky.xyz/">Feisky</a>
       </span>
+      
       
       <p class="site__description">
          Notes about anything 
@@ -91,7 +94,23 @@
 			 
 				<li>
 					<a href="https://kubernetes.feisky.xyz">
-						<span>Kubernetes</span>
+						<span>Kubernetes指南</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://time.geekbang.org/column/intro/100020901">
+						<span>Linux性能优化实战</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://sdn.feisky.xyz">
+						<span>SDN网络</span>
 					</a>
 				</li>
 			 
@@ -106,21 +125,12 @@
 		 
 			 
 				<li>
-					<a href="https://sdn.feisky.xyz">
-						<span>SDN</span>
-					</a>
-				</li>
-			 
-		 
-			 
-				<li>
 					<a href="/about/">
-						<span>About</span>
+						<span>关于我</span>
 					</a>
 				</li>
 			 
 		
-		</li>
 	</ul>
 </div>
 
@@ -143,23 +153,33 @@
 	
 	
 	
+	
+	
 </section>
 
       </div>
     </div>
-    <div class="copyright">
-  &copy; 2019 .
-  <a href="https://creativecommons.org/licenses/by-sa/4.0">Some Rights Reserved</a>.
-  Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+    
+<div class="copyright">
+  &copy; 2020 feiskyer
+  
+    <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>
   
 </div>
+
+
+<div class="builtwith">
+Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+</div>
+
 
   </div>
 </div>
 
         <div class="content container">
             
-    <article>
+    
+<article>
   <header>
     <h1>Weekly reading list (20150607)</h1>
     
@@ -179,158 +199,94 @@
   </header>
   
   
-  <div class="toc-wrapper">
-    <input type="checkbox" id="tocToggle">
-    <label for="tocToggle">Table of Content</label>
-    
-        <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#openstack-magnum">OpenStack Magnum</a></li>
-<li><a href="#hyper-基于hypervisor的容器化解决方案">Hyper：基于Hypervisor的容器化解决方案</a></li>
-<li><a href="#tcptrace">tcptrace</a></li>
-<li><a href="#wwdc-swift-2-0">WWDC swift 2.0</a></li>
-<li><a href="#青云雷击事件">青云雷击事件</a></li>
-<li><a href="#基于mesos和docker的分布式计算平台">基于Mesos和Docker的分布式计算平台</a></li>
-</ul></li>
-<li><a href="#open-container-project-ocp">Open Container Project (OCP)</a></li>
-<li><a href="#docker-hackathon">Docker hackathon</a></li>
-<li><a href="#docker-experimental-binary">Docker experimental binary</a></li>
-<li><a href="#docker-plugins">Docker plugins</a></li>
-<li><a href="#disney-docker-deployment">Disney docker deployment</a></li>
-<li><a href="#docker-security">Docker security</a>
-<ul>
-<li><a href="#提出tailored-profiles">提出Tailored Profiles</a></li>
-</ul></li>
-<li><a href="#project-orca">Project Orca</a></li>
-<li><a href="#project-bonneville">Project Bonneville</a></li>
-</ul></li>
-</ul>
-</nav>
-    
-  </div>
+  
+    <div class="toc-wrapper">
+      <input type="checkbox" id="tocToggle">
+      <label for="tocToggle">Table of Content</label>
+      
+        <div class="toc" id="TableOfContents"></div>
+      
+    </div>
+  
   
   <div class="post">
-    
-
-<h3 id="openstack-magnum">OpenStack Magnum</h3>
-
+    <h3 id="openstack-magnum">OpenStack Magnum</h3>
 <p><a href="http://www.csdn.net/article/2015-06-02/2824827">http://www.csdn.net/article/2015-06-02/2824827</a></p>
-
 <blockquote>
 <p>Magnum是去年巴黎峰会后开始的一个新项目，专门用来向用户提供容器服务，其最新的架构如图2所示。从去年11月份开始在StackForge提交第一个Patch，到今年3月份进入OpenStack Namespace，Magnum应该是OpenStack社区从StackForge迁移到OpenStack Namespace最快的一个项目。Magnum现在可以为用户提供Kubernetes as a Service和Swarm as a Service，大家应该会很快在L版看到Mesos as a Service。Magnum的一些Contributor，Adrian Otto是Rackspace的杰出工程师，Magnum和Solum的双重PTL；Steven Dake刚刚离开Redhat加入Cisco，他是Heat的创始人，现在Kolla的PTL，同时还在积极推动一个新项目Machine Learning as a Service；Davanum Srinivas (Dims)刚刚从IBM加入Mirantis，现在担任Oslo的PTL。关于他们的时间分配问题，Adrian的原话是会重点放在Magnum。</p>
 </blockquote>
-
-<p><img src="https://wiki.openstack.org/w/images/thumb/6/61/Magnum_architecture.png/800px-Magnum_architecture.png" alt="" /></p>
-
+<p><img src="https://wiki.openstack.org/w/images/thumb/6/61/Magnum_architecture.png/800px-Magnum_architecture.png" alt=""></p>
 <p><a href="http://mp.weixin.qq.com/s?__biz=MzA4NTA0NjgwNg==&amp;mid=207823495&amp;idx=1&amp;sn=cc13b6cc0106c48950019377bd9ff5e1&amp;3rd=MzA3MDU4NTYzMw==&amp;scene=6#rd">http://mp.weixin.qq.com/s?__biz=MzA4NTA0NjgwNg==&amp;mid=207823495&amp;idx=1&amp;sn=cc13b6cc0106c48950019377bd9ff5e1&amp;3rd=MzA3MDU4NTYzMw==&amp;scene=6#rd</a></p>
-
 <p>Magnum 6问6答</p>
-
 <blockquote>
 <p>提问1：Magnum与Nova的区别？
 Magnum提供了一个用于管理应用容器的特制API。它们与Nova（机器）实例在生命周期和操作方面有着显著的不同。Magnum实际上是在使用Nova实例运行应用容器。</p>
-
 <p>提问2：Magnum和Docker或者Kubernetes的区别？
 Magnum提供了一个可与Keystone和多租户部署兼容的异步API。它们不能在内部进行编排，而要借助于OpenStack编排系统。Magnum可将Kubernetes和Docker作为组件使用。</p>
-
 <p>提问3：Magnum与Nova-Docker一样吗？
 不一样。Nova-Docker是针对Nova的虚拟化驱动，允许容器被当做Nova实例创建。它们适用于当你需要将容器作为轻量化机器的场景。Magnum可以提供一些Nova API无法提供的容器功能，并且可以通过其自己的API实现一些与其他OpenStack服务相似的功能。由Magnum启动的容器可以在由Heat 创建的Nova实例上运行。</p>
-
 <p>提问4：Magnum的用户是谁？
 Magnum的用户是OpenStack（公有或私有）云的运营人员。这些运营人员希望提供一个自助式的解决方案，以便将容器作为托管服务提供给他们的云用户。Magnum简化了与OpenStack的整合工作，让那些已经拥有Nova实例、Cinder卷和Trove数据库等资源的用户也可以创建应用容器，并提供比已有资源更多高级特性的运行环境。</p>
-
 <p>创建IaaS资源的身份证书可以用来运行使用Magnum的容器化应用。适用于Magnum的一些高级功能可以将应用扩展到一定数量的实例当中。一旦出现故障，这些功能还可让你的应用自动重新生成一个实例。此外，与使用虚拟机相比，它们还可以更为紧密地将应用打包在一起。</p>
-
 <p>提问5：如果我在Heat中使用Docker资源，是否可以获得相同的效果？
 不可以。Docker Heat资源无法提供资源调度器，也无法对所用的容器技术进行选择。它们是专门针对Docker和使用Glance存储容器镜像所设计的。它们目前还没有分层镜像功能。如果分层镜像与本地缓存的基础镜像共同使用，那么这会导致启动容器的时间更长。Magnum利用了所有Docker在启动速度上的优势。</p>
-
 <p>提问6：在Magnum中，多租户意味着什么（Magnum是否安全）？
 由Magnum启动的容器、服务、Pod和Bay等资源仅能够被创建它们的租户使用者看到和访问。Bay不是共享的，这意味着容器无法作为附近租户在相同的内核上运行。这是一个关键的安全功能，它允许属于同一个租户的容器在相同的Pod和Bay中被打包，但是在不同租户之间各自运行独立的内核（在独立的Nova实例中）。这一点与使用无Magnum的Kubernetes系统不同，后者的设计初衷是仅供一个单租户环境，将安全隔离设计留给了系统实施者。在同一计算节点中运行属于不同租户的虚拟机时，Magnum可以提供与Nova同等水平的安全隔离。</p>
 </blockquote>
-
 <p><a href="http://mp.weixin.qq.com/s?__biz=MzA5MTAxNzI2Mw==&amp;mid=206191946&amp;idx=1&amp;sn=0a3734831fcc4f92c30e3b5f44c539f0&amp;3rd=MzA3MDU4NTYzMw==&amp;scene=6#rd">http://mp.weixin.qq.com/s?__biz=MzA5MTAxNzI2Mw==&amp;mid=206191946&amp;idx=1&amp;sn=0a3734831fcc4f92c30e3b5f44c539f0&amp;3rd=MzA3MDU4NTYzMw==&amp;scene=6#rd</a></p>
-
 <p>从小往大的顺序的基本概念：</p>
-
 <ul>
 <li>Node：容器运行的节点，可以是裸机、虚拟机甚至容器。</li>
 <li>Bay：一组 Node 的集合（底层同一个驱动机制），是 Magnum 中容器调度的基本单元。Bay 在租户之间是隔离的。</li>
 <li>BayModle：类似于 Nova 中的 flavor，定义一个 Docker 集群的规格。</li>
 </ul>
-
 <p>下面几个是来自 Kubernetes 中的概念。</p>
-
 <ul>
 <li>Container：容器。</li>
 <li>Pod：最小的管理单元，一个或多个相互关联的容器（一般运行相同应用），运行在同一个 Minion Node 上，共享同样的数据挂载和网络空间，代表某种应用的一个实例。</li>
 <li>Service：由一个或者多个 Pod 组成，代表一个抽象的应用服务，对外呈现为同一个访问接口，这样访问可以通过 service 来路由，而无需具体知道 pod 的地址。</li>
 <li>ReplicationController：对 pod 指定副本数，RC 可以保证一直存在该数目的副本存在并运行。</li>
 </ul>
-
-<h3 id="hyper-基于hypervisor的容器化解决方案">Hyper：基于Hypervisor的容器化解决方案</h3>
-
+<h3 id="hyper基于hypervisor的容器化解决方案">Hyper：基于Hypervisor的容器化解决方案</h3>
 <p>Hyper是前同事搞的一个可以在hypervisor上运行Docker镜像的引擎，它融合了Docker容器和虚拟机的优点，旨在打造一个性能更好、更安全的引擎。Hyper与Docker的核心区别在于Hyper没有使用Container技术，而是通过VM直接运行Docker镜像，它是一个完全基于虚拟化的解决方案。</p>
-
 <blockquote>
 <p>王旭： Hypervisor的最明显的好处就在于，hypervisor的进程是由另一个kernel调度，系统调用由另一个kernel处理，而并非宿主机的kernel。这样，一方面用户可以选择自己的kernel，另一方面也增强了隔离性，hypervisor发生漏洞，对宿主机和其它虚拟机的威胁的概率是远低于容器漏洞的，毕竟容器向用户进程暴露了太多的入口点。</p>
-
 <p>虚拟机的另一个优势是，虚拟机相关的产业链已经非常成熟，Xen/KVM已经有十多年的历史了，围绕虚拟机打造的OpenStack也有五年的历史了，和虚拟机有顺畅合作的软硬件上下游产品非常多，容器正在赶超，但虚拟机无疑是先行者。</p>
-
 <p>王旭：我们把App-Centric的理念带回到虚机来，我们让虚机回到了它的原本使命——承载应用，而不是完全模拟物理机，承载完整的Linux发行版</p>
 </blockquote>
-
 <p>hyper还搞了一个hyperstack的项目，通过magnum与openstack集成，值得期待。</p>
-
 <p><a href="http://server.zdnet.com.cn/server/2015/0608/3054676.shtml">http://server.zdnet.com.cn/server/2015/0608/3054676.shtml</a></p>
-
 <h3 id="tcptrace">tcptrace</h3>
-
 <p><a href="https://fasterdata.es.net/performance-testing/network-troubleshooting-tools/tcpdump-tcptrace/">https://fasterdata.es.net/performance-testing/network-troubleshooting-tools/tcpdump-tcptrace/</a></p>
-
 <blockquote>
 <p>Tcpdump captures packets according to specific filters,  while the tcptrace tool is used to analyze the data and output succinct summaries.  Tcptrace will analyze a complete dump file (e.g. output the contents of the tcpdump into a file with the &lsquo;-F&rsquo; option), and will categorize the output into distinct flow sumaries in the event that multiple exchanges exits.  There are options to view the summaries, as well as produce files that can be viewed through the xplot viewer.  The end goal is to identify the behavior of a specific flow for a given dump file, and be able to make judgements on the flow of the data and acknowledgements.</p>
 </blockquote>
-
 <p><a href="http://prefetch.net/blog/index.php/2006/04/17/debugging-tcp-connections-with-tcptrace/">http://prefetch.net/blog/index.php/2006/04/17/debugging-tcp-connections-with-tcptrace/</a></p>
-
 <blockquote>
 <p>tcptrace(1) operates on tcpdump and snoop binary files, and provides numerous statistics and connection details for each capture file passed as an argument. To get started with tcptrace(1), tcpdump(1) or snoop(1m) needs to be run to collect raw packet information. This information can be saved to a file with tcpdump(1)’s “-w” option, and complex filters can be applied to limit which hosts and ports data is collected from.
 $ tcpdump -i hme1 -w tcpdump.out -s 1520 port 80
 $ tcptrace tcpdump.out
 1 arg remaining, starting with &lsquo;tcpdump.out&rsquo;
-Ostermann&rsquo;s tcptrace &ndash; version 6.2.0 &ndash; Fri Jul 26, 2002</p>
-
+Ostermann's tcptrace &ndash; version 6.2.0 &ndash; Fri Jul 26, 2002</p>
 <p>44 packets seen, 44 TCP packets traced
 elapsed wallclock time: 0:00:00.025033, 1757 pkts/sec analyzed
 trace file elapsed time: 0:00:00.435121
 TCP connection info:
-   1: c-24-98-83-96.hsd1.ga.comcast.net:63807 - prefetch.net:www (a2b)    7&gt;    6&lt;
-   2: c-24-98-83-96.hsd1.ga.comcast.net:62941 - prefetch.net:www (c2d)    6&gt;    4&lt;
-   3: c-24-98-83-96.hsd1.ga.comcast.net:57312 - prefetch.net:www (e2f)    6&gt;    5&lt;
-   4: c-24-98-83-96.hsd1.ga.comcast.net:55792 - prefetch.net:www (g2h)    6&gt;    4&lt;</p>
+1: c-24-98-83-96.hsd1.ga.comcast.net:63807 - prefetch.net:www (a2b)    7&gt;    6&lt;
+2: c-24-98-83-96.hsd1.ga.comcast.net:62941 - prefetch.net:www (c2d)    6&gt;    4&lt;
+3: c-24-98-83-96.hsd1.ga.comcast.net:57312 - prefetch.net:www (e2f)    6&gt;    5&lt;
+4: c-24-98-83-96.hsd1.ga.comcast.net:55792 - prefetch.net:www (g2h)    6&gt;    4&lt;</p>
 </blockquote>
-
-<h3 id="wwdc-swift-2-0">WWDC swift 2.0</h3>
-
+<h3 id="wwdc-swift-20">WWDC swift 2.0</h3>
 <p><a href="https://news.ycombinator.com/item?id=9680982">https://news.ycombinator.com/item?id=9680982</a></p>
-
 <p>WWDC最大的亮点是swift 2.0要发布了，开源，并且支持Linux了，比较好奇swift在Linux上会怎么样，拭目以待吧。</p>
-
 <h3 id="青云雷击事件">青云雷击事件</h3>
-
 <blockquote>
 <p>2015年6月6日下午，因服务商“睿江科技”机房遭遇雷暴天气引发电力故障，青云广东1区全部硬件设备意外关机重启，造成青云官网及控制台短时无法访问、部署于GD1的用户业务暂时不可用。 与此同时，另一家云服务商LeanCloud也发生了长达4小时的服务中断情况。
 Richard：机房遭遇雷击后，承载QingCloud设备所在区的两组UPS输出均出现了2秒钟的瞬时波动，从而导致了机柜出现瞬时断电再加电。UPS厂家给出的书面判断是，雷击楼体后，对UPS主机造成干扰，UPS浪涌保护器未生效，引起UPS并机线通信故障，电压回流造成电压高报警，逆变器过载关机，短时短路。</p>
-
 <p>目前青云在全国共运行着8个区域，其中公有云的4个区是青云自营租用的，我们在每个省份都是选择当地最好 IDC 供应商，比如这次出问题的机房隶属广东睿江科技，这家 IDC 运营商在华南是绝对的领先者。这次事故机房是当地电信的枢纽机房，T3 等级，即便如此，也遇见了此次雷击引发电力闪断的巨大灾难。我们非常清楚云平台的服务能力一方面体现在软件技术实力，另一方面也取决于物理层面的稳定和可靠。我们已经下定决心自行投资运营数据中心，以将物理层面事故概率降到最低。需要强调的一点是，无论是云计算还是传统IT，都依赖于数据中心基础设施的稳定运行，而作为云服务商，我们的系统承载着众多用户的业务，因此要在数据中心的可靠性方面再下大力气。</p>
 </blockquote>
-
 <p>来自InfoQ高效运维群的讨论主要观点如下：</p>
-
 <ul>
 <li>机房整体崩溃的容灾切换方案和演练有必要加强。通讯基站都会做防雷，一个IDC不能因雷击就影响用户，雷击只是一个诱因。</li>
 <li>现阶段国内云服务商还是以开发为主，并没有对网络、IDC、运维看的特别重要。</li>
@@ -340,38 +296,23 @@ Richard：机房遭遇雷击后，承载QingCloud设备所在区的两组UPS输�
 <li>做运维就是把更多的不可控变成可控。没做到高可用、实时异地容灾，设计上的单点故障也就难以解决。</li>
 <li>现在的云产品只能谈可用性，还谈不上易用性。</li>
 </ul>
-
 <p><a href="http://www.infoq.com/cn/news/2015/06/QingCloud-IDC">http://www.infoq.com/cn/news/2015/06/QingCloud-IDC</a></p>
-
 <h3 id="基于mesos和docker的分布式计算平台">基于Mesos和Docker的分布式计算平台</h3>
-
 <p>数人科技基于Mesos和Docker的分布式计算平台的实践，基于Mesos+Marathon，介绍了Mesos的集群管理、资源分配和任务调度、基于Zookeeper的服务发现、Graphite监控以及Ganglia监控。</p>
-
 <p><a href="http://www.csdn.net/article/2015-06-09/2824906">http://www.csdn.net/article/2015-06-09/2824906</a>
 这周最热的就是Dockercon了，列表里面很多都是docker相关的。</p>
-
 <h2 id="open-container-project-ocp">Open Container Project (OCP)</h2>
-
 <blockquote>
 <p>Today we’re pleased to announce that CoreOS, Docker, and a large group of industry leaders are working together on a standard container format through the formation of the Open Container Project (OCP). OCP is housed under the Linux Foundation, and is chartered to establish common standards for software containers. This announcement means we are starting to see the concepts behind the App Container spec and Docker converge. This is a win for both users of containers and our industry at large.</p>
 </blockquote>
-
 <p><a href="https://coreos.com/blog/app-container-and-the-open-container-project/">https://coreos.com/blog/app-container-and-the-open-container-project/</a></p>
-
 <p>Docker is donating draft specifications and code for container image format and runtime for the new project. Docker’s <a href="https://github.com/docker/libcontainer">LibContainer project</a> will become part of <a href="https://github.com/opencontainers/runc">the new RunC project</a>. CoreOS cofounder and chief executive Alex Polvi wrote in a <a href="https://coreos.com/blog/app-container-and-the-open-container-project/">blog post</a> that he expects a good portion of its appc container specification to become part of the project, while his team will turn its rkt container runtime “into a leading container runtime around the new shared container format.”</p>
-
 <p><a href="http://venturebeat.com/2015/06/22/docker-and-coreos-unite-to-start-the-open-container-project-and-standardize-runtime-image-format/">http://venturebeat.com/2015/06/22/docker-and-coreos-unite-to-start-the-open-container-project-and-standardize-runtime-image-format/</a></p>
-
 <p>runc <a href="https://github.com/opencontainers/runc">https://github.com/opencontainers/runc</a></p>
-
 <p>OCP <a href="http://www.opencontainers.org/">http://www.opencontainers.org/</a></p>
-
 <p>OCP spec <a href="https://github.com/opencontainers/specs">https://github.com/opencontainers/specs</a> 暂未公布，需要2-3周时间</p>
-
 <h2 id="docker-hackathon">Docker hackathon</h2>
-
 <p>一些有趣的项目包括：</p>
-
 <ul>
 <li><a href="https://github.com/dockervlan/">docker vlan</a> implements the VLAN driver in libnetwork</li>
 <li><a href="https://github.com/snrism/swarm-sec">swarm-sec</a>  Swarm Security Assessment tool</li>
@@ -379,66 +320,68 @@ Richard：机房遭遇雷击后，承载QingCloud设备所在区的两组UPS输�
 <li>BenchRock 用来测试IaaS平台性能的工具</li>
 <li><a href="https://github.com/rancherio/sherdock">sherdock</a> Automatic GC of images based on regexp, Find and delete orphan Docker volumes</li>
 </ul>
-
 <p>更多的项目见<a href="http://www.dockercon.com/hackathon">http://www.dockercon.com/hackathon</a></p>
-
 <h2 id="docker-experimental-binary">Docker experimental binary</h2>
-
 <blockquote>
 <p>Docker’s experimental binary gives you access to bleeding edge features that are not in, and may never make it into, Docker’s official release.  An experimental build allows users to try out features early and give feedback to the Docker maintainers.  In this way, we hope to refine our feature designs by exposing earlier to real-world usage.</p>
-
 <p>In all cases, experimental features have gone through the same level of refining and quality control than any code that makes it into Docker: the difference is that the user interface and APIs may change.</p>
-
 <p>Network and volume plugins are the very first experimental features introduced</p>
-
 <p>Unlike the regular Docker binary, the experimental channels is built and updated nightly on <a href="https://experimental.docker.com">https://experimental.docker.com</a>. From one day to the next, new features may appear, while existing experimental features may be refined or entirely removed.</p>
-
 <p>Each experimental feature is documented in a dedicated experimental section.  This section explains the feature’s function and design goals. Because your feedback is essential to refine and decide on a feature’s future, you will also find links to GitHub issues where you can leave your comments, look for reported problems, or report on your experience.</p>
 </blockquote>
-
 <p><a href="http://blog.docker.com/2015/06/experimental-binary/">http://blog.docker.com/2015/06/experimental-binary/</a></p>
-
 <h2 id="docker-plugins">Docker plugins</h2>
-
 <p>The Docker plugins mechanism is now available in the new <a href="https://github.com/docker/docker/tree/master/experimental">Docker experimental channel</a>. Also available are the first Docker plugins, including <a href="http://clusterhq.com/docker-plugin">Flocker</a> for portable volumes across hosts, and networking plugins available from <a href="http://blog.weave.works/2015/06/22/weave-as-a-docker-network-plugin/">Weave</a>, <a href="http://www.projectcalico.org/calico-docker-1-7-libnetwork/">Project Calico</a>, <a href="http://www.nuagenetworks.net/libnetwork-is-license-to-hyper-scale-for-docker-and-sdn/">Nuage Networks</a>, <a href="http://blogs.cisco.com/datacenter/docker-and-the-rise-of-microservices">Cisco</a>, <a href="http://blogs.vmware.com/networkvirtualization/2015/06/vmware-docker-networking.html">VMware</a>, Microsoft, and <a href="http://blog.midonet.org/docker-networking-midonet/">Midokura</a>.</p>
-
 <ul>
-<li>Network plugins**, which allow third-party container networking solutions to connect containers to container networks, making it easier for containers to talk to each other even if they are running on different machines.<br /></li>
+<li>Network plugins**, which allow third-party container networking solutions to connect containers to container networks, making it easier for containers to talk to each other even if they are running on different machines.</li>
 <li>Volume plugins**, which allow third-party container data management solutions to provide data volumes for containers which operate on data, such as databases, queues and key-value stores and other stateful applications that use the filesystem.</li>
 </ul>
-
 <p>To demonstrate the value of plugins we are going to show you an example, that <a href="https://plugins-demo-2015.github.io">anyone can replicate themselves today</a>. The example two plugins to enable container migration for an application on the Docker platform.  We enhance an application with two extension points.</p>
-
-<p>• <a href="http://blog.weave.works/2015/06/18/weave-1-0-is-out-and-it-is-good/">Weave</a> for portable networking, discovery, monitoring.<br />
-• <a href="https://clusterhq.com/">Flocker</a> for portable volumes and data.<br />
-• A Docker Swarm cluster runs the application described by Docker Compose<br />
-• We start a database on node 1, then later reschedule it on node 2, and it keeps its volumes and network identity!<br />
+<p>• <a href="http://blog.weave.works/2015/06/18/weave-1-0-is-out-and-it-is-good/">Weave</a> for portable networking, discovery, monitoring.<br>
+• <a href="https://clusterhq.com/">Flocker</a> for portable volumes and data.<br>
+• A Docker Swarm cluster runs the application described by Docker Compose<br>
+• We start a database on node 1, then later reschedule it on node 2, and it keeps its volumes and network identity!<br>
 • All of this is combined into one easy Docker experience via plugins.</p>
-
 <p>See demo at <a href="https://plugins-demo-2015.github.io/">https://plugins-demo-2015.github.io/</a></p>
-
 <p><a href="http://blog.docker.com/2015/06/extending-docker-with-plugins/">http://blog.docker.com/2015/06/extending-docker-with-plugins/</a></p>
-
 <h2 id="disney-docker-deployment">Disney docker deployment</h2>
-
 <p>Here are some of the components that are in use in the Disney environment:</p>
-
 <ul>
 <li>Chef: Chef handles the hosts and laying down the configuration for the Mesos master, the Marathon framework, the ZooKeeper endpoint configurations, etc. Chef also handles the initial setup of Consul and HAProxy.</li>
-<li>* Docker: Docker is the packaging solution. Services are packaged using Docker. The Dockerfile for an application resides in the application repo. Application builds include building the Docker image and pushing it to the appropriate registry.</li>
-<li>* Mesos: Mesos provides cluster scheduling, placing containers onto hosts. All interaction with Mesos comes through the frameworks (i.e., Marathon, spark, Cassandra, etc.).</li>
-<li>* Marathon: The main framework in use is Marathon, which enables running Docker on Mesos. Marathon deployments (handled via JSON descriptions) will deploy Docker images and configure them appropriately (which image to use, which ports to expose, etc.). Health checks are also included in the Marathon deployment file. Marathon also allows Disney to define the upgrade strategy, which enables them to control how new images are deployed.</li>
-<li>* Consul: Disney only uses the distributed key-value store functionality of Consul (not the service discovery aspect). Containers use consul-template to pull information from Consul to customize the configuration at run-time.</li>
-<li>* HAProxy: HAProxy handles the routing of requests. Two health checks are involved: one on the HAProxy side, and one on the back-end service side. HAProxy is completely configured via Marathon’s service discovery mechanism.</li>
-<li>* Jenkins: Jenkins handles the Docker build/push/deploy.</li>
+<li>
+<ul>
+<li>Docker: Docker is the packaging solution. Services are packaged using Docker. The Dockerfile for an application resides in the application repo. Application builds include building the Docker image and pushing it to the appropriate registry.</li>
 </ul>
-
+</li>
+<li>
+<ul>
+<li>Mesos: Mesos provides cluster scheduling, placing containers onto hosts. All interaction with Mesos comes through the frameworks (i.e., Marathon, spark, Cassandra, etc.).</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Marathon: The main framework in use is Marathon, which enables running Docker on Mesos. Marathon deployments (handled via JSON descriptions) will deploy Docker images and configure them appropriately (which image to use, which ports to expose, etc.). Health checks are also included in the Marathon deployment file. Marathon also allows Disney to define the upgrade strategy, which enables them to control how new images are deployed.</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Consul: Disney only uses the distributed key-value store functionality of Consul (not the service discovery aspect). Containers use consul-template to pull information from Consul to customize the configuration at run-time.</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>HAProxy: HAProxy handles the routing of requests. Two health checks are involved: one on the HAProxy side, and one on the back-end service side. HAProxy is completely configured via Marathon’s service discovery mechanism.</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Jenkins: Jenkins handles the Docker build/push/deploy.</li>
+</ul>
+</li>
+</ul>
 <p><a href="http://blog.scottlowe.org/2015/06/23/scaling-new-services/">http://blog.scottlowe.org/2015/06/23/scaling-new-services/</a></p>
-
 <h2 id="docker-security">Docker security</h2>
-
 <p>Docker能提供的安全保障将涵盖以下7点：</p>
-
 <ul>
 <li>namespace保障系统资源的隔离</li>
 <li>cgroup完成进程组资源的限制</li>
@@ -448,18 +391,13 @@ Richard：机房遭遇雷击后，承载QingCloud设备所在区的两组UPS输�
 <li>user namespace保障容器内部的root在host上并非root（预计docker 1.8支持）</li>
 <li>seccomp使得容器内进程受到系统调用权限的控制</li>
 </ul>
-
 <p>Docker在安全方面还做了以下工作：</p>
-
 <p>###降低镜像带来的安全风向</p>
-
 <ul>
 <li>设置更为精简的Linux发行版：</li>
 <li>移除不需要的package、用户以及二进制工具文件，</li>
 </ul>
-
 <h3 id="提出tailored-profiles">提出Tailored Profiles</h3>
-
 <ul>
 <li>容器可以创建least-privildge的文件</li>
 <li>文件有能力随容器传递</li>
@@ -467,38 +405,26 @@ Richard：机房遭遇雷击后，承载QingCloud设备所在区的两组UPS输�
 <li>已经规划入runC</li>
 <li>描述所有的隔离特性</li>
 </ul>
-
 <p>Docker安全贡献的公司</p>
-
 <ul>
 <li>HuaWei在支持Docker的seccomp方面贡献有目共睹</li>
 <li>IBM大力贡献Docker的user namespace的支持</li>
 <li>Intel在Docker的bootchain方面投入效果可观</li>
 <li>RedHat则在SELinux方面的贡献受到社区的肯定</li>
 </ul>
-
 <p><a href="http://blog.daocloud.io/dockercon-day-2-security/">http://blog.daocloud.io/dockercon-day-2-security/</a></p>
-
 <h2 id="project-orca">Project Orca</h2>
-
 <p>Project Orca has a vision of providing a top-to-bottom integrated stack that takes all the tools and plumbing (Docker Engine, Docker Swarm, Networking, GUI, Docker Compose, security, plus tools for installation, deployment, configuration, etc.). Project Orca fits into the “run” portion of the “build-ship-run” triangle on which Docker focuses.</p>
-
 <blockquote>
 <p>The Orca demo starts out with a log in to a web-based UI. Hazlett shows how Orca integrates into directory services and provides role-based access controls, and shows the logging/auditing functionality, so that users can see what has happened. Orca will provide lists of images, as well as what’s inside the images (such as showing layers, and the sizes of layers). Orca has integration into Docker Swarm, to show the nodes in a Swarm cluster and manage the nodes in a Swarm cluster. Hazlett also shows how to see the images that are present in a cluster, pull updated images, and push them across the entire Swarm cluster. Naturally, Orca also shows the images that are running across the cluster, the images used by each container, and display the details for running containers (the node on which it’s running, the ports that are exposed, the resources that are in use, the volumes associated with the container). Viewing the logs from a Docker container is also readily accessible from within Orca, as is real-time streaming statistics for the containers. Orca introduces the idea of “stacks,” which correspond to a Docker Compose configuration (sounds a lot like OpenStack Heat to me). Deploying a stack is like docker-compose up, and application-specific (stack-specific) metrics are available within Orca. Orca also integrates the ability to scale the number of containers associated with a stack. Developers can update their application definitions (via changes to the Compose YAML definition), and Orca will allow those changes to be dynamically deployed to production without adverse affect to operations’ ability to scale up or scale down capacity.</p>
 </blockquote>
-
 <p><a href="http://blog.scottlowe.org/2015/06/23/dockercon-day2-general-session/">http://blog.scottlowe.org/2015/06/23/dockercon-day2-general-session/</a></p>
-
 <p><a href="http://blog.daocloud.io/dockercon-day-2-production-readiness/">http://blog.daocloud.io/dockercon-day-2-production-readiness/</a></p>
-
 <h2 id="project-bonneville">Project Bonneville</h2>
-
 <blockquote>
 <p>Bonneville is a Docker daemon with custom VMware graph, execution and network drivers that delivers a fully-compatible API to vanilla Docker clients. The pure approach Bonneville takes is that the container is a VM, and the VM is a container. There is no distinction, no encapsulation, and no in-guest virtualization. All of the necessary container infrastructure is outside of the VM in the container host. The container is an x86 hardware virtualized VM – nothing more, nothing less.</p>
 </blockquote>
-
 <p><a href="http://blogs.vmware.com/cloudnative/introducing-project-bonneville">http://blogs.vmware.com/cloudnative/introducing-project-bonneville</a></p>
-
 <p><a href="http://venturebeat.com/2015/06/22/everything-announced-at-dockercon-2015/">http://venturebeat.com/2015/06/22/everything-announced-at-dockercon-2015/</a></p>
 
   </div>
@@ -512,8 +438,8 @@ Richard：机房遭遇雷击后，承载QingCloud设备所在区的两组UPS输�
     </a>
     
     
-    <a href="/posts/2015-03-13-usging-cadvisor-to-monitor-docker/" class="navigation-next">
-      <span class="navigation-tittle">Using cAdvisor to monitor docker</span>
+    <a href="/posts/2015-01-27-vagrant/" class="navigation-next">
+      <span class="navigation-tittle">vagrant</span>
       <i aria-hidden="true" class="fa fa-chevron-right"></i>
     </a>
     
@@ -564,6 +490,7 @@ Richard：机房遭遇雷击后，承载QingCloud设备所在区的两组UPS输�
         </div>
         
     
+
   
   
 <script type="application/javascript">
@@ -578,15 +505,12 @@ if (!doNotTrack) {
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
-<script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"
-  integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy"
-  crossorigin="anonymous">
-</script>
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
 
 
     
     
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
         
     
     <script type="text/javascript">
@@ -597,6 +521,21 @@ if (!doNotTrack) {
 
 
 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.js"></script>
+<script type="text/javascript">
+  if (tocbot) {
+    tocbot.init({
+      
+      tocSelector: '.toc',
+      
+      contentSelector: '.post',
+      
+      headingSelector: 'h2, h3, h4',
+      collapseDepth: 4
+    });
+  }
+</script>
 
 
 

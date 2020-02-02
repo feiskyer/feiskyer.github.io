@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.49.2" />
+<meta name="generator" content="Hugo 0.62.2" />
 
     
     
@@ -27,14 +27,15 @@
 <meta property="og:title" content="Container runtime in Docker v1.11" />
 <meta property="og:description" content="Docker v1.11正式集成了runc（终于支持OCI了），并将原来的一个二进制文件拆分为多个，同时还保持docker CLI和API不变： docker docker-containerd docker-containerd-shim docker-runc docker-containerd-ctr" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://feisky.xyz/posts/2016-04-28-docker-1-11-runtime/" /><meta property="article:published_time" content="2016-04-28T10:07:23&#43;00:00"/>
-<meta property="article:modified_time" content="2016-04-28T10:07:23&#43;00:00"/>
+<meta property="og:url" content="https://feisky.xyz/posts/2016-04-28-docker-1-11-runtime/" />
+<meta property="article:published_time" content="2016-04-28T10:07:23+00:00" />
+<meta property="article:modified_time" content="2016-04-28T10:07:23+00:00" />
 
 
     
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
 
 
 
@@ -43,15 +44,15 @@
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hyde-hyde.6f40d28e777b288cb757a1db116a257b6f8dffc63a05e8473d12dc09a52d8d79.css" integrity="sha256-b0DSjnd7KIy3V6HbEWole2&#43;N/8Y6BehHPRLcCaUtjXk=">
+<link rel="stylesheet" href="/scss/hyde-hyde.92c66d107d7b219f0792cfd67223179af884b03f386ac46894f9f735932bbca3.css" integrity="sha256-ksZtEH17IZ8Hks/WciMXmviEsD84asRolPn3NZMrvKM=">
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
 
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hugo-toc.8549a64d301421b4256ea9a0d5ca8b99178799f569d5d2daeb95f24cef3ce6b7.css" integrity="sha256-hUmmTTAUIbQlbqmg1cqLmReHmfVp1dLa65XyTO885rc=">
+<link rel="stylesheet" href="/scss/tocbot.126e7d75240acc946d34d6ccb2982ed4c394a5fe34e73e1a2119ca951bcf119d.css" integrity="sha256-Em59dSQKzJRtNNbMspgu1MOUpf405z4aIRnKlRvPEZ0=">
 
 
 
@@ -63,6 +64,7 @@
     <!-- Icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
     <link rel="shortcut icon" href="/favicon.png">
+    
     
 
 </head>
@@ -76,6 +78,7 @@
       <span class="site__title">
         <a href="https://feisky.xyz/">Feisky</a>
       </span>
+      
       
       <p class="site__description">
          Notes about anything 
@@ -92,7 +95,23 @@
 			 
 				<li>
 					<a href="https://kubernetes.feisky.xyz">
-						<span>Kubernetes</span>
+						<span>Kubernetes指南</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://time.geekbang.org/column/intro/100020901">
+						<span>Linux性能优化实战</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://sdn.feisky.xyz">
+						<span>SDN网络</span>
 					</a>
 				</li>
 			 
@@ -107,21 +126,12 @@
 		 
 			 
 				<li>
-					<a href="https://sdn.feisky.xyz">
-						<span>SDN</span>
-					</a>
-				</li>
-			 
-		 
-			 
-				<li>
 					<a href="/about/">
-						<span>About</span>
+						<span>关于我</span>
 					</a>
 				</li>
 			 
 		
-		</li>
 	</ul>
 </div>
 
@@ -144,23 +154,33 @@
 	
 	
 	
+	
+	
 </section>
 
       </div>
     </div>
-    <div class="copyright">
-  &copy; 2019 .
-  <a href="https://creativecommons.org/licenses/by-sa/4.0">Some Rights Reserved</a>.
-  Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+    
+<div class="copyright">
+  &copy; 2020 feiskyer
+  
+    <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>
   
 </div>
+
+
+<div class="builtwith">
+Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+</div>
+
 
   </div>
 </div>
 
         <div class="content container">
             
-    <article>
+    
+<article>
   <header>
     <h1>Container runtime in Docker v1.11</h1>
     
@@ -198,17 +218,18 @@
   </header>
   
   
-  <div class="toc-wrapper">
-    <input type="checkbox" id="tocToggle">
-    <label for="tocToggle">Table of Content</label>
-    
-        
-    
-  </div>
+  
+    <div class="toc-wrapper">
+      <input type="checkbox" id="tocToggle">
+      <label for="tocToggle">Table of Content</label>
+      
+        <div class="toc" id="TableOfContents"></div>
+      
+    </div>
+  
   
   <div class="post">
     <p>Docker v1.11正式集成了runc（终于支持OCI了），并将原来的一个二进制文件拆分为多个，同时还保持docker CLI和API不变：</p>
-
 <ul>
 <li>docker</li>
 <li>docker-containerd</li>
@@ -216,35 +237,26 @@
 <li>docker-runc</li>
 <li>docker-containerd-ctr</li>
 </ul>
-
-<p><img src="/images/docker-v11.png" alt="" /></p>
-
+<p><img src="/images/docker-v11.png" alt=""></p>
 <p>这么做的好处很明显：</p>
-
 <ul>
 <li>最重要的可以在docker或者containerd重启的时候container还保持running</li>
 <li>container runtime pluggable，比如以后可以选择用runV（当然默认肯定是runc）</li>
 <li>性能，新的containerd没有历史包袱，一开始就针对性能做了优化（100 containers in 1.64 seconds）</li>
 <li>docker daemon的角色变化，docker只需要做少量的准备工作，把真正运行容器的工作交给containerd：
-
 <ul>
 <li>Image management</li>
 <li>Generate OCI bundle for containers</li>
 <li>Mount the container’s root filesystem inside the bundle</li>
 <li>Call containerd to start container</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <p><strong><a href="https://github.com/docker/containerd">Containerd</a></strong></p>
-
-<p>containerd is a daemon to control runC, built for performance and density. containerd leverages runC&rsquo;s advanced features such as seccomp and user namespace support as well as checkpoint and restore for cloning and live migration of containers:</p>
-
-<p><img src="/images/containerd.png" alt="" /></p>
-
+<p>containerd is a daemon to control runC, built for performance and density. containerd leverages runC's advanced features such as seccomp and user namespace support as well as checkpoint and restore for cloning and live migration of containers:</p>
+<p><img src="/images/containerd.png" alt=""></p>
 <p><strong>docker-containerd-ctr</strong></p>
-
 <p>docker-containerd-ctr is the CLI for docker-containerd, which is based on gPRC APIs.</p>
-
 <pre><code>$ docker-containerd-ctr --address &quot;/var/run/docker/libcontainerd/docker-containerd.sock&quot; containers
 ID                                                                 PATH                                                                                             STATUS              PROCESSES
 346c1b7bbb04b760032557e1324a4027ec0055ea84dca109134c02e03dc1242c   /var/run/docker/libcontainerd/346c1b7bbb04b760032557e1324a4027ec0055ea84dca109134c02e03dc1242c   running             init
@@ -255,22 +267,13 @@ PID   USER     TIME   COMMAND
    51 root       0:00 /bin/ps aux
 $ docker-containerd-ctr --address &quot;/var/run/docker/libcontainerd/docker-containerd.sock&quot; state 346c1b7bbb04b760032557e1324a4027ec0055ea84dca109134c02e03dc1242c
 {&quot;containers&quot;:[{&quot;id&quot;:&quot;346c1b7bbb04b760032557e1324a4027ec0055ea84dca109134c02e03dc1242c&quot;,&quot;bundlePath&quot;:&quot;/var/run/docker/libcontainerd/346c1b7bbb04b760032557e1324a4027ec0055ea84dca109134c02e03dc1242c&quot;,&quot;processes&quot;:[{&quot;pid&quot;:&quot;init&quot;,&quot;terminal&quot;:true,&quot;user&quot;:{&quot;additionalGids&quot;:[10]},&quot;args&quot;:[&quot;sh&quot;],&quot;env&quot;:[&quot;PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin&quot;,&quot;HOSTNAME=346c1b7bbb04&quot;,&quot;TERM=xterm&quot;],&quot;cwd&quot;:&quot;/&quot;,&quot;systemPid&quot;:3716,&quot;stdin&quot;:&quot;/var/run/docker/libcontainerd/346c1b7bbb04b760032557e1324a4027ec0055ea84dca109134c02e03dc1242c/init-stdin&quot;,&quot;stdout&quot;:&quot;/var/run/docker/libcontainerd/346c1b7bbb04b760032557e1324a4027ec0055ea84dca109134c02e03dc1242c/init-stdout&quot;,&quot;stderr&quot;:&quot;/var/run/docker/libcontainerd/346c1b7bbb04b760032557e1324a4027ec0055ea84dca109134c02e03dc1242c/init-stderr&quot;,&quot;capabilities&quot;:[&quot;CAP_CHOWN&quot;,&quot;CAP_DAC_OVERRIDE&quot;,&quot;CAP_FSETID&quot;,&quot;CAP_FOWNER&quot;,&quot;CAP_MKNOD&quot;,&quot;CAP_NET_RAW&quot;,&quot;CAP_SETGID&quot;,&quot;CAP_SETUID&quot;,&quot;CAP_SETFCAP&quot;,&quot;CAP_SETPCAP&quot;,&quot;CAP_NET_BIND_SERVICE&quot;,&quot;CAP_SYS_CHROOT&quot;,&quot;CAP_KILL&quot;,&quot;CAP_AUDIT_WRITE&quot;]}],&quot;status&quot;:&quot;running&quot;,&quot;pids&quot;:[3716],&quot;runtime&quot;:&quot;docker-runc&quot;}],&quot;machine&quot;:{&quot;cpus&quot;:2,&quot;memory&quot;:7982}}
-</code></pre>
-
-<p><strong>containerd-shim</strong></p>
-
+</code></pre><p><strong>containerd-shim</strong></p>
 <p>containerd-shim is a small shim that sits in front of a runtime implementation that allows it to be repartented to init and handle reattach from the caller.</p>
-
 <p>The cwd of the shim should be the bundle for the container.  Arg1 should be the path to the state directory where the shim can locate fifos and other information.</p>
-
 <p><strong><a href="https://github.com/opencontainers/runc.git">runc</a></strong></p>
-
 <p>runc is a CLI tool for spawning and running containers according to the OCI specification.</p>
-
 <p><strong>cgroups结构</strong></p>
-
 <p>从cgroups里面可以直接看到这几个进程之间的管理关系，比如启动两个container之后：</p>
-
 <pre><code>│ ├─docker.service
 │ │ ├─ 961 /usr/bin/docker daemon -H fd://
 │ │ ├─ 967 docker-containerd -l /var/run/docker/libcontainerd/docker-containerd.sock --runtime docker-runc
@@ -278,7 +281,6 @@ $ docker-containerd-ctr --address &quot;/var/run/docker/libcontainerd/docker-con
 │ │ ├─1070 docker-containerd-shim bca15f3420e3218987314e1cbbf440120ff880af44844778293c4130526c85cc /var/run/docker/libcontainerd/bca15f3420e3218987314e1cbbf440120ff880af44844778293c4130526c85cc docker-runc
 │ │ └─3703 docker-containerd-shim 346c1b7bbb04b760032557e1324a4027ec0055ea84dca109134c02e03dc1242c /var/run/docker/libcontainerd/346c1b7bbb04b760032557e1324a4027ec0055ea84dca109134c02e03dc1242c docker-runc
 </code></pre>
-
   </div>
   
 
@@ -308,7 +310,7 @@ $ docker-containerd-ctr --address &quot;/var/run/docker/libcontainerd/docker-con
         
 <li>
   <span class="list__title--small">
-    <a href="/posts/2016-03-04-docker-overlay-network-dive/">Docker overlay network dive</a>
+    <a href="/posts/2016-03-04-docker-overlay-network-dive/" >Docker overlay network dive</a>
       
       <time class="pull-right hidden-tablet">Mar 04 &#39;16</time>
       
@@ -317,7 +319,7 @@ $ docker-containerd-ctr --address &quot;/var/run/docker/libcontainerd/docker-con
 
 <li>
   <span class="list__title--small">
-    <a href="/posts/2016-03-01-10-things-to-avoid-in-docker-containers/">10 things to avoid in docker containers</a>
+    <a href="/posts/2016-03-01-10-things-to-avoid-in-docker-containers/" >10 things to avoid in docker containers</a>
       
       <time class="pull-right hidden-tablet">Mar 01 &#39;16</time>
       
@@ -326,7 +328,7 @@ $ docker-containerd-ctr --address &quot;/var/run/docker/libcontainerd/docker-con
 
 <li>
   <span class="list__title--small">
-    <a href="/posts/2016-02-29-carina-by-rackspace/">Carina by Rackspace</a>
+    <a href="/posts/2016-02-29-carina-by-rackspace/" >Carina by Rackspace</a>
       
       <time class="pull-right hidden-tablet">Feb 29 &#39;16</time>
       
@@ -335,17 +337,18 @@ $ docker-containerd-ctr --address &quot;/var/run/docker/libcontainerd/docker-con
 
 <li>
   <span class="list__title--small">
-    <a href="/posts/2015-03-05-docker-acquires-sdn-startup-socketplane/">Docker acquires SDN startup SocketPlane</a>
+    <a href="/posts/2015-02-06-apachemesosgooglekubernetes-/" >Apache的Mesos和Google的Kubernetes 有什么区别</a>
       
   </span>
 </li>
 
 <li>
   <span class="list__title--small">
-    <a href="/posts/2015-02-06-apachemesosgooglekubernetes-/">Apache的Mesos和Google的Kubernetes 有什么区别</a>
+    <a href="/posts/2015-02-05-deploy-a-mesos-cluster-using-docker/" >Deploy a Mesos Cluster Using Docker</a>
       
   </span>
 </li>
+
 
     </ul>
 </div>
@@ -391,6 +394,7 @@ $ docker-containerd-ctr --address &quot;/var/run/docker/libcontainerd/docker-con
         </div>
         
     
+
   
   
 <script type="application/javascript">
@@ -405,15 +409,12 @@ if (!doNotTrack) {
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
-<script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"
-  integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy"
-  crossorigin="anonymous">
-</script>
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
 
 
     
     
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
         
     
     <script type="text/javascript">
@@ -424,6 +425,21 @@ if (!doNotTrack) {
 
 
 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.js"></script>
+<script type="text/javascript">
+  if (tocbot) {
+    tocbot.init({
+      
+      tocSelector: '.toc',
+      
+      contentSelector: '.post',
+      
+      headingSelector: 'h2, h3, h4',
+      collapseDepth: 4
+    });
+  }
+</script>
 
 
 

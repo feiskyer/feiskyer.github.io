@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Docker on Feisky</title>
+    <title>docker on Feisky</title>
     <link>https://feisky.xyz/tags/docker/</link>
-    <description>Recent content in Docker on Feisky</description>
+    <description>Recent content in docker on Feisky</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Thu, 19 Oct 2017 18:10:18 +0000</lastBuildDate>
@@ -73,7 +73,7 @@ Docker v1.12 brings in its integrated orchestration into docker engine.
       <pubDate>Fri, 17 Jun 2016 17:12:38 +0000</pubDate>
       
       <guid>https://feisky.xyz/posts/2016-06-17-playing-docker-with-hypervisor-container-runtime-runv/</guid>
-      <description>Table of contents: [TOC] The latest master branch of runV has already supported running as an runtime in docker. Since v1.11, docker introduced OCI contain runtime (runc) integration via containerd. Since runc and runV are both recommended implementation of OCI, it is natural to make runV working with containerd. Now let&amp;rsquo;s have a try. Install runv and docker Docker could be installed via https://docs.docker.com/engine/installation/. Since only master branch of runV</description>
+      <description>Table of contents: [TOC] The latest master branch of runV has already supported running as an runtime in docker. Since v1.11, docker introduced OCI contain runtime (runc) integration via containerd. Since runc and runV are both recommended implementation of OCI, it is natural to make runV working with containerd. Now let&#39;s have a try. Install runv and docker Docker could be installed via https://docs.docker.com/engine/installation/. Since only master branch of runV</description>
     </item>
     
     <item>
@@ -84,8 +84,8 @@ Docker v1.12 brings in its integrated orchestration into docker engine.
       <guid>https://feisky.xyz/posts/2016-05-11-how-docker-1-11-share-network-accross-containers/</guid>
       <description>Docker 1.11 has moved to runc with containerd, I am interested in how it processing shared netns accross containers.
 For example, I have already running a container 75599a6f387b7842c6da57efd38f9742b2ca621782f891402f83852c66dbd706. A new container within same netns can be created with cmd:
-docker run -itd --net=container:75599a6f387b alpine sh  This will generate a runc config.json as follows:
-{ &amp;quot;ociVersion&amp;quot;: &amp;quot;0.6.0-dev&amp;quot;, &amp;quot;platform&amp;quot;: { &amp;quot;os&amp;quot;: &amp;quot;linux&amp;quot;, &amp;quot;arch&amp;quot;: &amp;quot;amd64&amp;quot; }, &amp;quot;process&amp;quot;: { &amp;quot;terminal&amp;quot;: true, &amp;quot;user&amp;quot;: { &amp;quot;additionalGids&amp;quot;: [ 0, 1, 2, 3, 4, 6, 10, 11, 20, 26, 27 ] }, &amp;quot;args&amp;quot;: [ &amp;quot;sh&amp;quot; ], &amp;quot;env&amp;quot;: [ &amp;quot;PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin&amp;quot;, &amp;quot;HOSTNAME=75599a6f387b&amp;quot;, &amp;quot;TERM=xterm&amp;quot; ], &amp;quot;cwd&amp;quot;: &amp;quot;/&amp;quot;, &amp;quot;capabilities&amp;quot;: [ &amp;quot;CAP_CHOWN&amp;quot;, &amp;quot;CAP_DAC_OVERRIDE&amp;quot;, &amp;quot;CAP_FSETID&amp;quot;, &amp;quot;CAP_FOWNER&amp;quot;, &amp;quot;CAP_MKNOD&amp;quot;, &amp;quot;CAP_NET_RAW&amp;quot;, &amp;quot;CAP_SETGID&amp;quot;, &amp;quot;CAP_SETUID&amp;quot;, &amp;quot;CAP_SETFCAP&amp;quot;, &amp;quot;CAP_SETPCAP&amp;quot;, &amp;quot;CAP_NET_BIND_SERVICE&amp;quot;, &amp;quot;CAP_SYS_CHROOT&amp;quot;, &amp;quot;CAP_KILL&amp;quot;, &amp;quot;CAP_AUDIT_WRITE&amp;quot; ] }, &amp;quot;root&amp;quot;: { &amp;quot;path&amp;quot;: &amp;quot;/var/lib/docker/devicemapper/mnt/d33c7932917e64bde482b437fc3ccaad9a00a04e0cf49e39f9d3be5d71991db6/rootfs&amp;quot;, &amp;quot;readonly&amp;quot;: false }, &amp;quot;hostname&amp;quot;: &amp;quot;75599a6f387b&amp;quot;, &amp;quot;mounts&amp;quot;: [ { &amp;quot;destination&amp;quot;: &amp;quot;/proc&amp;quot;, &amp;quot;type&amp;quot;: &amp;quot;proc&amp;quot;, &amp;quot;source&amp;quot;: &amp;quot;proc&amp;quot;, &amp;quot;options&amp;quot;: [ &amp;quot;nosuid&amp;quot;, &amp;quot;noexec&amp;quot;, &amp;quot;nodev&amp;quot; ] }, { &amp;quot;destination&amp;quot;: &amp;quot;/dev&amp;quot;, &amp;quot;type&amp;quot;: &amp;quot;tmpfs&amp;quot;, &amp;quot;source&amp;quot;: &amp;quot;tmpfs&amp;quot;, &amp;quot;options&amp;quot;: [ &amp;quot;nosuid&amp;quot;, &amp;quot;strictatime&amp;quot;, &amp;quot;mode=755&amp;quot; ] }, { &amp;quot;destination&amp;quot;: &amp;quot;/dev/pts&amp;quot;, &amp;quot;type&amp;quot;: &amp;quot;devpts&amp;quot;, &amp;quot;source&amp;quot;: &amp;quot;devpts&amp;quot;, &amp;quot;options&amp;quot;: [ &amp;quot;nosuid&amp;quot;, &amp;quot;noexec&amp;quot;, &amp;quot;newinstance&amp;quot;, &amp;quot;ptmxmode=0666&amp;quot;, &amp;quot;mode=0620&amp;quot;, &amp;quot;gid=5&amp;quot; ] }, { &amp;quot;destination&amp;quot;: &amp;quot;/sys&amp;quot;, &amp;quot;type&amp;quot;: &amp;quot;sysfs&amp;quot;, &amp;quot;source&amp;quot;: &amp;quot;sysfs&amp;quot;, &amp;quot;options&amp;quot;: [ &amp;quot;nosuid&amp;quot;, &amp;quot;noexec&amp;quot;, &amp;quot;nodev&amp;quot;, &amp;quot;ro&amp;quot; ] }, { &amp;quot;destination&amp;quot;: &amp;quot;/sys/fs/cgroup&amp;quot;, &amp;quot;type&amp;quot;: &amp;quot;cgroup&amp;quot;, &amp;quot;source&amp;quot;: &amp;quot;cgroup&amp;quot;, &amp;quot;options&amp;quot;: [ &amp;quot;ro&amp;quot;, &amp;quot;nosuid&amp;quot;, &amp;quot;noexec&amp;quot;, &amp;quot;nodev&amp;quot; ] }, { &amp;quot;destination&amp;quot;: &amp;quot;/dev/mqueue&amp;quot;, &amp;quot;type&amp;quot;: &amp;quot;mqueue&amp;quot;, &amp;quot;source&amp;quot;: &amp;quot;mqueue&amp;quot;, &amp;quot;options&amp;quot;: [ &amp;quot;nosuid&amp;quot;, &amp;quot;noexec&amp;quot;, &amp;quot;nodev&amp;quot; ] }, { &amp;quot;destination&amp;quot;: &amp;quot;/etc/resolv.</description>
+docker run -itd --net=container:75599a6f387b alpine sh This will generate a runc config.json as follows:
+{ &amp;#34;ociVersion&amp;#34;: &amp;#34;0.6.0-dev&amp;#34;, &amp;#34;platform&amp;#34;: { &amp;#34;os&amp;#34;: &amp;#34;linux&amp;#34;, &amp;#34;arch&amp;#34;: &amp;#34;amd64&amp;#34; }, &amp;#34;process&amp;#34;: { &amp;#34;terminal&amp;#34;: true, &amp;#34;user&amp;#34;: { &amp;#34;additionalGids&amp;#34;: [ 0, 1, 2, 3, 4, 6, 10, 11, 20, 26, 27 ] }, &amp;#34;args&amp;#34;: [ &amp;#34;sh&amp;#34; ], &amp;#34;env&amp;#34;: [ &amp;#34;PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin&amp;#34;, &amp;#34;HOSTNAME=75599a6f387b&amp;#34;, &amp;#34;TERM=xterm&amp;#34; ], &amp;#34;cwd&amp;#34;: &amp;#34;/&amp;#34;, &amp;#34;capabilities&amp;#34;: [ &amp;#34;CAP_CHOWN&amp;#34;, &amp;#34;CAP_DAC_OVERRIDE&amp;#34;, &amp;#34;CAP_FSETID&amp;#34;, &amp;#34;CAP_FOWNER&amp;#34;, &amp;#34;CAP_MKNOD&amp;#34;, &amp;#34;CAP_NET_RAW&amp;#34;, &amp;#34;CAP_SETGID&amp;#34;, &amp;#34;CAP_SETUID&amp;#34;, &amp;#34;CAP_SETFCAP&amp;#34;, &amp;#34;CAP_SETPCAP&amp;#34;, &amp;#34;CAP_NET_BIND_SERVICE&amp;#34;, &amp;#34;CAP_SYS_CHROOT&amp;#34;, &amp;#34;CAP_KILL&amp;#34;, &amp;#34;CAP_AUDIT_WRITE&amp;#34; ] }, &amp;#34;root&amp;#34;: { &amp;#34;path&amp;#34;: &amp;#34;/var/lib/docker/devicemapper/mnt/d33c7932917e64bde482b437fc3ccaad9a00a04e0cf49e39f9d3be5d71991db6/rootfs&amp;#34;, &amp;#34;readonly&amp;#34;: false }, &amp;#34;hostname&amp;#34;: &amp;#34;75599a6f387b&amp;#34;, &amp;#34;mounts&amp;#34;: [ { &amp;#34;destination&amp;#34;: &amp;#34;/proc&amp;#34;, &amp;#34;type&amp;#34;: &amp;#34;proc&amp;#34;, &amp;#34;source&amp;#34;: &amp;#34;proc&amp;#34;, &amp;#34;options&amp;#34;: [ &amp;#34;nosuid&amp;#34;, &amp;#34;noexec&amp;#34;, &amp;#34;nodev&amp;#34; ] }, { &amp;#34;destination&amp;#34;: &amp;#34;/dev&amp;#34;, &amp;#34;type&amp;#34;: &amp;#34;tmpfs&amp;#34;, &amp;#34;source&amp;#34;: &amp;#34;tmpfs&amp;#34;, &amp;#34;options&amp;#34;: [ &amp;#34;nosuid&amp;#34;, &amp;#34;strictatime&amp;#34;, &amp;#34;mode=755&amp;#34; ] }, { &amp;#34;destination&amp;#34;: &amp;#34;/dev/pts&amp;#34;, &amp;#34;type&amp;#34;: &amp;#34;devpts&amp;#34;, &amp;#34;source&amp;#34;: &amp;#34;devpts&amp;#34;, &amp;#34;options&amp;#34;: [ &amp;#34;nosuid&amp;#34;, &amp;#34;noexec&amp;#34;, &amp;#34;newinstance&amp;#34;, &amp;#34;ptmxmode=0666&amp;#34;, &amp;#34;mode=0620&amp;#34;, &amp;#34;gid=5&amp;#34; ] }, { &amp;#34;destination&amp;#34;: &amp;#34;/sys&amp;#34;, &amp;#34;type&amp;#34;: &amp;#34;sysfs&amp;#34;, &amp;#34;source&amp;#34;: &amp;#34;sysfs&amp;#34;, &amp;#34;options&amp;#34;: [ &amp;#34;nosuid&amp;#34;, &amp;#34;noexec&amp;#34;, &amp;#34;nodev&amp;#34;, &amp;#34;ro&amp;#34; ] }, { &amp;#34;destination&amp;#34;: &amp;#34;/sys/fs/cgroup&amp;#34;, &amp;#34;type&amp;#34;: &amp;#34;cgroup&amp;#34;, &amp;#34;source&amp;#34;: &amp;#34;cgroup&amp;#34;, &amp;#34;options&amp;#34;: [ &amp;#34;ro&amp;#34;, &amp;#34;nosuid&amp;#34;, &amp;#34;noexec&amp;#34;, &amp;#34;nodev&amp;#34; ] }, { &amp;#34;destination&amp;#34;: &amp;#34;/dev/mqueue&amp;#34;, &amp;#34;type&amp;#34;: &amp;#34;mqueue&amp;#34;, &amp;#34;source&amp;#34;: &amp;#34;mqueue&amp;#34;, &amp;#34;options&amp;#34;: [ &amp;#34;nosuid&amp;#34;, &amp;#34;noexec&amp;#34;, &amp;#34;nodev&amp;#34; ] }, { &amp;#34;destination&amp;#34;: &amp;#34;/etc/resolv.</description>
     </item>
     
     <item>
@@ -105,7 +105,7 @@ docker run -itd --net=container:75599a6f387b alpine sh  This will generate a run
       <guid>https://feisky.xyz/posts/2016-04-28-runc/</guid>
       <description>runc is a CLI tool for spawning and running containers according to the OCI specification, while runV is a hypervisor-based runtime for OCI. Both of them are recommanded (implementations](https://github.com/opencontainers/runtime-spec/blob/master/implementations.md) of OCI.
 Playing with runc Install runc:
-yum install -y libseccomp-devel mkdir -p $GOPATH/src/github.com/opencontainers cd $GOPATH/src/github.com/opencontainers git clone https://github.com/opencontainers/runc cd runc make sudo make install  Run busybox:
+yum install -y libseccomp-devel mkdir -p $GOPATH/src/github.com/opencontainers cd $GOPATH/src/github.com/opencontainers git clone https://github.com/opencontainers/runc cd runc make sudo make install Run busybox:
 $ docker pull busybox $ mkdir rootfs $ docker export $(docker create busybox) | tar -C rootfs -xvf - $ runc spec .</description>
     </item>
     
@@ -133,7 +133,7 @@ $ docker pull busybox $ mkdir rootfs $ docker export $(docker create busybox) | 
       <pubDate>Tue, 01 Mar 2016 16:33:16 +0000</pubDate>
       
       <guid>https://feisky.xyz/posts/2016-03-01-10-things-to-avoid-in-docker-containers/</guid>
-      <description>Redhat发布的10 things to avoid in docker containers对于构建基于Container的服务非常有意义。摘录如下： 1) Don’t store data in containers – A container can be</description>
+      <description>Redhat发布的10 things to avoid in docker containers对于构建基于Container的服务非常有意义。摘录如下： Don’t store data in containers – A container can be stopped,</description>
     </item>
     
     <item>
@@ -180,8 +180,26 @@ This will startup 4 containers:</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://feisky.xyz/posts/2015-03-05-docker-acquires-sdn-startup-socketplane/</guid>
-      <description>At Socketplane we started out as four guys with a collectively strong belief in open source and open communities. &amp;nbsp;We aligned around a shared vision that we wanted to be a critical part of Docker’s once in a decade disruption. Now that we are part of the Docker team, we couldn’t be happier.
+      <description>At Socketplane we started out as four guys with a collectively strong belief in open source and open communities. We aligned around a shared vision that we wanted to be a critical part of Docker’s once in a decade disruption. Now that we are part of the Docker team, we couldn’t be happier.
 We never looked to hedge our bets, our success was and obviously still is tied to the success of Docker.</description>
+    </item>
+    
+    <item>
+      <title>docker in tencent</title>
+      <link>https://feisky.xyz/posts/2015-03-20-docker-in-tencent/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/posts/2015-03-20-docker-in-tencent/</guid>
+      <description>腾讯内部对Docker有着广泛的使用，其基于Yarn的代号为Gaia的调度平台可以同时兼容Docker和非Docker类型的应用，并提供高并</description>
+    </item>
+    
+    <item>
+      <title>docker internal</title>
+      <link>https://feisky.xyz/posts/2015-01-27-docker-internal/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/posts/2015-01-27-docker-internal/</guid>
+      <description>docker-baseAbstractA subsystem is a module that makes use of the task grouping facilities provided by cgroups to treat groups of tasks in particular ways. A subsystem is typically a &amp;ldquo;resource controller&amp;rdquo; that schedules a resource or applies per-cgroup limits, but it may be anything that wants to act on a group of processes, e.g. a virtualization subsystem. &amp;ldquo;docker diff&amp;rdquo; is implemented by just scanning the container filesystem and the parent</description>
     </item>
     
     <item>
@@ -192,10 +210,11 @@ We never looked to hedge our bets, our success was and obviously still is tied t
       <guid>https://feisky.xyz/posts/2015-02-12-how-to-use-docker-compose-to-deploy-a-flask-app/</guid>
       <description>The flask app is very simple, you have an index page where your can write and read comments.
 To start So what we need ?
-In my case a Digital Ocean droplet (I&amp;rsquo;m using Fedora 21).
+In my case a Digital Ocean droplet (I&#39;m using Fedora 21).
 So, first of all we connect to our vm with ssh.
-$ ssh root@yourvmip  Now that we are inside we need to install git, Docker and docker-compose.
-$ yum -y install git docker python-pip $ pip install docker-compose==1.</description>
+Now that we are inside we need to install git, Docker and docker-compose.
+That&#39;s all we need to play with Docker.
+This is our directory tree of our project, quietly standard as you can see.</description>
     </item>
     
     <item>
@@ -205,8 +224,8 @@ $ yum -y install git docker python-pip $ pip install docker-compose==1.</descrip
       
       <guid>https://feisky.xyz/posts/2015-02-13-installing-nova-docker-on-openstack-juno/</guid>
       <description>This post comes about indirectly by a request on IRC in #rdo for help getting nova-docker installed on Fedora 21. I ran through the process from start to finish and decided to write everything down for posterity.
-Getting started I started with the Fedora 21 Cloud Image, because I&amp;rsquo;m installing onto OpenStack and the cloud images include some features that are useful in this environment.
-We&amp;rsquo;ll be using OpenStack packages from the RDO Juno repository.</description>
+Getting started I started with the Fedora 21 Cloud Image, because I&#39;m installing onto OpenStack and the cloud images include some features that are useful in this environment.
+We&#39;ll be using OpenStack packages from the RDO Juno repository.</description>
     </item>
     
     <item>
@@ -216,7 +235,7 @@ We&amp;rsquo;ll be using OpenStack packages from the RDO Juno repository.</descr
       
       <guid>https://feisky.xyz/posts/2015-02-26-integrating-openstack-and-kubernetes-with-murano/</guid>
       <description>There’s a perceived competition between OpenStack and containers such as Docker, but in reality, the two technologies are a powerful combination. They both solve similar problems, but on different layers of the stack, so combining the two can give users more scalability and automation than ever before.
-That containers app you wrote needs to run somewhere. This is particularly true for orchestrated container applications, such as those managed by Kubernetes.</description>
+That containers app you wrote needs to run somewhere. This is particularly true for orchestrated container applications, such as those managed by Kubernetes. What’s more, if your application is complicated enough that it needs to scale up and down, you need to be running it in an environment that can, itself, scale up and down.</description>
     </item>
     
     <item>
@@ -227,7 +246,7 @@ That containers app you wrote needs to run somewhere. This is particularly true 
       <guid>https://feisky.xyz/posts/2015-03-17-microservice-infrastructure/</guid>
       <description>Microservices Infrastructure Modern platform for rapidly deploying globally distributed services provided by cisco.
 https://github.com/CiscoCloud/microservices-infrastructure
-Features  the ability to deploy applications utilizing resources across multiple datacenters (and even clouds), deploying in a decentralized control model, supporting intelligent endpoints, heavy automation, and the on-demand nature of deploying these services to support business requirements and scale.  Architectural Overview  Mesos cluster manager for efficient resource isolation and sharing across distributed services Marathon for cluster management of long running containerized services Consul for service discovery (By using Consul&amp;rsquo;s inbuilt DNS server) Docker container runtime supported by Marathon Multi-datacenter support High availablity  Single Data Center Architecture The base platform contains control nodes that manage the cluster and any number of compute nodes.</description>
+Features  the ability to deploy applications utilizing resources across multiple datacenters (and even clouds), deploying in a decentralized control model, supporting intelligent endpoints, heavy automation, and the on-demand nature of deploying these services to support business requirements and scale.  Architectural Overview  Mesos cluster manager for efficient resource isolation and sharing across distributed services Marathon for cluster management of long running containerized services Consul for service discovery (By using Consul&#39;s inbuilt DNS server) Docker container runtime supported by Marathon Multi-datacenter support High availablity  Single Data Center Architecture The base platform contains control nodes that manage the cluster and any number of compute nodes.</description>
     </item>
     
     <item>
@@ -258,24 +277,6 @@ Specifically Designed to Run Containers Red Hat Enterprise Linux 7 Atomic Host B
       <guid>https://feisky.xyz/posts/2015-03-13-usging-cadvisor-to-monitor-docker/</guid>
       <description>cAdvisor (Container Advisor) provides container users an understanding of the resource usage and performance characteristics of their running containers. It is a running daemon that collects, aggregates, processes, and exports information about running containers. Specifically, for each container it keeps resource isolation parameters, historical resource usage, histograms of complete historical resource usage and network statistics. This data is exported by container and machine-wide.
 cAdvisor has native support for Docker containers and should support just about any other container type out of the box.</description>
-    </item>
-    
-    <item>
-      <title>docker in tencent</title>
-      <link>https://feisky.xyz/posts/2015-03-20-docker-in-tencent/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://feisky.xyz/posts/2015-03-20-docker-in-tencent/</guid>
-      <description>腾讯内部对Docker有着广泛的使用，其基于Yarn的代号为Gaia的调度平台可以同时兼容Docker和非Docker类型的应用，并提供高并</description>
-    </item>
-    
-    <item>
-      <title>docker internal</title>
-      <link>https://feisky.xyz/posts/2015-01-27-docker-internal/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://feisky.xyz/posts/2015-01-27-docker-internal/</guid>
-      <description>docker-baseAbstract 本文在现有文档的基础上总结了以下几点内容 docker的介绍，包括由来、适用场景等 docker背后的一系列技术 - namespace, cgroup, lxc, aufs等 docker</description>
     </item>
     
     <item>

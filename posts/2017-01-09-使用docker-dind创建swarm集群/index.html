@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.49.2" />
+<meta name="generator" content="Hugo 0.62.2" />
 
     
     
@@ -27,14 +27,15 @@
 <meta property="og:title" content="使用docker dind创建swarm集群" />
 <meta property="og:description" content="在OS X系统上，由于Docker for Mac只能创建一台虚拟机，所以要创建多节点swarm集群的话，就需要额外启动其他的虚拟机，并手动安装和配置" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://feisky.xyz/posts/2017-01-09-%E4%BD%BF%E7%94%A8docker-dind%E5%88%9B%E5%BB%BAswarm%E9%9B%86%E7%BE%A4/" /><meta property="article:published_time" content="2017-01-09T21:01:18&#43;00:00"/>
-<meta property="article:modified_time" content="2017-01-09T21:01:18&#43;00:00"/>
+<meta property="og:url" content="https://feisky.xyz/posts/2017-01-09-%E4%BD%BF%E7%94%A8docker-dind%E5%88%9B%E5%BB%BAswarm%E9%9B%86%E7%BE%A4/" />
+<meta property="article:published_time" content="2017-01-09T21:01:18+00:00" />
+<meta property="article:modified_time" content="2017-01-09T21:01:18+00:00" />
 
 
     
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
 
 
 
@@ -43,15 +44,15 @@
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hyde-hyde.6f40d28e777b288cb757a1db116a257b6f8dffc63a05e8473d12dc09a52d8d79.css" integrity="sha256-b0DSjnd7KIy3V6HbEWole2&#43;N/8Y6BehHPRLcCaUtjXk=">
+<link rel="stylesheet" href="/scss/hyde-hyde.92c66d107d7b219f0792cfd67223179af884b03f386ac46894f9f735932bbca3.css" integrity="sha256-ksZtEH17IZ8Hks/WciMXmviEsD84asRolPn3NZMrvKM=">
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
 
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hugo-toc.8549a64d301421b4256ea9a0d5ca8b99178799f569d5d2daeb95f24cef3ce6b7.css" integrity="sha256-hUmmTTAUIbQlbqmg1cqLmReHmfVp1dLa65XyTO885rc=">
+<link rel="stylesheet" href="/scss/tocbot.126e7d75240acc946d34d6ccb2982ed4c394a5fe34e73e1a2119ca951bcf119d.css" integrity="sha256-Em59dSQKzJRtNNbMspgu1MOUpf405z4aIRnKlRvPEZ0=">
 
 
 
@@ -63,6 +64,7 @@
     <!-- Icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
     <link rel="shortcut icon" href="/favicon.png">
+    
     
 
 </head>
@@ -76,6 +78,7 @@
       <span class="site__title">
         <a href="https://feisky.xyz/">Feisky</a>
       </span>
+      
       
       <p class="site__description">
          Notes about anything 
@@ -92,7 +95,23 @@
 			 
 				<li>
 					<a href="https://kubernetes.feisky.xyz">
-						<span>Kubernetes</span>
+						<span>Kubernetes指南</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://time.geekbang.org/column/intro/100020901">
+						<span>Linux性能优化实战</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://sdn.feisky.xyz">
+						<span>SDN网络</span>
 					</a>
 				</li>
 			 
@@ -107,21 +126,12 @@
 		 
 			 
 				<li>
-					<a href="https://sdn.feisky.xyz">
-						<span>SDN</span>
-					</a>
-				</li>
-			 
-		 
-			 
-				<li>
 					<a href="/about/">
-						<span>About</span>
+						<span>关于我</span>
 					</a>
 				</li>
 			 
 		
-		</li>
 	</ul>
 </div>
 
@@ -144,23 +154,33 @@
 	
 	
 	
+	
+	
 </section>
 
       </div>
     </div>
-    <div class="copyright">
-  &copy; 2019 .
-  <a href="https://creativecommons.org/licenses/by-sa/4.0">Some Rights Reserved</a>.
-  Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+    
+<div class="copyright">
+  &copy; 2020 feiskyer
+  
+    <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>
   
 </div>
+
+
+<div class="builtwith">
+Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+</div>
+
 
   </div>
 </div>
 
         <div class="content container">
             
-    <article>
+    
+<article>
   <header>
     <h1>使用docker dind创建swarm集群</h1>
     
@@ -192,45 +212,37 @@
   </header>
   
   
-  <div class="toc-wrapper">
-    <input type="checkbox" id="tocToggle">
-    <label for="tocToggle">Table of Content</label>
-    
-        
-    
-  </div>
+  
+    <div class="toc-wrapper">
+      <input type="checkbox" id="tocToggle">
+      <label for="tocToggle">Table of Content</label>
+      
+        <div class="toc" id="TableOfContents"></div>
+      
+    </div>
+  
   
   <div class="post">
     <p>在OS X系统上，由于Docker for Mac只能创建一台虚拟机，所以要创建多节点swarm集群的话，就需要额外启动其他的虚拟机，并手动安装和配置docker。不过借助dind (docker in docker)，不需要创建额外的虚拟机也可以启动一个swarm集群。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">docker swarm init
+SWARM_TOKEN<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>docker swarm join-token -q worker<span style="color:#66d9ef">)</span>
+NUM_WORKERS<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>
 
-<pre><code class="language-sh">docker swarm init
-SWARM_TOKEN=$(docker swarm join-token -q worker)
-NUM_WORKERS=3
+<span style="color:#66d9ef">for</span> i in <span style="color:#66d9ef">$(</span>seq <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>NUM_WORKERS<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">)</span>; <span style="color:#66d9ef">do</span>
+    docker run -d --privileged --name worker-<span style="color:#e6db74">${</span>i<span style="color:#e6db74">}</span> --hostname<span style="color:#f92672">=</span>worker-<span style="color:#e6db74">${</span>i<span style="color:#e6db74">}</span> --restart<span style="color:#f92672">=</span>always -p <span style="color:#e6db74">${</span>i<span style="color:#e6db74">}</span>2375:2375 docker:1.12-dind
+    docker --host<span style="color:#f92672">=</span>localhost:<span style="color:#e6db74">${</span>i<span style="color:#e6db74">}</span><span style="color:#ae81ff">2375</span> swarm join --token <span style="color:#e6db74">${</span>SWARM_TOKEN<span style="color:#e6db74">}</span> <span style="color:#e6db74">${</span>SWARM_MASTER<span style="color:#e6db74">}</span>:2377
+<span style="color:#66d9ef">done</span>
 
-for i in $(seq &quot;${NUM_WORKERS}&quot;); do
-    docker run -d --privileged --name worker-${i} --hostname=worker-${i} --restart=always -p ${i}2375:2375 docker:1.12-dind
-    docker --host=localhost:${i}2375 swarm join --token ${SWARM_TOKEN} ${SWARM_MASTER}:2377
-done
-
-</code></pre>
-
-<p>这时，查询系统的node列表为:</p>
-
-<pre><code class="language-sh">$ docker node ls
+</code></pre></div><p>这时，查询系统的node列表为:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ docker node ls
 ID                           HOSTNAME  STATUS  AVAILABILITY  MANAGER STATUS
 82rg1gpkhm5fajnexre6p0v34 *  moby      Ready   Active        Leader
 a0hhwgtqsxosx9gg6h6wqmx68    worker-3  Ready   Active
 bn93fte7yflatee3y88qq7ff0    worker-1  Ready   Active
 emy5y7qr2y26hk3dtqgkvnak3    worker-2  Ready   Active
-</code></pre>
-
-<p>当然，也可以启动一个游Mano Marks创建的swarm集群可视化容器，更直观的查看集群的状态：</p>
-
+</code></pre></div><p>当然，也可以启动一个游Mano Marks创建的swarm集群可视化容器，更直观的查看集群的状态：</p>
 <pre><code>docker run -it -d -p 8000:8080 -v /var/run/docker.sock:/var/run/docker.sock manomarks/visualizer
-</code></pre>
-
-<p><img src="/images/docker_visualizer.png" alt="" /></p>
-
+</code></pre><p><img src="/images/docker_visualizer.png" alt=""></p>
 <p>参考文档<a href="http://blog.terranillius.com/post/swarm_dind/">http://blog.terranillius.com/post/swarm_dind/</a>。</p>
 
   </div>
@@ -262,38 +274,39 @@ emy5y7qr2y26hk3dtqgkvnak3    worker-2  Ready   Active
         
 <li>
   <span class="list__title--small">
-    <a href="/posts/2015-02-26-integrating-openstack-and-kubernetes-with-murano/">Integrating Openstack and Kubernetes with Murano</a>
+    <a href="/posts/2015-02-12-how-to-use-docker-compose-to-deploy-a-flask-app/" >How to use docker compose to deploy a flask app</a>
       
   </span>
 </li>
 
 <li>
   <span class="list__title--small">
-    <a href="/posts/2015-02-13-installing-nova-docker-on-openstack-juno/">Installing nova docker on OpenStack Juno</a>
+    <a href="/posts/2015-02-13-installing-nova-docker-on-openstack-juno/" >Installing nova docker on OpenStack Juno</a>
       
   </span>
 </li>
 
 <li>
   <span class="list__title--small">
-    <a href="/posts/2015-03-17-microservice-infrastructure/">Microservice Infrastructure</a>
+    <a href="/posts/2015-02-26-integrating-openstack-and-kubernetes-with-murano/" >Integrating Openstack and Kubernetes with Murano</a>
       
   </span>
 </li>
 
 <li>
   <span class="list__title--small">
-    <a href="/posts/2015-03-20-docker-in-tencent/">docker in tencent</a>
+    <a href="/posts/2015-03-17-microservice-infrastructure/" >Microservice Infrastructure</a>
       
   </span>
 </li>
 
 <li>
   <span class="list__title--small">
-    <a href="/posts/2015-02-12-how-to-use-docker-compose-to-deploy-a-flask-app/">How to use docker compose to deploy a flask app</a>
+    <a href="/posts/2015-03-02-setting-up-gre-for-kubernetes/" >Setting up GRE for Kubernetes</a>
       
   </span>
 </li>
+
 
     </ul>
 </div>
@@ -339,6 +352,7 @@ emy5y7qr2y26hk3dtqgkvnak3    worker-2  Ready   Active
         </div>
         
     
+
   
   
 <script type="application/javascript">
@@ -353,15 +367,12 @@ if (!doNotTrack) {
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
-<script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"
-  integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy"
-  crossorigin="anonymous">
-</script>
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
 
 
     
     
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
         
     
     <script type="text/javascript">
@@ -372,6 +383,21 @@ if (!doNotTrack) {
 
 
 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.js"></script>
+<script type="text/javascript">
+  if (tocbot) {
+    tocbot.init({
+      
+      tocSelector: '.toc',
+      
+      contentSelector: '.post',
+      
+      headingSelector: 'h2, h3, h4',
+      collapseDepth: 4
+    });
+  }
+</script>
 
 
 

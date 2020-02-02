@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.49.2" />
+<meta name="generator" content="Hugo 0.62.2" />
 
     
     
@@ -27,14 +27,15 @@
 <meta property="og:title" content="如何快速启动一个Kubernetes集群" />
 <meta property="og:description" content="相比Docker一个二进制文件解决所有问题，Kubernetes则为不同的服务提供了不同的二进制文件，并将一些服务放到了addons中。故而" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://feisky.xyz/posts/2016-08-24-%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8%E4%B8%80%E4%B8%AAkubernetes%E9%9B%86%E7%BE%A4/" /><meta property="article:published_time" content="2016-08-24T14:48:44&#43;00:00"/>
-<meta property="article:modified_time" content="2016-08-24T14:48:44&#43;00:00"/>
+<meta property="og:url" content="https://feisky.xyz/posts/2016-08-24-%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8%E4%B8%80%E4%B8%AAkubernetes%E9%9B%86%E7%BE%A4/" />
+<meta property="article:published_time" content="2016-08-24T14:48:44+00:00" />
+<meta property="article:modified_time" content="2016-08-24T14:48:44+00:00" />
 
 
     
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
 
 
 
@@ -43,15 +44,15 @@
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hyde-hyde.6f40d28e777b288cb757a1db116a257b6f8dffc63a05e8473d12dc09a52d8d79.css" integrity="sha256-b0DSjnd7KIy3V6HbEWole2&#43;N/8Y6BehHPRLcCaUtjXk=">
+<link rel="stylesheet" href="/scss/hyde-hyde.92c66d107d7b219f0792cfd67223179af884b03f386ac46894f9f735932bbca3.css" integrity="sha256-ksZtEH17IZ8Hks/WciMXmviEsD84asRolPn3NZMrvKM=">
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
 
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hugo-toc.8549a64d301421b4256ea9a0d5ca8b99178799f569d5d2daeb95f24cef3ce6b7.css" integrity="sha256-hUmmTTAUIbQlbqmg1cqLmReHmfVp1dLa65XyTO885rc=">
+<link rel="stylesheet" href="/scss/tocbot.126e7d75240acc946d34d6ccb2982ed4c394a5fe34e73e1a2119ca951bcf119d.css" integrity="sha256-Em59dSQKzJRtNNbMspgu1MOUpf405z4aIRnKlRvPEZ0=">
 
 
 
@@ -63,6 +64,7 @@
     <!-- Icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
     <link rel="shortcut icon" href="/favicon.png">
+    
     
 
 </head>
@@ -76,6 +78,7 @@
       <span class="site__title">
         <a href="https://feisky.xyz/">Feisky</a>
       </span>
+      
       
       <p class="site__description">
          Notes about anything 
@@ -92,7 +95,23 @@
 			 
 				<li>
 					<a href="https://kubernetes.feisky.xyz">
-						<span>Kubernetes</span>
+						<span>Kubernetes指南</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://time.geekbang.org/column/intro/100020901">
+						<span>Linux性能优化实战</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://sdn.feisky.xyz">
+						<span>SDN网络</span>
 					</a>
 				</li>
 			 
@@ -107,21 +126,12 @@
 		 
 			 
 				<li>
-					<a href="https://sdn.feisky.xyz">
-						<span>SDN</span>
-					</a>
-				</li>
-			 
-		 
-			 
-				<li>
 					<a href="/about/">
-						<span>About</span>
+						<span>关于我</span>
 					</a>
 				</li>
 			 
 		
-		</li>
 	</ul>
 </div>
 
@@ -144,23 +154,33 @@
 	
 	
 	
+	
+	
 </section>
 
       </div>
     </div>
-    <div class="copyright">
-  &copy; 2019 .
-  <a href="https://creativecommons.org/licenses/by-sa/4.0">Some Rights Reserved</a>.
-  Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+    
+<div class="copyright">
+  &copy; 2020 feiskyer
+  
+    <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>
   
 </div>
+
+
+<div class="builtwith">
+Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+</div>
+
 
   </div>
 </div>
 
         <div class="content container">
             
-    <article>
+    
+<article>
   <header>
     <h1>如何快速启动一个Kubernetes集群</h1>
     
@@ -195,75 +215,41 @@
   </header>
   
   
-  <div class="toc-wrapper">
-    <input type="checkbox" id="tocToggle">
-    <label for="tocToggle">Table of Content</label>
-    
-        <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#安装minikube">安装minikube</a></li>
-<li><a href="#启动kubernetes-cluster">启动Kubernetes Cluster</a></li>
-</ul></li>
-</ul>
-</nav>
-    
-  </div>
+  
+    <div class="toc-wrapper">
+      <input type="checkbox" id="tocToggle">
+      <label for="tocToggle">Table of Content</label>
+      
+        <div class="toc" id="TableOfContents"></div>
+      
+    </div>
+  
   
   <div class="post">
-    
-
-<p>相比Docker一个二进制文件解决所有问题，Kubernetes则为不同的服务提供了不同的二进制文件，并将一些服务放到了addons中。故而，Kubernetes的部署相对要麻烦的多。借助<a href="https://github.com/kubernetes/minikube">minikube</a>项目，现在可以很方便的在本机快速启动一个单节点的Kubernetes集群。</p>
-
+    <p>相比Docker一个二进制文件解决所有问题，Kubernetes则为不同的服务提供了不同的二进制文件，并将一些服务放到了addons中。故而，Kubernetes的部署相对要麻烦的多。借助<a href="https://github.com/kubernetes/minikube">minikube</a>项目，现在可以很方便的在本机快速启动一个单节点的Kubernetes集群。</p>
 <h2 id="安装minikube">安装minikube</h2>
-
 <p>minikube最新release版本为v0.8.0，支持Kubernetes v1.3.0到v1.3.5的各个版本，默认启动Kubernetes v1.3.5。</p>
-
 <p>OSX</p>
-
 <pre><code>curl -Lo minikube https://storage.googleapis.com/minikube/releases/v0.8.0/minikube-darwin-amd64 &amp;&amp; chmod +x minikube &amp;&amp; sudo mv minikube /usr/local/bin/
-</code></pre>
-
-<p>Linux</p>
-
+</code></pre><p>Linux</p>
 <pre><code>curl -Lo minikube https://storage.googleapis.com/minikube/releases/v0.8.0/minikube-linux-amd64 &amp;&amp; chmod +x minikube &amp;&amp; sudo mv minikube /usr/local/bin/
-</code></pre>
-
-<p>Windows</p>
-
+</code></pre><p>Windows</p>
 <pre><code>下载https://storage.googleapis.com/minikube/releases/v0.8.0/minikube-windows-amd64.exe，并重命名为minikube.exe
-</code></pre>
-
-<p>minikube支持xhyve(on OSX)、VirtualBox、VMWare Fusion等多种不同的driver，这些driver也需要单独安装，比如在OSX上安装xhyve driver:</p>
-
-<pre><code class="language-sh">brew install docker-machine-driver-xhyve
-# docker-machine-driver-xhyve need root owner and uid
-sudo chown root:wheel $(brew --prefix)/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve
-sudo chmod u+s $(brew --prefix)/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve
-</code></pre>
-
-<p>另外，还需要安装一个<code>kubectl</code>客户端，用来跟kubernetes交互：</p>
-
+</code></pre><p>minikube支持xhyve(on OSX)、VirtualBox、VMWare Fusion等多种不同的driver，这些driver也需要单独安装，比如在OSX上安装xhyve driver:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">brew install docker-machine-driver-xhyve
+<span style="color:#75715e"># docker-machine-driver-xhyve need root owner and uid</span>
+sudo chown root:wheel <span style="color:#66d9ef">$(</span>brew --prefix<span style="color:#66d9ef">)</span>/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve
+sudo chmod u+s <span style="color:#66d9ef">$(</span>brew --prefix<span style="color:#66d9ef">)</span>/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve
+</code></pre></div><p>另外，还需要安装一个<code>kubectl</code>客户端，用来跟kubernetes交互：</p>
 <pre><code>gcloud components install kubectl
-</code></pre>
-
-<h2 id="启动kubernetes-cluster">启动Kubernetes Cluster</h2>
-
+</code></pre><h2 id="启动kubernetes-cluster">启动Kubernetes Cluster</h2>
 <p>启动Kubernetes Cluster就非常简单了，一个命令即可：</p>
-
 <pre><code>$ minikube start
 Starting local Kubernetes cluster...
 Kubectl is now configured to use the cluster.
-</code></pre>
-
-<p>当然了，国内环境下，最好加上代理：</p>
-
+</code></pre><p>当然了，国内环境下，最好加上代理：</p>
 <pre><code>minikube start --docker-env HTTP_PROXY=http://proxy-ip:port --docker-env HTTPS_PROXY=http://proxy-ip:port
-</code></pre>
-
-<p>然后就可以通过kubectl来玩Kubernetes了，比如启动一个简单的nginx服务：</p>
-
+</code></pre><p>然后就可以通过kubectl来玩Kubernetes了，比如启动一个简单的nginx服务：</p>
 <pre><code>$ kubectl run nginx --image=nginx --port=80
 deployment &quot;nginx&quot; created
 $ kubectl expose deployment nginx --port=80 --type=NodePort --name=nginx-http
@@ -277,16 +263,10 @@ kubernetes   10.0.0.1     &lt;none&gt;        443/TCP   20m
 nginx-http   10.0.0.146   &lt;none&gt;        80/TCP    2m
 $ minikube service nginx-http --url
 http://192.168.64.10:30569
-</code></pre>
-
-<p>这样就可以通过<code>http://192.168.64.10:30569</code>来直接访问nginx服务。</p>
-
+</code></pre><p>这样就可以通过<code>http://192.168.64.10:30569</code>来直接访问nginx服务。</p>
 <p>minikube默认还部署了最新的dashboard，可以通过<code>minikube dashboard</code>命令在默认浏览器中打开：</p>
-
-<p><img src="/images/k8s-dashboard.png" alt="k8s-dashboard" /></p>
-
+<p><img src="/images/k8s-dashboard.png" alt="k8s-dashboard"></p>
 <p>更多的玩法可以参考minikube的帮助文档：</p>
-
 <pre><code>Usage:
   minikube [command]
 
@@ -303,9 +283,7 @@ Available Commands:
   status           Gets the status of a local kubernetes cluster.
   stop             Stops a running local kubernetes cluster.
   version          Print the version of minikube.
-</code></pre>
-
-<p>更多请参考<a href="https://github.com/kubernetes/minikube。">https://github.com/kubernetes/minikube。</a></p>
+</code></pre><p>更多请参考https://github.com/kubernetes/minikube。</p>
 
   </div>
   
@@ -336,7 +314,7 @@ Available Commands:
         
 <li>
   <span class="list__title--small">
-    <a href="/posts/2016-06-24-play-with-docker-v1-12/">Play with docker v1.12</a>
+    <a href="/posts/2016-06-24-play-with-docker-v1-12/" >Play with docker v1.12</a>
       
       <time class="pull-right hidden-tablet">Jun 24 &#39;16</time>
       
@@ -345,7 +323,7 @@ Available Commands:
 
 <li>
   <span class="list__title--small">
-    <a href="/posts/2016-06-17-playing-docker-with-hypervisor-container-runtime-runv/">Playing docker with hypervisor container runtime runV</a>
+    <a href="/posts/2016-06-17-playing-docker-with-hypervisor-container-runtime-runv/" >Playing docker with hypervisor container runtime runV</a>
       
       <time class="pull-right hidden-tablet">Jun 17 &#39;16</time>
       
@@ -354,7 +332,7 @@ Available Commands:
 
 <li>
   <span class="list__title--small">
-    <a href="/posts/2016-06-06-hypernetes-bringing-security-and-multi-tenancy-to-kubernetes/">Hypernetes: Bringing Security and Multi-tenancy to Kubernetes</a>
+    <a href="/posts/2016-06-06-hypernetes-bringing-security-and-multi-tenancy-to-kubernetes/" >Hypernetes: Bringing Security and Multi-tenancy to Kubernetes</a>
       
       <time class="pull-right hidden-tablet">Jun 06 &#39;16</time>
       
@@ -363,7 +341,7 @@ Available Commands:
 
 <li>
   <span class="list__title--small">
-    <a href="/posts/2016-05-11-how-docker-1-11-share-network-accross-containers/">How docker 1.11 share network accross containers</a>
+    <a href="/posts/2016-05-11-how-docker-1-11-share-network-accross-containers/" >How docker 1.11 share network accross containers</a>
       
       <time class="pull-right hidden-tablet">May 11 &#39;16</time>
       
@@ -372,12 +350,13 @@ Available Commands:
 
 <li>
   <span class="list__title--small">
-    <a href="/posts/2016-04-29-reading-notes-of-week-17/">Reading notes of week 17</a>
+    <a href="/posts/2016-04-29-reading-notes-of-week-17/" >Reading notes of week 17</a>
       
       <time class="pull-right hidden-tablet">Apr 29 &#39;16</time>
       
   </span>
 </li>
+
 
     </ul>
 </div>
@@ -423,6 +402,7 @@ Available Commands:
         </div>
         
     
+
   
   
 <script type="application/javascript">
@@ -437,15 +417,12 @@ if (!doNotTrack) {
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
-<script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"
-  integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy"
-  crossorigin="anonymous">
-</script>
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
 
 
     
     
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
         
     
     <script type="text/javascript">
@@ -456,6 +433,21 @@ if (!doNotTrack) {
 
 
 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.js"></script>
+<script type="text/javascript">
+  if (tocbot) {
+    tocbot.init({
+      
+      tocSelector: '.toc',
+      
+      contentSelector: '.post',
+      
+      headingSelector: 'h2, h3, h4',
+      collapseDepth: 4
+    });
+  }
+</script>
 
 
 

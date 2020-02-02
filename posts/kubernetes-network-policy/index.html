@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.49.2" />
+<meta name="generator" content="Hugo 0.62.2" />
 
     
     
@@ -22,18 +22,31 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content=""/>
-<meta name="twitter:description" content="layout: &ldquo;post&rdquo; title: &ldquo;Kubernetes network policy&rdquo; date: &ldquo;2016-02-17 18:53&rdquo; Kubernetes network policy Kubernetes社区（确切的说是Kubernetes Network SIG [1]）正在讨论Network Policy Proposal，以实现"/>
+<meta name="twitter:description" content="layout: &ldquo;post&rdquo; title: &ldquo;Kubernetes network policy&rdquo; date: &ldquo;2016-02-17 18:53&rdquo; Kubernetes network policy
+Kubernetes社区（确切的说是Kubernetes Network SIG [1]）正在讨论Network Policy Proposal，以实现SDN、网络隔离、IP Overlapping等[2]复杂的网络需求。
+目前，正在讨论的Proposals有多个：
+ Consolidated Casey/RH Proposal https://docs.google.com/document/d/1blfqiH4L_fpn33ZrnQ11v7LcYP0lmpiJ_RaapAPBbNU/edit Casey Davenport https://docs.google.com/document/d/16fg7Dc7K5m4bM2vGwyvkhPG_lcBKeOjaUSYBMwZlR_o/edit?usp=sharing Vipin Jain https://docs.google.com/a/insiemenetworks.com/document/d/1KKMOJSXKKQOzlblAzwYV72KGUlAuAaUuFqCWO8h4gd0/edit?usp=sharing Tim Hockin https://docs.google.com/document/d/1bXUO-Lp6smmLm7SMGwrwuvK23wgsaWvx6Mkt-Y0AtZ0/edit#  这几个Proposal都大同小异，主要的思想都是一致的：
+ 默认情况下网络模型跟现在保持一致，只有定义了Network Policy并且实现了相应的Network Plugin的时候，这个Proposal才有意义 Network Policy: 管理网络连通性策略，这些策略与具体的网络实现（如libnetwork等）无关 Network Policy通过Label作用到Pod/Service上 需要Network Plugin配合实现Network Policy  下面就以Consolidated Casey/RH Proposal为例看看具体的Proposal都有啥。
+设计目标  不影响现有的网络架构，即未定义Network Policy时，保持Kubernetes现有的网络架构 基于ThirdPartyResource实现NetworkPolicy资源的管理  Namespaces Namespace spec中增加isolation，默认关闭。当isolation打开后
+ 所有访问该Namespace内部Pods的请求都被拒绝(也包括该Namespace内部的Pods访问内部的其他Pods） 例外：为了不影响Health Check，从Node上访问Pods均允许  apiVersion: v1 kind: Namespace metadata: name: IsolatedApp spec: isolation: [ yes | no ] NetworkPolicy Objects 当Namespace的isolation打开的时候，需要NetworkPolicy来控制访问策略。访问策略的规则为："/>
 
 <meta property="og:title" content="" />
-<meta property="og:description" content="layout: &ldquo;post&rdquo; title: &ldquo;Kubernetes network policy&rdquo; date: &ldquo;2016-02-17 18:53&rdquo; Kubernetes network policy Kubernetes社区（确切的说是Kubernetes Network SIG [1]）正在讨论Network Policy Proposal，以实现" />
+<meta property="og:description" content="layout: &ldquo;post&rdquo; title: &ldquo;Kubernetes network policy&rdquo; date: &ldquo;2016-02-17 18:53&rdquo; Kubernetes network policy
+Kubernetes社区（确切的说是Kubernetes Network SIG [1]）正在讨论Network Policy Proposal，以实现SDN、网络隔离、IP Overlapping等[2]复杂的网络需求。
+目前，正在讨论的Proposals有多个：
+ Consolidated Casey/RH Proposal https://docs.google.com/document/d/1blfqiH4L_fpn33ZrnQ11v7LcYP0lmpiJ_RaapAPBbNU/edit Casey Davenport https://docs.google.com/document/d/16fg7Dc7K5m4bM2vGwyvkhPG_lcBKeOjaUSYBMwZlR_o/edit?usp=sharing Vipin Jain https://docs.google.com/a/insiemenetworks.com/document/d/1KKMOJSXKKQOzlblAzwYV72KGUlAuAaUuFqCWO8h4gd0/edit?usp=sharing Tim Hockin https://docs.google.com/document/d/1bXUO-Lp6smmLm7SMGwrwuvK23wgsaWvx6Mkt-Y0AtZ0/edit#  这几个Proposal都大同小异，主要的思想都是一致的：
+ 默认情况下网络模型跟现在保持一致，只有定义了Network Policy并且实现了相应的Network Plugin的时候，这个Proposal才有意义 Network Policy: 管理网络连通性策略，这些策略与具体的网络实现（如libnetwork等）无关 Network Policy通过Label作用到Pod/Service上 需要Network Plugin配合实现Network Policy  下面就以Consolidated Casey/RH Proposal为例看看具体的Proposal都有啥。
+设计目标  不影响现有的网络架构，即未定义Network Policy时，保持Kubernetes现有的网络架构 基于ThirdPartyResource实现NetworkPolicy资源的管理  Namespaces Namespace spec中增加isolation，默认关闭。当isolation打开后
+ 所有访问该Namespace内部Pods的请求都被拒绝(也包括该Namespace内部的Pods访问内部的其他Pods） 例外：为了不影响Health Check，从Node上访问Pods均允许  apiVersion: v1 kind: Namespace metadata: name: IsolatedApp spec: isolation: [ yes | no ] NetworkPolicy Objects 当Namespace的isolation打开的时候，需要NetworkPolicy来控制访问策略。访问策略的规则为：" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://feisky.xyz/posts/kubernetes-network-policy/" />
+
 
 
     
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
 
 
 
@@ -42,15 +55,15 @@
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hyde-hyde.6f40d28e777b288cb757a1db116a257b6f8dffc63a05e8473d12dc09a52d8d79.css" integrity="sha256-b0DSjnd7KIy3V6HbEWole2&#43;N/8Y6BehHPRLcCaUtjXk=">
+<link rel="stylesheet" href="/scss/hyde-hyde.92c66d107d7b219f0792cfd67223179af884b03f386ac46894f9f735932bbca3.css" integrity="sha256-ksZtEH17IZ8Hks/WciMXmviEsD84asRolPn3NZMrvKM=">
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
 
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hugo-toc.8549a64d301421b4256ea9a0d5ca8b99178799f569d5d2daeb95f24cef3ce6b7.css" integrity="sha256-hUmmTTAUIbQlbqmg1cqLmReHmfVp1dLa65XyTO885rc=">
+<link rel="stylesheet" href="/scss/tocbot.126e7d75240acc946d34d6ccb2982ed4c394a5fe34e73e1a2119ca951bcf119d.css" integrity="sha256-Em59dSQKzJRtNNbMspgu1MOUpf405z4aIRnKlRvPEZ0=">
 
 
 
@@ -62,6 +75,7 @@
     <!-- Icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
     <link rel="shortcut icon" href="/favicon.png">
+    
     
 
 </head>
@@ -75,6 +89,7 @@
       <span class="site__title">
         <a href="https://feisky.xyz/">Feisky</a>
       </span>
+      
       
       <p class="site__description">
          Notes about anything 
@@ -91,7 +106,23 @@
 			 
 				<li>
 					<a href="https://kubernetes.feisky.xyz">
-						<span>Kubernetes</span>
+						<span>Kubernetes指南</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://time.geekbang.org/column/intro/100020901">
+						<span>Linux性能优化实战</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://sdn.feisky.xyz">
+						<span>SDN网络</span>
 					</a>
 				</li>
 			 
@@ -106,21 +137,12 @@
 		 
 			 
 				<li>
-					<a href="https://sdn.feisky.xyz">
-						<span>SDN</span>
-					</a>
-				</li>
-			 
-		 
-			 
-				<li>
 					<a href="/about/">
-						<span>About</span>
+						<span>关于我</span>
 					</a>
 				</li>
 			 
 		
-		</li>
 	</ul>
 </div>
 
@@ -143,23 +165,33 @@
 	
 	
 	
+	
+	
 </section>
 
       </div>
     </div>
-    <div class="copyright">
-  &copy; 2019 .
-  <a href="https://creativecommons.org/licenses/by-sa/4.0">Some Rights Reserved</a>.
-  Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+    
+<div class="copyright">
+  &copy; 2020 feiskyer
+  
+    <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>
   
 </div>
+
+
+<div class="builtwith">
+Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+</div>
+
 
   </div>
 </div>
 
         <div class="content container">
             
-    <article>
+    
+<article>
   <header>
     <h1></h1>
     
@@ -172,107 +204,71 @@
     
     
     <br/>
-    <i class="fas fa-clock"></i> 4 min read
+    <i class="fas fa-clock"></i> 3 min read
 </div>
 
 
   </header>
   
   
-  <div class="toc-wrapper">
-    <input type="checkbox" id="tocToggle">
-    <label for="tocToggle">Table of Content</label>
-    
-        <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#date-2016-02-17-18-53">date: &ldquo;2016-02-17 18:53&rdquo;</a>
-<ul>
-<li>
-<ul>
-<li><a href="#设计目标">设计目标</a></li>
-<li><a href="#namespaces">Namespaces</a></li>
-<li><a href="#networkpolicy-objects"><strong>NetworkPolicy Objects</strong></a></li>
-</ul></li>
-<li><a href="#简单的示例">简单的示例</a></li>
-</ul></li>
-</ul></li>
-</ul>
-</nav>
-    
-  </div>
+  
+    <div class="toc-wrapper">
+      <input type="checkbox" id="tocToggle">
+      <label for="tocToggle">Table of Content</label>
+      
+        <div class="toc" id="TableOfContents"></div>
+      
+    </div>
+  
   
   <div class="post">
-    
-
-<p>layout: &ldquo;post&rdquo;
-title: &ldquo;Kubernetes network policy&rdquo;</p>
-
-<h2 id="date-2016-02-17-18-53">date: &ldquo;2016-02-17 18:53&rdquo;</h2>
-
+    <h2 id="date-2016-02-17-1853">layout: &ldquo;post&rdquo;
+title: &ldquo;Kubernetes network policy&rdquo;
+date: &ldquo;2016-02-17 18:53&rdquo;</h2>
 <p>Kubernetes network policy</p>
-
 <p>Kubernetes社区（确切的说是Kubernetes Network SIG [1]）正在讨论Network Policy Proposal，以实现SDN、网络隔离、IP Overlapping等[2]复杂的网络需求。</p>
-
 <p>目前，正在讨论的Proposals有多个：</p>
-
 <ul>
 <li><strong>Consolidated Casey/RH Proposal</strong> <a href="https://docs.google.com/document/d/1blfqiH4L_fpn33ZrnQ11v7LcYP0lmpiJ_RaapAPBbNU/edit">https://docs.google.com/document/d/1blfqiH4L_fpn33ZrnQ11v7LcYP0lmpiJ_RaapAPBbNU/edit</a></li>
 <li>Casey Davenport <a href="https://docs.google.com/document/d/16fg7Dc7K5m4bM2vGwyvkhPG_lcBKeOjaUSYBMwZlR_o/edit?usp=sharing">https://docs.google.com/document/d/16fg7Dc7K5m4bM2vGwyvkhPG_lcBKeOjaUSYBMwZlR_o/edit?usp=sharing</a></li>
 <li>Vipin Jain <a href="https://docs.google.com/a/insiemenetworks.com/document/d/1KKMOJSXKKQOzlblAzwYV72KGUlAuAaUuFqCWO8h4gd0/edit?usp=sharing">https://docs.google.com/a/insiemenetworks.com/document/d/1KKMOJSXKKQOzlblAzwYV72KGUlAuAaUuFqCWO8h4gd0/edit?usp=sharing</a></li>
 <li>Tim Hockin <a href="https://docs.google.com/document/d/1bXUO-Lp6smmLm7SMGwrwuvK23wgsaWvx6Mkt-Y0AtZ0/edit#">https://docs.google.com/document/d/1bXUO-Lp6smmLm7SMGwrwuvK23wgsaWvx6Mkt-Y0AtZ0/edit#</a></li>
 </ul>
-
 <p>这几个Proposal都大同小异，主要的思想都是一致的：</p>
-
 <ul>
 <li>默认情况下网络模型跟现在保持一致，只有定义了Network Policy并且实现了相应的Network Plugin的时候，这个Proposal才有意义</li>
 <li>Network Policy: 管理网络连通性策略，这些策略与具体的网络实现（如libnetwork等）无关</li>
 <li>Network Policy通过Label作用到Pod/Service上</li>
 <li>需要Network Plugin配合实现Network Policy</li>
 </ul>
-
 <p>下面就以<strong>Consolidated Casey/RH Proposal</strong>为例看看具体的Proposal都有啥。</p>
-
 <h4 id="设计目标">设计目标</h4>
-
 <ul>
 <li>不影响现有的网络架构，即未定义Network Policy时，保持Kubernetes现有的网络架构</li>
 <li>基于ThirdPartyResource实现NetworkPolicy资源的管理</li>
 </ul>
-
 <h4 id="namespaces">Namespaces</h4>
-
 <p>Namespace spec中增加<code>isolation</code>，默认关闭。当<code>isolation</code>打开后</p>
-
 <ul>
 <li>所有访问该Namespace内部Pods的请求都被拒绝(也包括该Namespace内部的Pods访问内部的其他Pods）</li>
 <li>例外：为了不影响Health Check，从Node上访问Pods均允许</li>
 </ul>
-
-<pre><code class="language-yaml">apiVersion: v1
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">apiVersion: v1
 kind: Namespace
 metadata:
   name: IsolatedApp
 spec:
  isolation: [ yes | no ]
-</code></pre>
-
-<h4 id="networkpolicy-objects"><strong>NetworkPolicy Objects</strong></h4>
-
+</code></pre></div><h4 id="networkpolicy-objects"><strong>NetworkPolicy Objects</strong></h4>
 <p>当Namespace的isolation打开的时候，需要NetworkPolicy来控制访问策略。访问策略的规则为：</p>
-
 <ul>
 <li>访问策略<code>allowFrom</code>仅对进入的请求有效，当策略满足的时候放行</li>
 <li>所有不匹配Policy的入请求均拒绝</li>
 <li>所有从Pods向外部发出的请求均放行（当然以后也有可能增加<code>allowTo</code>）</li>
 <li>定义Namespace和Pod时需要添加<code>tier</code>标签</li>
 </ul>
-
 <p>一个简单的NetworkPolicy示例为</p>
-
-<pre><code class="language-yaml">kind: NetworkPolicy
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">kind: NetworkPolicy
  metadata:
   name: database-policy
 spec:
@@ -282,181 +278,171 @@ spec:
   * namespaces:
 	  foo: bar  [ allows from namespaces with label “foo:bar” ]
   * pods:
-	  tier: database   [ allows east-west traffic on TCP 4001 ]
+	  tier: database   [ allows east-west traffic on TCP <span style="color:#ae81ff">4001</span> ]
 	protocol: TCP [ One of: TCP, UDP, ICMP ]
-	ports: [4001]
-</code></pre>
-
-<h3 id="简单的示例">简单的示例</h3>
-
+	ports: [<span style="color:#ae81ff">4001</span>]
+</code></pre></div><h3 id="简单的示例">简单的示例</h3>
 <p>现在就看一下如何通过ThirdPartyResource来管理NetworkPolicy资源。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#f92672">[</span>root@linux kubernetes<span style="color:#f92672">]</span><span style="color:#75715e"># # start k8s with thirdpartyresources enabled</span>
+<span style="color:#f92672">[</span>root@linux kubernetes<span style="color:#f92672">]</span><span style="color:#75715e"># cd $GOPATH/src/k8s.io/kubernetes</span>
+<span style="color:#f92672">[</span>root@linux kubernetes<span style="color:#f92672">]</span><span style="color:#75715e"># export RUNTIME_CONFIG=&#34;extensions/v1beta1=true,extensions/v1beta1/thirdpartyresources=true&#34;</span>
+<span style="color:#f92672">[</span>root@linux kubernetes<span style="color:#f92672">]</span><span style="color:#75715e"># hack/local-up-cluster.sh</span>
 
-<pre><code class="language-sh">[root@linux kubernetes]# # start k8s with thirdpartyresources enabled
-[root@linux kubernetes]# cd $GOPATH/src/k8s.io/kubernetes
-[root@linux kubernetes]# export RUNTIME_CONFIG=&quot;extensions/v1beta1=true,extensions/v1beta1/thirdpartyresources=true&quot;
-[root@linux kubernetes]# hack/local-up-cluster.sh
 
-
-[root@linux ~]# # create a ThirdPartyResource whose type is NetworkPolicy
-[root@linux ~]# cat network-policy.yaml
+<span style="color:#f92672">[</span>root@linux ~<span style="color:#f92672">]</span><span style="color:#75715e"># # create a ThirdPartyResource whose type is NetworkPolicy</span>
+<span style="color:#f92672">[</span>root@linux ~<span style="color:#f92672">]</span><span style="color:#75715e"># cat network-policy.yaml</span>
 metadata:
-  name: &quot;network-policy.experimental.kubernetes.io&quot;
-apiVersion: &quot;extensions/v1beta1&quot;
-kind: &quot;ThirdPartyResource&quot;
-description: &quot;An experimental specification of network policy&quot;
+  name: <span style="color:#e6db74">&#34;network-policy.experimental.kubernetes.io&#34;</span>
+apiVersion: <span style="color:#e6db74">&#34;extensions/v1beta1&#34;</span>
+kind: <span style="color:#e6db74">&#34;ThirdPartyResource&#34;</span>
+description: <span style="color:#e6db74">&#34;An experimental specification of network policy&#34;</span>
 versions:
   * name: v1
-[root@linux ~]# kubectl create -f network-policy.yaml
-thirdpartyresource &quot;network-policy.experimental.kubernetes.io&quot; created
-[root@linux ~]# kubectl get thirdpartyresource
-NAME                                        DESCRIPTION                                       VERSION(S)
+<span style="color:#f92672">[</span>root@linux ~<span style="color:#f92672">]</span><span style="color:#75715e"># kubectl create -f network-policy.yaml</span>
+thirdpartyresource <span style="color:#e6db74">&#34;network-policy.experimental.kubernetes.io&#34;</span> created
+<span style="color:#f92672">[</span>root@linux ~<span style="color:#f92672">]</span><span style="color:#75715e"># kubectl get thirdpartyresource</span>
+NAME                                        DESCRIPTION                                       VERSION<span style="color:#f92672">(</span>S<span style="color:#f92672">)</span>
 network-policy.experimental.kubernetes.io   An experimental specification of network policy   extensions/v1
 
-[root@linux ~]# # new experimental.kubernetes.io and networkpolicys APIs is visitable
-[root@linux ~]# curl http://localhost:8080/apis/experimental.kubernetes.io/
-{
-  &quot;kind&quot;: &quot;APIGroup&quot;,
-  &quot;apiVersion&quot;: &quot;v1&quot;,
-  &quot;name&quot;: &quot;experimental.kubernetes.io&quot;,
-  &quot;versions&quot;: [
-	{
-	  &quot;groupVersion&quot;: &quot;experimental.kubernetes.io/v1&quot;,
-	  &quot;version&quot;: &quot;v1&quot;
-	}
-  ],
-  &quot;preferredVersion&quot;: {
-	&quot;groupVersion&quot;: &quot;&quot;,
-	&quot;version&quot;: &quot;&quot;
-  }
-}[root@linux ~]# curl http://localhost:8080/apis/experimental.kubernetes.io/v1/namespaces/default/networkpolicys/
-{
-  &quot;kind&quot;: &quot;NetworkPolicyList&quot;,
-  &quot;items&quot;: [  ]
-}
+<span style="color:#f92672">[</span>root@linux ~<span style="color:#f92672">]</span><span style="color:#75715e"># # new experimental.kubernetes.io and networkpolicys APIs is visitable</span>
+<span style="color:#f92672">[</span>root@linux ~<span style="color:#f92672">]</span><span style="color:#75715e"># curl http://localhost:8080/apis/experimental.kubernetes.io/</span>
+<span style="color:#f92672">{</span>
+  <span style="color:#e6db74">&#34;kind&#34;</span>: <span style="color:#e6db74">&#34;APIGroup&#34;</span>,
+  <span style="color:#e6db74">&#34;apiVersion&#34;</span>: <span style="color:#e6db74">&#34;v1&#34;</span>,
+  <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;experimental.kubernetes.io&#34;</span>,
+  <span style="color:#e6db74">&#34;versions&#34;</span>: <span style="color:#f92672">[</span>
+	<span style="color:#f92672">{</span>
+	  <span style="color:#e6db74">&#34;groupVersion&#34;</span>: <span style="color:#e6db74">&#34;experimental.kubernetes.io/v1&#34;</span>,
+	  <span style="color:#e6db74">&#34;version&#34;</span>: <span style="color:#e6db74">&#34;v1&#34;</span>
+	<span style="color:#f92672">}</span>
+  <span style="color:#f92672">]</span>,
+  <span style="color:#e6db74">&#34;preferredVersion&#34;</span>: <span style="color:#f92672">{</span>
+	<span style="color:#e6db74">&#34;groupVersion&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+	<span style="color:#e6db74">&#34;version&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>
+  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span><span style="color:#f92672">[</span>root@linux ~<span style="color:#f92672">]</span><span style="color:#75715e"># curl http://localhost:8080/apis/experimental.kubernetes.io/v1/namespaces/default/networkpolicys/</span>
+<span style="color:#f92672">{</span>
+  <span style="color:#e6db74">&#34;kind&#34;</span>: <span style="color:#e6db74">&#34;NetworkPolicyList&#34;</span>,
+  <span style="color:#e6db74">&#34;items&#34;</span>: <span style="color:#f92672">[</span>  <span style="color:#f92672">]</span>
+<span style="color:#f92672">}</span>
 
 
-[root@linux ~]# # create a new network policy
-[root@linux ~]# cat network-policy.json
-{
-  &quot;kind&quot;: &quot;NetworkPolicy&quot;,
-  &quot;metadata&quot;: {
-	&quot;name&quot;: &quot;awesome-policy&quot;
-  },
-  &quot;allowIncoming&quot;: {
-	&quot;pods&quot;: [
-	  {
-		&quot;tier&quot;: &quot;database&quot;
-	  }
-	],
-	&quot;ports&quot;: [
-	  {
-		&quot;protocol&quot;: &quot;TCP&quot;,
-		&quot;port&quot;: 4001
-	  }
-	],
-	&quot;namespaces&quot;: [
-	  {
-		&quot;foo&quot;: &quot;bar&quot;
-	  }
-	]
-  },
-  &quot;apiVersion&quot;: &quot;experimental.kubernetes.io/v1&quot;,
-  &quot;selector&quot;: {
-	&quot;tier&quot;: &quot;database&quot;
-  }
-}
-[root@linux ~]# # kubectl supporting with 3rd party objects is on reviewing at https://github.com/kubernetes/kubernetes/pull/18835
-[root@linux ~]# # so just post directly here
-[root@linux ~]# curl -X POST -H &quot;Content-Type: application/json&quot; -d @network-policy.json http://localhost:8080/apis/experimental.kubernetes.io/v1/namespaces/default/networkpolicys
-{
-  &quot;allowIncoming&quot;: {
-	&quot;namespaces&quot;: [
-	  {
-		&quot;foo&quot;: &quot;bar&quot;
-	  }
-	],
-	&quot;pods&quot;: [
-	  {
-		&quot;tier&quot;: &quot;database&quot;
-	  }
-	],
-	&quot;ports&quot;: [
-	  {
-		&quot;port&quot;: 4001,
-		&quot;protocol&quot;: &quot;TCP&quot;
-	  }
-	]
-  },
-  &quot;apiVersion&quot;: &quot;experimental.kubernetes.io/v1&quot;,
-  &quot;kind&quot;: &quot;NetworkPolicy&quot;,
-  &quot;metadata&quot;: {
-	&quot;name&quot;: &quot;awesome-policy&quot;,
-	&quot;namespace&quot;: &quot;default&quot;,
-	&quot;selfLink&quot;: &quot;/apis/experimental.kubernetes.io/v1/namespaces/default/networkpolicys/awesome-policy&quot;,
-	&quot;uid&quot;: &quot;63d53b48-d248-11e5-85b1-064a4ed57913&quot;,
-	&quot;resourceVersion&quot;: &quot;29&quot;,
-	&quot;creationTimestamp&quot;: &quot;2016-02-13T11:53:25Z&quot;
-  },
-  &quot;selector&quot;: {
-	&quot;tier&quot;: &quot;database&quot;
-  }
-}
-[root@linux ~]# curl http://localhost:8080/apis/experimental.kubernetes.io/v1/namespaces/default/networkpolicys/
-{
-  &quot;kind&quot;: &quot;NetworkPolicyList&quot;,
-  &quot;items&quot;: [
-	{
-	  &quot;allowIncoming&quot;: {
-		&quot;namespaces&quot;: [
-		  {
-			&quot;foo&quot;: &quot;bar&quot;
-		  }
-		],
-		&quot;pods&quot;: [
-		  {
-			&quot;tier&quot;: &quot;database&quot;
-		  }
-		],
-		&quot;ports&quot;: [
-		  {
-			&quot;port&quot;: 4001,
-			&quot;protocol&quot;: &quot;TCP&quot;
-		  }
-		]
-	  },
-	  &quot;apiVersion&quot;: &quot;experimental.kubernetes.io/v1&quot;,
-	  &quot;kind&quot;: &quot;NetworkPolicy&quot;,
-	  &quot;metadata&quot;: {
-		&quot;name&quot;: &quot;awesome-policy&quot;,
-		&quot;namespace&quot;: &quot;default&quot;,
-		&quot;selfLink&quot;: &quot;/apis/experimental.kubernetes.io/v1/namespaces/default/networkpolicys/awesome-policy&quot;,
-		&quot;uid&quot;: &quot;63d53b48-d248-11e5-85b1-064a4ed57913&quot;,
-		&quot;resourceVersion&quot;: &quot;29&quot;,
-		&quot;creationTimestamp&quot;: &quot;2016-02-13T11:53:25Z&quot;
-	  },
-	  &quot;selector&quot;: {
-		&quot;tier&quot;: &quot;database&quot;
-	  }
-	}
-  ]
-}
+<span style="color:#f92672">[</span>root@linux ~<span style="color:#f92672">]</span><span style="color:#75715e"># # create a new network policy</span>
+<span style="color:#f92672">[</span>root@linux ~<span style="color:#f92672">]</span><span style="color:#75715e"># cat network-policy.json</span>
+<span style="color:#f92672">{</span>
+  <span style="color:#e6db74">&#34;kind&#34;</span>: <span style="color:#e6db74">&#34;NetworkPolicy&#34;</span>,
+  <span style="color:#e6db74">&#34;metadata&#34;</span>: <span style="color:#f92672">{</span>
+	<span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;awesome-policy&#34;</span>
+  <span style="color:#f92672">}</span>,
+  <span style="color:#e6db74">&#34;allowIncoming&#34;</span>: <span style="color:#f92672">{</span>
+	<span style="color:#e6db74">&#34;pods&#34;</span>: <span style="color:#f92672">[</span>
+	  <span style="color:#f92672">{</span>
+		<span style="color:#e6db74">&#34;tier&#34;</span>: <span style="color:#e6db74">&#34;database&#34;</span>
+	  <span style="color:#f92672">}</span>
+	<span style="color:#f92672">]</span>,
+	<span style="color:#e6db74">&#34;ports&#34;</span>: <span style="color:#f92672">[</span>
+	  <span style="color:#f92672">{</span>
+		<span style="color:#e6db74">&#34;protocol&#34;</span>: <span style="color:#e6db74">&#34;TCP&#34;</span>,
+		<span style="color:#e6db74">&#34;port&#34;</span>: <span style="color:#ae81ff">4001</span>
+	  <span style="color:#f92672">}</span>
+	<span style="color:#f92672">]</span>,
+	<span style="color:#e6db74">&#34;namespaces&#34;</span>: <span style="color:#f92672">[</span>
+	  <span style="color:#f92672">{</span>
+		<span style="color:#e6db74">&#34;foo&#34;</span>: <span style="color:#e6db74">&#34;bar&#34;</span>
+	  <span style="color:#f92672">}</span>
+	<span style="color:#f92672">]</span>
+  <span style="color:#f92672">}</span>,
+  <span style="color:#e6db74">&#34;apiVersion&#34;</span>: <span style="color:#e6db74">&#34;experimental.kubernetes.io/v1&#34;</span>,
+  <span style="color:#e6db74">&#34;selector&#34;</span>: <span style="color:#f92672">{</span>
+	<span style="color:#e6db74">&#34;tier&#34;</span>: <span style="color:#e6db74">&#34;database&#34;</span>
+  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+<span style="color:#f92672">[</span>root@linux ~<span style="color:#f92672">]</span><span style="color:#75715e"># # kubectl supporting with 3rd party objects is on reviewing at https://github.com/kubernetes/kubernetes/pull/18835</span>
+<span style="color:#f92672">[</span>root@linux ~<span style="color:#f92672">]</span><span style="color:#75715e"># # so just post directly here</span>
+<span style="color:#f92672">[</span>root@linux ~<span style="color:#f92672">]</span><span style="color:#75715e"># curl -X POST -H &#34;Content-Type: application/json&#34; -d @network-policy.json http://localhost:8080/apis/experimental.kubernetes.io/v1/namespaces/default/networkpolicys</span>
+<span style="color:#f92672">{</span>
+  <span style="color:#e6db74">&#34;allowIncoming&#34;</span>: <span style="color:#f92672">{</span>
+	<span style="color:#e6db74">&#34;namespaces&#34;</span>: <span style="color:#f92672">[</span>
+	  <span style="color:#f92672">{</span>
+		<span style="color:#e6db74">&#34;foo&#34;</span>: <span style="color:#e6db74">&#34;bar&#34;</span>
+	  <span style="color:#f92672">}</span>
+	<span style="color:#f92672">]</span>,
+	<span style="color:#e6db74">&#34;pods&#34;</span>: <span style="color:#f92672">[</span>
+	  <span style="color:#f92672">{</span>
+		<span style="color:#e6db74">&#34;tier&#34;</span>: <span style="color:#e6db74">&#34;database&#34;</span>
+	  <span style="color:#f92672">}</span>
+	<span style="color:#f92672">]</span>,
+	<span style="color:#e6db74">&#34;ports&#34;</span>: <span style="color:#f92672">[</span>
+	  <span style="color:#f92672">{</span>
+		<span style="color:#e6db74">&#34;port&#34;</span>: 4001,
+		<span style="color:#e6db74">&#34;protocol&#34;</span>: <span style="color:#e6db74">&#34;TCP&#34;</span>
+	  <span style="color:#f92672">}</span>
+	<span style="color:#f92672">]</span>
+  <span style="color:#f92672">}</span>,
+  <span style="color:#e6db74">&#34;apiVersion&#34;</span>: <span style="color:#e6db74">&#34;experimental.kubernetes.io/v1&#34;</span>,
+  <span style="color:#e6db74">&#34;kind&#34;</span>: <span style="color:#e6db74">&#34;NetworkPolicy&#34;</span>,
+  <span style="color:#e6db74">&#34;metadata&#34;</span>: <span style="color:#f92672">{</span>
+	<span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;awesome-policy&#34;</span>,
+	<span style="color:#e6db74">&#34;namespace&#34;</span>: <span style="color:#e6db74">&#34;default&#34;</span>,
+	<span style="color:#e6db74">&#34;selfLink&#34;</span>: <span style="color:#e6db74">&#34;/apis/experimental.kubernetes.io/v1/namespaces/default/networkpolicys/awesome-policy&#34;</span>,
+	<span style="color:#e6db74">&#34;uid&#34;</span>: <span style="color:#e6db74">&#34;63d53b48-d248-11e5-85b1-064a4ed57913&#34;</span>,
+	<span style="color:#e6db74">&#34;resourceVersion&#34;</span>: <span style="color:#e6db74">&#34;29&#34;</span>,
+	<span style="color:#e6db74">&#34;creationTimestamp&#34;</span>: <span style="color:#e6db74">&#34;2016-02-13T11:53:25Z&#34;</span>
+  <span style="color:#f92672">}</span>,
+  <span style="color:#e6db74">&#34;selector&#34;</span>: <span style="color:#f92672">{</span>
+	<span style="color:#e6db74">&#34;tier&#34;</span>: <span style="color:#e6db74">&#34;database&#34;</span>
+  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+<span style="color:#f92672">[</span>root@linux ~<span style="color:#f92672">]</span><span style="color:#75715e"># curl http://localhost:8080/apis/experimental.kubernetes.io/v1/namespaces/default/networkpolicys/</span>
+<span style="color:#f92672">{</span>
+  <span style="color:#e6db74">&#34;kind&#34;</span>: <span style="color:#e6db74">&#34;NetworkPolicyList&#34;</span>,
+  <span style="color:#e6db74">&#34;items&#34;</span>: <span style="color:#f92672">[</span>
+	<span style="color:#f92672">{</span>
+	  <span style="color:#e6db74">&#34;allowIncoming&#34;</span>: <span style="color:#f92672">{</span>
+		<span style="color:#e6db74">&#34;namespaces&#34;</span>: <span style="color:#f92672">[</span>
+		  <span style="color:#f92672">{</span>
+			<span style="color:#e6db74">&#34;foo&#34;</span>: <span style="color:#e6db74">&#34;bar&#34;</span>
+		  <span style="color:#f92672">}</span>
+		<span style="color:#f92672">]</span>,
+		<span style="color:#e6db74">&#34;pods&#34;</span>: <span style="color:#f92672">[</span>
+		  <span style="color:#f92672">{</span>
+			<span style="color:#e6db74">&#34;tier&#34;</span>: <span style="color:#e6db74">&#34;database&#34;</span>
+		  <span style="color:#f92672">}</span>
+		<span style="color:#f92672">]</span>,
+		<span style="color:#e6db74">&#34;ports&#34;</span>: <span style="color:#f92672">[</span>
+		  <span style="color:#f92672">{</span>
+			<span style="color:#e6db74">&#34;port&#34;</span>: 4001,
+			<span style="color:#e6db74">&#34;protocol&#34;</span>: <span style="color:#e6db74">&#34;TCP&#34;</span>
+		  <span style="color:#f92672">}</span>
+		<span style="color:#f92672">]</span>
+	  <span style="color:#f92672">}</span>,
+	  <span style="color:#e6db74">&#34;apiVersion&#34;</span>: <span style="color:#e6db74">&#34;experimental.kubernetes.io/v1&#34;</span>,
+	  <span style="color:#e6db74">&#34;kind&#34;</span>: <span style="color:#e6db74">&#34;NetworkPolicy&#34;</span>,
+	  <span style="color:#e6db74">&#34;metadata&#34;</span>: <span style="color:#f92672">{</span>
+		<span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;awesome-policy&#34;</span>,
+		<span style="color:#e6db74">&#34;namespace&#34;</span>: <span style="color:#e6db74">&#34;default&#34;</span>,
+		<span style="color:#e6db74">&#34;selfLink&#34;</span>: <span style="color:#e6db74">&#34;/apis/experimental.kubernetes.io/v1/namespaces/default/networkpolicys/awesome-policy&#34;</span>,
+		<span style="color:#e6db74">&#34;uid&#34;</span>: <span style="color:#e6db74">&#34;63d53b48-d248-11e5-85b1-064a4ed57913&#34;</span>,
+		<span style="color:#e6db74">&#34;resourceVersion&#34;</span>: <span style="color:#e6db74">&#34;29&#34;</span>,
+		<span style="color:#e6db74">&#34;creationTimestamp&#34;</span>: <span style="color:#e6db74">&#34;2016-02-13T11:53:25Z&#34;</span>
+	  <span style="color:#f92672">}</span>,
+	  <span style="color:#e6db74">&#34;selector&#34;</span>: <span style="color:#f92672">{</span>
+		<span style="color:#e6db74">&#34;tier&#34;</span>: <span style="color:#e6db74">&#34;database&#34;</span>
+	  <span style="color:#f92672">}</span>
+	<span style="color:#f92672">}</span>
+  <span style="color:#f92672">]</span>
+<span style="color:#f92672">}</span>
 
-[root@linux ~]# # clear
-[root@linux ~]# kubectl delete thirdpartyresource network-policy.experimental.kubernetes.io
-thirdpartyresource &quot;network-policy.experimental.kubernetes.io&quot; deleted
-</code></pre>
-
-<p>当然了，上面只是API部分的demo，具体的网络Plugin还需要做很多工作实现这些策略。Kubernetes Meetup [3] 上Romana有一个关于Network Policy的演示，[4] 这里有更多的说明。</p>
-
+<span style="color:#f92672">[</span>root@linux ~<span style="color:#f92672">]</span><span style="color:#75715e"># # clear</span>
+<span style="color:#f92672">[</span>root@linux ~<span style="color:#f92672">]</span><span style="color:#75715e"># kubectl delete thirdpartyresource network-policy.experimental.kubernetes.io</span>
+thirdpartyresource <span style="color:#e6db74">&#34;network-policy.experimental.kubernetes.io&#34;</span> deleted
+</code></pre></div><p>当然了，上面只是API部分的demo，具体的网络Plugin还需要做很多工作实现这些策略。Kubernetes Meetup [3] 上Romana有一个关于Network Policy的演示，[4] 这里有更多的说明。</p>
 <p><strong>Consolidated Casey/RH Proposal</strong>还有一些未解决的问题还在讨论中，如</p>
-
 <ul>
 <li>Service的访问策略怎么定义，如何处理跟Pod访问策略冲突的问题</li>
 <li>如何定义Kubernetes外部服务的访问策略，是不是要在<code>allowFrom</code>中增加<code>CIDR</code>等</li>
 </ul>
-
 <p>当然，这些Proposal都还在讨论中，虽然最终的Design和实现还没有确定，但大致的思想肯定不会有太大的变化了。</p>
-
 <p>[1] <a href="https://docs.google.com/document/d/1_w77-zG_Xj0zYvEMfQZTQ-wPP4kXkpGD8smVtW_qqWM">https://docs.google.com/document/d/1_w77-zG_Xj0zYvEMfQZTQ-wPP4kXkpGD8smVtW_qqWM</a>
 [2] <a href="https://docs.google.com/document/d/1ZCz_MZILzKCbFwF9gjU1YNA1YbNaw0NDsESh1P6Vcnc">https://docs.google.com/document/d/1ZCz_MZILzKCbFwF9gjU1YNA1YbNaw0NDsESh1P6Vcnc</a>
 [3] <a href="https://www.youtube.com/watch?v=ab7mXAddaX8">https://www.youtube.com/watch?v=ab7mXAddaX8</a>
@@ -525,6 +511,7 @@ thirdpartyresource &quot;network-policy.experimental.kubernetes.io&quot; deleted
         </div>
         
     
+
   
   
 <script type="application/javascript">
@@ -539,15 +526,12 @@ if (!doNotTrack) {
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
-<script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"
-  integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy"
-  crossorigin="anonymous">
-</script>
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
 
 
     
     
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
         
     
     <script type="text/javascript">
@@ -558,6 +542,21 @@ if (!doNotTrack) {
 
 
 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.js"></script>
+<script type="text/javascript">
+  if (tocbot) {
+    tocbot.init({
+      
+      tocSelector: '.toc',
+      
+      contentSelector: '.post',
+      
+      headingSelector: 'h2, h3, h4',
+      collapseDepth: 4
+    });
+  }
+</script>
 
 
 

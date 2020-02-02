@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.49.2" />
+<meta name="generator" content="Hugo 0.62.2" />
 
     
     
@@ -22,18 +22,23 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content=""/>
-<meta name="twitter:description" content="layout: &ldquo;post&rdquo; title: &ldquo;Hello world to Docker Mac&rdquo; date: &ldquo;2016-04-15 16:34&rdquo; 终于等到了Docker for Mac。如之前期待的，体验真的很棒： 安装简单了，标准的Mac Application VPN无障碍 原生的（osxfs）"/>
+<meta name="twitter:description" content="layout: &ldquo;post&rdquo; title: &ldquo;Hello world to Docker Mac&rdquo; date: &ldquo;2016-04-15 16:34&rdquo; 终于等到了Docker for Mac。如之前期待的，体验真的很棒：
+ 安装简单了，标准的Mac Application  VPN无障碍 原生的（osxfs）文件系统共享（其实还支持9p方式） Docker Application管理 xhyve VM，更改配置后会自动重启 速度快，在使用体验上跟在Linux上面已经差别不大 可以与docker toolbox共存：Docker for Mac也会像Linux上面一样监听一个/var/run/docker.sock，这样客户端默认情况下就会走它的API；但也可以通过环境变量告诉docker CLI调用其他Docker Daemon的API（比如docker-machine管理的vm等）  跑一个nginx试试：
+➜ ~ docker version Client: Version: 1.11.0 API version: 1.23 Go version: go1.5.4 Git commit: 4dc5990 Built: Wed Apr 13 19:36:04 2016 OS/Arch: darwin/amd64 Server: Version: 1.11.0 API version: 1.23 Go version: go1.5.4 Git commit: a5315b8 Built: Thu Apr 14 10:19:52 2016 OS/Arch: linux/amd64 ➜ ~ ➜ ~ ls /var/run/docker."/>
 
 <meta property="og:title" content="" />
-<meta property="og:description" content="layout: &ldquo;post&rdquo; title: &ldquo;Hello world to Docker Mac&rdquo; date: &ldquo;2016-04-15 16:34&rdquo; 终于等到了Docker for Mac。如之前期待的，体验真的很棒： 安装简单了，标准的Mac Application VPN无障碍 原生的（osxfs）" />
+<meta property="og:description" content="layout: &ldquo;post&rdquo; title: &ldquo;Hello world to Docker Mac&rdquo; date: &ldquo;2016-04-15 16:34&rdquo; 终于等到了Docker for Mac。如之前期待的，体验真的很棒：
+ 安装简单了，标准的Mac Application  VPN无障碍 原生的（osxfs）文件系统共享（其实还支持9p方式） Docker Application管理 xhyve VM，更改配置后会自动重启 速度快，在使用体验上跟在Linux上面已经差别不大 可以与docker toolbox共存：Docker for Mac也会像Linux上面一样监听一个/var/run/docker.sock，这样客户端默认情况下就会走它的API；但也可以通过环境变量告诉docker CLI调用其他Docker Daemon的API（比如docker-machine管理的vm等）  跑一个nginx试试：
+➜ ~ docker version Client: Version: 1.11.0 API version: 1.23 Go version: go1.5.4 Git commit: 4dc5990 Built: Wed Apr 13 19:36:04 2016 OS/Arch: darwin/amd64 Server: Version: 1.11.0 API version: 1.23 Go version: go1.5.4 Git commit: a5315b8 Built: Thu Apr 14 10:19:52 2016 OS/Arch: linux/amd64 ➜ ~ ➜ ~ ls /var/run/docker." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://feisky.xyz/posts/hello-world-to-docker-mac/" />
+
 
 
     
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
 
 
 
@@ -42,15 +47,15 @@
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hyde-hyde.6f40d28e777b288cb757a1db116a257b6f8dffc63a05e8473d12dc09a52d8d79.css" integrity="sha256-b0DSjnd7KIy3V6HbEWole2&#43;N/8Y6BehHPRLcCaUtjXk=">
+<link rel="stylesheet" href="/scss/hyde-hyde.92c66d107d7b219f0792cfd67223179af884b03f386ac46894f9f735932bbca3.css" integrity="sha256-ksZtEH17IZ8Hks/WciMXmviEsD84asRolPn3NZMrvKM=">
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
 
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hugo-toc.8549a64d301421b4256ea9a0d5ca8b99178799f569d5d2daeb95f24cef3ce6b7.css" integrity="sha256-hUmmTTAUIbQlbqmg1cqLmReHmfVp1dLa65XyTO885rc=">
+<link rel="stylesheet" href="/scss/tocbot.126e7d75240acc946d34d6ccb2982ed4c394a5fe34e73e1a2119ca951bcf119d.css" integrity="sha256-Em59dSQKzJRtNNbMspgu1MOUpf405z4aIRnKlRvPEZ0=">
 
 
 
@@ -62,6 +67,7 @@
     <!-- Icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
     <link rel="shortcut icon" href="/favicon.png">
+    
     
 
 </head>
@@ -75,6 +81,7 @@
       <span class="site__title">
         <a href="https://feisky.xyz/">Feisky</a>
       </span>
+      
       
       <p class="site__description">
          Notes about anything 
@@ -91,7 +98,23 @@
 			 
 				<li>
 					<a href="https://kubernetes.feisky.xyz">
-						<span>Kubernetes</span>
+						<span>Kubernetes指南</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://time.geekbang.org/column/intro/100020901">
+						<span>Linux性能优化实战</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://sdn.feisky.xyz">
+						<span>SDN网络</span>
 					</a>
 				</li>
 			 
@@ -106,21 +129,12 @@
 		 
 			 
 				<li>
-					<a href="https://sdn.feisky.xyz">
-						<span>SDN</span>
-					</a>
-				</li>
-			 
-		 
-			 
-				<li>
 					<a href="/about/">
-						<span>About</span>
+						<span>关于我</span>
 					</a>
 				</li>
 			 
 		
-		</li>
 	</ul>
 </div>
 
@@ -143,23 +157,33 @@
 	
 	
 	
+	
+	
 </section>
 
       </div>
     </div>
-    <div class="copyright">
-  &copy; 2019 .
-  <a href="https://creativecommons.org/licenses/by-sa/4.0">Some Rights Reserved</a>.
-  Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+    
+<div class="copyright">
+  &copy; 2020 feiskyer
+  
+    <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>
   
 </div>
+
+
+<div class="builtwith">
+Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+</div>
+
 
   </div>
 </div>
 
         <div class="content container">
             
-    <article>
+    
+<article>
   <header>
     <h1></h1>
     
@@ -179,52 +203,39 @@
   </header>
   
   
-  <div class="toc-wrapper">
-    <input type="checkbox" id="tocToggle">
-    <label for="tocToggle">Table of Content</label>
-    
-        <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#date-2016-04-15-16-34">date: &ldquo;2016-04-15 16:34&rdquo;</a></li>
-</ul></li>
-</ul>
-</nav>
-    
-  </div>
+  
+    <div class="toc-wrapper">
+      <input type="checkbox" id="tocToggle">
+      <label for="tocToggle">Table of Content</label>
+      
+        <div class="toc" id="TableOfContents"></div>
+      
+    </div>
+  
   
   <div class="post">
-    
-
-<p>layout: &ldquo;post&rdquo;
-title: &ldquo;Hello world to Docker Mac&rdquo;</p>
-
-<h2 id="date-2016-04-15-16-34">date: &ldquo;2016-04-15 16:34&rdquo;</h2>
-
+    <h2 id="date-2016-04-15-1634">layout: &ldquo;post&rdquo;
+title: &ldquo;Hello world to Docker Mac&rdquo;
+date: &ldquo;2016-04-15 16:34&rdquo;</h2>
 <p>终于等到了Docker for Mac。如之前期待的，体验真的很棒：</p>
-
 <ul>
 <li>安装简单了，标准的Mac Application
-<img src="/images/docker-mac-setting.png" alt="" /></li>
+<img src="/images/docker-mac-setting.png" alt=""></li>
 <li>VPN无障碍</li>
 <li>原生的（osxfs）文件系统共享（其实还支持9p方式）</li>
 <li>Docker Application管理 xhyve VM，更改配置后会自动重启</li>
 <li>速度快，在使用体验上跟在Linux上面已经差别不大</li>
 <li>可以与docker toolbox共存：Docker for Mac也会像Linux上面一样监听一个<code>/var/run/docker.sock</code>，这样客户端默认情况下就会走它的API；但也可以通过环境变量告诉docker CLI调用其他Docker Daemon的API（比如docker-machine管理的vm等）</li>
 </ul>
-
-<p><img src="/images/docker-for-mac-and-toolbox.png" alt="" /></p>
-
+<p><img src="/images/docker-for-mac-and-toolbox.png" alt=""></p>
 <p>跑一个nginx试试：</p>
-
-<pre><code class="language-sh">➜  ~ docker version
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">➜  ~ docker version
 Client:
  Version:      1.11.0
  API version:  1.23
  Go version:   go1.5.4
  Git commit:   4dc5990
- Built:        Wed Apr 13 19:36:04 2016
+ Built:        Wed Apr <span style="color:#ae81ff">13</span> 19:36:04 <span style="color:#ae81ff">2016</span>
  OS/Arch:      darwin/amd64
 
 Server:
@@ -232,7 +243,7 @@ Server:
  API version:  1.23
  Go version:   go1.5.4
  Git commit:   a5315b8
- Built:        Thu Apr 14 10:19:52 2016
+ Built:        Thu Apr <span style="color:#ae81ff">14</span> 10:19:52 <span style="color:#ae81ff">2016</span>
  OS/Arch:      linux/amd64
 ➜  ~
 ➜  ~ ls /var/run/docker.sock
@@ -246,11 +257,11 @@ Server:
 &lt;head&gt;
 &lt;title&gt;Welcome to nginx!&lt;/title&gt;
 &lt;style&gt;
-    body {
+    body <span style="color:#f92672">{</span>
         width: 35em;
-        margin: 0 auto;
+        margin: <span style="color:#ae81ff">0</span> auto;
         font-family: Tahoma, Verdana, Arial, sans-serif;
-    }
+    <span style="color:#f92672">}</span>
 &lt;/style&gt;
 &lt;/head&gt;
 &lt;body&gt;
@@ -259,16 +270,14 @@ Server:
 working. Further configuration is required.&lt;/p&gt;
 
 &lt;p&gt;For online documentation and support please refer to
-&lt;a href=&quot;http://nginx.org/&quot;&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;
+&lt;a href<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://nginx.org/&#34;</span>&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;
 Commercial support is available at
-&lt;a href=&quot;http://nginx.com/&quot;&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;
+&lt;a href<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://nginx.com/&#34;</span>&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;em&gt;Thank you for using nginx.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Thank you <span style="color:#66d9ef">for</span> using nginx.&lt;/em&gt;&lt;/p&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-</code></pre>
-
-<p>当然了，由于还是Beta版，小问题还是有的。不过感觉目前的状态已经可以替代Linux vm作大部分的开发测试了。</p>
+</code></pre></div><p>当然了，由于还是Beta版，小问题还是有的。不过感觉目前的状态已经可以替代Linux vm作大部分的开发测试了。</p>
 
   </div>
   
@@ -333,6 +342,7 @@ Commercial support is available at
         </div>
         
     
+
   
   
 <script type="application/javascript">
@@ -347,15 +357,12 @@ if (!doNotTrack) {
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
-<script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"
-  integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy"
-  crossorigin="anonymous">
-</script>
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
 
 
     
     
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
         
     
     <script type="text/javascript">
@@ -366,6 +373,21 @@ if (!doNotTrack) {
 
 
 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.js"></script>
+<script type="text/javascript">
+  if (tocbot) {
+    tocbot.init({
+      
+      tocSelector: '.toc',
+      
+      contentSelector: '.post',
+      
+      headingSelector: 'h2, h3, h4',
+      collapseDepth: 4
+    });
+  }
+</script>
 
 
 

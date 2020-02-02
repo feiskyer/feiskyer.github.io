@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.49.2" />
+<meta name="generator" content="Hugo 0.62.2" />
 
     
     
@@ -22,20 +22,21 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Docker acquires SDN startup SocketPlane"/>
-<meta name="twitter:description" content="At Socketplane we started out as four guys with a collectively strong belief in open source and open communities. &nbsp;We aligned around a shared vision that we wanted to be a critical part of Docker’s once in a decade disruption. Now that we are part of the Docker team, we couldn’t be happier.
+<meta name="twitter:description" content="At Socketplane we started out as four guys with a collectively strong belief in open source and open communities. We aligned around a shared vision that we wanted to be a critical part of Docker’s once in a decade disruption. Now that we are part of the Docker team, we couldn’t be happier.
 We never looked to hedge our bets, our success was and obviously still is tied to the success of Docker."/>
 
 <meta property="og:title" content="Docker acquires SDN startup SocketPlane" />
-<meta property="og:description" content="At Socketplane we started out as four guys with a collectively strong belief in open source and open communities. &nbsp;We aligned around a shared vision that we wanted to be a critical part of Docker’s once in a decade disruption. Now that we are part of the Docker team, we couldn’t be happier.
+<meta property="og:description" content="At Socketplane we started out as four guys with a collectively strong belief in open source and open communities. We aligned around a shared vision that we wanted to be a critical part of Docker’s once in a decade disruption. Now that we are part of the Docker team, we couldn’t be happier.
 We never looked to hedge our bets, our success was and obviously still is tied to the success of Docker." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://feisky.xyz/posts/2015-03-05-docker-acquires-sdn-startup-socketplane/" />
 
 
+
     
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
 
 
 
@@ -44,15 +45,15 @@ We never looked to hedge our bets, our success was and obviously still is tied t
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hyde-hyde.6f40d28e777b288cb757a1db116a257b6f8dffc63a05e8473d12dc09a52d8d79.css" integrity="sha256-b0DSjnd7KIy3V6HbEWole2&#43;N/8Y6BehHPRLcCaUtjXk=">
+<link rel="stylesheet" href="/scss/hyde-hyde.92c66d107d7b219f0792cfd67223179af884b03f386ac46894f9f735932bbca3.css" integrity="sha256-ksZtEH17IZ8Hks/WciMXmviEsD84asRolPn3NZMrvKM=">
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
 
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hugo-toc.8549a64d301421b4256ea9a0d5ca8b99178799f569d5d2daeb95f24cef3ce6b7.css" integrity="sha256-hUmmTTAUIbQlbqmg1cqLmReHmfVp1dLa65XyTO885rc=">
+<link rel="stylesheet" href="/scss/tocbot.126e7d75240acc946d34d6ccb2982ed4c394a5fe34e73e1a2119ca951bcf119d.css" integrity="sha256-Em59dSQKzJRtNNbMspgu1MOUpf405z4aIRnKlRvPEZ0=">
 
 
 
@@ -64,6 +65,7 @@ We never looked to hedge our bets, our success was and obviously still is tied t
     <!-- Icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
     <link rel="shortcut icon" href="/favicon.png">
+    
     
 
 </head>
@@ -77,6 +79,7 @@ We never looked to hedge our bets, our success was and obviously still is tied t
       <span class="site__title">
         <a href="https://feisky.xyz/">Feisky</a>
       </span>
+      
       
       <p class="site__description">
          Notes about anything 
@@ -93,7 +96,23 @@ We never looked to hedge our bets, our success was and obviously still is tied t
 			 
 				<li>
 					<a href="https://kubernetes.feisky.xyz">
-						<span>Kubernetes</span>
+						<span>Kubernetes指南</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://time.geekbang.org/column/intro/100020901">
+						<span>Linux性能优化实战</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://sdn.feisky.xyz">
+						<span>SDN网络</span>
 					</a>
 				</li>
 			 
@@ -108,21 +127,12 @@ We never looked to hedge our bets, our success was and obviously still is tied t
 		 
 			 
 				<li>
-					<a href="https://sdn.feisky.xyz">
-						<span>SDN</span>
-					</a>
-				</li>
-			 
-		 
-			 
-				<li>
 					<a href="/about/">
-						<span>About</span>
+						<span>关于我</span>
 					</a>
 				</li>
 			 
 		
-		</li>
 	</ul>
 </div>
 
@@ -145,23 +155,33 @@ We never looked to hedge our bets, our success was and obviously still is tied t
 	
 	
 	
+	
+	
 </section>
 
       </div>
     </div>
-    <div class="copyright">
-  &copy; 2019 .
-  <a href="https://creativecommons.org/licenses/by-sa/4.0">Some Rights Reserved</a>.
-  Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+    
+<div class="copyright">
+  &copy; 2020 feiskyer
+  
+    <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>
   
 </div>
+
+
+<div class="builtwith">
+Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+</div>
+
 
   </div>
 </div>
 
         <div class="content container">
             
-    <article>
+    
+<article>
   <header>
     <h1>Docker acquires SDN startup SocketPlane</h1>
     
@@ -191,23 +211,21 @@ We never looked to hedge our bets, our success was and obviously still is tied t
   </header>
   
   
-  <div class="toc-wrapper">
-    <input type="checkbox" id="tocToggle">
-    <label for="tocToggle">Table of Content</label>
-    
-        
-    
-  </div>
+  
+    <div class="toc-wrapper">
+      <input type="checkbox" id="tocToggle">
+      <label for="tocToggle">Table of Content</label>
+      
+        <div class="toc" id="TableOfContents"></div>
+      
+    </div>
+  
   
   <div class="post">
-    <p>At <a href="http://socketplane.io/">Socketplane</a> we started out as four guys with a collectively strong belief in open source and open communities. &nbsp;We aligned around a shared vision that we wanted to be a critical part of Docker’s once in a decade disruption. Now that we are <a href="http://www.businesswire.com/news/home/20150304005595/en/Docker-Acquires-SocketPlane-Drive-Open-Collaborative-Networking#.VPcQAVPF-Tk">part of the Docker team</a>, we couldn’t be happier.</p>
-
+    <p>At <a href="http://socketplane.io/">Socketplane</a> we started out as four guys with a collectively strong belief in open source and open communities.  We aligned around a shared vision that we wanted to be a critical part of Docker’s once in a decade disruption. Now that we are <a href="http://www.businesswire.com/news/home/20150304005595/en/Docker-Acquires-SocketPlane-Drive-Open-Collaborative-Networking#.VPcQAVPF-Tk">part of the Docker team</a>, we couldn’t be happier.</p>
 <p>We never looked to hedge our bets, our success was and obviously still is tied to the success of Docker. While there are many reasons that we decided to join the team, first and foremost Docker is unlike any other projects we have worked on in the past; the focus on user experience and simplicity is unmatched.  Our early work with Docker during the open network design sprints gave us clear indications that the Docker maintainers were interested in being good open source stewards for the networking community in a project with an already staggering community of users and contributors.  We also saw a genuine desire from Docker leadership to do right by both, individual contributors and the ecosystem. That made it all the more easy to jump in head first.</p>
-
 <p>The majority of users want networking to just work, but just as importantly, integrate into their existing networks. Focusing on a “batteries included but swappable” approach, addresses a fair amount of well known simple deployments that developers care about. This enables opportunity for partners and ecosystem to address their customer use-cases.</p>
-
 <p>Being part of Docker allows us to continue to collaborate with partners that have shown early interest in Docker networking including but not limited to: Cisco, IBM, Joyent, Microsoft, Rancher, VMware and Weave. Our explicit focus is to lead the collaboration around a rich set of APIs that will empower these partners to create enterprise-class networking solutions that will further drive the adoption of multi-container, multi-host distributed applications.</p>
-
 <p>See more at <a href="https://blog.docker.com/2015/03/socketplane-excited-to-be-joining-docker-to-collaborate-with-networking-ecosystem/">https://blog.docker.com/2015/03/socketplane-excited-to-be-joining-docker-to-collaborate-with-networking-ecosystem/</a> and <a href="http://aucouranton.com/2015/01/16/docker-virtual-networking-with-socketplane-io/">http://aucouranton.com/2015/01/16/docker-virtual-networking-with-socketplane-io/</a></p>
 
   </div>
@@ -215,9 +233,9 @@ We never looked to hedge our bets, our success was and obviously still is tied t
 
 <div class="navigation navigation-single">
     
-    <a href="/posts/2015-02-26-going-native-with-openstack-centric-applications-murano/" class="navigation-prev">
+    <a href="/posts/2015-03-20-docker-in-tencent/" class="navigation-prev">
       <i aria-hidden="true" class="fa fa-chevron-left"></i>
-      <span class="navigation-tittle">Going Native with OpenStack Centric Applications: Murano</span>
+      <span class="navigation-tittle">docker in tencent</span>
     </a>
     
     
@@ -239,7 +257,7 @@ We never looked to hedge our bets, our success was and obviously still is tied t
         
 <li>
   <span class="list__title--small">
-    <a href="/posts/2017-10-19-docker-mta-program/">Docker MTA Program</a>
+    <a href="/posts/2017-10-19-docker-mta-program/" >Docker MTA Program</a>
       
       <time class="pull-right hidden-tablet">Oct 19 &#39;17</time>
       
@@ -248,7 +266,7 @@ We never looked to hedge our bets, our success was and obviously still is tied t
 
 <li>
   <span class="list__title--small">
-    <a href="/posts/2017-10-17-docker-ce-ee-%E5%8E%9F%E7%94%9F%E6%94%AF%E6%8C%81kubernetes/">Docker CE/EE 原生支持Kubernetes</a>
+    <a href="/posts/2017-10-17-docker-ce-ee-%E5%8E%9F%E7%94%9F%E6%94%AF%E6%8C%81kubernetes/" >Docker CE/EE 原生支持Kubernetes</a>
       
       <time class="pull-right hidden-tablet">Oct 17 &#39;17</time>
       
@@ -257,7 +275,7 @@ We never looked to hedge our bets, our success was and obviously still is tied t
 
 <li>
   <span class="list__title--small">
-    <a href="/posts/2017-02-14-debugging-application-in-containers/">Debugging application in containers</a>
+    <a href="/posts/2017-02-14-debugging-application-in-containers/" >Debugging application in containers</a>
       
       <time class="pull-right hidden-tablet">Feb 14 &#39;17</time>
       
@@ -266,7 +284,7 @@ We never looked to hedge our bets, our success was and obviously still is tied t
 
 <li>
   <span class="list__title--small">
-    <a href="/posts/2016-08-24-%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8%E4%B8%80%E4%B8%AAkubernetes%E9%9B%86%E7%BE%A4/">如何快速启动一个Kubernetes集群</a>
+    <a href="/posts/2016-08-24-%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8%E4%B8%80%E4%B8%AAkubernetes%E9%9B%86%E7%BE%A4/" >如何快速启动一个Kubernetes集群</a>
       
       <time class="pull-right hidden-tablet">Aug 24 &#39;16</time>
       
@@ -275,12 +293,13 @@ We never looked to hedge our bets, our success was and obviously still is tied t
 
 <li>
   <span class="list__title--small">
-    <a href="/posts/2016-06-24-play-with-docker-v1-12/">Play with docker v1.12</a>
+    <a href="/posts/2016-06-24-play-with-docker-v1-12/" >Play with docker v1.12</a>
       
       <time class="pull-right hidden-tablet">Jun 24 &#39;16</time>
       
   </span>
 </li>
+
 
     </ul>
 </div>
@@ -326,6 +345,7 @@ We never looked to hedge our bets, our success was and obviously still is tied t
         </div>
         
     
+
   
   
 <script type="application/javascript">
@@ -340,15 +360,12 @@ if (!doNotTrack) {
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
-<script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"
-  integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy"
-  crossorigin="anonymous">
-</script>
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
 
 
     
     
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
         
     
     <script type="text/javascript">
@@ -359,6 +376,21 @@ if (!doNotTrack) {
 
 
 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.js"></script>
+<script type="text/javascript">
+  if (tocbot) {
+    tocbot.init({
+      
+      tocSelector: '.toc',
+      
+      contentSelector: '.post',
+      
+      headingSelector: 'h2, h3, h4',
+      collapseDepth: 4
+    });
+  }
+</script>
 
 
 

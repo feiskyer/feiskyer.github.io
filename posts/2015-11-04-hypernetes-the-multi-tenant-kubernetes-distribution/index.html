@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.49.2" />
+<meta name="generator" content="Hugo 0.62.2" />
 
     
     
@@ -22,20 +22,21 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Hypernetes   The multi tenant Kubernetes distribution"/>
-<meta name="twitter:description" content="&ldquo;The Caas Revolution&rdquo;. This is what we believe is happening today in the Cloud ecosystem. This revolution has been started by the now famous project (and company) Docker, and embraced by Cloud providers like Google and AWS.
+<meta name="twitter:description" content="&ldquo;The Caas Revolution&quot;. This is what we believe is happening today in the Cloud ecosystem. This revolution has been started by the now famous project (and company) Docker, and embraced by Cloud providers like Google and AWS.
 However, most multi-tenant CaaS solutions today run on a public IaaS, and use fully isolated virtual machine clusters to schedule containers. This is in contrast to the solely container-based implementation provided in private CaaS deployments."/>
 
 <meta property="og:title" content="Hypernetes   The multi tenant Kubernetes distribution" />
-<meta property="og:description" content="&ldquo;The Caas Revolution&rdquo;. This is what we believe is happening today in the Cloud ecosystem. This revolution has been started by the now famous project (and company) Docker, and embraced by Cloud providers like Google and AWS.
+<meta property="og:description" content="&ldquo;The Caas Revolution&quot;. This is what we believe is happening today in the Cloud ecosystem. This revolution has been started by the now famous project (and company) Docker, and embraced by Cloud providers like Google and AWS.
 However, most multi-tenant CaaS solutions today run on a public IaaS, and use fully isolated virtual machine clusters to schedule containers. This is in contrast to the solely container-based implementation provided in private CaaS deployments." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://feisky.xyz/posts/2015-11-04-hypernetes---the-multi-tenant-kubernetes-distribution/" />
+<meta property="og:url" content="https://feisky.xyz/posts/2015-11-04-hypernetes-the-multi-tenant-kubernetes-distribution/" />
+
 
 
     
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
 
 
 
@@ -44,15 +45,15 @@ However, most multi-tenant CaaS solutions today run on a public IaaS, and use fu
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hyde-hyde.6f40d28e777b288cb757a1db116a257b6f8dffc63a05e8473d12dc09a52d8d79.css" integrity="sha256-b0DSjnd7KIy3V6HbEWole2&#43;N/8Y6BehHPRLcCaUtjXk=">
+<link rel="stylesheet" href="/scss/hyde-hyde.92c66d107d7b219f0792cfd67223179af884b03f386ac46894f9f735932bbca3.css" integrity="sha256-ksZtEH17IZ8Hks/WciMXmviEsD84asRolPn3NZMrvKM=">
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
 
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hugo-toc.8549a64d301421b4256ea9a0d5ca8b99178799f569d5d2daeb95f24cef3ce6b7.css" integrity="sha256-hUmmTTAUIbQlbqmg1cqLmReHmfVp1dLa65XyTO885rc=">
+<link rel="stylesheet" href="/scss/tocbot.126e7d75240acc946d34d6ccb2982ed4c394a5fe34e73e1a2119ca951bcf119d.css" integrity="sha256-Em59dSQKzJRtNNbMspgu1MOUpf405z4aIRnKlRvPEZ0=">
 
 
 
@@ -64,6 +65,7 @@ However, most multi-tenant CaaS solutions today run on a public IaaS, and use fu
     <!-- Icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
     <link rel="shortcut icon" href="/favicon.png">
+    
     
 
 </head>
@@ -77,6 +79,7 @@ However, most multi-tenant CaaS solutions today run on a public IaaS, and use fu
       <span class="site__title">
         <a href="https://feisky.xyz/">Feisky</a>
       </span>
+      
       
       <p class="site__description">
          Notes about anything 
@@ -93,7 +96,23 @@ However, most multi-tenant CaaS solutions today run on a public IaaS, and use fu
 			 
 				<li>
 					<a href="https://kubernetes.feisky.xyz">
-						<span>Kubernetes</span>
+						<span>Kubernetes指南</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://time.geekbang.org/column/intro/100020901">
+						<span>Linux性能优化实战</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://sdn.feisky.xyz">
+						<span>SDN网络</span>
 					</a>
 				</li>
 			 
@@ -108,21 +127,12 @@ However, most multi-tenant CaaS solutions today run on a public IaaS, and use fu
 		 
 			 
 				<li>
-					<a href="https://sdn.feisky.xyz">
-						<span>SDN</span>
-					</a>
-				</li>
-			 
-		 
-			 
-				<li>
 					<a href="/about/">
-						<span>About</span>
+						<span>关于我</span>
 					</a>
 				</li>
 			 
 		
-		</li>
 	</ul>
 </div>
 
@@ -145,23 +155,33 @@ However, most multi-tenant CaaS solutions today run on a public IaaS, and use fu
 	
 	
 	
+	
+	
 </section>
 
       </div>
     </div>
-    <div class="copyright">
-  &copy; 2019 .
-  <a href="https://creativecommons.org/licenses/by-sa/4.0">Some Rights Reserved</a>.
-  Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+    
+<div class="copyright">
+  &copy; 2020 feiskyer
+  
+    <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>
   
 </div>
+
+
+<div class="builtwith">
+Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+</div>
+
 
   </div>
 </div>
 
         <div class="content container">
             
-    <article>
+    
+<article>
   <header>
     <h1>Hypernetes   The multi tenant Kubernetes distribution</h1>
     
@@ -191,54 +211,43 @@ However, most multi-tenant CaaS solutions today run on a public IaaS, and use fu
   </header>
   
   
-  <div class="toc-wrapper">
-    <input type="checkbox" id="tocToggle">
-    <label for="tocToggle">Table of Content</label>
-    
-        
-    
-  </div>
+  
+    <div class="toc-wrapper">
+      <input type="checkbox" id="tocToggle">
+      <label for="tocToggle">Table of Content</label>
+      
+        <div class="toc" id="TableOfContents"></div>
+      
+    </div>
+  
   
   <div class="post">
-    <p>&ldquo;<a href="https://hyper.sh/blog/post/2015/07/06/the-caas-revolution.html">The Caas Revolution</a>&rdquo;. This is what we believe is happening today in the Cloud ecosystem. This revolution has been started by the now famous project (and company) <a href="http://www.docker.com/">Docker</a>, and embraced by Cloud providers like <a href="https://cloud.google.com/container-engine/">Google</a> and <a href="https://aws.amazon.com/ecs/">AWS</a>.</p>
-
+    <p>&ldquo;<a href="https://hyper.sh/blog/post/2015/07/06/the-caas-revolution.html">The Caas Revolution</a>&quot;. This is what we believe is happening today in the Cloud ecosystem. This revolution has been started by the now famous project (and company) <a href="http://www.docker.com/">Docker</a>, and embraced by Cloud providers like <a href="https://cloud.google.com/container-engine/">Google</a> and <a href="https://aws.amazon.com/ecs/">AWS</a>.</p>
 <p>However, most multi-tenant CaaS solutions today run on a public IaaS, and use fully isolated virtual machine clusters to schedule containers. This is in contrast to the solely container-based implementation provided in private CaaS deployments. The public “hybrid” VM/container isolation approach is a direct result from the shared kernel architecture in container technology.</p>
-
 <p>Which got us thinking&hellip; do users really need to configure a cluster of full-blown virtual machines to ship containers in a secure cloud? Isn’t there a native container approach to perform true isolation?</p>
-
 <p>When we introduced <a href="http://hyper.sh/">Hyper</a>, we wanted to show that it is actually possible to run truly isolated containers applications without any guest OS configuration required. We claimed that Hyper unlocks the possibility to build app-centric secure and isolated public CaaS platform, and now want to show you its power with a real-world implementation.</p>
-
 <p>Today, we are happy to announce <strong><a href="http://hypernetes.com">Hypernetes</a>*: the Secure, Multi-tenant Kubernetes distribution</strong>.</p>
-
 <p>Simply put:</p>
-
 <pre><code>   Hypernetes = Bare-metal + Hyper + Kubernetes + Cinder(Ceph) + Neutron + Keystone
 </code></pre>
-
-<p><img src="https://github.com/hyperhq/hypernetes/raw/master/architecture.png?raw=true" alt="Hypernetes" /></p>
-
+<p><img src="https://github.com/hyperhq/hypernetes/raw/master/architecture.png?raw=true" alt="Hypernetes"></p>
 <ul>
 <li>Hyper (Hyperd) runs directly on all your bare-metal machines to provision HyperVM (with Docker images) in milliseconds</li>
 <li>Within the VM, the &ldquo;Hyperstart&rdquo; init process is launched on top of the Hyper Kernel (or any compatible Linux kernel) to run Docker images as Pod</li>
 <li>Kubelet agent runs on each bare-metal host and manages HyperVM with Hyperd’s APIs</li>
 <li>The formed cluster of &ldquo;Kubelets&rdquo; is managed with the help of a &ldquo;Kubernetes Master&rdquo; server</li>
 <li>Hypernetes also makes uses of several OpenStack components
-
 <ul>
 <li><a href="http://docs.openstack.org/developer/keystone/">Keystone</a> for identities management and authentication</li>
 <li><a href="https://wiki.openstack.org/wiki/Neutron">Neutron</a> for virtual networks management and isolation</li>
 <li><a href="https://wiki.openstack.org/wiki/Cinder">Cinder</a> + <a href="http://ceph.com/">Ceph</a> for persistent storage volume management</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <p>With Hypernetes, you are ready to offer your users an easy and straightforward way to deploy their Containers in the Cloud, with a maximum level of security, efficiency, and compatibility, but without the complexity introduced by nesting the Linux containers in full-blown VMs. Indeed, Hypernetes leverages the same old secure, reliable, battle tested, robust hypervisor virtualization to natively run all of your new Container applications, maximizing the ROI of your virtual infrastructure.</p>
-
-<p>You can check it out and try Hypernetes today as a <a href="http://github.com/hyperhq/hypernetes">open-source project</a>. Please, don&rsquo;t hesitate to join our <a href="http://slack.hyper.sh/">Slack community</a>, <a href="https://groups.google.com/forum/#!forum/hyper-user">users</a> and <a href="https://groups.google.com/forum/#!forum/hyper-dev">developers</a> mailing lists if you would like to discuss about Hyper or Hypernetes with us.</p>
-
+<p>You can check it out and try Hypernetes today as a <a href="http://github.com/hyperhq/hypernetes">open-source project</a>. Please, don't hesitate to join our <a href="http://slack.hyper.sh/">Slack community</a>, <a href="https://groups.google.com/forum/#!forum/hyper-user">users</a> and <a href="https://groups.google.com/forum/#!forum/hyper-dev">developers</a> mailing lists if you would like to discuss about Hyper or Hypernetes with us.</p>
 <p>Also, as an open-source project, we warmly welcome PR contributions and issues, directly on our <a href="https://github.com/hyperhq/hypernetes">Github</a>.</p>
-
-<p>As a last word, we are presenting Hypernetes this week at the <a href="https://www.openstack.org/summit/tokyo-2015/">OpenStack Tokyo Summit</a> and <a href="http://europe-2015.dockercon.com/">DockerCon Europe</a> next month. If you&rsquo;re around, please come by our booth ;-)</p>
-
+<p>As a last word, we are presenting Hypernetes this week at the <a href="https://www.openstack.org/summit/tokyo-2015/">OpenStack Tokyo Summit</a> and <a href="http://europe-2015.dockercon.com/">DockerCon Europe</a> next month. If you're around, please come by our booth ;-)</p>
 <p>From <a href="https://hyper.sh/blog/post/2015/10/27/announcing-hypernetes-the-multitenant-kubernetes-distribution.html">https://hyper.sh/blog/post/2015/10/27/announcing-hypernetes-the-multitenant-kubernetes-distribution.html</a></p>
 
   </div>
@@ -270,7 +279,7 @@ However, most multi-tenant CaaS solutions today run on a public IaaS, and use fu
         
 <li>
   <span class="list__title--small">
-    <a href="/posts/2017-11-27-aci/">Azure Container Instance (ACI)</a>
+    <a href="/posts/2017-11-27-aci/" >Azure Container Instance (ACI)</a>
       
       <time class="pull-right hidden-tablet">Nov 27 &#39;17</time>
       
@@ -279,7 +288,7 @@ However, most multi-tenant CaaS solutions today run on a public IaaS, and use fu
 
 <li>
   <span class="list__title--small">
-    <a href="/posts/2017-11-23-acs-introduction/">Azure Container Service（ACS）简介</a>
+    <a href="/posts/2017-11-23-acs-introduction/" >Azure Container Service（ACS）简介</a>
       
       <time class="pull-right hidden-tablet">Nov 20 &#39;17</time>
       
@@ -288,7 +297,7 @@ However, most multi-tenant CaaS solutions today run on a public IaaS, and use fu
 
 <li>
   <span class="list__title--small">
-    <a href="/posts/2016-08-24-%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8%E4%B8%80%E4%B8%AAkubernetes%E9%9B%86%E7%BE%A4/">如何快速启动一个Kubernetes集群</a>
+    <a href="/posts/2016-08-24-%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8%E4%B8%80%E4%B8%AAkubernetes%E9%9B%86%E7%BE%A4/" >如何快速启动一个Kubernetes集群</a>
       
       <time class="pull-right hidden-tablet">Aug 24 &#39;16</time>
       
@@ -297,12 +306,13 @@ However, most multi-tenant CaaS solutions today run on a public IaaS, and use fu
 
 <li>
   <span class="list__title--small">
-    <a href="/posts/2016-06-06-hypernetes-bringing-security-and-multi-tenancy-to-kubernetes/">Hypernetes: Bringing Security and Multi-tenancy to Kubernetes</a>
+    <a href="/posts/2016-06-06-hypernetes-bringing-security-and-multi-tenancy-to-kubernetes/" >Hypernetes: Bringing Security and Multi-tenancy to Kubernetes</a>
       
       <time class="pull-right hidden-tablet">Jun 06 &#39;16</time>
       
   </span>
 </li>
+
 
     </ul>
 </div>
@@ -348,6 +358,7 @@ However, most multi-tenant CaaS solutions today run on a public IaaS, and use fu
         </div>
         
     
+
   
   
 <script type="application/javascript">
@@ -362,15 +373,12 @@ if (!doNotTrack) {
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
-<script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"
-  integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy"
-  crossorigin="anonymous">
-</script>
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
 
 
     
     
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
         
     
     <script type="text/javascript">
@@ -381,6 +389,21 @@ if (!doNotTrack) {
 
 
 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.js"></script>
+<script type="text/javascript">
+  if (tocbot) {
+    tocbot.init({
+      
+      tocSelector: '.toc',
+      
+      contentSelector: '.post',
+      
+      headingSelector: 'h2, h3, h4',
+      collapseDepth: 4
+    });
+  }
+</script>
 
 
 

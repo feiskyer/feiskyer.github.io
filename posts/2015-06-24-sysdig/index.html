@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.49.2" />
+<meta name="generator" content="Hugo 0.62.2" />
 
     
     
@@ -34,10 +34,11 @@ Sysdig instruments your physical and virtual machines at the OS level by install
 <meta property="og:url" content="https://feisky.xyz/posts/2015-06-24-sysdig/" />
 
 
+
     
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
 
 
 
@@ -46,15 +47,15 @@ Sysdig instruments your physical and virtual machines at the OS level by install
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hyde-hyde.6f40d28e777b288cb757a1db116a257b6f8dffc63a05e8473d12dc09a52d8d79.css" integrity="sha256-b0DSjnd7KIy3V6HbEWole2&#43;N/8Y6BehHPRLcCaUtjXk=">
+<link rel="stylesheet" href="/scss/hyde-hyde.92c66d107d7b219f0792cfd67223179af884b03f386ac46894f9f735932bbca3.css" integrity="sha256-ksZtEH17IZ8Hks/WciMXmviEsD84asRolPn3NZMrvKM=">
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
 
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hugo-toc.8549a64d301421b4256ea9a0d5ca8b99178799f569d5d2daeb95f24cef3ce6b7.css" integrity="sha256-hUmmTTAUIbQlbqmg1cqLmReHmfVp1dLa65XyTO885rc=">
+<link rel="stylesheet" href="/scss/tocbot.126e7d75240acc946d34d6ccb2982ed4c394a5fe34e73e1a2119ca951bcf119d.css" integrity="sha256-Em59dSQKzJRtNNbMspgu1MOUpf405z4aIRnKlRvPEZ0=">
 
 
 
@@ -66,6 +67,7 @@ Sysdig instruments your physical and virtual machines at the OS level by install
     <!-- Icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
     <link rel="shortcut icon" href="/favicon.png">
+    
     
 
 </head>
@@ -79,6 +81,7 @@ Sysdig instruments your physical and virtual machines at the OS level by install
       <span class="site__title">
         <a href="https://feisky.xyz/">Feisky</a>
       </span>
+      
       
       <p class="site__description">
          Notes about anything 
@@ -95,7 +98,23 @@ Sysdig instruments your physical and virtual machines at the OS level by install
 			 
 				<li>
 					<a href="https://kubernetes.feisky.xyz">
-						<span>Kubernetes</span>
+						<span>Kubernetes指南</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://time.geekbang.org/column/intro/100020901">
+						<span>Linux性能优化实战</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://sdn.feisky.xyz">
+						<span>SDN网络</span>
 					</a>
 				</li>
 			 
@@ -110,21 +129,12 @@ Sysdig instruments your physical and virtual machines at the OS level by install
 		 
 			 
 				<li>
-					<a href="https://sdn.feisky.xyz">
-						<span>SDN</span>
-					</a>
-				</li>
-			 
-		 
-			 
-				<li>
 					<a href="/about/">
-						<span>About</span>
+						<span>关于我</span>
 					</a>
 				</li>
 			 
 		
-		</li>
 	</ul>
 </div>
 
@@ -147,23 +157,33 @@ Sysdig instruments your physical and virtual machines at the OS level by install
 	
 	
 	
+	
+	
 </section>
 
       </div>
     </div>
-    <div class="copyright">
-  &copy; 2019 .
-  <a href="https://creativecommons.org/licenses/by-sa/4.0">Some Rights Reserved</a>.
-  Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+    
+<div class="copyright">
+  &copy; 2020 feiskyer
+  
+    <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>
   
 </div>
+
+
+<div class="builtwith">
+Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+</div>
+
 
   </div>
 </div>
 
         <div class="content container">
             
-    <article>
+    
+<article>
   <header>
     <h1>sysdig</h1>
     
@@ -176,194 +196,299 @@ Sysdig instruments your physical and virtual machines at the OS level by install
     
     
     <br/>
-    <i class="fas fa-clock"></i> 5 min read
+    <i class="fas fa-clock"></i> 4 min read
 </div>
 
 
   </header>
   
   
-  <div class="toc-wrapper">
-    <input type="checkbox" id="tocToggle">
-    <label for="tocToggle">Table of Content</label>
-    
-        
-    
-  </div>
+  
+    <div class="toc-wrapper">
+      <input type="checkbox" id="tocToggle">
+      <label for="tocToggle">Table of Content</label>
+      
+        <div class="toc" id="TableOfContents"></div>
+      
+    </div>
+  
   
   <div class="post">
     <p>Sysdig captures system calls and other system level events using a linux kernel facility called tracepoints, providing a rich set of real-time, system-level information.</p>
-
 <p>Sysdig &ldquo;packetizes&rdquo; this information, so that you can do things like save it into trace files and easily filter it, a bit like you would do with tcpdump. This makes it very flexible to explore what processes are doing.</p>
-
-<p>Sysdig instruments your physical and virtual machines at the OS level by installing into the Linux kernel and capturing system calls and other OS events. Then, using sysdig&rsquo;s command line interface, you can filter and decode these events in order to extract useful information. Sysdig can be used to inspect systems live in real-time, or to generate trace files that can be analyzed at a later stage.</p>
-
-<p>####Networking
-* See the top processes in terms of network bandwidth usage
-&gt; sysdig -c topprocs_net</p>
-
+<p>Sysdig instruments your physical and virtual machines at the OS level by installing into the Linux kernel and capturing system calls and other OS events. Then, using sysdig's command line interface, you can filter and decode these events in order to extract useful information. Sysdig can be used to inspect systems live in real-time, or to generate trace files that can be analyzed at a later stage.</p>
+<p>####Networking</p>
 <ul>
-<li><p>Show the network data exchanged with the host 192.168.0.1<br />
-&gt; as binary:<br />
-&gt; sysdig -s2000 -X -c echo_fds fd.cip=192.168.0.1<br />
-as ASCII:<br />
-&gt; sysdig -s2000 -A -c echo_fds fd.cip=192.168.0.1</p></li>
-
-<li><p>See the top local server ports<br />
-&gt; in terms of established connections:<br />
-&gt; sysdig -c fdcount_by fd.sport &ldquo;evt.type=accept&rdquo;<br />
-&gt; in terms of total bytes:<br />
-&gt; sysdig -c fdbytes_by fd.sport</p></li>
-
-<li><p>See the top client IPs<br />
-&gt; in terms of established connections<br />
-&gt; sysdig -c fdcount_by fd.cip &ldquo;evt.type=accept&rdquo;<br />
-&gt; in terms of total bytes<br />
-&gt; sysdig -c fdbytes_by fd.cip</p></li>
-
-<li><p>List all the incoming connections that are not served by apache.
-&gt; sysdig -p&rdquo;%proc.name %fd.name&rdquo; &ldquo;evt.type=accept and proc.name!=httpd&rdquo;</p></li>
+<li>See the top processes in terms of network bandwidth usage</li>
 </ul>
-
-<p>####Containers
-* View the CPU usage of the processes running inside the wordpress1 container
-&gt; sudo sysdig -pc -c topprocs_cpu container.name=wordpress1</p>
-
+<blockquote>
+<p>sysdig -c topprocs_net</p>
+</blockquote>
 <ul>
-<li><p>View the network bandwidth usage of the processes running inside the wordpress1 container
-&gt; sudo sysdig -pc -c topprocs_net container.name=wordpress1</p></li>
-
-<li><p>View the processes using most network bandwidth inside the wordpress1 container
-&gt; sudo sysdig -pc -c topprocs_net container.name=wordpress1</p></li>
-
-<li><p>View the top files in terms of I/O bytes inside the wordpress1 container
-&gt; sudo sysdig -pc -c topfiles_bytes container.name=wordpress1</p></li>
-
-<li><p>View the top network connections inside the wordpress1 container
-&gt; sudo sysdig -pc -c topconns container.name=wordpress1</p></li>
-
-<li><p>Show all the interactive commands executed inside the wordpress1 container
-&gt; sudo sysdig -pc -c spy_users container.name=wordpress1</p></li>
+<li>Show the network data exchanged with the host 192.168.0.1</li>
 </ul>
-
-<p>####Application
-* See all the GET HTTP requests made by the machine
-&gt; sudo sysdig -s 2000 -A -c echo_fds fd.port=80 and evt.buffer contains GET</p>
-
+<blockquote>
+<p>as binary:<br>
+sysdig -s2000 -X -c echo_fds fd.cip=192.168.0.1<br>
+as ASCII:<br>
+sysdig -s2000 -A -c echo_fds fd.cip=192.168.0.1</p>
+</blockquote>
 <ul>
-<li><p>See all the SQL select queries made by the machine
-&gt; sudo sysdig -s 2000 -A -c echo_fds evt.buffer contains SELECT</p></li>
-
-<li><p>See queries made via apache to an external MySQL server happening in real time
-&gt; sysdig -s 2000 -A -c echo_fds fd.sip=192.168.30.5 and proc.name=apache2 and evt.buffer contains SELECT</p></li>
+<li>See the top local server ports</li>
 </ul>
-
-<p>####Disk I/O
-* See the top processes in terms of disk bandwidth usage
-&gt; sysdig -c topprocs_file</p>
-
+<blockquote>
+<p>in terms of established connections:<br>
+sysdig -c fdcount_by fd.sport &ldquo;evt.type=accept&rdquo;<br>
+in terms of total bytes:<br>
+sysdig -c fdbytes_by fd.sport</p>
+</blockquote>
 <ul>
-<li><p>List the processes that are using a high number of files
-&gt; sysdig -c fdcount_by proc.name &ldquo;fd.type=file&rdquo;</p></li>
-
-<li><p>See the top files in terms of read+write bytes
-&gt; sysdig -c topfiles_bytes</p></li>
-
-<li><p>Print the top files that apache has been reading from or writing to
-&gt; sysdig -c topfiles_bytes proc.name=httpd</p></li>
-
-<li><p>Basic opensnoop: snoop file opens as they occur
-&gt; sysdig -p &ldquo;%12user.name %6proc.pid %12proc.name %3fd.num %fd.typechar %fd.name&rdquo; evt.type=open</p></li>
-
-<li><p>See the top directories in terms of R+W disk activity
-&gt; sysdig -c fdbytes_by fd.directory &ldquo;fd.type=file&rdquo;</p></li>
-
-<li><p>See the top files in terms of R+W disk activity in the /tmp directory
-&gt; sysdig -c fdbytes_by fd.filename &ldquo;fd.directory=/tmp/&rdquo;</p></li>
-
-<li><p>Observe the I/O activity on all the files named &lsquo;passwd&rsquo;
-&gt; sysdig -A -c echo_fds &ldquo;fd.filename=passwd&rdquo;</p></li>
-
-<li><p>Display I/O activity by FD type<br />
-&gt; sysdig -c fdbytes_by fd.type</p></li>
+<li>See the top client IPs</li>
 </ul>
-
-<p>####Processes and CPU usage
-* See the top processes in terms of CPU usage
-&gt; sysdig -c topprocs_cpu</p>
-
+<blockquote>
+<p>in terms of established connections<br>
+sysdig -c fdcount_by fd.cip &ldquo;evt.type=accept&rdquo;<br>
+in terms of total bytes<br>
+sysdig -c fdbytes_by fd.cip</p>
+</blockquote>
 <ul>
-<li><p>See the top processes for CPU 0
-&gt; sysdig -c topprocs_cpu evt.cpu=0</p></li>
-
-<li><p>Observe the standard output of a process
-&gt; sysdig -s4096 -A -c stdout proc.name=cat</p></li>
+<li>List all the incoming connections that are not served by apache.</li>
 </ul>
-
+<blockquote>
+<p>sysdig -p&rdquo;%proc.name %fd.name&rdquo; &ldquo;evt.type=accept and proc.name!=httpd&rdquo;</p>
+</blockquote>
+<p>####Containers</p>
+<ul>
+<li>View the CPU usage of the processes running inside the wordpress1 container</li>
+</ul>
+<blockquote>
+<p>sudo sysdig -pc -c topprocs_cpu container.name=wordpress1</p>
+</blockquote>
+<ul>
+<li>View the network bandwidth usage of the processes running inside the wordpress1 container</li>
+</ul>
+<blockquote>
+<p>sudo sysdig -pc -c topprocs_net container.name=wordpress1</p>
+</blockquote>
+<ul>
+<li>View the processes using most network bandwidth inside the wordpress1 container</li>
+</ul>
+<blockquote>
+<p>sudo sysdig -pc -c topprocs_net container.name=wordpress1</p>
+</blockquote>
+<ul>
+<li>View the top files in terms of I/O bytes inside the wordpress1 container</li>
+</ul>
+<blockquote>
+<p>sudo sysdig -pc -c topfiles_bytes container.name=wordpress1</p>
+</blockquote>
+<ul>
+<li>View the top network connections inside the wordpress1 container</li>
+</ul>
+<blockquote>
+<p>sudo sysdig -pc -c topconns container.name=wordpress1</p>
+</blockquote>
+<ul>
+<li>Show all the interactive commands executed inside the wordpress1 container</li>
+</ul>
+<blockquote>
+<p>sudo sysdig -pc -c spy_users container.name=wordpress1</p>
+</blockquote>
+<p>####Application</p>
+<ul>
+<li>See all the GET HTTP requests made by the machine</li>
+</ul>
+<blockquote>
+<p>sudo sysdig -s 2000 -A -c echo_fds fd.port=80 and evt.buffer contains GET</p>
+</blockquote>
+<ul>
+<li>See all the SQL select queries made by the machine</li>
+</ul>
+<blockquote>
+<p>sudo sysdig -s 2000 -A -c echo_fds evt.buffer contains SELECT</p>
+</blockquote>
+<ul>
+<li>See queries made via apache to an external MySQL server happening in real time</li>
+</ul>
+<blockquote>
+<p>sysdig -s 2000 -A -c echo_fds fd.sip=192.168.30.5 and proc.name=apache2 and evt.buffer contains SELECT</p>
+</blockquote>
+<p>####Disk I/O</p>
+<ul>
+<li>See the top processes in terms of disk bandwidth usage</li>
+</ul>
+<blockquote>
+<p>sysdig -c topprocs_file</p>
+</blockquote>
+<ul>
+<li>List the processes that are using a high number of files</li>
+</ul>
+<blockquote>
+<p>sysdig -c fdcount_by proc.name &ldquo;fd.type=file&rdquo;</p>
+</blockquote>
+<ul>
+<li>See the top files in terms of read+write bytes</li>
+</ul>
+<blockquote>
+<p>sysdig -c topfiles_bytes</p>
+</blockquote>
+<ul>
+<li>Print the top files that apache has been reading from or writing to</li>
+</ul>
+<blockquote>
+<p>sysdig -c topfiles_bytes proc.name=httpd</p>
+</blockquote>
+<ul>
+<li>Basic opensnoop: snoop file opens as they occur</li>
+</ul>
+<blockquote>
+<p>sysdig -p &ldquo;%12user.name %6proc.pid %12proc.name %3fd.num %fd.typechar %fd.name&rdquo; evt.type=open</p>
+</blockquote>
+<ul>
+<li>See the top directories in terms of R+W disk activity</li>
+</ul>
+<blockquote>
+<p>sysdig -c fdbytes_by fd.directory &ldquo;fd.type=file&rdquo;</p>
+</blockquote>
+<ul>
+<li>See the top files in terms of R+W disk activity in the /tmp directory</li>
+</ul>
+<blockquote>
+<p>sysdig -c fdbytes_by fd.filename &ldquo;fd.directory=/tmp/&rdquo;</p>
+</blockquote>
+<ul>
+<li>Observe the I/O activity on all the files named &lsquo;passwd&rsquo;</li>
+</ul>
+<blockquote>
+<p>sysdig -A -c echo_fds &ldquo;fd.filename=passwd&rdquo;</p>
+</blockquote>
+<ul>
+<li>Display I/O activity by FD type</li>
+</ul>
+<blockquote>
+<p>sysdig -c fdbytes_by fd.type</p>
+</blockquote>
+<p>####Processes and CPU usage</p>
+<ul>
+<li>See the top processes in terms of CPU usage</li>
+</ul>
+<blockquote>
+<p>sysdig -c topprocs_cpu</p>
+</blockquote>
+<ul>
+<li>See the top processes for CPU 0</li>
+</ul>
+<blockquote>
+<p>sysdig -c topprocs_cpu evt.cpu=0</p>
+</blockquote>
+<ul>
+<li>Observe the standard output of a process</li>
+</ul>
+<blockquote>
+<p>sysdig -s4096 -A -c stdout proc.name=cat</p>
+</blockquote>
 <p>####Performance and Errors</p>
-
 <ul>
-<li><p>See the files where most time has been spent
-&gt; sysdig -c topfiles_time</p></li>
-
-<li><p>See the files where apache spent most time
-&gt; sysdig -c topfiles_time proc.name=httpd</p></li>
-
-<li><p>See the top processes in terms of I/O errors
-&gt; sysdig -c topprocs_errors</p></li>
-
-<li><p>See the top files in terms of I/O errors
-&gt; sysdig -c topfiles_errors</p></li>
-
-<li><p>See all the failed disk I/O calls
-&gt; sysdig fd.type=file and evt.failed=true</p></li>
-
-<li><p>See all the failed file opens by httpd
-&gt; sysdig &ldquo;proc.name=httpd and evt.type=open and evt.failed=true&rdquo;</p></li>
-
-<li><p>See the system calls where most time has been spent
-&gt; sysdig -c topscalls_time</p></li>
-
-<li><p>See the top system calls returning errors
-&gt; sysdig -c topscalls &ldquo;evt.failed=true&rdquo;</p></li>
-
-<li><p>snoop failed file opens as they occur
-&gt; sysdig -p &ldquo;%12user.name %6proc.pid %12proc.name %3fd.num %fd.typechar %fd.name&rdquo; evt.type=open and evt.failed=true</p></li>
-
-<li><p>Print the file I/O calls that have a latency greater than 1ms:
-&gt; sysdig -c fileslower 1</p></li>
+<li>See the files where most time has been spent</li>
 </ul>
-
-<p>####Security</p>
-
+<blockquote>
+<p>sysdig -c topfiles_time</p>
+</blockquote>
 <ul>
-<li><p>Show the directories that the user &ldquo;root&rdquo; visits
-&gt; sysdig -p&rdquo;%evt.arg.path&rdquo; &ldquo;evt.type=chdir and user.name=root&rdquo;</p></li>
-
-<li><p>Observe ssh activity
-&gt; sysdig -A -c echo_fds fd.name=/dev/ptmx and proc.name=sshd</p></li>
-
-<li><p>Show every file open that happens in /etc
-&gt; sysdig evt.type=open and fd.name contains /etc</p></li>
-
-<li><p>Show the ID of all the login shells that have launched the &ldquo;tar&rdquo; command
-&gt; sysdig -r file.scap -c list_login_shells tar</p></li>
-
-<li><p>Show all the commands executed by the login shell with the given ID
-&gt; sysdig -r trace.scap.gz -c spy_users proc.loginshellid=5459</p></li>
-
-<li><p>Applied use of sysdig for forensics analysis:</p>
-
+<li>See the files where apache spent most time</li>
+</ul>
+<blockquote>
+<p>sysdig -c topfiles_time proc.name=httpd</p>
+</blockquote>
+<ul>
+<li>See the top processes in terms of I/O errors</li>
+</ul>
+<blockquote>
+<p>sysdig -c topprocs_errors</p>
+</blockquote>
+<ul>
+<li>See the top files in terms of I/O errors</li>
+</ul>
+<blockquote>
+<p>sysdig -c topfiles_errors</p>
+</blockquote>
+<ul>
+<li>See all the failed disk I/O calls</li>
+</ul>
+<blockquote>
+<p>sysdig fd.type=file and evt.failed=true</p>
+</blockquote>
+<ul>
+<li>See all the failed file opens by httpd</li>
+</ul>
+<blockquote>
+<p>sysdig &ldquo;proc.name=httpd and evt.type=open and evt.failed=true&rdquo;</p>
+</blockquote>
+<ul>
+<li>See the system calls where most time has been spent</li>
+</ul>
+<blockquote>
+<p>sysdig -c topscalls_time</p>
+</blockquote>
+<ul>
+<li>See the top system calls returning errors</li>
+</ul>
+<blockquote>
+<p>sysdig -c topscalls &ldquo;evt.failed=true&rdquo;</p>
+</blockquote>
+<ul>
+<li>snoop failed file opens as they occur</li>
+</ul>
+<blockquote>
+<p>sysdig -p &ldquo;%12user.name %6proc.pid %12proc.name %3fd.num %fd.typechar %fd.name&rdquo; evt.type=open and evt.failed=true</p>
+</blockquote>
+<ul>
+<li>Print the file I/O calls that have a latency greater than 1ms:</li>
+</ul>
+<blockquote>
+<p>sysdig -c fileslower 1</p>
+</blockquote>
+<p>####Security</p>
+<ul>
+<li>Show the directories that the user &ldquo;root&rdquo; visits</li>
+</ul>
+<blockquote>
+<p>sysdig -p&rdquo;%evt.arg.path&rdquo; &ldquo;evt.type=chdir and user.name=root&rdquo;</p>
+</blockquote>
+<ul>
+<li>Observe ssh activity</li>
+</ul>
+<blockquote>
+<p>sysdig -A -c echo_fds fd.name=/dev/ptmx and proc.name=sshd</p>
+</blockquote>
+<ul>
+<li>Show every file open that happens in /etc</li>
+</ul>
+<blockquote>
+<p>sysdig evt.type=open and fd.name contains /etc</p>
+</blockquote>
+<ul>
+<li>Show the ID of all the login shells that have launched the &ldquo;tar&rdquo; command</li>
+</ul>
+<blockquote>
+<p>sysdig -r file.scap -c list_login_shells tar</p>
+</blockquote>
+<ul>
+<li>Show all the commands executed by the login shell with the given ID</li>
+</ul>
+<blockquote>
+<p>sysdig -r trace.scap.gz -c spy_users proc.loginshellid=5459</p>
+</blockquote>
+<ul>
+<li>Applied use of sysdig for forensics analysis:
 <ul>
 <li><a href="http://draios.com/fishing-for-hackers/">Fishing for Hackers: Analysis of a Linux Server Attack</a></li>
 <li><a href="http://draios.com/fishing-for-hackers-part-2/">Fishing for Hackers (Part 2): Quickly Identify Suspicious Activity With Sysdig</a></li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <p>User Guide: <a href="https://github.com/draios/sysdig/wiki/Sysdig%20User%20Guide">https://github.com/draios/sysdig/wiki/Sysdig%20User%20Guide</a></p>
-
 <p>Source code: <a href="https://github.com/draios/sysdig">https://github.com/draios/sysdig</a></p>
-
 <p>Support website: <a href="http://www.sysdig.org/">http://www.sysdig.org/</a></p>
 
   </div>
@@ -371,14 +496,14 @@ as ASCII:<br />
 
 <div class="navigation navigation-single">
     
-    <a href="/posts/2015-01-27-vagrant/" class="navigation-prev">
+    <a href="/posts/upgrade-centos-kernel/" class="navigation-prev">
       <i aria-hidden="true" class="fa fa-chevron-left"></i>
-      <span class="navigation-tittle">vagrant</span>
+      <span class="navigation-tittle">Upgrade CentOS kernel</span>
     </a>
     
     
-    <a href="/posts/2015-01-28-reverse-shell/" class="navigation-next">
-      <span class="navigation-tittle">reverse shell</span>
+    <a href="/posts/2015-06-25-stateless-floating-ips/" class="navigation-next">
+      <span class="navigation-tittle">Stateless Floating IPs</span>
       <i aria-hidden="true" class="fa fa-chevron-right"></i>
     </a>
     
@@ -429,6 +554,7 @@ as ASCII:<br />
         </div>
         
     
+
   
   
 <script type="application/javascript">
@@ -443,15 +569,12 @@ if (!doNotTrack) {
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
-<script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"
-  integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy"
-  crossorigin="anonymous">
-</script>
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
 
 
     
     
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
         
     
     <script type="text/javascript">
@@ -462,6 +585,21 @@ if (!doNotTrack) {
 
 
 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.js"></script>
+<script type="text/javascript">
+  if (tocbot) {
+    tocbot.init({
+      
+      tocSelector: '.toc',
+      
+      contentSelector: '.post',
+      
+      headingSelector: 'h2, h3, h4',
+      collapseDepth: 4
+    });
+  }
+</script>
 
 
 

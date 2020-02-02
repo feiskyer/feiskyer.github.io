@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.49.2" />
+<meta name="generator" content="Hugo 0.62.2" />
 
     
     
@@ -22,20 +22,19 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content=""/>
-<meta name="twitter:description" content="layout: &ldquo;post&rdquo; title: &ldquo;Google&rsquo;s Transition From Single Datacenter, To Failover, To A Native Multihomed Architecture&rdquo; date: &ldquo;2016-02-24 10:33&rdquo; category: cluster
-tags: [highscalability, google] The main idea of the paper is that the typical failover architecture used when moving from a single datacenter to multiple datacenters doesn’t work well in practice. What does work, where work means using fewer resources while providing high availability and consistency, is a natively multihomed architecture:"/>
+<meta name="twitter:description" content="layout: &ldquo;post&rdquo; title: &ldquo;Google&#39;s Transition From Single Datacenter, To Failover, To A Native Multihomed Architecture&rdquo; date: &ldquo;2016-02-24 10:33&rdquo; category: cluster tags: [highscalability, google] The main idea of the paper is that the typical failover architecture used when moving from a single datacenter to multiple datacenters doesn’t work well in practice. What does work, where work means using fewer resources while providing high availability and consistency, is a natively multihomed architecture:"/>
 
 <meta property="og:title" content="" />
-<meta property="og:description" content="layout: &ldquo;post&rdquo; title: &ldquo;Google&rsquo;s Transition From Single Datacenter, To Failover, To A Native Multihomed Architecture&rdquo; date: &ldquo;2016-02-24 10:33&rdquo; category: cluster
-tags: [highscalability, google] The main idea of the paper is that the typical failover architecture used when moving from a single datacenter to multiple datacenters doesn’t work well in practice. What does work, where work means using fewer resources while providing high availability and consistency, is a natively multihomed architecture:" />
+<meta property="og:description" content="layout: &ldquo;post&rdquo; title: &ldquo;Google&#39;s Transition From Single Datacenter, To Failover, To A Native Multihomed Architecture&rdquo; date: &ldquo;2016-02-24 10:33&rdquo; category: cluster tags: [highscalability, google] The main idea of the paper is that the typical failover architecture used when moving from a single datacenter to multiple datacenters doesn’t work well in practice. What does work, where work means using fewer resources while providing high availability and consistency, is a natively multihomed architecture:" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://feisky.xyz/posts/googles-transition-from-single-datacenter-to-failover-to-a-native-multihomed-architecture/" />
+
 
 
     
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
 
 
 
@@ -44,15 +43,15 @@ tags: [highscalability, google] The main idea of the paper is that the typical f
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hyde-hyde.6f40d28e777b288cb757a1db116a257b6f8dffc63a05e8473d12dc09a52d8d79.css" integrity="sha256-b0DSjnd7KIy3V6HbEWole2&#43;N/8Y6BehHPRLcCaUtjXk=">
+<link rel="stylesheet" href="/scss/hyde-hyde.92c66d107d7b219f0792cfd67223179af884b03f386ac46894f9f735932bbca3.css" integrity="sha256-ksZtEH17IZ8Hks/WciMXmviEsD84asRolPn3NZMrvKM=">
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
 
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hugo-toc.8549a64d301421b4256ea9a0d5ca8b99178799f569d5d2daeb95f24cef3ce6b7.css" integrity="sha256-hUmmTTAUIbQlbqmg1cqLmReHmfVp1dLa65XyTO885rc=">
+<link rel="stylesheet" href="/scss/tocbot.126e7d75240acc946d34d6ccb2982ed4c394a5fe34e73e1a2119ca951bcf119d.css" integrity="sha256-Em59dSQKzJRtNNbMspgu1MOUpf405z4aIRnKlRvPEZ0=">
 
 
 
@@ -64,6 +63,7 @@ tags: [highscalability, google] The main idea of the paper is that the typical f
     <!-- Icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
     <link rel="shortcut icon" href="/favicon.png">
+    
     
 
 </head>
@@ -77,6 +77,7 @@ tags: [highscalability, google] The main idea of the paper is that the typical f
       <span class="site__title">
         <a href="https://feisky.xyz/">Feisky</a>
       </span>
+      
       
       <p class="site__description">
          Notes about anything 
@@ -93,7 +94,23 @@ tags: [highscalability, google] The main idea of the paper is that the typical f
 			 
 				<li>
 					<a href="https://kubernetes.feisky.xyz">
-						<span>Kubernetes</span>
+						<span>Kubernetes指南</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://time.geekbang.org/column/intro/100020901">
+						<span>Linux性能优化实战</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://sdn.feisky.xyz">
+						<span>SDN网络</span>
 					</a>
 				</li>
 			 
@@ -108,21 +125,12 @@ tags: [highscalability, google] The main idea of the paper is that the typical f
 		 
 			 
 				<li>
-					<a href="https://sdn.feisky.xyz">
-						<span>SDN</span>
-					</a>
-				</li>
-			 
-		 
-			 
-				<li>
 					<a href="/about/">
-						<span>About</span>
+						<span>关于我</span>
 					</a>
 				</li>
 			 
 		
-		</li>
 	</ul>
 </div>
 
@@ -145,23 +153,33 @@ tags: [highscalability, google] The main idea of the paper is that the typical f
 	
 	
 	
+	
+	
 </section>
 
       </div>
     </div>
-    <div class="copyright">
-  &copy; 2019 .
-  <a href="https://creativecommons.org/licenses/by-sa/4.0">Some Rights Reserved</a>.
-  Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+    
+<div class="copyright">
+  &copy; 2020 feiskyer
+  
+    <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>
   
 </div>
+
+
+<div class="builtwith">
+Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+</div>
+
 
   </div>
 </div>
 
         <div class="content container">
             
-    <article>
+    
+<article>
   <header>
     <h1></h1>
     
@@ -181,75 +199,56 @@ tags: [highscalability, google] The main idea of the paper is that the typical f
   </header>
   
   
-  <div class="toc-wrapper">
-    <input type="checkbox" id="tocToggle">
-    <label for="tocToggle">Table of Content</label>
-    
-        <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#tags-highscalability-google">tags: [highscalability, google]</a></li>
-<li><a href="#what-s-wrong-with-failover">What’s Wrong With Failover?</a></li>
-<li><a href="#how-do-multihomed-systems-work">How do Multihomed Systems Work?</a></li>
-</ul></li>
-</ul>
-</nav>
-    
-  </div>
+  
+    <div class="toc-wrapper">
+      <input type="checkbox" id="tocToggle">
+      <label for="tocToggle">Table of Content</label>
+      
+        <div class="toc" id="TableOfContents"></div>
+      
+    </div>
+  
   
   <div class="post">
-    
-
-<p>layout: &ldquo;post&rdquo;
-title: &ldquo;Google&rsquo;s Transition From Single Datacenter, To Failover, To A Native Multihomed Architecture&rdquo;
+    <h2 id="tags-highscalability-google">layout: &ldquo;post&rdquo;
+title: &ldquo;Google's Transition From Single Datacenter, To Failover, To A Native Multihomed Architecture&rdquo;
 date: &ldquo;2016-02-24 10:33&rdquo;
-category: cluster</p>
-
-<h2 id="tags-highscalability-google">tags: [highscalability, google]</h2>
-
+category: cluster
+tags: [highscalability, google]</h2>
 <p>The main idea of the paper is that the typical <a href="https://en.wikipedia.org/wiki/Failover">failover</a> architecture used when moving from a single datacenter to multiple datacenters doesn’t work well in practice. What does work, where work means using fewer resources while providing high availability and consistency, is a <strong>natively multihomed architecture</strong>:</p>
-
 <blockquote>
 <p>Our current approach is to build natively multihomed systems. Such systems <strong>run hot in multiple datacenters all the time, and adaptively move load between datacenters</strong>, with the ability to handle outages of any scale completely transparently. Additionally, planned datacenter outages and maintenance events are completely transparent, causing minimal disruption to the operational systems. In the past, such events required labor-intensive efforts to move operational systems from one datacenter to another</p>
 </blockquote>
-
 <p>The use of “multihoming” in this context may be confusing because <a href="https://en.wikipedia.org/wiki/Multihoming">multihoming</a> usually refers to a computer connected to more than one network. At Google scale perhaps it’s just as natural to talk about connecting to multiple datacenters.</p>
-
 <p>Google has built several multi-homed systems to guarantee high availability (4 to 5 nines) and consistency in the presence of datacenter level outages: <a href="http://research.google.com/pubs/pub38125.html">F1 / Spanner: Relational Database</a>; <a href="http://research.google.com/pubs/pub41318.html">Photon: Joining Continuous Data Streams</a>; <a href="http://research.google.com/pubs/pub42851.html">Mesa: Data Warehousing</a>. The approach taken by each of these systems is discussed in the paper, as are the many challenges is building a multi-homed system: Synchronous Global State; What to Checkpoint; Repeatable Input; Exactly Once Output.</p>
-
 <p>The huge constraint here is <strong>having availability and consistency</strong>. This highlights the refreshing and continued emphasis Google puts on making even these complex systems <a href="http://highscalability.com/blog/2012/9/24/google-spanners-most-surprising-revelation-nosql-is-out-and.html">easy for programmers to use</a>:</p>
-
 <blockquote>
 <p>The simplicity of a multi-homed system is particularly valuable for users. Without multi-homing, failover, recovery, and dealing with inconsistency are all application problems. With multi-homing, these hard problems are solved by the infrastructure, so the application developer gets high availability and consistency for free and can focus instead on building their application.</p>
 </blockquote>
-
 <p>The biggest surprise in the paper was the idea that a <strong>multihomed system can actually take far fewer resources than a failover system</strong>:</p>
-
 <blockquote>
 <p>In a multi-homed system deployed in three datacenters with 20% total catchup capacity, the total resource footprint is 170% of steady state. This is dramatically less than the 300% required in the failover design above</p>
 </blockquote>
-
-<h2 id="what-s-wrong-with-failover">What’s Wrong With Failover?</h2>
-
+<h2 id="whats-wrong-with-failover">What’s Wrong With Failover?</h2>
 <blockquote>
 <p>Failover-based approaches, however, do not truly achieve high availability, and can have excessive cost due to the deployment of standby resources.</p>
-
+</blockquote>
+<blockquote>
 <p>Our teams have had several bad experiences dealing with failover-based systems in the past. Since unplanned outages are rare, failover procedures were often added as an afterthought, not automated and not well tested. On multiple occasions, teams spent days recovering from an outage, bringing systems back online component by component, recovering state with ad hoc tools like custom MapReduces, and gradually tuning the system as it tried to catch up processing the backlog starting from the initial outage. These situations not only cause extended unavailability, but are also extremely stressful for the teams running complex mission-critical systems.</p>
 </blockquote>
-
 <h2 id="how-do-multihomed-systems-work">How do Multihomed Systems Work?</h2>
-
 <blockquote>
 <p>In contrast, multi-homed systems are designed to run in multiple datacenters as a core design property, so there is no on-the-side failover concept. A multi-homed system runs live in multiple datacenters all the time. Each datacenter processes work all the time, and work is dynamically shared between datacenters to balance load. When one datacenter is slow, some fraction of work automatically moves to faster datacenters. When a datacenter is completely unavailable, all its work is automatically distributed to other datacenters.</p>
-
+</blockquote>
+<blockquote>
 <p>There is no failover process other than the continuous dynamic load balancing. Multi-homed systems coordinate work across datacenters using shared global state that must be updated synchronously. All critical system state is replicated so that any work can be restarted in an alternate datacenter at any point, while still guaranteeing exactly once semantics. Multi-homed systems are uniquely able to provide high availability and full consistency in the presence of datacenter level failures.</p>
-
+</blockquote>
+<blockquote>
 <p>In any of our typical streaming system, the events being processed are based on user interactions, and logged by systems serving user traffic in many datacenters around the world. A log collection service gathers these logs globally and copies them to two or more specific logs datacenters. Each logs datacenter gets a complete copy of the logs, with the guarantee that all events copied to any one datacenter will (eventually) be copied to all logs datacenters. The stream processing systems run in one or more of the logs datacenters and processes all events. Output from the stream processing system is usually stored into some globally replicated system so that the output can be consumed reliably from anywhere.</p>
-
+</blockquote>
+<blockquote>
 <p>In a multi-homed system, all datacenters are live and processing all the time. Deploying three datacenters is typical. In steady state, each of the three datacenters process 33% of the traffic. After a failure where one datacenter is lost, the two remaining datacenters each process 50% of the traffic.</p>
 </blockquote>
-
 <p>Pick up from   <a href="http://highscalability.com/blog/2016/2/23/googles-transition-from-single-datacenter-to-failover-to-a-n.html">http://highscalability.com/blog/2016/2/23/googles-transition-from-single-datacenter-to-failover-to-a-n.html</a>. The paper is at <a href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/44686.pdf">https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/44686.pdf</a></p>
 
   </div>
@@ -315,6 +314,7 @@ category: cluster</p>
         </div>
         
     
+
   
   
 <script type="application/javascript">
@@ -329,15 +329,12 @@ if (!doNotTrack) {
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
-<script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"
-  integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy"
-  crossorigin="anonymous">
-</script>
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
 
 
     
     
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
         
     
     <script type="text/javascript">
@@ -348,6 +345,21 @@ if (!doNotTrack) {
 
 
 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.js"></script>
+<script type="text/javascript">
+  if (tocbot) {
+    tocbot.init({
+      
+      tocSelector: '.toc',
+      
+      contentSelector: '.post',
+      
+      headingSelector: 'h2, h3, h4',
+      collapseDepth: 4
+    });
+  }
+</script>
 
 
 

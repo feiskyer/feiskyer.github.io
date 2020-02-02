@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.49.2" />
+<meta name="generator" content="Hugo 0.62.2" />
 
     
     
@@ -29,14 +29,15 @@ Your containers run in a bare-metal environment, which avoids the &ldquo;hypervi
 <meta property="og:description" content="What is Carina? Carina is a container runtime environment (currently in Beta) that offers performance, container-native tools, and portability without sacrificing ease of use. You can get started in minutes by using open-source software on managed infrastructure to run your containerized applications.
 Your containers run in a bare-metal environment, which avoids the &ldquo;hypervisor tax&rdquo; on performance. Applications in this environment launch as much as 20 percent faster and run as much as 60 percent faster." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://feisky.xyz/posts/2016-02-29-carina-by-rackspace/" /><meta property="article:published_time" content="2016-02-29T19:20:27&#43;00:00"/>
-<meta property="article:modified_time" content="2016-02-29T19:20:27&#43;00:00"/>
+<meta property="og:url" content="https://feisky.xyz/posts/2016-02-29-carina-by-rackspace/" />
+<meta property="article:published_time" content="2016-02-29T19:20:27+00:00" />
+<meta property="article:modified_time" content="2016-02-29T19:20:27+00:00" />
 
 
     
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
 
 
 
@@ -45,15 +46,15 @@ Your containers run in a bare-metal environment, which avoids the &ldquo;hypervi
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hyde-hyde.6f40d28e777b288cb757a1db116a257b6f8dffc63a05e8473d12dc09a52d8d79.css" integrity="sha256-b0DSjnd7KIy3V6HbEWole2&#43;N/8Y6BehHPRLcCaUtjXk=">
+<link rel="stylesheet" href="/scss/hyde-hyde.92c66d107d7b219f0792cfd67223179af884b03f386ac46894f9f735932bbca3.css" integrity="sha256-ksZtEH17IZ8Hks/WciMXmviEsD84asRolPn3NZMrvKM=">
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
 
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hugo-toc.8549a64d301421b4256ea9a0d5ca8b99178799f569d5d2daeb95f24cef3ce6b7.css" integrity="sha256-hUmmTTAUIbQlbqmg1cqLmReHmfVp1dLa65XyTO885rc=">
+<link rel="stylesheet" href="/scss/tocbot.126e7d75240acc946d34d6ccb2982ed4c394a5fe34e73e1a2119ca951bcf119d.css" integrity="sha256-Em59dSQKzJRtNNbMspgu1MOUpf405z4aIRnKlRvPEZ0=">
 
 
 
@@ -65,6 +66,7 @@ Your containers run in a bare-metal environment, which avoids the &ldquo;hypervi
     <!-- Icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
     <link rel="shortcut icon" href="/favicon.png">
+    
     
 
 </head>
@@ -78,6 +80,7 @@ Your containers run in a bare-metal environment, which avoids the &ldquo;hypervi
       <span class="site__title">
         <a href="https://feisky.xyz/">Feisky</a>
       </span>
+      
       
       <p class="site__description">
          Notes about anything 
@@ -94,7 +97,23 @@ Your containers run in a bare-metal environment, which avoids the &ldquo;hypervi
 			 
 				<li>
 					<a href="https://kubernetes.feisky.xyz">
-						<span>Kubernetes</span>
+						<span>Kubernetes指南</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://time.geekbang.org/column/intro/100020901">
+						<span>Linux性能优化实战</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://sdn.feisky.xyz">
+						<span>SDN网络</span>
 					</a>
 				</li>
 			 
@@ -109,21 +128,12 @@ Your containers run in a bare-metal environment, which avoids the &ldquo;hypervi
 		 
 			 
 				<li>
-					<a href="https://sdn.feisky.xyz">
-						<span>SDN</span>
-					</a>
-				</li>
-			 
-		 
-			 
-				<li>
 					<a href="/about/">
-						<span>About</span>
+						<span>关于我</span>
 					</a>
 				</li>
 			 
 		
-		</li>
 	</ul>
 </div>
 
@@ -146,23 +156,33 @@ Your containers run in a bare-metal environment, which avoids the &ldquo;hypervi
 	
 	
 	
+	
+	
 </section>
 
       </div>
     </div>
-    <div class="copyright">
-  &copy; 2019 .
-  <a href="https://creativecommons.org/licenses/by-sa/4.0">Some Rights Reserved</a>.
-  Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+    
+<div class="copyright">
+  &copy; 2020 feiskyer
+  
+    <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>
   
 </div>
+
+
+<div class="builtwith">
+Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+</div>
+
 
   </div>
 </div>
 
         <div class="content container">
             
-    <article>
+    
+<article>
   <header>
     <h1>Carina by Rackspace</h1>
     
@@ -197,40 +217,24 @@ Your containers run in a bare-metal environment, which avoids the &ldquo;hypervi
   </header>
   
   
-  <div class="toc-wrapper">
-    <input type="checkbox" id="tocToggle">
-    <label for="tocToggle">Table of Content</label>
-    
-        <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#what-is-carina">What is Carina?</a></li>
-<li><a href="#usage">Usage</a></li>
-<li><a href="#limitations">Limitations</a></li>
-</ul></li>
-</ul>
-</nav>
-    
-  </div>
+  
+    <div class="toc-wrapper">
+      <input type="checkbox" id="tocToggle">
+      <label for="tocToggle">Table of Content</label>
+      
+        <div class="toc" id="TableOfContents"></div>
+      
+    </div>
+  
   
   <div class="post">
-    
-
-<h2 id="what-is-carina">What is Carina?</h2>
-
+    <h2 id="what-is-carina">What is Carina?</h2>
 <p>Carina is a container runtime environment (currently in Beta) that offers performance, container-native tools, and portability without sacrificing ease of use. You can get started in minutes by using open-source software on managed infrastructure to run your containerized applications.</p>
-
 <p>Your containers run in a bare-metal environment, which avoids the &ldquo;hypervisor tax&rdquo; on performance. Applications in this environment launch as much as 20 percent faster and run as much as 60 percent faster. This environment builds on the standard restrictions set out by libcontainer by using an AppArmor profile as an additional security layer to keep your resources isolated.</p>
-
 <p>Carina is built on the open-source Docker Swarm project. It exposes the Docker API, which gives you maximum portability for easily moving applications from development to test and production environments, thus reducing errors and saving time. In the future, other container orchestration environments will be available to you.</p>
-
 <p>You also have access to an intuitive user interface (UI), a command-line interface (CLI), and Carina specific developer tooling, in addition to the ecosystem of tools already compatible with the Docker API. You also have access to a wealth of documentation, from getting started guides to detailed tutorials and best practices. If you need help, you can access community support directly from other developers.</p>
-
 <p>The path from creating a free account (no credit card required) to running a containerized application on a cluster takes under two minutes. You will use open-source software like Docker to compose your applications. And because the infrastructure is managed by Carina, you can take advantage of features like autoscaling. Now you can focus on what is important to you, your business, and your applications.</p>
-
 <h2 id="usage">Usage</h2>
-
 <pre><code>brew install carina
 export CARINA_USERNAME=&lt;email&gt;
 export CARINA_APIKEY=&lt;api_key&gt;
@@ -245,12 +249,8 @@ ebca8aff4badb001912cc119fb58a93d6d2209622ec74404c0643ecbbf31a50a
 # Grab public ip and ports
 $ docker inspect -f {{.NetworkSettings.Ports}} ebca8aff
 map[443/tcp:[{104.130.0.24 32768}] 80/tcp:[{104.130.0.24 32769}]]
-</code></pre>
-
-<h2 id="limitations">Limitations</h2>
-
+</code></pre><h2 id="limitations">Limitations</h2>
 <p>For a public container service, Carina of course should only allow containers to run non-privileged processes. For example:</p>
-
 <pre><code>$ docker run --rm --privileged busybox
 Timestamp: 2016-02-29 02:21:29.151360105 +0000 UTC
 Code: System error
@@ -291,14 +291,11 @@ File: proc.go@111
 Package: runtime
 File: asm_amd64.s@1721
 docker: Error response from daemon: 500 Internal Server Error: Container command could not be invoked..
-</code></pre>
-
-<p>What interests me is Carina allows your container bind to host network, which means processes in container could monitoring all networks the underlying physical machine:</p>
-
-<pre><code class="language-sh">docker run -it --rm --net=host  busybox sh
-/ # hostname
+</code></pre><p>What interests me is Carina allows your container bind to host network, which means processes in container could monitoring all networks the underlying physical machine:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">docker run -it --rm --net<span style="color:#f92672">=</span>host  busybox sh
+/ <span style="color:#75715e"># hostname</span>
 a0b7f5c6-a069-4ed0-b681-adc9ad8cd8de-n1
-/ # ifconfig
+/ <span style="color:#75715e"># ifconfig</span>
 docker0   Link encap:Ethernet  HWaddr 02:42:83:02:E7:0C
           inet addr:172.17.0.1  Bcast:0.0.0.0  Mask:255.255.0.0
           inet6 addr: fe80::42:83ff:fe02:e70c/64 Scope:Link
@@ -306,7 +303,7 @@ docker0   Link encap:Ethernet  HWaddr 02:42:83:02:E7:0C
           RX packets:1211 errors:0 dropped:0 overruns:0 frame:0
           TX packets:1260 errors:0 dropped:0 overruns:0 carrier:0
           collisions:0 txqueuelen:0
-          RX bytes:579745 (566.1 KiB)  TX bytes:596826 (582.8 KiB)
+          RX bytes:579745 <span style="color:#f92672">(</span>566.1 KiB<span style="color:#f92672">)</span>  TX bytes:596826 <span style="color:#f92672">(</span>582.8 KiB<span style="color:#f92672">)</span>
 
 eth0      Link encap:Ethernet  HWaddr BC:76:4E:20:ED:26
           inet addr:104.130.0.23  Bcast:104.130.0.255  Mask:255.255.255.0
@@ -316,7 +313,7 @@ eth0      Link encap:Ethernet  HWaddr BC:76:4E:20:ED:26
           RX packets:105014 errors:0 dropped:0 overruns:0 frame:0
           TX packets:74924 errors:0 dropped:0 overruns:0 carrier:0
           collisions:0 txqueuelen:1000
-          RX bytes:195922683 (186.8 MiB)  TX bytes:10895679 (10.3 MiB)
+          RX bytes:195922683 <span style="color:#f92672">(</span>186.8 MiB<span style="color:#f92672">)</span>  TX bytes:10895679 <span style="color:#f92672">(</span>10.3 MiB<span style="color:#f92672">)</span>
 
 eth1      Link encap:Ethernet  HWaddr BC:76:4E:20:F5:C3
           inet addr:10.176.224.183  Bcast:10.176.255.255  Mask:255.255.224.0
@@ -325,7 +322,7 @@ eth1      Link encap:Ethernet  HWaddr BC:76:4E:20:F5:C3
           RX packets:7 errors:0 dropped:0 overruns:0 frame:0
           TX packets:8 errors:0 dropped:0 overruns:0 carrier:0
           collisions:0 txqueuelen:1000
-          RX bytes:570 (570.0 B)  TX bytes:648 (648.0 B)
+          RX bytes:570 <span style="color:#f92672">(</span>570.0 B<span style="color:#f92672">)</span>  TX bytes:648 <span style="color:#f92672">(</span>648.0 B<span style="color:#f92672">)</span>
 
 lo        Link encap:Local Loopback
           inet addr:127.0.0.1  Mask:255.0.0.0
@@ -334,7 +331,7 @@ lo        Link encap:Local Loopback
           RX packets:509058 errors:0 dropped:0 overruns:0 frame:0
           TX packets:509058 errors:0 dropped:0 overruns:0 carrier:0
           collisions:0 txqueuelen:0
-          RX bytes:142964399 (136.3 MiB)  TX bytes:142964399 (136.3 MiB)
+          RX bytes:142964399 <span style="color:#f92672">(</span>136.3 MiB<span style="color:#f92672">)</span>  TX bytes:142964399 <span style="color:#f92672">(</span>136.3 MiB<span style="color:#f92672">)</span>
 
 veth1a257f6 Link encap:Ethernet  HWaddr DE:DC:7D:59:A4:DE
           inet6 addr: fe80::dcdc:7dff:fe59:a4de/64 Scope:Link
@@ -342,61 +339,58 @@ veth1a257f6 Link encap:Ethernet  HWaddr DE:DC:7D:59:A4:DE
           RX packets:1161 errors:0 dropped:0 overruns:0 frame:0
           TX packets:1270 errors:0 dropped:0 overruns:0 carrier:0
           collisions:0 txqueuelen:0
-          RX bytes:590651 (576.8 KiB)  TX bytes:597163 (583.1 KiB)
-/ # brctl show
+          RX bytes:590651 <span style="color:#f92672">(</span>576.8 KiB<span style="color:#f92672">)</span>  TX bytes:597163 <span style="color:#f92672">(</span>583.1 KiB<span style="color:#f92672">)</span>
+/ <span style="color:#75715e"># brctl show</span>
 bridge name bridge id       STP enabled interfaces
 docker0     8000.02428302e70c   no      veth1a257f6
-/ # netstat -anp
-Active Internet connections (servers and established)
+/ <span style="color:#75715e"># netstat -anp</span>
+Active Internet connections <span style="color:#f92672">(</span>servers and established<span style="color:#f92672">)</span>
 Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
-tcp        0      0 127.0.0.1:12000         0.0.0.0:*               LISTEN      -
-tcp        0      0 10.176.224.183:12001    0.0.0.0:*               LISTEN      -
-tcp        0      0 10.176.224.183:12002    0.0.0.0:*               LISTEN      -
-tcp        0      0 10.176.224.183:7946     0.0.0.0:*               LISTEN      -
-tcp        0      0 10.176.224.183:8300     0.0.0.0:*               LISTEN      -
-tcp        0      0 127.0.0.1:8400          0.0.0.0:*               LISTEN      -
-tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      -
-tcp        0      0 127.0.0.1:8600          0.0.0.0:*               LISTEN      -
-tcp        0      0 127.0.0.1:12000         127.0.0.1:57711         ESTABLISHED -
-tcp        0      0 127.0.0.1:12000         127.0.0.1:57808         ESTABLISHED -
-tcp        0      0 127.0.0.1:12000         127.0.0.1:54332         ESTABLISHED -
-tcp        0      0 127.0.0.1:57808         127.0.0.1:12000         ESTABLISHED -
-tcp        0      0 127.0.0.1:57832         127.0.0.1:12000         ESTABLISHED -
-tcp        0      0 127.0.0.1:54335         127.0.0.1:12000         ESTABLISHED -
-tcp        0      0 104.130.0.23:43695      104.130.0.23:42376      ESTABLISHED -
-tcp        0      0 127.0.0.1:12000         127.0.0.1:54335         ESTABLISHED -
-tcp        0      0 127.0.0.1:54328         127.0.0.1:12000         ESTABLISHED -
-tcp        0      0 127.0.0.1:54332         127.0.0.1:12000         ESTABLISHED -
-tcp        0      0 104.130.0.23:43692      104.130.0.23:42376      ESTABLISHED -
-tcp        0      0 127.0.0.1:12000         127.0.0.1:57832         ESTABLISHED -
-tcp        0      0 127.0.0.1:12000         127.0.0.1:54328         ESTABLISHED -
-tcp        0      0 104.130.0.23:43694      104.130.0.23:42376      ESTABLISHED -
-tcp        0      0 104.130.0.23:47207      104.130.0.23:42376      ESTABLISHED -
-tcp        0      0 127.0.0.1:57711         127.0.0.1:12000         ESTABLISHED -
-tcp        0      0 :::32770                :::*                    LISTEN      -
-tcp        0      0 :::2376                 :::*                    LISTEN      -
-tcp        0      0 :::42376                :::*                    LISTEN      -
-tcp        0      0 :::22                   :::*                    LISTEN      -
-tcp        0      0 ::ffff:104.130.0.23:42376 ::ffff:104.130.0.23:47207 ESTABLISHED -
-tcp        0      0 ::ffff:104.130.0.23:42376 ::ffff:104.130.0.23:43694 ESTABLISHED -
-tcp        0   2500 ::ffff:104.130.0.23:2376 ::ffff:139.227.1.228:50333 ESTABLISHED -
-tcp        0      0 ::ffff:104.130.0.23:42376 ::ffff:104.130.0.23:43695 ESTABLISHED -
-tcp        0      0 ::ffff:104.130.0.23:42376 ::ffff:104.130.0.23:43692 ESTABLISHED -
-tcp        0      0 ::ffff:104.130.0.23:2376 ::ffff:139.227.1.228:50332 ESTABLISHED -
-udp        0      0 10.176.224.183:7946     0.0.0.0:*                           -
-udp        0      0 127.0.0.1:8600          0.0.0.0:*                           -
-udp        0      0 10.176.224.183:12001    0.0.0.0:*                           -
-udp        0      0 10.176.224.183:12002    0.0.0.0:*                           -
-Active UNIX domain sockets (servers and established)
+tcp        <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span> 127.0.0.1:12000         0.0.0.0:*               LISTEN      -
+tcp        <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span> 10.176.224.183:12001    0.0.0.0:*               LISTEN      -
+tcp        <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span> 10.176.224.183:12002    0.0.0.0:*               LISTEN      -
+tcp        <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span> 10.176.224.183:7946     0.0.0.0:*               LISTEN      -
+tcp        <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span> 10.176.224.183:8300     0.0.0.0:*               LISTEN      -
+tcp        <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span> 127.0.0.1:8400          0.0.0.0:*               LISTEN      -
+tcp        <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span> 0.0.0.0:22              0.0.0.0:*               LISTEN      -
+tcp        <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span> 127.0.0.1:8600          0.0.0.0:*               LISTEN      -
+tcp        <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span> 127.0.0.1:12000         127.0.0.1:57711         ESTABLISHED -
+tcp        <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span> 127.0.0.1:12000         127.0.0.1:57808         ESTABLISHED -
+tcp        <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span> 127.0.0.1:12000         127.0.0.1:54332         ESTABLISHED -
+tcp        <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span> 127.0.0.1:57808         127.0.0.1:12000         ESTABLISHED -
+tcp        <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span> 127.0.0.1:57832         127.0.0.1:12000         ESTABLISHED -
+tcp        <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span> 127.0.0.1:54335         127.0.0.1:12000         ESTABLISHED -
+tcp        <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span> 104.130.0.23:43695      104.130.0.23:42376      ESTABLISHED -
+tcp        <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span> 127.0.0.1:12000         127.0.0.1:54335         ESTABLISHED -
+tcp        <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span> 127.0.0.1:54328         127.0.0.1:12000         ESTABLISHED -
+tcp        <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span> 127.0.0.1:54332         127.0.0.1:12000         ESTABLISHED -
+tcp        <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span> 104.130.0.23:43692      104.130.0.23:42376      ESTABLISHED -
+tcp        <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span> 127.0.0.1:12000         127.0.0.1:57832         ESTABLISHED -
+tcp        <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span> 127.0.0.1:12000         127.0.0.1:54328         ESTABLISHED -
+tcp        <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span> 104.130.0.23:43694      104.130.0.23:42376      ESTABLISHED -
+tcp        <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span> 104.130.0.23:47207      104.130.0.23:42376      ESTABLISHED -
+tcp        <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span> 127.0.0.1:57711         127.0.0.1:12000         ESTABLISHED -
+tcp        <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span> :::32770                :::*                    LISTEN      -
+tcp        <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span> :::2376                 :::*                    LISTEN      -
+tcp        <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span> :::42376                :::*                    LISTEN      -
+tcp        <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span> :::22                   :::*                    LISTEN      -
+tcp        <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span> ::ffff:104.130.0.23:42376 ::ffff:104.130.0.23:47207 ESTABLISHED -
+tcp        <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span> ::ffff:104.130.0.23:42376 ::ffff:104.130.0.23:43694 ESTABLISHED -
+tcp        <span style="color:#ae81ff">0</span>   <span style="color:#ae81ff">2500</span> ::ffff:104.130.0.23:2376 ::ffff:139.227.1.228:50333 ESTABLISHED -
+tcp        <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span> ::ffff:104.130.0.23:42376 ::ffff:104.130.0.23:43695 ESTABLISHED -
+tcp        <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span> ::ffff:104.130.0.23:42376 ::ffff:104.130.0.23:43692 ESTABLISHED -
+tcp        <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span> ::ffff:104.130.0.23:2376 ::ffff:139.227.1.228:50332 ESTABLISHED -
+udp        <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span> 10.176.224.183:7946     0.0.0.0:*                           -
+udp        <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span> 127.0.0.1:8600          0.0.0.0:*                           -
+udp        <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span> 10.176.224.183:12001    0.0.0.0:*                           -
+udp        <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span> 10.176.224.183:12002    0.0.0.0:*                           -
+Active UNIX domain sockets <span style="color:#f92672">(</span>servers and established<span style="color:#f92672">)</span>
 Proto RefCnt Flags       Type       State         I-Node PID/Program name    Path
-unix  2      [ ACC ]     STREAM     LISTENING     1015753155 -                   /var/lib/docker/network/files/33d3542ddd4b10c0411b8c50997cceb8272475bc7a63caeb666e772b57c48a8a.sock
-unix  2      [ ACC ]     STREAM     LISTENING     1015755212 -                   /var/run/docker.sock
-/ # brctl addbr br0
+unix  <span style="color:#ae81ff">2</span>      <span style="color:#f92672">[</span> ACC <span style="color:#f92672">]</span>     STREAM     LISTENING     <span style="color:#ae81ff">1015753155</span> -                   /var/lib/docker/network/files/33d3542ddd4b10c0411b8c50997cceb8272475bc7a63caeb666e772b57c48a8a.sock
+unix  <span style="color:#ae81ff">2</span>      <span style="color:#f92672">[</span> ACC <span style="color:#f92672">]</span>     STREAM     LISTENING     <span style="color:#ae81ff">1015755212</span> -                   /var/run/docker.sock
+/ <span style="color:#75715e"># brctl addbr br0</span>
 brctl: bridge br0: Operation not permitted
-</code></pre>
-
-<p>Although you couldn&rsquo;t manage networks (Operation not permitted), but as you see above, containers could obtain many sensitive machine informations. Actually I don&rsquo;t understand why Rackspace would like to take this risk for public services, or this is just because they are making mistakes.</p>
-
+</code></pre></div><p>Although you couldn't manage networks (Operation not permitted), but as you see above, containers could obtain many sensitive machine informations. Actually I don't understand why Rackspace would like to take this risk for public services, or this is just because they are making mistakes.</p>
 <p>Though Rackspace makes a different way of CaaS (Run docker bare-metally), Docker itself without hypervisor is still not of security for pulic container services. So all of pulic container services, including AWS ECS, Google GKE, Docker Cloud and so on, are running Docker on virtual machines provided by IaaS.</p>
 
   </div>
@@ -428,38 +422,39 @@ brctl: bridge br0: Operation not permitted
         
 <li>
   <span class="list__title--small">
-    <a href="/posts/2015-02-06-apachemesosgooglekubernetes-/">Apache的Mesos和Google的Kubernetes 有什么区别</a>
+    <a href="/posts/2015-02-06-apachemesosgooglekubernetes-/" >Apache的Mesos和Google的Kubernetes 有什么区别</a>
       
   </span>
 </li>
 
 <li>
   <span class="list__title--small">
-    <a href="/posts/2015-02-05-deploy-a-mesos-cluster-using-docker/">Deploy a Mesos Cluster Using Docker</a>
+    <a href="/posts/2015-02-05-deploy-a-mesos-cluster-using-docker/" >Deploy a Mesos Cluster Using Docker</a>
       
   </span>
 </li>
 
 <li>
   <span class="list__title--small">
-    <a href="/posts/2015-03-13-usging-cadvisor-to-monitor-docker/">Using cAdvisor to monitor docker</a>
+    <a href="/posts/2015-01-27-docker/" >Docker</a>
       
   </span>
 </li>
 
 <li>
   <span class="list__title--small">
-    <a href="/posts/2015-01-27-docker/">Docker</a>
+    <a href="/posts/2015-03-05-docker-acquires-sdn-startup-socketplane/" >Docker acquires SDN startup SocketPlane</a>
       
   </span>
 </li>
 
 <li>
   <span class="list__title--small">
-    <a href="/posts/2015-03-05-docker-acquires-sdn-startup-socketplane/">Docker acquires SDN startup SocketPlane</a>
+    <a href="/posts/2015-03-06-redhat-atomic-host/" >Redhat Atomic Host</a>
       
   </span>
 </li>
+
 
     </ul>
 </div>
@@ -505,6 +500,7 @@ brctl: bridge br0: Operation not permitted
         </div>
         
     
+
   
   
 <script type="application/javascript">
@@ -519,15 +515,12 @@ if (!doNotTrack) {
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
-<script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"
-  integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy"
-  crossorigin="anonymous">
-</script>
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
 
 
     
     
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
         
     
     <script type="text/javascript">
@@ -538,6 +531,21 @@ if (!doNotTrack) {
 
 
 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.js"></script>
+<script type="text/javascript">
+  if (tocbot) {
+    tocbot.init({
+      
+      tocSelector: '.toc',
+      
+      contentSelector: '.post',
+      
+      headingSelector: 'h2, h3, h4',
+      collapseDepth: 4
+    });
+  }
+</script>
 
 
 

@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.49.2" />
+<meta name="generator" content="Hugo 0.62.2" />
 
     
     
@@ -22,19 +22,20 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Playing docker with hypervisor container runtime runV"/>
-<meta name="twitter:description" content="Table of contents: [TOC] The latest master branch of runV has already supported running as an runtime in docker. Since v1.11, docker introduced OCI contain runtime (runc) integration via containerd. Since runc and runV are both recommended implementation of OCI, it is natural to make runV working with containerd. Now let&rsquo;s have a try. Install runv and docker Docker could be installed via https://docs.docker.com/engine/installation/. Since only master branch of runV"/>
+<meta name="twitter:description" content="Table of contents: [TOC] The latest master branch of runV has already supported running as an runtime in docker. Since v1.11, docker introduced OCI contain runtime (runc) integration via containerd. Since runc and runV are both recommended implementation of OCI, it is natural to make runV working with containerd. Now let&#39;s have a try. Install runv and docker Docker could be installed via https://docs.docker.com/engine/installation/. Since only master branch of runV"/>
 
 <meta property="og:title" content="Playing docker with hypervisor container runtime runV" />
-<meta property="og:description" content="Table of contents: [TOC] The latest master branch of runV has already supported running as an runtime in docker. Since v1.11, docker introduced OCI contain runtime (runc) integration via containerd. Since runc and runV are both recommended implementation of OCI, it is natural to make runV working with containerd. Now let&rsquo;s have a try. Install runv and docker Docker could be installed via https://docs.docker.com/engine/installation/. Since only master branch of runV" />
+<meta property="og:description" content="Table of contents: [TOC] The latest master branch of runV has already supported running as an runtime in docker. Since v1.11, docker introduced OCI contain runtime (runc) integration via containerd. Since runc and runV are both recommended implementation of OCI, it is natural to make runV working with containerd. Now let&#39;s have a try. Install runv and docker Docker could be installed via https://docs.docker.com/engine/installation/. Since only master branch of runV" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://feisky.xyz/posts/2016-06-17-playing-docker-with-hypervisor-container-runtime-runv/" /><meta property="article:published_time" content="2016-06-17T17:12:38&#43;00:00"/>
-<meta property="article:modified_time" content="2016-06-17T17:12:38&#43;00:00"/>
+<meta property="og:url" content="https://feisky.xyz/posts/2016-06-17-playing-docker-with-hypervisor-container-runtime-runv/" />
+<meta property="article:published_time" content="2016-06-17T17:12:38+00:00" />
+<meta property="article:modified_time" content="2016-06-17T17:12:38+00:00" />
 
 
     
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
 
 
 
@@ -43,15 +44,15 @@
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hyde-hyde.6f40d28e777b288cb757a1db116a257b6f8dffc63a05e8473d12dc09a52d8d79.css" integrity="sha256-b0DSjnd7KIy3V6HbEWole2&#43;N/8Y6BehHPRLcCaUtjXk=">
+<link rel="stylesheet" href="/scss/hyde-hyde.92c66d107d7b219f0792cfd67223179af884b03f386ac46894f9f735932bbca3.css" integrity="sha256-ksZtEH17IZ8Hks/WciMXmviEsD84asRolPn3NZMrvKM=">
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
 
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hugo-toc.8549a64d301421b4256ea9a0d5ca8b99178799f569d5d2daeb95f24cef3ce6b7.css" integrity="sha256-hUmmTTAUIbQlbqmg1cqLmReHmfVp1dLa65XyTO885rc=">
+<link rel="stylesheet" href="/scss/tocbot.126e7d75240acc946d34d6ccb2982ed4c394a5fe34e73e1a2119ca951bcf119d.css" integrity="sha256-Em59dSQKzJRtNNbMspgu1MOUpf405z4aIRnKlRvPEZ0=">
 
 
 
@@ -63,6 +64,7 @@
     <!-- Icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
     <link rel="shortcut icon" href="/favicon.png">
+    
     
 
 </head>
@@ -76,6 +78,7 @@
       <span class="site__title">
         <a href="https://feisky.xyz/">Feisky</a>
       </span>
+      
       
       <p class="site__description">
          Notes about anything 
@@ -92,7 +95,23 @@
 			 
 				<li>
 					<a href="https://kubernetes.feisky.xyz">
-						<span>Kubernetes</span>
+						<span>Kubernetes指南</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://time.geekbang.org/column/intro/100020901">
+						<span>Linux性能优化实战</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://sdn.feisky.xyz">
+						<span>SDN网络</span>
 					</a>
 				</li>
 			 
@@ -107,21 +126,12 @@
 		 
 			 
 				<li>
-					<a href="https://sdn.feisky.xyz">
-						<span>SDN</span>
-					</a>
-				</li>
-			 
-		 
-			 
-				<li>
 					<a href="/about/">
-						<span>About</span>
+						<span>关于我</span>
 					</a>
 				</li>
 			 
 		
-		</li>
 	</ul>
 </div>
 
@@ -144,23 +154,33 @@
 	
 	
 	
+	
+	
 </section>
 
       </div>
     </div>
-    <div class="copyright">
-  &copy; 2019 .
-  <a href="https://creativecommons.org/licenses/by-sa/4.0">Some Rights Reserved</a>.
-  Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+    
+<div class="copyright">
+  &copy; 2020 feiskyer
+  
+    <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>
   
 </div>
+
+
+<div class="builtwith">
+Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+</div>
+
 
   </div>
 </div>
 
         <div class="content container">
             
-    <article>
+    
+<article>
   <header>
     <h1>Playing docker with hypervisor container runtime runV</h1>
     
@@ -195,47 +215,26 @@
   </header>
   
   
-  <div class="toc-wrapper">
-    <input type="checkbox" id="tocToggle">
-    <label for="tocToggle">Table of Content</label>
-    
-        <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#install-runv-and-docker">Install runv and docker</a></li>
-<li><a href="#start-docker-with-runv-runtime">Start docker with runV runtime</a></li>
-<li><a href="#create-container">Create container</a></li>
-<li><a href="#is-it-stable">Is it stable?</a></li>
-</ul></li>
-</ul></li>
-</ul>
-</nav>
-    
-  </div>
+  
+    <div class="toc-wrapper">
+      <input type="checkbox" id="tocToggle">
+      <label for="tocToggle">Table of Content</label>
+      
+        <div class="toc" id="TableOfContents"></div>
+      
+    </div>
+  
   
   <div class="post">
-    
-
-<p>Table of contents:</p>
-
+    <p>Table of contents:</p>
 <p>[TOC]</p>
-
-<hr />
-
+<hr>
 <p>The latest master branch of <a href="https://github.com/hyperhq/runv">runV</a> has already supported running as an runtime in docker. Since v1.11, docker introduced OCI contain runtime (runc) integration via containerd. Since runc and runV are both <a href="https://github.com/opencontainers/runtime-spec/blob/master/implementations.md">recommended implementation of OCI</a>, it is natural to make runV working with containerd.</p>
-
-<p>Now let&rsquo;s have a try.</p>
-
+<p>Now let's have a try.</p>
 <h3 id="install-runv-and-docker">Install runv and docker</h3>
-
 <p>Docker could be installed via <a href="https://docs.docker.com/engine/installation/">https://docs.docker.com/engine/installation/</a>.</p>
-
 <p>Since only master branch of runV supports running integrated with docker, we should compile runV by source.</p>
-
-<pre><code class="language-sh">sudo apt-get install -y autoconf automake pkg-config libdevmapper-dev libsqlite3-dev libvirt-dev qemu libvirt-bin
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo apt-get install -y autoconf automake pkg-config libdevmapper-dev libsqlite3-dev libvirt-dev qemu libvirt-bin
 mkdir -p $GOPATH/src/github.com/hyperhq
 cd $GOPATH/src/github.com/hyperhq
 git clone https://github.com/hyperhq/runv
@@ -244,128 +243,109 @@ cd runv
 ./configure
 make
 make install
-</code></pre>
-
-<h3 id="start-docker-with-runv-runtime">Start docker with runV runtime</h3>
-
+</code></pre></div><h3 id="start-docker-with-runv-runtime">Start docker with runV runtime</h3>
 <p>Stop docker first since it is running with runc by default.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">systemctl stop docker
+</code></pre></div><p>Now start docker with runV:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># start containerd</span>
+systemd-run --unit<span style="color:#f92672">=</span>containerd-runv docker-containerd --debug -l /var/run/docker/libcontainerd/docker-containerd.sock --runtime /usr/local/bin/runv --runtime-args --debug --runtime-args --driver<span style="color:#f92672">=</span>libvirt --runtime-args --kernel<span style="color:#f92672">=</span>/var/lib/hyper/kernel --runtime-args --initrd<span style="color:#f92672">=</span>/var/lib/hyper/hyper-initrd.img --start-timeout 2m
 
-<pre><code class="language-sh">systemctl stop docker
-</code></pre>
+<span style="color:#75715e"># start docker</span>
+systemd-run --unit<span style="color:#f92672">=</span>docker-runv docker daemon -D -l debug --containerd<span style="color:#f92672">=</span>/var/run/docker/libcontainerd/docker-containerd.sock
 
-<p>Now start docker with runV:</p>
-
-<pre><code class="language-sh"># start containerd
-systemd-run --unit=containerd-runv docker-containerd --debug -l /var/run/docker/libcontainerd/docker-containerd.sock --runtime /usr/local/bin/runv --runtime-args --debug --runtime-args --driver=libvirt --runtime-args --kernel=/var/lib/hyper/kernel --runtime-args --initrd=/var/lib/hyper/hyper-initrd.img --start-timeout 2m
-
-# start docker
-systemd-run --unit=docker-runv docker daemon -D -l debug --containerd=/var/run/docker/libcontainerd/docker-containerd.sock
-
-# check status
-[root@linux ~]# systemctl status containerd-runv
-● containerd-runv.service - /usr/bin/docker-containerd --debug -l /var/run/docker/libcontainerd/docker-containerd.sock --runtime /usr/local/bin/runv --runtime-args --debug --runtime-args --driver=libvirt --runtime-args --kernel=/var/lib/hyper/kernel --runtime-args --initrd=/var/lib/hyper/hyper-initrd.img --start-timeout 2m
-   Loaded: loaded (/run/systemd/system/containerd-runv.service; static; vendor preset: disabled)
+<span style="color:#75715e"># check status</span>
+<span style="color:#f92672">[</span>root@linux ~<span style="color:#f92672">]</span><span style="color:#75715e"># systemctl status containerd-runv</span>
+● containerd-runv.service - /usr/bin/docker-containerd --debug -l /var/run/docker/libcontainerd/docker-containerd.sock --runtime /usr/local/bin/runv --runtime-args --debug --runtime-args --driver<span style="color:#f92672">=</span>libvirt --runtime-args --kernel<span style="color:#f92672">=</span>/var/lib/hyper/kernel --runtime-args --initrd<span style="color:#f92672">=</span>/var/lib/hyper/hyper-initrd.img --start-timeout 2m
+   Loaded: loaded <span style="color:#f92672">(</span>/run/systemd/system/containerd-runv.service; static; vendor preset: disabled<span style="color:#f92672">)</span>
   Drop-In: /run/systemd/system/containerd-runv.service.d
            └─50-Description.conf, 50-ExecStart.conf
-   Active: active (running) since 五 2016-06-17 09:47:57 UTC; 10s ago
- Main PID: 12650 (docker-containe)
+   Active: active <span style="color:#f92672">(</span>running<span style="color:#f92672">)</span> since 五 2016-06-17 09:47:57 UTC; 10s ago
+ Main PID: <span style="color:#ae81ff">12650</span> <span style="color:#f92672">(</span>docker-containe<span style="color:#f92672">)</span>
    Memory: 1.8M
    CGroup: /system.slice/containerd-runv.service
            └─12650 /usr/bin/docker-containerd --debug -l /var/run/docker/libcontainerd/docker-containerd.sock --run...
 
-6月 17 09:47:57 linux systemd[1]: Started /usr/bin/docker-containerd --debug -l /var/run/docker/libcontainerd/docker...
-6月 17 09:47:57 linux systemd[1]: Starting /usr/bin/docker-containerd --debug -l /var/run/docker/libcontainerd/docke...
-6月 17 09:47:57 linux docker-containerd[12650]: time=&quot;2016-06-17T09:47:57Z&quot; level=warning msg=&quot;containerd: low ...=4096
-6月 17 09:47:57 linux docker-containerd[12650]: time=&quot;2016-06-17T09:47:57Z&quot; level=debug msg=&quot;containerd: read p...unt=0
-6月 17 09:47:57 linux docker-containerd[12650]: time=&quot;2016-06-17T09:47:57Z&quot; level=debug msg=&quot;containerd: superv...nerd&quot;
-6月 17 09:47:57 linux docker-containerd[12650]: time=&quot;2016-06-17T09:47:57Z&quot; level=debug msg=&quot;containerd: grpc a...sock&quot;
+6月 <span style="color:#ae81ff">17</span> 09:47:57 linux systemd<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span>: Started /usr/bin/docker-containerd --debug -l /var/run/docker/libcontainerd/docker...
+6月 <span style="color:#ae81ff">17</span> 09:47:57 linux systemd<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span>: Starting /usr/bin/docker-containerd --debug -l /var/run/docker/libcontainerd/docke...
+6月 <span style="color:#ae81ff">17</span> 09:47:57 linux docker-containerd<span style="color:#f92672">[</span>12650<span style="color:#f92672">]</span>: time<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;2016-06-17T09:47:57Z&#34;</span> level<span style="color:#f92672">=</span>warning msg<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;containerd: low ...=4096
+</span><span style="color:#e6db74">6月 17 09:47:57 linux docker-containerd[12650]: time=&#34;</span>2016-06-17T09:47:57Z<span style="color:#e6db74">&#34; level=debug msg=&#34;</span>containerd: read p...unt<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
+6月 <span style="color:#ae81ff">17</span> 09:47:57 linux docker-containerd<span style="color:#f92672">[</span>12650<span style="color:#f92672">]</span>: time<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;2016-06-17T09:47:57Z&#34;</span> level<span style="color:#f92672">=</span>debug msg<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;containerd: superv...nerd&#34;</span>
+6月 <span style="color:#ae81ff">17</span> 09:47:57 linux docker-containerd<span style="color:#f92672">[</span>12650<span style="color:#f92672">]</span>: time<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;2016-06-17T09:47:57Z&#34;</span> level<span style="color:#f92672">=</span>debug msg<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;containerd: grpc a...sock&#34;</span>
 Hint: Some lines were ellipsized, use -l to show in full.
 
-[root@linux ~]# systemctl status docker-runv
-● docker-runv.service - /usr/bin/docker daemon -D -l debug --containerd=/var/run/docker/libcontainerd/docker-containerd.sock
-   Loaded: loaded (/run/systemd/system/docker-runv.service; static; vendor preset: disabled)
+<span style="color:#f92672">[</span>root@linux ~<span style="color:#f92672">]</span><span style="color:#75715e"># systemctl status docker-runv</span>
+● docker-runv.service - /usr/bin/docker daemon -D -l debug --containerd<span style="color:#f92672">=</span>/var/run/docker/libcontainerd/docker-containerd.sock
+   Loaded: loaded <span style="color:#f92672">(</span>/run/systemd/system/docker-runv.service; static; vendor preset: disabled<span style="color:#f92672">)</span>
   Drop-In: /run/systemd/system/docker-runv.service.d
            └─50-Description.conf, 50-ExecStart.conf
-   Active: active (running) since 五 2016-06-17 09:34:11 UTC; 25s ago
- Main PID: 11120 (docker)
+   Active: active <span style="color:#f92672">(</span>running<span style="color:#f92672">)</span> since 五 2016-06-17 09:34:11 UTC; 25s ago
+ Main PID: <span style="color:#ae81ff">11120</span> <span style="color:#f92672">(</span>docker<span style="color:#f92672">)</span>
    Memory: 20.8M
    CGroup: /system.slice/docker-runv.service
-           └─11120 /usr/bin/docker daemon -D -l debug --containerd=/var/run/docker/libcontainerd/docker-containerd.sock
+           └─11120 /usr/bin/docker daemon -D -l debug --containerd<span style="color:#f92672">=</span>/var/run/docker/libcontainerd/docker-containerd.sock
 
-6月 17 09:34:13 linux docker[11120]: time=&quot;2016-06-17T09:34:13.019309548Z&quot; level=debug msg=&quot;Registering POST, /volumes/create&quot;
-6月 17 09:34:13 linux docker[11120]: time=&quot;2016-06-17T09:34:13.019448115Z&quot; level=debug msg=&quot;Registering DELETE, /volumes/{name:.*}&quot;
-6月 17 09:34:13 linux docker[11120]: time=&quot;2016-06-17T09:34:13.019551244Z&quot; level=debug msg=&quot;Registering POST, /build&quot;
-6月 17 09:34:13 linux docker[11120]: time=&quot;2016-06-17T09:34:13.019607895Z&quot; level=debug msg=&quot;Registering GET, /networks&quot;
-6月 17 09:34:13 linux docker[11120]: time=&quot;2016-06-17T09:34:13.019675700Z&quot; level=debug msg=&quot;Registering GET, /networks/{id:.*}&quot;
-6月 17 09:34:13 linux docker[11120]: time=&quot;2016-06-17T09:34:13.019771551Z&quot; level=debug msg=&quot;Registering POST, /networks/create&quot;
-6月 17 09:34:13 linux docker[11120]: time=&quot;2016-06-17T09:34:13.020256142Z&quot; level=debug msg=&quot;Registering POST, /networks/{id:.*}/connect&quot;
-6月 17 09:34:13 linux docker[11120]: time=&quot;2016-06-17T09:34:13.020369131Z&quot; level=debug msg=&quot;Registering POST, /networks/{id:.*}/disconnect&quot;
-6月 17 09:34:13 linux docker[11120]: time=&quot;2016-06-17T09:34:13.020463042Z&quot; level=debug msg=&quot;Registering DELETE, /networks/{id:.*}&quot;
-6月 17 09:34:13 linux docker[11120]: time=&quot;2016-06-17T09:34:13.021491071Z&quot; level=info msg=&quot;API listen on /var/run/docker.sock&quot;
-</code></pre>
-
-<h3 id="create-container">Create container</h3>
-
-<p>Let&rsquo;s create a nginx container.</p>
-
-<pre><code class="language-sh">[root@linux ~]# docker run -i -d  nginx
+6月 <span style="color:#ae81ff">17</span> 09:34:13 linux docker<span style="color:#f92672">[</span>11120<span style="color:#f92672">]</span>: time<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;2016-06-17T09:34:13.019309548Z&#34;</span> level<span style="color:#f92672">=</span>debug msg<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Registering POST, /volumes/create&#34;</span>
+6月 <span style="color:#ae81ff">17</span> 09:34:13 linux docker<span style="color:#f92672">[</span>11120<span style="color:#f92672">]</span>: time<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;2016-06-17T09:34:13.019448115Z&#34;</span> level<span style="color:#f92672">=</span>debug msg<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Registering DELETE, /volumes/{name:.*}&#34;</span>
+6月 <span style="color:#ae81ff">17</span> 09:34:13 linux docker<span style="color:#f92672">[</span>11120<span style="color:#f92672">]</span>: time<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;2016-06-17T09:34:13.019551244Z&#34;</span> level<span style="color:#f92672">=</span>debug msg<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Registering POST, /build&#34;</span>
+6月 <span style="color:#ae81ff">17</span> 09:34:13 linux docker<span style="color:#f92672">[</span>11120<span style="color:#f92672">]</span>: time<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;2016-06-17T09:34:13.019607895Z&#34;</span> level<span style="color:#f92672">=</span>debug msg<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Registering GET, /networks&#34;</span>
+6月 <span style="color:#ae81ff">17</span> 09:34:13 linux docker<span style="color:#f92672">[</span>11120<span style="color:#f92672">]</span>: time<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;2016-06-17T09:34:13.019675700Z&#34;</span> level<span style="color:#f92672">=</span>debug msg<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Registering GET, /networks/{id:.*}&#34;</span>
+6月 <span style="color:#ae81ff">17</span> 09:34:13 linux docker<span style="color:#f92672">[</span>11120<span style="color:#f92672">]</span>: time<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;2016-06-17T09:34:13.019771551Z&#34;</span> level<span style="color:#f92672">=</span>debug msg<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Registering POST, /networks/create&#34;</span>
+6月 <span style="color:#ae81ff">17</span> 09:34:13 linux docker<span style="color:#f92672">[</span>11120<span style="color:#f92672">]</span>: time<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;2016-06-17T09:34:13.020256142Z&#34;</span> level<span style="color:#f92672">=</span>debug msg<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Registering POST, /networks/{id:.*}/connect&#34;</span>
+6月 <span style="color:#ae81ff">17</span> 09:34:13 linux docker<span style="color:#f92672">[</span>11120<span style="color:#f92672">]</span>: time<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;2016-06-17T09:34:13.020369131Z&#34;</span> level<span style="color:#f92672">=</span>debug msg<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Registering POST, /networks/{id:.*}/disconnect&#34;</span>
+6月 <span style="color:#ae81ff">17</span> 09:34:13 linux docker<span style="color:#f92672">[</span>11120<span style="color:#f92672">]</span>: time<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;2016-06-17T09:34:13.020463042Z&#34;</span> level<span style="color:#f92672">=</span>debug msg<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Registering DELETE, /networks/{id:.*}&#34;</span>
+6月 <span style="color:#ae81ff">17</span> 09:34:13 linux docker<span style="color:#f92672">[</span>11120<span style="color:#f92672">]</span>: time<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;2016-06-17T09:34:13.021491071Z&#34;</span> level<span style="color:#f92672">=</span>info msg<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;API listen on /var/run/docker.sock&#34;</span>
+</code></pre></div><h3 id="create-container">Create container</h3>
+<p>Let's create a nginx container.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#f92672">[</span>root@linux ~<span style="color:#f92672">]</span><span style="color:#75715e"># docker run -i -d  nginx</span>
 6a34a0513ebbdb2c57d828bf4e814773c8a5cf6af8c35e4376f2028769a7c35c
-[root@linux ~]# docker ps
+<span style="color:#f92672">[</span>root@linux ~<span style="color:#f92672">]</span><span style="color:#75715e"># docker ps</span>
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS               NAMES
-6a34a0513ebb        nginx               &quot;nginx -g 'daemon off&quot;   9 seconds ago       Up 3 seconds        80/tcp, 443/tcp     berserk_mcnulty
+6a34a0513ebb        nginx               <span style="color:#e6db74">&#34;nginx -g &#39;daemon off&#34;</span>   <span style="color:#ae81ff">9</span> seconds ago       Up <span style="color:#ae81ff">3</span> seconds        80/tcp, 443/tcp     berserk_mcnulty
 
-# Is it working
-[root@linux ~]# docker inspect --format '{{ .NetworkSettings.IPAddress }}' 6a34a0513ebb
+<span style="color:#75715e"># Is it working</span>
+<span style="color:#f92672">[</span>root@linux ~<span style="color:#f92672">]</span><span style="color:#75715e"># docker inspect --format &#39;{{ .NetworkSettings.IPAddress }}&#39; 6a34a0513ebb</span>
 172.17.0.2
-[root@linux ~]# curl -I 172.17.0.2
-HTTP/1.1 200 OK
+<span style="color:#f92672">[</span>root@linux ~<span style="color:#f92672">]</span><span style="color:#75715e"># curl -I 172.17.0.2</span>
+HTTP/1.1 <span style="color:#ae81ff">200</span> OK
 Server: nginx/1.11.1
-Date: Fri, 17 Jun 2016 09:52:37 GMT
+Date: Fri, <span style="color:#ae81ff">17</span> Jun <span style="color:#ae81ff">2016</span> 09:52:37 GMT
 Content-Type: text/html
-Content-Length: 612
-Last-Modified: Tue, 31 May 2016 14:40:22 GMT
+Content-Length: <span style="color:#ae81ff">612</span>
+Last-Modified: Tue, <span style="color:#ae81ff">31</span> May <span style="color:#ae81ff">2016</span> 14:40:22 GMT
 Connection: keep-alive
-ETag: &quot;574da256-264&quot;
+ETag: <span style="color:#e6db74">&#34;574da256-264&#34;</span>
 Accept-Ranges: bytes
-</code></pre>
-
-<p>Is the container really running in runV with hypervisor?</p>
-
-<pre><code class="language-sh">root@linux ~]# runv list
+</code></pre></div><p>Is the container really running in runV with hypervisor?</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">root@linux ~<span style="color:#f92672">]</span><span style="color:#75715e"># runv list</span>
 ID                                                                 PID         STATUS      BUNDLE                                                                                           CREATED
-6a34a0513ebbdb2c57d828bf4e814773c8a5cf6af8c35e4376f2028769a7c35c   12756       running     /var/run/docker/libcontainerd/6a34a0513ebbdb2c57d828bf4e814773c8a5cf6af8c35e4376f2028769a7c35c   2016-06-17T09:48:38.324839156Z
+6a34a0513ebbdb2c57d828bf4e814773c8a5cf6af8c35e4376f2028769a7c35c   <span style="color:#ae81ff">12756</span>       running     /var/run/docker/libcontainerd/6a34a0513ebbdb2c57d828bf4e814773c8a5cf6af8c35e4376f2028769a7c35c   2016-06-17T09:48:38.324839156Z
 
-[root@linux ~]# runv state 6a34a0513ebbdb2c57d828bf4e814773c8a5cf6af8c35e4376f2028769a7c35c
-{
-  &quot;ociVersion&quot;: &quot;0.6.0-dev&quot;,
-  &quot;id&quot;: &quot;6a34a0513ebbdb2c57d828bf4e814773c8a5cf6af8c35e4376f2028769a7c35c&quot;,
-  &quot;pid&quot;: 12756,
-  &quot;bundlePath&quot;: &quot;/var/run/docker/libcontainerd/6a34a0513ebbdb2c57d828bf4e814773c8a5cf6af8c35e4376f2028769a7c35c&quot;,
-  &quot;rootfsPath&quot;: &quot;/var/run/docker/libcontainerd/6a34a0513ebbdb2c57d828bf4e814773c8a5cf6af8c35e4376f2028769a7c35c/rootfs&quot;,
-  &quot;status&quot;: &quot;running&quot;,
-  &quot;created&quot;: &quot;2016-06-17T09:48:38.324839156Z&quot;
-}
+<span style="color:#f92672">[</span>root@linux ~<span style="color:#f92672">]</span><span style="color:#75715e"># runv state 6a34a0513ebbdb2c57d828bf4e814773c8a5cf6af8c35e4376f2028769a7c35c</span>
+<span style="color:#f92672">{</span>
+  <span style="color:#e6db74">&#34;ociVersion&#34;</span>: <span style="color:#e6db74">&#34;0.6.0-dev&#34;</span>,
+  <span style="color:#e6db74">&#34;id&#34;</span>: <span style="color:#e6db74">&#34;6a34a0513ebbdb2c57d828bf4e814773c8a5cf6af8c35e4376f2028769a7c35c&#34;</span>,
+  <span style="color:#e6db74">&#34;pid&#34;</span>: 12756,
+  <span style="color:#e6db74">&#34;bundlePath&#34;</span>: <span style="color:#e6db74">&#34;/var/run/docker/libcontainerd/6a34a0513ebbdb2c57d828bf4e814773c8a5cf6af8c35e4376f2028769a7c35c&#34;</span>,
+  <span style="color:#e6db74">&#34;rootfsPath&#34;</span>: <span style="color:#e6db74">&#34;/var/run/docker/libcontainerd/6a34a0513ebbdb2c57d828bf4e814773c8a5cf6af8c35e4376f2028769a7c35c/rootfs&#34;</span>,
+  <span style="color:#e6db74">&#34;status&#34;</span>: <span style="color:#e6db74">&#34;running&#34;</span>,
+  <span style="color:#e6db74">&#34;created&#34;</span>: <span style="color:#e6db74">&#34;2016-06-17T09:48:38.324839156Z&#34;</span>
+<span style="color:#f92672">}</span>
 
-[root@linux ~]# virsh list
+<span style="color:#f92672">[</span>root@linux ~<span style="color:#f92672">]</span><span style="color:#75715e"># virsh list</span>
  Id    名称                         状态
 ----------------------------------------------------
- 919   vm-CeaKLvbPEg                  running
+ <span style="color:#ae81ff">919</span>   vm-CeaKLvbPEg                  running
 
-[root@linux ~]# ps -ef | grep vm-CeaKLvbPEg | grep -v grep
-root     12743     1  1 09:48 ?        00:00:06 /usr/bin/qemu-system-x86_64 -name vm-CeaKLvbPEg -S -machine pc-i440fx-2.0,accel=tcg,usb=off -cpu Haswell-noTSX,+abm,+hypervisor,+rdrand,+f16c,+osxsave,+ht,+vme -m 128 -realtime mlock=off -smp 1,sockets=1,cores=1,threads=1 -uuid 4f158103-bd5e-4fd1-a62f-9e18093ceaf4 -nographic -no-user-config -nodefaults -chardev socket,id=charmonitor,path=/var/lib/libvirt/qemu/domain-vm-CeaKLvbPEg/monitor.sock,server,nowait -mon chardev=charmonitor,id=monitor,mode=control -rtc base=utc -no-reboot -boot strict=on -kernel /var/lib/hyper/kernel -initrd /var/lib/hyper/hyper-initrd.img -append console=ttyS0 panic=1 no_timer_check -device virtio-scsi-pci,id=scsi0,bus=pci.0,addr=0x3 -device virtio-serial-pci,id=virtio-serial0,bus=pci.0,addr=0x2 -fsdev local,security_model=none,id=fsdev-fs0,path=/var/run/hyper/vm-CeaKLvbPEg/share_dir -device virtio-9p-pci,id=fs0,fsdev=fsdev-fs0,mount_tag=share_dir,bus=pci.0,addr=0x4 -chardev socket,id=charserial0,path=/var/run/hyper/vm-CeaKLvbPEg/console.sock,server,nowait -device isa-serial,chardev=charserial0,id=serial0 -chardev socket,id=charchannel0,path=/var/run/hyper/vm-CeaKLvbPEg/hyper.sock,server,nowait -device virtserialport,bus=virtio-serial0.0,nr=1,chardev=charchannel0,id=channel0,name=sh.hyper.channel.0 -chardev socket,id=charchannel1,path=/var/run/hyper/vm-CeaKLvbPEg/tty.sock,server,nowait -device virtserialport,bus=virtio-serial0.0,nr=2,chardev=charchannel1,id=channel1,name=sh.hyper.channel.1 -device virtio-balloon-pci,id=balloon0,bus=pci.0,addr=0x5 -msg timestamp=on
-</code></pre>
-
-<h3 id="is-it-stable">Is it stable?</h3>
-
+<span style="color:#f92672">[</span>root@linux ~<span style="color:#f92672">]</span><span style="color:#75715e"># ps -ef | grep vm-CeaKLvbPEg | grep -v grep</span>
+root     <span style="color:#ae81ff">12743</span>     <span style="color:#ae81ff">1</span>  <span style="color:#ae81ff">1</span> 09:48 ?        00:00:06 /usr/bin/qemu-system-x86_64 -name vm-CeaKLvbPEg -S -machine pc-i440fx-2.0,accel<span style="color:#f92672">=</span>tcg,usb<span style="color:#f92672">=</span>off -cpu Haswell-noTSX,+abm,+hypervisor,+rdrand,+f16c,+osxsave,+ht,+vme -m <span style="color:#ae81ff">128</span> -realtime mlock<span style="color:#f92672">=</span>off -smp 1,sockets<span style="color:#f92672">=</span>1,cores<span style="color:#f92672">=</span>1,threads<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> -uuid 4f158103-bd5e-4fd1-a62f-9e18093ceaf4 -nographic -no-user-config -nodefaults -chardev socket,id<span style="color:#f92672">=</span>charmonitor,path<span style="color:#f92672">=</span>/var/lib/libvirt/qemu/domain-vm-CeaKLvbPEg/monitor.sock,server,nowait -mon chardev<span style="color:#f92672">=</span>charmonitor,id<span style="color:#f92672">=</span>monitor,mode<span style="color:#f92672">=</span>control -rtc base<span style="color:#f92672">=</span>utc -no-reboot -boot strict<span style="color:#f92672">=</span>on -kernel /var/lib/hyper/kernel -initrd /var/lib/hyper/hyper-initrd.img -append console<span style="color:#f92672">=</span>ttyS0 panic<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> no_timer_check -device virtio-scsi-pci,id<span style="color:#f92672">=</span>scsi0,bus<span style="color:#f92672">=</span>pci.0,addr<span style="color:#f92672">=</span>0x3 -device virtio-serial-pci,id<span style="color:#f92672">=</span>virtio-serial0,bus<span style="color:#f92672">=</span>pci.0,addr<span style="color:#f92672">=</span>0x2 -fsdev local,security_model<span style="color:#f92672">=</span>none,id<span style="color:#f92672">=</span>fsdev-fs0,path<span style="color:#f92672">=</span>/var/run/hyper/vm-CeaKLvbPEg/share_dir -device virtio-9p-pci,id<span style="color:#f92672">=</span>fs0,fsdev<span style="color:#f92672">=</span>fsdev-fs0,mount_tag<span style="color:#f92672">=</span>share_dir,bus<span style="color:#f92672">=</span>pci.0,addr<span style="color:#f92672">=</span>0x4 -chardev socket,id<span style="color:#f92672">=</span>charserial0,path<span style="color:#f92672">=</span>/var/run/hyper/vm-CeaKLvbPEg/console.sock,server,nowait -device isa-serial,chardev<span style="color:#f92672">=</span>charserial0,id<span style="color:#f92672">=</span>serial0 -chardev socket,id<span style="color:#f92672">=</span>charchannel0,path<span style="color:#f92672">=</span>/var/run/hyper/vm-CeaKLvbPEg/hyper.sock,server,nowait -device virtserialport,bus<span style="color:#f92672">=</span>virtio-serial0.0,nr<span style="color:#f92672">=</span>1,chardev<span style="color:#f92672">=</span>charchannel0,id<span style="color:#f92672">=</span>channel0,name<span style="color:#f92672">=</span>sh.hyper.channel.0 -chardev socket,id<span style="color:#f92672">=</span>charchannel1,path<span style="color:#f92672">=</span>/var/run/hyper/vm-CeaKLvbPEg/tty.sock,server,nowait -device virtserialport,bus<span style="color:#f92672">=</span>virtio-serial0.0,nr<span style="color:#f92672">=</span>2,chardev<span style="color:#f92672">=</span>charchannel1,id<span style="color:#f92672">=</span>channel1,name<span style="color:#f92672">=</span>sh.hyper.channel.1 -device virtio-balloon-pci,id<span style="color:#f92672">=</span>balloon0,bus<span style="color:#f92672">=</span>pci.0,addr<span style="color:#f92672">=</span>0x5 -msg timestamp<span style="color:#f92672">=</span>on
+</code></pre></div><h3 id="is-it-stable">Is it stable?</h3>
 <p>Of course not, runV is still under quick development and features are not complete now. For example, there are a lot of commands not supported now:</p>
-
 <ul>
 <li><code>docker stop</code></li>
 <li><code>docker stats</code></li>
 <li><code>docker exec</code></li>
 </ul>
-
-<p>Although there are still problems, I&rsquo;m exited by what runV has done. Looking forward to its release.</p>
+<p>Although there are still problems, I'm exited by what runV has done. Looking forward to its release.</p>
 
   </div>
   
@@ -396,7 +376,7 @@ root     12743     1  1 09:48 ?        00:00:06 /usr/bin/qemu-system-x86_64 -nam
         
 <li>
   <span class="list__title--small">
-    <a href="/posts/2016-05-11-how-docker-1-11-share-network-accross-containers/">How docker 1.11 share network accross containers</a>
+    <a href="/posts/2016-05-11-how-docker-1-11-share-network-accross-containers/" >How docker 1.11 share network accross containers</a>
       
       <time class="pull-right hidden-tablet">May 11 &#39;16</time>
       
@@ -405,7 +385,7 @@ root     12743     1  1 09:48 ?        00:00:06 /usr/bin/qemu-system-x86_64 -nam
 
 <li>
   <span class="list__title--small">
-    <a href="/posts/2016-04-29-reading-notes-of-week-17/">Reading notes of week 17</a>
+    <a href="/posts/2016-04-29-reading-notes-of-week-17/" >Reading notes of week 17</a>
       
       <time class="pull-right hidden-tablet">Apr 29 &#39;16</time>
       
@@ -414,7 +394,7 @@ root     12743     1  1 09:48 ?        00:00:06 /usr/bin/qemu-system-x86_64 -nam
 
 <li>
   <span class="list__title--small">
-    <a href="/posts/2016-04-28-runc/">runc and runV</a>
+    <a href="/posts/2016-04-28-runc/" >runc and runV</a>
       
       <time class="pull-right hidden-tablet">Apr 28 &#39;16</time>
       
@@ -423,7 +403,7 @@ root     12743     1  1 09:48 ?        00:00:06 /usr/bin/qemu-system-x86_64 -nam
 
 <li>
   <span class="list__title--small">
-    <a href="/posts/2016-04-28-docker-1-11-runtime/">Container runtime in Docker v1.11</a>
+    <a href="/posts/2016-04-28-docker-1-11-runtime/" >Container runtime in Docker v1.11</a>
       
       <time class="pull-right hidden-tablet">Apr 28 &#39;16</time>
       
@@ -432,12 +412,13 @@ root     12743     1  1 09:48 ?        00:00:06 /usr/bin/qemu-system-x86_64 -nam
 
 <li>
   <span class="list__title--small">
-    <a href="/posts/2016-03-04-docker-overlay-network-dive/">Docker overlay network dive</a>
+    <a href="/posts/2016-03-04-docker-overlay-network-dive/" >Docker overlay network dive</a>
       
       <time class="pull-right hidden-tablet">Mar 04 &#39;16</time>
       
   </span>
 </li>
+
 
     </ul>
 </div>
@@ -483,6 +464,7 @@ root     12743     1  1 09:48 ?        00:00:06 /usr/bin/qemu-system-x86_64 -nam
         </div>
         
     
+
   
   
 <script type="application/javascript">
@@ -497,15 +479,12 @@ if (!doNotTrack) {
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
-<script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"
-  integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy"
-  crossorigin="anonymous">
-</script>
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
 
 
     
     
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
         
     
     <script type="text/javascript">
@@ -516,6 +495,21 @@ if (!doNotTrack) {
 
 
 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.js"></script>
+<script type="text/javascript">
+  if (tocbot) {
+    tocbot.init({
+      
+      tocSelector: '.toc',
+      
+      contentSelector: '.post',
+      
+      headingSelector: 'h2, h3, h4',
+      collapseDepth: 4
+    });
+  }
+</script>
 
 
 

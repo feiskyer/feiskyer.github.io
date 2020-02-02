@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.49.2" />
+<meta name="generator" content="Hugo 0.62.2" />
 
     
     
@@ -32,10 +32,11 @@ cAdvisor has native support for Docker containers and should support just about 
 <meta property="og:url" content="https://feisky.xyz/posts/2015-03-13-usging-cadvisor-to-monitor-docker/" />
 
 
+
     
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
 
 
 
@@ -44,15 +45,15 @@ cAdvisor has native support for Docker containers and should support just about 
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hyde-hyde.6f40d28e777b288cb757a1db116a257b6f8dffc63a05e8473d12dc09a52d8d79.css" integrity="sha256-b0DSjnd7KIy3V6HbEWole2&#43;N/8Y6BehHPRLcCaUtjXk=">
+<link rel="stylesheet" href="/scss/hyde-hyde.92c66d107d7b219f0792cfd67223179af884b03f386ac46894f9f735932bbca3.css" integrity="sha256-ksZtEH17IZ8Hks/WciMXmviEsD84asRolPn3NZMrvKM=">
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
 
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hugo-toc.8549a64d301421b4256ea9a0d5ca8b99178799f569d5d2daeb95f24cef3ce6b7.css" integrity="sha256-hUmmTTAUIbQlbqmg1cqLmReHmfVp1dLa65XyTO885rc=">
+<link rel="stylesheet" href="/scss/tocbot.126e7d75240acc946d34d6ccb2982ed4c394a5fe34e73e1a2119ca951bcf119d.css" integrity="sha256-Em59dSQKzJRtNNbMspgu1MOUpf405z4aIRnKlRvPEZ0=">
 
 
 
@@ -64,6 +65,7 @@ cAdvisor has native support for Docker containers and should support just about 
     <!-- Icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
     <link rel="shortcut icon" href="/favicon.png">
+    
     
 
 </head>
@@ -77,6 +79,7 @@ cAdvisor has native support for Docker containers and should support just about 
       <span class="site__title">
         <a href="https://feisky.xyz/">Feisky</a>
       </span>
+      
       
       <p class="site__description">
          Notes about anything 
@@ -93,7 +96,23 @@ cAdvisor has native support for Docker containers and should support just about 
 			 
 				<li>
 					<a href="https://kubernetes.feisky.xyz">
-						<span>Kubernetes</span>
+						<span>Kubernetes指南</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://time.geekbang.org/column/intro/100020901">
+						<span>Linux性能优化实战</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://sdn.feisky.xyz">
+						<span>SDN网络</span>
 					</a>
 				</li>
 			 
@@ -108,21 +127,12 @@ cAdvisor has native support for Docker containers and should support just about 
 		 
 			 
 				<li>
-					<a href="https://sdn.feisky.xyz">
-						<span>SDN</span>
-					</a>
-				</li>
-			 
-		 
-			 
-				<li>
 					<a href="/about/">
-						<span>About</span>
+						<span>关于我</span>
 					</a>
 				</li>
 			 
 		
-		</li>
 	</ul>
 </div>
 
@@ -145,23 +155,33 @@ cAdvisor has native support for Docker containers and should support just about 
 	
 	
 	
+	
+	
 </section>
 
       </div>
     </div>
-    <div class="copyright">
-  &copy; 2019 .
-  <a href="https://creativecommons.org/licenses/by-sa/4.0">Some Rights Reserved</a>.
-  Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+    
+<div class="copyright">
+  &copy; 2020 feiskyer
+  
+    <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>
   
 </div>
+
+
+<div class="builtwith">
+Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+</div>
+
 
   </div>
 </div>
 
         <div class="content container">
             
-    <article>
+    
+<article>
   <header>
     <h1>Using cAdvisor to monitor docker</h1>
     
@@ -191,21 +211,20 @@ cAdvisor has native support for Docker containers and should support just about 
   </header>
   
   
-  <div class="toc-wrapper">
-    <input type="checkbox" id="tocToggle">
-    <label for="tocToggle">Table of Content</label>
-    
-        
-    
-  </div>
+  
+    <div class="toc-wrapper">
+      <input type="checkbox" id="tocToggle">
+      <label for="tocToggle">Table of Content</label>
+      
+        <div class="toc" id="TableOfContents"></div>
+      
+    </div>
+  
   
   <div class="post">
     <p>cAdvisor (Container Advisor) provides container users an understanding of the resource usage and performance characteristics of their running containers. It is a running daemon that collects, aggregates, processes, and exports information about running containers. Specifically, for each container it keeps resource isolation parameters, historical resource usage, histograms of complete historical resource usage and network statistics. This data is exported by container and machine-wide.</p>
-
-<p>cAdvisor has native support for Docker containers and should support just about any other container type out of the box. We strive for support accross the board so feel free to open an issue if that is not the case. cAdvisor&rsquo;s container abstraction is based on lmctfy&rsquo;s so containers are inherently nested hierarchically.</p>
-
+<p>cAdvisor has native support for Docker containers and should support just about any other container type out of the box. We strive for support accross the board so feel free to open an issue if that is not the case. cAdvisor's container abstraction is based on lmctfy's so containers are inherently nested hierarchically.</p>
 <p>To quickly tryout cAdvisor on your machine with Docker, we have a Docker image that includes everything you need to get started. Simply run:</p>
-
 <pre><code>sudo docker run \
   --volume=/:/rootfs:ro \
   --volume=/var/run:/var/run:rw \
@@ -215,12 +234,8 @@ cAdvisor has native support for Docker containers and should support just about 
   --detach=true \
   --name=cadvisor \
   google/cadvisor:latest
-</code></pre>
-
-<p>cAdvisor is now running (in the background) on <code>http://localhost:8080</code>. The setup includes directories with Docker state cAdvisor needs to observe</p>
-
-<p><img src="/images/cadvisor.png" alt="" /></p>
-
+</code></pre><p>cAdvisor is now running (in the background) on <code>http://localhost:8080</code>. The setup includes directories with Docker state cAdvisor needs to observe</p>
+<p><img src="/images/cadvisor.png" alt=""></p>
 <p>See more at <a href="https://github.com/google/cadvisor">https://github.com/google/cadvisor</a>.</p>
 
   </div>
@@ -228,9 +243,9 @@ cAdvisor has native support for Docker containers and should support just about 
 
 <div class="navigation navigation-single">
     
-    <a href="/posts/2015-06-10-weekly-reading-list-20150607/" class="navigation-prev">
+    <a href="/posts/2015-01-27-vagrant/" class="navigation-prev">
       <i aria-hidden="true" class="fa fa-chevron-left"></i>
-      <span class="navigation-tittle">Weekly reading list (20150607)</span>
+      <span class="navigation-tittle">vagrant</span>
     </a>
     
     
@@ -252,7 +267,7 @@ cAdvisor has native support for Docker containers and should support just about 
         
 <li>
   <span class="list__title--small">
-    <a href="/posts/2017-10-19-docker-mta-program/">Docker MTA Program</a>
+    <a href="/posts/2017-10-19-docker-mta-program/" >Docker MTA Program</a>
       
       <time class="pull-right hidden-tablet">Oct 19 &#39;17</time>
       
@@ -261,7 +276,7 @@ cAdvisor has native support for Docker containers and should support just about 
 
 <li>
   <span class="list__title--small">
-    <a href="/posts/2017-10-17-docker-ce-ee-%E5%8E%9F%E7%94%9F%E6%94%AF%E6%8C%81kubernetes/">Docker CE/EE 原生支持Kubernetes</a>
+    <a href="/posts/2017-10-17-docker-ce-ee-%E5%8E%9F%E7%94%9F%E6%94%AF%E6%8C%81kubernetes/" >Docker CE/EE 原生支持Kubernetes</a>
       
       <time class="pull-right hidden-tablet">Oct 17 &#39;17</time>
       
@@ -270,7 +285,7 @@ cAdvisor has native support for Docker containers and should support just about 
 
 <li>
   <span class="list__title--small">
-    <a href="/posts/2017-02-14-debugging-application-in-containers/">Debugging application in containers</a>
+    <a href="/posts/2017-02-14-debugging-application-in-containers/" >Debugging application in containers</a>
       
       <time class="pull-right hidden-tablet">Feb 14 &#39;17</time>
       
@@ -279,7 +294,7 @@ cAdvisor has native support for Docker containers and should support just about 
 
 <li>
   <span class="list__title--small">
-    <a href="/posts/2016-08-24-%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8%E4%B8%80%E4%B8%AAkubernetes%E9%9B%86%E7%BE%A4/">如何快速启动一个Kubernetes集群</a>
+    <a href="/posts/2016-08-24-%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8%E4%B8%80%E4%B8%AAkubernetes%E9%9B%86%E7%BE%A4/" >如何快速启动一个Kubernetes集群</a>
       
       <time class="pull-right hidden-tablet">Aug 24 &#39;16</time>
       
@@ -288,12 +303,13 @@ cAdvisor has native support for Docker containers and should support just about 
 
 <li>
   <span class="list__title--small">
-    <a href="/posts/2016-06-24-play-with-docker-v1-12/">Play with docker v1.12</a>
+    <a href="/posts/2016-06-24-play-with-docker-v1-12/" >Play with docker v1.12</a>
       
       <time class="pull-right hidden-tablet">Jun 24 &#39;16</time>
       
   </span>
 </li>
+
 
     </ul>
 </div>
@@ -339,6 +355,7 @@ cAdvisor has native support for Docker containers and should support just about 
         </div>
         
     
+
   
   
 <script type="application/javascript">
@@ -353,15 +370,12 @@ if (!doNotTrack) {
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
-<script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"
-  integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy"
-  crossorigin="anonymous">
-</script>
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
 
 
     
     
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
         
     
     <script type="text/javascript">
@@ -372,6 +386,21 @@ if (!doNotTrack) {
 
 
 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.js"></script>
+<script type="text/javascript">
+  if (tocbot) {
+    tocbot.init({
+      
+      tocSelector: '.toc',
+      
+      contentSelector: '.post',
+      
+      headingSelector: 'h2, h3, h4',
+      collapseDepth: 4
+    });
+  }
+</script>
 
 
 

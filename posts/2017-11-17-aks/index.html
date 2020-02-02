@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.49.2" />
+<meta name="generator" content="Hugo 0.62.2" />
 
     
     
@@ -27,14 +27,15 @@
 <meta property="og:title" content="Azure Managed Kubernetes (AKS) 简介" />
 <meta property="og:description" content="Azure 容器服务 (AKS) 是 Microsoft Azure 最近发布的一个托管的 Kubernetes 服务（预览版），它独立于现有的 Azure Container Service （ACS）。借助 AKS 用户无需具备容器业务流程的专业知识就可以快速、" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://feisky.xyz/posts/2017-11-17-aks/" /><meta property="article:published_time" content="2017-11-17T08:00:00&#43;00:00"/>
-<meta property="article:modified_time" content="2017-11-17T08:00:00&#43;00:00"/>
+<meta property="og:url" content="https://feisky.xyz/posts/2017-11-17-aks/" />
+<meta property="article:published_time" content="2017-11-17T08:00:00+00:00" />
+<meta property="article:modified_time" content="2017-11-17T08:00:00+00:00" />
 
 
     
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
 
 
 
@@ -43,15 +44,15 @@
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hyde-hyde.6f40d28e777b288cb757a1db116a257b6f8dffc63a05e8473d12dc09a52d8d79.css" integrity="sha256-b0DSjnd7KIy3V6HbEWole2&#43;N/8Y6BehHPRLcCaUtjXk=">
+<link rel="stylesheet" href="/scss/hyde-hyde.92c66d107d7b219f0792cfd67223179af884b03f386ac46894f9f735932bbca3.css" integrity="sha256-ksZtEH17IZ8Hks/WciMXmviEsD84asRolPn3NZMrvKM=">
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
 
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hugo-toc.8549a64d301421b4256ea9a0d5ca8b99178799f569d5d2daeb95f24cef3ce6b7.css" integrity="sha256-hUmmTTAUIbQlbqmg1cqLmReHmfVp1dLa65XyTO885rc=">
+<link rel="stylesheet" href="/scss/tocbot.126e7d75240acc946d34d6ccb2982ed4c394a5fe34e73e1a2119ca951bcf119d.css" integrity="sha256-Em59dSQKzJRtNNbMspgu1MOUpf405z4aIRnKlRvPEZ0=">
 
 
 
@@ -63,6 +64,7 @@
     <!-- Icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
     <link rel="shortcut icon" href="/favicon.png">
+    
     
 
 </head>
@@ -76,6 +78,7 @@
       <span class="site__title">
         <a href="https://feisky.xyz/">Feisky</a>
       </span>
+      
       
       <p class="site__description">
          Notes about anything 
@@ -92,7 +95,23 @@
 			 
 				<li>
 					<a href="https://kubernetes.feisky.xyz">
-						<span>Kubernetes</span>
+						<span>Kubernetes指南</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://time.geekbang.org/column/intro/100020901">
+						<span>Linux性能优化实战</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://sdn.feisky.xyz">
+						<span>SDN网络</span>
 					</a>
 				</li>
 			 
@@ -107,21 +126,12 @@
 		 
 			 
 				<li>
-					<a href="https://sdn.feisky.xyz">
-						<span>SDN</span>
-					</a>
-				</li>
-			 
-		 
-			 
-				<li>
 					<a href="/about/">
-						<span>About</span>
+						<span>关于我</span>
 					</a>
 				</li>
 			 
 		
-		</li>
 	</ul>
 </div>
 
@@ -144,23 +154,33 @@
 	
 	
 	
+	
+	
 </section>
 
       </div>
     </div>
-    <div class="copyright">
-  &copy; 2019 .
-  <a href="https://creativecommons.org/licenses/by-sa/4.0">Some Rights Reserved</a>.
-  Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+    
+<div class="copyright">
+  &copy; 2020 feiskyer
+  
+    <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>
   
 </div>
+
+
+<div class="builtwith">
+Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+</div>
+
 
   </div>
 </div>
 
         <div class="content container">
             
-    <article>
+    
+<article>
   <header>
     <h1>Azure Managed Kubernetes (AKS) 简介</h1>
     
@@ -192,75 +212,45 @@
   </header>
   
   
-  <div class="toc-wrapper">
-    <input type="checkbox" id="tocToggle">
-    <label for="tocToggle">Table of Content</label>
-    
-        <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#使用方法">使用方法</a></li>
-<li><a href="#运行容器应用">运行容器应用</a></li>
-<li><a href="#高级功能">高级功能</a></li>
-<li><a href="#azure-container-registry">Azure Container Registry</a></li>
-<li><a href="#结语">结语</a></li>
-</ul></li>
-</ul>
-</nav>
-    
-  </div>
+  
+    <div class="toc-wrapper">
+      <input type="checkbox" id="tocToggle">
+      <label for="tocToggle">Table of Content</label>
+      
+        <div class="toc" id="TableOfContents"></div>
+      
+    </div>
+  
   
   <div class="post">
-    
-
-<p>Azure 容器服务 (AKS) 是 Microsoft Azure 最近<a href="https://azure.microsoft.com/en-us/blog/introducing-azure-container-service-aks-managed-kubernetes-and-azure-container-registry-geo-replication/">发布</a>的一个托管的 Kubernetes 服务（预览版），它独立于现有的 Azure Container Service （ACS）。借助 AKS 用户无需具备容器业务流程的专业知识就可以快速、轻松的部署和管理容器化的应用程序。AKS 支持自动升级和自动故障修复，按需自动扩展或缩放资源池，消除了用户管理和维护 Kubernetes 集群的负担。并且集群管理本身是免费的，Azure 只收取容器底层的虚拟机的费用。</p>
-
+    <p>Azure 容器服务 (AKS) 是 Microsoft Azure 最近<a href="https://azure.microsoft.com/en-us/blog/introducing-azure-container-service-aks-managed-kubernetes-and-azure-container-registry-geo-replication/">发布</a>的一个托管的 Kubernetes 服务（预览版），它独立于现有的 Azure Container Service （ACS）。借助 AKS 用户无需具备容器业务流程的专业知识就可以快速、轻松的部署和管理容器化的应用程序。AKS 支持自动升级和自动故障修复，按需自动扩展或缩放资源池，消除了用户管理和维护 Kubernetes 集群的负担。并且集群管理本身是免费的，Azure 只收取容器底层的虚拟机的费用。</p>
 <p>ACS 是 Microsoft Azure 在2015年推出的容器服务，支持 Kubernetes、DCOS 以及 Dockers Swarm 等多种容器编排工具。并且 ACS 的核心功能是开源的，用户可以通过<a href="https://github.com/Azure/acs-engine">https://github.com/Azure/acs-engine</a>来查看和下载使用。</p>
-
 <p>由于目前 AKS 还在预览版，现阶段建议用户还是继续使用 ACS 来管理容器应用程序。</p>
-
 <h2 id="使用方法">使用方法</h2>
-
 <p>以下文档假设用户已经安装好了Azure CLI ，如未安装可以参考<a href="https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest">这里</a>操作。</p>
-
 <p>在创建 AKS 集群之前，首先需要开启容器服务</p>
-
-<pre><code class="language-sh"># Enable AKS
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># Enable AKS</span>
 az provider register -n Microsoft.ContainerService
-</code></pre>
-
-<p>然后创建一个资源组（Resource Group）用来管理所有相关资源</p>
-
-<pre><code class="language-sh"># Create Resource Group
+</code></pre></div><p>然后创建一个资源组（Resource Group）用来管理所有相关资源</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># Create Resource Group</span>
 az group create --name group1 --location centralus
-</code></pre>
-
-<p>接下来就可以创建 AKS 集群了</p>
-
-<pre><code class="language-sh"># Create aks
-az aks create --resource-group group1 --name myK8sCluster --agent-count 3 --generate-ssh-keys
-</code></pre>
-
-<p>稍等一会，集群创建好后安装并配置 kubectl</p>
-
-<pre><code class="language-sh"># Install kubectl
+</code></pre></div><p>接下来就可以创建 AKS 集群了</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># Create aks</span>
+az aks create --resource-group group1 --name myK8sCluster --agent-count <span style="color:#ae81ff">3</span> --generate-ssh-keys
+</code></pre></div><p>稍等一会，集群创建好后安装并配置 kubectl</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># Install kubectl</span>
 az aks install-cli
 
-# Configure kubectl
-az aks get-credentials --resource-group=group1 --name=myK8sCluster
-</code></pre>
-
-<h2 id="运行容器应用">运行容器应用</h2>
-
+<span style="color:#75715e"># Configure kubectl</span>
+az aks get-credentials --resource-group<span style="color:#f92672">=</span>group1 --name<span style="color:#f92672">=</span>myK8sCluster
+</code></pre></div><h2 id="运行容器应用">运行容器应用</h2>
 <p>创建一个 azure-vote.yaml文件，内容为</p>
-
-<pre><code class="language-yaml">apiVersion: apps/v1beta1
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
   name: azure-vote-back
 spec:
-  replicas: 1
+  replicas: <span style="color:#ae81ff">1</span>
   template:
     metadata:
       labels:
@@ -270,7 +260,7 @@ spec:
       - name: azure-vote-back
         image: redis
         ports:
-        - containerPort: 6379
+        - containerPort: <span style="color:#ae81ff">6379</span>
           name: redis
 ---
 apiVersion: v1
@@ -279,7 +269,7 @@ metadata:
   name: azure-vote-back
 spec:
   ports:
-  - port: 6379
+  - port: <span style="color:#ae81ff">6379</span>
   selector:
     app: azure-vote-back
 ---
@@ -288,7 +278,7 @@ kind: Deployment
 metadata:
   name: azure-vote-front
 spec:
-  replicas: 1
+  replicas: <span style="color:#ae81ff">1</span>
   template:
     metadata:
       labels:
@@ -298,10 +288,10 @@ spec:
       - name: azure-vote-front
         image: microsoft/azure-vote-front:redis-v1
         ports:
-        - containerPort: 80
+        - containerPort: <span style="color:#ae81ff">80</span>
         env:
         - name: REDIS
-          value: &quot;azure-vote-back&quot;
+          value: <span style="color:#e6db74">&#34;azure-vote-back&#34;</span>
 ---
 apiVersion: v1
 kind: Service
@@ -310,85 +300,56 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-  - port: 80
+  - port: <span style="color:#ae81ff">80</span>
   selector:
     app: azure-vote-front
-</code></pre>
-
-<p>然后执行下面的命令创建和访问该vote示例应用：</p>
-
-<pre><code class="language-sh"># 创建部署
+</code></pre></div><p>然后执行下面的命令创建和访问该vote示例应用：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># 创建部署</span>
 kubectl create -f azure-vote.yaml
 
-# 查询 vote 前端应用的公网IP，需要稍等一下，然后就可以通过获得的公网IP来访问了
+<span style="color:#75715e"># 查询 vote 前端应用的公网IP，需要稍等一下，然后就可以通过获得的公网IP来访问了</span>
 kubectl get service azure-vote-front --watch
 
-# 还可以配置 Pod 的自动扩展
-kubectl autoscale deployment azure-vote-front --cpu-percent=50 --min=3 --max=10
-</code></pre>
-
-<h2 id="高级功能">高级功能</h2>
-
+<span style="color:#75715e"># 还可以配置 Pod 的自动扩展</span>
+kubectl autoscale deployment azure-vote-front --cpu-percent<span style="color:#f92672">=</span><span style="color:#ae81ff">50</span> --min<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span> --max<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>
+</code></pre></div><h2 id="高级功能">高级功能</h2>
 <p>访问 Dashboard</p>
-
-<pre><code class="language-sh"># Create dashboard
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># Create dashboard</span>
 az aks browse --resource-group group1 --name myK8SCluster
-</code></pre>
-
-<p>手动扩展或收缩集群</p>
-
-<pre><code class="language-sh">az aks scale --resource-group=group1 --name=myK8SCluster --agent-count 5
-</code></pre>
-
-<p>升级集群</p>
-
-<pre><code class="language-sh"># 查询当前集群的版本以及可升级的版本
+</code></pre></div><p>手动扩展或收缩集群</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">az aks scale --resource-group<span style="color:#f92672">=</span>group1 --name<span style="color:#f92672">=</span>myK8SCluster --agent-count <span style="color:#ae81ff">5</span>
+</code></pre></div><p>升级集群</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># 查询当前集群的版本以及可升级的版本</span>
 az aks get-versions --name myK8sCluster --resource-group group1 --output table
 
-# 升级到 1.8.1 版本
+<span style="color:#75715e"># 升级到 1.8.1 版本</span>
 az aks upgrade --name myK8sCluster --resource-group group1 --kubernetes-version 1.8.1
-</code></pre>
-
-<p>当然也可以使用其他 Kubernetes 社区提供的工具和服务，比如使用 Helm 部署 Nginx Ingress 控制器</p>
-
-<pre><code class="language-sh">helm init --client-only
+</code></pre></div><p>当然也可以使用其他 Kubernetes 社区提供的工具和服务，比如使用 Helm 部署 Nginx Ingress 控制器</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">helm init --client-only
 helm install stable/nginx-ingress
-</code></pre>
-
-<p>当集群不在使用时，可以删除集群</p>
-
-<pre><code class="language-sh">az group delete --name group1 --yes --no-wait
-</code></pre>
-
-<p>下图动态展示了一个部署 v1.7.7 版本集群并升级到 v1.8.1 的过程：</p>
-
-<p><img src="/images/aks-examples.gif" alt="" /></p>
-
+</code></pre></div><p>当集群不在使用时，可以删除集群</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">az group delete --name group1 --yes --no-wait
+</code></pre></div><p>下图动态展示了一个部署 v1.7.7 版本集群并升级到 v1.8.1 的过程：</p>
+<p><img src="/images/aks-examples.gif" alt=""></p>
 <h2 id="azure-container-registry">Azure Container Registry</h2>
-
 <p>在 AKS 预览版发布的同时，Azure 还同时发布了 Azure Container Registry（ACR）服务，用于托管用户的私有镜像。</p>
-
-<pre><code class="language-sh"># Create ACR
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># Create ACR</span>
 az acr create --resource-group myResourceGroup --name &lt;acrName&gt; --sku Basic --admin-enabled true
 
-# Login
+<span style="color:#75715e"># Login</span>
 az acr login --name &lt;acrName&gt;
 
-# Tag the image.
-az acr list --resource-group myResourceGroup --query &quot;[].{acrLoginServer:loginServer}&quot; --output table
+<span style="color:#75715e"># Tag the image.</span>
+az acr list --resource-group myResourceGroup --query <span style="color:#e6db74">&#34;[].{acrLoginServer:loginServer}&#34;</span> --output table
 docker tag azure-vote-front &lt;acrLoginServer&gt;/azure-vote-front:redis-v1
 
-# push image
+<span style="color:#75715e"># push image</span>
 docker push &lt;acrLoginServer&gt;/azure-vote-front:redis-v1
 
-# List images.
+<span style="color:#75715e"># List images.</span>
 az acr repository list --name &lt;acrName&gt; --output table
-</code></pre>
-
-<h2 id="结语">结语</h2>
-
+</code></pre></div><h2 id="结语">结语</h2>
 <p>AKS 的发布也一度让很多 ACS 的老用户感到迷惑，但 ACS 肯定还会继续支持下去，并且当前来看，ACS 要比 AKS 稳定的多（ACS是稳定版，而AKS只是预览版）。</p>
-
 <p>为此，<a href="http://www.twitter.com/brendandburns">Brendan Burns</a> 和 <a href="http://www.twitter.com/gabrtv">Gabe Monroy</a> 还将在本周五 9:00 （PT时间，北京时间周六早上 1:00）举行一个 <a href="https://www.reddit.com/r/AZURE/comments/7d7diz/ama_aks_managed_kubernetes_on_azure/">Reddit AMA</a> 活动，解释和回答用于关于 AKS 的疑问。欢迎到时参加。</p>
 
   </div>
@@ -420,7 +381,7 @@ az acr repository list --name &lt;acrName&gt; --output table
         
 <li>
   <span class="list__title--small">
-    <a href="/posts/2017-05-21-start-kubernetes-handbook/">开始一本开源电子书《Kubernetes指南》</a>
+    <a href="/posts/2017-05-21-start-kubernetes-handbook/" >开始一本开源电子书《Kubernetes指南》</a>
       
       <time class="pull-right hidden-tablet">May 21 &#39;17</time>
       
@@ -429,7 +390,7 @@ az acr repository list --name &lt;acrName&gt; --output table
 
 <li>
   <span class="list__title--small">
-    <a href="/posts/2016-12-13-kubernetes-v1-5-0-release/">Kubernetes v1.5.0 release</a>
+    <a href="/posts/2016-12-13-kubernetes-v1-5-0-release/" >Kubernetes v1.5.0 release</a>
       
       <time class="pull-right hidden-tablet">Dec 13 &#39;16</time>
       
@@ -438,7 +399,7 @@ az acr repository list --name &lt;acrName&gt; --output table
 
 <li>
   <span class="list__title--small">
-    <a href="/posts/2016-11-14-kubecon-2016%E8%A7%81%E9%97%BB/">KubeCon/CloudNativeCon 2016见闻</a>
+    <a href="/posts/2016-11-14-kubecon-2016%E8%A7%81%E9%97%BB/" >KubeCon/CloudNativeCon 2016见闻</a>
       
       <time class="pull-right hidden-tablet">Nov 14 &#39;16</time>
       
@@ -447,7 +408,7 @@ az acr repository list --name &lt;acrName&gt; --output table
 
 <li>
   <span class="list__title--small">
-    <a href="/posts/2016-09-25-kubernetes-container-runtime-interface/">Kubernetes container runtime interface</a>
+    <a href="/posts/2016-09-25-kubernetes-container-runtime-interface/" >Kubernetes container runtime interface</a>
       
       <time class="pull-right hidden-tablet">Sep 25 &#39;16</time>
       
@@ -456,12 +417,13 @@ az acr repository list --name &lt;acrName&gt; --output table
 
 <li>
   <span class="list__title--small">
-    <a href="/posts/2016-09-11-kubernetes%E4%B8%AD%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0%E4%B8%8E%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/">Kubernetes中的服务发现与负载均衡</a>
+    <a href="/posts/2016-09-11-kubernetes%E4%B8%AD%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0%E4%B8%8E%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" >Kubernetes中的服务发现与负载均衡</a>
       
       <time class="pull-right hidden-tablet">Sep 11 &#39;16</time>
       
   </span>
 </li>
+
 
     </ul>
 </div>
@@ -507,6 +469,7 @@ az acr repository list --name &lt;acrName&gt; --output table
         </div>
         
     
+
   
   
 <script type="application/javascript">
@@ -521,15 +484,12 @@ if (!doNotTrack) {
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
-<script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"
-  integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy"
-  crossorigin="anonymous">
-</script>
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
 
 
     
     
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
         
     
     <script type="text/javascript">
@@ -540,6 +500,21 @@ if (!doNotTrack) {
 
 
 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.js"></script>
+<script type="text/javascript">
+  if (tocbot) {
+    tocbot.init({
+      
+      tocSelector: '.toc',
+      
+      contentSelector: '.post',
+      
+      headingSelector: 'h2, h3, h4',
+      collapseDepth: 4
+    });
+  }
+</script>
 
 
 

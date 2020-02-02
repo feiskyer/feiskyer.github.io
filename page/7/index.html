@@ -8,7 +8,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.49.2" />
+<meta name="generator" content="Hugo 0.62.2" />
 
     
 
@@ -23,12 +23,13 @@
 <meta property="og:description" content="Notes about anything" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://feisky.xyz/" />
+<meta property="og:updated_time" content="2018-10-14T22:08:45+08:00" />
 
 
     
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
 
 
 
@@ -37,15 +38,15 @@
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hyde-hyde.6f40d28e777b288cb757a1db116a257b6f8dffc63a05e8473d12dc09a52d8d79.css" integrity="sha256-b0DSjnd7KIy3V6HbEWole2&#43;N/8Y6BehHPRLcCaUtjXk=">
+<link rel="stylesheet" href="/scss/hyde-hyde.92c66d107d7b219f0792cfd67223179af884b03f386ac46894f9f735932bbca3.css" integrity="sha256-ksZtEH17IZ8Hks/WciMXmviEsD84asRolPn3NZMrvKM=">
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
 
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hugo-toc.8549a64d301421b4256ea9a0d5ca8b99178799f569d5d2daeb95f24cef3ce6b7.css" integrity="sha256-hUmmTTAUIbQlbqmg1cqLmReHmfVp1dLa65XyTO885rc=">
+<link rel="stylesheet" href="/scss/tocbot.126e7d75240acc946d34d6ccb2982ed4c394a5fe34e73e1a2119ca951bcf119d.css" integrity="sha256-Em59dSQKzJRtNNbMspgu1MOUpf405z4aIRnKlRvPEZ0=">
 
 
 
@@ -57,11 +58,9 @@
     <!-- Icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
     <link rel="shortcut icon" href="/favicon.png">
+    <link rel="alternate" type="application/rss+xml" href="https://feisky.xyz/index.xml" title="Feisky" />
+
     
-
-<link href="https://feisky.xyz/index.xml" rel="alternate" type="application/rss+xml" title="Feisky" />
-<link href="https://feisky.xyz/index.xml" rel="feed" type="application/rss+xml" title="Feisky" />
-
 
 </head>
 
@@ -74,6 +73,7 @@
       <span class="site__title">
         <a href="https://feisky.xyz/">Feisky</a>
       </span>
+      
       
       <p class="site__description">
          Notes about anything 
@@ -90,7 +90,23 @@
 			 
 				<li>
 					<a href="https://kubernetes.feisky.xyz">
-						<span>Kubernetes</span>
+						<span>Kubernetes指南</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://time.geekbang.org/column/intro/100020901">
+						<span>Linux性能优化实战</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://sdn.feisky.xyz">
+						<span>SDN网络</span>
 					</a>
 				</li>
 			 
@@ -105,21 +121,12 @@
 		 
 			 
 				<li>
-					<a href="https://sdn.feisky.xyz">
-						<span>SDN</span>
-					</a>
-				</li>
-			 
-		 
-			 
-				<li>
 					<a href="/about/">
-						<span>About</span>
+						<span>关于我</span>
 					</a>
 				</li>
 			 
 		
-		</li>
 	</ul>
 </div>
 
@@ -142,16 +149,25 @@
 	
 	
 	
+	
+	
 </section>
 
       </div>
     </div>
-    <div class="copyright">
-  &copy; 2019 .
-  <a href="https://creativecommons.org/licenses/by-sa/4.0">Some Rights Reserved</a>.
-  Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+    
+<div class="copyright">
+  &copy; 2020 feiskyer
+  
+    <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>
   
 </div>
+
+
+<div class="builtwith">
+Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+</div>
+
 
   </div>
 </div>
@@ -161,176 +177,219 @@
   <div class="post-list">
     
     
+      
+        
+      
       <div class="post-list__item">
         <span class="item__title--big">
-          <a href="/posts/2015-03-03-dive-in-linux-capabilites/">Dive in Linux capabilites</a>
-          
+          <a href="/posts/2015-01-28-awk-examples/" >awk examples</a>
         </span>
         <span class="item__date">
           Jan 01, 0001
         </span>
+        <span >
+        
+        precede each line by line number  awk &#39;{print NR, $0}&#39; filename  replace first field by line number  awk &#39;{$1=NR; print}&#39; filename  print field 1 and field 2  awk &#39;{print $1,$2}&#39; fielname  print last field  awk &#39;{print $NF}&#39; filename  print non empty lines  awk &#39;NF&gt;0{print $0}&#39; filename  print if more than 4 fields  awk &#39;NF&gt;4{print $0}&#39; filename  print matching lines (egrep)  awk &#39;/test.
+        
+        </span>
+        
+          ... <a class="read-more-symbol" href="/posts/2015-01-28-awk-examples/">➦</a>
+        
+        </div>
+        
+     
+      
+        
+      
+      <div class="post-list__item">
+        <span class="item__title--big">
+          <a href="/posts/2015-01-27-bigdata/" >bigdata</a>
+        </span>
+        <span class="item__date">
+          Jan 01, 0001
+        </span>
+        <span >
+        
+        Awesome Big Data A curated list of awesome big data frameworks, resources and other awesomeness. Inspired by awesome-php, awesome-python, awesome-ruby, hadoopecosystemtable &amp; big-data.
+Your contributions are always welcome!
+ Awesome Big Data  Frameworks Distributed Programming Distributed Filesystem Key-Map Data Model Document Data Model Key-value Data Model Graph Data Model NewSQL Databases Columnar Databases Time-Series Databases SQL-like processing Integrated Development Environments Data Ingestion Service Programming Scheduling Machine Learning Benchmarking Security System Deployment Applications Search engine and framework MySQL forks and evolutions PostgreSQL forks and evolutions Memcached forks and evolutions Embedded Databases Business Intelligence Data Visualization Internet of things and sensor data Interesting Readings Interesting Papers   Other Awesome Lists  Frameworks  Apache Hadoop - framework for distributed processing.
+        
+        </span>
+        
+          ... <a class="read-more-symbol" href="/posts/2015-01-27-bigdata/">➦</a>
+        
+        </div>
+        
+     
+      
+        
+      
+      <div class="post-list__item">
+        <span class="item__title--big">
+          <a href="/posts/2015-02-10-cannot-change-locale/" >cannot change locale</a>
+        </span>
+        <span class="item__date">
+          Jan 01, 0001
+        </span>
+        <span >
+        
+        运行locale命令LANG= LANGUAGE= LC_CTYPE=&quot;POSIX&rdquo; LC_NUMERIC=&quot;POSIX&rdquo; LC_TIME=&quot;POSIX&rdquo; LC_COLLATE=&quot;POSIX&rdquo; LC_MONETARY=&quot;POSIX&rdquo; LC_MESSAGES=&quot;POSIX&rdquo; LC_PAPER=&quot;POSIX&rdquo; LC_NAME=&quot;POSIX&rdquo; LC_ADDRESS=&quot;POSIX&rdquo; LC_TELEPHONE=&quot;POSIX&rdquo; LC_MEASUREMENT=&quot;POSIX&rdquo; LC_IDENTIFICATION=&quot;POSIX&rdquo; LC_ALL= 修改profile vi /etc/profile 添加如下内容 export LC_ALL=en_US.UTF-8 source /etc/profile 得到错误 setlocale: LC_ALL: cannot change locale (en_US.UTF-8): No such file or directory 运行 dpkg-reconfigure locales 得
+        
+        </span>
+        
+          ... <a class="read-more-symbol" href="/posts/2015-02-10-cannot-change-locale/">➦</a>
+        
+        </div>
+        
+     
+      
+        
+      
+      <div class="post-list__item">
+        <span class="item__title--big">
+          <a href="/posts/2015-02-05-deploy-a-mesos-cluster-using-docker/" >Deploy a Mesos Cluster Using Docker</a>
+        </span>
+        <span class="item__date">
+          Jan 01, 0001
+        </span>
+        <span >
+        
+        his tutorial will show you how to bring up a single node Mesos cluster all provisioned out using Docker containers (a future post will show how to easily scale this out to multi nodes or see the update on the bottom). This means that you can startup an entire cluster with 7 commands! Nothing to install except for starting out with a working Docker server.
+This will startup 4 containers:
+        
+        </span>
+        
+          ... <a class="read-more-symbol" href="/posts/2015-02-05-deploy-a-mesos-cluster-using-docker/">➦</a>
+        
+        </div>
+        
+     
+      
+        
+      
+      <div class="post-list__item">
+        <span class="item__title--big">
+          <a href="/posts/2015-03-03-dive-in-linux-capabilites/" >Dive in Linux capabilites</a>
+        </span>
+        <span class="item__date">
+          Jan 01, 0001
+        </span>
+        <span >
         
         Introduction Capabilities in Linux are flags that tell the kernel what the application is allowed to do, If you have no additional security mechanism in place, the Linux root user has all capabilities assigned to it. As capabilities are a way for running processes with some privileges, without having the need to grant them root privileges, it is important to understand that they exist. Consider the ping utility. It is
         
+        </span>
         
           ... <a class="read-more-symbol" href="/posts/2015-03-03-dive-in-linux-capabilites/">➦</a>
         
         </div>
+        
      
+      
+        
+      
       <div class="post-list__item">
         <span class="item__title--big">
-          <a href="/posts/2015-01-27-docker/">Docker</a>
-          
+          <a href="/posts/2015-01-27-docker/" >Docker</a>
         </span>
         <span class="item__date">
           Jan 01, 0001
         </span>
+        <span >
         
         简介 Docker 是 dotCloud 最近几个月刚宣布的开源引擎，旨在提供一种应用程序的自动化部署解决方案，简单的说就是，在 Linux 系统上迅速创建一个容器（类似虚拟机）并在容
         
+        </span>
         
           ... <a class="read-more-symbol" href="/posts/2015-01-27-docker/">➦</a>
         
         </div>
+        
      
+      
+        
+      
       <div class="post-list__item">
         <span class="item__title--big">
-          <a href="/posts/2015-03-05-docker-acquires-sdn-startup-socketplane/">Docker acquires SDN startup SocketPlane</a>
-          
+          <a href="/posts/2015-03-05-docker-acquires-sdn-startup-socketplane/" >Docker acquires SDN startup SocketPlane</a>
         </span>
         <span class="item__date">
           Jan 01, 0001
         </span>
+        <span >
         
-        At Socketplane we started out as four guys with a collectively strong belief in open source and open communities. &nbsp;We aligned around a shared vision that we wanted to be a critical part of Docker’s once in a decade disruption. Now that we are part of the Docker team, we couldn’t be happier.
+        At Socketplane we started out as four guys with a collectively strong belief in open source and open communities. We aligned around a shared vision that we wanted to be a critical part of Docker’s once in a decade disruption. Now that we are part of the Docker team, we couldn’t be happier.
 We never looked to hedge our bets, our success was and obviously still is tied to the success of Docker.
         
+        </span>
         
           ... <a class="read-more-symbol" href="/posts/2015-03-05-docker-acquires-sdn-startup-socketplane/">➦</a>
         
         </div>
+        
      
+      
+        
+      
       <div class="post-list__item">
         <span class="item__title--big">
-          <a href="/posts/2015-02-26-going-native-with-openstack-centric-applications-murano/">Going Native with OpenStack Centric Applications: Murano</a>
-          
+          <a href="/posts/2015-03-20-docker-in-tencent/" >docker in tencent</a>
         </span>
         <span class="item__date">
           Jan 01, 0001
         </span>
+        <span >
         
-        Following on our previous discussion surveying the projects supporting applications within OpenStack, let’s continue our review with an in-depth look at the OpenStack-native Application Catalog: Murano, currently an incubation status project, having seen its functionality and core services integration advanced over the past few OpenStack releases. What is it? An application catalog developed by Mirantis, HP and others (now including Cisco), that allows application developers and
+        腾讯内部对Docker有着广泛的使用，其基于Yarn的代号为Gaia的调度平台可以同时兼容Docker和非Docker类型的应用，并提供高并
         
+        </span>
         
-          ... <a class="read-more-symbol" href="/posts/2015-02-26-going-native-with-openstack-centric-applications-murano/">➦</a>
+          ... <a class="read-more-symbol" href="/posts/2015-03-20-docker-in-tencent/">➦</a>
         
         </div>
+        
      
+      
+        
+      
       <div class="post-list__item">
         <span class="item__title--big">
-          <a href="/posts/2015-01-20-hello-world/">Hello World</a>
-          
+          <a href="/posts/2015-01-27-docker-internal/" >docker internal</a>
         </span>
         <span class="item__date">
           Jan 01, 0001
         </span>
+        <span >
         
-        Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick Start Create a new post $ hexo new &quot;My New Post&quot;  More info: Writing
-Run server $ hexo server  More info: Server
-Generate static files $ hexo generate  More info: Generating
+        docker-baseAbstractA subsystem is a module that makes use of the task grouping facilities provided by cgroups to treat groups of tasks in particular ways. A subsystem is typically a &ldquo;resource controller&rdquo; that schedules a resource or applies per-cgroup limits, but it may be anything that wants to act on a group of processes, e.g. a virtualization subsystem. &ldquo;docker diff&rdquo; is implemented by just scanning the container filesystem and the parent
         
+        </span>
         
-          ... <a class="read-more-symbol" href="/posts/2015-01-20-hello-world/">➦</a>
+          ... <a class="read-more-symbol" href="/posts/2015-01-27-docker-internal/">➦</a>
         
         </div>
+        
      
+      
+        
+      
       <div class="post-list__item">
         <span class="item__title--big">
-          <a href="/posts/2015-03-02-how-enable-openstack-allinone-vm-to-access-external-network/">How enable OpenStack allinone vm to access external network</a>
-          
+          <a href="/posts/2015-06-05-git-commit/" >git commit修改前一次提交的方法</a>
         </span>
         <span class="item__date">
           Jan 01, 0001
         </span>
+        <span >
         
-        首先需要为OpenStack添加一个公网网络，假设All-in-one环境建的公网网段为10.10.10.0/24，公网网关为10.10.1
+        方法一：用–amend选项 #修改需要修改的地方。 git add . git commit –amend 注：这种方式可以比较方便的保持原有的Change-Id，推荐使用。 方法
         
+        </span>
         
-          ... <a class="read-more-symbol" href="/posts/2015-03-02-how-enable-openstack-allinone-vm-to-access-external-network/">➦</a>
+          ... <a class="read-more-symbol" href="/posts/2015-06-05-git-commit/">➦</a>
         
         </div>
-     
-      <div class="post-list__item">
-        <span class="item__title--big">
-          <a href="/posts/2015-03-18-how-to-disable-ubuntu-services/">How to disable ubuntu services</a>
-          
-        </span>
-        <span class="item__date">
-          Jan 01, 0001
-        </span>
         
-        To toggle a service from starting or stopping permanently you would need to:
-echo manual | sudo tee /etc/init/SERVICE.override  where the stanza manual will stop Upstart from automatically loading the service on next boot. Any service with the .override ending will take precedence over the original service file. You will only be able to start the service manually afterwards. If you do not want this then simply delete the .
-        
-        
-          ... <a class="read-more-symbol" href="/posts/2015-03-18-how-to-disable-ubuntu-services/">➦</a>
-        
-        </div>
-     
-      <div class="post-list__item">
-        <span class="item__title--big">
-          <a href="/posts/2015-02-12-how-to-use-docker-compose-to-deploy-a-flask-app/">How to use docker compose to deploy a flask app</a>
-          
-        </span>
-        <span class="item__date">
-          Jan 01, 0001
-        </span>
-        
-        The flask app is very simple, you have an index page where your can write and read comments.
-To start So what we need ?
-In my case a Digital Ocean droplet (I&rsquo;m using Fedora 21).
-So, first of all we connect to our vm with ssh.
-$ ssh root@yourvmip  Now that we are inside we need to install git, Docker and docker-compose.
-$ yum -y install git docker python-pip $ pip install docker-compose==1.
-        
-        
-          ... <a class="read-more-symbol" href="/posts/2015-02-12-how-to-use-docker-compose-to-deploy-a-flask-app/">➦</a>
-        
-        </div>
-     
-      <div class="post-list__item">
-        <span class="item__title--big">
-          <a href="/posts/2015-11-04-hypernetes---the-multi-tenant-kubernetes-distribution/">Hypernetes   The multi tenant Kubernetes distribution</a>
-          
-        </span>
-        <span class="item__date">
-          Jan 01, 0001
-        </span>
-        
-        &ldquo;The Caas Revolution&rdquo;. This is what we believe is happening today in the Cloud ecosystem. This revolution has been started by the now famous project (and company) Docker, and embraced by Cloud providers like Google and AWS.
-However, most multi-tenant CaaS solutions today run on a public IaaS, and use fully isolated virtual machine clusters to schedule containers. This is in contrast to the solely container-based implementation provided in private CaaS deployments.
-        
-        
-          ... <a class="read-more-symbol" href="/posts/2015-11-04-hypernetes---the-multi-tenant-kubernetes-distribution/">➦</a>
-        
-        </div>
-     
-      <div class="post-list__item">
-        <span class="item__title--big">
-          <a href="/posts/2015-11-12-hypernetes-wechat-share/">Hypernetes wechat share</a>
-          
-        </span>
-        <span class="item__date">
-          Jan 01, 0001
-        </span>
-        
-        今天给大家介绍下最近在Hypernetes上做的工作。 Hypernetes是一个真正多租户的Kubernetes Distro。 Hyperne
-        
-        
-          ... <a class="read-more-symbol" href="/posts/2015-11-12-hypernetes-wechat-share/">➦</a>
-        
-        </div>
      
   </div>
   
@@ -491,10 +550,7 @@ if (!doNotTrack) {
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 
   
-  <script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"
-  integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy"
-  crossorigin="anonymous">
-</script>
+  <script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
 
 
     </body>

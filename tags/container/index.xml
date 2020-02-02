@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Container on Feisky</title>
+    <title>container on Feisky</title>
     <link>https://feisky.xyz/tags/container/</link>
-    <description>Recent content in Container on Feisky</description>
+    <description>Recent content in container on Feisky</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Tue, 19 Jul 2016 15:58:26 +0000</lastBuildDate>
@@ -18,7 +18,7 @@
       
       <guid>https://feisky.xyz/posts/2016-07-19-setup-hyperd-with-flannel-network/</guid>
       <description>Flannel Flannel is a virtual network that gives a subnet to each host for use with container runtimes.
-Platforms like Google&amp;rsquo;s Kubernetes assume that each container (pod) has a unique, routable IP inside the cluster. The advantage of this model is that it reduces the complexity of doing port mapping.
+Platforms like Google&#39;s Kubernetes assume that each container (pod) has a unique, routable IP inside the cluster. The advantage of this model is that it reduces the complexity of doing port mapping.
 flannel runs an agent, flanneld, on each host and is responsible for allocating a subnet lease out of a preconfigured address space.</description>
     </item>
     
@@ -39,7 +39,7 @@ flannel runs an agent, flanneld, on each host and is responsible for allocating 
       <guid>https://feisky.xyz/posts/2016-04-28-runc/</guid>
       <description>runc is a CLI tool for spawning and running containers according to the OCI specification, while runV is a hypervisor-based runtime for OCI. Both of them are recommanded (implementations](https://github.com/opencontainers/runtime-spec/blob/master/implementations.md) of OCI.
 Playing with runc Install runc:
-yum install -y libseccomp-devel mkdir -p $GOPATH/src/github.com/opencontainers cd $GOPATH/src/github.com/opencontainers git clone https://github.com/opencontainers/runc cd runc make sudo make install  Run busybox:
+yum install -y libseccomp-devel mkdir -p $GOPATH/src/github.com/opencontainers cd $GOPATH/src/github.com/opencontainers git clone https://github.com/opencontainers/runc cd runc make sudo make install Run busybox:
 $ docker pull busybox $ mkdir rootfs $ docker export $(docker create busybox) | tar -C rootfs -xvf - $ runc spec .</description>
     </item>
     

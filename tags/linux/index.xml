@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Linux on Feisky</title>
@@ -9,6 +9,24 @@
     
 	<atom:link href="https://feisky.xyz/tags/linux/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>awesome quick start</title>
+      <link>https://feisky.xyz/posts/2015-03-20-awesome-quick-start/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/posts/2015-03-20-awesome-quick-start/</guid>
+      <description>awesome是Linux平台出色的窗口管理器，具有速度快、界面简捷等优点。其安装也比较简单： sudo apt-get install -y awesome awesome-extra gnome-settings-daemon nautilus sudo apt-get install -y --no-install-recommends gnome-session mkdir -p ~/.config/awesome 常用快捷键整</description>
+    </item>
+    
+    <item>
+      <title>cannot change locale</title>
+      <link>https://feisky.xyz/posts/2015-02-10-cannot-change-locale/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/posts/2015-02-10-cannot-change-locale/</guid>
+      <description>运行locale命令LANG= LANGUAGE= LC_CTYPE=&amp;quot;POSIX&amp;rdquo; LC_NUMERIC=&amp;quot;POSIX&amp;rdquo; LC_TIME=&amp;quot;POSIX&amp;rdquo; LC_COLLATE=&amp;quot;POSIX&amp;rdquo; LC_MONETARY=&amp;quot;POSIX&amp;rdquo; LC_MESSAGES=&amp;quot;POSIX&amp;rdquo; LC_PAPER=&amp;quot;POSIX&amp;rdquo; LC_NAME=&amp;quot;POSIX&amp;rdquo; LC_ADDRESS=&amp;quot;POSIX&amp;rdquo; LC_TELEPHONE=&amp;quot;POSIX&amp;rdquo; LC_MEASUREMENT=&amp;quot;POSIX&amp;rdquo; LC_IDENTIFICATION=&amp;quot;POSIX&amp;rdquo; LC_ALL= 修改profile vi /etc/profile 添加如下内容 export LC_ALL=en_US.UTF-8 source /etc/profile 得到错误 setlocale: LC_ALL: cannot change locale (en_US.UTF-8): No such file or directory 运行 dpkg-reconfigure locales 得</description>
+    </item>
     
     <item>
       <title>Dive in Linux capabilites</title>
@@ -65,24 +83,6 @@ echo manual | sudo tee /etc/init/SERVICE.override  where the stanza manual will 
       <description>Introduction Red Hat has announced first public beta of Red Hat Enterprise Linux 7 Atomic Host. The beta is available from Red Hat and on Amazon Web Services and Google Compute Platform.
 What can you expect from the Red Hat Enterprise Linux 7 Atomic Host Beta?
 Specifically Designed to Run Containers Red Hat Enterprise Linux 7 Atomic Host Beta provides a streamlined host platform that is optimized to run application containers.</description>
-    </item>
-    
-    <item>
-      <title>awesome quick start</title>
-      <link>https://feisky.xyz/posts/2015-03-20-awesome-quick-start/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://feisky.xyz/posts/2015-03-20-awesome-quick-start/</guid>
-      <description>awesome是Linux平台出色的窗口管理器，具有速度快、界面简捷等优点。其安装也比较简单： sudo apt-get install -y awesome awesome-extra gnome-settings-daemon nautilus sudo apt-get install -y --no-install-recommends gnome-session mkdir -p ~/.config/awesome 常用快捷键整</description>
-    </item>
-    
-    <item>
-      <title>cannot change locale</title>
-      <link>https://feisky.xyz/posts/2015-02-10-cannot-change-locale/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://feisky.xyz/posts/2015-02-10-cannot-change-locale/</guid>
-      <description>运行locale命令 LANG= LANGUAGE= LC_CTYPE=&amp;ldquo;POSIX&amp;rdquo; LC_NUMERIC=&amp;ldquo;POSIX&amp;rdquo; LC_TIME=&amp;ldquo;POSIX&amp;rdquo; LC_COLLATE=&amp;ldquo;POSIX&amp;rdquo; LC_MONETARY=&amp;ldquo;POSIX&amp;rdquo; LC_MESSAGES=&amp;ldquo;POSIX&amp;rdquo; LC_PAPER=&amp;ldquo;POSIX&amp;rdquo; LC_NAME=&amp;ldquo;POSIX&amp;rdquo; LC_ADDRESS=&amp;ldquo;POSIX&amp;rdquo; LC_TELEPHONE=&amp;ldquo;POSIX&amp;rdquo; LC_MEASUREMENT=&amp;ldquo;POSIX&amp;rdquo; LC_IDENTIFICATION=&amp;ldquo;POSIX&amp;rdquo; LC_ALL= 修改profile vi /etc/profile 添加如下内容 export LC_ALL=en_US.UTF-8 source /etc/profile 得到错误 setlocale: LC_ALL: cannot change locale (en_US.UTF-8): No such file or directory &amp;nbsp;运行 dpkg-reconfigure</description>
     </item>
     
   </channel>

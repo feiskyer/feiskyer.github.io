@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.49.2" />
+<meta name="generator" content="Hugo 0.62.2" />
 
     
     
@@ -22,18 +22,25 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content=""/>
-<meta name="twitter:description" content="layout: post title: LinuxKit date: 2017-04-19 11:09:53 tags: [docker] LinuxKit是Docker最新发布的一个用于为容器构建安全、便携、可移植操作系统的工具包。它根据用户编写的yaml（指"/>
+<meta name="twitter:description" content="layout: post title: LinuxKit date: 2017-04-19 11:09:53 tags: [docker] LinuxKit是Docker最新发布的一个用于为容器构建安全、便携、可移植操作系统的工具包。它根据用户编写的yaml（指定kernel和基于docker image的一些列服务）自动构建一个常见虚拟化平台或云平台的虚拟机镜像，并自动运行起来。主要特性包括
+ 增强安全性  系统安全，基于MirageOS unikernel 紧跟最新kernel并精简不必要的模块 Immutable，只读根文件系统，根文件系统只能在构建的时候生成 社区合作，比如Kernel Self Protection Project (KSPP)、Wireguard、Landlock、Mirage、oKernel、Clear Containers等   易用、可扩展  所有服务均可定制，且用户服务和系统服务都是基于docker image 构建过程基于docker 基于Infrakit方便部署生成的镜像    安装 git clone https://github.com/linuxkit/linuxkit $GOPATH/src/github.com/linuxkit/linuxkit make &amp;&amp; make install 原理 编写yaml LinuxKit需要编写一个yaml文件，来配置所需要的服务。可选的配置包括
+ kernel：指定内核镜像，镜像里面需要包含bzImage和kernel.tar init：指定根系统的docker镜像（ base init process Docker images），比如init、runc、containerd等。在运行时，这些都是只读的 onboot：启动过程中执行的系统服务，按顺序逐个运行 services：基于docker镜像的系统服务，这些服务在build的时候会由docker将其转换为OCI格式，以便后续runc来启动 files：指定额外的文件 outputs：构建完成后的输出  比如一个简单的nginx服务为
+kernel: image: &#34;mobylinux/kernel:4.9.x&#34; cmdline: &#34;console=ttyS0 console=tty0 page_poison=1&#34; init: - linuxkit/init:42fe8cb1508b3afed39eb89821906e3cc7a70551 - mobylinux/runc:b0fb122e10dbb7e4e45115177a61a3f8d68c19a9 - linuxkit/containerd:60e2486a74c665ba4df57e561729aec20758daed - mobylinux/ca-certificates:eabc5a6e59f05aa91529d80e9a595b85b046f935 onboot: - name: sysctl image: &#34;mobylinux/sysctl:2cf2f9d5b4d314ba1bfc22b2fe931924af666d8c&#34; net: host pid: host ipc: host capabilities: - CAP_SYS_ADMIN readonly: true - name: binfmt image: &#34;linuxkit/binfmt:8881283ac627be1542811bd25c85e7782aebc692&#34; binds: - /proc/sys/fs/binfmt_misc:/binfmt_misc readonly: true - name: dhcpcd image: &#34;linuxkit/dhcpcd:48e249ebef6a521eed886b3bce032db69fbb4afa&#34; binds: - /var:/var - /tmp/etc:/etc capabilities: - CAP_NET_ADMIN - CAP_NET_BIND_SERVICE - CAP_NET_RAW net: host command: [&#34;/sbin/dhcpcd&#34;, &#34;--nobackground&#34;, &#34;-f&#34;, &#34;/dhcpcd."/>
 
 <meta property="og:title" content="" />
-<meta property="og:description" content="layout: post title: LinuxKit date: 2017-04-19 11:09:53 tags: [docker] LinuxKit是Docker最新发布的一个用于为容器构建安全、便携、可移植操作系统的工具包。它根据用户编写的yaml（指" />
+<meta property="og:description" content="layout: post title: LinuxKit date: 2017-04-19 11:09:53 tags: [docker] LinuxKit是Docker最新发布的一个用于为容器构建安全、便携、可移植操作系统的工具包。它根据用户编写的yaml（指定kernel和基于docker image的一些列服务）自动构建一个常见虚拟化平台或云平台的虚拟机镜像，并自动运行起来。主要特性包括
+ 增强安全性  系统安全，基于MirageOS unikernel 紧跟最新kernel并精简不必要的模块 Immutable，只读根文件系统，根文件系统只能在构建的时候生成 社区合作，比如Kernel Self Protection Project (KSPP)、Wireguard、Landlock、Mirage、oKernel、Clear Containers等   易用、可扩展  所有服务均可定制，且用户服务和系统服务都是基于docker image 构建过程基于docker 基于Infrakit方便部署生成的镜像    安装 git clone https://github.com/linuxkit/linuxkit $GOPATH/src/github.com/linuxkit/linuxkit make &amp;&amp; make install 原理 编写yaml LinuxKit需要编写一个yaml文件，来配置所需要的服务。可选的配置包括
+ kernel：指定内核镜像，镜像里面需要包含bzImage和kernel.tar init：指定根系统的docker镜像（ base init process Docker images），比如init、runc、containerd等。在运行时，这些都是只读的 onboot：启动过程中执行的系统服务，按顺序逐个运行 services：基于docker镜像的系统服务，这些服务在build的时候会由docker将其转换为OCI格式，以便后续runc来启动 files：指定额外的文件 outputs：构建完成后的输出  比如一个简单的nginx服务为
+kernel: image: &#34;mobylinux/kernel:4.9.x&#34; cmdline: &#34;console=ttyS0 console=tty0 page_poison=1&#34; init: - linuxkit/init:42fe8cb1508b3afed39eb89821906e3cc7a70551 - mobylinux/runc:b0fb122e10dbb7e4e45115177a61a3f8d68c19a9 - linuxkit/containerd:60e2486a74c665ba4df57e561729aec20758daed - mobylinux/ca-certificates:eabc5a6e59f05aa91529d80e9a595b85b046f935 onboot: - name: sysctl image: &#34;mobylinux/sysctl:2cf2f9d5b4d314ba1bfc22b2fe931924af666d8c&#34; net: host pid: host ipc: host capabilities: - CAP_SYS_ADMIN readonly: true - name: binfmt image: &#34;linuxkit/binfmt:8881283ac627be1542811bd25c85e7782aebc692&#34; binds: - /proc/sys/fs/binfmt_misc:/binfmt_misc readonly: true - name: dhcpcd image: &#34;linuxkit/dhcpcd:48e249ebef6a521eed886b3bce032db69fbb4afa&#34; binds: - /var:/var - /tmp/etc:/etc capabilities: - CAP_NET_ADMIN - CAP_NET_BIND_SERVICE - CAP_NET_RAW net: host command: [&#34;/sbin/dhcpcd&#34;, &#34;--nobackground&#34;, &#34;-f&#34;, &#34;/dhcpcd." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://feisky.xyz/posts/2017-04-19-linuxkit/" />
+
 
 
     
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
 
 
 
@@ -42,15 +49,15 @@
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hyde-hyde.6f40d28e777b288cb757a1db116a257b6f8dffc63a05e8473d12dc09a52d8d79.css" integrity="sha256-b0DSjnd7KIy3V6HbEWole2&#43;N/8Y6BehHPRLcCaUtjXk=">
+<link rel="stylesheet" href="/scss/hyde-hyde.92c66d107d7b219f0792cfd67223179af884b03f386ac46894f9f735932bbca3.css" integrity="sha256-ksZtEH17IZ8Hks/WciMXmviEsD84asRolPn3NZMrvKM=">
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
 
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hugo-toc.8549a64d301421b4256ea9a0d5ca8b99178799f569d5d2daeb95f24cef3ce6b7.css" integrity="sha256-hUmmTTAUIbQlbqmg1cqLmReHmfVp1dLa65XyTO885rc=">
+<link rel="stylesheet" href="/scss/tocbot.126e7d75240acc946d34d6ccb2982ed4c394a5fe34e73e1a2119ca951bcf119d.css" integrity="sha256-Em59dSQKzJRtNNbMspgu1MOUpf405z4aIRnKlRvPEZ0=">
 
 
 
@@ -62,6 +69,7 @@
     <!-- Icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
     <link rel="shortcut icon" href="/favicon.png">
+    
     
 
 </head>
@@ -75,6 +83,7 @@
       <span class="site__title">
         <a href="https://feisky.xyz/">Feisky</a>
       </span>
+      
       
       <p class="site__description">
          Notes about anything 
@@ -91,7 +100,23 @@
 			 
 				<li>
 					<a href="https://kubernetes.feisky.xyz">
-						<span>Kubernetes</span>
+						<span>Kubernetes指南</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://time.geekbang.org/column/intro/100020901">
+						<span>Linux性能优化实战</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://sdn.feisky.xyz">
+						<span>SDN网络</span>
 					</a>
 				</li>
 			 
@@ -106,21 +131,12 @@
 		 
 			 
 				<li>
-					<a href="https://sdn.feisky.xyz">
-						<span>SDN</span>
-					</a>
-				</li>
-			 
-		 
-			 
-				<li>
 					<a href="/about/">
-						<span>About</span>
+						<span>关于我</span>
 					</a>
 				</li>
 			 
 		
-		</li>
 	</ul>
 </div>
 
@@ -143,23 +159,33 @@
 	
 	
 	
+	
+	
 </section>
 
       </div>
     </div>
-    <div class="copyright">
-  &copy; 2019 .
-  <a href="https://creativecommons.org/licenses/by-sa/4.0">Some Rights Reserved</a>.
-  Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+    
+<div class="copyright">
+  &copy; 2020 feiskyer
+  
+    <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>
   
 </div>
+
+
+<div class="builtwith">
+Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+</div>
+
 
   </div>
 </div>
 
         <div class="content container">
             
-    <article>
+    
+<article>
   <header>
     <h1></h1>
     
@@ -172,79 +198,52 @@
     
     
     <br/>
-    <i class="fas fa-clock"></i> 3 min read
+    <i class="fas fa-clock"></i> 2 min read
 </div>
 
 
   </header>
   
   
-  <div class="toc-wrapper">
-    <input type="checkbox" id="tocToggle">
-    <label for="tocToggle">Table of Content</label>
-    
-        <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#tags-docker">tags: [docker]</a></li>
-<li><a href="#安装">安装</a></li>
-<li><a href="#原理">原理</a>
-<ul>
-<li>
-<ul>
-<li><a href="#编写yaml">编写yaml</a></li>
-</ul></li>
-<li><a href="#构建">构建</a></li>
-<li><a href="#运行">运行</a></li>
-</ul></li>
-</ul></li>
-</ul>
-</nav>
-    
-  </div>
+  
+    <div class="toc-wrapper">
+      <input type="checkbox" id="tocToggle">
+      <label for="tocToggle">Table of Content</label>
+      
+        <div class="toc" id="TableOfContents"></div>
+      
+    </div>
+  
   
   <div class="post">
-    
-
-<p>layout: post
+    <h2 id="tags-docker">layout: post
 title: LinuxKit
-date: 2017-04-19 11:09:53</p>
-
-<h2 id="tags-docker">tags: [docker]</h2>
-
+date: 2017-04-19 11:09:53
+tags: [docker]</h2>
 <p><a href="https://github.com/linuxkit/linuxkit">LinuxKit</a>是Docker最新发布的一个用于为容器构建安全、便携、可移植操作系统的工具包。它根据用户编写的yaml（指定kernel和基于docker image的一些列服务）自动构建一个常见虚拟化平台或云平台的虚拟机镜像，并自动运行起来。主要特性包括</p>
-
 <ul>
 <li>增强安全性
-
 <ul>
 <li>系统安全，基于MirageOS unikernel</li>
 <li>紧跟最新kernel并精简不必要的模块</li>
 <li>Immutable，只读根文件系统，根文件系统只能在构建的时候生成</li>
 <li>社区合作，比如<a href="https://kernsec.org/wiki/index.php/Kernel_Self_Protection_Project">Kernel Self Protection Project (KSPP)</a>、<a href="https://www.wireguard.io/">Wireguard</a>、<a href="https://lwn.net/Articles/698226/">Landlock</a>、<a href="https://mirage.io/">Mirage</a>、<a href="https://github.com/docker/linuxkit/tree/master/projects/okernel">oKernel</a>、Clear Containers等</li>
-</ul></li>
+</ul>
+</li>
 <li>易用、可扩展
-
 <ul>
 <li>所有服务均可定制，且用户服务和系统服务都是基于docker image</li>
 <li>构建过程基于docker</li>
 <li>基于Infrakit方便部署生成的镜像</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h2 id="安装">安装</h2>
-
 <pre><code>git clone https://github.com/linuxkit/linuxkit $GOPATH/src/github.com/linuxkit/linuxkit
 make &amp;&amp; make install
-</code></pre>
-
-<h2 id="原理">原理</h2>
-
+</code></pre><h2 id="原理">原理</h2>
 <h4 id="编写yaml">编写yaml</h4>
-
 <p>LinuxKit需要编写一个yaml文件，来配置所需要的服务。可选的配置包括</p>
-
 <ul>
 <li>kernel：指定内核镜像，镜像里面需要包含bzImage和kernel.tar</li>
 <li>init：指定根系统的docker镜像（ base init process Docker images），比如init、runc、containerd等。在运行时，这些都是只读的</li>
@@ -253,12 +252,10 @@ make &amp;&amp; make install
 <li>files：指定额外的文件</li>
 <li>outputs：构建完成后的输出</li>
 </ul>
-
 <p>比如一个简单的nginx服务为</p>
-
-<pre><code class="language-yaml">kernel:
-  image: &quot;mobylinux/kernel:4.9.x&quot;
-  cmdline: &quot;console=ttyS0 console=tty0 page_poison=1&quot;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">kernel:
+  image: <span style="color:#e6db74">&#34;mobylinux/kernel:4.9.x&#34;</span>
+  cmdline: <span style="color:#e6db74">&#34;console=ttyS0 console=tty0 page_poison=1&#34;</span>
 init:
   - linuxkit/init:42fe8cb1508b3afed39eb89821906e3cc7a70551
   - mobylinux/runc:b0fb122e10dbb7e4e45115177a61a3f8d68c19a9
@@ -266,20 +263,20 @@ init:
   - mobylinux/ca-certificates:eabc5a6e59f05aa91529d80e9a595b85b046f935
 onboot:
   - name: sysctl
-    image: &quot;mobylinux/sysctl:2cf2f9d5b4d314ba1bfc22b2fe931924af666d8c&quot;
+    image: <span style="color:#e6db74">&#34;mobylinux/sysctl:2cf2f9d5b4d314ba1bfc22b2fe931924af666d8c&#34;</span>
     net: host
     pid: host
     ipc: host
     capabilities:
      - CAP_SYS_ADMIN
-    readonly: true
+    readonly: <span style="color:#66d9ef">true</span>
   - name: binfmt
-    image: &quot;linuxkit/binfmt:8881283ac627be1542811bd25c85e7782aebc692&quot;
+    image: <span style="color:#e6db74">&#34;linuxkit/binfmt:8881283ac627be1542811bd25c85e7782aebc692&#34;</span>
     binds:
      - /proc/sys/fs/binfmt_misc:/binfmt_misc
-    readonly: true
+    readonly: <span style="color:#66d9ef">true</span>
   - name: dhcpcd
-    image: &quot;linuxkit/dhcpcd:48e249ebef6a521eed886b3bce032db69fbb4afa&quot;
+    image: <span style="color:#e6db74">&#34;linuxkit/dhcpcd:48e249ebef6a521eed886b3bce032db69fbb4afa&#34;</span>
     binds:
      - /var:/var
      - /tmp/etc:/etc
@@ -288,16 +285,16 @@ onboot:
      - CAP_NET_BIND_SERVICE
      - CAP_NET_RAW
     net: host
-    command: [&quot;/sbin/dhcpcd&quot;, &quot;--nobackground&quot;, &quot;-f&quot;, &quot;/dhcpcd.conf&quot;, &quot;-1&quot;]
+    command: [<span style="color:#e6db74">&#34;/sbin/dhcpcd&#34;</span>, <span style="color:#e6db74">&#34;--nobackground&#34;</span>, <span style="color:#e6db74">&#34;-f&#34;</span>, <span style="color:#e6db74">&#34;/dhcpcd.conf&#34;</span>, <span style="color:#e6db74">&#34;-1&#34;</span>]
 services:
   - name: rngd
-    image: &quot;mobylinux/rngd:3dad6dd43270fa632ac031e99d1947f20b22eec9&quot;
+    image: <span style="color:#e6db74">&#34;mobylinux/rngd:3dad6dd43270fa632ac031e99d1947f20b22eec9&#34;</span>
     capabilities:
      - CAP_SYS_ADMIN
-    oomScoreAdj: -800
-    readonly: true
+    oomScoreAdj: -<span style="color:#ae81ff">800</span>
+    readonly: <span style="color:#66d9ef">true</span>
   - name: nginx
-    image: &quot;nginx:alpine&quot;
+    image: <span style="color:#e6db74">&#34;nginx:alpine&#34;</span>
     capabilities:
      - CAP_NET_BIND_SERVICE
      - CAP_CHOWN
@@ -307,7 +304,7 @@ services:
     net: host
 files:
   - path: etc/docker/daemon.json
-    contents: '{&quot;debug&quot;: true}'
+    contents: <span style="color:#e6db74">&#39;{&#34;debug&#34;: true}&#39;</span>
 trust:
   image:
     - mobylinux/kernel
@@ -315,11 +312,8 @@ outputs:
   - format: kernel+initrd
   - format: iso-bios
   - format: iso-efi
-</code></pre>
-
-<h3 id="构建">构建</h3>
-
-<pre><code class="language-sh">$ moby build linuxkit.yml
+</code></pre></div><h3 id="构建">构建</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ moby build linuxkit.yml
 Extract kernel image: mobylinux/kernel:4.9.x
 Add init containers:
 Process init image: linuxkit/init:42fe8cb1508b3afed39eb89821906e3cc7a70551
@@ -327,22 +321,19 @@ Process init image: mobylinux/runc:b0fb122e10dbb7e4e45115177a61a3f8d68c19a9
 Process init image: linuxkit/containerd:60e2486a74c665ba4df57e561729aec20758daed
 Process init image: mobylinux/ca-certificates:eabc5a6e59f05aa91529d80e9a595b85b046f935
 Add onboot containers:
-  Create OCI config for mobylinux/sysctl:2cf2f9d5b4d314ba1bfc22b2fe931924af666d8c
-  Create OCI config for linuxkit/binfmt:8881283ac627be1542811bd25c85e7782aebc692
-  Create OCI config for linuxkit/dhcpcd:48e249ebef6a521eed886b3bce032db69fbb4afa
+  Create OCI config <span style="color:#66d9ef">for</span> mobylinux/sysctl:2cf2f9d5b4d314ba1bfc22b2fe931924af666d8c
+  Create OCI config <span style="color:#66d9ef">for</span> linuxkit/binfmt:8881283ac627be1542811bd25c85e7782aebc692
+  Create OCI config <span style="color:#66d9ef">for</span> linuxkit/dhcpcd:48e249ebef6a521eed886b3bce032db69fbb4afa
 Add service containers:
-  Create OCI config for mobylinux/rngd:3dad6dd43270fa632ac031e99d1947f20b22eec9
-  Create OCI config for nginx:alpine
+  Create OCI config <span style="color:#66d9ef">for</span> mobylinux/rngd:3dad6dd43270fa632ac031e99d1947f20b22eec9
+  Create OCI config <span style="color:#66d9ef">for</span> nginx:alpine
 Add files:
   etc/docker/daemon.json
 Create outputs:
   linuxkit-bzImage linuxkit-initrd.img linuxkit-cmdline
   linuxkit.iso
   linuxkit-efi.iso
-</code></pre>
-
-<p>编译完成后的文件大约58M。</p>
-
+</code></pre></div><p>编译完成后的文件大约58M。</p>
 <pre><code>$ ls -lh linuxkit*
 -rw-r--r-- 1 root root 6.7M Apr 19 02:39 linuxkit-bzImage
 -rw-r--r-- 1 root root   40 Apr 19 02:39 linuxkit-cmdline
@@ -350,27 +341,17 @@ Create outputs:
 -rw-r--r-- 1 root root  50M Apr 19 02:39 linuxkit-initrd.img
 -rw-r--r-- 1 root root  57M Apr 19 02:39 linuxkit.iso
 -rw-r--r-- 1 root root 1.6K Apr 19 02:19 linuxkit.yml
-</code></pre>
-
-<h3 id="运行">运行</h3>
-
+</code></pre><h3 id="运行">运行</h3>
 <p>LinuxKit目前支持在gcp/hyperkit/qemu/vmware/packet/Hyper-V等多个平台上运行。比如用qemu的方式运行：</p>
-
-<pre><code class="language-sh">$ moby run qemu linuxkit
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ moby run qemu linuxkit
 ....
-</code></pre>
-
-<p>默认运行后会自动进入VM的console：</p>
-
-<pre><code class="language-sh">/ # pstree
+</code></pre></div><p>默认运行后会自动进入VM的console：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">/ <span style="color:#75715e"># pstree</span>
 init-+-containerd---containerd-shim---nginx---nginx
      |-containers---ctr
      |-sh---pstree
-     `-sh
-</code></pre>
-
-<p>参考文档</p>
-
+     <span style="color:#e6db74">`</span>-sh
+</code></pre></div><p>参考文档</p>
 <ul>
 <li><a href="https://github.com/linuxkit/linuxkit">https://github.com/linuxkit/linuxkit</a></li>
 <li><a href="https://blog.docker.com/2017/04/introducing-linuxkit-container-os-toolkit/">ANNOUNCING LINUXKIT: A TOOLKIT FOR BUILDING SECURE, LEAN AND PORTABLE LINUX SUBSYSTEMS</a></li>
@@ -440,6 +421,7 @@ init-+-containerd---containerd-shim---nginx---nginx
         </div>
         
     
+
   
   
 <script type="application/javascript">
@@ -454,15 +436,12 @@ if (!doNotTrack) {
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
-<script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"
-  integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy"
-  crossorigin="anonymous">
-</script>
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
 
 
     
     
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
         
     
     <script type="text/javascript">
@@ -473,6 +452,21 @@ if (!doNotTrack) {
 
 
 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.js"></script>
+<script type="text/javascript">
+  if (tocbot) {
+    tocbot.init({
+      
+      tocSelector: '.toc',
+      
+      contentSelector: '.post',
+      
+      headingSelector: 'h2, h3, h4',
+      collapseDepth: 4
+    });
+  }
+</script>
 
 
 

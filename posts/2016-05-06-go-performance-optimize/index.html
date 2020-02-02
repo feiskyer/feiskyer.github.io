@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.49.2" />
+<meta name="generator" content="Hugo 0.62.2" />
 
     
     
@@ -22,19 +22,20 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Go performance optimize"/>
-<meta name="twitter:description" content="**Go性能优化技巧(By 雨痕) 字符串（string）作为一种不可变类型，在与字节数组（slice, [ ]byte）转换时需付出 “沉重” 代价，"/>
+<meta name="twitter:description" content="**Go性能优化技巧(By 雨痕) 字符串（string）作为一种不可变类型，在与字节数组（slice, byte）转换时需付出 “沉重” 代价，根本"/>
 
 <meta property="og:title" content="Go performance optimize" />
-<meta property="og:description" content="**Go性能优化技巧(By 雨痕) 字符串（string）作为一种不可变类型，在与字节数组（slice, [ ]byte）转换时需付出 “沉重” 代价，" />
+<meta property="og:description" content="**Go性能优化技巧(By 雨痕) 字符串（string）作为一种不可变类型，在与字节数组（slice, byte）转换时需付出 “沉重” 代价，根本" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://feisky.xyz/posts/2016-05-06-go-performance-optimize/" /><meta property="article:published_time" content="2016-05-06T20:40:06&#43;00:00"/>
-<meta property="article:modified_time" content="2016-05-06T20:40:06&#43;00:00"/>
+<meta property="og:url" content="https://feisky.xyz/posts/2016-05-06-go-performance-optimize/" />
+<meta property="article:published_time" content="2016-05-06T20:40:06+00:00" />
+<meta property="article:modified_time" content="2016-05-06T20:40:06+00:00" />
 
 
     
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
 
 
 
@@ -43,15 +44,15 @@
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hyde-hyde.6f40d28e777b288cb757a1db116a257b6f8dffc63a05e8473d12dc09a52d8d79.css" integrity="sha256-b0DSjnd7KIy3V6HbEWole2&#43;N/8Y6BehHPRLcCaUtjXk=">
+<link rel="stylesheet" href="/scss/hyde-hyde.92c66d107d7b219f0792cfd67223179af884b03f386ac46894f9f735932bbca3.css" integrity="sha256-ksZtEH17IZ8Hks/WciMXmviEsD84asRolPn3NZMrvKM=">
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
 
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hugo-toc.8549a64d301421b4256ea9a0d5ca8b99178799f569d5d2daeb95f24cef3ce6b7.css" integrity="sha256-hUmmTTAUIbQlbqmg1cqLmReHmfVp1dLa65XyTO885rc=">
+<link rel="stylesheet" href="/scss/tocbot.126e7d75240acc946d34d6ccb2982ed4c394a5fe34e73e1a2119ca951bcf119d.css" integrity="sha256-Em59dSQKzJRtNNbMspgu1MOUpf405z4aIRnKlRvPEZ0=">
 
 
 
@@ -63,6 +64,7 @@
     <!-- Icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
     <link rel="shortcut icon" href="/favicon.png">
+    
     
 
 </head>
@@ -76,6 +78,7 @@
       <span class="site__title">
         <a href="https://feisky.xyz/">Feisky</a>
       </span>
+      
       
       <p class="site__description">
          Notes about anything 
@@ -92,7 +95,23 @@
 			 
 				<li>
 					<a href="https://kubernetes.feisky.xyz">
-						<span>Kubernetes</span>
+						<span>Kubernetes指南</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://time.geekbang.org/column/intro/100020901">
+						<span>Linux性能优化实战</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://sdn.feisky.xyz">
+						<span>SDN网络</span>
 					</a>
 				</li>
 			 
@@ -107,21 +126,12 @@
 		 
 			 
 				<li>
-					<a href="https://sdn.feisky.xyz">
-						<span>SDN</span>
-					</a>
-				</li>
-			 
-		 
-			 
-				<li>
 					<a href="/about/">
-						<span>About</span>
+						<span>关于我</span>
 					</a>
 				</li>
 			 
 		
-		</li>
 	</ul>
 </div>
 
@@ -144,23 +154,33 @@
 	
 	
 	
+	
+	
 </section>
 
       </div>
     </div>
-    <div class="copyright">
-  &copy; 2019 .
-  <a href="https://creativecommons.org/licenses/by-sa/4.0">Some Rights Reserved</a>.
-  Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+    
+<div class="copyright">
+  &copy; 2020 feiskyer
+  
+    <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>
   
 </div>
+
+
+<div class="builtwith">
+Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+</div>
+
 
   </div>
 </div>
 
         <div class="content container">
             
-    <article>
+    
+<article>
   <header>
     <h1>Go performance optimize</h1>
     
@@ -192,79 +212,84 @@
   </header>
   
   
-  <div class="toc-wrapper">
-    <input type="checkbox" id="tocToggle">
-    <label for="tocToggle">Table of Content</label>
-    
-        
-    
-  </div>
+  
+    <div class="toc-wrapper">
+      <input type="checkbox" id="tocToggle">
+      <label for="tocToggle">Table of Content</label>
+      
+        <div class="toc" id="TableOfContents"></div>
+      
+    </div>
+  
   
   <div class="post">
     <p>**<a href="http://mp.weixin.qq.com/s?src=3&amp;timestamp=1461920086&amp;ver=1&amp;signature=dvsw--b6KnMYdRt43I2g4kMRIN37-tbcl2AnwpG58mxVaoZpqG24Aou2amIcFH1aIgXelirKZ0iSYJnPud*qh3uzFrbmeM*bcDNCVC0t*m4oEblW1GOp0FHTsG-lSzRzE67RaskRf7u4*B5NZlkmYhTbWJNF44Bvwz9D58*D-54=">Go性能优化技巧(By 雨痕)</a></p>
-
 <ol>
-<li>字符串（string）作为一种不可变类型，在与字节数组（slice, [ ]byte）转换时需付出 “沉重” 代价，根本原因是对底层字节数组的复制。</li>
+<li>字符串（string）作为一种不可变类型，在与字节数组（slice, <input disabled="" type="checkbox">byte）转换时需付出 “沉重” 代价，根本原因是对底层字节数组的复制。</li>
 </ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
 
-<pre><code class="language-go">package main
-
-import (
-    &quot;fmt&quot;
-    &quot;unsafe&quot;
+<span style="color:#f92672">import</span> (
+    <span style="color:#e6db74">&#34;fmt&#34;</span>
+    <span style="color:#e6db74">&#34;unsafe&#34;</span>
 )
 
-func str2bytes(s string) []byte {
-    ptr := (*[2]uintptr)(unsafe.Pointer(&amp;s))
-    btr := [3]uintptr{ptr[0], ptr[1], ptr[1]}
-    return *(*[]byte)(unsafe.Pointer(&amp;btr))
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">str2bytes</span>(<span style="color:#a6e22e">s</span> <span style="color:#66d9ef">string</span>) []<span style="color:#66d9ef">byte</span> {
+    <span style="color:#a6e22e">ptr</span> <span style="color:#f92672">:=</span> (<span style="color:#f92672">*</span>[<span style="color:#ae81ff">2</span>]<span style="color:#66d9ef">uintptr</span>)(<span style="color:#a6e22e">unsafe</span>.<span style="color:#a6e22e">Pointer</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">s</span>))
+    <span style="color:#a6e22e">btr</span> <span style="color:#f92672">:=</span> [<span style="color:#ae81ff">3</span>]<span style="color:#66d9ef">uintptr</span>{<span style="color:#a6e22e">ptr</span>[<span style="color:#ae81ff">0</span>], <span style="color:#a6e22e">ptr</span>[<span style="color:#ae81ff">1</span>], <span style="color:#a6e22e">ptr</span>[<span style="color:#ae81ff">1</span>]}
+    <span style="color:#66d9ef">return</span> <span style="color:#f92672">*</span>(<span style="color:#f92672">*</span>[]<span style="color:#66d9ef">byte</span>)(<span style="color:#a6e22e">unsafe</span>.<span style="color:#a6e22e">Pointer</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">btr</span>))
 }
 
-func bytes2str(b []byte) string {
-    return *(*string)(unsafe.Pointer(&amp;b))
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">bytes2str</span>(<span style="color:#a6e22e">b</span> []<span style="color:#66d9ef">byte</span>) <span style="color:#66d9ef">string</span> {
+    <span style="color:#66d9ef">return</span> <span style="color:#f92672">*</span>(<span style="color:#f92672">*</span><span style="color:#66d9ef">string</span>)(<span style="color:#a6e22e">unsafe</span>.<span style="color:#a6e22e">Pointer</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">b</span>))
 }
 
-func main() {
-    s := &quot;abcdefghi&quot;
-    b := str2bytes(s)
-    s2 := bytes2str(b)
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#a6e22e">s</span> <span style="color:#f92672">:=</span> <span style="color:#e6db74">&#34;abcdefghi&#34;</span>
+    <span style="color:#a6e22e">b</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">str2bytes</span>(<span style="color:#a6e22e">s</span>)
+    <span style="color:#a6e22e">s2</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">bytes2str</span>(<span style="color:#a6e22e">b</span>)
 
-    fmt.Println(s, b, s2)
+    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">s</span>, <span style="color:#a6e22e">b</span>, <span style="color:#a6e22e">s2</span>)
 }
-</code></pre>
-
-<ol>
-<li><p>Go Proverbs: A little copying is better than a little dependency. 对于一些短小的对象，复制成本远小于在堆上分配和回收操作。</p></li>
-
-<li><p>map预设容量：map 会按需扩张，但须付出数据拷贝和重新哈希成本。如有可能，应尽可能预设足够容量空间，避免此类行为发生。</p></li>
-
-<li><p>map直接存储，对于小对象，直接将数据交由 map 保存，远比用指针高效。这不但减少了堆内存分配，关键还在于垃圾回收器不会扫描非指针类型 key/value 对象。</p></li>
-
-<li><p>defer的代价:编译器通过 runtime.deferproc “注册” 延迟调用，除目标函数地址外，还会复制相关参数（包括 receiver）。在函数返回前，执行 runtime.deferreturn 提取相关信息执行延迟调用。这其中的代价自然不是普通函数调用一条 CALL 指令所能比拟的。可以考虑将内层处理逻辑转换为匿名函数.</p></li>
-
-<li><p>不合理的闭包会造成性能问题，比如闭包引用原环境变量会导致Data Race并变量逃逸到堆上，增加GC扫描和回收的负担.</p></li>
-
-<li><p>Channel： Don&rsquo;t communicate by sharing memory, share memory by communicating.</p></li>
+</code></pre></div><ol start="2">
+<li>
+<p>Go Proverbs: A little copying is better than a little dependency. 对于一些短小的对象，复制成本远小于在堆上分配和回收操作。</p>
+</li>
+<li>
+<p>map预设容量：map 会按需扩张，但须付出数据拷贝和重新哈希成本。如有可能，应尽可能预设足够容量空间，避免此类行为发生。</p>
+</li>
+<li>
+<p>map直接存储，对于小对象，直接将数据交由 map 保存，远比用指针高效。这不但减少了堆内存分配，关键还在于垃圾回收器不会扫描非指针类型 key/value 对象。</p>
+</li>
+<li>
+<p>defer的代价:编译器通过 runtime.deferproc “注册” 延迟调用，除目标函数地址外，还会复制相关参数（包括 receiver）。在函数返回前，执行 runtime.deferreturn 提取相关信息执行延迟调用。这其中的代价自然不是普通函数调用一条 CALL 指令所能比拟的。可以考虑将内层处理逻辑转换为匿名函数.</p>
+</li>
+<li>
+<p>不合理的闭包会造成性能问题，比如闭包引用原环境变量会导致Data Race并变量逃逸到堆上，增加GC扫描和回收的负担.</p>
+</li>
+<li>
+<p>Channel： Don't communicate by sharing memory, share memory by communicating.</p>
+</li>
 </ol>
-
 <blockquote>
 <p>如果说 channel 适用于结构层面解耦，那么 mutex 则适合保护语句级别的数据安全。至于 atomic，虽然也可实现 lock-free 结构，但处理起来要复杂得多（比如 ABA 等问题），也未必就比 mutex 快很多。还有，sync.Mutex 本就没有使用内核实现，而是像 Futex 那样，直接在用户空间以 atomic 操作完成，因为 runtime 没有任何理由将剩余 CPU 时间片还给内核。</p>
 </blockquote>
-
-<ol>
+<ol start="8">
 <li>关于interface:</li>
 </ol>
-
 <blockquote>
 <p>接口的用途无需多言。但这并不意味着可在任何场合使用接口，要知道通过接口调用和普通调用存在很大差别。首先，相比静态绑定，动态绑定性能要差很多；其次，运行期需额外开销，比如接口会复制对象，哪怕仅是个指针，也会在堆上增加一个需 GC 处理的目标。</p>
 </blockquote>
-
-<ol>
-<li><p>尽管反射（reflect）存在性能问题，但依然被频繁使用，以弥补静态语言在动态行为上的不足。只是某些时候，我们须对此做些变通，以提升性能。利用指针类型转换实现性能优化，本就是 “非常手段”，是一种为了性能而放弃 “其他” 的做法。与其担心代码是否适应未来的变化，不如写个单元测试，确保在升级时做出必要的安全检查。 <a href="http://mp.weixin.qq.com/s?timestamp=1462538257&amp;src=3&amp;ver=1&amp;signature=dth4TWXJxgxWRCAQDVFbKniJE-JCeVdqp0eMklk4f0kgrbb7QuS7xs5KDDFwmZg0ba6tMcn41JsyNZceCzyp5nErTGnWK-K9wlgOp9wAw5S3bbeBa3-BkGp3r*kN-ORevh9Iuo1UnjtFWtOoEoSX0vTH6uxMcP7*Ts0r0f4yhzE=">Link</a></p></li>
-
-<li><p>作为内置类型，通道（channel）从运行时得到很多支持，其自身设计也算得上精巧。但不管怎么说，它本质上依旧是一种队列，当多个 goroutine 并发操作时，免不了要使用锁。某些时候，这种竞争机制，会导致性能问题。[在研究 go runtime 源码实现过程中，会看到大量利用 “批操作” 来提升性能的样例)(<a href="http://mp.weixin.qq.com/s?timestamp=1462538257&amp;src=3&amp;ver=1&amp;signature=dth4TWXJxgxWRCAQDVFbKniJE-JCeVdqp0eMklk4f0kgrbb7QuS7xs5KDDFwmZg0ba6tMcn41JsyNZceCzyp5pZfVq*Q5bYXUHM1nH0kMNsPL3e92xy5a0zTraWNTSnQ9u8Ie3b9rjnbg0blEE3NEoenRnmCV3MpZdqseFiuy*A=">http://mp.weixin.qq.com/s?timestamp=1462538257&amp;src=3&amp;ver=1&amp;signature=dth4TWXJxgxWRCAQDVFbKniJE-JCeVdqp0eMklk4f0kgrbb7QuS7xs5KDDFwmZg0ba6tMcn41JsyNZceCzyp5pZfVq*Q5bYXUHM1nH0kMNsPL3e92xy5a0zTraWNTSnQ9u8Ie3b9rjnbg0blEE3NEoenRnmCV3MpZdqseFiuy*A=</a>)</p></li>
-
-<li><p>Goroutine Leak: 极简单的演示，我们注释掉数据读取方，让发送方全部进入休眠等待状态。按理说，当 test 执行结束后，通道 c 已超出作用域，理应被释放回收，但实际情况是：这些处于 “chan send” 状态的 G 对象（goroutine）会一直存在，直到唤醒或进程结束，这就是所谓的 “Goroutine Leak”。解决方法很简单，可设置 timeout。或定期用 runtime.Stack 扫描所有 goroutine 调用栈，如果发现某个 goroutine 长时间（阈值）处于 “chan send” 状态，可用一个类似 “/dev/null hole” 的接收器负责唤醒并 “处理” 掉相关数据。 <a href="http://mp.weixin.qq.com/s?timestamp=1462538257&amp;src=3&amp;ver=1&amp;signature=dth4TWXJxgxWRCAQDVFbKniJE-JCeVdqp0eMklk4f0kgrbb7QuS7xs5KDDFwmZg0ba6tMcn41JsyNZceCzyp5o9mcQPs7Eqi*KhEEPKyOoiDvyJHFBWSxCetuDBLPPTsdi-SZQypc24ZMdm5qRs13Je5vyZgLwIlLqhUsErg9oI=">Link</a></p></li>
+<ol start="9">
+<li>
+<p>尽管反射（reflect）存在性能问题，但依然被频繁使用，以弥补静态语言在动态行为上的不足。只是某些时候，我们须对此做些变通，以提升性能。利用指针类型转换实现性能优化，本就是 “非常手段”，是一种为了性能而放弃 “其他” 的做法。与其担心代码是否适应未来的变化，不如写个单元测试，确保在升级时做出必要的安全检查。 <a href="http://mp.weixin.qq.com/s?timestamp=1462538257&amp;src=3&amp;ver=1&amp;signature=dth4TWXJxgxWRCAQDVFbKniJE-JCeVdqp0eMklk4f0kgrbb7QuS7xs5KDDFwmZg0ba6tMcn41JsyNZceCzyp5nErTGnWK-K9wlgOp9wAw5S3bbeBa3-BkGp3r*kN-ORevh9Iuo1UnjtFWtOoEoSX0vTH6uxMcP7*Ts0r0f4yhzE=">Link</a></p>
+</li>
+<li>
+<p>作为内置类型，通道（channel）从运行时得到很多支持，其自身设计也算得上精巧。但不管怎么说，它本质上依旧是一种队列，当多个 goroutine 并发操作时，免不了要使用锁。某些时候，这种竞争机制，会导致性能问题。[在研究 go runtime 源码实现过程中，会看到大量利用 “批操作” 来提升性能的样例)(http://mp.weixin.qq.com/s?timestamp=1462538257&amp;src=3&amp;ver=1&amp;signature=dth4TWXJxgxWRCAQDVFbKniJE-JCeVdqp0eMklk4f0kgrbb7QuS7xs5KDDFwmZg0ba6tMcn41JsyNZceCzyp5pZfVq<em>Q5bYXUHM1nH0kMNsPL3e92xy5a0zTraWNTSnQ9u8Ie3b9rjnbg0blEE3NEoenRnmCV3MpZdqseFiuy</em>A=)</p>
+</li>
+<li>
+<p>Goroutine Leak: 极简单的演示，我们注释掉数据读取方，让发送方全部进入休眠等待状态。按理说，当 test 执行结束后，通道 c 已超出作用域，理应被释放回收，但实际情况是：这些处于 “chan send” 状态的 G 对象（goroutine）会一直存在，直到唤醒或进程结束，这就是所谓的 “Goroutine Leak”。解决方法很简单，可设置 timeout。或定期用 runtime.Stack 扫描所有 goroutine 调用栈，如果发现某个 goroutine 长时间（阈值）处于 “chan send” 状态，可用一个类似 “/dev/null hole” 的接收器负责唤醒并 “处理” 掉相关数据。 <a href="http://mp.weixin.qq.com/s?timestamp=1462538257&amp;src=3&amp;ver=1&amp;signature=dth4TWXJxgxWRCAQDVFbKniJE-JCeVdqp0eMklk4f0kgrbb7QuS7xs5KDDFwmZg0ba6tMcn41JsyNZceCzyp5o9mcQPs7Eqi*KhEEPKyOoiDvyJHFBWSxCetuDBLPPTsdi-SZQypc24ZMdm5qRs13Je5vyZgLwIlLqhUsErg9oI=">Link</a></p>
+</li>
 </ol>
 
   </div>
@@ -296,7 +321,7 @@ func main() {
         
 <li>
   <span class="list__title--small">
-    <a href="/posts/2016-04-24-tips-for-cgo/">Tips for cgo</a>
+    <a href="/posts/2016-04-24-tips-for-cgo/" >Tips for cgo</a>
       
       <time class="pull-right hidden-tablet">Apr 24 &#39;16</time>
       
@@ -305,12 +330,13 @@ func main() {
 
 <li>
   <span class="list__title--small">
-    <a href="/posts/2016-04-19-cgo-in-go-1-6/">cgo in go 1.6</a>
+    <a href="/posts/2016-04-19-cgo-in-go-1-6/" >cgo in go 1.6</a>
       
       <time class="pull-right hidden-tablet">Apr 19 &#39;16</time>
       
   </span>
 </li>
+
 
     </ul>
 </div>
@@ -356,6 +382,7 @@ func main() {
         </div>
         
     
+
   
   
 <script type="application/javascript">
@@ -370,15 +397,12 @@ if (!doNotTrack) {
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
-<script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"
-  integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy"
-  crossorigin="anonymous">
-</script>
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
 
 
     
     
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
         
     
     <script type="text/javascript">
@@ -389,6 +413,21 @@ if (!doNotTrack) {
 
 
 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.js"></script>
+<script type="text/javascript">
+  if (tocbot) {
+    tocbot.init({
+      
+      tocSelector: '.toc',
+      
+      contentSelector: '.post',
+      
+      headingSelector: 'h2, h3, h4',
+      collapseDepth: 4
+    });
+  }
+</script>
 
 
 

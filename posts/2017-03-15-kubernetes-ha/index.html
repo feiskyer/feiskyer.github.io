@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.49.2" />
+<meta name="generator" content="Hugo 0.62.2" />
 
     
     
@@ -22,18 +22,29 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content=""/>
-<meta name="twitter:description" content="layout: post title: Kubernetes HA date: 2017-03-15 18:12:47 tags: [kubernetes] Kubernetes从1.5开始，通过kops或者kube-up.sh部署的集群会自动部署一个高可用的系统，包括 etcd"/>
+<meta name="twitter:description" content="layout: post title: Kubernetes HA date: 2017-03-15 18:12:47 tags: [kubernetes] Kubernetes从1.5开始，通过kops或者kube-up.sh部署的集群会自动部署一个高可用的系统，包括
+ etcd集群模式 apiserver负载均衡 controller manager、scheduler和cluster autoscaler自动选主（有且仅有一个运行实例）  如下图所示
+etcd集群 从https://discovery.etcd.io/new?size=3获取token后，把https://kubernetes.io/docs/admin/high-availability/etcd.yaml放到每台机器的/etc/kubernetes/manifests/etcd.yaml，并替换掉${DISCOVERY_TOKEN}, ${NODE_NAME}和${NODE_IP}，既可以由kubelet来启动一个etcd集群。
+对于运行在kubelet外部的etcd，可以参考etcd clustering guide来手动配置集群模式。
+apiserver 把https://kubernetes.io/docs/admin/high-availability/kube-apiserver.yaml放到每台Master节点的/etc/kubernetes/manifests/，并把相关的配置放到/srv/kubernetes/，即可由kubelet自动创建并启动apiserver:
+ basic_auth.csv - basic auth user and password ca.crt - Certificate Authority cert known_tokens.csv - tokens that entities (e.g. the kubelet) can use to talk to the apiserver kubecfg.crt - Client certificate, public key kubecfg.key - Client certificate, private key server.cert - Server certificate, public key server."/>
 
 <meta property="og:title" content="" />
-<meta property="og:description" content="layout: post title: Kubernetes HA date: 2017-03-15 18:12:47 tags: [kubernetes] Kubernetes从1.5开始，通过kops或者kube-up.sh部署的集群会自动部署一个高可用的系统，包括 etcd" />
+<meta property="og:description" content="layout: post title: Kubernetes HA date: 2017-03-15 18:12:47 tags: [kubernetes] Kubernetes从1.5开始，通过kops或者kube-up.sh部署的集群会自动部署一个高可用的系统，包括
+ etcd集群模式 apiserver负载均衡 controller manager、scheduler和cluster autoscaler自动选主（有且仅有一个运行实例）  如下图所示
+etcd集群 从https://discovery.etcd.io/new?size=3获取token后，把https://kubernetes.io/docs/admin/high-availability/etcd.yaml放到每台机器的/etc/kubernetes/manifests/etcd.yaml，并替换掉${DISCOVERY_TOKEN}, ${NODE_NAME}和${NODE_IP}，既可以由kubelet来启动一个etcd集群。
+对于运行在kubelet外部的etcd，可以参考etcd clustering guide来手动配置集群模式。
+apiserver 把https://kubernetes.io/docs/admin/high-availability/kube-apiserver.yaml放到每台Master节点的/etc/kubernetes/manifests/，并把相关的配置放到/srv/kubernetes/，即可由kubelet自动创建并启动apiserver:
+ basic_auth.csv - basic auth user and password ca.crt - Certificate Authority cert known_tokens.csv - tokens that entities (e.g. the kubelet) can use to talk to the apiserver kubecfg.crt - Client certificate, public key kubecfg.key - Client certificate, private key server.cert - Server certificate, public key server." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://feisky.xyz/posts/2017-03-15-kubernetes-ha/" />
+
 
 
     
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
 
 
 
@@ -42,15 +53,15 @@
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hyde-hyde.6f40d28e777b288cb757a1db116a257b6f8dffc63a05e8473d12dc09a52d8d79.css" integrity="sha256-b0DSjnd7KIy3V6HbEWole2&#43;N/8Y6BehHPRLcCaUtjXk=">
+<link rel="stylesheet" href="/scss/hyde-hyde.92c66d107d7b219f0792cfd67223179af884b03f386ac46894f9f735932bbca3.css" integrity="sha256-ksZtEH17IZ8Hks/WciMXmviEsD84asRolPn3NZMrvKM=">
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
 
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hugo-toc.8549a64d301421b4256ea9a0d5ca8b99178799f569d5d2daeb95f24cef3ce6b7.css" integrity="sha256-hUmmTTAUIbQlbqmg1cqLmReHmfVp1dLa65XyTO885rc=">
+<link rel="stylesheet" href="/scss/tocbot.126e7d75240acc946d34d6ccb2982ed4c394a5fe34e73e1a2119ca951bcf119d.css" integrity="sha256-Em59dSQKzJRtNNbMspgu1MOUpf405z4aIRnKlRvPEZ0=">
 
 
 
@@ -62,6 +73,7 @@
     <!-- Icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
     <link rel="shortcut icon" href="/favicon.png">
+    
     
 
 </head>
@@ -75,6 +87,7 @@
       <span class="site__title">
         <a href="https://feisky.xyz/">Feisky</a>
       </span>
+      
       
       <p class="site__description">
          Notes about anything 
@@ -91,7 +104,23 @@
 			 
 				<li>
 					<a href="https://kubernetes.feisky.xyz">
-						<span>Kubernetes</span>
+						<span>Kubernetes指南</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://time.geekbang.org/column/intro/100020901">
+						<span>Linux性能优化实战</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://sdn.feisky.xyz">
+						<span>SDN网络</span>
 					</a>
 				</li>
 			 
@@ -106,21 +135,12 @@
 		 
 			 
 				<li>
-					<a href="https://sdn.feisky.xyz">
-						<span>SDN</span>
-					</a>
-				</li>
-			 
-		 
-			 
-				<li>
 					<a href="/about/">
-						<span>About</span>
+						<span>关于我</span>
 					</a>
 				</li>
 			 
 		
-		</li>
 	</ul>
 </div>
 
@@ -143,23 +163,33 @@
 	
 	
 	
+	
+	
 </section>
 
       </div>
     </div>
-    <div class="copyright">
-  &copy; 2019 .
-  <a href="https://creativecommons.org/licenses/by-sa/4.0">Some Rights Reserved</a>.
-  Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+    
+<div class="copyright">
+  &copy; 2020 feiskyer
+  
+    <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>
   
 </div>
+
+
+<div class="builtwith">
+Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+</div>
+
 
   </div>
 </div>
 
         <div class="content container">
             
-    <article>
+    
+<article>
   <header>
     <h1></h1>
     
@@ -172,64 +202,41 @@
     
     
     <br/>
-    <i class="fas fa-clock"></i> 3 min read
+    <i class="fas fa-clock"></i> 1 min read
 </div>
 
 
   </header>
   
   
-  <div class="toc-wrapper">
-    <input type="checkbox" id="tocToggle">
-    <label for="tocToggle">Table of Content</label>
-    
-        <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#tags-kubernetes">tags: [kubernetes]</a></li>
-<li><a href="#etcd集群">etcd集群</a></li>
-<li><a href="#apiserver">apiserver</a></li>
-<li><a href="#controller-manager和scheduler">controller manager和scheduler</a></li>
-<li><a href="#数据持久化">数据持久化</a></li>
-<li><a href="#参考文档">参考文档</a></li>
-</ul></li>
-</ul>
-</nav>
-    
-  </div>
+  
+    <div class="toc-wrapper">
+      <input type="checkbox" id="tocToggle">
+      <label for="tocToggle">Table of Content</label>
+      
+        <div class="toc" id="TableOfContents"></div>
+      
+    </div>
+  
   
   <div class="post">
-    
-
-<p>layout: post
+    <h2 id="tags-kubernetes">layout: post
 title: Kubernetes HA
-date: 2017-03-15 18:12:47</p>
-
-<h2 id="tags-kubernetes">tags: [kubernetes]</h2>
-
+date: 2017-03-15 18:12:47
+tags: [kubernetes]</h2>
 <p>Kubernetes从1.5开始，通过<code>kops</code>或者<code>kube-up.sh</code>部署的集群会自动部署一个高可用的系统，包括</p>
-
 <ul>
 <li>etcd集群模式</li>
 <li>apiserver负载均衡</li>
 <li>controller manager、scheduler和cluster autoscaler自动选主（有且仅有一个运行实例）</li>
 </ul>
-
 <p>如下图所示</p>
-
-<p><img src="/kubernetes/ha/ha.png" alt="" /></p>
-
+<p><img src="/kubernetes/ha/ha.png" alt=""></p>
 <h2 id="etcd集群">etcd集群</h2>
-
 <p>从<code>https://discovery.etcd.io/new?size=3</code>获取token后，把<a href="https://kubernetes.io/docs/admin/high-availability/etcd.yaml">https://kubernetes.io/docs/admin/high-availability/etcd.yaml</a>放到每台机器的<code>/etc/kubernetes/manifests/etcd.yaml</code>，并替换掉<code>${DISCOVERY_TOKEN}</code>, <code>${NODE_NAME}</code>和<code>${NODE_IP}</code>，既可以由kubelet来启动一个etcd集群。</p>
-
 <p>对于运行在kubelet外部的etcd，可以参考<a href="https://github.com/coreos/etcd/blob/master/Documentation/op-guide/clustering.md">etcd clustering guide</a>来手动配置集群模式。</p>
-
 <h2 id="apiserver">apiserver</h2>
-
 <p>把<a href="https://kubernetes.io/docs/admin/high-availability/kube-apiserver.yaml">https://kubernetes.io/docs/admin/high-availability/kube-apiserver.yaml</a>放到每台Master节点的<code>/etc/kubernetes/manifests/</code>，并把相关的配置放到<code>/srv/kubernetes/</code>，即可由kubelet自动创建并启动apiserver:</p>
-
 <ul>
 <li>basic_auth.csv - basic auth user and password</li>
 <li>ca.crt - Certificate Authority cert</li>
@@ -239,30 +246,19 @@ date: 2017-03-15 18:12:47</p>
 <li>server.cert - Server certificate, public key</li>
 <li>server.key - Server certificate, private key</li>
 </ul>
-
 <p>apiserver启动后，还需要为它们做负载均衡，可以使用云平台的弹性负载均衡服务或者使用haproxy/lvs等为master节点配置负载均衡。</p>
-
 <h2 id="controller-manager和scheduler">controller manager和scheduler</h2>
-
 <p>controller manager和scheduler需要保证任何时刻都只有一个实例运行，需要一个选主的过程，所以在启动时要设置<code>--leader-elect=true</code>，比如</p>
-
 <pre><code>kube-scheduler --master=127.0.0.1:8080 --v=2 --leader-elect=true
 kube-controller-manager --master=127.0.0.1:8080 --cluster-cidr=10.245.0.0/16 --allocate-node-cidrs=true --service-account-private-key-file=/srv/kubernetes/server.key --v=2 --leader-elect=true
-</code></pre>
-
-<p>把<a href="https://kubernetes.io/docs/admin/high-availability/kube-scheduler.yaml">kube-scheduler.yaml</a>和<a href="https://kubernetes.io/docs/admin/high-availability/kube-controller-manager.yaml">kube-controller-manager.yaml</a>(非GCE平台需要适当修改) 放到每台master节点的<code>/etc/kubernetes/manifests/</code>即可。</p>
-
+</code></pre><p>把<a href="https://kubernetes.io/docs/admin/high-availability/kube-scheduler.yaml">kube-scheduler.yaml</a>和<a href="https://kubernetes.io/docs/admin/high-availability/kube-controller-manager.yaml">kube-controller-manager.yaml</a>(非GCE平台需要适当修改) 放到每台master节点的<code>/etc/kubernetes/manifests/</code>即可。</p>
 <h2 id="数据持久化">数据持久化</h2>
-
 <p>除了上面提到的这些配置，持久化存储也是高可用Kubernetes集群所必须的。</p>
-
 <ul>
 <li>对于公有云上部署的集群，可以考虑使用云平台提供的持久化存储，比如aws ebs或者gce persistent disk</li>
 <li>对于物理机部署的集群，可以考虑使用iSCSI、NFS、Gluster或者Ceph等网络存储，也可以使用RAID</li>
 </ul>
-
 <h2 id="参考文档">参考文档</h2>
-
 <ul>
 <li><a href="https://kubernetes.io/docs/admin/high-availability/">https://kubernetes.io/docs/admin/high-availability/</a></li>
 <li><a href="http://kubecloud.io/setup-ha-k8s-kops/">http://kubecloud.io/setup-ha-k8s-kops/</a></li>
@@ -332,6 +328,7 @@ kube-controller-manager --master=127.0.0.1:8080 --cluster-cidr=10.245.0.0/16 --a
         </div>
         
     
+
   
   
 <script type="application/javascript">
@@ -346,15 +343,12 @@ if (!doNotTrack) {
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
-<script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"
-  integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy"
-  crossorigin="anonymous">
-</script>
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
 
 
     
     
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
         
     
     <script type="text/javascript">
@@ -365,6 +359,21 @@ if (!doNotTrack) {
 
 
 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.js"></script>
+<script type="text/javascript">
+  if (tocbot) {
+    tocbot.init({
+      
+      tocSelector: '.toc',
+      
+      contentSelector: '.post',
+      
+      headingSelector: 'h2, h3, h4',
+      collapseDepth: 4
+    });
+  }
+</script>
 
 
 

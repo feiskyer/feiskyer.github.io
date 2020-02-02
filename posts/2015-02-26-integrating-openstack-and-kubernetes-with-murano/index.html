@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.49.2" />
+<meta name="generator" content="Hugo 0.62.2" />
 
     
     
@@ -23,19 +23,20 @@
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Integrating Openstack and Kubernetes with Murano"/>
 <meta name="twitter:description" content="There’s a perceived competition between OpenStack and containers such as Docker, but in reality, the two technologies are a powerful combination. They both solve similar problems, but on different layers of the stack, so combining the two can give users more scalability and automation than ever before.
-That containers app you wrote needs to run somewhere. This is particularly true for orchestrated container applications, such as those managed by Kubernetes."/>
+That containers app you wrote needs to run somewhere. This is particularly true for orchestrated container applications, such as those managed by Kubernetes. What’s more, if your application is complicated enough that it needs to scale up and down, you need to be running it in an environment that can, itself, scale up and down."/>
 
 <meta property="og:title" content="Integrating Openstack and Kubernetes with Murano" />
 <meta property="og:description" content="There’s a perceived competition between OpenStack and containers such as Docker, but in reality, the two technologies are a powerful combination. They both solve similar problems, but on different layers of the stack, so combining the two can give users more scalability and automation than ever before.
-That containers app you wrote needs to run somewhere. This is particularly true for orchestrated container applications, such as those managed by Kubernetes." />
+That containers app you wrote needs to run somewhere. This is particularly true for orchestrated container applications, such as those managed by Kubernetes. What’s more, if your application is complicated enough that it needs to scale up and down, you need to be running it in an environment that can, itself, scale up and down." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://feisky.xyz/posts/2015-02-26-integrating-openstack-and-kubernetes-with-murano/" />
+
 
 
     
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
 
 
 
@@ -44,15 +45,15 @@ That containers app you wrote needs to run somewhere. This is particularly true 
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hyde-hyde.6f40d28e777b288cb757a1db116a257b6f8dffc63a05e8473d12dc09a52d8d79.css" integrity="sha256-b0DSjnd7KIy3V6HbEWole2&#43;N/8Y6BehHPRLcCaUtjXk=">
+<link rel="stylesheet" href="/scss/hyde-hyde.92c66d107d7b219f0792cfd67223179af884b03f386ac46894f9f735932bbca3.css" integrity="sha256-ksZtEH17IZ8Hks/WciMXmviEsD84asRolPn3NZMrvKM=">
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
 
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hugo-toc.8549a64d301421b4256ea9a0d5ca8b99178799f569d5d2daeb95f24cef3ce6b7.css" integrity="sha256-hUmmTTAUIbQlbqmg1cqLmReHmfVp1dLa65XyTO885rc=">
+<link rel="stylesheet" href="/scss/tocbot.126e7d75240acc946d34d6ccb2982ed4c394a5fe34e73e1a2119ca951bcf119d.css" integrity="sha256-Em59dSQKzJRtNNbMspgu1MOUpf405z4aIRnKlRvPEZ0=">
 
 
 
@@ -64,6 +65,7 @@ That containers app you wrote needs to run somewhere. This is particularly true 
     <!-- Icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
     <link rel="shortcut icon" href="/favicon.png">
+    
     
 
 </head>
@@ -77,6 +79,7 @@ That containers app you wrote needs to run somewhere. This is particularly true 
       <span class="site__title">
         <a href="https://feisky.xyz/">Feisky</a>
       </span>
+      
       
       <p class="site__description">
          Notes about anything 
@@ -93,7 +96,23 @@ That containers app you wrote needs to run somewhere. This is particularly true 
 			 
 				<li>
 					<a href="https://kubernetes.feisky.xyz">
-						<span>Kubernetes</span>
+						<span>Kubernetes指南</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://time.geekbang.org/column/intro/100020901">
+						<span>Linux性能优化实战</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://sdn.feisky.xyz">
+						<span>SDN网络</span>
 					</a>
 				</li>
 			 
@@ -108,21 +127,12 @@ That containers app you wrote needs to run somewhere. This is particularly true 
 		 
 			 
 				<li>
-					<a href="https://sdn.feisky.xyz">
-						<span>SDN</span>
-					</a>
-				</li>
-			 
-		 
-			 
-				<li>
 					<a href="/about/">
-						<span>About</span>
+						<span>关于我</span>
 					</a>
 				</li>
 			 
 		
-		</li>
 	</ul>
 </div>
 
@@ -145,23 +155,33 @@ That containers app you wrote needs to run somewhere. This is particularly true 
 	
 	
 	
+	
+	
 </section>
 
       </div>
     </div>
-    <div class="copyright">
-  &copy; 2019 .
-  <a href="https://creativecommons.org/licenses/by-sa/4.0">Some Rights Reserved</a>.
-  Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+    
+<div class="copyright">
+  &copy; 2020 feiskyer
+  
+    <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>
   
 </div>
+
+
+<div class="builtwith">
+Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+</div>
+
 
   </div>
 </div>
 
         <div class="content container">
             
-    <article>
+    
+<article>
   <header>
     <h1>Integrating Openstack and Kubernetes with Murano</h1>
     
@@ -194,107 +214,66 @@ That containers app you wrote needs to run somewhere. This is particularly true 
   </header>
   
   
-  <div class="toc-wrapper">
-    <input type="checkbox" id="tocToggle">
-    <label for="tocToggle">Table of Content</label>
-    
-        <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#how-it-works">How it works</a></li>
-<li><a href="#kubernetes-and-openstack-in-action">Kubernetes and OpenStack in Action</a></li>
-</ul></li>
-</ul>
-</nav>
-    
-  </div>
+  
+    <div class="toc-wrapper">
+      <input type="checkbox" id="tocToggle">
+      <label for="tocToggle">Table of Content</label>
+      
+        <div class="toc" id="TableOfContents"></div>
+      
+    </div>
+  
   
   <div class="post">
-    
-
-<p>There’s a perceived competition between OpenStack and containers such as Docker, but in reality, the two technologies are a powerful combination. They both solve similar problems, but on different layers of the stack, so combining the two can give users more scalability and automation than ever before.</p>
-
+    <p>There’s a perceived competition between OpenStack and containers such as Docker, but in reality, the two technologies are a powerful combination. They both solve similar problems, but on different layers of the stack, so combining the two can give users more scalability and automation than ever before.</p>
 <p>That containers app you wrote needs to run somewhere. This is particularly true for orchestrated container applications, such as those managed by Kubernetes. What’s more, if your application is complicated enough that it needs to scale up and down, you need to be running it in an environment that can, itself, scale up and down. This is where OpenStack comes in.</p>
-
-<p>The idea of making OpenStack and Kubernetes work together might seem a little daunting, but as of today, it just got easier. &nbsp;A lot easier.</p>
-
+<p>The idea of making OpenStack and Kubernetes work together might seem a little daunting, but as of today, it just got easier.  A lot easier.</p>
 <p>Today we are announcing a joint project with Google to integrate the Kubernetes container management application with the OpenStack Application Catalog, Murano. This project will enable you to click a few buttons and end up with a working, scalable Kubernetes application within minutes.</p>
-
-<p>While that in itself is a pretty heady thought, let’s stop for a moment and think about what that means. &nbsp;Remember, Kubernetes lets you move workloads between different clouds, as long as they’re both running Kubernetes. &nbsp;That means that you will be able to move workloads between OpenStack and other clouds, such as Google Cloud Platform. &nbsp;Suddenly hybrid cloud — an OpenStack private cloud integrated with public cloud for scale — doesn’t sound so crazy anymore.</p>
-
-<p>For example, you might construct an application environment in which your internal database lives in your private OpenStack cloud, but the web application component that presents it to the world lives in public cloud. &nbsp;Perhaps you have an external-facing application in the public cloud that sends analytics back to a big data application in the private cloud. Or you might simply have an application that runs on the private cloud but uses the public cloud as a bank of additional resources when needed.</p>
-
+<p>While that in itself is a pretty heady thought, let’s stop for a moment and think about what that means.  Remember, Kubernetes lets you move workloads between different clouds, as long as they’re both running Kubernetes.  That means that you will be able to move workloads between OpenStack and other clouds, such as Google Cloud Platform.  Suddenly hybrid cloud — an OpenStack private cloud integrated with public cloud for scale — doesn’t sound so crazy anymore.</p>
+<p>For example, you might construct an application environment in which your internal database lives in your private OpenStack cloud, but the web application component that presents it to the world lives in public cloud.  Perhaps you have an external-facing application in the public cloud that sends analytics back to a big data application in the private cloud. Or you might simply have an application that runs on the private cloud but uses the public cloud as a bank of additional resources when needed.</p>
 <p>But how does it actually work?</p>
-
 <h2 id="how-it-works">How it works</h2>
-
 <p>Craig Peters and Georgy Okrokvertskhov will be doing a live demo at the <a href="http://www.meetup.com/Bay-Area-Kubernetes-Meetup/events/220167517/">Kubernetes Gathering on Wednesday, February 25</a>, but the idea here is to build on the fact that users can easily self-provision applications using Murano. Murano will provide a Kubernetes package, which provides an abstraction layer for Kubernetes and Pods. Developers can then package their applications for use as they normally would, easily adding them to the Kubernetes cluster.</p>
-
-<p>Kubernetes does the same things you expect it to, such as providing Pods that implement the Docker service, monitoring availability and load of the Pods, and scaling Pods up and down based on the Kubernetes configuration. &nbsp;It also coordinates connectivity between the Pods and the underlying infrastructure.</p>
-
+<p>Kubernetes does the same things you expect it to, such as providing Pods that implement the Docker service, monitoring availability and load of the Pods, and scaling Pods up and down based on the Kubernetes configuration.  It also coordinates connectivity between the Pods and the underlying infrastructure.</p>
 <p>Meanwhile, Murano manages and orchestrates that underlying infrastructure, which consists of OpenStack resources. It configures the virtual network for Kubernetes and the Pods, and uses OpenStack Orchestration (Heat) to provision the resources Kubernetes needs, such as virtual machines and interface connections, network and subnet configs, security groups, router configurations, and storage.</p>
-
-<p>If you’re already using Kubernetes, you’re probably already familiar with how scaling works. &nbsp;Containers are grouped into Pods, and Kubernetes scales the Pods within a Kubernetes cluster, spawning containers on Kubernetes hosts. If you have multiple hosts, Kubernetes distributes the containers among them.</p>
-
-<p>When your application grows to the point where the Kubernetes cluster itself needs to scale, however, the system needs some outside help; an external system needs to add resources. In this case, that “external system” is Murano, which uses OpenStack Telemetry (Ceilometer) to detect when additional resources are needed. Murano adds a new host to the Kubernetes cluster using the Kubernetes “add node” function, and Kubernetes redistributes the load. &nbsp;(Murano can also initiate scaling applications within a cluster, if necessary.)</p>
-
+<p>If you’re already using Kubernetes, you’re probably already familiar with how scaling works.  Containers are grouped into Pods, and Kubernetes scales the Pods within a Kubernetes cluster, spawning containers on Kubernetes hosts. If you have multiple hosts, Kubernetes distributes the containers among them.</p>
+<p>When your application grows to the point where the Kubernetes cluster itself needs to scale, however, the system needs some outside help; an external system needs to add resources. In this case, that “external system” is Murano, which uses OpenStack Telemetry (Ceilometer) to detect when additional resources are needed. Murano adds a new host to the Kubernetes cluster using the Kubernetes “add node” function, and Kubernetes redistributes the load.  (Murano can also initiate scaling applications within a cluster, if necessary.)</p>
 <h2 id="kubernetes-and-openstack-in-action">Kubernetes and OpenStack in Action</h2>
-
-<p>Well, that all sounds great in theory, but how do you actually do it? &nbsp;Fortunately, the process is pretty straightforward. &nbsp;</p>
-
-<p>NOTE: &nbsp;The following steps are in development, and will be available will be available for technical preview use on <a href="http://express.mirantis.com/">Mirantis OpenStack Express</a> in April 2015.</p>
-
+<p>Well, that all sounds great in theory, but how do you actually do it?  Fortunately, the process is pretty straightforward.  </p>
+<p>NOTE:  The following steps are in development, and will be available will be available for technical preview use on <a href="http://express.mirantis.com/">Mirantis OpenStack Express</a> in April 2015.</p>
 <ul>
-<li>Deploy an OpenStack cluster, and install Murano. &nbsp;(In Mirantis OpenStack, this is simply a matter of checking the “Murano” box in the “Create Environment” wizard.</li>
+<li>Deploy an OpenStack cluster, and install Murano.  (In Mirantis OpenStack, this is simply a matter of checking the “Murano” box in the “Create Environment” wizard.</li>
 </ul>
-
-<p><img src="https://www.mirantis.com/wp-content/uploads/2015/02/install-murano1.png" alt="" />(<a href="https://www.mirantis.com/wp-content/uploads/2015/02/install-murano1.png">https://www.mirantis.com/wp-content/uploads/2015/02/install-murano1.png</a>)</p>
-
+<p><img src="https://www.mirantis.com/wp-content/uploads/2015/02/install-murano1.png" alt="">(<a href="https://www.mirantis.com/wp-content/uploads/2015/02/install-murano1.png">https://www.mirantis.com/wp-content/uploads/2015/02/install-murano1.png</a>)</p>
 <ul>
 <li>Open the OpenStack Dashboard (Horizon).</li>
 </ul>
-
-<p><img src="https://www.mirantis.com/wp-content/uploads/2015/02/open-the-openstack-dashboard1.png" alt="" />(<a href="https://www.mirantis.com/wp-content/uploads/2015/02/open-the-openstack-dashboard1.png">https://www.mirantis.com/wp-content/uploads/2015/02/open-the-openstack-dashboard1.png</a>)</p>
-
+<p><img src="https://www.mirantis.com/wp-content/uploads/2015/02/open-the-openstack-dashboard1.png" alt="">(<a href="https://www.mirantis.com/wp-content/uploads/2015/02/open-the-openstack-dashboard1.png">https://www.mirantis.com/wp-content/uploads/2015/02/open-the-openstack-dashboard1.png</a>)</p>
 <ul>
 <li>Click Murano and create a new environment.</li>
 </ul>
-
-<p><img src="https://www.mirantis.com/wp-content/uploads/2015/02/Click-Murano-and-create-a-new-environment1.png" alt="" />(<a href="https://www.mirantis.com/wp-content/uploads/2015/02/Click-Murano-and-create-a-new-environment1.png">https://www.mirantis.com/wp-content/uploads/2015/02/Click-Murano-and-create-a-new-environment1.png</a>)</p>
-
+<p><img src="https://www.mirantis.com/wp-content/uploads/2015/02/Click-Murano-and-create-a-new-environment1.png" alt="">(<a href="https://www.mirantis.com/wp-content/uploads/2015/02/Click-Murano-and-create-a-new-environment1.png">https://www.mirantis.com/wp-content/uploads/2015/02/Click-Murano-and-create-a-new-environment1.png</a>)</p>
 <ul>
 <li>Add the Kubernetes application to the environment.</li>
 </ul>
-
-<p><img src="https://www.mirantis.com/wp-content/uploads/2015/02/add-the-kubernetes-application-to-the-environment1.png" alt="" />(<a href="https://www.mirantis.com/wp-content/uploads/2015/02/add-the-kubernetes-application-to-the-environment1.png">https://www.mirantis.com/wp-content/uploads/2015/02/add-the-kubernetes-application-to-the-environment1.png</a>)</p>
-
+<p><img src="https://www.mirantis.com/wp-content/uploads/2015/02/add-the-kubernetes-application-to-the-environment1.png" alt="">(<a href="https://www.mirantis.com/wp-content/uploads/2015/02/add-the-kubernetes-application-to-the-environment1.png">https://www.mirantis.com/wp-content/uploads/2015/02/add-the-kubernetes-application-to-the-environment1.png</a>)</p>
 <ul>
 <li>Add the Kubernetes Pod to the environment.</li>
 </ul>
-
-<p><img src="https://www.mirantis.com/wp-content/uploads/2015/02/add-kubernetes-pod-to-environment1.png" alt="" />(<a href="https://www.mirantis.com/wp-content/uploads/2015/02/add-kubernetes-pod-to-environment1.png">https://www.mirantis.com/wp-content/uploads/2015/02/add-kubernetes-pod-to-environment1.png</a>)</p>
-
+<p><img src="https://www.mirantis.com/wp-content/uploads/2015/02/add-kubernetes-pod-to-environment1.png" alt="">(<a href="https://www.mirantis.com/wp-content/uploads/2015/02/add-kubernetes-pod-to-environment1.png">https://www.mirantis.com/wp-content/uploads/2015/02/add-kubernetes-pod-to-environment1.png</a>)</p>
 <ul>
-<li>Add an application to the Pod. &nbsp;In this case, we’ll add a web server just so we can see it work.</li>
+<li>Add an application to the Pod.  In this case, we’ll add a web server just so we can see it work.</li>
 </ul>
-
-<p><img src="https://www.mirantis.com/wp-content/uploads/2015/02/add-application-to-pod1.png" alt="" />(<a href="https://www.mirantis.com/wp-content/uploads/2015/02/add-application-to-pod1.png">https://www.mirantis.com/wp-content/uploads/2015/02/add-application-to-pod1.png</a>)</p>
-
+<p><img src="https://www.mirantis.com/wp-content/uploads/2015/02/add-application-to-pod1.png" alt="">(<a href="https://www.mirantis.com/wp-content/uploads/2015/02/add-application-to-pod1.png">https://www.mirantis.com/wp-content/uploads/2015/02/add-application-to-pod1.png</a>)</p>
 <ul>
 <li>Deploy the environment.</li>
 </ul>
-
-<p><img src="https://www.mirantis.com/wp-content/uploads/2015/02/deploy1.png" alt="" />(<a href="https://www.mirantis.com/wp-content/uploads/2015/02/deploy1.png">https://www.mirantis.com/wp-content/uploads/2015/02/deploy1.png</a>)</p>
-
+<p><img src="https://www.mirantis.com/wp-content/uploads/2015/02/deploy1.png" alt="">(<a href="https://www.mirantis.com/wp-content/uploads/2015/02/deploy1.png">https://www.mirantis.com/wp-content/uploads/2015/02/deploy1.png</a>)</p>
 <ul>
 <li>Test.</li>
 </ul>
-
-<p><img src="https://www.mirantis.com/wp-content/uploads/2015/02/test.png" alt="" />(<a href="https://www.mirantis.com/wp-content/uploads/2015/02/test.png">https://www.mirantis.com/wp-content/uploads/2015/02/test.png</a>)</p>
-
+<p><img src="https://www.mirantis.com/wp-content/uploads/2015/02/test.png" alt="">(<a href="https://www.mirantis.com/wp-content/uploads/2015/02/test.png">https://www.mirantis.com/wp-content/uploads/2015/02/test.png</a>)</p>
 <p>That’s it.</p>
-
 <p>From <a href="https://www.mirantis.com/blog/integrating-openstack-and-kubernetes-with-murano/">https://www.mirantis.com/blog/integrating-openstack-and-kubernetes-with-murano/</a>.</p>
 
   </div>
@@ -308,8 +287,8 @@ That containers app you wrote needs to run somewhere. This is particularly true 
     </a>
     
     
-    <a href="/posts/2015-02-13-installing-nova-docker-on-openstack-juno/" class="navigation-next">
-      <span class="navigation-tittle">Installing nova docker on OpenStack Juno</span>
+    <a href="/posts/2015-02-15-installing-realtek-rltwifi-driver-for-ubuntu-1410/" class="navigation-next">
+      <span class="navigation-tittle">Installing Realtek rltwifi driver for Ubuntu 14.10</span>
       <i aria-hidden="true" class="fa fa-chevron-right"></i>
     </a>
     
@@ -326,7 +305,7 @@ That containers app you wrote needs to run somewhere. This is particularly true 
         
 <li>
   <span class="list__title--small">
-    <a href="/posts/2017-01-09-%E4%BD%BF%E7%94%A8docker-dind%E5%88%9B%E5%BB%BAswarm%E9%9B%86%E7%BE%A4/">使用docker dind创建swarm集群</a>
+    <a href="/posts/2017-01-09-%E4%BD%BF%E7%94%A8docker-dind%E5%88%9B%E5%BB%BAswarm%E9%9B%86%E7%BE%A4/" >使用docker dind创建swarm集群</a>
       
       <time class="pull-right hidden-tablet">Jan 09 &#39;17</time>
       
@@ -335,31 +314,32 @@ That containers app you wrote needs to run somewhere. This is particularly true 
 
 <li>
   <span class="list__title--small">
-    <a href="/posts/2015-03-20-docker-in-tencent/">docker in tencent</a>
+    <a href="/posts/2015-02-26-going-native-with-openstack-centric-applications-murano/" >Going Native with OpenStack Centric Applications: Murano</a>
       
   </span>
 </li>
 
 <li>
   <span class="list__title--small">
-    <a href="/posts/2015-06-24-openstack-magnum/">OpenStack Magnum社区及项目介绍</a>
+    <a href="/posts/2015-03-02-how-enable-openstack-allinone-vm-to-access-external-network/" >How enable OpenStack allinone vm to access external network</a>
       
   </span>
 </li>
 
 <li>
   <span class="list__title--small">
-    <a href="/posts/2015-02-12-how-to-use-docker-compose-to-deploy-a-flask-app/">How to use docker compose to deploy a flask app</a>
+    <a href="/posts/2015-02-12-how-to-use-docker-compose-to-deploy-a-flask-app/" >How to use docker compose to deploy a flask app</a>
       
   </span>
 </li>
 
 <li>
   <span class="list__title--small">
-    <a href="/posts/2015-02-13-installing-nova-docker-on-openstack-juno/">Installing nova docker on OpenStack Juno</a>
+    <a href="/posts/2015-02-13-installing-nova-docker-on-openstack-juno/" >Installing nova docker on OpenStack Juno</a>
       
   </span>
 </li>
+
 
     </ul>
 </div>
@@ -405,6 +385,7 @@ That containers app you wrote needs to run somewhere. This is particularly true 
         </div>
         
     
+
   
   
 <script type="application/javascript">
@@ -419,15 +400,12 @@ if (!doNotTrack) {
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
-<script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"
-  integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy"
-  crossorigin="anonymous">
-</script>
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
 
 
     
     
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
         
     
     <script type="text/javascript">
@@ -438,6 +416,21 @@ if (!doNotTrack) {
 
 
 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.js"></script>
+<script type="text/javascript">
+  if (tocbot) {
+    tocbot.init({
+      
+      tocSelector: '.toc',
+      
+      contentSelector: '.post',
+      
+      headingSelector: 'h2, h3, h4',
+      collapseDepth: 4
+    });
+  }
+</script>
 
 
 

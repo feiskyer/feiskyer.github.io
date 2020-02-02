@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Feisky</title>
@@ -21,11 +21,146 @@
     </item>
     
     <item>
-      <title>Blockchain</title>
+      <title>kubernetes</title>
+      <link>https://feisky.xyz/tags/kubernetes/</link>
+      <pubDate>Mon, 27 Nov 2017 21:30:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>docker</title>
+      <link>https://feisky.xyz/tags/docker/</link>
+      <pubDate>Thu, 19 Oct 2017 18:10:18 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>https</title>
+      <link>https://feisky.xyz/tags/https/</link>
+      <pubDate>Mon, 16 Oct 2017 10:14:39 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/tags/https/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>go</title>
+      <link>https://feisky.xyz/tags/go/</link>
+      <pubDate>Thu, 05 Jan 2017 17:11:09 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kubecon</title>
+      <link>https://feisky.xyz/tags/kubecon/</link>
+      <pubDate>Mon, 14 Nov 2016 09:49:52 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/tags/kubecon/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>container</title>
+      <link>https://feisky.xyz/tags/container/</link>
+      <pubDate>Tue, 19 Jul 2016 15:58:26 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/tags/container/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>flannel</title>
+      <link>https://feisky.xyz/tags/flannel/</link>
+      <pubDate>Tue, 19 Jul 2016 15:58:26 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/tags/flannel/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hyper</title>
+      <link>https://feisky.xyz/tags/hyper/</link>
+      <pubDate>Tue, 19 Jul 2016 15:58:26 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/tags/hyper/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>runV</title>
+      <link>https://feisky.xyz/tags/runv/</link>
+      <pubDate>Fri, 17 Jun 2016 17:12:38 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/tags/runv/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>mesos</title>
+      <link>https://feisky.xyz/tags/mesos/</link>
+      <pubDate>Tue, 07 Jun 2016 13:21:07 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/tags/mesos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>blockchain</title>
       <link>https://feisky.xyz/tags/blockchain/</link>
       <pubDate>Fri, 29 Apr 2016 16:50:14 +0000</pubDate>
       
       <guid>https://feisky.xyz/tags/blockchain/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>runc</title>
+      <link>https://feisky.xyz/tags/runc/</link>
+      <pubDate>Thu, 28 Apr 2016 10:07:23 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/tags/runc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>dpdk</title>
+      <link>https://feisky.xyz/tags/dpdk/</link>
+      <pubDate>Sun, 24 Apr 2016 19:43:07 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/tags/dpdk/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>borg</title>
+      <link>https://feisky.xyz/tags/borg/</link>
+      <pubDate>Fri, 04 Mar 2016 15:46:28 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/tags/borg/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>rkt</title>
+      <link>https://feisky.xyz/tags/rkt/</link>
+      <pubDate>Wed, 02 Mar 2016 17:07:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/tags/rkt/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>rackspace</title>
+      <link>https://feisky.xyz/tags/rackspace/</link>
+      <pubDate>Mon, 29 Feb 2016 19:20:27 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/tags/rackspace/</guid>
       <description></description>
     </item>
     
@@ -39,96 +174,6 @@
     </item>
     
     <item>
-      <title>Borg</title>
-      <link>https://feisky.xyz/tags/borg/</link>
-      <pubDate>Fri, 04 Mar 2016 15:46:28 +0000</pubDate>
-      
-      <guid>https://feisky.xyz/tags/borg/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Container</title>
-      <link>https://feisky.xyz/tags/container/</link>
-      <pubDate>Tue, 19 Jul 2016 15:58:26 +0000</pubDate>
-      
-      <guid>https://feisky.xyz/tags/container/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Docker</title>
-      <link>https://feisky.xyz/tags/docker/</link>
-      <pubDate>Thu, 19 Oct 2017 18:10:18 +0000</pubDate>
-      
-      <guid>https://feisky.xyz/tags/docker/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Dpdk</title>
-      <link>https://feisky.xyz/tags/dpdk/</link>
-      <pubDate>Sun, 24 Apr 2016 19:43:07 +0000</pubDate>
-      
-      <guid>https://feisky.xyz/tags/dpdk/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Flannel</title>
-      <link>https://feisky.xyz/tags/flannel/</link>
-      <pubDate>Tue, 19 Jul 2016 15:58:26 +0000</pubDate>
-      
-      <guid>https://feisky.xyz/tags/flannel/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Go</title>
-      <link>https://feisky.xyz/tags/go/</link>
-      <pubDate>Thu, 05 Jan 2017 17:11:09 +0000</pubDate>
-      
-      <guid>https://feisky.xyz/tags/go/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Https</title>
-      <link>https://feisky.xyz/tags/https/</link>
-      <pubDate>Mon, 16 Oct 2017 10:14:39 +0000</pubDate>
-      
-      <guid>https://feisky.xyz/tags/https/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Hyper</title>
-      <link>https://feisky.xyz/tags/hyper/</link>
-      <pubDate>Tue, 19 Jul 2016 15:58:26 +0000</pubDate>
-      
-      <guid>https://feisky.xyz/tags/hyper/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Kubecon</title>
-      <link>https://feisky.xyz/tags/kubecon/</link>
-      <pubDate>Mon, 14 Nov 2016 09:49:52 +0000</pubDate>
-      
-      <guid>https://feisky.xyz/tags/kubecon/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Kubernetes</title>
-      <link>https://feisky.xyz/tags/kubernetes/</link>
-      <pubDate>Mon, 27 Nov 2017 21:30:00 +0000</pubDate>
-      
-      <guid>https://feisky.xyz/tags/kubernetes/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Linux</title>
       <link>https://feisky.xyz/tags/linux/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -138,16 +183,7 @@
     </item>
     
     <item>
-      <title>Mesos</title>
-      <link>https://feisky.xyz/tags/mesos/</link>
-      <pubDate>Tue, 07 Jun 2016 13:21:07 +0000</pubDate>
-      
-      <guid>https://feisky.xyz/tags/mesos/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Openstack</title>
+      <title>OpenStack</title>
       <link>https://feisky.xyz/tags/openstack/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -156,7 +192,7 @@
     </item>
     
     <item>
-      <title>Ovs</title>
+      <title>ovs</title>
       <link>https://feisky.xyz/tags/ovs/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -165,7 +201,7 @@
     </item>
     
     <item>
-      <title>Python</title>
+      <title>python</title>
       <link>https://feisky.xyz/tags/python/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -174,43 +210,7 @@
     </item>
     
     <item>
-      <title>Rackspace</title>
-      <link>https://feisky.xyz/tags/rackspace/</link>
-      <pubDate>Mon, 29 Feb 2016 19:20:27 +0000</pubDate>
-      
-      <guid>https://feisky.xyz/tags/rackspace/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Rkt</title>
-      <link>https://feisky.xyz/tags/rkt/</link>
-      <pubDate>Wed, 02 Mar 2016 17:07:00 +0000</pubDate>
-      
-      <guid>https://feisky.xyz/tags/rkt/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Runc</title>
-      <link>https://feisky.xyz/tags/runc/</link>
-      <pubDate>Thu, 28 Apr 2016 10:07:23 +0000</pubDate>
-      
-      <guid>https://feisky.xyz/tags/runc/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Runv</title>
-      <link>https://feisky.xyz/tags/runv/</link>
-      <pubDate>Fri, 17 Jun 2016 17:12:38 +0000</pubDate>
-      
-      <guid>https://feisky.xyz/tags/runv/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Ubuntu</title>
+      <title>ubuntu</title>
       <link>https://feisky.xyz/tags/ubuntu/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -219,7 +219,7 @@
     </item>
     
     <item>
-      <title>Vagrant</title>
+      <title>vagrant</title>
       <link>https://feisky.xyz/tags/vagrant/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       

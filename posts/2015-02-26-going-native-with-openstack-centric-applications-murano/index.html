@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.49.2" />
+<meta name="generator" content="Hugo 0.62.2" />
 
     
     
@@ -30,10 +30,11 @@
 <meta property="og:url" content="https://feisky.xyz/posts/2015-02-26-going-native-with-openstack-centric-applications-murano/" />
 
 
+
     
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
 
 
 
@@ -42,15 +43,15 @@
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hyde-hyde.6f40d28e777b288cb757a1db116a257b6f8dffc63a05e8473d12dc09a52d8d79.css" integrity="sha256-b0DSjnd7KIy3V6HbEWole2&#43;N/8Y6BehHPRLcCaUtjXk=">
+<link rel="stylesheet" href="/scss/hyde-hyde.92c66d107d7b219f0792cfd67223179af884b03f386ac46894f9f735932bbca3.css" integrity="sha256-ksZtEH17IZ8Hks/WciMXmviEsD84asRolPn3NZMrvKM=">
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
 
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hugo-toc.8549a64d301421b4256ea9a0d5ca8b99178799f569d5d2daeb95f24cef3ce6b7.css" integrity="sha256-hUmmTTAUIbQlbqmg1cqLmReHmfVp1dLa65XyTO885rc=">
+<link rel="stylesheet" href="/scss/tocbot.126e7d75240acc946d34d6ccb2982ed4c394a5fe34e73e1a2119ca951bcf119d.css" integrity="sha256-Em59dSQKzJRtNNbMspgu1MOUpf405z4aIRnKlRvPEZ0=">
 
 
 
@@ -62,6 +63,7 @@
     <!-- Icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
     <link rel="shortcut icon" href="/favicon.png">
+    
     
 
 </head>
@@ -75,6 +77,7 @@
       <span class="site__title">
         <a href="https://feisky.xyz/">Feisky</a>
       </span>
+      
       
       <p class="site__description">
          Notes about anything 
@@ -91,7 +94,23 @@
 			 
 				<li>
 					<a href="https://kubernetes.feisky.xyz">
-						<span>Kubernetes</span>
+						<span>Kubernetes指南</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://time.geekbang.org/column/intro/100020901">
+						<span>Linux性能优化实战</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://sdn.feisky.xyz">
+						<span>SDN网络</span>
 					</a>
 				</li>
 			 
@@ -106,21 +125,12 @@
 		 
 			 
 				<li>
-					<a href="https://sdn.feisky.xyz">
-						<span>SDN</span>
-					</a>
-				</li>
-			 
-		 
-			 
-				<li>
 					<a href="/about/">
-						<span>About</span>
+						<span>关于我</span>
 					</a>
 				</li>
 			 
 		
-		</li>
 	</ul>
 </div>
 
@@ -143,23 +153,33 @@
 	
 	
 	
+	
+	
 </section>
 
       </div>
     </div>
-    <div class="copyright">
-  &copy; 2019 .
-  <a href="https://creativecommons.org/licenses/by-sa/4.0">Some Rights Reserved</a>.
-  Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+    
+<div class="copyright">
+  &copy; 2020 feiskyer
+  
+    <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>
   
 </div>
+
+
+<div class="builtwith">
+Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+</div>
+
 
   </div>
 </div>
 
         <div class="content container">
             
-    <article>
+    
+<article>
   <header>
     <h1>Going Native with OpenStack Centric Applications: Murano</h1>
     
@@ -189,47 +209,22 @@
   </header>
   
   
-  <div class="toc-wrapper">
-    <input type="checkbox" id="tocToggle">
-    <label for="tocToggle">Table of Content</label>
-    
-        <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#what-is-it">What is it?</a></li>
-<li><a href="#functionality-highlights">Functionality Highlights</a></li>
-<li><a href="#user-personas-capabilities">User Personas &amp; Capabilities</a></li>
-<li><a href="#application-consumer">Application Consumer</a></li>
-<li><a href="#application-publisher">Application Publisher</a></li>
-<li><a href="#cloud-administrator">Cloud Administrator</a></li>
-<li><a href="#application-packaging-process">Application Packaging Process</a></li>
-<li><a href="#architectural-overview-core-services-integration">Architectural Overview &amp; Core Services Integration</a></li>
-<li><a href="#murano-and-containers">Murano and Containers</a></li>
-<li><a href="#murano-as-a-southbound-catalog">Murano as a Southbound Catalog</a></li>
-<li><a href="#kilo-roadmap">Kilo Roadmap</a></li>
-</ul></li>
-</ul></li>
-</ul>
-</nav>
-    
-  </div>
+  
+    <div class="toc-wrapper">
+      <input type="checkbox" id="tocToggle">
+      <label for="tocToggle">Table of Content</label>
+      
+        <div class="toc" id="TableOfContents"></div>
+      
+    </div>
+  
   
   <div class="post">
-    
-
-<p>Following on our previous discussion surveying the projects supporting applications within OpenStack, let’s continue our review with an in-depth look at the OpenStack-native Application Catalog: Murano, currently an incubation status project, having seen its functionality and core services integration advanced over the past few OpenStack releases.</p>
-
+    <p>Following on our previous discussion surveying the projects supporting applications within OpenStack, let’s continue our review with an in-depth look at the OpenStack-native Application Catalog: Murano, currently an incubation status project, having seen its functionality and core services integration advanced over the past few OpenStack releases.</p>
 <h3 id="what-is-it">What is it?</h3>
-
 <p>An application catalog developed by Mirantis, HP and others (now including Cisco), that allows application developers and cloud administrators to publish applications in a categorized catalog to be perused and deployed by application consumers. The selection of applications available within the catalog is intended to be that of released versions (ready-state) of applications (cloud-native or enterprise-architected), not application versions that are mid-development. Ideally, these are applications ready to be consumed and run by application users.</p>
-
 <h3 id="functionality-highlights">Functionality Highlights</h3>
-
-<p><img src="http://blog.gingergeek.com/wp-content/uploads/2014/11/OpenStack-Centric-Applications-Murano-Application-Catalog-UI.png" alt="ui" /></p>
-
+<p><img src="http://blog.gingergeek.com/wp-content/uploads/2014/11/OpenStack-Centric-Applications-Murano-Application-Catalog-UI.png" alt="ui"></p>
 <ol>
 <li>Supports Windows and Linux applications</li>
 <li>Leverages HOT templates for application definition</li>
@@ -242,46 +237,29 @@
 <li>Allows simple management of access to an application</li>
 <li>Compose an environment from multiple application components</li>
 <li>Out of the Box Cataloged Applications
-
-<ul>
-<li>16 sample applications available now</li>
-<li>6 production-grade applications の Mirantis OpenStack Express**</li>
-</ul></li>
+* 16 sample applications available now
+* 6 production-grade applications の Mirantis OpenStack Express**</li>
 <li>Multiple application formats supported:
-
-<ul>
-<li>HOT Templates</li>
-<li>MuranoPL</li>
-</ul></li>
+* HOT Templates
+* MuranoPL</li>
 <li>Vision to support
-
-<ul>
-<li>Other application model formats:</li>
-<li>Parallels APS format</li>
-<li>TOSCA format</li>
-<li>Pricing; billing system integration</li>
-</ul></li>
+* Other application model formats:
+* Parallels APS format
+* TOSCA format
+* Pricing; billing system integration</li>
 </ol>
-
-<h3 id="user-personas-capabilities">User Personas &amp; Capabilities</h3>
-
+<h3 id="user-personas--capabilities">User Personas &amp; Capabilities</h3>
 <p>As an application catalog, Murano, primarily focuses on three user personas, the Cloud Administrator, Application Consumer and Application Publisher receiving the most emphasis upfront in the development of this project.</p>
-
 <h3 id="application-consumer">Application Consumer</h3>
-
 <p>The Application Consumer selects and deploys instances of applications into environments they define. The Application Consumer also*</p>
-
 <ul>
 <li>browses catalog (search, category, tags, etc)</li>
 <li>creates new environments</li>
 <li>deploys applications in environments</li>
 <li>monitors application statistics</li>
 </ul>
-
 <h3 id="application-publisher">Application Publisher</h3>
-
 <p>The Application Publisher creates application definitions (packages) that are imported as entries into the application catalog for perusal by Application Consumers. The Application Publisher also*</p>
-
 <ul>
 <li>defines application metadata (author, help message, version, etc)</li>
 <li>identifies cloud resource allocation (HOT templates)</li>
@@ -291,29 +269,19 @@
 <li>establishes actions and events (Murano and Mistral)</li>
 <li>imports and publishes application definition to catalog</li>
 </ul>
-
 <h3 id="cloud-administrator">Cloud Administrator</h3>
-
 <p>The Cloud Administrator is responsible for running the application catalog and providing stable infrastructure upon which to deploy and run applications. The Cloud Administrator also*</p>
-
 <ul>
 <li>curates application catalog (certification and signing of packages)</li>
 <li>configures access to applications</li>
 <li>defines billing rules*</li>
 </ul>
-
 <h3 id="application-packaging-process">Application Packaging Process</h3>
-
 <p>Currently, Murano applications may be packaged using two different formats to describe the application – the MuranoPL or a HOT template. There’s roadmap to support addition application description formats. While these two methodologies vary in terms of how the orchestration is performed during provisioning of an instance of the app, their are common attributes (catalog metadata) like an application display name, logo, description, author, tags. For those familiar with other domain-specific languages of other popular configuration management frameworks, the MuranoPL is of little challenge to pick up (you may lean into  use Bash or Powershell if more comfortable) or you may opt to use SoftwareConfig and SoftwareDeploy of HOT.</p>
-
-<p><img src="/assets/OpenStack-Centric-Applications-Murano-Application-Packaging.png" alt="" /></p>
-
-<h3 id="architectural-overview-core-services-integration">Architectural Overview &amp; Core Services Integration</h3>
-
+<p><img src="/assets/OpenStack-Centric-Applications-Murano-Application-Packaging.png" alt=""></p>
+<h3 id="architectural-overview--core-services-integration">Architectural Overview &amp; Core Services Integration</h3>
 <p>See the “Murano Architectural Overview” diagram for a visual representation of how Murano is tightly integrated with core OpenStack services. It’s relationship to existing core services breaks down as follows:</p>
-
-<p><img src="/assets/OpenStack-Centric-Applications-Murano-Architectural-Overview.png" alt="Overview" width="800px" /></p>
-
+<p><!-- raw HTML omitted --></p>
 <ul>
 <li>Glance: Originally designed as an image repository, Murano will use Glance to store &amp; query application definitions. Glance is used as an artifact repository to store application definitions, query &amp; search them and store images required by applications. Images used by Murano are marked with specific metadata, which is used by Murano to derive appropriate selections within the UI during application deployment time.</li>
 <li>Heat: Cloud resource allocation specific to the application, Resources required by application is allocated using Heat, Application provisioning / deployment via Heat Software Configuration, Life-cycle callbacks</li>
@@ -323,73 +291,66 @@
 <li>Workflows are used when complex workflow outside of Heat is needed.</li>
 <li>Actions: Application level ad-hoc actions (e.g. create backup, enable/disable some feature, or create user for an application) will also be defined in Mistral. Classic runbook automation applies here – Murano allows the Application Publisher to define various custom actions to be taken upon trigger by an interesting event. What constitutes and interesting event is up to the Application Publisher, who may define any action in the application definition and associate the action to a specific workflow. By exposing a webhook to trigger the action (and workflow), they may be triggered by Ceilometer alarms or any 3rd party tool. Common use cases are auto-scaling, HA and DR. The “Murano Actions” diagram shows an example of an autoscaling scenario in which an application might require additional database instance based web server load.</li>
 </ul>
-
-<p><img src="/assets/OpenStack-Centric-Applications-Murano-Actions.png" alt="Drawing" width="800px" /></p>
-
+<p><!-- raw HTML omitted --></p>
 <h3 id="murano-and-containers">Murano and Containers</h3>
-
-<p>Murano inherently supports Docker containers by relying upon existing OpenStack components for container integration and orchestration. This means that there are no considerations to be accounted for within the MuranoPL to describe the application package to support containers. Similarly, when using Heat templates at the core of the application package, only&nbsp;reference to Docker resources and images is needed to support container orchestration by Heat. There are different ways of using Docker in OpenStack via Murano:</p>
-
-<p>1) Heat template can use Heat::Docker</p>
-
+<p>Murano inherently supports Docker containers by relying upon existing OpenStack components for container integration and orchestration. This means that there are no considerations to be accounted for within the MuranoPL to describe the application package to support containers. Similarly, when using Heat templates at the core of the application package, only reference to Docker resources and images is needed to support container orchestration by Heat. There are different ways of using Docker in OpenStack via Murano:</p>
+<ol>
+<li>Heat template can use Heat::Docker</li>
+</ol>
 <ul>
-<li><span style="line-height: 1em;">Heat::Docker driver leverages Heat engine directly to instantiate containers</span></li>
-<li><span style="line-height: 1em;">Use Heat when Nova does not support Docker</span></li>
+<li><!-- raw HTML omitted -->Heat::Docker driver leverages Heat engine directly to instantiate containers<!-- raw HTML omitted --></li>
+<li><!-- raw HTML omitted -->Use Heat when Nova does not support Docker<!-- raw HTML omitted --></li>
 </ul>
-
-<p>2) Heat template can use Nova::Docker</p>
-
+<ol start="2">
+<li>Heat template can use Nova::Docker</li>
+</ol>
 <ul>
-<li><span style="line-height: 1em;">Use when you have a bare metal Docker installation</span></li>
-<li><span style="line-height: 1em;">Through Nova API, create a container without a VM being created to host</span></li>
-<li><span style="line-height: 1em;">Nova can go to bare metale to create Docker container</span></li>
-<li><span style="line-height: 1em;">User provides Heat template, workflow (Murano DSL) and image</span></li>
+<li><!-- raw HTML omitted -->Use when you have a bare metal Docker installation<!-- raw HTML omitted --></li>
+<li><!-- raw HTML omitted -->Through Nova API, create a container without a VM being created to host<!-- raw HTML omitted --></li>
+<li><!-- raw HTML omitted -->Nova can go to bare metale to create Docker container<!-- raw HTML omitted --></li>
+<li><!-- raw HTML omitted -->User provides Heat template, workflow (Murano DSL) and image<!-- raw HTML omitted --></li>
 </ul>
-
-<p>3) Not recommended – Use Heat resource to create a VM with Dockerénside and boot an image file to the VM with <code>docker run</code>.</p>
-
+<ol start="3">
+<li>Not recommended – Use Heat resource to create a VM with Dockerénside and boot an image file to the VM with <code>docker run</code>.</li>
+</ol>
 <ul>
 <li>The Murano team is looking to add autoscaling for Docker services, facilitate Docker application placement and integration with monitoring and network services.</li>
 </ul>
-
 <h3 id="murano-as-a-southbound-catalog">Murano as a Southbound Catalog</h3>
-
 <p>Murano has two different northbound APIs to expose access to applications in the catalog – REST and AMQP (Services Broker). Within the Juno release, the Services Broker has only been prototyped. It’s scheduled to be fully-implemented in Kilo. While other use cases may exist, the primary use case for these northbound API revolves around allowing northbound catalogs to access and expose OpenStack-native applications.</p>
-
 <p>The Services Broker supports CRUD and binds service with your application. A proof of concept has been completed to integrate Cloud Foundry with Murano via the Service Broker. When CloudFoundry is integrated to Murano, CloudFoundry users see and order Murano applications in CloudFoundry.</p>
-
 <p>Using the REST API, Murano may be integrated as a southbound application catalog to expose OpenStack-native applications as SaaS application profiles available for users of a northbound catalog. Users benefit from existing services offered on top of OpenStack. This enables application components to be split across infrastructure (having application components deployed into different infrastructures).</p>
-
 <h3 id="kilo-roadmap">Kilo Roadmap</h3>
-
 <p>While subject to change, based on Kilo design summit discussions this week, the project team aims to bite off the following capabilities before the next release in May.</p>
-
 <ul>
-<li>Implementing CloudFoundry ServiceBroker API</li>
-<li>Use of Glance as an artifact repository</li>
-
-<li><p>Support pluggable package definitions formats:</p>
-
+<li>
+<p>Implementing CloudFoundry ServiceBroker API</p>
+</li>
+<li>
+<p>Use of Glance as an artifact repository</p>
+</li>
+<li>
+<p>Support pluggable package definitions formats:</p>
 <ul>
 <li>TOSCA (Topology and Orchestration Specification for Cloud Applications)</li>
 <li>APS (Parallels Application Standard)</li>
-</ul></li>
-
-<li><p>Multiple Heat Stacks and OpenStack Cloud support</p>
-
+</ul>
+</li>
+<li>
+<p>Multiple Heat Stacks and OpenStack Cloud support</p>
 <ul>
 <li>Availability Zones (for DR)</li>
 <li>Multiple OpenStack clouds</li>
-</ul></li>
-
-<li><p>Pluggable Architecture</p>
-
+</ul>
+</li>
+<li>
+<p>Pluggable Architecture</p>
 <ul>
 <li>Integration with 3rd party API (F5, Brocade etc.)</li>
 <li>Package format plugins</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <p>From <a href="http://blog.gingergeek.com/2014/11/going-native-with-openstack-centric-applications-murano/">http://blog.gingergeek.com/2014/11/going-native-with-openstack-centric-applications-murano/</a></p>
 
   </div>
@@ -403,8 +364,8 @@
     </a>
     
     
-    <a href="/posts/2015-03-05-docker-acquires-sdn-startup-socketplane/" class="navigation-next">
-      <span class="navigation-tittle">Docker acquires SDN startup SocketPlane</span>
+    <a href="/posts/2015-06-05-git-commit/" class="navigation-next">
+      <span class="navigation-tittle">git commit修改前一次提交的方法</span>
       <i aria-hidden="true" class="fa fa-chevron-right"></i>
     </a>
     
@@ -421,24 +382,25 @@
         
 <li>
   <span class="list__title--small">
-    <a href="/posts/2015-02-26-integrating-openstack-and-kubernetes-with-murano/">Integrating Openstack and Kubernetes with Murano</a>
+    <a href="/posts/2015-03-02-how-enable-openstack-allinone-vm-to-access-external-network/" >How enable OpenStack allinone vm to access external network</a>
       
   </span>
 </li>
 
 <li>
   <span class="list__title--small">
-    <a href="/posts/2015-06-24-openstack-magnum/">OpenStack Magnum社区及项目介绍</a>
+    <a href="/posts/2015-02-26-integrating-openstack-and-kubernetes-with-murano/" >Integrating Openstack and Kubernetes with Murano</a>
       
   </span>
 </li>
 
 <li>
   <span class="list__title--small">
-    <a href="/posts/2015-03-02-how-enable-openstack-allinone-vm-to-access-external-network/">How enable OpenStack allinone vm to access external network</a>
+    <a href="/posts/2015-06-24-openstack-magnum/" >OpenStack Magnum社区及项目介绍</a>
       
   </span>
 </li>
+
 
     </ul>
 </div>
@@ -484,6 +446,7 @@
         </div>
         
     
+
   
   
 <script type="application/javascript">
@@ -498,15 +461,12 @@ if (!doNotTrack) {
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
-<script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"
-  integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy"
-  crossorigin="anonymous">
-</script>
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
 
 
     
     
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
         
     
     <script type="text/javascript">
@@ -517,6 +477,21 @@ if (!doNotTrack) {
 
 
 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.js"></script>
+<script type="text/javascript">
+  if (tocbot) {
+    tocbot.init({
+      
+      tocSelector: '.toc',
+      
+      contentSelector: '.post',
+      
+      headingSelector: 'h2, h3, h4',
+      collapseDepth: 4
+    });
+  }
+</script>
 
 
 

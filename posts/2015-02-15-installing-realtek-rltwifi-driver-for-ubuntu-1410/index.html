@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.49.2" />
+<meta name="generator" content="Hugo 0.62.2" />
 
     
     
@@ -30,10 +30,11 @@
 <meta property="og:url" content="https://feisky.xyz/posts/2015-02-15-installing-realtek-rltwifi-driver-for-ubuntu-1410/" />
 
 
+
     
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
 
 
 
@@ -42,15 +43,15 @@
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hyde-hyde.6f40d28e777b288cb757a1db116a257b6f8dffc63a05e8473d12dc09a52d8d79.css" integrity="sha256-b0DSjnd7KIy3V6HbEWole2&#43;N/8Y6BehHPRLcCaUtjXk=">
+<link rel="stylesheet" href="/scss/hyde-hyde.92c66d107d7b219f0792cfd67223179af884b03f386ac46894f9f735932bbca3.css" integrity="sha256-ksZtEH17IZ8Hks/WciMXmviEsD84asRolPn3NZMrvKM=">
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
 
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hugo-toc.8549a64d301421b4256ea9a0d5ca8b99178799f569d5d2daeb95f24cef3ce6b7.css" integrity="sha256-hUmmTTAUIbQlbqmg1cqLmReHmfVp1dLa65XyTO885rc=">
+<link rel="stylesheet" href="/scss/tocbot.126e7d75240acc946d34d6ccb2982ed4c394a5fe34e73e1a2119ca951bcf119d.css" integrity="sha256-Em59dSQKzJRtNNbMspgu1MOUpf405z4aIRnKlRvPEZ0=">
 
 
 
@@ -62,6 +63,7 @@
     <!-- Icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
     <link rel="shortcut icon" href="/favicon.png">
+    
     
 
 </head>
@@ -75,6 +77,7 @@
       <span class="site__title">
         <a href="https://feisky.xyz/">Feisky</a>
       </span>
+      
       
       <p class="site__description">
          Notes about anything 
@@ -91,7 +94,23 @@
 			 
 				<li>
 					<a href="https://kubernetes.feisky.xyz">
-						<span>Kubernetes</span>
+						<span>Kubernetes指南</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://time.geekbang.org/column/intro/100020901">
+						<span>Linux性能优化实战</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://sdn.feisky.xyz">
+						<span>SDN网络</span>
 					</a>
 				</li>
 			 
@@ -106,21 +125,12 @@
 		 
 			 
 				<li>
-					<a href="https://sdn.feisky.xyz">
-						<span>SDN</span>
-					</a>
-				</li>
-			 
-		 
-			 
-				<li>
 					<a href="/about/">
-						<span>About</span>
+						<span>关于我</span>
 					</a>
 				</li>
 			 
 		
-		</li>
 	</ul>
 </div>
 
@@ -143,23 +153,33 @@
 	
 	
 	
+	
+	
 </section>
 
       </div>
     </div>
-    <div class="copyright">
-  &copy; 2019 .
-  <a href="https://creativecommons.org/licenses/by-sa/4.0">Some Rights Reserved</a>.
-  Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+    
+<div class="copyright">
+  &copy; 2020 feiskyer
+  
+    <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>
   
 </div>
+
+
+<div class="builtwith">
+Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+</div>
+
 
   </div>
 </div>
 
         <div class="content container">
             
-    <article>
+    
+<article>
   <header>
     <h1>Installing Realtek rltwifi driver for Ubuntu 14.10</h1>
     
@@ -189,40 +209,24 @@
   </header>
   
   
-  <div class="toc-wrapper">
-    <input type="checkbox" id="tocToggle">
-    <label for="tocToggle">Table of Content</label>
-    
-        <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#安装方法">安装方法</a></li>
-<li><a href="#无线网卡管理">无线网卡管理</a></li>
-</ul></li>
-</ul></li>
-</ul>
-</nav>
-    
-  </div>
+  
+    <div class="toc-wrapper">
+      <input type="checkbox" id="tocToggle">
+      <label for="tocToggle">Table of Content</label>
+      
+        <div class="toc" id="TableOfContents"></div>
+      
+    </div>
+  
   
   <div class="post">
-    
-
-<h3 id="安装方法">安装方法</h3>
-
+    <h3 id="安装方法">安装方法</h3>
 <p>Ubuntu 14默认内核版本没有带RTL8192ee的网卡驱动，因而就无法通过无线网络联网，并且Reltek官方网站也没有提供合适的驱动。而最新的Linux内核已经带了相应驱动，所以一般建议修复的方法就是升级内核版本到最新。但如果不想内核升级咋办呢？幸好Github上已经有人将这个驱动写好了，直接安装即可：</p>
-
 <pre><code>git clone git@github.com:lwfinger/rtlwifi_new.git
 cd rtlwifi_new
 make
 sudo make install
-</code></pre>
-
-<h3 id="无线网卡管理">无线网卡管理</h3>
-
+</code></pre><h3 id="无线网卡管理">无线网卡管理</h3>
 <ul>
 <li>打卡无线网卡电源 <code>iwconfig wlan0 txpower on</code></li>
 <li>扫描无线网络     <code>iwlist wlan0 scan</code></li>
@@ -230,9 +234,7 @@ sudo make install
 <li>查看无线网卡状态 <code>iwconfig wlan0</code></li>
 <li>通过DHCP为网卡分配IP <code>dhclient wlan0</code></li>
 </ul>
-
 <p>注意，iwconfig不支持为WPA/WPA2类型的无线网络配置密码，对于WPA类型的网络，可通过下面的方法配置：</p>
-
 <pre><code>#/etc/network/interfaces
 iface wlan1 inet dhcp
 wpa-driver wext
@@ -242,10 +244,7 @@ wpa-psk bda9a9d988e666a78889089a098c8689a
 其中wpa-psk是由wpa-passphrase [ssid] [passphrase] 产生的
 
 修改完后重启网络 sudo /etc/init.d/networking restart
-</code></pre>
-
-<p>附注：对应wep类型的网络配置为</p>
-
+</code></pre><p>附注：对应wep类型的网络配置为</p>
 <pre><code>#/etc/network/interfaces
 auto wlan0
 iface wlan0 inet static
@@ -257,20 +256,19 @@ netmask 255.255.255.0
 gateway 192.168.1.1
 broadcast 192.168.1.255
 </code></pre>
-
   </div>
   
 
 <div class="navigation navigation-single">
     
-    <a href="/posts/2015-02-13-installing-nova-docker-on-openstack-juno/" class="navigation-prev">
+    <a href="/posts/2015-02-26-integrating-openstack-and-kubernetes-with-murano/" class="navigation-prev">
       <i aria-hidden="true" class="fa fa-chevron-left"></i>
-      <span class="navigation-tittle">Installing nova docker on OpenStack Juno</span>
+      <span class="navigation-tittle">Integrating Openstack and Kubernetes with Murano</span>
     </a>
     
     
-    <a href="/posts/2015-11-12-hypernetes-wechat-share/" class="navigation-next">
-      <span class="navigation-tittle">Hypernetes wechat share</span>
+    <a href="/posts/2015-02-13-installing-nova-docker-on-openstack-juno/" class="navigation-next">
+      <span class="navigation-tittle">Installing nova docker on OpenStack Juno</span>
       <i aria-hidden="true" class="fa fa-chevron-right"></i>
     </a>
     
@@ -287,38 +285,39 @@ broadcast 192.168.1.255
         
 <li>
   <span class="list__title--small">
-    <a href="/posts/2015-03-03-dive-in-linux-capabilites/">Dive in Linux capabilites</a>
+    <a href="/posts/2015-03-03-dive-in-linux-capabilites/" >Dive in Linux capabilites</a>
       
   </span>
 </li>
 
 <li>
   <span class="list__title--small">
-    <a href="/posts/2015-03-04-linux-kernel-network-call-flow/">Linux kernel network call flow</a>
+    <a href="/posts/2015-03-18-how-to-disable-ubuntu-services/" >How to disable ubuntu services</a>
       
   </span>
 </li>
 
 <li>
   <span class="list__title--small">
-    <a href="/posts/2015-03-20-awesome-quick-start/">awesome quick start</a>
+    <a href="/posts/2015-03-04-linux-kernel-network-call-flow/" >Linux kernel network call flow</a>
       
   </span>
 </li>
 
 <li>
   <span class="list__title--small">
-    <a href="/posts/2015-03-06-redhat-atomic-host/">Redhat Atomic Host</a>
+    <a href="/posts/2015-02-12-linux-netcat-examples/" >Linux netcat examples</a>
       
   </span>
 </li>
 
 <li>
   <span class="list__title--small">
-    <a href="/posts/2015-02-10-cannot-change-locale/">cannot change locale</a>
+    <a href="/posts/2015-03-06-redhat-atomic-host/" >Redhat Atomic Host</a>
       
   </span>
 </li>
+
 
     </ul>
 </div>
@@ -364,6 +363,7 @@ broadcast 192.168.1.255
         </div>
         
     
+
   
   
 <script type="application/javascript">
@@ -378,15 +378,12 @@ if (!doNotTrack) {
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
-<script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"
-  integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy"
-  crossorigin="anonymous">
-</script>
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
 
 
     
     
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
         
     
     <script type="text/javascript">
@@ -397,6 +394,21 @@ if (!doNotTrack) {
 
 
 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.js"></script>
+<script type="text/javascript">
+  if (tocbot) {
+    tocbot.init({
+      
+      tocSelector: '.toc',
+      
+      contentSelector: '.post',
+      
+      headingSelector: 'h2, h3, h4',
+      collapseDepth: 4
+    });
+  }
+</script>
 
 
 

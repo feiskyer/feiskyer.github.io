@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.49.2" />
+<meta name="generator" content="Hugo 0.62.2" />
 
     
     
@@ -30,10 +30,11 @@
 <meta property="og:url" content="https://feisky.xyz/posts/2015-03-02-open-vswitch-over-dpdk-on-ubuntu/" />
 
 
+
     
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
 
 
 
@@ -42,15 +43,15 @@
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hyde-hyde.6f40d28e777b288cb757a1db116a257b6f8dffc63a05e8473d12dc09a52d8d79.css" integrity="sha256-b0DSjnd7KIy3V6HbEWole2&#43;N/8Y6BehHPRLcCaUtjXk=">
+<link rel="stylesheet" href="/scss/hyde-hyde.92c66d107d7b219f0792cfd67223179af884b03f386ac46894f9f735932bbca3.css" integrity="sha256-ksZtEH17IZ8Hks/WciMXmviEsD84asRolPn3NZMrvKM=">
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
 
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hugo-toc.8549a64d301421b4256ea9a0d5ca8b99178799f569d5d2daeb95f24cef3ce6b7.css" integrity="sha256-hUmmTTAUIbQlbqmg1cqLmReHmfVp1dLa65XyTO885rc=">
+<link rel="stylesheet" href="/scss/tocbot.126e7d75240acc946d34d6ccb2982ed4c394a5fe34e73e1a2119ca951bcf119d.css" integrity="sha256-Em59dSQKzJRtNNbMspgu1MOUpf405z4aIRnKlRvPEZ0=">
 
 
 
@@ -62,6 +63,7 @@
     <!-- Icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
     <link rel="shortcut icon" href="/favicon.png">
+    
     
 
 </head>
@@ -75,6 +77,7 @@
       <span class="site__title">
         <a href="https://feisky.xyz/">Feisky</a>
       </span>
+      
       
       <p class="site__description">
          Notes about anything 
@@ -91,7 +94,23 @@
 			 
 				<li>
 					<a href="https://kubernetes.feisky.xyz">
-						<span>Kubernetes</span>
+						<span>Kubernetes指南</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://time.geekbang.org/column/intro/100020901">
+						<span>Linux性能优化实战</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://sdn.feisky.xyz">
+						<span>SDN网络</span>
 					</a>
 				</li>
 			 
@@ -106,21 +125,12 @@
 		 
 			 
 				<li>
-					<a href="https://sdn.feisky.xyz">
-						<span>SDN</span>
-					</a>
-				</li>
-			 
-		 
-			 
-				<li>
 					<a href="/about/">
-						<span>About</span>
+						<span>关于我</span>
 					</a>
 				</li>
 			 
 		
-		</li>
 	</ul>
 </div>
 
@@ -143,23 +153,33 @@
 	
 	
 	
+	
+	
 </section>
 
       </div>
     </div>
-    <div class="copyright">
-  &copy; 2019 .
-  <a href="https://creativecommons.org/licenses/by-sa/4.0">Some Rights Reserved</a>.
-  Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+    
+<div class="copyright">
+  &copy; 2020 feiskyer
+  
+    <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>
   
 </div>
+
+
+<div class="builtwith">
+Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+</div>
+
 
   </div>
 </div>
 
         <div class="content container">
             
-    <article>
+    
+<article>
   <header>
     <h1>Open vSwitch over DPDK on Ubuntu</h1>
     
@@ -182,397 +202,183 @@
     
     
     <br/>
-    <i class="fas fa-clock"></i> 4 min read
+    <i class="fas fa-clock"></i> 3 min read
 </div>
 
 
   </header>
   
   
-  <div class="toc-wrapper">
-    <input type="checkbox" id="tocToggle">
-    <label for="tocToggle">Table of Content</label>
-    
-        <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#virtualbox-preparations-span-class-anchor-id-line-17-span">VirtualBox preparations<span class="anchor" id="line-17"></span></a></li>
-</ul></li>
-</ul>
-</nav>
-    
-  </div>
+  
+    <div class="toc-wrapper">
+      <input type="checkbox" id="tocToggle">
+      <label for="tocToggle">Table of Content</label>
+      
+        <div class="toc" id="TableOfContents"></div>
+      
+    </div>
+  
   
   <div class="post">
-    
-
-<p>There are two approaches for using DPDK acceleration in DPDK. One is the openvswitch fork from intel, called dpdk-ovs the other is done directly in openvswitch with a different approach from intel. <span class="anchor" id="line-10"></span>
-<span class="anchor" id="line-11"></span><span class="anchor" id="line-12"></span></p>
-
+    <p>There are two approaches for using DPDK acceleration in DPDK. One is the openvswitch fork from intel, called dpdk-ovs the other is done directly in openvswitch with a different approach from intel. <!-- raw HTML omitted --><!-- raw HTML omitted -->
+<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <ul>
-<li><a href="http://dpdk.org/ml/archives/dev/2014-March/001770.html">http://dpdk.org/ml/archives/dev/2014-March/001770.html</a> <span class="anchor" id="line-13"></span>
-<span class="anchor" id="line-14"></span>- <a href="https://github.com/01org/dpdk-ovs">https://github.com/01org/dpdk-ovs</a> <span class="anchor" id="line-15"></span><span class="anchor" id="line-16"></span></li>
+<li><a href="http://dpdk.org/ml/archives/dev/2014-March/001770.html">http://dpdk.org/ml/archives/dev/2014-March/001770.html</a> <!-- raw HTML omitted --><!-- raw HTML omitted -->
+<!-- raw HTML omitted --><!-- raw HTML omitted -->- <a href="https://github.com/01org/dpdk-ovs">https://github.com/01org/dpdk-ovs</a> <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></li>
 </ul>
-
-<h2 id="virtualbox-preparations-span-class-anchor-id-line-17-span">VirtualBox preparations<span class="anchor" id="line-17"></span></h2>
-
-<p>To run openvswitch with DPDK I used a virtual machine (<a href="https://wiki.linaro.org/VirtualBox">VirtualBox</a>) because the NIC I had on my laptop was not supported. I created three virtual NICs for my vm, one behind NAT to use it to ssh into the vm from the host, and two in host-only mode, to be use for testing. <span class="anchor" id="line-18"></span><span class="anchor" id="line-19"></span></p>
-
-<p>If you happen to go down this road too, then it&rsquo;s a good advice to do a few things before starting the test application. <span class="anchor" id="line-20"></span><span class="anchor" id="line-21"></span></p>
-
-<p>First I would recommend configuring two virtual processors on the virtual machine, it makes possible to use most of the DPDK test apps, like testpmd. I would also recommend reserving about 4 GB of RAM to make sure DPDK works properly. <span class="anchor" id="line-22"></span><span class="anchor" id="line-23"></span></p>
-
+<h2 id="virtualbox-preparationsspan-classanchor-idline-17span">VirtualBox preparations<!-- raw HTML omitted --><!-- raw HTML omitted --></h2>
+<p>To run openvswitch with DPDK I used a virtual machine (<a href="https://wiki.linaro.org/VirtualBox">VirtualBox</a>) because the NIC I had on my laptop was not supported. I created three virtual NICs for my vm, one behind NAT to use it to ssh into the vm from the host, and two in host-only mode, to be use for testing. <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>If you happen to go down this road too, then it's a good advice to do a few things before starting the test application. <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>First I would recommend configuring two virtual processors on the virtual machine, it makes possible to use most of the DPDK test apps, like testpmd. I would also recommend reserving about 4 GB of RAM to make sure DPDK works properly. <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <p>Then, to configure a network interface in host-only mode you need to create a host-only adapter (this applies to VirtualBox). Here is a link on how to do that:
-<span class="anchor" id="line-24"></span>
-<span class="anchor" id="line-25"></span><a href="http://ubuntuforums.org/showthread.php?t=1873650">http://ubuntuforums.org/showthread.php?t=1873650</a> <span class="anchor" id="line-26"></span><span class="anchor" id="line-27"></span></p>
-
-<p>Then you need to make sure that the interface is assigned an IP address (dhcp should work and you should be able to ping the guest from the host but you may need to configure dhcp on the virtual network if virtual box doesn&rsquo;t do that). <span class="anchor" id="line-28"></span><span class="anchor" id="line-29"></span></p>
-
-<p>Ping the two guest interfaces in order to populate the ARP table: <span class="anchor" id="line-30"></span><span class="anchor" id="line-31"></span></p>
-
-<p><span class="anchor" id="line-32"></span><span class="anchor" id="line-33"></span><span class="anchor" id="line-34"></span></p>
-
-<pre>
-<span class="anchor" id="line-1"></span>ping 192.168.56.101
-<span class="anchor" id="line-2"></span>ping 192.168.57.101
-</pre><span class="anchor" id="line-35"></span><span class="anchor" id="line-36"></span>
-
-Find the arp entries an make them persistent: <span class="anchor" id="line-37"></span><span class="anchor" id="line-38"></span>
-
-<span class="anchor" id="line-39"></span><span class="anchor" id="line-40"></span><span class="anchor" id="line-41"></span><span class="anchor" id="line-42"></span><span class="anchor" id="line-43"></span><span class="anchor" id="line-44"></span><span class="anchor" id="line-45"></span><span class="anchor" id="line-46"></span><span class="anchor" id="line-47"></span><span class="anchor" id="line-48"></span>
-
-<pre>
-<span class="anchor" id="line-1-1"></span>arp -n | grep 192.168.56.101
-<span class="anchor" id="line-2-1"></span>sudo arp -s 192.168.56.101 08:00:27:20:88:10
-<span class="anchor" id="line-3"></span>arp -n | grep 192.168.56.101 # now you should see flags CM to your arp entry
-<span class="anchor" id="line-4"></span>192.168.56.101           ether   08:00:27:20:88:10   CM                    vboxnet0
-<span class="anchor" id="line-5"></span>
-<span class="anchor" id="line-6"></span>arp -n | grep 192.168.57.101
-<span class="anchor" id="line-7"></span>sudo arp -s 192.168.57.1 08:00:27:85:40:f6
-<span class="anchor" id="line-8"></span>arp -n | grep 192.168.57.101 # now you should see flags CM to your arp entry
-<span class="anchor" id="line-9"></span>192.168.57.101           ether   08:00:27:85:40:f6   CM                    vboxnet1
-</pre><span class="anchor" id="line-49"></span><span class="anchor" id="line-50"></span><span class="anchor" id="line-51"></span>
-
-## Installing DPDK<span class="anchor" id="line-52"></span><span class="anchor" id="line-53"></span>
-
-There is good information from intel on DPDK, quickstarts, howtos etc. But for the sake of simplicity, here is selected useful information needed when starting with DPDK for the first time. <span class="anchor" id="line-54"></span>
-<span class="anchor" id="line-55"></span>http://dpdk.org/doc <span class="anchor" id="line-56"></span><span class="anchor" id="line-57"></span>
-
-### Getting the code<span class="anchor" id="line-58"></span>
-
-Simply
-<tt>&nbsp;git&nbsp;clone&nbsp;git://dpdk.org/dpdk&nbsp;</tt><span class="anchor" id="line-59"></span><span class="anchor" id="line-60"></span>
-
-Note: At the moment I'm writing this, openvswitch doesn't compile with latest version of dpdk so I went with version 1.7.0rc0. Unfortunately there is no tag for it, so you will have to: <span class="anchor" id="line-61"></span><span class="anchor" id="line-62"></span>
-
-<span class="anchor" id="line-63"></span><span class="anchor" id="line-64"></span>
-
-<pre>
-<span class="anchor" id="line-1-2"></span>git checkout 536ba2d8a867ecf4331673d4c45475e552d57e27 -b version-1.7
-</pre><span class="anchor" id="line-65"></span><span class="anchor" id="line-66"></span><span class="anchor" id="line-67"></span>
-
-### Hardware requirements<span class="anchor" id="line-68"></span>
-
-DPDK works only on a select range of intel devices. It seems that most of the x86 NICs should work just fine, but I couldn't get it working on my HP ProBook 6560b laptop containing an Intel 82540EM Gigabit Ethernet Controller (rev 02) <span class="anchor" id="line-69"></span><span class="anchor" id="line-70"></span>
-
-To check if your NIC is supported first you need to get the device id and then look it up in the list of supported devices. <span class="anchor" id="line-71"></span><span class="anchor" id="line-72"></span>
-
-lspci - lists all the pci devices; look for your network card here and get the PCI vendor and device ID in the square brackets after the type string. For example: <span class="anchor" id="line-73"></span><span class="anchor" id="line-74"></span>
-
-<span class="anchor" id="line-75"></span><span class="anchor" id="line-76"></span><span class="anchor" id="line-77"></span><span class="anchor" id="line-78"></span>
-
-<pre>
-<span class="anchor" id="line-1-3"></span># lspci -nn|grep Ethernet
-<span class="anchor" id="line-2-2"></span>00:19.0 Ethernet controller [0200]: Intel Corporation Ethernet Connection I217-LM [8086:153a] (rev 05)
-</pre><span class="anchor" id="line-79"></span><span class="anchor" id="line-80"></span>
-
-The list of known and supported devices can be found in the dpdk repository, under: <span class="anchor" id="line-81"></span><span class="anchor" id="line-82"></span>
-
-<span class="anchor" id="line-83"></span><span class="anchor" id="line-84"></span><span class="anchor" id="line-85"></span><span class="anchor" id="line-86"></span><span class="anchor" id="line-87"></span><span class="anchor" id="line-88"></span>
-
-<pre>
-<span class="anchor" id="line-1-4"></span>lib/librte_eal/common/include/rte_pci_dev_ids.h
-<span class="anchor" id="line-2-3"></span>
-<span class="anchor" id="line-3-1"></span>...
-<span class="anchor" id="line-4-1"></span>#define E1000_DEV_ID_PCH_LPT_I217_LM                0x153A
-<span class="anchor" id="line-5-1"></span>...
-</pre><span class="anchor" id="line-89"></span><span class="anchor" id="line-90"></span>
-
-**If the device is supported then there will be a subsequent line declaring it as supported, for instance:** <span class="anchor" id="line-91"></span><span class="anchor" id="line-92"></span>
-
-<span class="anchor" id="line-93"></span><span class="anchor" id="line-94"></span>
-
-<pre>
-<span class="anchor" id="line-1-5"></span>RTE_PCI_DEV_ID_DECL_EM(PCI_VENDOR_ID_INTEL, E1000_DEV_ID_82540EM)
-</pre><span class="anchor" id="line-95"></span><span class="anchor" id="line-96"></span>
-
-If you have no supported NICs then you can always try a hypervisor (VirtualBox for instance) that can emulate one of the supported NICs (like the one above for example). <span class="anchor" id="line-97"></span><span class="anchor" id="line-98"></span>
-
-### Compiling DPDK<span class="anchor" id="line-99"></span>
-
-Before even trying to compile openvswitch you need the dpdk code built in a single library. See INSTALL.DPDK for details. Basically you need to open <span class="anchor" id="line-100"></span>$DPDK/config/defconfig_x86_64-default-linuxapp-gcc and change <span class="anchor" id="line-101"></span><span class="anchor" id="line-102"></span>
-
-<span class="anchor" id="line-103"></span><span class="anchor" id="line-104"></span>
-
-<pre>
-<span class="anchor" id="line-1-6"></span>CONFIG_RTE_BUILD_COMBINE_LIBS=n
-</pre><span class="anchor" id="line-105"></span>
-
-to <span class="anchor" id="line-106"></span><span class="anchor" id="line-107"></span><span class="anchor" id="line-108"></span>
-
-<pre>
-<span class="anchor" id="line-1-7"></span>CONFIG_RTE_BUILD_COMBINE_LIBS=y
-</pre><span class="anchor" id="line-109"></span><span class="anchor" id="line-110"></span>
-
-Then compile: <span class="anchor" id="line-111"></span><span class="anchor" id="line-112"></span>
-
-<span class="anchor" id="line-113"></span><span class="anchor" id="line-114"></span>
-
-<pre>
-<span class="anchor" id="line-1-8"></span>make install T=x86_64-default-linuxapp-gcc
-</pre><span class="anchor" id="line-115"></span><span class="anchor" id="line-116"></span>
-
-### Bind interfaces to DPDK<span class="anchor" id="line-117"></span>
-
-DPDK uses a specialized kernel module to allow userspace applications to control the network card. <span class="anchor" id="line-118"></span><span class="anchor" id="line-119"></span>
-
-<span class="anchor" id="line-120"></span><span class="anchor" id="line-121"></span><span class="anchor" id="line-122"></span><span class="anchor" id="line-123"></span>
-
-<pre>
-<span class="anchor" id="line-1-9"></span>cd $DPDK
-<span class="anchor" id="line-2-4"></span>sudo modprobe uio
-<span class="anchor" id="line-3-2"></span>sudo insmod x86_64-default-linuxapp-gcc/kmod/igb_uio.ko
-</pre><span class="anchor" id="line-124"></span><span class="anchor" id="line-125"></span>
-
-Check that igb_uio is supported <span class="anchor" id="line-126"></span><span class="anchor" id="line-127"></span><span class="anchor" id="line-128"></span>
-
-<pre>
-<span class="anchor" id="line-1-10"></span>./tools/igb_uio_bind.py --status
-</pre>
-
+<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<!-- raw HTML omitted --><!-- raw HTML omitted --><a href="http://ubuntuforums.org/showthread.php?t=1873650">http://ubuntuforums.org/showthread.php?t=1873650</a> <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>Then you need to make sure that the interface is assigned an IP address (dhcp should work and you should be able to ping the guest from the host but you may need to configure dhcp on the virtual network if virtual box doesn't do that). <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>Ping the two guest interfaces in order to populate the ARP table: <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Find the arp entries an make them persistent: <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="installing-dpdkspan-classanchor-idline-52spanspan-classanchor-idline-53span">Installing DPDK<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></h2>
+<p>There is good information from intel on DPDK, quickstarts, howtos etc. But for the sake of simplicity, here is selected useful information needed when starting with DPDK for the first time. <!-- raw HTML omitted --><!-- raw HTML omitted -->
+<!-- raw HTML omitted --><!-- raw HTML omitted --><a href="http://dpdk.org/doc">http://dpdk.org/doc</a> <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="getting-the-codespan-classanchor-idline-58span">Getting the code<!-- raw HTML omitted --><!-- raw HTML omitted --></h3>
+<p>Simply
+<!-- raw HTML omitted --> git clone git://dpdk.org/dpdk <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>Note: At the moment I'm writing this, openvswitch doesn't compile with latest version of dpdk so I went with version 1.7.0rc0. Unfortunately there is no tag for it, so you will have to: <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h3 id="hardware-requirementsspan-classanchor-idline-68span">Hardware requirements<!-- raw HTML omitted --><!-- raw HTML omitted --></h3>
+<p>DPDK works only on a select range of intel devices. It seems that most of the x86 NICs should work just fine, but I couldn't get it working on my HP ProBook 6560b laptop containing an Intel 82540EM Gigabit Ethernet Controller (rev 02) <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>To check if your NIC is supported first you need to get the device id and then look it up in the list of supported devices. <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>lspci - lists all the pci devices; look for your network card here and get the PCI vendor and device ID in the square brackets after the type string. For example: <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>The list of known and supported devices can be found in the dpdk repository, under: <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><strong>If the device is supported then there will be a subsequent line declaring it as supported, for instance:</strong> <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>If you have no supported NICs then you can always try a hypervisor (VirtualBox for instance) that can emulate one of the supported NICs (like the one above for example). <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="compiling-dpdkspan-classanchor-idline-99span">Compiling DPDK<!-- raw HTML omitted --><!-- raw HTML omitted --></h3>
+<p>Before even trying to compile openvswitch you need the dpdk code built in a single library. See INSTALL.DPDK for details. Basically you need to open <!-- raw HTML omitted --><!-- raw HTML omitted -->$DPDK/config/defconfig_x86_64-default-linuxapp-gcc and change <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>to <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Then compile: <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h3 id="bind-interfaces-to-dpdkspan-classanchor-idline-117span">Bind interfaces to DPDK<!-- raw HTML omitted --><!-- raw HTML omitted --></h3>
+<p>DPDK uses a specialized kernel module to allow userspace applications to control the network card. <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Check that igb_uio is supported <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>You should get something like this:</p>
-
-<pre>
-<span class="anchor" id="line-1-11"></span>Network devices using IGB_UIO driver
-<span class="anchor" id="line-2-5"></span>====================================
-<span class="anchor" id="line-3-3"></span>
-<span class="anchor" id="line-4-2"></span>
-<span class="anchor" id="line-5-2"></span>Network devices using kernel driver
-<span class="anchor" id="line-6-1"></span>===================================
-<span class="anchor" id="line-7-1"></span>0000:00:03.0 '82540EM Gigabit Ethernet Controller' if=eth0 drv=e1000 unused=igb_uio *Active*
-<span class="anchor" id="line-8-1"></span>0000:00:08.0 '82540EM Gigabit Ethernet Controller' if=eth1 drv=e1000 unused=igb_uio *Active*
-<span class="anchor" id="line-9-1"></span>0000:00:09.0 '82540EM Gigabit Ethernet Controller' if=eth2 drv=e1000 unused=igb_uio *Active*
-<span class="anchor" id="line-10"></span>
-<span class="anchor" id="line-11"></span>Other network devices
-<span class="anchor" id="line-12"></span>=====================
-<span class="anchor" id="line-13"></span>
-</pre>
-
-<p>To bind an &ldquo;active&rdquo; NIC (one that is being used by Linux already) you will need to force it: <span class="anchor" id="line-148"></span><span class="anchor" id="line-149"></span></p>
-
-<p><span class="anchor" id="line-150"></span><span class="anchor" id="line-151"></span></p>
-
-<pre>
-<span class="anchor" id="line-1-12"></span>sudo ./tools/igb_uio_bind.py --force --bind=igb_uio eth1
-</pre><span class="anchor" id="line-152"></span><span class="anchor" id="line-153"></span>
-
-Do the same for the other interface <span class="anchor" id="line-154"></span><span class="anchor" id="line-155"></span><span class="anchor" id="line-156"></span>
-
-<pre>
-<span class="anchor" id="line-1-13"></span>sudo ./tools/igb_uio_bind.py --force --bind=igb_uio eth2
-</pre><span class="anchor" id="line-157"></span><span class="anchor" id="line-158"></span>
-
-You can bind the interface back to it's original driver with the same tool, i.e. <span class="anchor" id="line-159"></span><span class="anchor" id="line-160"></span><span class="anchor" id="line-161"></span>
-
-<pre>
-<span class="anchor" id="line-1-14"></span>sudo ./tools/igb_uio_bind.py --force --bind=e1000 eth1
-</pre><span class="anchor" id="line-162"></span><span class="anchor" id="line-163"></span>
-
-### Quick test of DPDK using l2fwd<span class="anchor" id="line-164"></span><span class="anchor" id="line-165"></span>
-
-<span class="anchor" id="line-166"></span><span class="anchor" id="line-167"></span><span class="anchor" id="line-168"></span>
-
-<pre>
-<span class="anchor" id="line-1-15"></span>cd examples/l2fwd
-<span class="anchor" id="line-2-6"></span>make RTE_SDK=$DPDK RTE_TARGET=x86_64-default-linuxapp-gcc
-</pre><span class="anchor" id="line-169"></span><span class="anchor" id="line-170"></span>
-
-To run it you will also need to mount hugetlbfs. <span class="anchor" id="line-171"></span><span class="anchor" id="line-172"></span>
-
-<span class="anchor" id="line-173"></span><span class="anchor" id="line-174"></span><span class="anchor" id="line-175"></span><span class="anchor" id="line-176"></span><span class="anchor" id="line-177"></span><span class="anchor" id="line-178"></span><span class="anchor" id="line-179"></span>
-
-<pre>
-<span class="anchor" id="line-1-16"></span>sudo sysctl -w vm.nr_hugepages=320
-<span class="anchor" id="line-2-7"></span>sudo mkdir -p /mnt/huge
-<span class="anchor" id="line-3-4"></span>sudo mount -t hugetlbfs hugetlbfs /mnt/huge
-<span class="anchor" id="line-4-3"></span>
-<span class="anchor" id="line-5-3"></span>cd examples/l2fwd/build/
-<span class="anchor" id="line-6-2"></span>sudo ./l2fwd -c 0x3 -n 4 -- -p 0x3 -T 1
-</pre><span class="anchor" id="line-180"></span><span class="anchor" id="line-181"></span>
-
-You can also specify the number of queues per lcore but the default value 1 is ok. The -p 0x3 is important, it selects the DPDK 'ports' aka network devices that will be used. In this case ports 1 and 2 are selected. The -T parameter is used to updates the counters once a second. <span class="anchor" id="line-182"></span><span class="anchor" id="line-183"></span>
-
-Now to test that it actually works we will use Wireshark and good old ping. <span class="anchor" id="line-184"></span><span class="anchor" id="line-185"></span>
-
-Start Wireshark on the host and make it capture traffic on the second host only network interface (in my case this was vboxnet1). <span class="anchor" id="line-186"></span><span class="anchor" id="line-187"></span>
-
-From the shell run: <span class="anchor" id="line-188"></span><span class="anchor" id="line-189"></span>
-
-<span class="anchor" id="line-190"></span><span class="anchor" id="line-191"></span>
-
-<pre>
-<span class="anchor" id="line-1-17"></span>ping 192.168.56.101 -i 0.2
-</pre><span class="anchor" id="line-192"></span><span class="anchor" id="line-193"></span>
-
-Wireshark should now show packets coming from 192.168.56.1 and with destination 192.168.56.101. The counters in the l2fwd applications should also be updated once a second. <span class="anchor" id="line-194"></span><span class="anchor" id="line-195"></span>
-
-Then try to close the l2fwd application and observe that wireshark doesn't get packets anymore. <span class="anchor" id="line-196"></span><span class="anchor" id="line-197"></span>
-
-### Other DPDK examples<span class="anchor" id="line-198"></span>
-
-There are other examples included, I tried test-pmd just out of curiosity. Detailed information about running them can be found on:
-<span class="anchor" id="line-199"></span>http://www.intel.com/content/dam/www/public/us/en/documents/guides/intel-dpdk-sample-applications-user-guide.pdf <span class="anchor" id="line-200"></span><span class="anchor" id="line-201"></span>
-
-## Installing Openvswitch with DPDK<span class="anchor" id="line-202"></span>
-
-After installing and running dpdk successfully you can start working on getting openvswitch up and running with DPDK. I've used commit [b596218aa8acafd64a4c7d1c3e761f00e50c0c53](http://git.openvswitch.org/cgi-bin/gitweb.cgi?p=openvswitch;a=commit;h=b596218aa8acafd64a4c7d1c3e761f00e50c0c53) and it worked for me. <span class="anchor" id="line-203"></span><span class="anchor" id="line-204"></span>
-
-### Compiling OVS with DPDK<span class="anchor" id="line-205"></span>
-
-Official information can be found here:
-<span class="anchor" id="line-206"></span>http://git.openvswitch.org/cgi-bin/gitweb.cgi?p=openvswitch;a=blob_plain;f=INSTALL.DPDK;hb=HEAD <span class="anchor" id="line-207"></span><span class="anchor" id="line-208"></span>
-
-I followed the exact same steps, but I added the -ldl to LIBS since my x86_64 Ubuntu didn't link with the default options. <span class="anchor" id="line-209"></span><span class="anchor" id="line-210"></span>
-
-cd openvswitch <span class="anchor" id="line-211"></span>./boot.sh <span class="anchor" id="line-212"></span>./configure --with-dpdk=$DPDK LIBS=-ldl <span class="anchor" id="line-213"></span>make <span class="anchor" id="line-214"></span>sudo make install <span class="anchor" id="line-215"></span><span class="anchor" id="line-216"></span>
-
-### Database initialization<span class="anchor" id="line-217"></span>
-
-To manually initialize the database you need to do: <span class="anchor" id="line-218"></span><span class="anchor" id="line-219"></span>
-
-<span class="anchor" id="line-220"></span><span class="anchor" id="line-221"></span><span class="anchor" id="line-222"></span>
-
-<pre>
-<span class="anchor" id="line-1-18"></span>sudo mkdir -p /usr/local/etc/openvswitch
-<span class="anchor" id="line-2-8"></span>sudo ovsdb-tool create /usr/local/etc/openvswitch/conf.db vswitchd/vswitch.ovsschema
-</pre><span class="anchor" id="line-223"></span><span class="anchor" id="line-224"></span>
-
-### Preparing DPDK<span class="anchor" id="line-225"></span>
-
-For the DPDK part you need to configure hugetables, insert the kernel modules (uio and igb_uio) and bind the network interfaces to igb_uio. <span class="anchor" id="line-226"></span>These need to be done pretty much once after the computer is started. <span class="anchor" id="line-227"></span><span class="anchor" id="line-228"></span>
-
-<span class="anchor" id="line-229"></span><span class="anchor" id="line-230"></span><span class="anchor" id="line-231"></span><span class="anchor" id="line-232"></span><span class="anchor" id="line-233"></span><span class="anchor" id="line-234"></span><span class="anchor" id="line-235"></span><span class="anchor" id="line-236"></span><span class="anchor" id="line-237"></span><span class="anchor" id="line-238"></span>
-
-<pre>
-<span class="anchor" id="line-1-19"></span>sudo sysctl -w vm.nr_hugepages=2000
-<span class="anchor" id="line-2-9"></span>sudo mkdir -p /mnt/huge
-<span class="anchor" id="line-3-5"></span>sudo mount -t hugetlbfs hugetlbfs /mnt/huge
-<span class="anchor" id="line-4-4"></span>
-<span class="anchor" id="line-5-4"></span>sudo modprobe uio.ko
-<span class="anchor" id="line-6-3"></span>cd $DPDK
-<span class="anchor" id="line-7-2"></span>sudo insmod x86_64-default-linuxapp-gcc/kmod/igb_uio.ko
-<span class="anchor" id="line-8-2"></span>sudo ./tools/igb_uio_bind.py --force --bind=igb_uio eth1
-<span class="anchor" id="line-9-2"></span>sudo ./tools/igb_uio_bind.py --force --bind=igb_uio eth2
-</pre><span class="anchor" id="line-239"></span><span class="anchor" id="line-240"></span>
-
-### Permanent startup configuration<span class="anchor" id="line-241"></span>
-
-Here is how to setup hugetables and have the kernel modules loaded at startup. I haven't looked for a solution to bind the wanted interfaces to DPDK on startup, but there should be a way to do that. <span class="anchor" id="line-242"></span><span class="anchor" id="line-243"></span>
-
-To have hugetables mounted by default at startup you need to add an entry to /etc/fstab <span class="anchor" id="line-244"></span><span class="anchor" id="line-245"></span>
-
-<span class="anchor" id="line-246"></span><span class="anchor" id="line-247"></span>
-
-<pre>
-<span class="anchor" id="line-1-20"></span>hugetlbfs       /mnt/huge       hugetlbfs       rw,mode=0777    0       0
-</pre><span class="anchor" id="line-248"></span><span class="anchor" id="line-249"></span>
-
-To have the igb_uio.ko module loaded at boot time you need to make it known to modprobe. One good option is to make a symlink to it somewhere in the linux kernel structure: <span class="anchor" id="line-250"></span><span class="anchor" id="line-251"></span>
-
-<span class="anchor" id="line-252"></span><span class="anchor" id="line-253"></span><span class="anchor" id="line-254"></span>
-
-<pre>
-<span class="anchor" id="line-1-21"></span>sudo ln -s $DPDK/x86_64-default-linuxapp-gcc/kmod/igb_uio.ko /lib/modules/`uname -r`/kernel/drivers/uio/igb_uio.ko
-<span class="anchor" id="line-2-10"></span>sudo depmod -a
-</pre><span class="anchor" id="line-255"></span><span class="anchor" id="line-256"></span>
-
-Then you need to add both uio and igb_uio to /etc/modules so that they are loaded at boot time. <span class="anchor" id="line-257"></span><span class="anchor" id="line-258"></span>
-
-My Ubuntu 13.10 installation failed to start the desktop manager properly when one of the cards didn't get IP from dhcp. If that happens to you and you want the desktop manager, just log on to console 1 (Alt + Ctrl + F1) and run: <span class="anchor" id="line-259"></span>sudo service lightdm restart <span class="anchor" id="line-260"></span><span class="anchor" id="line-261"></span><span class="anchor" id="line-262"></span>
-
-<pre>
-<span class="anchor" id="line-1-22"></span>sudo service lightdm restart
-</pre><span class="anchor" id="line-263"></span><span class="anchor" id="line-264"></span>
-
-However disabling the X server altogether should result in better performance overall. <span class="anchor" id="line-265"></span><span class="anchor" id="line-266"></span>
-
-### Running openvswitch with DPDK<span class="anchor" id="line-267"></span>
-
-To manually run openvswitch you must do these each time: <span class="anchor" id="line-268"></span><span class="anchor" id="line-269"></span>
-
-<span class="anchor" id="line-270"></span><span class="anchor" id="line-271"></span><span class="anchor" id="line-272"></span><span class="anchor" id="line-273"></span><span class="anchor" id="line-274"></span><span class="anchor" id="line-275"></span><span class="anchor" id="line-276"></span><span class="anchor" id="line-277"></span><span class="anchor" id="line-278"></span><span class="anchor" id="line-279"></span>
-
-<pre>
-<span class="anchor" id="line-1-23"></span>sudo ovsdb-server --remote=punix:/usr/local/var/run/openvswitch/db.sock \
-<span class="anchor" id="line-2-11"></span>                                        --remote=db:Open_vSwitch,Open_vSwitch,manager_options \
-<span class="anchor" id="line-3-6"></span>                                        --private-key=db:Open_vSwitch,SSL,private_key \
-<span class="anchor" id="line-4-5"></span>                                        --certificate=db:Open_vSwitch,SSL,certificate \
-<span class="anchor" id="line-5-5"></span>                                        --bootstrap-ca-cert=db:Open_vSwitch,SSL,ca_cert \
-<span class="anchor" id="line-6-4"></span>                                        --pidfile --detach
-<span class="anchor" id="line-7-3"></span>
-<span class="anchor" id="line-8-3"></span>sudo ovs-vsctl --no-wait init
-<span class="anchor" id="line-9-3"></span>sudo ovs-vswitchd --dpdk -c 0x3 -n 4 -- unix:/usr/local/var/run/openvswitch/db.sock --log-file=/usr/local/var/log/openvswitch/ovs-vswitchd.log --pidfile --detach
-</pre><span class="anchor" id="line-280"></span><span class="anchor" id="line-281"></span>
-
-### Bridge configuration<span class="anchor" id="line-282"></span>
-
-You need to add a netdev type bridge in order to make ovs running with DPDK. This means that all datapath switching will be done in userspace. <span class="anchor" id="line-283"></span><span class="anchor" id="line-284"></span>
-
-You may get an error like "ovs-vsctl: Error detected while setting up 'ovsbr0'. See ovs-vswitchd log for details." in case you don't have the openvswitch module inserted. But the bridge will be created so you ignore the warning and continue. <span class="anchor" id="line-285"></span><span class="anchor" id="line-286"></span>
-
-<span class="anchor" id="line-287"></span><span class="anchor" id="line-288"></span><span class="anchor" id="line-289"></span><span class="anchor" id="line-290"></span><span class="anchor" id="line-291"></span><span class="anchor" id="line-292"></span>
-
-<pre>
-<span class="anchor" id="line-1-24"></span>sudo ovs-vsctl add-br ovsbr0
-<span class="anchor" id="line-2-12"></span>sudo ovs-vsctl set bridge ovsbr0 datapath_type=netdev
-<span class="anchor" id="line-3-7"></span>
-<span class="anchor" id="line-4-6"></span>sudo ovs-vsctl add-port ovsbr0 dpdk0 -- set Interface dpdk0 type=dpdk
-<span class="anchor" id="line-5-6"></span>sudo ovs-vsctl add-port ovsbr0 dpdk1 -- set Interface dpdk1 type=dpdk
-</pre><span class="anchor" id="line-293"></span><span class="anchor" id="line-294"></span>
-
-### Testing with ping and tcpdump<span class="anchor" id="line-295"></span><span class="anchor" id="line-296"></span>
-
-A simple test to see that packets arrive at the bridge could be the following. First add an internal port to the bridge and bring it up: <span class="anchor" id="line-297"></span><span class="anchor" id="line-298"></span>
-
-<span class="anchor" id="line-299"></span><span class="anchor" id="line-300"></span><span class="anchor" id="line-301"></span>
-
-<pre>
-<span class="anchor" id="line-1-25"></span>sudo ovs-vsctl add-port br0 br0p1 -- set Interface br0p1 type=internal
-<span class="anchor" id="line-2-13"></span>sudo ifconfig br0p1 up
-</pre><span class="anchor" id="line-302"></span><span class="anchor" id="line-303"></span>
-
-On the guest machine then start tcpdump <span class="anchor" id="line-304"></span><span class="anchor" id="line-305"></span><span class="anchor" id="line-306"></span>
-
-<pre>
-<span class="anchor" id="line-1-26"></span>sudo tcpdump -i br0p1
-</pre><span class="anchor" id="line-307"></span><span class="anchor" id="line-308"></span>
-
-From the host try to ping the guest. With the virtual machine configuration described you can try to ping something inside the subnet of one of the host-only interfaces. Linux will route the requests to the host-only adapter which in turn will be relayed by VirtualBox and then broadcasted in the virtual switch, including the port br0p1. <span class="anchor" id="line-309"></span><span class="anchor" id="line-310"></span><span class="anchor" id="line-311"></span>
-
-<pre>
-<span class="anchor" id="line-1-27"></span>ping 192.168.56.102
-</pre><span class="anchor" id="line-312"></span><span class="anchor" id="line-313"></span>
-
-### Testing with mirroring port<span class="anchor" id="line-314"></span><span class="anchor" id="line-315"></span>
-
-<span class="anchor" id="line-316"></span><span class="anchor" id="line-317"></span><span class="anchor" id="line-318"></span>
-
-<pre>
-<span class="anchor" id="line-1-28"></span>sudo ovs-vsctl -- set Bridge br0 mirrors=@m -- --id=@eth1 get Port eth1 -- --id=@eth2 get Port eth2 -- --id=@m create Mirror name=mymirror select-dst-port=@eth2 select-src-port=@eth1 output-port=@eth2
-<span class="anchor" id="line-2-14"></span>sudo ovs-vsctl -- set Bridge ovsbr0 mirrors=@m -- --id=@dpdk0 get Port dpdk0 -- --id=@dpdk1 get Port dpdk1 -- --id=@m create Mirror name=mymirror select-dst-port=@dpdk1 select-src-port=@dpdk0 output-port=@dpdk1
-</pre>
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>To bind an &ldquo;active&rdquo; NIC (one that is being used by Linux already) you will need to force it: <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Do the same for the other interface <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>You can bind the interface back to it's original driver with the same tool, i.e. <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h3 id="quick-test-of-dpdk-using-l2fwdspan-classanchor-idline-164spanspan-classanchor-idline-165span">Quick test of DPDK using l2fwd<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></h3>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>To run it you will also need to mount hugetlbfs. <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>You can also specify the number of queues per lcore but the default value 1 is ok. The -p 0x3 is important, it selects the DPDK &lsquo;ports&rsquo; aka network devices that will be used. In this case ports 1 and 2 are selected. The -T parameter is used to updates the counters once a second. <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>Now to test that it actually works we will use Wireshark and good old ping. <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>Start Wireshark on the host and make it capture traffic on the second host only network interface (in my case this was vboxnet1). <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>From the shell run: <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Wireshark should now show packets coming from 192.168.56.1 and with destination 192.168.56.101. The counters in the l2fwd applications should also be updated once a second. <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>Then try to close the l2fwd application and observe that wireshark doesn't get packets anymore. <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="other-dpdk-examplesspan-classanchor-idline-198span">Other DPDK examples<!-- raw HTML omitted --><!-- raw HTML omitted --></h3>
+<p>There are other examples included, I tried test-pmd just out of curiosity. Detailed information about running them can be found on:
+<!-- raw HTML omitted --><!-- raw HTML omitted --><a href="http://www.intel.com/content/dam/www/public/us/en/documents/guides/intel-dpdk-sample-applications-user-guide.pdf">http://www.intel.com/content/dam/www/public/us/en/documents/guides/intel-dpdk-sample-applications-user-guide.pdf</a> <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="installing-openvswitch-with-dpdkspan-classanchor-idline-202span">Installing Openvswitch with DPDK<!-- raw HTML omitted --><!-- raw HTML omitted --></h2>
+<p>After installing and running dpdk successfully you can start working on getting openvswitch up and running with DPDK. I've used commit <a href="http://git.openvswitch.org/cgi-bin/gitweb.cgi?p=openvswitch;a=commit;h=b596218aa8acafd64a4c7d1c3e761f00e50c0c53">b596218aa8acafd64a4c7d1c3e761f00e50c0c53</a> and it worked for me. <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="compiling-ovs-with-dpdkspan-classanchor-idline-205span">Compiling OVS with DPDK<!-- raw HTML omitted --><!-- raw HTML omitted --></h3>
+<p>Official information can be found here:
+<!-- raw HTML omitted --><!-- raw HTML omitted --><a href="http://git.openvswitch.org/cgi-bin/gitweb.cgi?p=openvswitch;a=blob_plain;f=INSTALL.DPDK;hb=HEAD">http://git.openvswitch.org/cgi-bin/gitweb.cgi?p=openvswitch;a=blob_plain;f=INSTALL.DPDK;hb=HEAD</a> <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>I followed the exact same steps, but I added the -ldl to LIBS since my x86_64 Ubuntu didn't link with the default options. <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>cd openvswitch <!-- raw HTML omitted --><!-- raw HTML omitted -->./boot.sh <!-- raw HTML omitted --><!-- raw HTML omitted -->./configure &ndash;with-dpdk=$DPDK LIBS=-ldl <!-- raw HTML omitted --><!-- raw HTML omitted -->make <!-- raw HTML omitted --><!-- raw HTML omitted -->sudo make install <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="database-initializationspan-classanchor-idline-217span">Database initialization<!-- raw HTML omitted --><!-- raw HTML omitted --></h3>
+<p>To manually initialize the database you need to do: <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h3 id="preparing-dpdkspan-classanchor-idline-225span">Preparing DPDK<!-- raw HTML omitted --><!-- raw HTML omitted --></h3>
+<p>For the DPDK part you need to configure hugetables, insert the kernel modules (uio and igb_uio) and bind the network interfaces to igb_uio. <!-- raw HTML omitted --><!-- raw HTML omitted -->These need to be done pretty much once after the computer is started. <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h3 id="permanent-startup-configurationspan-classanchor-idline-241span">Permanent startup configuration<!-- raw HTML omitted --><!-- raw HTML omitted --></h3>
+<p>Here is how to setup hugetables and have the kernel modules loaded at startup. I haven't looked for a solution to bind the wanted interfaces to DPDK on startup, but there should be a way to do that. <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>To have hugetables mounted by default at startup you need to add an entry to /etc/fstab <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>To have the igb_uio.ko module loaded at boot time you need to make it known to modprobe. One good option is to make a symlink to it somewhere in the linux kernel structure: <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Then you need to add both uio and igb_uio to /etc/modules so that they are loaded at boot time. <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>My Ubuntu 13.10 installation failed to start the desktop manager properly when one of the cards didn't get IP from dhcp. If that happens to you and you want the desktop manager, just log on to console 1 (Alt + Ctrl + F1) and run: <!-- raw HTML omitted --><!-- raw HTML omitted -->sudo service lightdm restart <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>However disabling the X server altogether should result in better performance overall. <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="running-openvswitch-with-dpdkspan-classanchor-idline-267span">Running openvswitch with DPDK<!-- raw HTML omitted --><!-- raw HTML omitted --></h3>
+<p>To manually run openvswitch you must do these each time: <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h3 id="bridge-configurationspan-classanchor-idline-282span">Bridge configuration<!-- raw HTML omitted --><!-- raw HTML omitted --></h3>
+<p>You need to add a netdev type bridge in order to make ovs running with DPDK. This means that all datapath switching will be done in userspace. <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>You may get an error like &ldquo;ovs-vsctl: Error detected while setting up &lsquo;ovsbr0&rsquo;. See ovs-vswitchd log for details.&rdquo; in case you don't have the openvswitch module inserted. But the bridge will be created so you ignore the warning and continue. <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h3 id="testing-with-ping-and-tcpdumpspan-classanchor-idline-295spanspan-classanchor-idline-296span">Testing with ping and tcpdump<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></h3>
+<p>A simple test to see that packets arrive at the bridge could be the following. First add an internal port to the bridge and bring it up: <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>On the guest machine then start tcpdump <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>From the host try to ping the guest. With the virtual machine configuration described you can try to ping something inside the subnet of one of the host-only interfaces. Linux will route the requests to the host-only adapter which in turn will be relayed by VirtualBox and then broadcasted in the virtual switch, including the port br0p1. <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h3 id="testing-with-mirroring-portspan-classanchor-idline-314spanspan-classanchor-idline-315span">Testing with mirroring port<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></h3>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>备注：本文转自 <a href="https://wiki.linaro.org/LNG/Engineering/OVSDPDKOnUbuntu">https://wiki.linaro.org/LNG/Engineering/OVSDPDKOnUbuntu</a>。</p>
 
   </div>
@@ -586,8 +392,8 @@ From the host try to ping the guest. With the virtual machine configuration desc
     </a>
     
     
-    <a href="/posts/2015-03-04-ovs-20-call-flow/" class="navigation-next">
-      <span class="navigation-tittle">OVS 2.0 call flow</span>
+    <a href="/posts/notes-about-serverless/" class="navigation-next">
+      <span class="navigation-tittle">Notes about serverless</span>
       <i aria-hidden="true" class="fa fa-chevron-right"></i>
     </a>
     
@@ -638,6 +444,7 @@ From the host try to ping the guest. With the virtual machine configuration desc
         </div>
         
     
+
   
   
 <script type="application/javascript">
@@ -652,15 +459,12 @@ if (!doNotTrack) {
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
-<script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"
-  integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy"
-  crossorigin="anonymous">
-</script>
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
 
 
     
     
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
         
     
     <script type="text/javascript">
@@ -671,6 +475,21 @@ if (!doNotTrack) {
 
 
 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.js"></script>
+<script type="text/javascript">
+  if (tocbot) {
+    tocbot.init({
+      
+      tocSelector: '.toc',
+      
+      contentSelector: '.post',
+      
+      headingSelector: 'h2, h3, h4',
+      collapseDepth: 4
+    });
+  }
+</script>
 
 
 

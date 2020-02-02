@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Openstack on Feisky</title>
+    <title>OpenStack on Feisky</title>
     <link>https://feisky.xyz/tags/openstack/</link>
-    <description>Recent content in Openstack on Feisky</description>
+    <description>Recent content in OpenStack on Feisky</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     
@@ -35,7 +35,7 @@
       
       <guid>https://feisky.xyz/posts/2015-02-26-integrating-openstack-and-kubernetes-with-murano/</guid>
       <description>There’s a perceived competition between OpenStack and containers such as Docker, but in reality, the two technologies are a powerful combination. They both solve similar problems, but on different layers of the stack, so combining the two can give users more scalability and automation than ever before.
-That containers app you wrote needs to run somewhere. This is particularly true for orchestrated container applications, such as those managed by Kubernetes.</description>
+That containers app you wrote needs to run somewhere. This is particularly true for orchestrated container applications, such as those managed by Kubernetes. What’s more, if your application is complicated enough that it needs to scale up and down, you need to be running it in an environment that can, itself, scale up and down.</description>
     </item>
     
     <item>
@@ -44,9 +44,7 @@ That containers app you wrote needs to run somewhere. This is particularly true 
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://feisky.xyz/posts/2015-06-24-openstack-magnum/</guid>
-      <description>Add network management for native docker https://blueprints.launchpad.net/magnum/+spec/native-docker-network
-https://etherpad.openstack.org/p/magnum-native-docker-network
-From http://dockone.io/article/445</description>
+      <description>Add network management for native docker https://blueprints.launchpad.net/magnum/+spec/native-docker-network https://etherpad.openstack.org/p/magnum-native-docker-network From http://dockone.io/article/445</description>
     </item>
     
   </channel>

@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.49.2" />
+<meta name="generator" content="Hugo 0.62.2" />
 
     
     
@@ -27,14 +27,15 @@
 <meta property="og:title" content="开始一本开源电子书《Kubernetes指南》" />
 <meta property="og:description" content="Kubernetes是谷歌开源的容器集群管理系统，是Google多年大规模容器管理技术Borg的开源版本，也是CNCF最重要的组件之一，主要" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://feisky.xyz/posts/2017-05-21-start-kubernetes-handbook/" /><meta property="article:published_time" content="2017-05-21T17:42:34&#43;00:00"/>
-<meta property="article:modified_time" content="2017-05-21T17:42:34&#43;00:00"/>
+<meta property="og:url" content="https://feisky.xyz/posts/2017-05-21-start-kubernetes-handbook/" />
+<meta property="article:published_time" content="2017-05-21T17:42:34+00:00" />
+<meta property="article:modified_time" content="2017-05-21T17:42:34+00:00" />
 
 
     
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
 
 
 
@@ -43,15 +44,15 @@
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hyde-hyde.6f40d28e777b288cb757a1db116a257b6f8dffc63a05e8473d12dc09a52d8d79.css" integrity="sha256-b0DSjnd7KIy3V6HbEWole2&#43;N/8Y6BehHPRLcCaUtjXk=">
+<link rel="stylesheet" href="/scss/hyde-hyde.92c66d107d7b219f0792cfd67223179af884b03f386ac46894f9f735932bbca3.css" integrity="sha256-ksZtEH17IZ8Hks/WciMXmviEsD84asRolPn3NZMrvKM=">
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
 
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hugo-toc.8549a64d301421b4256ea9a0d5ca8b99178799f569d5d2daeb95f24cef3ce6b7.css" integrity="sha256-hUmmTTAUIbQlbqmg1cqLmReHmfVp1dLa65XyTO885rc=">
+<link rel="stylesheet" href="/scss/tocbot.126e7d75240acc946d34d6ccb2982ed4c394a5fe34e73e1a2119ca951bcf119d.css" integrity="sha256-Em59dSQKzJRtNNbMspgu1MOUpf405z4aIRnKlRvPEZ0=">
 
 
 
@@ -63,6 +64,7 @@
     <!-- Icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
     <link rel="shortcut icon" href="/favicon.png">
+    
     
 
 </head>
@@ -76,6 +78,7 @@
       <span class="site__title">
         <a href="https://feisky.xyz/">Feisky</a>
       </span>
+      
       
       <p class="site__description">
          Notes about anything 
@@ -92,7 +95,23 @@
 			 
 				<li>
 					<a href="https://kubernetes.feisky.xyz">
-						<span>Kubernetes</span>
+						<span>Kubernetes指南</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://time.geekbang.org/column/intro/100020901">
+						<span>Linux性能优化实战</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://sdn.feisky.xyz">
+						<span>SDN网络</span>
 					</a>
 				</li>
 			 
@@ -107,21 +126,12 @@
 		 
 			 
 				<li>
-					<a href="https://sdn.feisky.xyz">
-						<span>SDN</span>
-					</a>
-				</li>
-			 
-		 
-			 
-				<li>
 					<a href="/about/">
-						<span>About</span>
+						<span>关于我</span>
 					</a>
 				</li>
 			 
 		
-		</li>
 	</ul>
 </div>
 
@@ -144,23 +154,33 @@
 	
 	
 	
+	
+	
 </section>
 
       </div>
     </div>
-    <div class="copyright">
-  &copy; 2019 .
-  <a href="https://creativecommons.org/licenses/by-sa/4.0">Some Rights Reserved</a>.
-  Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+    
+<div class="copyright">
+  &copy; 2020 feiskyer
+  
+    <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>
   
 </div>
+
+
+<div class="builtwith">
+Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+</div>
+
 
   </div>
 </div>
 
         <div class="content container">
             
-    <article>
+    
+<article>
   <header>
     <h1>开始一本开源电子书《Kubernetes指南》</h1>
     
@@ -192,27 +212,18 @@
   </header>
   
   
-  <div class="toc-wrapper">
-    <input type="checkbox" id="tocToggle">
-    <label for="tocToggle">Table of Content</label>
-    
-        <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#在线阅读">在线阅读</a></li>
-<li><a href="#项目源码">项目源码</a></li>
-</ul></li>
-</ul>
-</nav>
-    
-  </div>
+  
+    <div class="toc-wrapper">
+      <input type="checkbox" id="tocToggle">
+      <label for="tocToggle">Table of Content</label>
+      
+        <div class="toc" id="TableOfContents"></div>
+      
+    </div>
+  
   
   <div class="post">
-    
-
-<p>Kubernetes是谷歌开源的容器集群管理系统，是Google多年大规模容器管理技术Borg的开源版本，也是CNCF最重要的组件之一，主要功能包括：</p>
-
+    <p>Kubernetes是谷歌开源的容器集群管理系统，是Google多年大规模容器管理技术Borg的开源版本，也是CNCF最重要的组件之一，主要功能包括：</p>
 <ul>
 <li>基于容器的应用部署、维护和滚动升级</li>
 <li>负载均衡和服务发现</li>
@@ -222,17 +233,11 @@
 <li>广泛的Volume支持</li>
 <li>插件机制保证扩展性</li>
 </ul>
-
 <p>Kubernetes发展非常迅速，已经成为容器编排领域的领导者。Kubernetes的中文资料也非常丰富，但系统化和紧跟社区更新的则就比较少见了。《Kubernetes指南》开源电子书旨在整理平时在开发和使用Kubernetes时的参考指南和实践总结，更是为了形成一个系统化的参考指南以方便查阅。欢迎大家关注，更欢迎大家一起添加更多更好的内容。</p>
-
 <h2 id="在线阅读">在线阅读</h2>
-
 <p>可以通过<a href="https://feisky.gitbooks.io/kubernetes">GitBook</a>或者<a href="https://github.com/feiskyer/kubernetes-handbook/blob/master/SUMMARY.md">Github</a>来在线阅读。</p>
-
 <p>也可以下载<a href="https://www.gitbook.com/download/epub/book/feisky/kubernetes">ePub</a>或者<a href="https://www.gitbook.com/download/pdf/book/feisky/kubernetes">PDF</a>版本。</p>
-
 <h2 id="项目源码">项目源码</h2>
-
 <p>项目源码存放于Github上，<a href="https://github.com/feiskyer/kubernetes-handbook">https://github.com/feiskyer/kubernetes-handbook</a>。欢迎各位关注和参与。</p>
 
   </div>
@@ -264,7 +269,7 @@
         
 <li>
   <span class="list__title--small">
-    <a href="/posts/2016-12-13-kubernetes-v1-5-0-release/">Kubernetes v1.5.0 release</a>
+    <a href="/posts/2016-12-13-kubernetes-v1-5-0-release/" >Kubernetes v1.5.0 release</a>
       
       <time class="pull-right hidden-tablet">Dec 13 &#39;16</time>
       
@@ -273,7 +278,7 @@
 
 <li>
   <span class="list__title--small">
-    <a href="/posts/2016-11-14-kubecon-2016%E8%A7%81%E9%97%BB/">KubeCon/CloudNativeCon 2016见闻</a>
+    <a href="/posts/2016-11-14-kubecon-2016%E8%A7%81%E9%97%BB/" >KubeCon/CloudNativeCon 2016见闻</a>
       
       <time class="pull-right hidden-tablet">Nov 14 &#39;16</time>
       
@@ -282,7 +287,7 @@
 
 <li>
   <span class="list__title--small">
-    <a href="/posts/2016-09-25-kubernetes-container-runtime-interface/">Kubernetes container runtime interface</a>
+    <a href="/posts/2016-09-25-kubernetes-container-runtime-interface/" >Kubernetes container runtime interface</a>
       
       <time class="pull-right hidden-tablet">Sep 25 &#39;16</time>
       
@@ -291,7 +296,7 @@
 
 <li>
   <span class="list__title--small">
-    <a href="/posts/2016-09-11-kubernetes%E4%B8%AD%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0%E4%B8%8E%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/">Kubernetes中的服务发现与负载均衡</a>
+    <a href="/posts/2016-09-11-kubernetes%E4%B8%AD%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0%E4%B8%8E%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" >Kubernetes中的服务发现与负载均衡</a>
       
       <time class="pull-right hidden-tablet">Sep 11 &#39;16</time>
       
@@ -300,12 +305,13 @@
 
 <li>
   <span class="list__title--small">
-    <a href="/posts/2016-06-07-kubernetes-mesos-architecture/">Kubernetes-mesos architecture</a>
+    <a href="/posts/2016-06-07-kubernetes-mesos-architecture/" >Kubernetes-mesos architecture</a>
       
       <time class="pull-right hidden-tablet">Jun 07 &#39;16</time>
       
   </span>
 </li>
+
 
     </ul>
 </div>
@@ -351,6 +357,7 @@
         </div>
         
     
+
   
   
 <script type="application/javascript">
@@ -365,15 +372,12 @@ if (!doNotTrack) {
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
-<script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"
-  integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy"
-  crossorigin="anonymous">
-</script>
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
 
 
     
     
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
         
     
     <script type="text/javascript">
@@ -384,6 +388,21 @@ if (!doNotTrack) {
 
 
 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.js"></script>
+<script type="text/javascript">
+  if (tocbot) {
+    tocbot.init({
+      
+      tocSelector: '.toc',
+      
+      contentSelector: '.post',
+      
+      headingSelector: 'h2, h3, h4',
+      collapseDepth: 4
+    });
+  }
+</script>
 
 
 

@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.49.2" />
+<meta name="generator" content="Hugo 0.62.2" />
 
     
     
@@ -22,18 +22,37 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content=""/>
-<meta name="twitter:description" content="layout: post title: Software Engineering at Google date: 2017-02-13 19:36:09 tags: [Google] Google的Fergus Henderson在Software Engineering at Google中介绍了Google的软件工程实践。 软"/>
+<meta name="twitter:description" content="layout: post title: Software Engineering at Google date: 2017-02-13 19:36:09 tags: [Google] Google的Fergus Henderson在Software Engineering at Google中介绍了Google的软件工程实践。
+软件开发 源码仓库
+ 单一源代码仓库，除了核心配置和安全相关代码，任何工程师都可以访问任何代码，并可以根据需要修改 所有开发都基于master分支，发布的时候才创建发布分枝 代码的每个子树都有owner，任何修改都需要owner批准  Blaze分布式构建系统
+ 构建和测试存储库中的任何软件通常非常简单和快捷 开发人员只需要编写BUILD文件，并且每个构建系统仅依赖BUILD文件所声明的文件 构建系统的优化：可靠，自动跟踪依赖关系，增量构建，缓存构建结果以便复用 自动代码检查和测试  代码审查
+ 完善的代码审查工具，如可视化的Web界面、电子邮件集成、自动展示测试或静态分析的结果 每个变更都必须由至少另外一人审查，并将审查结果自动复制到项目维护者的邮件列表 鼓励小的变更，大的变更可以拆分为一系列较小的变更  测试
+ 鼓励和广泛使用单元测试，Mocking非常普遍 广泛使用集成测试和回归测试 自动测量测试覆盖率 部署之前进行负载测试，显示关键的metrics，比如延迟、错误率以及它们随请求速率的变化情况  Bug跟踪
+ Google使用名为Buganizer的Bug跟踪系统 使用标签分类bug 每个bug都有一个默认的assignee和抄送邮件列表  编程语言
+ 鼓励使用C&#43;&#43;、Java、Python或Go之一，最小化不同编程语言的数量 每种语言都有Google风格指南，还有一个公司范围内的可读性培训 不同语言之前使用基于Protocol Buffers的RPC通信 为所有语言提供通用的开发工具，比如代码签出、编辑、构建、测试、审查、bug报告等  调试和分析
+ 在通用框架中提供调试和代码跟踪工具 提供用于调试的网络接口检查RPC调用的时间、错误率和频率限制以及资源消耗、性能分析数据等  发布
+ 频繁发布（比如每周或每两周），自动化发布任务，提高工程师积极性，允许更多迭代以加快整体速度 发布分支，将master的修改cherry-pick到发布分支 发布到staging服务器，测试部分生产流量的副本 发布到canary服务器，测试真实生产流量的一个子集 最后逐步发布到所有服务器  Launch approval"/>
 
 <meta property="og:title" content="" />
-<meta property="og:description" content="layout: post title: Software Engineering at Google date: 2017-02-13 19:36:09 tags: [Google] Google的Fergus Henderson在Software Engineering at Google中介绍了Google的软件工程实践。 软" />
+<meta property="og:description" content="layout: post title: Software Engineering at Google date: 2017-02-13 19:36:09 tags: [Google] Google的Fergus Henderson在Software Engineering at Google中介绍了Google的软件工程实践。
+软件开发 源码仓库
+ 单一源代码仓库，除了核心配置和安全相关代码，任何工程师都可以访问任何代码，并可以根据需要修改 所有开发都基于master分支，发布的时候才创建发布分枝 代码的每个子树都有owner，任何修改都需要owner批准  Blaze分布式构建系统
+ 构建和测试存储库中的任何软件通常非常简单和快捷 开发人员只需要编写BUILD文件，并且每个构建系统仅依赖BUILD文件所声明的文件 构建系统的优化：可靠，自动跟踪依赖关系，增量构建，缓存构建结果以便复用 自动代码检查和测试  代码审查
+ 完善的代码审查工具，如可视化的Web界面、电子邮件集成、自动展示测试或静态分析的结果 每个变更都必须由至少另外一人审查，并将审查结果自动复制到项目维护者的邮件列表 鼓励小的变更，大的变更可以拆分为一系列较小的变更  测试
+ 鼓励和广泛使用单元测试，Mocking非常普遍 广泛使用集成测试和回归测试 自动测量测试覆盖率 部署之前进行负载测试，显示关键的metrics，比如延迟、错误率以及它们随请求速率的变化情况  Bug跟踪
+ Google使用名为Buganizer的Bug跟踪系统 使用标签分类bug 每个bug都有一个默认的assignee和抄送邮件列表  编程语言
+ 鼓励使用C&#43;&#43;、Java、Python或Go之一，最小化不同编程语言的数量 每种语言都有Google风格指南，还有一个公司范围内的可读性培训 不同语言之前使用基于Protocol Buffers的RPC通信 为所有语言提供通用的开发工具，比如代码签出、编辑、构建、测试、审查、bug报告等  调试和分析
+ 在通用框架中提供调试和代码跟踪工具 提供用于调试的网络接口检查RPC调用的时间、错误率和频率限制以及资源消耗、性能分析数据等  发布
+ 频繁发布（比如每周或每两周），自动化发布任务，提高工程师积极性，允许更多迭代以加快整体速度 发布分支，将master的修改cherry-pick到发布分支 发布到staging服务器，测试部分生产流量的副本 发布到canary服务器，测试真实生产流量的一个子集 最后逐步发布到所有服务器  Launch approval" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://feisky.xyz/posts/2017-02-13-software-engineering-at-google/" />
+
 
 
     
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
 
 
 
@@ -42,15 +61,15 @@
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hyde-hyde.6f40d28e777b288cb757a1db116a257b6f8dffc63a05e8473d12dc09a52d8d79.css" integrity="sha256-b0DSjnd7KIy3V6HbEWole2&#43;N/8Y6BehHPRLcCaUtjXk=">
+<link rel="stylesheet" href="/scss/hyde-hyde.92c66d107d7b219f0792cfd67223179af884b03f386ac46894f9f735932bbca3.css" integrity="sha256-ksZtEH17IZ8Hks/WciMXmviEsD84asRolPn3NZMrvKM=">
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
 
 
 
 
-<link rel="stylesheet" href="https://feisky.xyz/scss/hugo-toc.8549a64d301421b4256ea9a0d5ca8b99178799f569d5d2daeb95f24cef3ce6b7.css" integrity="sha256-hUmmTTAUIbQlbqmg1cqLmReHmfVp1dLa65XyTO885rc=">
+<link rel="stylesheet" href="/scss/tocbot.126e7d75240acc946d34d6ccb2982ed4c394a5fe34e73e1a2119ca951bcf119d.css" integrity="sha256-Em59dSQKzJRtNNbMspgu1MOUpf405z4aIRnKlRvPEZ0=">
 
 
 
@@ -62,6 +81,7 @@
     <!-- Icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
     <link rel="shortcut icon" href="/favicon.png">
+    
     
 
 </head>
@@ -75,6 +95,7 @@
       <span class="site__title">
         <a href="https://feisky.xyz/">Feisky</a>
       </span>
+      
       
       <p class="site__description">
          Notes about anything 
@@ -91,7 +112,23 @@
 			 
 				<li>
 					<a href="https://kubernetes.feisky.xyz">
-						<span>Kubernetes</span>
+						<span>Kubernetes指南</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://time.geekbang.org/column/intro/100020901">
+						<span>Linux性能优化实战</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://sdn.feisky.xyz">
+						<span>SDN网络</span>
 					</a>
 				</li>
 			 
@@ -106,21 +143,12 @@
 		 
 			 
 				<li>
-					<a href="https://sdn.feisky.xyz">
-						<span>SDN</span>
-					</a>
-				</li>
-			 
-		 
-			 
-				<li>
 					<a href="/about/">
-						<span>About</span>
+						<span>关于我</span>
 					</a>
 				</li>
 			 
 		
-		</li>
 	</ul>
 </div>
 
@@ -143,23 +171,33 @@
 	
 	
 	
+	
+	
 </section>
 
       </div>
     </div>
-    <div class="copyright">
-  &copy; 2019 .
-  <a href="https://creativecommons.org/licenses/by-sa/4.0">Some Rights Reserved</a>.
-  Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+    
+<div class="copyright">
+  &copy; 2020 feiskyer
+  
+    <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>
   
 </div>
+
+
+<div class="builtwith">
+Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+</div>
+
 
   </div>
 </div>
 
         <div class="content container">
             
-    <article>
+    
+<article>
   <header>
     <h1></h1>
     
@@ -172,104 +210,75 @@
     
     
     <br/>
-    <i class="fas fa-clock"></i> 4 min read
+    <i class="fas fa-clock"></i> 1 min read
 </div>
 
 
   </header>
   
   
-  <div class="toc-wrapper">
-    <input type="checkbox" id="tocToggle">
-    <label for="tocToggle">Table of Content</label>
-    
-        <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#tags-google">tags: [Google]</a></li>
-<li><a href="#软件开发">软件开发</a></li>
-<li><a href="#项目管理">项目管理</a></li>
-<li><a href="#人员管理">人员管理</a></li>
-</ul></li>
-</ul>
-</nav>
-    
-  </div>
+  
+    <div class="toc-wrapper">
+      <input type="checkbox" id="tocToggle">
+      <label for="tocToggle">Table of Content</label>
+      
+        <div class="toc" id="TableOfContents"></div>
+      
+    </div>
+  
   
   <div class="post">
-    
-
-<p>layout: post
+    <h2 id="tags-google">layout: post
 title: Software Engineering at Google
-date: 2017-02-13 19:36:09</p>
-
-<h2 id="tags-google">tags: [Google]</h2>
-
+date: 2017-02-13 19:36:09
+tags: [Google]</h2>
 <p>Google的Fergus Henderson在<a href="https://arxiv.org/pdf/1702.01715.pdf">Software Engineering at Google</a>中介绍了Google的软件工程实践。</p>
-
 <h2 id="软件开发">软件开发</h2>
-
 <p>源码仓库</p>
-
 <ul>
 <li>单一源代码仓库，除了核心配置和安全相关代码，任何工程师都可以访问任何代码，并可以根据需要修改</li>
 <li>所有开发都基于master分支，发布的时候才创建发布分枝</li>
 <li>代码的每个子树都有owner，任何修改都需要owner批准</li>
 </ul>
-
 <p>Blaze分布式构建系统</p>
-
 <ul>
 <li>构建和测试存储库中的任何软件通常非常简单和快捷</li>
 <li>开发人员只需要编写BUILD文件，并且每个构建系统仅依赖BUILD文件所声明的文件</li>
 <li>构建系统的优化：可靠，自动跟踪依赖关系，增量构建，缓存构建结果以便复用</li>
 <li>自动代码检查和测试</li>
 </ul>
-
 <p>代码审查</p>
-
 <ul>
 <li>完善的代码审查工具，如可视化的Web界面、电子邮件集成、自动展示测试或静态分析的结果</li>
 <li>每个变更都必须由至少另外一人审查，并将审查结果自动复制到项目维护者的邮件列表</li>
 <li>鼓励小的变更，大的变更可以拆分为一系列较小的变更</li>
 </ul>
-
 <p>测试</p>
-
 <ul>
 <li>鼓励和广泛使用单元测试，Mocking非常普遍</li>
 <li>广泛使用集成测试和回归测试</li>
 <li>自动测量测试覆盖率</li>
 <li>部署之前进行负载测试，显示关键的metrics，比如延迟、错误率以及它们随请求速率的变化情况</li>
 </ul>
-
 <p>Bug跟踪</p>
-
 <ul>
 <li>Google使用名为Buganizer的Bug跟踪系统</li>
 <li>使用标签分类bug</li>
 <li>每个bug都有一个默认的assignee和抄送邮件列表</li>
 </ul>
-
 <p>编程语言</p>
-
 <ul>
 <li>鼓励使用C++、Java、Python或Go之一，最小化不同编程语言的数量</li>
 <li>每种语言都有Google风格指南，还有一个公司范围内的可读性培训</li>
 <li>不同语言之前使用基于Protocol Buffers的RPC通信</li>
 <li>为所有语言提供通用的开发工具，比如代码签出、编辑、构建、测试、审查、bug报告等</li>
 </ul>
-
 <p>调试和分析</p>
-
 <ul>
 <li>在通用框架中提供调试和代码跟踪工具</li>
 <li>提供用于调试的网络接口检查RPC调用的时间、错误率和频率限制以及资源消耗、性能分析数据等</li>
 </ul>
-
 <p>发布</p>
-
 <ul>
 <li>频繁发布（比如每周或每两周），自动化发布任务，提高工程师积极性，允许更多迭代以加快整体速度</li>
 <li>发布分支，将master的修改cherry-pick到发布分支</li>
@@ -277,23 +286,17 @@ date: 2017-02-13 19:36:09</p>
 <li>发布到canary服务器，测试真实生产流量的一个子集</li>
 <li>最后逐步发布到所有服务器</li>
 </ul>
-
 <p>Launch approval</p>
-
 <ul>
 <li>任何用户可见的更改或重大的设计变更都需要工程团队之外的很多人员的审查和批准，以确保这些变更满足符合法律、隐私、安全、可靠性以及业务需求</li>
 <li>Google内部的Launch approval工具会跟踪这些审查和批准</li>
 </ul>
-
 <p>Post-mortems</p>
-
 <ul>
 <li>任何重大的生产故障都需要写一份事后的总结文档，描述事件的原因、影响以及如何解决</li>
 <li>重点关注如何避免它们再次发生（而不是追究人员责任）</li>
 </ul>
-
 <p>频繁重写</p>
-
 <ul>
 <li>大部分软件每隔几年都会重写一次</li>
 <li>减少了累计复杂性</li>
@@ -301,43 +304,31 @@ date: 2017-02-13 19:36:09</p>
 <li>也是一种团队成员之间传递ownership的方式，</li>
 <li>这是Google保持敏捷和长期成功的关键</li>
 </ul>
-
 <h2 id="项目管理">项目管理</h2>
-
 <p>20%时间</p>
-
 <ul>
 <li>允许工程师可以将20%时间花在喜欢的任何项目上</li>
 <li>有助于新想法的原型开发和演示，提高员工积极性</li>
 <li>鼓励创新企业文化</li>
 </ul>
-
 <p>OKR（Objectives and Key Results）</p>
-
 <ul>
 <li>个人和团队要明确记录目标并评估这些目标的进展情况，团队设置季度和年度目标</li>
 <li>建立关键结果来量化OKR，用OKR score评估进展情况</li>
 <li>设置野心勃勃的OKR指标，即设置期望为目标的65%</li>
 <li>OKR是全公司透明的，是一种简化的沟通框架，使每个人都清晰了解公司的目标以及自己的位置</li>
 </ul>
-
 <p>项目审批</p>
-
 <ul>
 <li>Google没有明确的项目审批流程，一般通过自下而上的方式进行</li>
 </ul>
-
 <p>公司重组</p>
-
 <ul>
 <li>因项目取消而重组时工程师可以自由选择新的团队或角色</li>
 <li>在很大程度上，技术驱动公司应该进行频繁的重组以避免组织效率低下</li>
 </ul>
-
 <h2 id="人员管理">人员管理</h2>
-
 <p>角色，技术角色与管理角色分开，项目由技术主管领导和决策，而经理负责管理技术主管，指导职业发展，并负责绩效评估</p>
-
 <ul>
 <li>高标准的软件工程师</li>
 <li>研究科学家</li>
@@ -345,39 +336,30 @@ date: 2017-02-13 19:36:09</p>
 <li>产品经理</li>
 <li>项目经理</li>
 </ul>
-
 <p>工作环境（Facilities）</p>
-
 <ul>
 <li>Google提供丰富的娱乐、运动和餐饮设施</li>
 <li>开放式办公鼓励沟通</li>
 <li>先进的视频会议设施方便不同团队的沟通</li>
 </ul>
-
 <p>培训</p>
-
 <ul>
 <li>新员工培训，每个新员工都有导师和伙伴（Buddy）</li>
 <li>“Codelabs”和丰富的培训课程</li>
 <li>也支持外部机构学习</li>
 </ul>
-
 <p>换岗</p>
-
 <ul>
 <li>鼓励在不同部门换岗，帮助公司内传播知识</li>
 <li>允许12个月内表现良好的员工更换项目</li>
 <li>鼓励临时性的参与其他项目</li>
 </ul>
-
 <p>绩效考核和奖励</p>
-
 <ul>
 <li>鼓励“peer bonuses”和“kudos”</li>
 <li>明确详细的晋升过程，确保正确的人得到晋升</li>
 <li>匿名反馈调查评估经理的绩效</li>
 </ul>
-
 <p>更多内容请参考英文原文<a href="https://arxiv.org/pdf/1702.01715.pdf">https://arxiv.org/pdf/1702.01715.pdf</a>。更多SRE的内容请参考<a href="http://landing.google.com/sre/book/index.html">SRE</a>以及<a href="http://feisky.xyz/SRE/">SRE笔记</a>。</p>
 
   </div>
@@ -443,6 +425,7 @@ date: 2017-02-13 19:36:09</p>
         </div>
         
     
+
   
   
 <script type="application/javascript">
@@ -457,15 +440,12 @@ if (!doNotTrack) {
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
-<script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"
-  integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy"
-  crossorigin="anonymous">
-</script>
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
 
 
     
     
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
         
     
     <script type="text/javascript">
@@ -476,6 +456,21 @@ if (!doNotTrack) {
 
 
 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.js"></script>
+<script type="text/javascript">
+  if (tocbot) {
+    tocbot.init({
+      
+      tocSelector: '.toc',
+      
+      contentSelector: '.post',
+      
+      headingSelector: 'h2, h3, h4',
+      collapseDepth: 4
+    });
+  }
+</script>
 
 
 
