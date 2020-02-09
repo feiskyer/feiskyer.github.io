@@ -5,7 +5,8 @@
   <url>
     <loc>https://feisky.xyz/</loc>
     <lastmod>2018-10-14T22:08:45+08:00</lastmod>
-    <priority>0</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
@@ -530,12 +531,6 @@
   <url>
     <loc>https://feisky.xyz/posts/kubernetes-network-policy/</loc>
     <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/404/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   
   <url>

@@ -602,15 +602,6 @@ Kubernetes社区（确切的说是Kubernetes Network SIG [1]）正在讨论Netwo
     </item>
     
     <item>
-      <title>404</title>
-      <link>https://feisky.xyz/404/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://feisky.xyz/404/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Apache的Mesos和Google的Kubernetes 有什么区别</title>
       <link>https://feisky.xyz/posts/2015-02-06-apachemesosgooglekubernetes-/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
