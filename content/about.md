@@ -7,7 +7,7 @@ Hi，我是倪朋飞，工作在云计算领域，Kubernetes项目维护者。�
 
 ## 技术演讲
 
-- [Deep Dive into Cloud Provider Azure](https://sched.co/UagX)
+- [Deep Dive into Cloud Provider Azure (KubeCon North America 2019)](https://sched.co/UagX)
 - [Container Runtime Evolving in Kubernetes (KubeCon China 2019)](https://docs.google.com/presentation/d/1VOsV5uUqIplFIbi5bwMFaKDqHl9_Kd65QJqlz4ShxuY/edit?usp=sharing)
 - [Azure Kubernetes Service Deep Dive & Best Practices (KubeCon China 2019 PreDay)](https://docs.google.com/presentation/d/16jiJidEWT9Y-uc5TUUM6T7PX38ivdTvnxKC2jNFjJfg/edit?usp=sharing)
 - [Intro + Deep Dive: SIG Azure (KubeCon China 2019)](https://docs.google.com/presentation/d/1T9ODwofON9q8MPktflVAmBW8GZwy0pncIwcD9auEU-4/edit?usp=sharing)
@@ -22,19 +22,19 @@ Hi，我是倪朋飞，工作在云计算领域，Kubernetes项目维护者。�
 
 ## 社交网络
 
+![mp](/images/k8s-mp-qrcode.jpg)
+
+- 微信公众号：k8s指南
 - Github：@[feiskyer](https://github.com/feiskyer)
 - Twitter：@[feisky](https://twitter.com/feisky)
 - 微博：@[feisky](https://weibo.com/371069890)
 - cnblogs: @[feisky](http://www.cnblogs.com/feisky/)
 - 知乎：[Kubernetes指南专栏](https://zhuanlan.zhihu.com/kubernetes)
-- 微信公众号：k8s指南
-
-<p align="center"> <img src="/images/k8s-mp-qrcode.jpg"></p>
 
 ## 作品
 
+![linux-perf](https://github.com/feiskyer/linux-perf-examples/raw/master/images/intro.jpg)
+
+- 极客时间专栏[《Linux性能优化实战》](https://time.geekbang.org/column/intro/140)
 - 开源书[《Kubernetes指南》](https://github.com/feiskyer/kubernetes-handbook)
 - 开源书[《SDN指南》](https://github.com/feiskyer/sdn-handbook)
-- 极客时间专栏[《Linux性能优化实战》](https://time.geekbang.org/column/intro/140)
-
-![linux-perf](https://github.com/feiskyer/linux-perf-examples/raw/master/images/intro.jpg)
