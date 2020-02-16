@@ -22,7 +22,7 @@ Hi，我是倪朋飞，工作在云计算领域，Kubernetes项目维护者。�
 
 ## 社交网络
 
-![mp](/images/k8s-mp-qrcode.jpg)
+![mp](/images/wx.jpeg)
 
 - 微信公众号：k8s指南
 - Github：@[feiskyer](https://github.com/feiskyer)
