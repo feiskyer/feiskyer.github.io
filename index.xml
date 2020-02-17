@@ -6,10 +6,19 @@
     <description>Recent content on Feisky</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 14 Oct 2018 22:08:45 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 10 Feb 2020 16:43:08 +0100</lastBuildDate>
     
 	<atom:link href="https://feisky.xyz/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>关于我</title>
+      <link>https://feisky.xyz/about/</link>
+      <pubDate>Mon, 10 Feb 2020 16:43:08 +0100</pubDate>
+      
+      <guid>https://feisky.xyz/about/</guid>
+      <description>Hi，我是倪朋飞，工作在云计算领域，Kubernetes项目维护者。在云计算、SDN网络和容器编排调度等领域具有多年实践经验。 技术演讲 Deep Dive into</description>
+    </item>
     
     <item>
       <title>Kubernetes 容器运行时演进</title>
@@ -448,15 +457,6 @@ Your containers run in a bare-metal environment, which avoids the &amp;ldquo;hyp
       
       <guid>https://feisky.xyz/posts/2014-11-16-%E9%9B%86%E7%BE%A4%E5%B7%A5%E5%85%B7ansible%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-feisky/</guid>
       <description>【摘要】ansible简介ansible是与puppet、saltstack类似的集群管理工具，其优点是仅需要ssh和Python即可使用，</description>
-    </item>
-    
-    <item>
-      <title>关于我</title>
-      <link>https://feisky.xyz/about/</link>
-      <pubDate>Thu, 10 Apr 2014 16:43:08 +0100</pubDate>
-      
-      <guid>https://feisky.xyz/about/</guid>
-      <description>Hi，我是倪朋飞，工作在云计算领域，Kubernetes项目维护者。在云计算、SDN网络和容器编排调度等领域具有多年实践经验。 技术演讲 Deep Dive into</description>
     </item>
     
     <item>

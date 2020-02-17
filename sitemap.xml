@@ -4,7 +4,14 @@
   
   <url>
     <loc>https://feisky.xyz/</loc>
-    <lastmod>2018-10-14T22:08:45+08:00</lastmod>
+    <lastmod>2020-02-10T16:43:08+01:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/about/</loc>
+    <lastmod>2020-02-10T16:43:08+01:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -467,13 +474,6 @@
   <url>
     <loc>https://feisky.xyz/posts/2014-11-16-%E9%9B%86%E7%BE%A4%E5%B7%A5%E5%85%B7ansible%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-feisky/</loc>
     <lastmod>2014-11-16T22:44:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/about/</loc>
-    <lastmod>2014-04-10T16:43:08+01:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
