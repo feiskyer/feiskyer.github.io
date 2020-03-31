@@ -24,6 +24,7 @@ theme = "hyde-hyde"
 
     # sidebar, copyright & license
     copyright = "htr3n"
+    since = 2019
     license = "CC BY-SA 4.0"
     licenseURL = "https://creativecommons.org/licenses/by-sa/4.0"
     showBuiltWith = true
@@ -51,6 +52,7 @@ theme = "hyde-hyde"
     facebook = "<username>"
     stackoverflow = "<username>"
     telegram = "<username>"
+    # orcid = "<xxxx-xxxx-xxxx-xxxx>"
     email = "your-email@example.com"
     # gravatar = "your-email@example.com"
 

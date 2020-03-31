@@ -1,6 +1,7 @@
 ---
 title: "关于我"
 date: "2020-02-10T16:43:08+01:00"
+include_toc: false
 ---
 
 Hi，我是倪朋飞，工作在云计算领域，Kubernetes项目维护者。在云计算、SDN网络和容器编排调度等领域具有多年实践经验。
@@ -20,17 +21,19 @@ Hi，我是倪朋飞，工作在云计算领域，Kubernetes项目维护者。�
 - [Kubernetes Cloud Provider 演进及在 Azure 上的应用 (ECUG Con 2017)](http://www.itdks.com/Course/detail?id=9001)
 - [Kubernetes网络详解以及Azure实践 (Ctrip Cloud Meetup 2017)](https://www.zs.itdks.com/dakalive/detail/8601)
 
-## 社交网络
+## 极客时间专栏[《Linux性能优化实战》](https://time.geekbang.org/column/intro/140)
 
-### 微信公众号：k8s指南
+![linux-perf](https://github.com/feiskyer/linux-perf-examples/raw/master/images/intro.jpg)
 
-![mp](/images/wx.jpeg)
-
-### 知识星球
+## 知识星球
 
 ![zsxq](/images/zsxq.jpg)
 
-### 其他
+## 微信公众号：k8s指南
+
+![mp](/images/wx.jpeg)
+
+## 社交网络
 
 - Github：@[feiskyer](https://github.com/feiskyer)
 - Twitter：@[feisky](https://twitter.com/feisky)
@@ -40,9 +43,6 @@ Hi，我是倪朋飞，工作在云计算领域，Kubernetes项目维护者。�
 
 ## 作品
 
-![linux-perf](https://github.com/feiskyer/linux-perf-examples/raw/master/images/intro.jpg)
-
-- 极客时间专栏[《Linux性能优化实战》](https://time.geekbang.org/column/intro/140)
 - 开源书[《Kubernetes指南》](https://github.com/feiskyer/kubernetes-handbook)
 - 开源书[《SDN指南》](https://github.com/feiskyer/sdn-handbook)
 
