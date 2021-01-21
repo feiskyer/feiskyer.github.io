@@ -8,7 +8,7 @@ git clone -b master https://${GitHubKEY}@github.com/feiskyer/feiskyer.github.io.
 
 # update new sites
 rm -rf .deploy_git/*
-hugo -b https://feisky.xyz/ -D -E -d .deploy_git
+hugo -b https://feisky.xyz/ -E -d .deploy_git --minify
 
 cd .deploy_git
 cat >README.md <<EOF
