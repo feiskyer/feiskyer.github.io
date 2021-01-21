@@ -3,7 +3,15 @@
   <div class="container {{ with .Site.Params.sidebarSticky }}sidebar-sticky{{ end }}">
     <div class="sidebar-about">
       <span class="site__title">
-        <a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
+        <a href="{{ .Site.BaseURL }}">
+        {{ with .Site.Params.logoimage }}
+        {{ $strippedSlash := ($.Site.Params.logoimage | replaceRE "^(/)+(.*)" "$2") }}
+        {{ $logoImage := (printf "%s%s" $.Site.BaseURL $strippedSlash) }}
+          <img src="{{$logoImage}}" alt="Logo Image" class="element--center">
+        {{ else }}
+          {{ .Site.Title }}
+        {{ end }}
+        </a>
       </span>
       {{ if and (isset .Site.Params "authorimage") (not (isset .Site.Params.social "gravatar")) }}
         {{ with .Site.Params.authorimage }}

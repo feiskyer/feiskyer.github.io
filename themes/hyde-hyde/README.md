@@ -4,6 +4,8 @@
 
 __`Hyde-hyde`__ is a [Hugo](https://gohugo.io)'s theme inspired and derived from @spf13's [Hyde](https://github.com/spf13/hyde.git) and [Nate Finch's blog](https://npf.io). 
 
+> NOTICE: Maintainers / collaborators seeking: As I'm underwater with my full time job at the moment, I'm actively looking for and welcome any new maintainers or collaborators. If you are interested, comment on [#130](https://github.com/htr3n/hyde-hyde/issues/130) and I can add you to the project. TIA.
+
 ## Breaking Changes
 
 Since version 2.0, __`hyde-hyde`__ has been overhauled and, therefore, might cause some disruptions.

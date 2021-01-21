@@ -2,6 +2,9 @@
 	{{ with .Site.Params.social.twitter }}
 	<a href="https://twitter.com/{{.}}" rel="me"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a>
 	{{ end }}
+	{{ with .Site.Params.social.microblog }}
+	<a href="https://micro.blog/{{.}}" rel="me"><i class="fab fa-microblog fa-lg" aria-hidden="true"></i></a>
+	{{ end }}
 	{{ with .Site.Params.social.facebook }}
 	<a href="https://facebook.com/{{.}}" rel="me"><i class="fab fa-facebook-f"></i></a>
 	{{ end }}
@@ -23,6 +26,9 @@
 	{{ end }}
 	{{ with .Site.Params.social.linkedin }}
 	<a href="https://linkedin.com/in/{{.}}" rel="me"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a>
+	{{ end }}
+	{{ with .Site.Params.social.googlescholar}}
+	<a href="https://scholar.google.com/citations?user={{.}}" rel="me"><i class="fas fa-graduation-cap fa-lg" aria-hidden="true"></i></a>
 	{{ end }}
 	{{ with .Site.Params.social.stackoverflow }}
 	<a href="https://stackoverflow.com/users/{{.}}" rel="me"><i class="fab fa-stack-overflow fa-lg" aria-hidden="true"></i></a>
@@ -47,5 +53,14 @@
 	{{end}}
 	{{ with .Site.Params.social.email }}
 	<a href="mailto:{{.}}" rel="me"><i class="fas fa-at fa-lg" aria-hidden="true"></i></a>
+	{{ end }}
+	{{ with .Site.Params.social.pgpkey }}
+	<a href="{{.}}" rel="pgpkey"><i class="fa fa-key fa-lg" aria-hidden="true"></i></a>
+	{{ end }}
+	{{ with .Site.Params.social.reddit }}
+	<a href="https://www.reddit.com/user/{{.}}" rel="me"><i class="fab fa-reddit-alien fa-lg" aria-hidden="true"></i></a>
+	{{ end }}
+	{{ with .Site.Params.social.rss }}
+	<a href="{{.}}" rel="me"><i class="fas fa-rss fa-lg" aria-hidden="true"></i></a>
 	{{ end }}
 </section>

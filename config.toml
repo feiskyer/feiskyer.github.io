@@ -8,7 +8,7 @@ hasCJKLanguage = true
 googleAnalytics = "UA-69699206-1"
 metaDataFormat = "yaml"
 enableEmoji = true
-buildDrafts = true
+buildDrafts = false
 enableRobotsTXT = true
 
 [params]
@@ -31,6 +31,7 @@ enableRobotsTXT = true
 [params.social]
 	twitter = "feisky"
 	github = "feiskyer"
+  gravatar = "feiskyer@gmail.com"
 
 [sitemap]
   changefreq = "weekly"
