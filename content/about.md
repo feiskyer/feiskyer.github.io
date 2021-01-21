@@ -6,6 +6,32 @@ include_toc: false
 
 Hi，我是倪朋飞，工作在云计算领域，Kubernetes项目维护者。在云计算、SDN网络和容器编排调度等领域具有多年实践经验。
 
+## 微信公众号
+
+![mp](/images/wx.png)
+
+## 知识星球
+
+![zsxq](/images/zsxq.jpg)
+
+
+## 极客时间专栏[《Linux性能优化实战》](https://time.geekbang.org/column/intro/140)
+
+![linux-perf](https://github.com/feiskyer/linux-perf-examples/raw/master/images/intro.jpg)
+
+## 社交网络
+
+- Github：@[feiskyer](https://github.com/feiskyer)
+- Twitter：@[feisky](https://twitter.com/feisky)
+- 微博：@[feisky](https://weibo.com/371069890)
+- 知乎：[云原生架构专栏](https://zhuanlan.zhihu.com/kubernetes)
+- cnblogs: @[feisky](http://www.cnblogs.com/feisky/)
+
+## 主要作品
+
+- 开源书[《Kubernetes指南》](https://github.com/feiskyer/kubernetes-handbook)
+- 开源书[《SDN指南》](https://github.com/feiskyer/sdn-handbook)
+
 ## 技术演讲
 
 - [Deep Dive into Cloud Provider Azure (KubeCon North America 2019)](https://sched.co/UagX)
@@ -20,29 +46,4 @@ Hi，我是倪朋飞，工作在云计算领域，Kubernetes项目维护者。�
 - [基于 Kubernetes 的 DevOps (ArchSummit 2018)](https://docs.google.com/presentation/d/10ADxjZU_kF0ZHNjCU35dpXm8-JFApEjKgggC7gQtHCo/edit?usp=sharing)
 - [Kubernetes Cloud Provider 演进及在 Azure 上的应用 (ECUG Con 2017)](http://www.itdks.com/Course/detail?id=9001)
 - [Kubernetes网络详解以及Azure实践 (Ctrip Cloud Meetup 2017)](https://www.zs.itdks.com/dakalive/detail/8601)
-
-## 极客时间专栏[《Linux性能优化实战》](https://time.geekbang.org/column/intro/140)
-
-![linux-perf](https://github.com/feiskyer/linux-perf-examples/raw/master/images/intro.jpg)
-
-## 知识星球
-
-![zsxq](/images/zsxq.jpg)
-
-## 微信公众号
-
-![mp](/images/wx.png)
-
-## 社交网络
-
-- Github：@[feiskyer](https://github.com/feiskyer)
-- Twitter：@[feisky](https://twitter.com/feisky)
-- 微博：@[feisky](https://weibo.com/371069890)
-- cnblogs: @[feisky](http://www.cnblogs.com/feisky/)
-- 知乎：[Kubernetes指南专栏](https://zhuanlan.zhihu.com/kubernetes)
-
-## 作品
-
-- 开源书[《Kubernetes指南》](https://github.com/feiskyer/kubernetes-handbook)
-- 开源书[《SDN指南》](https://github.com/feiskyer/sdn-handbook)
 

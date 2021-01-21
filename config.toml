@@ -14,7 +14,6 @@ enableRobotsTXT = true
 [params]
   author = "Pengfei Ni"
   themeColor = "theme-base-0d"
-  description = "Notes about anything"
   copyright = "feiskyer"
   license = "CC BY-SA 4.0"
   licenseURL = "https://creativecommons.org/licenses/by-sa/4.0"
