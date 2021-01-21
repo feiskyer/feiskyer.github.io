@@ -1,31 +1,3 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>hyper on Feisky</title>
-    <link>https://feisky.xyz/tags/hyper/</link>
-    <description>Recent content in hyper on Feisky</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>zh-cn</language>
-    <lastBuildDate>Tue, 19 Jul 2016 15:58:26 +0000</lastBuildDate><atom:link href="https://feisky.xyz/tags/hyper/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Setup hyperd with flannel network</title>
-      <link>https://feisky.xyz/posts/2016-07-19-setup-hyperd-with-flannel-network/</link>
-      <pubDate>Tue, 19 Jul 2016 15:58:26 +0000</pubDate>
-      
-      <guid>https://feisky.xyz/posts/2016-07-19-setup-hyperd-with-flannel-network/</guid>
-      <description>Flannel Flannel is a virtual network that gives a subnet to each host for use with container runtimes.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>hyper on Feisky</title><link>https://feisky.xyz/tags/hyper/</link><description>Recent content in hyper on Feisky</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 19 Jul 2016 15:58:26 +0000</lastBuildDate><atom:link href="https://feisky.xyz/tags/hyper/index.xml" rel="self" type="application/rss+xml"/><item><title>Setup hyperd with flannel network</title><link>https://feisky.xyz/posts/2016-07-19-setup-hyperd-with-flannel-network/</link><pubDate>Tue, 19 Jul 2016 15:58:26 +0000</pubDate><guid>https://feisky.xyz/posts/2016-07-19-setup-hyperd-with-flannel-network/</guid><description>Flannel Flannel is a virtual network that gives a subnet to each host for use with container runtimes.
 Platforms like Google&amp;rsquo;s Kubernetes assume that each container (pod) has a unique, routable IP inside the cluster. The advantage of this model is that it reduces the complexity of doing port mapping.
-flannel runs an agent, flanneld, on each host and is responsible for allocating a subnet lease out of a preconfigured address space.</description>
-    </item>
-    
-    <item>
-      <title>Kubernetes sig-node (Asia) meeting notes</title>
-      <link>https://feisky.xyz/posts/2016-03-02-kubernetes-sig-node-asia-meeting-nodes/</link>
-      <pubDate>Wed, 02 Mar 2016 17:07:00 +0000</pubDate>
-      
-      <guid>https://feisky.xyz/posts/2016-03-02-kubernetes-sig-node-asia-meeting-nodes/</guid>
-      <description>Kubernetes 1.2 Status Update (@dchen) Deployment object and HPA scale还有一些P0和P1的问题待解决 aws还有挺多的问题（应该要超过20个） 整个v1.2还有超过100个issue，但</description>
-    </item>
-    
-  </channel>
-</rss>
+flannel runs an agent, flanneld, on each host and is responsible for allocating a subnet lease out of a preconfigured address space.</description></item><item><title>Kubernetes sig-node (Asia) meeting notes</title><link>https://feisky.xyz/posts/2016-03-02-kubernetes-sig-node-asia-meeting-nodes/</link><pubDate>Wed, 02 Mar 2016 17:07:00 +0000</pubDate><guid>https://feisky.xyz/posts/2016-03-02-kubernetes-sig-node-asia-meeting-nodes/</guid><description>Kubernetes 1.2 Status Update (@dchen) Deployment object and HPA scale还有一些P0和P1的问题待解决 aws还有挺多的问题（应该要超过20个） 整个v1.2还有超过100个issue，但</description></item></channel></rss>
