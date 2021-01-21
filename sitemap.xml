@@ -3,8 +3,197 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://feisky.xyz/tags/cloudnative/</loc>
+    <lastmod>2021-01-20T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://feisky.xyz/</loc>
-    <lastmod>2020-02-10T16:43:08+01:00</lastmod>
+    <lastmod>2021-01-20T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/tags/kubernetes/</loc>
+    <lastmod>2021-01-20T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/posts/</loc>
+    <lastmod>2021-01-20T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/tags/</loc>
+    <lastmod>2021-01-20T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/posts/2021-01-20-eks-gke-aks/</loc>
+    <lastmod>2021-01-20T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/tags/devops/</loc>
+    <lastmod>2021-01-18T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/posts/2021-01-18-rolling-update/</loc>
+    <lastmod>2021-01-18T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/posts/2021-01-13-config-manage/</loc>
+    <lastmod>2021-01-13T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/tags/perf/</loc>
+    <lastmod>2021-01-08T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/posts/2021-01-08-cloud-native-perf/</loc>
+    <lastmod>2021-01-08T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/posts/2021-01-06-ebpf-learn-path/</loc>
+    <lastmod>2021-01-06T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/tags/ebpf/</loc>
+    <lastmod>2021-01-06T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/posts/2021-01-04-ebpf-runtime-security/</loc>
+    <lastmod>2021-01-04T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/posts/2020-12-31-2020-summary/</loc>
+    <lastmod>2020-12-31T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/tags/reflect/</loc>
+    <lastmod>2020-12-31T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/posts/2020-06-06-linux-perf/</loc>
+    <lastmod>2020-06-20T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/tags/linux/</loc>
+    <lastmod>2020-06-20T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/posts/2020-06-01-container-image/</loc>
+    <lastmod>2020-06-01T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/tags/networking/</loc>
+    <lastmod>2020-05-27T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/posts/2020-05-27-container-networking/</loc>
+    <lastmod>2020-05-27T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/tags/multicloud/</loc>
+    <lastmod>2020-04-26T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/posts/2020-04-26-multi-cloud/</loc>
+    <lastmod>2020-04-26T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/posts/2020-04-19-ci-cd/</loc>
+    <lastmod>2020-04-19T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/posts/2020-04-09-dns-latency/</loc>
+    <lastmod>2020-04-09T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/tags/prometheus/</loc>
+    <lastmod>2020-04-08T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/posts/2020-04-08-prometheus-thanos/</loc>
+    <lastmod>2020-04-08T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://feisky.xyz/posts/2020-04-06-prometheus-optimization/</loc>
+    <lastmod>2020-04-06T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -24,13 +213,6 @@
   </url>
   
   <url>
-    <loc>https://feisky.xyz/posts/</loc>
-    <lastmod>2018-10-14T22:08:45+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://feisky.xyz/tags/azure/</loc>
     <lastmod>2017-11-27T21:30:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -39,20 +221,6 @@
   
   <url>
     <loc>https://feisky.xyz/posts/2017-11-27-aci/</loc>
-    <lastmod>2017-11-27T21:30:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/tags/kubernetes/</loc>
-    <lastmod>2017-11-27T21:30:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/tags/</loc>
     <lastmod>2017-11-27T21:30:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -480,57 +648,68 @@
   
   <url>
     <loc>https://feisky.xyz/posts/2017-02-13-software-engineering-at-google/</loc>
-    <priority>0</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://feisky.xyz/posts/2017-03-03-aws-s3%E6%95%85%E9%9A%9C%E5%9B%9E%E9%A1%BE%E5%92%8C%E6%80%BB%E7%BB%93/</loc>
-    <priority>0</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://feisky.xyz/posts/2017-03-03-gitlab%E6%95%85%E9%9A%9C%E5%9B%9E%E9%A1%BE%E5%92%8C%E6%80%BB%E7%BB%93/</loc>
-    <priority>0</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://feisky.xyz/posts/2017-03-15-kubernetes-ha/</loc>
-    <priority>0</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://feisky.xyz/posts/2017-04-19-linuxkit/</loc>
-    <priority>0</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://feisky.xyz/posts/alpine-linux/</loc>
-    <priority>0</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://feisky.xyz/posts/docker-datacenter/</loc>
-    <priority>0</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://feisky.xyz/posts/googles-transition-from-single-datacenter-to-failover-to-a-native-multihomed-architecture/</loc>
-    <priority>0</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://feisky.xyz/posts/hello-world-to-docker-mac/</loc>
-    <priority>0</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://feisky.xyz/posts/kubernetes-drain/</loc>
-    <priority>0</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://feisky.xyz/posts/kubernetes-network-policy/</loc>
-    <priority>0</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
@@ -673,12 +852,6 @@
   
   <url>
     <loc>https://feisky.xyz/posts/2015-02-26-integrating-openstack-and-kubernetes-with-murano/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://feisky.xyz/tags/linux/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>

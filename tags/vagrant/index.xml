@@ -5,11 +5,7 @@
     <link>https://feisky.xyz/tags/vagrant/</link>
     <description>Recent content in vagrant on Feisky</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-cn</language>
-    
-	<atom:link href="https://feisky.xyz/tags/vagrant/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <language>zh-cn</language><atom:link href="https://feisky.xyz/tags/vagrant/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>vagrant</title>
       <link>https://feisky.xyz/posts/2015-01-27-vagrant/</link>

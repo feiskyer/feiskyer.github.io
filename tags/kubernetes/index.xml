@@ -6,10 +6,60 @@
     <description>Recent content in kubernetes on Feisky</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 27 Nov 2017 21:30:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 20 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://feisky.xyz/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>三大公有云托管 Kubernetes 服务 (EKS、GKE、AKS) 评估</title>
+      <link>https://feisky.xyz/posts/2021-01-20-eks-gke-aks/</link>
+      <pubDate>Wed, 20 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/posts/2021-01-20-eks-gke-aks/</guid>
+      <description>作为发展最快的开源项目，Kubernetes 已经在越来越多的企业落地。而作为全球三大公有云提供商，AWS、Azure 和 GCP 都提供了托管 Kubernetes 集群服</description>
+    </item>
     
-	<atom:link href="https://feisky.xyz/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>为什么已经用了滚动更新服务还会中断</title>
+      <link>https://feisky.xyz/posts/2021-01-18-rolling-update/</link>
+      <pubDate>Mon, 18 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/posts/2021-01-18-rolling-update/</guid>
+      <description>滚动更新作为一个最佳实践，是每个服务在变更时都会采纳的方案。但在 Kubernetes 实践中，即便使用了滚动更新，也并不一定能够保证服务在更新和维护时总是可用的</description>
+    </item>
     
+    <item>
+      <title>Kubernetes 配置更新的那些事</title>
+      <link>https://feisky.xyz/posts/2021-01-13-config-manage/</link>
+      <pubDate>Wed, 13 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/posts/2021-01-13-config-manage/</guid>
+      <description>任何应用都需要一些特定的配置项，用来自定义应用的特性。这些配置通常可以分为两类：一类是诸如运行环境和外部依赖等非敏感配置，另一类是诸如密钥和</description>
+    </item>
+    
+    <item>
+      <title>镜像构建的正确姿势</title>
+      <link>https://feisky.xyz/posts/2020-06-01-container-image/</link>
+      <pubDate>Mon, 01 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/posts/2020-06-01-container-image/</guid>
+      <description>Dockerfile 什么是 Dockerfile ？Dockerfile 是一个用来描述镜像构建指令的文本文件。构建系统可以按照这些指令一步步地执行构建出容器镜像。 比如，下面是一个最</description>
+    </item>
+    
+    <item>
+      <title>Kubernetes中的CI/CD</title>
+      <link>https://feisky.xyz/posts/2020-04-19-ci-cd/</link>
+      <pubDate>Sun, 19 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/posts/2020-04-19-ci-cd/</guid>
+      <description>CI/CD 概念 CI/CD 其实早在很多年前就已经诞生了，主要是为了将频繁的变更测试、构建、交付和部署等进行自动化，减少手工操作。 CI 持续集成主要是在代码更改时自</description>
+    </item>
+    
+    <item>
+      <title>如何解决 Kubernetes 的 DNS 延迟问题</title>
+      <link>https://feisky.xyz/posts/2020-04-09-dns-latency/</link>
+      <pubDate>Thu, 09 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/posts/2020-04-09-dns-latency/</guid>
+      <description>由于 Linux 内核中的缺陷，在 Kubernetes 集群中你很可能会碰到恼人的 DNS 间歇性 5 秒延迟问题（社区 issue 为 #56903[1]）。虽然 issue 已经关闭了，但并不是说这个问题已</description>
+    </item>
     
     <item>
       <title>Azure Container Instance (ACI)</title>
@@ -139,7 +189,7 @@ While many developers and security professionals are comfortable with Linux cont
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://feisky.xyz/posts/2015-11-04-hypernetes-the-multi-tenant-kubernetes-distribution/</guid>
-      <description>&amp;ldquo;The Caas Revolution&amp;quot;. This is what we believe is happening today in the Cloud ecosystem. This revolution has been started by the now famous project (and company) Docker, and embraced by Cloud providers like Google and AWS.
+      <description>&amp;ldquo;The Caas Revolution&amp;rdquo;. This is what we believe is happening today in the Cloud ecosystem. This revolution has been started by the now famous project (and company) Docker, and embraced by Cloud providers like Google and AWS.
 However, most multi-tenant CaaS solutions today run on a public IaaS, and use fully isolated virtual machine clusters to schedule containers. This is in contrast to the solely container-based implementation provided in private CaaS deployments.</description>
     </item>
     

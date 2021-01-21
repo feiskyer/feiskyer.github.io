@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    
+    
+
+
+    <head>
+    <link href="https://gmpg.org/xfn/11" rel="profile">
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- Enable responsiveness on mobile devices -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="generator" content="Hugo 0.80.0" />
+
+    
+    
+    
+
+<title>镜像构建的正确姿势 • Feisky</title>
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="镜像构建的正确姿势"/>
+<meta name="twitter:description" content="Dockerfile 什么是 Dockerfile ？Dockerfile 是一个用来描述镜像构建指令的文本文件。构建系统可以按照这些指令一步步地执行构建出容器镜像。 比如，下面是一个最"/>
+
+<meta property="og:title" content="镜像构建的正确姿势" />
+<meta property="og:description" content="Dockerfile 什么是 Dockerfile ？Dockerfile 是一个用来描述镜像构建指令的文本文件。构建系统可以按照这些指令一步步地执行构建出容器镜像。 比如，下面是一个最" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://feisky.xyz/posts/2020-06-01-container-image/" />
+<meta property="article:published_time" content="2020-06-01T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-06-01T00:00:00+00:00" />
+
+
+    
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/scss/hyde-hyde.71157e768c4e111a23c3531b95e0cbb59bbef3c9e6901d36247cb53d6b6be258.css" integrity="sha256-cRV&#43;doxOERojw1MbleDLtZu&#43;88nmkB02JHy1PWtr4lg=">
+
+
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+
+
+
+
+<link rel="stylesheet" href="/scss/tocbot.5ef07cebc3c477b54270456f149ee02922479bb7555fd344b2c69f953b0e7e5e.css" integrity="sha256-XvB868PEd7VCcEVvFJ7gKSJHm7dVX9NEssaflTsOfl4=">
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/favicon.png">
+    
+    
+
+</head>
+
+
+    <body class="theme-base-0d ">
+    
+<div class="sidebar">
+  <div class="container ">
+    <div class="sidebar-about">
+      <span class="site__title">
+        <a href="https://feisky.xyz/">
+        
+          Feisky
+        
+        </a>
+      </span>
+      
+      
+        <div class="author-image">
+          <img src="https://www.gravatar.com/avatar/f86d2faa0f91793a2163d226d82a7620?s=240&d=mp" class="img--circle img--headshot element--center" alt="gravatar">
+        </div>
+      
+      <p class="site__description">
+        
+      </p>
+    </div>
+    <div class="collapsible-menu">
+      <input type="checkbox" id="menuToggle">
+      <label for="menuToggle">Feisky</label>
+      <div class="menu-content">
+        <div>
+	<ul class="sidebar-nav">
+		 
+		 
+			 
+				<li>
+					<a href="https://kubernetes.feisky.xyz">
+						<span>Kubernetes指南</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://time.geekbang.org/column/intro/100020901">
+						<span>Linux性能优化实战</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://sdn.feisky.xyz">
+						<span>SDN网络</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/machine-learning/">
+						<span>机器学习</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/about/">
+						<span>关于我</span>
+					</a>
+				</li>
+			 
+		
+	</ul>
+</div>
+
+        <section class="social">
+	
+	<a href="https://twitter.com/feisky" rel="me"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	<a href="https://github.com/feiskyer" rel="me"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</section>
+
+      </div>
+    </div>
+    
+<div class="copyright">
+  &copy; 2021 feiskyer
+  
+    <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>
+  
+</div>
+
+
+<div class="builtwith">
+Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+</div>
+
+
+  </div>
+</div>
+
+        <div class="content container">
+            
+    
+<article>
+  <header>
+    <h1>镜像构建的正确姿势</h1>
+    
+    
+<div class="post__meta">
+    
+    
+      <i class="fas fa-calendar-alt"></i> Jun 01, 2020
+    
+    
+    
+    
+    
+      
+      
+          <br/>
+           <i class="fas fa-tags"></i>
+          
+          <a class="badge badge-tag" href="/tags/cloudnative">cloudnative</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/kubernetes">kubernetes</a>
+          
+      
+    
+    
+    <br/>
+    <i class="fas fa-clock"></i> 6 min read
+</div>
+
+
+  </header>
+  
+  
+  
+    <div class="toc-wrapper">
+      <input type="checkbox" id="tocToggle">
+      <label for="tocToggle">Table of Content</label>
+      
+        <div class="toc" id="TableOfContents"></div>
+      
+    </div>
+  
+  
+  <div class="post">
+    <h2 id="dockerfile">Dockerfile</h2>
+<p>什么是 Dockerfile ？Dockerfile 是一个用来描述镜像构建指令的文本文件。构建系统可以按照这些指令一步步地执行构建出容器镜像。</p>
+<p>比如，下面是一个最简单的 Dockerfile：</p>
+<pre><code>FROM busybox
+ENTRYPOINT [&quot;echo&quot;, &quot;Hello world, Dockerfile!&quot;]
+</code></pre><p>这个 Dockerfile 只包括两条指令：</p>
+<ul>
+<li>FROM 指定 busybox 作为基础镜像，后续所有的指令都在 busybox 镜像基础上进行；</li>
+<li>ENTRYPOINT 设置容器的启动命令。容器创建时，如果没有指定启动命令，这条命令就会执行。</li>
+</ul>
+<p>有了 Dockerfile 之后，你就可以用 <em>docker build</em> 来构建一个镜像。比如，执行下面的命令构建一个镜像：</p>
+<pre><code>$ docker build -t feisky/hello .
+Sending build context to Docker daemon  2.048kB
+Step 1/2 : FROM busybox
+latest: Pulling from library/busybox
+bdbbaa22dec6: Pull complete
+Digest: sha256:6915be4043561d64e0ab0f8f098dc2ac48e077fe23f488ac24b665166898115a
+Status: Downloaded newer image for busybox:latest
+ ---&gt; 6d5fcfe5ff17
+Step 2/2 : ENTRYPOINT [&quot;echo&quot;, &quot;Hello world, Dockerfile!&quot;]
+ ---&gt; Running in 8647d01c193e
+Removing intermediate container 8647d01c193e
+ ---&gt; 0eebd98120f4
+Successfully built 0eebd98120f4
+Successfully tagged feisky/hello:latest
+</code></pre><p>这样，我们就成功构建了第一个镜像，它的各层如下图所示。其中，最下面的两层来自基础镜像 busybox，而最上面的一层来自 ENTRYPOINT 指令：</p>
+<p><img src="640-20210121132330027.png" alt="图片"></p>
+<p>接下来也就可以使用刚创建的镜像来运行容器：</p>
+<pre><code># --rm 表示容器停止后自动删除
+$ docker run --rm feisky/hello
+Hello world, Dockerfile!
+</code></pre><p>可以看到，容器成功输出了 <em>Hello world, Dockerfile!</em>。</p>
+<p>刚才的示例很简单，只涉及了两条指令 FROM 和 ENTRYPOINT。而实际的应用通常都要复杂得多，只通过 Dockerfile 的指令真的可以给各种各样的应用创建镜像吗？我们再来进一步看看 Dockerfile 到底是如何解决这个问题的：</p>
+<p>第一，通过 RUN 支持运行任何 SHELL 或者 POWERSHELL 命令，这样你就可以运行任意指令，灵活定制镜像的内容。</p>
+<p>第二，通过 ADD 和 COPY 支持将文件和目录复制到镜像中，这样就可以给镜像添加任意文件。</p>
+<p>第三，通过 FROM 从基础镜像开始，而不是一切从零开始。任何已有镜像都可以作为新镜像的基础，这样运行环境类似的应用就都可以复用相同的基础镜像，简化了新镜像的构建过程。</p>
+<p>通过这三个特性，你就可以为大部分应用准备好它们的运行环境。当然，只有这些是不够的。实际上，Dockerfile 还支持十多个指令，以便你可以更灵活地定制镜像。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><strong>指令</strong></th>
+<th style="text-align:center"><strong>说明</strong></th>
+<th style="text-align:center"><strong>示例</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">FROM</td>
+<td style="text-align:center">设置基础镜像</td>
+<td style="text-align:center">FROM alpine</td>
+</tr>
+<tr>
+<td style="text-align:center">LABEL</td>
+<td style="text-align:center">设置镜像标签</td>
+<td style="text-align:center">LABEL version=&ldquo;1.0&rdquo;</td>
+</tr>
+<tr>
+<td style="text-align:center">RUN</td>
+<td style="text-align:center">运行SHELL或POWERSHELL命令</td>
+<td style="text-align:center">RUN apk add curl</td>
+</tr>
+<tr>
+<td style="text-align:center">ADD或COPY</td>
+<td style="text-align:center">复制文件到镜像中</td>
+<td style="text-align:center">ADD app /app</td>
+</tr>
+<tr>
+<td style="text-align:center">USER</td>
+<td style="text-align:center">设置用户名或UID</td>
+<td style="text-align:center">USER 1001</td>
+</tr>
+<tr>
+<td style="text-align:center">ENV</td>
+<td style="text-align:center">设置环境变量</td>
+<td style="text-align:center">ENV GOPATH /go</td>
+</tr>
+<tr>
+<td style="text-align:center">EXPOSE</td>
+<td style="text-align:center">暴露指定端口</td>
+<td style="text-align:center">EXPOSE 80</td>
+</tr>
+<tr>
+<td style="text-align:center">ENTRYPOINT</td>
+<td style="text-align:center">设置默认命令</td>
+<td style="text-align:center">ENTRYPOINT [&quot;/app&quot;]</td>
+</tr>
+<tr>
+<td style="text-align:center">CMD</td>
+<td style="text-align:center">设置ENTRYPOINT参数</td>
+<td style="text-align:center">CMD [&quot;&ndash;help&quot;]</td>
+</tr>
+<tr>
+<td style="text-align:center">WORKDIR</td>
+<td style="text-align:center">设置工作目录</td>
+<td style="text-align:center">WORKDIR /path</td>
+</tr>
+</tbody>
+</table>
+<p>这些指令中，有两组需要你特别留心。</p>
+<p>第一组是复制文件的两个指令，<strong>COPY 和 ADD</strong>。COPY 可以从本地复制文件或者目录到镜像中，而 ADD 则是 COPY 的超集，除了可以复制文件或者目录外，还可以远程下载文件并解压压缩包。由于 ADD 的功能比较复杂，我推荐你优先使用 COPY 指令。需要从远程下载文件时，可以使用 RUN 把所有需要下载的文件以及清理步骤放到一个指令中。</p>
+<p>第二组是设置容器命令的两个指令，<strong>ENTRYPOINT 和 CMD</strong>。这两个指令都支持 exec 和 shell 两种模式：</p>
+<ul>
+<li>exec 模式是把应用程序进程作为容器的 1 号进程。比如，<em>ENTRYPOINT [&ldquo;top&rdquo;, &ldquo;-b&rdquo;]</em> 就是以 top 命令作为 1 号进程。</li>
+<li>shell 模式则是通过 SHELL命令启动应用。比如，<em>ENTRYPOINT top -b</em> 就是以 <em>/bin/sh -c top -b</em> 启动容器，即 <em>/bin/sh</em> 是容器的 1 号进程。使用 SHELL 作为 1 号进程时，很容易导致应用无法在容器停止时优雅地关闭，所以一般需要你结合 <em>exec</em> ，将应用进程取代 SHELL 作为 1 号进程，比如  <em>ENTRYPOINT exec top -b</em>。</li>
+</ul>
+<p>在 ENTRYPOINT 和 CMD 组合使用时，还有一点需要你注意，即当 ENTRYPOINT 使用 shell 模式时，CMD 设置的任何选项都会被忽略。所以我推荐你在设置 ENTRYPOINT 时，总是使用 exec 模式。</p>
+<h2 id="构建上下文">构建上下文</h2>
+<p>在上一节我们讲到，你可以使用 COPY 指令把文件复制到镜像中。不过，要复制的文件从哪里来呢？</p>
+<p>在前面的 docker build 示例中，你可能已经注意到了最后的点（.），它正是用来指定构建上下文的，也就是把当前目录作为构建上下文。从前面的示例中你可以看到，构建镜像的第一步就是把构建上下文发送到 Docker daemon：</p>
+<pre><code>Sending build context to Docker daemon  2.048kB
+</code></pre><p>这说明镜像构建是在 Docker daemon 中运行的，并且客户端会把构建上下文先发送给 Docker daemon 之后才可以进行镜像构建。所以，为了减少镜像构建上下文的大小，通常把 Dockerfile 放到一个只包含镜像所需文件的单独目录中。</p>
+<p>如果构建目录中还有其他镜像不需要的文件，可以通过 <em>.dockerignore</em> 将它们忽略。<em>.dockerignore</em> 类似于 <em>.gitignore</em>，它基于 Go 语言的 filepath.Match ，匹配每一行设置的表达式，忽略匹配的文件。比如：</p>
+<pre><code># 忽略所有的go文件
+**/*.go
+# 忽略README.md之外的所有markdown文件
+*.md
+!README.md
+</code></pre><p>这个示例忽略了所有的go文件以及除了README.md之外的所有markdown文件。在编写 Dockerfile 时，不要忘记添加一个 .dockerignore 文件，把镜像不需要的文件剔除掉。</p>
+<h2 id="镜像优化">镜像优化</h2>
+<p>了解了 Dockerfile 的基本原理之后，在镜像构建时还有没有其他需要注意的地方呢？接下来，我们再一起来看看都有哪些镜像构建的最佳实践。</p>
+<p><strong>第一，为了降低复杂性并减少依赖，你应该尽量避免镜像包含不必要的软件包</strong>。通常，应用程序的镜像中一般不需要安装开发调试软件包。如果真的需要从源码编译构建应用，那就使用多阶段构建。</p>
+<p>比如，下面是一个两阶段构建 Go 应用程序的示例，第一阶段使用 golang:1.13 编译出应用二进制文件，第二阶段再把编译的结果复制到最终的镜像中：</p>
+<pre><code>FROM golang:1.13 AS builder
+WORKDIR /go/src/my-app
+COPY . .
+RUN go build -a -o app .
+FROM alpine:latest  
+RUN apk --no-cache add ca-certificates
+COPY --from=builder /go/src/my-app/app .
+CMD [&quot;./app&quot;]
+</code></pre><p><strong>第二，为了方便镜像的维护，并减少镜像的大小，镜像的层数应尽可能少</strong>。 比如，你应该把软件包的安装和缓存清理放到同一个 <em>RUN</em> 指令中，避免把不必要的缓存文件提交到镜像中。</p>
+<p>以 <em>centos</em> 镜像为例，把缓存清理放到单独指令中会让镜像总大小增加约 30MB：</p>
+<p><img src="640-20210121132407454.png" alt="图片"></p>
+<p>你可以使用下面的方法把 yum install 和 yum clean 放在同一个 RUN 指令中来减小镜像的大小：</p>
+<pre><code>FROM centos
+RUN yum update --assumeyes &amp;&amp; \
+    yum install --assumeyes vim &amp;&amp; \
+    yum clean all
+</code></pre><p><strong>第三，选择最小的基础镜像</strong>。比如，centos 基础镜像的大小已经达到了 220MB，如果换成 alpine 的话，则只有 5MB 的大小。除了可以让镜像体积变小之外，更小的基础镜像因为包含更少的软件包，也降低了意外漏洞的风险。</p>
+<p><strong>第四，以最小权限用户运行应用程序</strong>。默认情况下，容器内的root用户跟宿主机的root用户是同一个，以root用户运行的容器也会有宿主机root用户的特权。根据最小权限原则，你应该尽量限制容器的访问权限，避免以root用户运行应用。比如下面的例子中，使用 USER 指令为镜像设置了一个普通用户 node：</p>
+<pre><code>FROM node:alpine
+WORKDIR /app
+USER node
+COPY --chown=node:node . .
+CMD [&quot;node&quot;, &quot;app.js&quot;]
+</code></pre><p><strong>最后，利用缓存加速构建</strong>。docker build 按照 Dockerfile 中指令的顺序逐个执行，并把每个指令的构建结果缓存起来，这样下次构建的时候就可以进行复用，减少构建时间。不过你要注意，只要有一条指令跟缓存不一致，那么其后所有的指令都不会再复用缓存。所以，我推荐你尽量把很少变化的指令放到前面，而经常变化的指令（比如 COPY 和 CMD）放到后面。</p>
+<h2 id="小结">小结</h2>
+<p>本文总结了容器镜像的构建方法，并梳理了构建镜像时的注意事项。在构建镜像时，最基本的原则是<strong>小巧安全、适当复用</strong>。选择小的基础镜像、避免安装不必要的软件包、减少镜像层数、最小化容器用户的权限等都是实现这个原则的有效方法。在镜像构建的时候，你还可以利用镜像构建的缓存，加速镜像的构建。</p>
+<hr>
+<p>欢迎扫描下面的二维码关注<strong>漫谈云原生</strong>公众号，回复<strong>任意关键字</strong>查询更多云原生知识库，或回复<strong>联系</strong>加我微信。</p>
+<p><img src="/assets/mp.png" alt=""></p>
+
+  </div>
+  
+
+<div class="navigation navigation-single">
+    
+    <a href="/posts/2020-05-27-container-networking/" class="navigation-prev">
+      <i aria-hidden="true" class="fa fa-chevron-left"></i>
+      <span class="navigation-tittle">漫谈容器网络</span>
+    </a>
+    
+    
+    <a href="/posts/2020-06-06-linux-perf/" class="navigation-next">
+      <span class="navigation-tittle">10个问题带你全面理解Linux性能优化</span>
+      <i aria-hidden="true" class="fa fa-chevron-right"></i>
+    </a>
+    
+</div>
+
+
+  
+
+
+<div class="post__related">
+    
+    <h2>Related Articles</h2>
+    <ul class="related-posts">
+        
+<li>
+  <span class="list__title--small">
+    <a href="/posts/2020-05-27-container-networking/" >漫谈容器网络</a>
+      
+      <time class="pull-right hidden-tablet">May 27 &#39;20</time>
+      
+  </span>
+</li>
+
+<li>
+  <span class="list__title--small">
+    <a href="/posts/2020-04-26-multi-cloud/" >基于Kubernetes的多云和混合云</a>
+      
+      <time class="pull-right hidden-tablet">Apr 26 &#39;20</time>
+      
+  </span>
+</li>
+
+<li>
+  <span class="list__title--small">
+    <a href="/posts/2020-04-19-ci-cd/" >Kubernetes中的CI/CD</a>
+      
+      <time class="pull-right hidden-tablet">Apr 19 &#39;20</time>
+      
+  </span>
+</li>
+
+<li>
+  <span class="list__title--small">
+    <a href="/posts/2020-04-09-dns-latency/" >如何解决 Kubernetes 的 DNS 延迟问题</a>
+      
+      <time class="pull-right hidden-tablet">Apr 09 &#39;20</time>
+      
+  </span>
+</li>
+
+<li>
+  <span class="list__title--small">
+    <a href="/posts/2017-11-27-aci/" >Azure Container Instance (ACI)</a>
+      
+      <time class="pull-right hidden-tablet">Nov 27 &#39;17</time>
+      
+  </span>
+</li>
+
+
+    </ul>
+</div>
+
+
+
+  
+    
+        <div id="disqus_thread"></div>
+<script type="text/javascript">
+    
+
+    (function () {
+    if (location.hostname === "localhost" ||
+      location.hostname === "127.0.0.1" ||
+      location.hostname === "") {
+      return;
+    }
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    var disqus_shortname = 'feisky';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || 
+      document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+<noscript>
+  Please enable JavaScript to view the
+  <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by
+  <span class="logo-disqus">Disqus</span>
+</a>
+
+    
+
+
+</article>
+
+
+        </div>
+        
+    
+
+  
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-69699206-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+<script defer src="https://use.fontawesome.com/releases/v5.12.1/js/all.js" integrity="sha384-ZbbbT1gw3joYkKRqh0kWyRp32UAvdqkpbLedQJSlnI8iLQcFVxaGyrOgOJiDQTTR" crossorigin="anonymous"></script>
+
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+        
+    <script type="text/javascript">
+        
+        hljs.initHighlightingOnLoad();
+    </script>
+    
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.js"></script>
+<script type="text/javascript">
+  if (tocbot) {
+    tocbot.init({
+      
+      tocSelector: '.toc',
+      
+      contentSelector: '.post',
+      
+      headingSelector: 'h2, h3, h4',
+      collapseDepth: 4
+    });
+  }
+</script>
+
+
+
+    
+
+
+
+    </body>
+</html>

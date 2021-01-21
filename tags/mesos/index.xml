@@ -6,11 +6,7 @@
     <description>Recent content in mesos on Feisky</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 07 Jun 2016 13:21:07 +0000</lastBuildDate>
-    
-	<atom:link href="https://feisky.xyz/tags/mesos/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 07 Jun 2016 13:21:07 +0000</lastBuildDate><atom:link href="https://feisky.xyz/tags/mesos/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Kubernetes-mesos architecture</title>
       <link>https://feisky.xyz/posts/2016-06-07-kubernetes-mesos-architecture/</link>

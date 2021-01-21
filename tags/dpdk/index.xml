@@ -6,11 +6,7 @@
     <description>Recent content in dpdk on Feisky</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 24 Apr 2016 19:43:07 +0000</lastBuildDate>
-    
-	<atom:link href="https://feisky.xyz/tags/dpdk/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 24 Apr 2016 19:43:07 +0000</lastBuildDate><atom:link href="https://feisky.xyz/tags/dpdk/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>DPDK Introduction</title>
       <link>https://feisky.xyz/posts/2016-04-24-dpdk-introduction/</link>

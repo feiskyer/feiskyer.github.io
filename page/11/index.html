@@ -5,10 +5,9 @@
     <link href="https://gmpg.org/xfn/11" rel="profile">
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.62.2" />
+<meta name="generator" content="Hugo 0.80.0" />
 
     
 
@@ -17,13 +16,13 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Feisky"/>
-<meta name="twitter:description" content="Notes about anything"/>
+<meta name="twitter:description" content=""/>
 
 <meta property="og:title" content="Feisky" />
-<meta property="og:description" content="Notes about anything" />
+<meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://feisky.xyz/" />
-<meta property="og:updated_time" content="2020-02-10T16:43:08+01:00" />
+<meta property="og:updated_time" content="2021-01-20T00:00:00+00:00" />
 
 
     
@@ -38,7 +37,7 @@
 
 
 
-<link rel="stylesheet" href="/scss/hyde-hyde.92c66d107d7b219f0792cfd67223179af884b03f386ac46894f9f735932bbca3.css" integrity="sha256-ksZtEH17IZ8Hks/WciMXmviEsD84asRolPn3NZMrvKM=">
+<link rel="stylesheet" href="/scss/hyde-hyde.71157e768c4e111a23c3531b95e0cbb59bbef3c9e6901d36247cb53d6b6be258.css" integrity="sha256-cRV&#43;doxOERojw1MbleDLtZu&#43;88nmkB02JHy1PWtr4lg=">
 
 
 <link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
@@ -46,7 +45,7 @@
 
 
 
-<link rel="stylesheet" href="/scss/tocbot.126e7d75240acc946d34d6ccb2982ed4c394a5fe34e73e1a2119ca951bcf119d.css" integrity="sha256-Em59dSQKzJRtNNbMspgu1MOUpf405z4aIRnKlRvPEZ0=">
+<link rel="stylesheet" href="/scss/tocbot.5ef07cebc3c477b54270456f149ee02922479bb7555fd344b2c69f953b0e7e5e.css" integrity="sha256-XvB868PEd7VCcEVvFJ7gKSJHm7dVX9NEssaflTsOfl4=">
 
 
 
@@ -71,12 +70,20 @@
   <div class="container ">
     <div class="sidebar-about">
       <span class="site__title">
-        <a href="https://feisky.xyz/">Feisky</a>
+        <a href="https://feisky.xyz/">
+        
+          Feisky
+        
+        </a>
       </span>
       
       
+        <div class="author-image">
+          <img src="https://www.gravatar.com/avatar/f86d2faa0f91793a2163d226d82a7620?s=240&d=mp" class="img--circle img--headshot element--center" alt="gravatar">
+        </div>
+      
       <p class="site__description">
-         Notes about anything 
+        
       </p>
     </div>
     <div class="collapsible-menu">
@@ -136,7 +143,12 @@
 	
 	
 	
+	
 	<a href="https://github.com/feiskyer" rel="me"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
 	
 	
 	
@@ -158,7 +170,7 @@
     </div>
     
 <div class="copyright">
-  &copy; 2020 feiskyer
+  &copy; 2021 feiskyer
   
     <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>
   
@@ -183,19 +195,18 @@ Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.c
       
       <div class="post-list__item">
         <span class="item__title--big">
-          <a href="/posts/2015-03-13-usging-cadvisor-to-monitor-docker/" >Using cAdvisor to monitor docker</a>
+          <a href="/posts/2015-03-02-open-vswitch-over-dpdk-on-ubuntu/" >Open vSwitch over DPDK on Ubuntu</a>
         </span>
         <span class="item__date">
           Jan 01, 0001
         </span>
         <span >
         
-        cAdvisor (Container Advisor) provides container users an understanding of the resource usage and performance characteristics of their running containers. It is a running daemon that collects, aggregates, processes, and exports information about running containers. Specifically, for each container it keeps resource isolation parameters, historical resource usage, histograms of complete historical resource usage and network statistics. This data is exported by container and machine-wide.
-cAdvisor has native support for Docker containers and should support just about any other container type out of the box.
+        There are two approaches for using DPDK acceleration in DPDK. One is the openvswitch fork from intel, called dpdk-ovs the other is done directly in openvswitch with a different approach from intel. http://dpdk.org/ml/archives/dev/2014-March/001770.html - https://github.com/01org/dpdk-ovs VirtualBox preparations To run openvswitch with DPDK I used a virtual machine (VirtualBox) because the NIC I had on my laptop was not supported. I created three virtual NICs for my vm, one behind NAT
         
         </span>
         
-          ... <a class="read-more-symbol" href="/posts/2015-03-13-usging-cadvisor-to-monitor-docker/">➦</a>
+          ... <a class="read-more-symbol" href="/posts/2015-03-02-open-vswitch-over-dpdk-on-ubuntu/">➦</a>
         
         </div>
         
@@ -205,18 +216,16 @@ cAdvisor has native support for Docker containers and should support just about 
       
       <div class="post-list__item">
         <span class="item__title--big">
-          <a href="/posts/2015-01-27-vagrant/" >vagrant</a>
+          <a href="/posts/2015-06-24-openstack-magnum/" >OpenStack Magnum社区及项目介绍</a>
         </span>
         <span class="item__date">
           Jan 01, 0001
         </span>
         <span >
         
-        简易虚拟机管理工具vagrant Vagrant简介 Vagrant是一款跨平台的虚拟机管理工具，可以用来封装跨平台的开发环境，分发给团队成员共
+        Add network management for native docker https://blueprints.launchpad.net/magnum/+spec/native-docker-network https://etherpad.openstack.org/p/magnum-native-docker-network From http://dockone.io/article/445
         
         </span>
-        
-          ... <a class="read-more-symbol" href="/posts/2015-01-27-vagrant/">➦</a>
         
         </div>
         
@@ -226,18 +235,16 @@ cAdvisor has native support for Docker containers and should support just about 
       
       <div class="post-list__item">
         <span class="item__title--big">
-          <a href="/posts/2015-06-10-weekly-reading-list-20150607/" >Weekly reading list (20150607)</a>
+          <a href="/posts/2015-03-04-ovs-20-call-flow/" >OVS 2.0 call flow</a>
         </span>
         <span class="item__date">
           Jan 01, 0001
         </span>
         <span >
         
-        OpenStack Magnum http://www.csdn.net/article/2015-06-02/2824827 Magnum是去年巴黎峰会后开始的一个新项目，专门用来向用户提供容器服务，其最新的架构如图2所示。从去年11月份开始在StackFor
+        Refer http://blog.csdn.net/night_elf_1020/article/details/37600791
         
         </span>
-        
-          ... <a class="read-more-symbol" href="/posts/2015-06-10-weekly-reading-list-20150607/">➦</a>
         
         </div>
         
@@ -247,18 +254,19 @@ cAdvisor has native support for Docker containers and should support just about 
       
       <div class="post-list__item">
         <span class="item__title--big">
-          <a href="/posts/2015-06-24-weekly-reading-list-20150626/" >Weekly reading list (20150626)</a>
+          <a href="/posts/2015-02-10-perform-consistent-snapshots-with-qemu-guest-agent/" >Perform Consistent Snapshots with qemu guest agent</a>
         </span>
         <span class="item__date">
           Jan 01, 0001
         </span>
         <span >
         
-        这周最热的就是Dockercon了，列表里面很多都是docker相关的。 Open Container Project (OCP) Today we’re pleased to announce that CoreOS, Docker, and a large group of industry leaders are working together on a standard container format through the formation
+        A while back, I wrote an article about taking consistent snapshots of your virtual machines in your OpenStack environment. However this method was really intrusive since it required to be inside the virtual machine and to manually summon a filesystem freeze. In this article, I will use a different approach to achieve the same goal without the need to be inside the virtual machine.
+The only requirement is to have a virtual machine running the qemu-guest-agent.
         
         </span>
         
-          ... <a class="read-more-symbol" href="/posts/2015-06-24-weekly-reading-list-20150626/">➦</a>
+          ... <a class="read-more-symbol" href="/posts/2015-02-10-perform-consistent-snapshots-with-qemu-guest-agent/">➦</a>
         
         </div>
         
@@ -268,18 +276,127 @@ cAdvisor has native support for Docker containers and should support just about 
       
       <div class="post-list__item">
         <span class="item__title--big">
-          <a href="/posts/2015-02-06-mesosdocker/" >使用Mesos来管理Docker集群</a>
+          <a href="/posts/2015-01-27-pluribus-networks/" >Pluribus Networks</a>
         </span>
         <span class="item__date">
           Jan 01, 0001
         </span>
         <span >
         
-        Introduction Apache Mesos能够在同样的集群机器上运行多种分布式系统类型，更加动态有效率低共享资源。提供失败侦测，任务发布，任务跟踪，任务监控，低层次资源
+        已经融资9500万美元的Pluribus公司，做得Server Switch产品，其CEO说，既能克服Vmware产品的scalability
         
         </span>
         
-          ... <a class="read-more-symbol" href="/posts/2015-02-06-mesosdocker/">➦</a>
+          ... <a class="read-more-symbol" href="/posts/2015-01-27-pluribus-networks/">➦</a>
+        
+        </div>
+        
+     
+      
+        
+      
+      <div class="post-list__item">
+        <span class="item__title--big">
+          <a href="/posts/2015-02-11-ios-blog-resources/" >Programming Resources</a>
+        </span>
+        <span class="item__date">
+          Jan 01, 0001
+        </span>
+        <span >
+        
+        索引 ANDROID ANGULAR BOOTSTRAP C# C/C++ CASSANDRA CHROME CLOJURE COUCHDB D DAPPER DEVOPS DOCKER ERLANG FIREFOX GIT GO HADOOP HASKELL HTML5 IOS JAVA JAVASCRIPT LINUX LISP LUA MARKDOWN MATH MEMCACHED MONGODB MYSQL NGINX NODE.JS OPENGL OPENSTACK PERL PHP POSTGRESQL PUPPET PYTHON R [RASPBERRY PI](#RASPBERRY PI) REDIS REGEX RUBY RUST SCALA SHELL SPARK STORM SWIFT VARNISH VIM WEB前端 WEB安全 WOLFRAM 开源
+        
+        </span>
+        
+          ... <a class="read-more-symbol" href="/posts/2015-02-11-ios-blog-resources/">➦</a>
+        
+        </div>
+        
+     
+      
+        
+      
+      <div class="post-list__item">
+        <span class="item__title--big">
+          <a href="/posts/2015-03-05-python-not-defined-problem/" >Python __file__ not defined problem</a>
+        </span>
+        <span class="item__date">
+          Jan 01, 0001
+        </span>
+        <span >
+        
+        __file__仅在文件中运行的时候才正常，而在交互式命令行中则需要使用变通的方法： import os import inspect import sys if not hasattr(sys.modules[__name__], '__file__'): __file__ = inspect.getfile(inspect.currentframe()) print os.path.dirname(os.path.abspath(__file__))
+        
+        </span>
+        
+        </div>
+        
+     
+      
+        
+      
+      <div class="post-list__item">
+        <span class="item__title--big">
+          <a href="/posts/2015-03-06-redhat-atomic-host/" >Redhat Atomic Host</a>
+        </span>
+        <span class="item__date">
+          Jan 01, 0001
+        </span>
+        <span >
+        
+        Introduction Red Hat has announced first public beta of Red Hat Enterprise Linux 7 Atomic Host. The beta is available from Red Hat and on Amazon Web Services and Google Compute Platform.
+What can you expect from the Red Hat Enterprise Linux 7 Atomic Host Beta?
+Specifically Designed to Run Containers Red Hat Enterprise Linux 7 Atomic Host Beta provides a streamlined host platform that is optimized to run application containers.
+        
+        </span>
+        
+          ... <a class="read-more-symbol" href="/posts/2015-03-06-redhat-atomic-host/">➦</a>
+        
+        </div>
+        
+     
+      
+        
+      
+      <div class="post-list__item">
+        <span class="item__title--big">
+          <a href="/posts/2015-01-28-reverse-shell/" >reverse shell</a>
+        </span>
+        <span class="item__date">
+          Jan 01, 0001
+        </span>
+        <span >
+        
+        Listen for 8080 first Bash Some versions of bash can send you a reverse shell (this was tested on Ubuntu 10.10):
+PERL Here’s a shorter, feature-free version of the perl-reverse-shell:
+There’s also an alternative PERL revere shell here.
+Python This was tested under Linux / Python 2.7:
+PHP This code assumes that the TCP connection uses file descriptor 3. This worked on my test system. If it doesn’t work, try 4, 5, 6…
+        
+        </span>
+        
+          ... <a class="read-more-symbol" href="/posts/2015-01-28-reverse-shell/">➦</a>
+        
+        </div>
+        
+     
+      
+        
+      
+      <div class="post-list__item">
+        <span class="item__title--big">
+          <a href="/posts/2015-03-02-setting-up-gre-for-kubernetes/" >Setting up GRE for Kubernetes</a>
+        </span>
+        <span class="item__date">
+          Jan 01, 0001
+        </span>
+        <span >
+        
+        首先修改Docker的默认网桥： #停止Docker Daemon进程 systemctl stop docker #设置默认网桥docker0为down，并删除 ip link set dev docker0 down brctl delbr docker0 #新
+        
+        </span>
+        
+          ... <a class="read-more-symbol" href="/posts/2015-03-02-setting-up-gre-for-kubernetes/">➦</a>
         
         </div>
         
@@ -409,12 +526,23 @@ cAdvisor has native support for Docker containers and should support just about 
     <li class="page-item active"><a class="page-link" href="/page/11/">11</a></li>
     
     
-    <li class="page-item disabled">
-    <a href="" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/page/12/">12</a></li>
+    
+    
+    <li class="page-item">
+    <a href="/page/12/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
     </li>
     
     <li class="page-item">
-        <a href="/page/11/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/page/12/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
     </li>
     
 </ul>
@@ -437,7 +565,7 @@ if (!doNotTrack) {
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 
   
-  <script defer src="https://use.fontawesome.com/releases/v5.11.2/js/all.js" integrity="sha384-b3ua1l97aVGAPEIe48b4TC60WUQbQaGi2jqAWM90y0OZXZeyaTCWtBTKtjW2GXG1" crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.12.1/js/all.js" integrity="sha384-ZbbbT1gw3joYkKRqh0kWyRp32UAvdqkpbLedQJSlnI8iLQcFVxaGyrOgOJiDQTTR" crossorigin="anonymous"></script>
 
 
     </body>

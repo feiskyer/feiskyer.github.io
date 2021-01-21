@@ -6,11 +6,7 @@
     <description>Recent content in docker on Feisky</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 19 Oct 2017 18:10:18 +0000</lastBuildDate>
-    
-	<atom:link href="https://feisky.xyz/tags/docker/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 19 Oct 2017 18:10:18 +0000</lastBuildDate><atom:link href="https://feisky.xyz/tags/docker/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Docker MTA Program</title>
       <link>https://feisky.xyz/posts/2017-10-19-docker-mta-program/</link>
@@ -73,7 +69,7 @@ Docker v1.12 brings in its integrated orchestration into docker engine.
       <pubDate>Fri, 17 Jun 2016 17:12:38 +0000</pubDate>
       
       <guid>https://feisky.xyz/posts/2016-06-17-playing-docker-with-hypervisor-container-runtime-runv/</guid>
-      <description>Table of contents: [TOC] The latest master branch of runV has already supported running as an runtime in docker. Since v1.11, docker introduced OCI contain runtime (runc) integration via containerd. Since runc and runV are both recommended implementation of OCI, it is natural to make runV working with containerd. Now let&#39;s have a try. Install runv and docker Docker could be installed via https://docs.docker.com/engine/installation/. Since only master branch of runV</description>
+      <description>Table of contents: [TOC] The latest master branch of runV has already supported running as an runtime in docker. Since v1.11, docker introduced OCI contain runtime (runc) integration via containerd. Since runc and runV are both recommended implementation of OCI, it is natural to make runV working with containerd. Now let&amp;rsquo;s have a try. Install runv and docker Docker could be installed via https://docs.docker.com/engine/installation/. Since only master branch of runV</description>
     </item>
     
     <item>
@@ -210,10 +206,10 @@ We never looked to hedge our bets, our success was and obviously still is tied t
       <guid>https://feisky.xyz/posts/2015-02-12-how-to-use-docker-compose-to-deploy-a-flask-app/</guid>
       <description>The flask app is very simple, you have an index page where your can write and read comments.
 To start So what we need ?
-In my case a Digital Ocean droplet (I&#39;m using Fedora 21).
+In my case a Digital Ocean droplet (I&amp;rsquo;m using Fedora 21).
 So, first of all we connect to our vm with ssh.
 Now that we are inside we need to install git, Docker and docker-compose.
-That&#39;s all we need to play with Docker.
+That&amp;rsquo;s all we need to play with Docker.
 This is our directory tree of our project, quietly standard as you can see.</description>
     </item>
     
@@ -224,8 +220,8 @@ This is our directory tree of our project, quietly standard as you can see.</des
       
       <guid>https://feisky.xyz/posts/2015-02-13-installing-nova-docker-on-openstack-juno/</guid>
       <description>This post comes about indirectly by a request on IRC in #rdo for help getting nova-docker installed on Fedora 21. I ran through the process from start to finish and decided to write everything down for posterity.
-Getting started I started with the Fedora 21 Cloud Image, because I&#39;m installing onto OpenStack and the cloud images include some features that are useful in this environment.
-We&#39;ll be using OpenStack packages from the RDO Juno repository.</description>
+Getting started I started with the Fedora 21 Cloud Image, because I&amp;rsquo;m installing onto OpenStack and the cloud images include some features that are useful in this environment.
+We&amp;rsquo;ll be using OpenStack packages from the RDO Juno repository.</description>
     </item>
     
     <item>
@@ -246,7 +242,7 @@ That containers app you wrote needs to run somewhere. This is particularly true 
       <guid>https://feisky.xyz/posts/2015-03-17-microservice-infrastructure/</guid>
       <description>Microservices Infrastructure Modern platform for rapidly deploying globally distributed services provided by cisco.
 https://github.com/CiscoCloud/microservices-infrastructure
-Features  the ability to deploy applications utilizing resources across multiple datacenters (and even clouds), deploying in a decentralized control model, supporting intelligent endpoints, heavy automation, and the on-demand nature of deploying these services to support business requirements and scale.  Architectural Overview  Mesos cluster manager for efficient resource isolation and sharing across distributed services Marathon for cluster management of long running containerized services Consul for service discovery (By using Consul&#39;s inbuilt DNS server) Docker container runtime supported by Marathon Multi-datacenter support High availablity  Single Data Center Architecture The base platform contains control nodes that manage the cluster and any number of compute nodes.</description>
+Features  the ability to deploy applications utilizing resources across multiple datacenters (and even clouds), deploying in a decentralized control model, supporting intelligent endpoints, heavy automation, and the on-demand nature of deploying these services to support business requirements and scale.  Architectural Overview  Mesos cluster manager for efficient resource isolation and sharing across distributed services Marathon for cluster management of long running containerized services Consul for service discovery (By using Consul&amp;rsquo;s inbuilt DNS server) Docker container runtime supported by Marathon Multi-datacenter support High availablity  Single Data Center Architecture The base platform contains control nodes that manage the cluster and any number of compute nodes.</description>
     </item>
     
     <item>

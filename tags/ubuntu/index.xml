@@ -5,11 +5,7 @@
     <link>https://feisky.xyz/tags/ubuntu/</link>
     <description>Recent content in ubuntu on Feisky</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-cn</language>
-    
-	<atom:link href="https://feisky.xyz/tags/ubuntu/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <language>zh-cn</language><atom:link href="https://feisky.xyz/tags/ubuntu/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>How to disable ubuntu services</title>
       <link>https://feisky.xyz/posts/2015-03-18-how-to-disable-ubuntu-services/</link>

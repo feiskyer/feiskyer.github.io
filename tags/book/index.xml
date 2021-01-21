@@ -5,11 +5,7 @@
     <link>https://feisky.xyz/tags/book/</link>
     <description>Recent content in Book on Feisky</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-cn</language>
-    
-	<atom:link href="https://feisky.xyz/tags/book/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <language>zh-cn</language><atom:link href="https://feisky.xyz/tags/book/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Programming Resources</title>
       <link>https://feisky.xyz/posts/2015-02-11-ios-blog-resources/</link>

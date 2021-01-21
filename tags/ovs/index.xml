@@ -5,11 +5,7 @@
     <link>https://feisky.xyz/tags/ovs/</link>
     <description>Recent content in ovs on Feisky</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-cn</language>
-    
-	<atom:link href="https://feisky.xyz/tags/ovs/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <language>zh-cn</language><atom:link href="https://feisky.xyz/tags/ovs/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Open vSwitch over DPDK on Ubuntu</title>
       <link>https://feisky.xyz/posts/2015-03-02-open-vswitch-over-dpdk-on-ubuntu/</link>

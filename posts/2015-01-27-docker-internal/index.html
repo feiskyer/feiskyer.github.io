@@ -8,10 +8,9 @@
     <link href="https://gmpg.org/xfn/11" rel="profile">
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.62.2" />
+<meta name="generator" content="Hugo 0.80.0" />
 
     
     
@@ -43,7 +42,7 @@
 
 
 
-<link rel="stylesheet" href="/scss/hyde-hyde.92c66d107d7b219f0792cfd67223179af884b03f386ac46894f9f735932bbca3.css" integrity="sha256-ksZtEH17IZ8Hks/WciMXmviEsD84asRolPn3NZMrvKM=">
+<link rel="stylesheet" href="/scss/hyde-hyde.71157e768c4e111a23c3531b95e0cbb59bbef3c9e6901d36247cb53d6b6be258.css" integrity="sha256-cRV&#43;doxOERojw1MbleDLtZu&#43;88nmkB02JHy1PWtr4lg=">
 
 
 <link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
@@ -51,7 +50,7 @@
 
 
 
-<link rel="stylesheet" href="/scss/tocbot.126e7d75240acc946d34d6ccb2982ed4c394a5fe34e73e1a2119ca951bcf119d.css" integrity="sha256-Em59dSQKzJRtNNbMspgu1MOUpf405z4aIRnKlRvPEZ0=">
+<link rel="stylesheet" href="/scss/tocbot.5ef07cebc3c477b54270456f149ee02922479bb7555fd344b2c69f953b0e7e5e.css" integrity="sha256-XvB868PEd7VCcEVvFJ7gKSJHm7dVX9NEssaflTsOfl4=">
 
 
 
@@ -75,12 +74,20 @@
   <div class="container ">
     <div class="sidebar-about">
       <span class="site__title">
-        <a href="https://feisky.xyz/">Feisky</a>
+        <a href="https://feisky.xyz/">
+        
+          Feisky
+        
+        </a>
       </span>
       
       
+        <div class="author-image">
+          <img src="https://www.gravatar.com/avatar/f86d2faa0f91793a2163d226d82a7620?s=240&d=mp" class="img--circle img--headshot element--center" alt="gravatar">
+        </div>
+      
       <p class="site__description">
-         Notes about anything 
+        
       </p>
     </div>
     <div class="collapsible-menu">
@@ -140,7 +147,12 @@
 	
 	
 	
+	
 	<a href="https://github.com/feiskyer" rel="me"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
 	
 	
 	
@@ -162,7 +174,7 @@
     </div>
     
 <div class="copyright">
-  &copy; 2020 feiskyer
+  &copy; 2021 feiskyer
   
     <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>
   
@@ -232,13 +244,13 @@ virtualization subsystem.
 <!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <!-- raw HTML omitted -->
 <p>&ldquo;docker diff&rdquo; is implemented by just scanning the container filesystem and the parent image filesystem, looking at the metadata for changes. Theoretically this can be fooled if you do in-place editing of a file (not changing the size) and reset the mtime/ctime, but in practice I think this will be good enough.</p>
-<p>&ldquo;docker commit&rdquo; uses the above diff command to get a list of changed files which are used to construct a tarball with files and AUFS whiteouts (for deletes). This means you can commit containers to images, run new containers based on the image, etc. You should be able to push them to the index too (although I've not tested this yet).</p>
+<p>&ldquo;docker commit&rdquo; uses the above diff command to get a list of changed files which are used to construct a tarball with files and AUFS whiteouts (for deletes). This means you can commit containers to images, run new containers based on the image, etc. You should be able to push them to the index too (although I&rsquo;ve not tested this yet).</p>
 <p>Docker looks for a &ldquo;docker-pool&rdquo; device-mapper device (i.e. /dev/mapper/docker-pool) when it starts up, but if none exists it automatically creates two sparse files (100GB for the data and 2GB for the metadata) and loopback mount these and sets these up as the block devices for docker-pool, with a 10GB ext4 fs as the base image.</p>
 <p>This means that there is no need for manual setup of block devices, and that generally there should be no need to pre-allocate large amounts of space (the sparse files are small, and we things up so that discards are passed through all the way back to the sparse loopbacks, so deletes in a container should fully reclaim space.
 <!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <!-- raw HTML omitted -->
 <h1 id="tty">TTY</h1>
-<p>When you allocate a TTY, the creator only gets a single input stream, and a single output stream. Meaning that when you redirect a program's STDOUT &amp; STDERR into the TTY, they are getting muxed together.</p>
+<p>When you allocate a TTY, the creator only gets a single input stream, and a single output stream. Meaning that when you redirect a program&rsquo;s STDOUT &amp; STDERR into the TTY, they are getting muxed together.</p>
 <p>For example, lets use the script utility to create a TTY and look at the streams it sets up:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># script -q -c &#39;ls -l /dev/fd/&#39; /dev/null</span>
 total <span style="color:#ae81ff">0</span>
@@ -250,7 +262,7 @@ lr-x------ <span style="color:#ae81ff">1</span> phemmer adm <span style="color:#
 lrwx------ <span style="color:#ae81ff">1</span> phemmer adm <span style="color:#ae81ff">64</span> Jan <span style="color:#ae81ff">25</span> 23:58 <span style="color:#ae81ff">5</span> -&gt; socket:<span style="color:#f92672">[</span>6636438<span style="color:#f92672">]</span>
 lr-x------ <span style="color:#ae81ff">1</span> phemmer adm <span style="color:#ae81ff">64</span> Jan <span style="color:#ae81ff">25</span> 23:58 <span style="color:#ae81ff">6</span> -&gt; /proc/859/fd
 </code></pre></div><p>Notice that FD 0, 1, &amp; 2 all go to the TTY.</p>
-<p>If you look at a normal terminal session, you'll see the same thing (STDIN, STDOUT, STDERR all going to the same TTY). The reason redirection works in your terminal is because you're performing the redirection BEFORE it gets sent into the TTY device. If you perform the redirection inside the docker container, you can accomplish the same thing.</p>
+<p>If you look at a normal terminal session, you&rsquo;ll see the same thing (STDIN, STDOUT, STDERR all going to the same TTY). The reason redirection works in your terminal is because you&rsquo;re performing the redirection BEFORE it gets sent into the TTY device. If you perform the redirection inside the docker container, you can accomplish the same thing.</p>
 <p>Refer to <a href="https://github.com/docker/docker/issues/19696">https://github.com/docker/docker/issues/19696</a> for more.</p>
 
   </div>
@@ -385,20 +397,17 @@ if (!doNotTrack) {
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
-<script defer src="https://use.fontawesome.com/releases/v5.11.2/js/all.js" integrity="sha384-b3ua1l97aVGAPEIe48b4TC60WUQbQaGi2jqAWM90y0OZXZeyaTCWtBTKtjW2GXG1" crossorigin="anonymous"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.12.1/js/all.js" integrity="sha384-ZbbbT1gw3joYkKRqh0kWyRp32UAvdqkpbLedQJSlnI8iLQcFVxaGyrOgOJiDQTTR" crossorigin="anonymous"></script>
 
 
     
-    
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
         
-    
     <script type="text/javascript">
         
         hljs.initHighlightingOnLoad();
     </script>
     
-
 
 
 

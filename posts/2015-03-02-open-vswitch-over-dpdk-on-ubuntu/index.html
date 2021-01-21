@@ -8,10 +8,9 @@
     <link href="https://gmpg.org/xfn/11" rel="profile">
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.62.2" />
+<meta name="generator" content="Hugo 0.80.0" />
 
     
     
@@ -43,7 +42,7 @@
 
 
 
-<link rel="stylesheet" href="/scss/hyde-hyde.92c66d107d7b219f0792cfd67223179af884b03f386ac46894f9f735932bbca3.css" integrity="sha256-ksZtEH17IZ8Hks/WciMXmviEsD84asRolPn3NZMrvKM=">
+<link rel="stylesheet" href="/scss/hyde-hyde.71157e768c4e111a23c3531b95e0cbb59bbef3c9e6901d36247cb53d6b6be258.css" integrity="sha256-cRV&#43;doxOERojw1MbleDLtZu&#43;88nmkB02JHy1PWtr4lg=">
 
 
 <link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
@@ -51,7 +50,7 @@
 
 
 
-<link rel="stylesheet" href="/scss/tocbot.126e7d75240acc946d34d6ccb2982ed4c394a5fe34e73e1a2119ca951bcf119d.css" integrity="sha256-Em59dSQKzJRtNNbMspgu1MOUpf405z4aIRnKlRvPEZ0=">
+<link rel="stylesheet" href="/scss/tocbot.5ef07cebc3c477b54270456f149ee02922479bb7555fd344b2c69f953b0e7e5e.css" integrity="sha256-XvB868PEd7VCcEVvFJ7gKSJHm7dVX9NEssaflTsOfl4=">
 
 
 
@@ -75,12 +74,20 @@
   <div class="container ">
     <div class="sidebar-about">
       <span class="site__title">
-        <a href="https://feisky.xyz/">Feisky</a>
+        <a href="https://feisky.xyz/">
+        
+          Feisky
+        
+        </a>
       </span>
       
       
+        <div class="author-image">
+          <img src="https://www.gravatar.com/avatar/f86d2faa0f91793a2163d226d82a7620?s=240&d=mp" class="img--circle img--headshot element--center" alt="gravatar">
+        </div>
+      
       <p class="site__description">
-         Notes about anything 
+        
       </p>
     </div>
     <div class="collapsible-menu">
@@ -140,7 +147,12 @@
 	
 	
 	
+	
 	<a href="https://github.com/feiskyer" rel="me"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
 	
 	
 	
@@ -162,7 +174,7 @@
     </div>
     
 <div class="copyright">
-  &copy; 2020 feiskyer
+  &copy; 2021 feiskyer
   
     <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>
   
@@ -229,12 +241,12 @@ Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.c
 </ul>
 <h2 id="virtualbox-preparationsspan-classanchor-idline-17span">VirtualBox preparations<!-- raw HTML omitted --><!-- raw HTML omitted --></h2>
 <p>To run openvswitch with DPDK I used a virtual machine (<a href="https://wiki.linaro.org/VirtualBox">VirtualBox</a>) because the NIC I had on my laptop was not supported. I created three virtual NICs for my vm, one behind NAT to use it to ssh into the vm from the host, and two in host-only mode, to be use for testing. <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
-<p>If you happen to go down this road too, then it's a good advice to do a few things before starting the test application. <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>If you happen to go down this road too, then it&rsquo;s a good advice to do a few things before starting the test application. <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <p>First I would recommend configuring two virtual processors on the virtual machine, it makes possible to use most of the DPDK test apps, like testpmd. I would also recommend reserving about 4 GB of RAM to make sure DPDK works properly. <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <p>Then, to configure a network interface in host-only mode you need to create a host-only adapter (this applies to VirtualBox). Here is a link on how to do that:
 <!-- raw HTML omitted --><!-- raw HTML omitted -->
 <!-- raw HTML omitted --><!-- raw HTML omitted --><a href="http://ubuntuforums.org/showthread.php?t=1873650">http://ubuntuforums.org/showthread.php?t=1873650</a> <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
-<p>Then you need to make sure that the interface is assigned an IP address (dhcp should work and you should be able to ping the guest from the host but you may need to configure dhcp on the virtual network if virtual box doesn't do that). <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>Then you need to make sure that the interface is assigned an IP address (dhcp should work and you should be able to ping the guest from the host but you may need to configure dhcp on the virtual network if virtual box doesn&rsquo;t do that). <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <p>Ping the two guest interfaces in order to populate the ARP table: <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <p><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <!-- raw HTML omitted -->
@@ -249,12 +261,12 @@ Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.c
 <h3 id="getting-the-codespan-classanchor-idline-58span">Getting the code<!-- raw HTML omitted --><!-- raw HTML omitted --></h3>
 <p>Simply
 <!-- raw HTML omitted --> git clone git://dpdk.org/dpdk <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
-<p>Note: At the moment I'm writing this, openvswitch doesn't compile with latest version of dpdk so I went with version 1.7.0rc0. Unfortunately there is no tag for it, so you will have to: <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>Note: At the moment I&rsquo;m writing this, openvswitch doesn&rsquo;t compile with latest version of dpdk so I went with version 1.7.0rc0. Unfortunately there is no tag for it, so you will have to: <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <p><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <h3 id="hardware-requirementsspan-classanchor-idline-68span">Hardware requirements<!-- raw HTML omitted --><!-- raw HTML omitted --></h3>
-<p>DPDK works only on a select range of intel devices. It seems that most of the x86 NICs should work just fine, but I couldn't get it working on my HP ProBook 6560b laptop containing an Intel 82540EM Gigabit Ethernet Controller (rev 02) <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>DPDK works only on a select range of intel devices. It seems that most of the x86 NICs should work just fine, but I couldn&rsquo;t get it working on my HP ProBook 6560b laptop containing an Intel 82540EM Gigabit Ethernet Controller (rev 02) <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <p>To check if your NIC is supported first you need to get the device id and then look it up in the list of supported devices. <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <p>lspci - lists all the pci devices; look for your network card here and get the PCI vendor and device ID in the square brackets after the type string. For example: <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <p><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
@@ -299,7 +311,7 @@ Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.c
 <p>Do the same for the other interface <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
-<p>You can bind the interface back to it's original driver with the same tool, i.e. <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>You can bind the interface back to it&rsquo;s original driver with the same tool, i.e. <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <h3 id="quick-test-of-dpdk-using-l2fwdspan-classanchor-idline-164spanspan-classanchor-idline-165span">Quick test of DPDK using l2fwd<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></h3>
@@ -318,16 +330,16 @@ Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.c
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <p>Wireshark should now show packets coming from 192.168.56.1 and with destination 192.168.56.101. The counters in the l2fwd applications should also be updated once a second. <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
-<p>Then try to close the l2fwd application and observe that wireshark doesn't get packets anymore. <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>Then try to close the l2fwd application and observe that wireshark doesn&rsquo;t get packets anymore. <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h3 id="other-dpdk-examplesspan-classanchor-idline-198span">Other DPDK examples<!-- raw HTML omitted --><!-- raw HTML omitted --></h3>
 <p>There are other examples included, I tried test-pmd just out of curiosity. Detailed information about running them can be found on:
 <!-- raw HTML omitted --><!-- raw HTML omitted --><a href="http://www.intel.com/content/dam/www/public/us/en/documents/guides/intel-dpdk-sample-applications-user-guide.pdf">http://www.intel.com/content/dam/www/public/us/en/documents/guides/intel-dpdk-sample-applications-user-guide.pdf</a> <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h2 id="installing-openvswitch-with-dpdkspan-classanchor-idline-202span">Installing Openvswitch with DPDK<!-- raw HTML omitted --><!-- raw HTML omitted --></h2>
-<p>After installing and running dpdk successfully you can start working on getting openvswitch up and running with DPDK. I've used commit <a href="http://git.openvswitch.org/cgi-bin/gitweb.cgi?p=openvswitch;a=commit;h=b596218aa8acafd64a4c7d1c3e761f00e50c0c53">b596218aa8acafd64a4c7d1c3e761f00e50c0c53</a> and it worked for me. <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>After installing and running dpdk successfully you can start working on getting openvswitch up and running with DPDK. I&rsquo;ve used commit <a href="http://git.openvswitch.org/cgi-bin/gitweb.cgi?p=openvswitch;a=commit;h=b596218aa8acafd64a4c7d1c3e761f00e50c0c53">b596218aa8acafd64a4c7d1c3e761f00e50c0c53</a> and it worked for me. <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h3 id="compiling-ovs-with-dpdkspan-classanchor-idline-205span">Compiling OVS with DPDK<!-- raw HTML omitted --><!-- raw HTML omitted --></h3>
 <p>Official information can be found here:
 <!-- raw HTML omitted --><!-- raw HTML omitted --><a href="http://git.openvswitch.org/cgi-bin/gitweb.cgi?p=openvswitch;a=blob_plain;f=INSTALL.DPDK;hb=HEAD">http://git.openvswitch.org/cgi-bin/gitweb.cgi?p=openvswitch;a=blob_plain;f=INSTALL.DPDK;hb=HEAD</a> <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
-<p>I followed the exact same steps, but I added the -ldl to LIBS since my x86_64 Ubuntu didn't link with the default options. <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>I followed the exact same steps, but I added the -ldl to LIBS since my x86_64 Ubuntu didn&rsquo;t link with the default options. <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <p>cd openvswitch <!-- raw HTML omitted --><!-- raw HTML omitted -->./boot.sh <!-- raw HTML omitted --><!-- raw HTML omitted -->./configure &ndash;with-dpdk=$DPDK LIBS=-ldl <!-- raw HTML omitted --><!-- raw HTML omitted -->make <!-- raw HTML omitted --><!-- raw HTML omitted -->sudo make install <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h3 id="database-initializationspan-classanchor-idline-217span">Database initialization<!-- raw HTML omitted --><!-- raw HTML omitted --></h3>
 <p>To manually initialize the database you need to do: <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
@@ -340,7 +352,7 @@ Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.c
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <h3 id="permanent-startup-configurationspan-classanchor-idline-241span">Permanent startup configuration<!-- raw HTML omitted --><!-- raw HTML omitted --></h3>
-<p>Here is how to setup hugetables and have the kernel modules loaded at startup. I haven't looked for a solution to bind the wanted interfaces to DPDK on startup, but there should be a way to do that. <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>Here is how to setup hugetables and have the kernel modules loaded at startup. I haven&rsquo;t looked for a solution to bind the wanted interfaces to DPDK on startup, but there should be a way to do that. <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <p>To have hugetables mounted by default at startup you need to add an entry to /etc/fstab <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <p><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <!-- raw HTML omitted -->
@@ -350,7 +362,7 @@ Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.c
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <p>Then you need to add both uio and igb_uio to /etc/modules so that they are loaded at boot time. <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
-<p>My Ubuntu 13.10 installation failed to start the desktop manager properly when one of the cards didn't get IP from dhcp. If that happens to you and you want the desktop manager, just log on to console 1 (Alt + Ctrl + F1) and run: <!-- raw HTML omitted --><!-- raw HTML omitted -->sudo service lightdm restart <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>My Ubuntu 13.10 installation failed to start the desktop manager properly when one of the cards didn&rsquo;t get IP from dhcp. If that happens to you and you want the desktop manager, just log on to console 1 (Alt + Ctrl + F1) and run: <!-- raw HTML omitted --><!-- raw HTML omitted -->sudo service lightdm restart <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <p>However disabling the X server altogether should result in better performance overall. <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
@@ -361,7 +373,7 @@ Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.c
 <!-- raw HTML omitted -->
 <h3 id="bridge-configurationspan-classanchor-idline-282span">Bridge configuration<!-- raw HTML omitted --><!-- raw HTML omitted --></h3>
 <p>You need to add a netdev type bridge in order to make ovs running with DPDK. This means that all datapath switching will be done in userspace. <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
-<p>You may get an error like &ldquo;ovs-vsctl: Error detected while setting up &lsquo;ovsbr0&rsquo;. See ovs-vswitchd log for details.&rdquo; in case you don't have the openvswitch module inserted. But the bridge will be created so you ignore the warning and continue. <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>You may get an error like &ldquo;ovs-vsctl: Error detected while setting up &lsquo;ovsbr0&rsquo;. See ovs-vswitchd log for details.&rdquo; in case you don&rsquo;t have the openvswitch module inserted. But the bridge will be created so you ignore the warning and continue. <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <p><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
@@ -460,20 +472,17 @@ if (!doNotTrack) {
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
-<script defer src="https://use.fontawesome.com/releases/v5.11.2/js/all.js" integrity="sha384-b3ua1l97aVGAPEIe48b4TC60WUQbQaGi2jqAWM90y0OZXZeyaTCWtBTKtjW2GXG1" crossorigin="anonymous"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.12.1/js/all.js" integrity="sha384-ZbbbT1gw3joYkKRqh0kWyRp32UAvdqkpbLedQJSlnI8iLQcFVxaGyrOgOJiDQTTR" crossorigin="anonymous"></script>
 
 
     
-    
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
         
-    
     <script type="text/javascript">
         
         hljs.initHighlightingOnLoad();
     </script>
     
-
 
 
 

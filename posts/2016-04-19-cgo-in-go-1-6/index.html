@@ -8,10 +8,9 @@
     <link href="https://gmpg.org/xfn/11" rel="profile">
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.62.2" />
+<meta name="generator" content="Hugo 0.80.0" />
 
     
     
@@ -22,10 +21,10 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="cgo in go 1.6"/>
-<meta name="twitter:description" content="The major change is the definition of rules for sharing Go pointers with C code, to ensure that such C code can coexist with Go&#39;s garbage collector. Briefly, Go and C may share memory allocated by Go when a pointer to that memory is passed to C as part of a cgo call, provided that the memory itself contains no pointers to Go-allocated memory, and provided that C does not retain the pointer after the call returns."/>
+<meta name="twitter:description" content="The major change is the definition of rules for sharing Go pointers with C code, to ensure that such C code can coexist with Go&rsquo;s garbage collector. Briefly, Go and C may share memory allocated by Go when a pointer to that memory is passed to C as part of a cgo call, provided that the memory itself contains no pointers to Go-allocated memory, and provided that C does not retain the pointer after the call returns."/>
 
 <meta property="og:title" content="cgo in go 1.6" />
-<meta property="og:description" content="The major change is the definition of rules for sharing Go pointers with C code, to ensure that such C code can coexist with Go&#39;s garbage collector. Briefly, Go and C may share memory allocated by Go when a pointer to that memory is passed to C as part of a cgo call, provided that the memory itself contains no pointers to Go-allocated memory, and provided that C does not retain the pointer after the call returns." />
+<meta property="og:description" content="The major change is the definition of rules for sharing Go pointers with C code, to ensure that such C code can coexist with Go&rsquo;s garbage collector. Briefly, Go and C may share memory allocated by Go when a pointer to that memory is passed to C as part of a cgo call, provided that the memory itself contains no pointers to Go-allocated memory, and provided that C does not retain the pointer after the call returns." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://feisky.xyz/posts/2016-04-19-cgo-in-go-1-6/" />
 <meta property="article:published_time" content="2016-04-19T22:04:48+00:00" />
@@ -44,7 +43,7 @@
 
 
 
-<link rel="stylesheet" href="/scss/hyde-hyde.92c66d107d7b219f0792cfd67223179af884b03f386ac46894f9f735932bbca3.css" integrity="sha256-ksZtEH17IZ8Hks/WciMXmviEsD84asRolPn3NZMrvKM=">
+<link rel="stylesheet" href="/scss/hyde-hyde.71157e768c4e111a23c3531b95e0cbb59bbef3c9e6901d36247cb53d6b6be258.css" integrity="sha256-cRV&#43;doxOERojw1MbleDLtZu&#43;88nmkB02JHy1PWtr4lg=">
 
 
 <link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
@@ -52,7 +51,7 @@
 
 
 
-<link rel="stylesheet" href="/scss/tocbot.126e7d75240acc946d34d6ccb2982ed4c394a5fe34e73e1a2119ca951bcf119d.css" integrity="sha256-Em59dSQKzJRtNNbMspgu1MOUpf405z4aIRnKlRvPEZ0=">
+<link rel="stylesheet" href="/scss/tocbot.5ef07cebc3c477b54270456f149ee02922479bb7555fd344b2c69f953b0e7e5e.css" integrity="sha256-XvB868PEd7VCcEVvFJ7gKSJHm7dVX9NEssaflTsOfl4=">
 
 
 
@@ -76,12 +75,20 @@
   <div class="container ">
     <div class="sidebar-about">
       <span class="site__title">
-        <a href="https://feisky.xyz/">Feisky</a>
+        <a href="https://feisky.xyz/">
+        
+          Feisky
+        
+        </a>
       </span>
       
       
+        <div class="author-image">
+          <img src="https://www.gravatar.com/avatar/f86d2faa0f91793a2163d226d82a7620?s=240&d=mp" class="img--circle img--headshot element--center" alt="gravatar">
+        </div>
+      
       <p class="site__description">
-         Notes about anything 
+        
       </p>
     </div>
     <div class="collapsible-menu">
@@ -141,7 +148,12 @@
 	
 	
 	
+	
 	<a href="https://github.com/feiskyer" rel="me"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
 	
 	
 	
@@ -163,7 +175,7 @@
     </div>
     
 <div class="copyright">
-  &copy; 2020 feiskyer
+  &copy; 2021 feiskyer
   
     <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>
   
@@ -225,7 +237,7 @@ Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.c
   
   <div class="post">
     <blockquote>
-<p>The major change is the definition of rules for sharing Go pointers with C code, to ensure that such C code can coexist with Go's garbage collector. Briefly, Go and C may share memory allocated by Go when a pointer to that memory is passed to C as part of a cgo call, provided that the memory itself contains no pointers to Go-allocated memory, and provided that C does not retain the pointer after the call returns. These rules are checked by the runtime during program execution: if the runtime detects a violation, it prints a diagnosis and crashes the program. The checks can be disabled by setting the environment variable GODEBUG=cgocheck=0, but note that the vast majority of code identified by the checks is subtly incompatible with garbage collection in one way or another. Disabling the checks will typically only lead to more mysterious failure modes. Fixing the code in question should be strongly preferred over turning off the checks.</p>
+<p>The major change is the definition of rules for sharing Go pointers with C code, to ensure that such C code can coexist with Go&rsquo;s garbage collector. Briefly, Go and C may share memory allocated by Go when a pointer to that memory is passed to C as part of a cgo call, provided that the memory itself contains no pointers to Go-allocated memory, and provided that C does not retain the pointer after the call returns. These rules are checked by the runtime during program execution: if the runtime detects a violation, it prints a diagnosis and crashes the program. The checks can be disabled by setting the environment variable GODEBUG=cgocheck=0, but note that the vast majority of code identified by the checks is subtly incompatible with garbage collection in one way or another. Disabling the checks will typically only lead to more mysterious failure modes. Fixing the code in question should be strongly preferred over turning off the checks.</p>
 </blockquote>
 <p>Because of those change, we must notice the rules for sharing pointers with C code.</p>
 <h3 id="go-code-may-pass-a-go-pointer-to-c-provided-the-go-memory-to-which-it-points-does-not-contain-any-go-pointers">Go code may pass a Go pointer to C provided the Go memory to which it points does not contain any Go pointers.</h3>
@@ -262,7 +274,7 @@ panic: runtime error: cgo argument has Go pointer to Go pointer
 goroutine <span style="color:#ae81ff">1</span> <span style="color:#f92672">[</span>running<span style="color:#f92672">]</span>:
 panic<span style="color:#f92672">(</span>0x4dc3e0, 0xc82000a280<span style="color:#f92672">)</span>
     /usr/local/go/src/runtime/panic.go:464 +0x3e6
-main.main<span style="color:#f92672">(</span><span style="color:#f92672">)</span>
+main.main<span style="color:#f92672">()</span>
     /go/test.go:24 +0xc1
 exit status <span style="color:#ae81ff">2</span>
 </code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
@@ -283,7 +295,7 @@ exit status <span style="color:#ae81ff">2</span>
     <span style="color:#a6e22e">sl</span> <span style="color:#f92672">:=</span> make([]<span style="color:#f92672">*</span><span style="color:#66d9ef">int</span>, <span style="color:#ae81ff">5</span>)
     <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">a</span> <span style="color:#66d9ef">int</span> = <span style="color:#ae81ff">5</span>
     <span style="color:#a6e22e">sl</span>[<span style="color:#ae81ff">1</span>] = <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">a</span>
-    <span style="color:#a6e22e">C</span>.<span style="color:#a6e22e">plusOne</span>((<span style="color:#f92672">*</span><span style="color:#f92672">*</span><span style="color:#a6e22e">C</span>.<span style="color:#66d9ef">int</span>)((<span style="color:#a6e22e">unsafe</span>.<span style="color:#a6e22e">Pointer</span>)(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">sl</span>[<span style="color:#ae81ff">0</span>])))
+    <span style="color:#a6e22e">C</span>.<span style="color:#a6e22e">plusOne</span>((<span style="color:#f92672">**</span><span style="color:#a6e22e">C</span>.<span style="color:#66d9ef">int</span>)((<span style="color:#a6e22e">unsafe</span>.<span style="color:#a6e22e">Pointer</span>)(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">sl</span>[<span style="color:#ae81ff">0</span>])))
     <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">sl</span>[<span style="color:#ae81ff">0</span>])
 }
 </code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ go run test2.go
@@ -292,7 +304,7 @@ panic: runtime error: cgo argument has Go pointer to Go pointer
 goroutine <span style="color:#ae81ff">1</span> <span style="color:#f92672">[</span>running<span style="color:#f92672">]</span>:
 panic<span style="color:#f92672">(</span>0x4dc260, 0xc82000a270<span style="color:#f92672">)</span>
     /usr/local/go/src/runtime/panic.go:464 +0x3e6
-main.main<span style="color:#f92672">(</span><span style="color:#f92672">)</span>
+main.main<span style="color:#f92672">()</span>
     /go/test2.go:19 +0xe4
 exit status <span style="color:#ae81ff">2</span>
 </code></pre></div><h3 id="c-code-may-not-keep-a-copy-of-a-go-pointer-after-the-call-returns">C code may not keep a copy of a Go pointer after the call returns.</h3>
@@ -302,11 +314,11 @@ exit status <span style="color:#ae81ff">2</span>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
 
 <span style="color:#75715e">// extern int* goAdd(int, int);
-</span><span style="color:#75715e"></span><span style="color:#75715e">//
-</span><span style="color:#75715e"></span><span style="color:#75715e">// static int cAdd(int a, int b) {
-</span><span style="color:#75715e"></span><span style="color:#75715e">//     int *i = goAdd(a, b);
-</span><span style="color:#75715e"></span><span style="color:#75715e">//     return *i;
-</span><span style="color:#75715e"></span><span style="color:#75715e">// }
+</span><span style="color:#75715e">//
+</span><span style="color:#75715e">// static int cAdd(int a, int b) {
+</span><span style="color:#75715e">//     int *i = goAdd(a, b);
+</span><span style="color:#75715e">//     return *i;
+</span><span style="color:#75715e">// }
 </span><span style="color:#75715e"></span><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;C&#34;</span>
 <span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
 
@@ -333,7 +345,7 @@ main._cgoexpwrap_6c682d6da1ed_goAdd<span style="color:#f92672">(</span>0x6000000
     command-line-arguments/_obj/_cgo_gotypes.go:66 +0x89
 main._Cfunc_cAdd<span style="color:#f92672">(</span>0x600000005, 0x0<span style="color:#f92672">)</span>
     command-line-arguments/_obj/_cgo_gotypes.go:45 +0x41
-main.main<span style="color:#f92672">(</span><span style="color:#f92672">)</span>
+main.main<span style="color:#f92672">()</span>
     /go/test3.go:20 +0x35
 exit status <span style="color:#ae81ff">2</span>
 </code></pre></div><h3 id="go-code-may-not-store-a-go-pointer-in-c-memory-c-code-may-store-go-pointers-in-c-memory-subject-to-the-rule-above-it-must-stop-storing-the-go-pointer-when-the-c-function-returns">Go code may not store a Go pointer in C memory. C code may store Go pointers in C memory, subject to the rule above: it must stop storing the Go pointer when the C function returns.</h3>
@@ -420,20 +432,17 @@ if (!doNotTrack) {
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
-<script defer src="https://use.fontawesome.com/releases/v5.11.2/js/all.js" integrity="sha384-b3ua1l97aVGAPEIe48b4TC60WUQbQaGi2jqAWM90y0OZXZeyaTCWtBTKtjW2GXG1" crossorigin="anonymous"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.12.1/js/all.js" integrity="sha384-ZbbbT1gw3joYkKRqh0kWyRp32UAvdqkpbLedQJSlnI8iLQcFVxaGyrOgOJiDQTTR" crossorigin="anonymous"></script>
 
 
     
-    
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
         
-    
     <script type="text/javascript">
         
         hljs.initHighlightingOnLoad();
     </script>
     
-
 
 
 

@@ -5,11 +5,7 @@
     <link>https://feisky.xyz/tags/python/</link>
     <description>Recent content in python on Feisky</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-cn</language>
-    
-	<atom:link href="https://feisky.xyz/tags/python/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <language>zh-cn</language><atom:link href="https://feisky.xyz/tags/python/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Python __file__ not defined problem</title>
       <link>https://feisky.xyz/posts/2015-03-05-python-not-defined-problem/</link>

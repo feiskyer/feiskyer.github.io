@@ -6,11 +6,7 @@
     <description>Recent content in Azure on Feisky</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 27 Nov 2017 21:30:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://feisky.xyz/tags/azure/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Mon, 27 Nov 2017 21:30:00 +0000</lastBuildDate><atom:link href="https://feisky.xyz/tags/azure/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Azure Container Instance (ACI)</title>
       <link>https://feisky.xyz/posts/2017-11-27-aci/</link>

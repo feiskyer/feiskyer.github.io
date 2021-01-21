@@ -8,10 +8,9 @@
     <link href="https://gmpg.org/xfn/11" rel="profile">
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.62.2" />
+<meta name="generator" content="Hugo 0.80.0" />
 
     
     
@@ -22,10 +21,10 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Tips for cgo"/>
-<meta name="twitter:description" content="cgo的一些tips 基本类型 The standard C numeric types are available under the names C.char, C.schar (signed char), C.uchar (unsigned char), C.short, C.ushort (unsigned short), C.int, C.uint (unsigned int), C.long, C.ulong (unsigned long), C.longlong (long long), C.ulonglong (unsigned long long), C.float, C.double, C.complexfloat (complex float), and C.complexdouble (complex double). The C type void* is represented by Go&#39;s unsafe.Pointer. The C"/>
+<meta name="twitter:description" content="cgo的一些tips 基本类型 The standard C numeric types are available under the names C.char, C.schar (signed char), C.uchar (unsigned char), C.short, C.ushort (unsigned short), C.int, C.uint (unsigned int), C.long, C.ulong (unsigned long), C.longlong (long long), C.ulonglong (unsigned long long), C.float, C.double, C.complexfloat (complex float), and C.complexdouble (complex double). The C type void* is represented by Go&rsquo;s unsafe.Pointer. The C"/>
 
 <meta property="og:title" content="Tips for cgo" />
-<meta property="og:description" content="cgo的一些tips 基本类型 The standard C numeric types are available under the names C.char, C.schar (signed char), C.uchar (unsigned char), C.short, C.ushort (unsigned short), C.int, C.uint (unsigned int), C.long, C.ulong (unsigned long), C.longlong (long long), C.ulonglong (unsigned long long), C.float, C.double, C.complexfloat (complex float), and C.complexdouble (complex double). The C type void* is represented by Go&#39;s unsafe.Pointer. The C" />
+<meta property="og:description" content="cgo的一些tips 基本类型 The standard C numeric types are available under the names C.char, C.schar (signed char), C.uchar (unsigned char), C.short, C.ushort (unsigned short), C.int, C.uint (unsigned int), C.long, C.ulong (unsigned long), C.longlong (long long), C.ulonglong (unsigned long long), C.float, C.double, C.complexfloat (complex float), and C.complexdouble (complex double). The C type void* is represented by Go&rsquo;s unsafe.Pointer. The C" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://feisky.xyz/posts/2016-04-24-tips-for-cgo/" />
 <meta property="article:published_time" content="2016-04-24T08:29:02+00:00" />
@@ -44,7 +43,7 @@
 
 
 
-<link rel="stylesheet" href="/scss/hyde-hyde.92c66d107d7b219f0792cfd67223179af884b03f386ac46894f9f735932bbca3.css" integrity="sha256-ksZtEH17IZ8Hks/WciMXmviEsD84asRolPn3NZMrvKM=">
+<link rel="stylesheet" href="/scss/hyde-hyde.71157e768c4e111a23c3531b95e0cbb59bbef3c9e6901d36247cb53d6b6be258.css" integrity="sha256-cRV&#43;doxOERojw1MbleDLtZu&#43;88nmkB02JHy1PWtr4lg=">
 
 
 <link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
@@ -52,7 +51,7 @@
 
 
 
-<link rel="stylesheet" href="/scss/tocbot.126e7d75240acc946d34d6ccb2982ed4c394a5fe34e73e1a2119ca951bcf119d.css" integrity="sha256-Em59dSQKzJRtNNbMspgu1MOUpf405z4aIRnKlRvPEZ0=">
+<link rel="stylesheet" href="/scss/tocbot.5ef07cebc3c477b54270456f149ee02922479bb7555fd344b2c69f953b0e7e5e.css" integrity="sha256-XvB868PEd7VCcEVvFJ7gKSJHm7dVX9NEssaflTsOfl4=">
 
 
 
@@ -76,12 +75,20 @@
   <div class="container ">
     <div class="sidebar-about">
       <span class="site__title">
-        <a href="https://feisky.xyz/">Feisky</a>
+        <a href="https://feisky.xyz/">
+        
+          Feisky
+        
+        </a>
       </span>
       
       
+        <div class="author-image">
+          <img src="https://www.gravatar.com/avatar/f86d2faa0f91793a2163d226d82a7620?s=240&d=mp" class="img--circle img--headshot element--center" alt="gravatar">
+        </div>
+      
       <p class="site__description">
-         Notes about anything 
+        
       </p>
     </div>
     <div class="collapsible-menu">
@@ -141,7 +148,12 @@
 	
 	
 	
+	
 	<a href="https://github.com/feiskyer" rel="me"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
 	
 	
 	
@@ -163,7 +175,7 @@
     </div>
     
 <div class="copyright">
-  &copy; 2020 feiskyer
+  &copy; 2021 feiskyer
   
     <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>
   
@@ -226,10 +238,10 @@ Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.c
   <div class="post">
     <p>cgo的一些tips</p>
 <h2 id="基本类型">基本类型</h2>
-<p>The standard C numeric types are available under the names C.char, C.schar (signed char), C.uchar (unsigned char), C.short, C.ushort (unsigned short), C.int, C.uint (unsigned int), C.long, C.ulong (unsigned long), C.longlong (long long), C.ulonglong (unsigned long long), C.float, C.double, C.complexfloat (complex float), and C.complexdouble (complex double). The C type void* is represented by Go's unsafe.Pointer. The C types <code>__int128_t</code> and <code>__uint128_t</code> are represented by [16]byte.</p>
+<p>The standard C numeric types are available under the names C.char, C.schar (signed char), C.uchar (unsigned char), C.short, C.ushort (unsigned short), C.int, C.uint (unsigned int), C.long, C.ulong (unsigned long), C.longlong (long long), C.ulonglong (unsigned long long), C.float, C.double, C.complexfloat (complex float), and C.complexdouble (complex double). The C type void* is represented by Go&rsquo;s unsafe.Pointer. The C types <code>__int128_t</code> and <code>__uint128_t</code> are represented by [16]byte.</p>
 <p>To access a struct, union, or enum type directly, prefix it with struct_, union_, or enum_, as in C.struct_stat.</p>
 <p>The size of any C type T is available as C.sizeof_T, as in C.sizeof_struct_stat.</p>
-<p>As Go doesn't have support for C's union type in the general case, C's union types are represented as a Go byte array with the same length.</p>
+<p>As Go doesn&rsquo;t have support for C&rsquo;s union type in the general case, C&rsquo;s union types are represented as a Go byte array with the same length.</p>
 <p>Go structs cannot embed fields with C types.</p>
 <p>Any C function (even void functions) may be called in a multiple assignment context to retrieve both the return value (if any) and the C errno variable as an error (use _ to skip the result value if the function returns void). For example:</p>
 <pre><code>n, err := C.sqrt(-1)
@@ -237,10 +249,10 @@ _, err := C.voidFunc()
 </code></pre><h2 id="字符串类型转换">字符串类型转换</h2>
 <p><code>C.CString</code>和<code>C.GoString</code>都会对原始数据做拷贝，不要忘记释放CString创建的内存：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// Go string to C string
-</span><span style="color:#75715e"></span><span style="color:#75715e">// The C string is allocated in the C heap using malloc.
-</span><span style="color:#75715e"></span><span style="color:#75715e">// It is the caller&#39;s responsibility to arrange for it to be
-</span><span style="color:#75715e"></span><span style="color:#75715e">// freed, such as by calling C.free (be sure to include stdlib.h
-</span><span style="color:#75715e"></span><span style="color:#75715e">// if C.free is needed).
+</span><span style="color:#75715e">// The C string is allocated in the C heap using malloc.
+</span><span style="color:#75715e">// It is the caller&#39;s responsibility to arrange for it to be
+</span><span style="color:#75715e">// freed, such as by calling C.free (be sure to include stdlib.h
+</span><span style="color:#75715e">// if C.free is needed).
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">C</span>.<span style="color:#a6e22e">CString</span>(<span style="color:#66d9ef">string</span>) <span style="color:#f92672">*</span><span style="color:#a6e22e">C</span>.<span style="color:#a6e22e">char</span>
 
 <span style="color:#75715e">// C string to Go string
@@ -411,20 +423,17 @@ if (!doNotTrack) {
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
-<script defer src="https://use.fontawesome.com/releases/v5.11.2/js/all.js" integrity="sha384-b3ua1l97aVGAPEIe48b4TC60WUQbQaGi2jqAWM90y0OZXZeyaTCWtBTKtjW2GXG1" crossorigin="anonymous"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.12.1/js/all.js" integrity="sha384-ZbbbT1gw3joYkKRqh0kWyRp32UAvdqkpbLedQJSlnI8iLQcFVxaGyrOgOJiDQTTR" crossorigin="anonymous"></script>
 
 
     
-    
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
         
-    
     <script type="text/javascript">
         
         hljs.initHighlightingOnLoad();
     </script>
     
-
 
 
 

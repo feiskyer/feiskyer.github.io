@@ -8,10 +8,9 @@
     <link href="https://gmpg.org/xfn/11" rel="profile">
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.62.2" />
+<meta name="generator" content="Hugo 0.80.0" />
 
     
     
@@ -44,7 +43,7 @@
 
 
 
-<link rel="stylesheet" href="/scss/hyde-hyde.92c66d107d7b219f0792cfd67223179af884b03f386ac46894f9f735932bbca3.css" integrity="sha256-ksZtEH17IZ8Hks/WciMXmviEsD84asRolPn3NZMrvKM=">
+<link rel="stylesheet" href="/scss/hyde-hyde.71157e768c4e111a23c3531b95e0cbb59bbef3c9e6901d36247cb53d6b6be258.css" integrity="sha256-cRV&#43;doxOERojw1MbleDLtZu&#43;88nmkB02JHy1PWtr4lg=">
 
 
 <link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
@@ -52,7 +51,7 @@
 
 
 
-<link rel="stylesheet" href="/scss/tocbot.126e7d75240acc946d34d6ccb2982ed4c394a5fe34e73e1a2119ca951bcf119d.css" integrity="sha256-Em59dSQKzJRtNNbMspgu1MOUpf405z4aIRnKlRvPEZ0=">
+<link rel="stylesheet" href="/scss/tocbot.5ef07cebc3c477b54270456f149ee02922479bb7555fd344b2c69f953b0e7e5e.css" integrity="sha256-XvB868PEd7VCcEVvFJ7gKSJHm7dVX9NEssaflTsOfl4=">
 
 
 
@@ -76,12 +75,20 @@
   <div class="container ">
     <div class="sidebar-about">
       <span class="site__title">
-        <a href="https://feisky.xyz/">Feisky</a>
+        <a href="https://feisky.xyz/">
+        
+          Feisky
+        
+        </a>
       </span>
       
       
+        <div class="author-image">
+          <img src="https://www.gravatar.com/avatar/f86d2faa0f91793a2163d226d82a7620?s=240&d=mp" class="img--circle img--headshot element--center" alt="gravatar">
+        </div>
+      
       <p class="site__description">
-         Notes about anything 
+        
       </p>
     </div>
     <div class="collapsible-menu">
@@ -141,7 +148,12 @@
 	
 	
 	
+	
 	<a href="https://github.com/feiskyer" rel="me"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
 	
 	
 	
@@ -163,7 +175,7 @@
     </div>
     
 <div class="copyright">
-  &copy; 2020 feiskyer
+  &copy; 2021 feiskyer
   
     <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>
   
@@ -441,88 +453,88 @@ az container list -g myResourceGroup -o table
 <p>下载 aci-connector-k8s 源码后，可以运行 <code>examples/generateManifest.py</code> 命令自动生成一个部署 aci-connector 的配置（不包含RBAC配置）。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">python3 generateManifest.py -g myResourceGroup -s &lt;my-subscription-id&gt; -l westus
 </code></pre></div><p>而在开启RBAC的系统中，需要配置相应的权限，比如使用下面的部署文件</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">apiVersion: extensions/v1beta1
-kind: Deployment
-metadata:
-  name: aci-connector
-  namespace: default
-spec:
-  replicas: <span style="color:#ae81ff">1</span>
-  template:
-    metadata:
-      labels:
-        app: aci-connector
-    spec:
-      serviceAccount: aci-connector
-      containers:
-      - name: aci-connector
-        image: microsoft/aci-connector-k8s:latest
-        imagePullPolicy: Always
-        env:
-        - name: AZURE_CLIENT_ID
-          value: &lt;your-client-id<span style="color:#e6db74">&gt;
-</span><span style="color:#e6db74">       </span><span style="color:#e6db74"> </span><span style="color:#e6db74">- name: AZURE_CLIENT_KEY</span>
-          value: &lt;your-client-key<span style="color:#e6db74">&gt;
-</span><span style="color:#e6db74">       </span><span style="color:#e6db74"> </span><span style="color:#e6db74">- name: AZURE_TENANT_ID</span>
-          value: &lt;your-tenant-id<span style="color:#e6db74">&gt;
-</span><span style="color:#e6db74">       </span><span style="color:#e6db74"> </span><span style="color:#e6db74">- name: AZURE_SUBSCRIPTION_ID</span>
-          value: &lt;your-subsription-id<span style="color:#e6db74">&gt;
-</span><span style="color:#e6db74">       </span><span style="color:#e6db74"> </span><span style="color:#e6db74">- name: ACI_RESOURCE_GROUP</span>
-          value: &lt;your-resource-group&gt;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">extensions/v1beta1</span>
+<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Deployment</span>
+<span style="color:#f92672">metadata</span>:
+  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">aci-connector</span>
+  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">default</span>
+<span style="color:#f92672">spec</span>:
+  <span style="color:#f92672">replicas</span>: <span style="color:#ae81ff">1</span>
+  <span style="color:#f92672">template</span>:
+    <span style="color:#f92672">metadata</span>:
+      <span style="color:#f92672">labels</span>:
+        <span style="color:#f92672">app</span>: <span style="color:#ae81ff">aci-connector</span>
+    <span style="color:#f92672">spec</span>:
+      <span style="color:#f92672">serviceAccount</span>: <span style="color:#ae81ff">aci-connector</span>
+      <span style="color:#f92672">containers</span>:
+      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">aci-connector</span>
+        <span style="color:#f92672">image</span>: <span style="color:#ae81ff">microsoft/aci-connector-k8s:latest</span>
+        <span style="color:#f92672">imagePullPolicy</span>: <span style="color:#ae81ff">Always</span>
+        <span style="color:#f92672">env</span>:
+        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">AZURE_CLIENT_ID</span>
+          <span style="color:#f92672">value</span>: <span style="color:#ae81ff">&lt;your-client-id&gt;</span>
+        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">AZURE_CLIENT_KEY</span>
+          <span style="color:#f92672">value</span>: <span style="color:#ae81ff">&lt;your-client-key&gt;</span>
+        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">AZURE_TENANT_ID</span>
+          <span style="color:#f92672">value</span>: <span style="color:#ae81ff">&lt;your-tenant-id&gt;</span>
+        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">AZURE_SUBSCRIPTION_ID</span>
+          <span style="color:#f92672">value</span>: <span style="color:#ae81ff">&lt;your-subsription-id&gt;</span>
+        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">ACI_RESOURCE_GROUP</span>
+          <span style="color:#f92672">value</span>: <span style="color:#ae81ff">&lt;your-resource-group&gt;</span>
 ---
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: aci-connector
+<span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ServiceAccount</span>
+<span style="color:#f92672">metadata</span>:
+  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">aci-connector</span>
 ---
-apiVersion: v1
-kind: List
-items:
-- apiVersion: rbac.authorization.k8s.io/v1
-  kind: ClusterRole
-  metadata:
-    name: <span style="color:#e6db74">&#34;aci-connector&#34;</span>
-  rules:
-  - apiGroups: [<span style="color:#e6db74">&#34;&#34;</span>]
-    resources: [<span style="color:#e6db74">&#34;namespaces&#34;</span>]
-    verbs:     [<span style="color:#e6db74">&#34;get&#34;</span>, <span style="color:#e6db74">&#34;list&#34;</span>, <span style="color:#e6db74">&#34;watch&#34;</span>]
-  - apiGroups: [<span style="color:#e6db74">&#34;&#34;</span>]
-    resources: [<span style="color:#e6db74">&#34;pods&#34;</span>, <span style="color:#e6db74">&#34;pods/status&#34;</span>]
-    verbs:     [<span style="color:#e6db74">&#34;get&#34;</span>,<span style="color:#e6db74">&#34;list&#34;</span>,<span style="color:#e6db74">&#34;watch&#34;</span>,<span style="color:#e6db74">&#34;create&#34;</span>,<span style="color:#e6db74">&#34;patch&#34;</span>,<span style="color:#e6db74">&#34;update&#34;</span>,<span style="color:#e6db74">&#34;delete&#34;</span>]
-  - apiGroups: [<span style="color:#e6db74">&#34;&#34;</span>]
-    resources: [<span style="color:#e6db74">&#34;nodes&#34;</span>, <span style="color:#e6db74">&#34;nodes/status&#34;</span>]
-    verbs:     [<span style="color:#e6db74">&#34;get&#34;</span>,<span style="color:#e6db74">&#34;list&#34;</span>,<span style="color:#e6db74">&#34;watch&#34;</span>,<span style="color:#e6db74">&#34;create&#34;</span>,<span style="color:#e6db74">&#34;patch&#34;</span>,<span style="color:#e6db74">&#34;update&#34;</span>,<span style="color:#e6db74">&#34;delete&#34;</span>]
-- apiVersion: rbac.authorization.k8s.io/v1
-  kind: ClusterRoleBinding
-  metadata:
-    name: <span style="color:#e6db74">&#34;aci-connector&#34;</span>
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: <span style="color:#e6db74">&#34;aci-connector&#34;</span>
-  subjects:
-  - apiGroup: <span style="color:#e6db74">&#34;&#34;</span>
-    kind: ServiceAccount
-    name: <span style="color:#e6db74">&#34;aci-connector&#34;</span>
-    namespace: <span style="color:#e6db74">&#34;default&#34;</span>
+<span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">List</span>
+<span style="color:#f92672">items</span>:
+- <span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">rbac.authorization.k8s.io/v1</span>
+  <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ClusterRole</span>
+  <span style="color:#f92672">metadata</span>:
+    <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;aci-connector&#34;</span>
+  <span style="color:#f92672">rules</span>:
+  - <span style="color:#f92672">apiGroups</span>: [<span style="color:#e6db74">&#34;&#34;</span>]
+    <span style="color:#f92672">resources</span>: [<span style="color:#e6db74">&#34;namespaces&#34;</span>]
+    <span style="color:#f92672">verbs</span>:     [<span style="color:#e6db74">&#34;get&#34;</span>, <span style="color:#e6db74">&#34;list&#34;</span>, <span style="color:#e6db74">&#34;watch&#34;</span>]
+  - <span style="color:#f92672">apiGroups</span>: [<span style="color:#e6db74">&#34;&#34;</span>]
+    <span style="color:#f92672">resources</span>: [<span style="color:#e6db74">&#34;pods&#34;</span>, <span style="color:#e6db74">&#34;pods/status&#34;</span>]
+    <span style="color:#f92672">verbs</span>:     [<span style="color:#e6db74">&#34;get&#34;</span>,<span style="color:#e6db74">&#34;list&#34;</span>,<span style="color:#e6db74">&#34;watch&#34;</span>,<span style="color:#e6db74">&#34;create&#34;</span>,<span style="color:#e6db74">&#34;patch&#34;</span>,<span style="color:#e6db74">&#34;update&#34;</span>,<span style="color:#e6db74">&#34;delete&#34;</span>]
+  - <span style="color:#f92672">apiGroups</span>: [<span style="color:#e6db74">&#34;&#34;</span>]
+    <span style="color:#f92672">resources</span>: [<span style="color:#e6db74">&#34;nodes&#34;</span>, <span style="color:#e6db74">&#34;nodes/status&#34;</span>]
+    <span style="color:#f92672">verbs</span>:     [<span style="color:#e6db74">&#34;get&#34;</span>,<span style="color:#e6db74">&#34;list&#34;</span>,<span style="color:#e6db74">&#34;watch&#34;</span>,<span style="color:#e6db74">&#34;create&#34;</span>,<span style="color:#e6db74">&#34;patch&#34;</span>,<span style="color:#e6db74">&#34;update&#34;</span>,<span style="color:#e6db74">&#34;delete&#34;</span>]
+- <span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">rbac.authorization.k8s.io/v1</span>
+  <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ClusterRoleBinding</span>
+  <span style="color:#f92672">metadata</span>:
+    <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;aci-connector&#34;</span>
+  <span style="color:#f92672">roleRef</span>:
+    <span style="color:#f92672">apiGroup</span>: <span style="color:#ae81ff">rbac.authorization.k8s.io</span>
+    <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ClusterRole</span>
+    <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;aci-connector&#34;</span>
+  <span style="color:#f92672">subjects</span>:
+  - <span style="color:#f92672">apiGroup</span>: <span style="color:#e6db74">&#34;&#34;</span>
+    <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ServiceAccount</span>
+    <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;aci-connector&#34;</span>
+    <span style="color:#f92672">namespace</span>: <span style="color:#e6db74">&#34;default&#34;</span>
 </code></pre></div><p>这样，Deployment部署后，很快就可以发现它自动创建了一个 aci-connector 的 Node</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># kubectl get node aci-connector</span>
 NAME            STATUS    ROLES     AGE       VERSION
 aci-connector   Ready     &lt;none&gt;    1m        v1.6.6
 </code></pre></div><p>这样，Pod可以通过<strong>指定 nodeName 或者容忍 taint <code>azure.com/aci=NoSchedule</code> 调度</strong>到ACI上面：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">apiVersion: v1
-kind: Pod
-metadata:
-  name: nginx
-  labels:
-    run: nginx
-spec:
-  containers:
-  - image: nginx
-    imagePullPolicy: Always
-    name: nginx
-  dnsPolicy: ClusterFirst
-  nodeName: aci-connector
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Pod</span>
+<span style="color:#f92672">metadata</span>:
+  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">nginx</span>
+  <span style="color:#f92672">labels</span>:
+    <span style="color:#f92672">run</span>: <span style="color:#ae81ff">nginx</span>
+<span style="color:#f92672">spec</span>:
+  <span style="color:#f92672">containers</span>:
+  - <span style="color:#f92672">image</span>: <span style="color:#ae81ff">nginx</span>
+    <span style="color:#f92672">imagePullPolicy</span>: <span style="color:#ae81ff">Always</span>
+    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">nginx</span>
+  <span style="color:#f92672">dnsPolicy</span>: <span style="color:#ae81ff">ClusterFirst</span>
+  <span style="color:#f92672">nodeName</span>: <span style="color:#ae81ff">aci-connector</span>
 </code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># kubectl get pods -l run=nginx -o wide</span>
 NAME                    READY     STATUS    RESTARTS   AGE       IP              NODE
 nginx                   1/1       Running   <span style="color:#ae81ff">0</span>          28s       x.x.x.x         aci-connector
@@ -658,20 +670,17 @@ if (!doNotTrack) {
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
-<script defer src="https://use.fontawesome.com/releases/v5.11.2/js/all.js" integrity="sha384-b3ua1l97aVGAPEIe48b4TC60WUQbQaGi2jqAWM90y0OZXZeyaTCWtBTKtjW2GXG1" crossorigin="anonymous"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.12.1/js/all.js" integrity="sha384-ZbbbT1gw3joYkKRqh0kWyRp32UAvdqkpbLedQJSlnI8iLQcFVxaGyrOgOJiDQTTR" crossorigin="anonymous"></script>
 
 
     
-    
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
         
-    
     <script type="text/javascript">
         
         hljs.initHighlightingOnLoad();
     </script>
     
-
 
 
 

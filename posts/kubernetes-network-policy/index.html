@@ -8,10 +8,9 @@
     <link href="https://gmpg.org/xfn/11" rel="profile">
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.62.2" />
+<meta name="generator" content="Hugo 0.80.0" />
 
     
     
@@ -22,22 +21,10 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content=""/>
-<meta name="twitter:description" content="layout: &ldquo;post&rdquo; title: &ldquo;Kubernetes network policy&rdquo; date: &ldquo;2016-02-17 18:53&rdquo; Kubernetes network policy
-Kubernetes社区（确切的说是Kubernetes Network SIG [1]）正在讨论Network Policy Proposal，以实现SDN、网络隔离、IP Overlapping等[2]复杂的网络需求。
-目前，正在讨论的Proposals有多个：
- Consolidated Casey/RH Proposal https://docs.google.com/document/d/1blfqiH4L_fpn33ZrnQ11v7LcYP0lmpiJ_RaapAPBbNU/edit Casey Davenport https://docs.google.com/document/d/16fg7Dc7K5m4bM2vGwyvkhPG_lcBKeOjaUSYBMwZlR_o/edit?usp=sharing Vipin Jain https://docs.google.com/a/insiemenetworks.com/document/d/1KKMOJSXKKQOzlblAzwYV72KGUlAuAaUuFqCWO8h4gd0/edit?usp=sharing Tim Hockin https://docs.google.com/document/d/1bXUO-Lp6smmLm7SMGwrwuvK23wgsaWvx6Mkt-Y0AtZ0/edit#  这几个Proposal都大同小异，主要的思想都是一致的：
- 默认情况下网络模型跟现在保持一致，只有定义了Network Policy并且实现了相应的Network Plugin的时候，这个Proposal才有意义 Network Policy: 管理网络连通性策略，这些策略与具体的网络实现（如libnetwork等）无关 Network Policy通过Label作用到Pod/Service上 需要Network Plugin配合实现Network Policy  下面就以Consolidated Casey/RH Proposal为例看看具体的Proposal都有啥。
-设计目标  不影响现有的网络架构，即未定义Network Policy时，保持Kubernetes现有的网络架构 基于ThirdPartyResource实现NetworkPolicy资源的管理  Namespaces Namespace spec中增加isolation，默认关闭。当isolation打开后
- 所有访问该Namespace内部Pods的请求都被拒绝(也包括该Namespace内部的Pods访问内部的其他Pods） 例外：为了不影响Health Check，从Node上访问Pods均允许  apiVersion: v1 kind: Namespace metadata: name: IsolatedApp spec: isolation: [ yes | no ] NetworkPolicy Objects 当Namespace的isolation打开的时候，需要NetworkPolicy来控制访问策略。访问策略的规则为："/>
+<meta name="twitter:description" content="layout: &ldquo;post&rdquo; title: &ldquo;Kubernetes network policy&rdquo; date: &ldquo;2016-02-17 18:53&rdquo; Kubernetes network policy Kubernetes社区（确切的说是Kubernetes Network SIG [1]）正在讨论Network Policy Proposal，以实现"/>
 
 <meta property="og:title" content="" />
-<meta property="og:description" content="layout: &ldquo;post&rdquo; title: &ldquo;Kubernetes network policy&rdquo; date: &ldquo;2016-02-17 18:53&rdquo; Kubernetes network policy
-Kubernetes社区（确切的说是Kubernetes Network SIG [1]）正在讨论Network Policy Proposal，以实现SDN、网络隔离、IP Overlapping等[2]复杂的网络需求。
-目前，正在讨论的Proposals有多个：
- Consolidated Casey/RH Proposal https://docs.google.com/document/d/1blfqiH4L_fpn33ZrnQ11v7LcYP0lmpiJ_RaapAPBbNU/edit Casey Davenport https://docs.google.com/document/d/16fg7Dc7K5m4bM2vGwyvkhPG_lcBKeOjaUSYBMwZlR_o/edit?usp=sharing Vipin Jain https://docs.google.com/a/insiemenetworks.com/document/d/1KKMOJSXKKQOzlblAzwYV72KGUlAuAaUuFqCWO8h4gd0/edit?usp=sharing Tim Hockin https://docs.google.com/document/d/1bXUO-Lp6smmLm7SMGwrwuvK23wgsaWvx6Mkt-Y0AtZ0/edit#  这几个Proposal都大同小异，主要的思想都是一致的：
- 默认情况下网络模型跟现在保持一致，只有定义了Network Policy并且实现了相应的Network Plugin的时候，这个Proposal才有意义 Network Policy: 管理网络连通性策略，这些策略与具体的网络实现（如libnetwork等）无关 Network Policy通过Label作用到Pod/Service上 需要Network Plugin配合实现Network Policy  下面就以Consolidated Casey/RH Proposal为例看看具体的Proposal都有啥。
-设计目标  不影响现有的网络架构，即未定义Network Policy时，保持Kubernetes现有的网络架构 基于ThirdPartyResource实现NetworkPolicy资源的管理  Namespaces Namespace spec中增加isolation，默认关闭。当isolation打开后
- 所有访问该Namespace内部Pods的请求都被拒绝(也包括该Namespace内部的Pods访问内部的其他Pods） 例外：为了不影响Health Check，从Node上访问Pods均允许  apiVersion: v1 kind: Namespace metadata: name: IsolatedApp spec: isolation: [ yes | no ] NetworkPolicy Objects 当Namespace的isolation打开的时候，需要NetworkPolicy来控制访问策略。访问策略的规则为：" />
+<meta property="og:description" content="layout: &ldquo;post&rdquo; title: &ldquo;Kubernetes network policy&rdquo; date: &ldquo;2016-02-17 18:53&rdquo; Kubernetes network policy Kubernetes社区（确切的说是Kubernetes Network SIG [1]）正在讨论Network Policy Proposal，以实现" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://feisky.xyz/posts/kubernetes-network-policy/" />
 
@@ -55,7 +42,7 @@ Kubernetes社区（确切的说是Kubernetes Network SIG [1]）正在讨论Netwo
 
 
 
-<link rel="stylesheet" href="/scss/hyde-hyde.92c66d107d7b219f0792cfd67223179af884b03f386ac46894f9f735932bbca3.css" integrity="sha256-ksZtEH17IZ8Hks/WciMXmviEsD84asRolPn3NZMrvKM=">
+<link rel="stylesheet" href="/scss/hyde-hyde.71157e768c4e111a23c3531b95e0cbb59bbef3c9e6901d36247cb53d6b6be258.css" integrity="sha256-cRV&#43;doxOERojw1MbleDLtZu&#43;88nmkB02JHy1PWtr4lg=">
 
 
 <link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
@@ -63,7 +50,7 @@ Kubernetes社区（确切的说是Kubernetes Network SIG [1]）正在讨论Netwo
 
 
 
-<link rel="stylesheet" href="/scss/tocbot.126e7d75240acc946d34d6ccb2982ed4c394a5fe34e73e1a2119ca951bcf119d.css" integrity="sha256-Em59dSQKzJRtNNbMspgu1MOUpf405z4aIRnKlRvPEZ0=">
+<link rel="stylesheet" href="/scss/tocbot.5ef07cebc3c477b54270456f149ee02922479bb7555fd344b2c69f953b0e7e5e.css" integrity="sha256-XvB868PEd7VCcEVvFJ7gKSJHm7dVX9NEssaflTsOfl4=">
 
 
 
@@ -87,12 +74,20 @@ Kubernetes社区（确切的说是Kubernetes Network SIG [1]）正在讨论Netwo
   <div class="container ">
     <div class="sidebar-about">
       <span class="site__title">
-        <a href="https://feisky.xyz/">Feisky</a>
+        <a href="https://feisky.xyz/">
+        
+          Feisky
+        
+        </a>
       </span>
       
       
+        <div class="author-image">
+          <img src="https://www.gravatar.com/avatar/f86d2faa0f91793a2163d226d82a7620?s=240&d=mp" class="img--circle img--headshot element--center" alt="gravatar">
+        </div>
+      
       <p class="site__description">
-         Notes about anything 
+        
       </p>
     </div>
     <div class="collapsible-menu">
@@ -152,7 +147,12 @@ Kubernetes社区（确切的说是Kubernetes Network SIG [1]）正在讨论Netwo
 	
 	
 	
+	
 	<a href="https://github.com/feiskyer" rel="me"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
 	
 	
 	
@@ -174,7 +174,7 @@ Kubernetes社区（确切的说是Kubernetes Network SIG [1]）正在讨论Netwo
     </div>
     
 <div class="copyright">
-  &copy; 2020 feiskyer
+  &copy; 2021 feiskyer
   
     <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>
   
@@ -205,7 +205,7 @@ Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.c
     
     
     <br/>
-    <i class="fas fa-clock"></i> 3 min read
+    <i class="fas fa-clock"></i> 4 min read
 </div>
 
 
@@ -254,12 +254,12 @@ date: &ldquo;2016-02-17 18:53&rdquo;</h2>
 <li>所有访问该Namespace内部Pods的请求都被拒绝(也包括该Namespace内部的Pods访问内部的其他Pods）</li>
 <li>例外：为了不影响Health Check，从Node上访问Pods均允许</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">apiVersion: v1
-kind: Namespace
-metadata:
-  name: IsolatedApp
-spec:
- isolation: [ yes | no ]
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Namespace</span>
+<span style="color:#f92672">metadata</span>:
+  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">IsolatedApp</span>
+<span style="color:#f92672">spec</span>:
+ <span style="color:#f92672">isolation</span>: [ <span style="color:#66d9ef">yes</span> <span style="color:#ae81ff">| no ]</span>
 </code></pre></div><h4 id="networkpolicy-objects"><strong>NetworkPolicy Objects</strong></h4>
 <p>当Namespace的isolation打开的时候，需要NetworkPolicy来控制访问策略。访问策略的规则为：</p>
 <ul>
@@ -269,19 +269,19 @@ spec:
 <li>定义Namespace和Pod时需要添加<code>tier</code>标签</li>
 </ul>
 <p>一个简单的NetworkPolicy示例为</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">kind: NetworkPolicy
- metadata:
-  name: database-policy
-spec:
-  selector:
-	 tier: database
-  allowFrom:
-  * namespaces:
-	  foo: bar  [ allows from namespaces with label “foo:bar” ]
-  * pods:
-	  tier: database   [ allows east-west traffic on TCP <span style="color:#ae81ff">4001</span> ]
-	protocol: TCP [ One of: TCP, UDP, ICMP ]
-	ports: [<span style="color:#ae81ff">4001</span>]
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">NetworkPolicy</span>
+ <span style="color:#f92672">metadata</span>:
+  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">database-policy</span>
+<span style="color:#f92672">spec</span>:
+  <span style="color:#f92672">selector</span>:
+	 <span style="color:#f92672">tier</span>: <span style="color:#ae81ff">database</span>
+  <span style="color:#f92672">allowFrom</span>:
+  <span style="color:#f92672">* namespaces</span>:
+	  <span style="color:#f92672">foo</span>: <span style="color:#ae81ff">bar  [ allows from namespaces with label “foo:bar” ]</span>
+  <span style="color:#f92672">* pods</span>:
+	  <span style="color:#f92672">tier</span>: <span style="color:#ae81ff">database   [ allows east-west traffic on TCP 4001 ]</span>
+	<span style="color:#f92672">protocol: TCP [ One of</span>: <span style="color:#ae81ff">TCP, UDP, ICMP ]</span>
+	<span style="color:#f92672">ports</span>: [<span style="color:#ae81ff">4001</span>]
 </code></pre></div><h3 id="简单的示例">简单的示例</h3>
 <p>现在就看一下如何通过ThirdPartyResource来管理NetworkPolicy资源。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#f92672">[</span>root@linux kubernetes<span style="color:#f92672">]</span><span style="color:#75715e"># # start k8s with thirdpartyresources enabled</span>
@@ -321,7 +321,7 @@ network-policy.experimental.kubernetes.io   An experimental specification of net
 	<span style="color:#e6db74">&#34;groupVersion&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
 	<span style="color:#e6db74">&#34;version&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>
   <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span><span style="color:#f92672">[</span>root@linux ~<span style="color:#f92672">]</span><span style="color:#75715e"># curl http://localhost:8080/apis/experimental.kubernetes.io/v1/namespaces/default/networkpolicys/</span>
+<span style="color:#f92672">}[</span>root@linux ~<span style="color:#f92672">]</span><span style="color:#75715e"># curl http://localhost:8080/apis/experimental.kubernetes.io/v1/namespaces/default/networkpolicys/</span>
 <span style="color:#f92672">{</span>
   <span style="color:#e6db74">&#34;kind&#34;</span>: <span style="color:#e6db74">&#34;NetworkPolicyList&#34;</span>,
   <span style="color:#e6db74">&#34;items&#34;</span>: <span style="color:#f92672">[</span>  <span style="color:#f92672">]</span>
@@ -527,20 +527,17 @@ if (!doNotTrack) {
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
-<script defer src="https://use.fontawesome.com/releases/v5.11.2/js/all.js" integrity="sha384-b3ua1l97aVGAPEIe48b4TC60WUQbQaGi2jqAWM90y0OZXZeyaTCWtBTKtjW2GXG1" crossorigin="anonymous"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.12.1/js/all.js" integrity="sha384-ZbbbT1gw3joYkKRqh0kWyRp32UAvdqkpbLedQJSlnI8iLQcFVxaGyrOgOJiDQTTR" crossorigin="anonymous"></script>
 
 
     
-    
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
         
-    
     <script type="text/javascript">
         
         hljs.initHighlightingOnLoad();
     </script>
     
-
 
 
 

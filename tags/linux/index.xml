@@ -6,9 +6,15 @@
     <description>Recent content in Linux on Feisky</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    
-	<atom:link href="https://feisky.xyz/tags/linux/index.xml" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Sat, 20 Jun 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://feisky.xyz/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>10个问题带你全面理解Linux性能优化</title>
+      <link>https://feisky.xyz/posts/2020-06-06-linux-perf/</link>
+      <pubDate>Sat, 20 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://feisky.xyz/posts/2020-06-06-linux-perf/</guid>
+      <description>本文整理自极客时间“10个问题带你全面理解Linux性能优化”直播，PPT下载请参考文末的 InfoQ 官方网站[1]。 1. 为什么面试官喜欢考察性能优化问</description>
+    </item>
     
     <item>
       <title>awesome quick start</title>
@@ -25,7 +31,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://feisky.xyz/posts/2015-02-10-cannot-change-locale/</guid>
-      <description>运行locale命令LANG= LANGUAGE= LC_CTYPE=&amp;quot;POSIX&amp;rdquo; LC_NUMERIC=&amp;quot;POSIX&amp;rdquo; LC_TIME=&amp;quot;POSIX&amp;rdquo; LC_COLLATE=&amp;quot;POSIX&amp;rdquo; LC_MONETARY=&amp;quot;POSIX&amp;rdquo; LC_MESSAGES=&amp;quot;POSIX&amp;rdquo; LC_PAPER=&amp;quot;POSIX&amp;rdquo; LC_NAME=&amp;quot;POSIX&amp;rdquo; LC_ADDRESS=&amp;quot;POSIX&amp;rdquo; LC_TELEPHONE=&amp;quot;POSIX&amp;rdquo; LC_MEASUREMENT=&amp;quot;POSIX&amp;rdquo; LC_IDENTIFICATION=&amp;quot;POSIX&amp;rdquo; LC_ALL= 修改profile vi /etc/profile 添加如下内容 export LC_ALL=en_US.UTF-8 source /etc/profile 得到错误 setlocale: LC_ALL: cannot change locale (en_US.UTF-8): No such file or directory 运行 dpkg-reconfigure locales 得</description>
+      <description>运行locale命令LANG= LANGUAGE= LC_CTYPE=&amp;ldquo;POSIX&amp;rdquo; LC_NUMERIC=&amp;ldquo;POSIX&amp;rdquo; LC_TIME=&amp;ldquo;POSIX&amp;rdquo; LC_COLLATE=&amp;ldquo;POSIX&amp;rdquo; LC_MONETARY=&amp;ldquo;POSIX&amp;rdquo; LC_MESSAGES=&amp;ldquo;POSIX&amp;rdquo; LC_PAPER=&amp;ldquo;POSIX&amp;rdquo; LC_NAME=&amp;ldquo;POSIX&amp;rdquo; LC_ADDRESS=&amp;ldquo;POSIX&amp;rdquo; LC_TELEPHONE=&amp;ldquo;POSIX&amp;rdquo; LC_MEASUREMENT=&amp;ldquo;POSIX&amp;rdquo; LC_IDENTIFICATION=&amp;ldquo;POSIX&amp;rdquo; LC_ALL= 修改profile vi /etc/profile 添加如下内容 export LC_ALL=en_US.UTF-8 source /etc/profile 得到错误 setlocale: LC_ALL: cannot change locale (en_US.UTF-8): No such file or directory 运行 dpkg-reconfigure locales 得</description>
     </item>
     
     <item>

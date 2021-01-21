@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    
+    
+
+
+    <head>
+    <link href="https://gmpg.org/xfn/11" rel="profile">
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- Enable responsiveness on mobile devices -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="generator" content="Hugo 0.80.0" />
+
+    
+    
+    
+
+<title>基于Kubernetes的多云和混合云 • Feisky</title>
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="基于Kubernetes的多云和混合云"/>
+<meta name="twitter:description" content="什么是多云和混合云 伴随着Kubernetes和云原生的普及，高可用、高并发以及弹性突发等也成为很多应用程序的必备要求。而要实现这些功能，就需"/>
+
+<meta property="og:title" content="基于Kubernetes的多云和混合云" />
+<meta property="og:description" content="什么是多云和混合云 伴随着Kubernetes和云原生的普及，高可用、高并发以及弹性突发等也成为很多应用程序的必备要求。而要实现这些功能，就需" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://feisky.xyz/posts/2020-04-26-multi-cloud/" />
+<meta property="article:published_time" content="2020-04-26T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-04-26T00:00:00+00:00" />
+
+
+    
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/scss/hyde-hyde.71157e768c4e111a23c3531b95e0cbb59bbef3c9e6901d36247cb53d6b6be258.css" integrity="sha256-cRV&#43;doxOERojw1MbleDLtZu&#43;88nmkB02JHy1PWtr4lg=">
+
+
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+
+
+
+
+<link rel="stylesheet" href="/scss/tocbot.5ef07cebc3c477b54270456f149ee02922479bb7555fd344b2c69f953b0e7e5e.css" integrity="sha256-XvB868PEd7VCcEVvFJ7gKSJHm7dVX9NEssaflTsOfl4=">
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/favicon.png">
+    
+    
+
+</head>
+
+
+    <body class="theme-base-0d ">
+    
+<div class="sidebar">
+  <div class="container ">
+    <div class="sidebar-about">
+      <span class="site__title">
+        <a href="https://feisky.xyz/">
+        
+          Feisky
+        
+        </a>
+      </span>
+      
+      
+        <div class="author-image">
+          <img src="https://www.gravatar.com/avatar/f86d2faa0f91793a2163d226d82a7620?s=240&d=mp" class="img--circle img--headshot element--center" alt="gravatar">
+        </div>
+      
+      <p class="site__description">
+        
+      </p>
+    </div>
+    <div class="collapsible-menu">
+      <input type="checkbox" id="menuToggle">
+      <label for="menuToggle">Feisky</label>
+      <div class="menu-content">
+        <div>
+	<ul class="sidebar-nav">
+		 
+		 
+			 
+				<li>
+					<a href="https://kubernetes.feisky.xyz">
+						<span>Kubernetes指南</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://time.geekbang.org/column/intro/100020901">
+						<span>Linux性能优化实战</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="https://sdn.feisky.xyz">
+						<span>SDN网络</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/machine-learning/">
+						<span>机器学习</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/about/">
+						<span>关于我</span>
+					</a>
+				</li>
+			 
+		
+	</ul>
+</div>
+
+        <section class="social">
+	
+	<a href="https://twitter.com/feisky" rel="me"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	<a href="https://github.com/feiskyer" rel="me"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</section>
+
+      </div>
+    </div>
+    
+<div class="copyright">
+  &copy; 2021 feiskyer
+  
+    <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>
+  
+</div>
+
+
+<div class="builtwith">
+Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+</div>
+
+
+  </div>
+</div>
+
+        <div class="content container">
+            
+    
+<article>
+  <header>
+    <h1>基于Kubernetes的多云和混合云</h1>
+    
+    
+<div class="post__meta">
+    
+    
+      <i class="fas fa-calendar-alt"></i> Apr 26, 2020
+    
+    
+    
+    
+    
+      
+      
+          <br/>
+           <i class="fas fa-tags"></i>
+          
+          <a class="badge badge-tag" href="/tags/cloudnative">cloudnative</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/multicloud">multicloud</a>
+          
+      
+    
+    
+    <br/>
+    <i class="fas fa-clock"></i> 6 min read
+</div>
+
+
+  </header>
+  
+  
+  
+    <div class="toc-wrapper">
+      <input type="checkbox" id="tocToggle">
+      <label for="tocToggle">Table of Content</label>
+      
+        <div class="toc" id="TableOfContents"></div>
+      
+    </div>
+  
+  
+  <div class="post">
+    <h2 id="什么是多云和混合云">什么是多云和混合云</h2>
+<p>伴随着Kubernetes和云原生的普及，高可用、高并发以及弹性突发等也成为很多应用程序的必备要求。而要实现这些功能，就需要应用程序不仅可以跨可用区和跨地区部署，还需要在云服务商容量不足或发生故障时自动切换到其他的云服务商或者混合云环境中去。并且，很多人也不希望把自己的所有服务都绑定到某一个云服务商中。</p>
+<p>多云和混合云就是指应用程序可以跨本地数据中心和多家云服务商混合部署，并可以按需在它们之间进行动态调度。多云和混合云的好处包括：</p>
+<ul>
+<li>解除云服务商锁定：不再单纯依赖于某一家云服务商或某个地域的数据中心</li>
+<li>可用性保障：不仅可以跨地区和跨地域，即使某个云服务商出现故障应用程序还可以继续在其他云服务商运行</li>
+<li>成本优化：可以根据云服务商的价格选择成本较低的方案，甚至是根据友商的成本去议价</li>
+<li>弹性突发保障：本地数据中心或云服务商容量不足时，还可以扩展到其他云服务商中去</li>
+</ul>
+<p>但是，多云和混合云的难点也很明显，最突出的结果问题是：</p>
+<ul>
+<li>跨云网络的打通</li>
+<li>跨云数据的一致性</li>
+<li>海量数据的访问延迟</li>
+<li>多云接口不一致带来的管理复杂度</li>
+</ul>
+<p>为了解决这些问题，在 Kubernetes 诞生之前，其实就有很多云管理平台专门解决云平台资源异构的问题。这些云管理平台解决了云资源的管理、成本的优化甚至是应用的 Devops 等各种问题，但一般并不负责实际管理应用的编排，所以在很多地方也被称之为多云 1.0。</p>
+<h2 id="kubernetes催生了多云20">Kubernetes催生了多云2.0</h2>
+<p>在 Kubernetes 和容器技术诞生之前，要实现多云和混合云是相当难的，需要针对每一个云服务商进行定制化开发。由于应用程序跟云服务商的接口绑定，所以也会导致迁移云服务商时需要从基础架构到应用程序都做相应的适配。这是很多人在上云时都会碰到的痛点，这可以通过云管理平台来解决。</p>
+<p>不过，目前的云管理平台更侧重于云资源的管理。虽然很多云管理平台也会提供应用的Deveops，但实际上只是把应用分发到不同的云平台上，并不负责应用程序的编排。比如，要想实现跨云的高可用和弹性突发，应用程序还是需要去调用不同云服务商的接口。</p>
+<p>有了Kubernetes 和容器之后，本地数据中心和云服务商的Kubernetes集群可以提供一致的接口，这样应用程序在大部分情况下就不需要跟具体的云服务商直接绑定了。如果只考虑Kubernetes集群，云管理平台也可以进一步简化为多云的Kubernetes集群管理，再借助于Kubernetes Operator模式，很多Kubernetes应用依赖的云资源可以抽象为相同的CRD。这就进一步解耦了应用和云服务商，被很多人称之为多云 2.0。</p>
+<p>说到Kubernetes的多云，最理想的是同一个Kubernetes集群横跨在多个不同的云平台上，通过同一个Kubernetes API去管理所有的应用。当然，由于云服务商差异、网络延迟、数据存储以及Kubernetes自身的规模限制等等，这种理想情况并不实用。</p>
+<p>所以，现在主流的方法都是在不同的地区以及不同的云服务商运行多个集群，再在这些集群之上打通多个集群的应用。比如，最简单的是在多个集群中部署服务的副本，再通过 Consul、Linkerd 或者 Global DNS 去为它们做负载均衡。</p>
+<p>下图是 Google Cloud 推荐的一种最简单的多集群服务发现方案：</p>
+<p><img src="640-20210121131333488.png" alt="图片"></p>
+<p>(图片来自 Google Cloud）</p>
+<h2 id="多云和混合云都有哪些方案">多云和混合云都有哪些方案</h2>
+<p>云管理管理平台已经解决了多云基础设施部署的问题，而 Kubernetes 实际上在各个云服务商之上成为了新的标准。自然，多云的下一步就是如何管理好多个不同 Kubernetes 集群中的应用，从而也诞生了很多开源或者商业的方案，这些方案各有侧重点。</p>
+<p><strong>第一种方案是侧重解决弹性突发的问题</strong>，典型的是 Virtual Kubelet。在本地集群容量不足时，可以把其他云服务商的容器产品作为虚拟节点接入到集群中来，从而就有了更大容量来运行应用。</p>
+<p><img src="640-20210121131313318.png" alt="图片"></p>
+<p><strong>第二种方案是侧重解决服务治理和流量调度的问题</strong>，典型的是 Service Mesh。不同集群的网络可以通过 Service Mesh（或者 Mesh Federation）打通，就可以实现网络流量的灵活调度和故障转移。实际上，也有很多应用通过隧道或者专线打通多个集群，进一步保证了多集群之间网络通信的可靠性。</p>
+<p><img src="640-20210121131354489.png" alt="图片"></p>
+<p>（图片来自 <a href="https://www.cloudtp.com/doppler/kubernetes-and-multicloud/">https://www.cloudtp.com/doppler/kubernetes-and-multicloud/</a>）</p>
+<p><strong>第三种方案是侧重解决跨集群资源的服务发现和编排问题</strong>，典型的是 Kubernetes Cluster Federation V2。KubeFed 在 Kubernetes 原有的资源对象之上重新封装了可以跨集群的 CRD，控制器负责把它们分发到不同的集群中，再通过 ExternalDNS 等服务发现机制打通不同集群的应用。</p>
+<p><img src="640-20210121131313395.png" alt="图片"></p>
+<p>（图片来自 <a href="https://www.cloudtp.com/doppler/kubernetes-and-multicloud/">https://www.cloudtp.com/doppler/kubernetes-and-multicloud/</a>）</p>
+<p>前两种方案都已经有了很多实践案例，这些实践也证明了它们是行之有效的方案。而第三种方案还在早期探索阶段，个人觉得不太实用，离实际应用的场景还是离的比较远，多云之间的服务治理只靠 KubeFed 这些 CRD 还远远不够。</p>
+<p>现在各大云平台都已经提供了托管Kubernetes服务，除去集群的创建过程，从应用程序的角度来看，绝大部分情况下没有任何区别。既然用户并不想把所有的服务都锁定在同一家云服务商中，跨云迁移就是很多用户的痛点。并且大型企业都会有跟已有应用打通的问题，所以主流的云服务商也都提供了跨云和混合云的方案，比如</p>
+<ul>
+<li>Microsoft Azure: Arc</li>
+<li>Google Cloud: Anthos</li>
+<li>AWS: Outposts</li>
+<li>VMware: Tanzu Mission Control</li>
+<li>Banzai Cloud PKE</li>
+<li>阿里云 ACK</li>
+</ul>
+<h2 id="多云的未来">多云的未来</h2>
+<p>虽然多云可以解决云服务商锁定的问题，但从前面的这些方案可以看出来，这些方案实际上只解决了某些特定的问题，而并没有很完善的方案来解决多云的所有问题。</p>
+<p>除此之外，多云也会带来很多新的问题，比如</p>
+<ul>
+<li>多云管理和编排比单个云要复杂得多，诸如数据同步、网络延迟、安全等都有很大挑战</li>
+<li>更多的资源会带来基础设施成本的提高</li>
+<li>对云基础设施的维护人员要求更高，需要熟悉多个云平台的基础设施，特别是都有哪些需要避免的坑</li>
+</ul>
+<p>虽然问题还不少，但无论是开源社区还是各大云服务商都已经在大力解决多云和混合云中的种种问题。比如</p>
+<ul>
+<li>诸如 Cilium Cluster Mesh、Istio Service Mesh 等网络方案已经支持了多集群。</li>
+<li>Linkerd 社区在设计如何支持Kubernetes多集群的场景 以及如何通过 Service Mirroring 支持 Kubernetes 多集群。</li>
+<li>Kubernetes 社区也在讨论支持 Multi-Cluster Service API。</li>
+</ul>
+<p>多云和混合云的未来值得期待！</p>
+<hr>
+<p>欢迎扫描下面的二维码关注<strong>漫谈云原生</strong>公众号，回复<strong>任意关键字</strong>查询更多云原生知识库，或回复<strong>联系</strong>加我微信。</p>
+<p><img src="/assets/mp.png" alt=""></p>
+
+  </div>
+  
+
+<div class="navigation navigation-single">
+    
+    <a href="/posts/2020-04-19-ci-cd/" class="navigation-prev">
+      <i aria-hidden="true" class="fa fa-chevron-left"></i>
+      <span class="navigation-tittle">Kubernetes中的CI/CD</span>
+    </a>
+    
+    
+    <a href="/posts/2020-05-27-container-networking/" class="navigation-next">
+      <span class="navigation-tittle">漫谈容器网络</span>
+      <i aria-hidden="true" class="fa fa-chevron-right"></i>
+    </a>
+    
+</div>
+
+
+  
+
+
+
+
+  
+    
+        <div id="disqus_thread"></div>
+<script type="text/javascript">
+    
+
+    (function () {
+    if (location.hostname === "localhost" ||
+      location.hostname === "127.0.0.1" ||
+      location.hostname === "") {
+      return;
+    }
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    var disqus_shortname = 'feisky';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || 
+      document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+<noscript>
+  Please enable JavaScript to view the
+  <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by
+  <span class="logo-disqus">Disqus</span>
+</a>
+
+    
+
+
+</article>
+
+
+        </div>
+        
+    
+
+  
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-69699206-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+<script defer src="https://use.fontawesome.com/releases/v5.12.1/js/all.js" integrity="sha384-ZbbbT1gw3joYkKRqh0kWyRp32UAvdqkpbLedQJSlnI8iLQcFVxaGyrOgOJiDQTTR" crossorigin="anonymous"></script>
+
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+        
+    <script type="text/javascript">
+        
+        hljs.initHighlightingOnLoad();
+    </script>
+    
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.js"></script>
+<script type="text/javascript">
+  if (tocbot) {
+    tocbot.init({
+      
+      tocSelector: '.toc',
+      
+      contentSelector: '.post',
+      
+      headingSelector: 'h2, h3, h4',
+      collapseDepth: 4
+    });
+  }
+</script>
+
+
+
+    
+
+
+
+    </body>
+</html>
