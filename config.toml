@@ -38,23 +38,28 @@ enableRobotsTXT = true
   filename = "sitemap.xml"
 
 [[menu.main]]
-    name = "机器学习"
+    name = "微信公众号"
     weight = 30
-    url = "/machine-learning/"
+    url = "/assets/mp.png"
 
 [[menu.main]]
-    name = "SDN网络"
-    weight = -1
+    name = "SDN网络指南"
+    weight = 20
     url = "https://sdn.feisky.xyz"
 
 [[menu.main]]
     name = "Kubernetes指南"
-    weight = -100
+    weight = 10
     url = "https://kubernetes.feisky.xyz"
 
 [[menu.main]]
+    name = "知乎专栏"
+    weight = 40
+    url = "https://zhuanlan.zhihu.com/kubernetes"
+
+[[menu.main]]
     name = "Linux性能优化实战"
-    weight = -90
+    weight = 1
     url = "https://time.geekbang.org/column/intro/100020901"
 
 [[menu.main]]

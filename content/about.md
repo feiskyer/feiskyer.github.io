@@ -1,23 +1,22 @@
 ---
 title: "关于我"
-date: "2020-02-10T16:43:08+01:00"
+date: "2021-01-01"
 include_toc: false
 ---
 
-Hi，我是倪朋飞，工作在云计算领域，Kubernetes项目维护者。在云计算、SDN网络和容器编排调度等领域具有多年实践经验。
+Hi，我是倪朋飞，工作在云计算领域，Kubernetes项目维护者，极客时间专栏《Linux性能优化实战》作者，也是 KubeCon、ArchSummit、COSCon、LinuxCon + ContainerCon + CloudOpen (LC3) 等多个大会的讲师。在云计算、SDN网络和容器编排调度等领域具有多年实践经验。维护 Kubernetes 开源书籍《[Kubernetes 指南](https://kubernetes.feisky.xyz)》。
 
 ## 微信公众号
 
 ![mp](/images/wx.png)
 
+## 极客时间专栏[《Linux性能优化实战》](https://time.geekbang.org/column/intro/140)
+
+![linux-perf](intro.jpg)
+
 ## 知识星球
 
 ![zsxq](/images/zsxq.jpg)
-
-
-## 极客时间专栏[《Linux性能优化实战》](https://time.geekbang.org/column/intro/140)
-
-![linux-perf](https://github.com/feiskyer/linux-perf-examples/raw/master/images/intro.jpg)
 
 ## 社交网络
 
