@@ -1,8 +1,8 @@
 ---
 title: ""
 date: 2100-02-01
-tags: []
-draft: true
+tags: [Kubernetes]
+draft: false
 ---
 
 
@@ -10,6 +10,6 @@ draft: true
 
 ---
 
-欢迎扫描下面的二维码关注**漫谈云原生**公众号，回复**任意关键字**查询更多云原生知识库，或回复**联系**加我微信。
+欢迎长按下面的二维码关注**漫谈云原生**公众号，输入**任意关键字**查询更多云原生知识库。
 
-![](/assets/mp.png)
+![](https://feisky.xyz/assets/mp.png)
