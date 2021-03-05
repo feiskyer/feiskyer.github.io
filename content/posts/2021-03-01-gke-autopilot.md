@@ -2,7 +2,7 @@
 title: "聊一聊 GKE Autopilot"
 date: 2021-03-01
 tags: [Kubernetes]
-draft: true
+draft: false
 ---
 
 Google Cloud 前两天推出了 GKE Autopilot，其官方博客 [Introducing GKE Autopilot: a revolution in managed Kubernetes](https://cloud.google.com/blog/products/containers-kubernetes/introducing-gke-autopilot) 称之为革命性的托管 Kubernetes 服务。但其“革命性”的亮点都有哪些呢？
