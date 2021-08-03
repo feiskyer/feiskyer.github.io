@@ -14,7 +14,7 @@ An application catalog developed by Mirantis, HP and others (now including Cisco
 
 ### Functionality Highlights
 
-![ui](http://blog.gingergeek.com/wp-content/uploads/2014/11/OpenStack-Centric-Applications-Murano-Application-Catalog-UI.png)
+![ui](/assets/OpenStack-Centric-Applications-Murano-Application-Catalog-UI.png)
 
 1.  Supports Windows and Linux applications
 2.  Leverages HOT templates for application definition
