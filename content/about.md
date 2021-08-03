@@ -4,13 +4,13 @@ date: "2021-01-01"
 include_toc: false
 ---
 
-Hi，我是倪朋飞，工作在云计算领域，Kubernetes项目维护者，极客时间专栏《Linux性能优化实战》作者，也是 KubeCon、ArchSummit、COSCon、LinuxCon + ContainerCon + CloudOpen (LC3) 等多个大会的讲师。在云计算、SDN网络和容器编排调度等领域具有多年实践经验。维护 Kubernetes 开源书籍《[Kubernetes 指南](https://kubernetes.feisky.xyz)》。
+Hi，我是倪朋飞，工作在云计算领域，Kubernetes 项目维护者，KubeCon + CloudNativeCon 项目委员会成员，极客时间专栏《Linux 性能优化实战》作者，也是 KubeCon、ArchSummit、COSCon、LinuxCon + ContainerCon + CloudOpen (LC3) 等多个大会的讲师。在云计算、SDN 网络和容器编排调度等领域具有多年实践经验。维护 Kubernetes 开源书籍《[Kubernetes 指南](https://kubernetes.feisky.xyz)》和《[SDN 网络指南](https://sdn.feisky.xyz/)》。
 
 ## 微信公众号
 
 ![mp](/images/wx.png)
 
-## 极客时间专栏[《Linux性能优化实战》](https://time.geekbang.org/column/intro/140)
+## 极客时间专栏 [《Linux 性能优化实战》](https://time.geekbang.org/column/intro/140)
 
 ![linux-perf](intro.jpg)
 
@@ -28,8 +28,8 @@ Hi，我是倪朋飞，工作在云计算领域，Kubernetes项目维护者，�
 
 ## 主要作品
 
-- 开源书[《Kubernetes指南》](https://github.com/feiskyer/kubernetes-handbook)
-- 开源书[《SDN指南》](https://github.com/feiskyer/sdn-handbook)
+- 开源书 [《Kubernetes 指南》](https://github.com/feiskyer/kubernetes-handbook)
+- 开源书 [《SDN 指南》](https://github.com/feiskyer/sdn-handbook)
 
 ## 技术演讲
 
@@ -44,5 +44,4 @@ Hi，我是倪朋飞，工作在云计算领域，Kubernetes项目维护者，�
 - [Kubernetes On Azure (COSCon'18)](https://docs.google.com/presentation/d/1iyu97lbelQR4gIAayMn7GyYtNKYCza_am7rPpYtaky8/edit?usp=sharing)
 - [基于 Kubernetes 的 DevOps (ArchSummit 2018)](https://docs.google.com/presentation/d/10ADxjZU_kF0ZHNjCU35dpXm8-JFApEjKgggC7gQtHCo/edit?usp=sharing)
 - [Kubernetes Cloud Provider 演进及在 Azure 上的应用 (ECUG Con 2017)](http://www.itdks.com/Course/detail?id=9001)
-- [Kubernetes网络详解以及Azure实践 (Ctrip Cloud Meetup 2017)](https://www.zs.itdks.com/dakalive/detail/8601)
-
+- [Kubernetes 网络详解以及 Azure 实践 (Ctrip Cloud Meetup 2017)](https://www.zs.itdks.com/dakalive/detail/8601)

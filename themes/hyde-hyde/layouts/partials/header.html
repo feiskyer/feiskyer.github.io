@@ -1,5 +1,10 @@
 <head>
     <link href="https://gmpg.org/xfn/11" rel="profile">
+    {{ if .Params.canonicalUrl }}
+    <link rel="canonical" href="{{ .Params.canonicalUrl }}">
+    {{ else }}
+    <link rel="canonical" href="{{ .Permalink }}">
+    {{ end }}
     {{ partial "header/meta.html" . }}
     {{ partial "header/styles.html" . }}
     {{ `<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
