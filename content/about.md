@@ -10,6 +10,10 @@ Hi，我是倪朋飞，工作在云计算领域，Kubernetes 项目维护者，K
 
 ![mp](/images/wx.png)
 
+## 极客时间专栏《[eBPF 核心技术与实战](https://time.geekbang.org/column/intro/100104501)》
+
+![ebpf](ebpf.jpg)
+
 ## 极客时间专栏 [《Linux 性能优化实战》](https://time.geekbang.org/column/intro/140)
 
 ![linux-perf](intro.jpg)
