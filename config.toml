@@ -63,6 +63,11 @@ enableRobotsTXT = true
     url = "https://time.geekbang.org/column/intro/100020901"
 
 [[menu.main]]
+    name = "eBPF核心技术与实战"
+    weight = 5
+    url = "https://time.geekbang.org/column/intro/100104501"
+
+[[menu.main]]
     name = "关于我"
     weight = 100
     url = "/about/"
