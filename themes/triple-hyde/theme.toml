@@ -1,0 +1,20 @@
+name = "triple-hyde"
+license = "MIT"
+licenselink = "https://github.com/derme302/triple-hyde/blob/master/LICENSE.md"
+description = "A simply cool Hyde inspired theme"
+tags = ["blog", "theme", "hyde", "highlight.js", "font-awesome", "google analytics", "disqus", "personal", "syntax highlighting", "responsive", "graphcomment"]
+features = ["blog", "theme", "highlight.js", "font-awesome", "responsive", "disqus", "graphcomment", "portfolio"]
+homepage = "https://github.com/derme302/triple-hyde"
+demosite = "https://derme.coffee/triple-hyde"
+min_version = "0.43"
+
+authors = [
+  {name = "derme302", homepage = "https://derme.coffee/"},
+  {name = "htr3n", homepage = "https://htr3n.github.io"}
+]
+
+# If Porting existing theme
+[original]
+    author =  "spf13"
+    homepage = "http://spf13.com/"
+    repo = "https://github.com/spf13/hyde"

@@ -1,0 +1,100 @@
+## Basic Configuration
+baseurl = "https://example.com/"
+languageCode = "en"
+
+title = "Title"
+theme = "triple-hyde"
+
+## Hugo Built-in Features
+# enableRobotsTXT = true
+
+# summarylength = 30
+
+#paginate = 5
+
+## Site Settings
+[params]
+    author = "Author"
+    title = "Title"
+    # description = "..."
+    authorimage = "/img/hugo.png"
+    dateformat = "Jan 2, 2006"
+
+    # sidebar, copyright & license
+    #logoimage = "/img/hugo.png"
+    copyright = "derme302"
+    since = 2023
+    license = "CC BY-SA 4.0"
+    licenseURL = "https://creativecommons.org/licenses/by-sa/4.0"
+    showBuiltWith = true
+
+    # https://highlightjs.org
+    highlightjs = true
+    highlightjsstyle = "github"
+
+    # please choose either GraphComment or Disqus or Utterances
+    #GraphCommentId = "..."
+    #UtterancesRepo = "..." # https://utteranc.es/
+    #UtterancesIssueTerm = "..." # pathname, url, title, og:title
+    #UtterancesTheme = "..." # github-light or github-dark
+
+    # Table of contents
+    #toc = none, "hugo", or "tocbot"
+
+[params.giscus]
+    # repo = "author/repo"
+    # repoID = "<id>"
+    # category = "Announcements"
+    # categoryID = "<id>"
+    mapping = "pathname"
+    strict = "1"
+    reactionsEnabled = "1"
+    emitMetadata = "0"
+    inputPosition = "bottom"
+    theme = "light"
+    lang = "en"
+    loading = "lazy"
+
+## Social Accounts
+[params.social]
+    github = "<username>"
+    instagram = "<username>"
+    linkedin = "<username>"
+    twitter = "<username>"
+    facebook = "<username>"
+    stackoverflow = "<username>"
+    telegram = "<username>"
+    # orcid = "<xxxx-xxxx-xxxx-xxxx>"
+    email = "your-email@example.com"
+    mastodon = "<username>"
+    threads = "@<username>"
+    # gravatar = "your-email@example.com"
+    # pgpkey = "<path-to-your-key-in-/static>"
+
+## Main Menu
+[[menu.main]]
+    name = "Posts"
+    weight = 100
+    identifier = "posts"
+    url = "/posts/"
+[[menu.main]]
+    name = "Portfolio"
+    identifier = "portfolio"
+    weight = 200
+    url = "/portfolio/"
+[[menu.main]]
+    name = "Icons"
+    identifier = "icons"
+    weight = 250
+    url = "/icons/"
+[[menu.main]]
+    name = "About"
+    identifier = "about"
+    weight = 300
+    url = "/about/"
+
+# [[services.googleAnalytics]]
+    # id = 'GA-YOURID'
+
+# [[services.disqus]]
+    # shortname = 'GA-YOURID'

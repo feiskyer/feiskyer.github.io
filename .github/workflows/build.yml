@@ -1,0 +1,32 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - source
+
+jobs:
+  release:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "$GITHUB_ACTOR"
+          git config --global user.email "$GITHUB_ACTOR@users.noreply.github.com"
+
+      - name: Install Hugo
+        uses: hack/hugo.sh
+
+      - name: Run build
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          GITHUB_USER: "feiskyer"
+        run: |
+          hack/build.sh

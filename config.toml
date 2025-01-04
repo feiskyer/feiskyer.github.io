@@ -1,11 +1,11 @@
 title = "Feisky"
 baseURL = "https://feisky.xyz/"
 languageCode = "zh-cn"
-theme = "hyde-hyde"
+theme = "triple-hyde"
 publishDir = "docs"
 disqusShortname = "feisky"
 hasCJKLanguage = true
-googleAnalytics = "UA-69699206-1"
+googleAnalytics = "G-1GD5S2NKS3"
 metaDataFormat = "yaml"
 enableEmoji = true
 buildDrafts = false
@@ -25,7 +25,7 @@ enableRobotsTXT = true
   postNavigation = true
   relatedPosts = true
   disqusShortname = "feisky"
-  googleAnalytics = "UA-69699206-1"
+  googleAnalytics = "G-1GD5S2NKS3"
 
 [params.social]
 	twitter = "feisky"

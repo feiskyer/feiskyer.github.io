@@ -1,0 +1,60 @@
+<section class="social">
+	{{ with .Site.Params.social.twitter }}
+	<a href="https://twitter.com/{{.}}" rel="me">{{ partial "icon.html" "twitter" }}</a>
+	{{ end }}
+	{{ with .Site.Params.social.facebook }}
+	<a href="https://facebook.com/{{.}}" rel="me">{{ partial "icon.html" "facebook" }}</a>
+	{{ end }}
+	{{ with .Site.Params.social.github }}
+	<a href="https://github.com/{{.}}" rel="me">{{ partial "icon.html" "github" }}</a>
+	{{ end }}
+	{{ $gitlab_domain := "gitlab.com" }}
+	{{ with .Site.Params.social.custom_gitlab_domain }}
+		{{ $gitlab_domain = . }}
+	{{ end }}
+	{{ with .Site.Params.social.gitlab }}
+	<a href="https://{{ $gitlab_domain }}/{{.}}" rel="me">{{ partial "icon.html" "gitlab" }}</a>
+	{{ end }}
+	{{ with .Site.Params.social.instagram }}
+	<a href="https://instagram.com/{{.}}" rel="me">{{ partial "icon.html" "instagram" }}</a>
+	{{ end }}
+	{{ with .Site.Params.social.threads }}
+	<a href="https://www.threads.net/{{.}}" rel="me">{{ partial "icon.html" "threads" }}</a>
+	{{ end }}
+	{{ with .Site.Params.social.linkedin }}
+	<a href="https://linkedin.com/in/{{.}}" rel="me">{{ partial "icon.html" "linkedin" }}</a>
+	{{ end }}
+	{{ with .Site.Params.social.googlescholar}}
+	<a href="https://scholar.google.com/citations?user={{.}}" rel="me">{{ partial "icon.html" "google" }}</a>
+	{{ end }}
+	{{ with .Site.Params.social.stackoverflow }}
+	<a href="https://stackoverflow.com/users/{{.}}" rel="me">{{ partial "icon.html" "stack-overflow" }}</a>
+	{{ end }}
+	{{ with .Site.Params.social.medium}}
+	<a href="https://medium.com/@{{.}}" rel="me">{{ partial "icon.html" "medium" }}</a>
+	{{ end }}
+	{{ with .Site.Params.social.keybase }}
+	<a href="https://keybase.io/{{.}}" rel="me">{{ partial "icon.html" "keybase" }}</a>
+	{{ end }}
+	{{ with .Site.Params.social.telegram }}
+	<a href="https://t.me/{{.}}" rel="me">{{ partial "icon.html" "telegram" }}</a>
+	{{ end }}
+	{{ with .Site.Params.social.orcid }}
+	<a href="https://orcid.org/{{.}}" rel="me">{{ partial "icon.html" "orcid" }}</a>
+	{{end}}
+	{{ with .Site.Params.social.email }}
+	<a href="mailto:{{.}}" rel="me">{{ partial "icon.html" "email" }}</a>
+	{{ end }}
+	{{ with .Site.Params.social.pgpkey }}
+	<a href="{{.}}" rel="pgpkey">{{ partial "icon.html" "pgpkey" }}</a>
+	{{ end }}
+	{{ with .Site.Params.social.reddit }}
+	<a href="https://www.reddit.com/user/{{.}}" rel="me">{{ partial "icon.html" "reddit" }}</a>
+	{{ end }}
+	{{ with .Site.Params.social.rss }}
+	<a href="{{.}}" rel="me">{{ partial "icon.html" "rss" }}</a>
+	{{ end }}
+	{{ with .Site.Params.social.mastodon }}
+	<a href="{{.}}" rel="me">{{ partial "icon.html" "mastodon" }}</a>
+	{{ end }}
+</section>

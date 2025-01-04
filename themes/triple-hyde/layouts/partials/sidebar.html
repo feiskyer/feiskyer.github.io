@@ -1,0 +1,15 @@
+<!-- Sidebar -->
+<div class="sidebar">
+  <div class="container {{ with .Site.Params.sidebarSticky }}sidebar-sticky{{ end }}">
+    {{ partial "sidebar/about.html" . }}
+    <div class="collapsible-menu">
+      <input type="checkbox" id="menuToggle">
+      <label for="menuToggle">{{ .Site.Title }}</label>
+      <div class="menu-content">
+        {{ partial "sidebar/menu.html" . }}
+        {{ partial "sidebar/social.html" . }}
+      </div>
+    </div>
+    {{ partial "sidebar/copyright.html" . }}
+  </div>
+</div>
