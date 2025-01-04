@@ -22,7 +22,7 @@ jobs:
           git config --global user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
       - name: Install Hugo
-        uses: hack/hugo.sh
+        run: hack/hugo.sh
 
       - name: Run build
         env:
