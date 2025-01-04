@@ -1,412 +1,45 @@
-<!doctype html><html lang=zh-cn>
-<head>
-<link href=https://gmpg.org/xfn/11 rel=profile>
-<link rel=canonical href=https://feisky.xyz/posts/2016-12-13-kubernetes-v1-5-0-release/>
-<meta charset=utf-8>
-<meta http-equiv=x-ua-compatible content="IE=edge">
-<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1">
-<meta name=generator content="Hugo 0.87.0">
-<title>Kubernetes v1.5.0 release • Feisky</title>
-<meta name=twitter:card content="summary">
-<meta name=twitter:title content="Kubernetes v1.5.0 release">
-<meta name=twitter:description content="Update on 2016.12.14:
+<!doctype html><html lang=zh-cn><head><link href=https://gmpg.org/xfn/11 rel=profile><link rel=canonical href=https://feisky.xyz/posts/2016-12-13-kubernetes-v1-5-0-release/><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta name=generator content="Hugo 0.140.2"><title>Kubernetes v1.5.0 release • Feisky</title>
+<meta name=twitter:card content="summary"><meta name=twitter:title content="Kubernetes v1.5.0 release"><meta name=twitter:description content="Update on 2016.12.14:
 Due to a serious security problem, kubernetes v1.5.0 is not recommanded. Kubernetes v1.5.1 has just released, so we should upgrade to v1.5.1 directly.
- The --anonymous-auth= flag in v1.5.0 is true by default (which may result in any users being able to access kubernetes API), but v1.5.1 turns it to false.
- Kubernetes v1.5.0  StatefulSets (ex-PetSets)  StatefulSets are beta now (fixes and stabilization)   Improved Federation Support  New command: kubefed DaemonSets Deployments ConfigMaps   Simplified Cluster Deployment  Improvements to kubeadm HA Setup for Master   Node Robustness and Extensibility  Windows Server Container support CRI for pluggable container runtimes kubelet API supports authentication and authorization    Features Features for this release were tracked via the use of the kubernetes/features issues repo.">
-<meta property="og:title" content="Kubernetes v1.5.0 release">
-<meta property="og:description" content="Update on 2016.12.14:
+The --anonymous-auth= flag in v1.5.0 is true by default (which may result in any users being able to access kubernetes API), but v1.5.1 turns it to false.
+Kubernetes v1.5.0 StatefulSets (ex-PetSets) StatefulSets are beta now (fixes and stabilization) Improved Federation Support New command: kubefed DaemonSets Deployments ConfigMaps Simplified Cluster Deployment Improvements to kubeadm HA Setup for Master Node Robustness and Extensibility Windows Server Container support CRI for pluggable container runtimes kubelet API supports authentication and authorization Features Features for this release were tracked via the use of the kubernetes/features issues repo. Each Feature issue is owned by a Special Interest Group from kubernetes/community"><meta name=twitter:site content="@feisky"><meta property="og:url" content="https://feisky.xyz/posts/2016-12-13-kubernetes-v1-5-0-release/"><meta property="og:site_name" content="Feisky"><meta property="og:title" content="Kubernetes v1.5.0 release"><meta property="og:description" content="Update on 2016.12.14:
 Due to a serious security problem, kubernetes v1.5.0 is not recommanded. Kubernetes v1.5.1 has just released, so we should upgrade to v1.5.1 directly.
- The --anonymous-auth= flag in v1.5.0 is true by default (which may result in any users being able to access kubernetes API), but v1.5.1 turns it to false.
- Kubernetes v1.5.0  StatefulSets (ex-PetSets)  StatefulSets are beta now (fixes and stabilization)   Improved Federation Support  New command: kubefed DaemonSets Deployments ConfigMaps   Simplified Cluster Deployment  Improvements to kubeadm HA Setup for Master   Node Robustness and Extensibility  Windows Server Container support CRI for pluggable container runtimes kubelet API supports authentication and authorization    Features Features for this release were tracked via the use of the kubernetes/features issues repo.">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://feisky.xyz/posts/2016-12-13-kubernetes-v1-5-0-release/"><meta property="article:section" content="posts">
-<meta property="article:published_time" content="2016-12-13T11:51:29+00:00">
-<meta property="article:modified_time" content="2016-12-13T11:51:29+00:00">
-<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai.min.css>
-<link rel=stylesheet href=/scss/hyde-hyde.3081c4981fb69a2783dd36ecfdd0e6ba7a158d4cbfdd290ebce8f78ba0469fc6.css integrity="sha256-MIHEmB+2mieD3Tbs/dDmunoVjUy/3SkOvOj3i6BGn8Y=">
-<link rel=stylesheet href=/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58+TzH3icCkSHGoJ+ed7w=" media=print>
-<link rel=stylesheet href=/scss/tocbot.5ef07cebc3c477b54270456f149ee02922479bb7555fd344b2c69f953b0e7e5e.css integrity="sha256-XvB868PEd7VCcEVvFJ7gKSJHm7dVX9NEssaflTsOfl4="><!--[if lt IE 9]><script src=https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js></script>
-<script src=https://oss.maxcdn.com/respond/1.4.2/respond.min.js></script><![endif]-->
-<link rel=apple-touch-icon-precomposed sizes=144x144 href=/apple-touch-icon-144-precomposed.png>
-<link rel="shortcut icon" href=/favicon.png>
-</head>
-<body class=theme-base-0d>
-<div class=sidebar>
-<div class=container>
-<div class=sidebar-about>
-<span class=site__title>
-<a href=https://feisky.xyz/>
-Feisky
-</a>
-</span>
-<div class=author-image>
-<img src="https://www.gravatar.com/avatar/f86d2faa0f91793a2163d226d82a7620?s=240&d=mp" class="img--circle img--headshot element--center" alt=gravatar>
-</div>
-<p class=site__description>
-</p>
-</div>
-<div class=collapsible-menu>
-<input type=checkbox id=menuToggle>
-<label for=menuToggle>Feisky</label>
-<div class=menu-content>
-<div>
-<ul class=sidebar-nav>
-<li>
-<a href=https://time.geekbang.org/column/intro/100020901>
-<span>Linux性能优化实战</span>
-</a>
-</li>
-<li>
-<a href=https://time.geekbang.org/column/intro/100104501>
-<span>EBPF核心技术与实战</span>
-</a>
-</li>
-<li>
-<a href=https://kubernetes.feisky.xyz>
-<span>Kubernetes指南</span>
-</a>
-</li>
-<li>
-<a href=https://sdn.feisky.xyz>
-<span>SDN网络指南</span>
-</a>
-</li>
-<li>
-<a href=/assets/mp.png>
-<span>微信公众号</span>
-</a>
-</li>
-<li>
-<a href=https://zhuanlan.zhihu.com/kubernetes>
-<span>知乎专栏</span>
-</a>
-</li>
-<li>
-<a href=/about/>
-<span>关于我</span>
-</a>
-</li>
-</ul>
-</div>
-<section class=social>
-<a href=https://twitter.com/feisky rel=me><i class="fab fa-twitter fa-lg" aria-hidden=true></i></a>
-<a href=https://github.com/feiskyer rel=me><i class="fab fa-github fa-lg" aria-hidden=true></i></a>
-</section>
-</div>
-</div>
-<div class=copyright>
-&copy; 2022 feiskyer
-<a href=https://creativecommons.org/licenses/by-sa/4.0>CC BY-SA 4.0</a>
-</div>
-<div class=builtwith>
-Built with <a href=https://gohugo.io>Hugo</a> ❤️ <a href=https://github.com/htr3n/hyde-hyde>hyde-hyde</a>.
-</div>
-</div>
-</div>
-<div class="content container">
-<article>
-<header>
-<h1>Kubernetes v1.5.0 release</h1>
-<div class=post__meta>
-<i class="fas fa-calendar-alt"></i> Dec 13, 2016
-<br>
-<i class="fas fa-tags"></i>
-<a class="badge badge-tag" href=/tags/kubernetes>kubernetes</a>
-<br>
-<i class="fas fa-clock"></i> 8 min read
-</div>
-</header>
-<div class=toc-wrapper>
-<input type=checkbox id=tocToggle>
-<label for=tocToggle>Table of Content</label>
-<div class=toc id=TableOfContents></div>
-</div>
-<div class=post>
-<p><strong>Update on 2016.12.14:</strong></p>
-<p>Due to a serious security problem, kubernetes v1.5.0 is not recommanded. Kubernetes v1.5.1 has just released, so we should upgrade to v1.5.1 directly.</p>
-<blockquote>
-<p>The <code>--anonymous-auth=</code> flag in v1.5.0 is true by default (which may result in any users being able to access kubernetes API), but v1.5.1 turns it to false.</p>
-</blockquote>
-<h2 id=kubernetes-v150>Kubernetes v1.5.0</h2>
-<ul>
-<li>StatefulSets (ex-PetSets)
-<ul>
-<li>StatefulSets are beta now (fixes and stabilization)</li>
-</ul>
-</li>
-<li>Improved Federation Support
-<ul>
-<li>New command: <code>kubefed</code></li>
-<li>DaemonSets</li>
-<li>Deployments</li>
-<li>ConfigMaps</li>
-</ul>
-</li>
-<li>Simplified Cluster Deployment
-<ul>
-<li>Improvements to <code>kubeadm</code></li>
-<li>HA Setup for Master</li>
-</ul>
-</li>
-<li>Node Robustness and Extensibility
-<ul>
-<li>Windows Server Container support</li>
-<li>CRI for pluggable container runtimes</li>
-<li><code>kubelet</code> API supports authentication and authorization</li>
-</ul>
-</li>
-</ul>
-<h2 id=features>Features</h2>
-<p>Features for this release were tracked via the use of the <a href=https://github.com/kubernetes/features>kubernetes/features</a> issues repo. Each Feature issue is owned by a Special Interest Group from <a href=https://github.com/kubernetes/community>kubernetes/community</a></p>
-<ul>
-<li><strong>API Machinery</strong>
-<ul>
-<li>[beta] <code>kube-apiserver</code> support for the OpenAPI spec is moving from alpha to beta. The first <a href=https://github.com/kubernetes-incubator/client-python>non-go client</a> is based on it (<a href=https://github.com/kubernetes/features/issues/53>kubernetes/features#53</a>)</li>
-</ul>
-</li>
-<li><strong>Apps</strong>
-<ul>
-<li>[stable] When replica sets cannot create pods, they will now report detail via the API about the underlying reason (<a href=https://github.com/kubernetes/features/issues/120>kubernetes/features#120</a>)</li>
-<li>[stable] <code>kubectl apply</code> is now able to delete resources you no longer need with <code>--prune</code> (<a href=https://github.com/kubernetes/features/issues/128>kubernetes/features#128</a>)</li>
-<li>[beta] Deployments that cannot make progress in rolling out the newest version will now indicate via the API they are blocked (<a href=http://kubernetes.io/docs/user-guide/deployments/#failed-deployment>docs</a>) (<a href=https://github.com/kubernetes/features/issues/122>kubernetes/features#122</a>)</li>
-<li>[beta] StatefulSets allow workloads that require persistent identity or per-instance storage to be created and managed on Kubernetes. (<a href=http://kubernetes.io/docs/concepts/abstractions/controllers/statefulsets/>docs</a>) (<a href=https://github.com/kubernetes/features/issues/137>kubernetes/features#137</a>)</li>
-<li>[beta] In order to preserve safety guarantees the cluster no longer force deletes pods on un-responsive nodes and users are now warned if they try to force delete pods via the CLI. (<a href=http://kubernetes.io/docs/tasks/manage-stateful-set/scale-stateful-set/>docs</a>) (<a href=https://github.com/kubernetes/features/issues/119>kubernetes/features#119</a>)</li>
-</ul>
-</li>
-<li><strong>Auth</strong>
-<ul>
-<li>[alpha] Further polishing of the Role-based access control alpha API including a default set of cluster roles. (<a href=http://kubernetes.io/docs/admin/authorization/>docs</a>) (<a href=https://github.com/kubernetes/features/issues/2>kubernetes/features#2</a>)</li>
-<li>[beta] Added ability to authenticate/authorize access to the Kubelet API (<a href=http://kubernetes.io/docs/admin/kubelet-authentication-authorization/>docs</a>) (<a href=https://github.com/kubernetes/features/issues/89>kubernetes/features#89</a>)</li>
-</ul>
-</li>
-<li><strong>AWS</strong>
-<ul>
-<li>[stable] Roles should appear in kubectl get nodes (<a href=https://github.com/kubernetes/features/issues/113>kubernetes/features#113</a>)</li>
-</ul>
-</li>
-<li><strong>Cluster Lifecycle</strong>
-<ul>
-<li>[alpha] Improved UX and usability for the kubeadm binary that makes it easy to get a new cluster running. (<a href=http://kubernetes.io/docs/getting-started-guides/kubeadm/>docs</a>) (<a href=https://github.com/kubernetes/features/issues/11>kubernetes/features#11</a>)</li>
-</ul>
-</li>
-<li><strong>Cluster Ops</strong>
-<ul>
-<li>[alpha] Added ability to create/remove clusters w/highly available (replicated) masters on GCE using kube-up/kube-down scripts. (<a href=http://kubernetes.io/docs/admin/ha-master-gce/>docs</a>) (<a href=https://github.com/kubernetes/features/issues/48>kubernetes/features#48</a>)</li>
-</ul>
-</li>
-<li><strong>Federation</strong>
-<ul>
-<li>[alpha] Support for ConfigMaps in federation. (<a href=http://kubernetes.io/docs/user-guide/federation/configmap/>docs</a>) (<a href=https://github.com/kubernetes/features/issues/105>kubernetes/features#105</a>)</li>
-<li>[alpha] Alpha level support for DaemonSets in federation. (<a href=http://kubernetes.io/docs/user-guide/federation/daemonsets/>docs</a>) (<a href=https://github.com/kubernetes/features/issues/101>kubernetes/features#101</a>)</li>
-<li>[alpha] Alpha level support for Deployments in federation. (<a href=http://kubernetes.io/docs/user-guide/federation/deployment/>docs</a>) (<a href=https://github.com/kubernetes/features/issues/100>kubernetes/features#100</a>)</li>
-<li>[alpha] Cluster federation: Added support for DeleteOptions.OrphanDependents for federation resources. (<a href=http://kubernetes.io/docs/user-guide/federation/#cascading-deletion>docs</a>) (<a href=https://github.com/kubernetes/features/issues/99>kubernetes/features#99</a>)</li>
-<li>[alpha] Introducing <code>kubefed</code>, a new command line tool to simplify federation control plane kubernetes.io/docs/admin/federation/kubefed/)) (<a href=https://github.com/kubernetes/features/issues/97>kubernetes/features#97</a>)</li>
-</ul>
-</li>
-<li><strong>Network</strong>
-<ul>
-<li>[stable] Services can reference another service by DNS name, rather than being hosted in pods (<a href=https://github.com/kubernetes/features/issues/33>kubernetes/features#33</a>)</li>
-<li>[beta] Opt in source ip preservation for Services with Type NodePort or LoadBalancer (<a href=http://kubernetes.io/docs/tutorials/services/source-ip/>docs</a>) (<a href=https://github.com/kubernetes/features/issues/27>kubernetes/features#27</a>)</li>
-<li>[stable] Enable DNS Horizontal Autoscaling with beta ConfigMap parameters support (<a href=http://kubernetes.io/docs/tasks/administer-cluster/dns-horizontal-autoscaling/>docs</a>)</li>
-</ul>
-</li>
-<li><strong>Node</strong>
-<ul>
-<li>[alpha] Added ability to preserve access to host userns when userns remapping is enabled in container runtime (<a href=https://github.com/kubernetes/features/issues/127>kubernetes/features#127</a>)</li>
-<li>[alpha] Introducing the v1alpha1 CRI API to allow pluggable container runtimes; an experimental docker-CRI integration is ready for testing and feedback. (<a href=https://github.com/kubernetes/community/blob/master/contributors/devel/container-runtime-interface.md>docs</a>) (<a href=https://github.com/kubernetes/features/issues/54>kubernetes/features#54</a>)</li>
-<li>[alpha] Kubelet launches container in a per pod cgroup hiearchy based on quality of service tier (<a href=https://github.com/kubernetes/features/issues/126>kubernetes/features#126</a>)</li>
-<li>[beta] Kubelet integrates with memcg notification API to detect when a hard eviction threshold is crossed (<a href=https://github.com/kubernetes/features/issues/125>kubernetes/features#125</a>)</li>
-<li>[beta] Introducing the beta version containerized node conformance test gcr.io/google_containers/node-test:0.2 for users to verify node setup. (<a href=http://kubernetes.io/docs/admin/node-conformance/>docs</a>) (<a href=https://github.com/kubernetes/features/issues/84>kubernetes/features#84</a>)</li>
-</ul>
-</li>
-<li><strong>Scheduling</strong>
-<ul>
-<li>[alpha] Added support for accounting opaque integer resources. (<a href=http://kubernetes.io/docs/user-guide/compute-resources/#opaque-integer-resources-alpha-feature>docs</a>) (<a href=https://github.com/kubernetes/features/issues/76>kubernetes/features#76</a>)</li>
-<li>[beta] PodDisruptionBudget has been promoted to beta, can be used to safely drain nodes while respecting application SLO&rsquo;s (<a href=http://kubernetes.io/docs/tasks/administer-cluster/safely-drain-node/>docs</a>) (<a href=https://github.com/kubernetes/features/issues/85>kubernetes/features#85</a>)</li>
-</ul>
-</li>
-<li><strong>UI</strong>
-<ul>
-<li>[stable] Dashboard UI now shows all user facing objects and their resource usage. (<a href=http://kubernetes.io/docs/user-guide/ui/>docs</a>) (<a href=https://github.com/kubernetes/features/issues/136>kubernetes/features#136</a>)</li>
-</ul>
-</li>
-<li><strong>Windows</strong>
-<ul>
-<li>[alpha] Added support for Windows Server 2016 nodes and scheduling Windows Server Containers (<a href=http://kubernetes.io/docs/getting-started-guides/windows/>docs</a>) (<a href=https://github.com/kubernetes/features/issues/116>kubernetes/features#116</a>)</li>
-</ul>
-</li>
-</ul>
-<h2 id=known-issues>Known Issues</h2>
-<p>Populated via <a href=https://github.com/kubernetes/kubernetes/issues/37134>v1.5.0 known issues / FAQ accumulator</a></p>
-<ul>
-<li>CRI <a href=https://github.com/kubernetes/community/blob/master/contributors/devel/container-runtime-interface.md#kubernetes-v15-release-cri-v1alpha1>known issues and
-limitations</a></li>
-<li>getDeviceNameFromMount() function doesn&rsquo;t return the volume path correctly when the volume path contains spaces [<a href=https://github.com/kubernetes/kubernetes/pull/37712>#37712</a>](<a href=https://github.com/kubernetes/kubernetes/issues/37712>https://github.com/kubernetes/kubernetes/issues/37712</a>)</li>
-<li>Federation alpha features do not have feature gates defined and
+The --anonymous-auth= flag in v1.5.0 is true by default (which may result in any users being able to access kubernetes API), but v1.5.1 turns it to false.
+Kubernetes v1.5.0 StatefulSets (ex-PetSets) StatefulSets are beta now (fixes and stabilization) Improved Federation Support New command: kubefed DaemonSets Deployments ConfigMaps Simplified Cluster Deployment Improvements to kubeadm HA Setup for Master Node Robustness and Extensibility Windows Server Container support CRI for pluggable container runtimes kubelet API supports authentication and authorization Features Features for this release were tracked via the use of the kubernetes/features issues repo. Each Feature issue is owned by a Special Interest Group from kubernetes/community"><meta property="og:locale" content="zh_cn"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2016-12-13T11:51:29+00:00"><meta property="article:modified_time" content="2016-12-13T11:51:29+00:00"><meta property="article:tag" content="Kubernetes"><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/monokai.min.css><link rel=stylesheet href=/scss/triple-hyde.ef937e1c8a424ea6419b858ae4cfbdb5f7e764eb1075e9ac50fa2de759dde8a2.css integrity="sha256-75N+HIpCTqZBm4WK5M+9tffnZOsQdemsUPot51nd6KI="><link rel=stylesheet href=/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58+TzH3icCkSHGoJ+ed7w=" media=print><link rel=stylesheet href=/scss/tocbot.5ef07cebc3c477b54270456f149ee02922479bb7555fd344b2c69f953b0e7e5e.css integrity="sha256-XvB868PEd7VCcEVvFJ7gKSJHm7dVX9NEssaflTsOfl4="><!--[if lt IE 9]><script src=https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js></script><script src=https://oss.maxcdn.com/respond/1.4.2/respond.min.js></script><![endif]--><link rel=apple-touch-icon-precomposed sizes=144x144 href=/apple-touch-icon-144-precomposed.png><link rel="shortcut icon" href=/favicon.png></head><body class=theme-base-0d><div class=sidebar><div class=container><div class=sidebar-about><span class=site__title><a href=https://feisky.xyz/>Feisky</a></span><div class=author-image><img src="https://www.gravatar.com/avatar/f86d2faa0f91793a2163d226d82a7620?s=240&d=mp" class="img--circle img--headshot element--center" alt=gravatar></div><p class=site__description></p></div><div class=collapsible-menu><input type=checkbox id=menuToggle>
+<label for=menuToggle>Feisky</label><div class=menu-content><div><ul class=sidebar-nav><li><a href=https://time.geekbang.org/column/intro/100020901><span>Linux性能优化实战</span></a></li><li><a href=https://time.geekbang.org/column/intro/100104501><span>EBPF核心技术与实战</span></a></li><li><a href=https://kubernetes.feisky.xyz><span>Kubernetes指南</span></a></li><li><a href=https://sdn.feisky.xyz><span>SDN网络指南</span></a></li><li><a href=/assets/mp.png><span>微信公众号</span></a></li><li><a href=https://zhuanlan.zhihu.com/kubernetes><span>知乎专栏</span></a></li><li><a href=/about/><span>关于我</span></a></li></ul></div><section class=social><a href=https://twitter.com/feisky rel=me><span class="relative block icon"><svg viewBox="0 0 512 512"><path fill="currentcolor" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645.0 138.72-105.583 298.558-298.558 298.558-59.452.0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055.0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421.0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391.0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04.0-57.828 46.782-104.934 104.934-104.934 30.213.0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+</span></a><a href=https://github.com/feiskyer rel=me><span class="relative block icon"><svg viewBox="0 0 496 512"><path fill="currentcolor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6.0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6.0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3.0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1.0-6.2-.3-40.4-.3-61.4.0.0-70 15-84.7-29.8.0.0-11.4-29.1-27.8-36.6.0.0-22.9-15.7 1.6-15.4.0.0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5.0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9.0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4.0 33.7-.3 75.4-.3 83.6.0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6.0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9.0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span></a></section></div></div><div class=copyright>&copy; 2025 feiskyer
+<a href=https://creativecommons.org/licenses/by-sa/4.0>CC BY-SA 4.0</a></div><div class=builtwith>Built with <a href=https://gohugo.io>Hugo</a> ❤️ <a href=https://github.com/derme302/triple-hyde>triple-hyde</a>.</div></div></div><div class="content container"><article><header><h1>Kubernetes v1.5.0 release</h1><div class=post__meta><i class="fas fa-calendar-alt"></i> Dec 13, 2016<br><i class="fas fa-tags"></i>
+<a class="badge badge-tag" href=/tags/kubernetes>kubernetes</a><br><i class="fas fa-clock"></i> 8 min read</div></header><div class=toc-wrapper><input type=checkbox id=tocToggle>
+<label for=tocToggle>Table of Content</label><div class=toc id=TableOfContents></div></div><div class=post><p><strong>Update on 2016.12.14:</strong></p><p>Due to a serious security problem, kubernetes v1.5.0 is not recommanded. Kubernetes v1.5.1 has just released, so we should upgrade to v1.5.1 directly.</p><blockquote><p>The <code>--anonymous-auth=</code> flag in v1.5.0 is true by default (which may result in any users being able to access kubernetes API), but v1.5.1 turns it to false.</p></blockquote><h2 id=kubernetes-v150>Kubernetes v1.5.0</h2><ul><li>StatefulSets (ex-PetSets)<ul><li>StatefulSets are beta now (fixes and stabilization)</li></ul></li><li>Improved Federation Support<ul><li>New command: <code>kubefed</code></li><li>DaemonSets</li><li>Deployments</li><li>ConfigMaps</li></ul></li><li>Simplified Cluster Deployment<ul><li>Improvements to <code>kubeadm</code></li><li>HA Setup for Master</li></ul></li><li>Node Robustness and Extensibility<ul><li>Windows Server Container support</li><li>CRI for pluggable container runtimes</li><li><code>kubelet</code> API supports authentication and authorization</li></ul></li></ul><h2 id=features>Features</h2><p>Features for this release were tracked via the use of the <a href=https://github.com/kubernetes/features>kubernetes/features</a> issues repo. Each Feature issue is owned by a Special Interest Group from <a href=https://github.com/kubernetes/community>kubernetes/community</a></p><ul><li><strong>API Machinery</strong><ul><li>[beta] <code>kube-apiserver</code> support for the OpenAPI spec is moving from alpha to beta. The first <a href=https://github.com/kubernetes-incubator/client-python>non-go client</a> is based on it (<a href=https://github.com/kubernetes/features/issues/53>kubernetes/features#53</a>)</li></ul></li><li><strong>Apps</strong><ul><li>[stable] When replica sets cannot create pods, they will now report detail via the API about the underlying reason (<a href=https://github.com/kubernetes/features/issues/120>kubernetes/features#120</a>)</li><li>[stable] <code>kubectl apply</code> is now able to delete resources you no longer need with <code>--prune</code> (<a href=https://github.com/kubernetes/features/issues/128>kubernetes/features#128</a>)</li><li>[beta] Deployments that cannot make progress in rolling out the newest version will now indicate via the API they are blocked (<a href=http://kubernetes.io/docs/user-guide/deployments/#failed-deployment>docs</a>) (<a href=https://github.com/kubernetes/features/issues/122>kubernetes/features#122</a>)</li><li>[beta] StatefulSets allow workloads that require persistent identity or per-instance storage to be created and managed on Kubernetes. (<a href=http://kubernetes.io/docs/concepts/abstractions/controllers/statefulsets/>docs</a>) (<a href=https://github.com/kubernetes/features/issues/137>kubernetes/features#137</a>)</li><li>[beta] In order to preserve safety guarantees the cluster no longer force deletes pods on un-responsive nodes and users are now warned if they try to force delete pods via the CLI. (<a href=http://kubernetes.io/docs/tasks/manage-stateful-set/scale-stateful-set/>docs</a>) (<a href=https://github.com/kubernetes/features/issues/119>kubernetes/features#119</a>)</li></ul></li><li><strong>Auth</strong><ul><li>[alpha] Further polishing of the Role-based access control alpha API including a default set of cluster roles. (<a href=http://kubernetes.io/docs/admin/authorization/>docs</a>) (<a href=https://github.com/kubernetes/features/issues/2>kubernetes/features#2</a>)</li><li>[beta] Added ability to authenticate/authorize access to the Kubelet API (<a href=http://kubernetes.io/docs/admin/kubelet-authentication-authorization/>docs</a>) (<a href=https://github.com/kubernetes/features/issues/89>kubernetes/features#89</a>)</li></ul></li><li><strong>AWS</strong><ul><li>[stable] Roles should appear in kubectl get nodes (<a href=https://github.com/kubernetes/features/issues/113>kubernetes/features#113</a>)</li></ul></li><li><strong>Cluster Lifecycle</strong><ul><li>[alpha] Improved UX and usability for the kubeadm binary that makes it easy to get a new cluster running. (<a href=http://kubernetes.io/docs/getting-started-guides/kubeadm/>docs</a>) (<a href=https://github.com/kubernetes/features/issues/11>kubernetes/features#11</a>)</li></ul></li><li><strong>Cluster Ops</strong><ul><li>[alpha] Added ability to create/remove clusters w/highly available (replicated) masters on GCE using kube-up/kube-down scripts. (<a href=http://kubernetes.io/docs/admin/ha-master-gce/>docs</a>) (<a href=https://github.com/kubernetes/features/issues/48>kubernetes/features#48</a>)</li></ul></li><li><strong>Federation</strong><ul><li>[alpha] Support for ConfigMaps in federation. (<a href=http://kubernetes.io/docs/user-guide/federation/configmap/>docs</a>) (<a href=https://github.com/kubernetes/features/issues/105>kubernetes/features#105</a>)</li><li>[alpha] Alpha level support for DaemonSets in federation. (<a href=http://kubernetes.io/docs/user-guide/federation/daemonsets/>docs</a>) (<a href=https://github.com/kubernetes/features/issues/101>kubernetes/features#101</a>)</li><li>[alpha] Alpha level support for Deployments in federation. (<a href=http://kubernetes.io/docs/user-guide/federation/deployment/>docs</a>) (<a href=https://github.com/kubernetes/features/issues/100>kubernetes/features#100</a>)</li><li>[alpha] Cluster federation: Added support for DeleteOptions.OrphanDependents for federation resources. (<a href=http://kubernetes.io/docs/user-guide/federation/#cascading-deletion>docs</a>) (<a href=https://github.com/kubernetes/features/issues/99>kubernetes/features#99</a>)</li><li>[alpha] Introducing <code>kubefed</code>, a new command line tool to simplify federation control plane kubernetes.io/docs/admin/federation/kubefed/)) (<a href=https://github.com/kubernetes/features/issues/97>kubernetes/features#97</a>)</li></ul></li><li><strong>Network</strong><ul><li>[stable] Services can reference another service by DNS name, rather than being hosted in pods (<a href=https://github.com/kubernetes/features/issues/33>kubernetes/features#33</a>)</li><li>[beta] Opt in source ip preservation for Services with Type NodePort or LoadBalancer (<a href=http://kubernetes.io/docs/tutorials/services/source-ip/>docs</a>) (<a href=https://github.com/kubernetes/features/issues/27>kubernetes/features#27</a>)</li><li>[stable] Enable DNS Horizontal Autoscaling with beta ConfigMap parameters support (<a href=http://kubernetes.io/docs/tasks/administer-cluster/dns-horizontal-autoscaling/>docs</a>)</li></ul></li><li><strong>Node</strong><ul><li>[alpha] Added ability to preserve access to host userns when userns remapping is enabled in container runtime (<a href=https://github.com/kubernetes/features/issues/127>kubernetes/features#127</a>)</li><li>[alpha] Introducing the v1alpha1 CRI API to allow pluggable container runtimes; an experimental docker-CRI integration is ready for testing and feedback. (<a href=https://github.com/kubernetes/community/blob/master/contributors/devel/container-runtime-interface.md>docs</a>) (<a href=https://github.com/kubernetes/features/issues/54>kubernetes/features#54</a>)</li><li>[alpha] Kubelet launches container in a per pod cgroup hiearchy based on quality of service tier (<a href=https://github.com/kubernetes/features/issues/126>kubernetes/features#126</a>)</li><li>[beta] Kubelet integrates with memcg notification API to detect when a hard eviction threshold is crossed (<a href=https://github.com/kubernetes/features/issues/125>kubernetes/features#125</a>)</li><li>[beta] Introducing the beta version containerized node conformance test gcr.io/google_containers/node-test:0.2 for users to verify node setup. (<a href=http://kubernetes.io/docs/admin/node-conformance/>docs</a>) (<a href=https://github.com/kubernetes/features/issues/84>kubernetes/features#84</a>)</li></ul></li><li><strong>Scheduling</strong><ul><li>[alpha] Added support for accounting opaque integer resources. (<a href=http://kubernetes.io/docs/user-guide/compute-resources/#opaque-integer-resources-alpha-feature>docs</a>) (<a href=https://github.com/kubernetes/features/issues/76>kubernetes/features#76</a>)</li><li>[beta] PodDisruptionBudget has been promoted to beta, can be used to safely drain nodes while respecting application SLO&rsquo;s (<a href=http://kubernetes.io/docs/tasks/administer-cluster/safely-drain-node/>docs</a>) (<a href=https://github.com/kubernetes/features/issues/85>kubernetes/features#85</a>)</li></ul></li><li><strong>UI</strong><ul><li>[stable] Dashboard UI now shows all user facing objects and their resource usage. (<a href=http://kubernetes.io/docs/user-guide/ui/>docs</a>) (<a href=https://github.com/kubernetes/features/issues/136>kubernetes/features#136</a>)</li></ul></li><li><strong>Windows</strong><ul><li>[alpha] Added support for Windows Server 2016 nodes and scheduling Windows Server Containers (<a href=http://kubernetes.io/docs/getting-started-guides/windows/>docs</a>) (<a href=https://github.com/kubernetes/features/issues/116>kubernetes/features#116</a>)</li></ul></li></ul><h2 id=known-issues>Known Issues</h2><p>Populated via <a href=https://github.com/kubernetes/kubernetes/issues/37134>v1.5.0 known issues / FAQ accumulator</a></p><ul><li>CRI <a href=https://github.com/kubernetes/community/blob/master/contributors/devel/container-runtime-interface.md#kubernetes-v15-release-cri-v1alpha1>known issues and
+limitations</a></li><li>getDeviceNameFromMount() function doesn&rsquo;t return the volume path correctly when the volume path contains spaces [<a href=https://github.com/kubernetes/kubernetes/pull/37712>#37712</a>](<a href=https://github.com/kubernetes/kubernetes/issues/37712>https://github.com/kubernetes/kubernetes/issues/37712</a>)</li><li>Federation alpha features do not have feature gates defined and
 are hence enabled by default. This will be fixed in a future release.
-[<a href=https://github.com/kubernetes/kubernetes/pull/38593>#38593</a>](<a href=https://github.com/kubernetes/kubernetes/issues/38593>https://github.com/kubernetes/kubernetes/issues/38593</a>)</li>
-<li>Federation control plane can be upgraded by updating the image
+[<a href=https://github.com/kubernetes/kubernetes/pull/38593>#38593</a>](<a href=https://github.com/kubernetes/kubernetes/issues/38593>https://github.com/kubernetes/kubernetes/issues/38593</a>)</li><li>Federation control plane can be upgraded by updating the image
 fields in the <code>Deployment</code> specs of the control plane components.
 However, federation control plane upgrades were not tested in this
-release <a href=https://github.com/kubernetes/kubernetes/issues/38537>38537</a></li>
-</ul>
-<h2 id=notable-changes-to-existing-behavior>Notable Changes to Existing Behavior</h2>
-<ul>
-<li>
-<p>Node controller no longer force-deletes pods from the api-server. ([<a href=https://github.com/kubernetes/kubernetes/pull/35235>#35235</a>](<a href=https://github.com/kubernetes/kubernetes/pull/35235),>https://github.com/kubernetes/kubernetes/pull/35235),</a> [<a href=https://github.com/foxish>@foxish</a>](<a href=https://github.com/foxish>https://github.com/foxish</a>))</p>
-<ul>
-<li>For StatefulSet (previously PetSet), this change means creation of
+release <a href=https://github.com/kubernetes/kubernetes/issues/38537>38537</a></li></ul><h2 id=notable-changes-to-existing-behavior>Notable Changes to Existing Behavior</h2><ul><li><p>Node controller no longer force-deletes pods from the api-server. ([<a href=https://github.com/kubernetes/kubernetes/pull/35235>#35235</a>](<a href=https://github.com/kubernetes/kubernetes/pull/35235)>https://github.com/kubernetes/kubernetes/pull/35235)</a>, [<a href=https://github.com/foxish>@foxish</a>](<a href=https://github.com/foxish>https://github.com/foxish</a>))</p><ul><li>For StatefulSet (previously PetSet), this change means creation of
 replacement pods is blocked until old pods are definitely not running
 (indicated either by the kubelet returning from partitioned state,
 deletion of the Node object, deletion of the instance in the cloud provider,
 or force deletion of the pod from the api-server).
 This helps prevent &ldquo;split brain&rdquo; scenarios in clustered applications by
 ensuring that unreachable pods will not be presumed dead unless some
-&ldquo;fencing&rdquo; operation has provided one of the above indications.</li>
-<li>For all other existing controllers except StatefulSet, this has no effect on
+&ldquo;fencing&rdquo; operation has provided one of the above indications.</li><li>For all other existing controllers except StatefulSet, this has no effect on
 the ability of the controller to replace pods because the controllers do not
-reuse pod names (they use generate-name).</li>
-<li>User-written controllers that reuse names of pod objects should evaluate this change.</li>
-<li>When deleting an object with <code>kubectl delete ... --grace-period=0</code>, the client will
+reuse pod names (they use generate-name).</li><li>User-written controllers that reuse names of pod objects should evaluate this change.</li><li>When deleting an object with <code>kubectl delete ... --grace-period=0</code>, the client will
 begin a graceful deletion and wait until the resource is fully deleted. To force
 deletion immediately, use the <code>--force</code> flag. This prevents users from accidentally
 allowing two Stateful Set pods to share the same persistent volume which could lead to data
-corruption [<a href=https://github.com/kubernetes/kubernetes/pull/37263>#37263</a>](<a href=https://github.com/kubernetes/kubernetes/pull/37263>https://github.com/kubernetes/kubernetes/pull/37263</a>)</li>
-</ul>
-</li>
-<li>
-<p>Allow anonymous API server access, decorate authenticated users with system:authenticated group ([<a href=https://github.com/kubernetes/kubernetes/pull/32386>#32386</a>](<a href=https://github.com/kubernetes/kubernetes/pull/32386),>https://github.com/kubernetes/kubernetes/pull/32386),</a> [<a href=https://github.com/liggitt>@liggitt</a>](<a href=https://github.com/liggitt>https://github.com/liggitt</a>))</p>
-<ul>
-<li>kube-apiserver learned the &lsquo;&ndash;anonymous-auth&rsquo; flag, which defaults to true. When enabled, requests to the secure port that are not rejected by other configured authentication methods are treated as anonymous requests, and given a username of &lsquo;system:anonymous&rsquo; and a group of &lsquo;system:unauthenticated&rsquo;.</li>
-<li>Authenticated users are decorated with a &lsquo;system:authenticated&rsquo; group.</li>
-<li>NOTE: anonymous access is enabled by default. If you rely on authentication alone to authorize access, change to use an authorization mode other than AlwaysAllow, or or set &lsquo;&ndash;anonymous-auth=false&rsquo;.</li>
-</ul>
-</li>
-<li>
-<p>kubectl get -o jsonpath=&mldr; will now throw an error if the path is to a field not present in the json, even if the path is for a field valid for the type. This is a change from the pre-1.5 behavior, which would return the default value for some fields even if they were not present in the json. ([<a href=https://github.com/kubernetes/kubernetes/pull/37991>#37991</a>](<a href=https://github.com/kubernetes/kubernetes/issues/37991),>https://github.com/kubernetes/kubernetes/issues/37991),</a> [<a href=https://github.com/pwittrock>@pwittrock</a>](<a href=http://github.com/pwittrock>http://github.com/pwittrock</a>))</p>
-</li>
-<li>
-<p>The strategicmerge patchMergeKey for VolumeMounts was changed from &ldquo;name&rdquo; to &ldquo;mountPath&rdquo;. This was necessary because the name field refers to the name of the Volume, and is not a unique key for the VolumeMount. Multiple VolumeMounts will have the same Volume name if mounting the same volume more than once. The &ldquo;mountPath&rdquo; is verified to be unique and can act as the mergekey. ([<a href=https://github.com/kubernetes/kubernetes/pull/35071>#35071</a>](<a href=https://github.coma/kubernetes/kubernetes/pull/35071),>https://github.coma/kubernetes/kubernetes/pull/35071),</a> [<a href=https://github.com/pwittrock>@pwittrock</a>](<a href=http://github.com/pwittrock>http://github.com/pwittrock</a>))</p>
-</li>
-</ul>
-<h2 id=deprecations>Deprecations</h2>
-<ul>
-<li>extensions/v1beta1.Jobs is deprecated, use batch/v1.Job instead ([<a href=https://github.com/kubernetes/kubernetes/pull/36355>#36355</a>](<a href=https://github.com/kubernetes/kubernetes/pull/36355),>https://github.com/kubernetes/kubernetes/pull/36355),</a> [<a href=https://github.com/soltysh>@soltysh</a>](<a href=https://github.com/soltysh>https://github.com/soltysh</a>))</li>
-<li>The kubelet &ndash;reconcile-cdir flag is deprecated because it has no function anymore. ([<a href=https://github.com/kubernetes/kubernetes/pull/35523>#35523</a>](<a href=https://github.com/kubernetes/kubernetes/pull/35523),>https://github.com/kubernetes/kubernetes/pull/35523),</a> [<a href=https://github.com/luxas>@luxas</a>](<a href=https://github.com/luxas>https://github.com/luxas</a>))</li>
-<li>Notice of deprecation for recycler [<a href=https://github.com/kubernetes/kubernetes/pull/36760>#36760</a>](<a href=https://github.com/kubernetes/kubernetes/pull/36760>https://github.com/kubernetes/kubernetes/pull/36760</a>)</li>
-</ul>
-<h2 id=action-required-before-upgrading>Action Required Before Upgrading</h2>
-<ul>
-<li>batch/v2alpha1.ScheduledJob has been renamed, use batch/v2alpha1.CronJob instead ([<a href=https://github.com/kubernetes/kubernetes/pull/36021>#36021</a>](<a href=https://github.com/kubernetes/kubernetes/pull/36021),>https://github.com/kubernetes/kubernetes/pull/36021),</a> [<a href=https://github.com/soltysh>@soltysh</a>](<a href=https://github.com/soltysh>https://github.com/soltysh</a>))</li>
-<li>PetSet has been renamed to StatefulSet.
+corruption [<a href=https://github.com/kubernetes/kubernetes/pull/37263>#37263</a>](<a href=https://github.com/kubernetes/kubernetes/pull/37263>https://github.com/kubernetes/kubernetes/pull/37263</a>)</li></ul></li><li><p>Allow anonymous API server access, decorate authenticated users with system:authenticated group ([<a href=https://github.com/kubernetes/kubernetes/pull/32386>#32386</a>](<a href=https://github.com/kubernetes/kubernetes/pull/32386)>https://github.com/kubernetes/kubernetes/pull/32386)</a>, [<a href=https://github.com/liggitt>@liggitt</a>](<a href=https://github.com/liggitt>https://github.com/liggitt</a>))</p><ul><li>kube-apiserver learned the &lsquo;&ndash;anonymous-auth&rsquo; flag, which defaults to true. When enabled, requests to the secure port that are not rejected by other configured authentication methods are treated as anonymous requests, and given a username of &lsquo;system:anonymous&rsquo; and a group of &lsquo;system:unauthenticated&rsquo;.</li><li>Authenticated users are decorated with a &lsquo;system:authenticated&rsquo; group.</li><li>NOTE: anonymous access is enabled by default. If you rely on authentication alone to authorize access, change to use an authorization mode other than AlwaysAllow, or or set &lsquo;&ndash;anonymous-auth=false&rsquo;.</li></ul></li><li><p>kubectl get -o jsonpath=&mldr; will now throw an error if the path is to a field not present in the json, even if the path is for a field valid for the type. This is a change from the pre-1.5 behavior, which would return the default value for some fields even if they were not present in the json. ([<a href=https://github.com/kubernetes/kubernetes/pull/37991>#37991</a>](<a href=https://github.com/kubernetes/kubernetes/issues/37991)>https://github.com/kubernetes/kubernetes/issues/37991)</a>, [<a href=https://github.com/pwittrock>@pwittrock</a>](<a href=http://github.com/pwittrock>http://github.com/pwittrock</a>))</p></li><li><p>The strategicmerge patchMergeKey for VolumeMounts was changed from &ldquo;name&rdquo; to &ldquo;mountPath&rdquo;. This was necessary because the name field refers to the name of the Volume, and is not a unique key for the VolumeMount. Multiple VolumeMounts will have the same Volume name if mounting the same volume more than once. The &ldquo;mountPath&rdquo; is verified to be unique and can act as the mergekey. ([<a href=https://github.com/kubernetes/kubernetes/pull/35071>#35071</a>](<a href=https://github.coma/kubernetes/kubernetes/pull/35071)>https://github.coma/kubernetes/kubernetes/pull/35071)</a>, [<a href=https://github.com/pwittrock>@pwittrock</a>](<a href=http://github.com/pwittrock>http://github.com/pwittrock</a>))</p></li></ul><h2 id=deprecations>Deprecations</h2><ul><li>extensions/v1beta1.Jobs is deprecated, use batch/v1.Job instead ([<a href=https://github.com/kubernetes/kubernetes/pull/36355>#36355</a>](<a href=https://github.com/kubernetes/kubernetes/pull/36355)>https://github.com/kubernetes/kubernetes/pull/36355)</a>, [<a href=https://github.com/soltysh>@soltysh</a>](<a href=https://github.com/soltysh>https://github.com/soltysh</a>))</li><li>The kubelet &ndash;reconcile-cdir flag is deprecated because it has no function anymore. ([<a href=https://github.com/kubernetes/kubernetes/pull/35523>#35523</a>](<a href=https://github.com/kubernetes/kubernetes/pull/35523)>https://github.com/kubernetes/kubernetes/pull/35523)</a>, [<a href=https://github.com/luxas>@luxas</a>](<a href=https://github.com/luxas>https://github.com/luxas</a>))</li><li>Notice of deprecation for recycler [<a href=https://github.com/kubernetes/kubernetes/pull/36760>#36760</a>](<a href=https://github.com/kubernetes/kubernetes/pull/36760>https://github.com/kubernetes/kubernetes/pull/36760</a>)</li></ul><h2 id=action-required-before-upgrading>Action Required Before Upgrading</h2><ul><li>batch/v2alpha1.ScheduledJob has been renamed, use batch/v2alpha1.CronJob instead ([<a href=https://github.com/kubernetes/kubernetes/pull/36021>#36021</a>](<a href=https://github.com/kubernetes/kubernetes/pull/36021)>https://github.com/kubernetes/kubernetes/pull/36021)</a>, [<a href=https://github.com/soltysh>@soltysh</a>](<a href=https://github.com/soltysh>https://github.com/soltysh</a>))</li><li>PetSet has been renamed to StatefulSet.
 If you have existing PetSets, <strong>you must perform extra migration steps</strong> both
-before and after upgrading to convert them to StatefulSets. (<a href=http://kubernetes.io/docs/tasks/manage-stateful-set/upgrade-pet-set-to-stateful-set/>docs</a>) ([<a href=https://github.com/kubernetes/kubernetes/pull/35663>#35663</a>](<a href=https://github.com/kubernetes/kubernetes/pull/35663),>https://github.com/kubernetes/kubernetes/pull/35663),</a> [<a href=https://github.com/janetkuo>@janetkuo</a>](<a href=https://github.com/janetkuo>https://github.com/janetkuo</a>))</li>
-<li>If you are upgrading your Cluster Federation components from v1.4.x, please update your <code>federation-apiserver</code> and <code>federation-controller-manager</code> manifests to the new version ([<a href=https://github.com/kubernetes/kubernetes/pull/30601>#30601</a>](<a href=https://github.com/kubernetes/kubernetes/pull/30601),>https://github.com/kubernetes/kubernetes/pull/30601),</a> [<a href=https://github.com/madhusudancs>@madhusudancs</a>](<a href=https://github.com/madhusudancs>https://github.com/madhusudancs</a>))</li>
-<li>The deprecated kubelet &ndash;configure-cbr0 flag has been removed, and with that the &ldquo;classic&rdquo; networking mode as well. If you depend on this mode, please investigate whether the other network plugins <code>kubenet</code> or <code>cni</code> meet your needs. ([<a href=https://github.com/kubernetes/kubernetes/pull/34906>#34906</a>](<a href=https://github.com/kubernetes/kubernetes/pull/34906),>https://github.com/kubernetes/kubernetes/pull/34906),</a> [<a href=https://github.com/luxas>@luxas</a>](<a href=https://github.com/luxas>https://github.com/luxas</a>))</li>
-<li>New client-go structure, refer to kubernetes/client-go for versioning policy ([<a href=https://github.com/kubernetes/kubernetes/pull/34989>#34989</a>](<a href=https://github.com/kubernetes/kubernetes/pull/34989),>https://github.com/kubernetes/kubernetes/pull/34989),</a> [<a href=https://github.com/caesarxuchao>@caesarxuchao</a>](<a href=https://github.com/caesarxuchao>https://github.com/caesarxuchao</a>))</li>
-<li>The deprecated kube-scheduler &ndash;bind-pods-qps and &ndash;bind-pods burst flags have been removed, use &ndash;kube-api-qps and &ndash;kube-api-burst instead ([<a href=https://github.com/kubernetes/kubernetes/pull/34471>#34471</a>](<a href=https://github.com/kubernetes/kubernetes/pull/34471),>https://github.com/kubernetes/kubernetes/pull/34471),</a> [<a href=https://github.com/timothysc>@timothysc</a>](<a href=https://github.com/timothysc>https://github.com/timothysc</a>))</li>
-<li>If you used the <a href=http://kubernetes.io/docs/admin/disruptions/>PodDisruptionBudget</a> feature in 1.4 (i.e. created <code>PodDisruptionBudget</code> objects), then <strong>BEFORE</strong> upgrading from 1.4 to 1.5, you must delete all <code>PodDisruptionBudget</code> objects (<code>policy/v1alpha1/PodDisruptionBudget</code>) that you have created. It is not possible to delete these objects after you upgrade, and their presence will prevent you from using the beta PodDisruptionBudget feature in 1.5 (which uses <code>policy/v1beta1/PodDisruptionBudget</code>). If you have already upgraded, you will need to downgrade the master to 1.4 to delete the <code>policy/v1alpha1/PodDisruptionBudget</code> objects.</li>
-</ul>
-<h2 id=external-dependency-version-information>External Dependency Version Information</h2>
-<p>Continuous integration builds have used the following versions of external dependencies, however, this is not a strong recommendation and users should consult an appropriate installation or upgrade guide before deciding what versions of etcd, docker or rkt to use.</p>
-<ul>
-<li>
-<p>Docker versions 1.10.3 - 1.12.3</p>
-<ul>
-<li>Docker version 1.11.2 known issues
-<ul>
-<li>Kernel crash with Aufs storage driver on Debian Jessie ([<a href=https://github.com/kubernetes/kubernetes/pull/27885>#27885</a>](<a href=https://github.com/kubernetes/kubernetes/issues/27885>https://github.com/kubernetes/kubernetes/issues/27885</a>))
-which can be identified by the <a href=http://kubernetes.io/docs/admin/node-problem/>node problem detector</a></li>
-<li>Leaked File descriptors (<a href=https://github.com/docker/containerd/issues/275>#275</a>)</li>
-<li>Additional memory overhead per container ([<a href=https://github.com/kubernetes/kubernetes/pull/21737>#21737</a>](<a href=https://github.com/docker/docker/issues/21737>https://github.com/docker/docker/issues/21737</a>))</li>
-</ul>
-</li>
-<li>Docker version 1.12.1 <a href=https://github.com/kubernetes/kubernetes/issues/28698>has been validated</a> through the Kubernetes docker automated validation framework as has Docker version 1.12.3</li>
-</ul>
-</li>
-<li>
-<p>Docker 1.10.3 contains <a href=https://github.com/docker/docker/compare/v1.10.3...runcom:docker-1.10.3-stable>backports provided by RedHat</a> for known issues</p>
-</li>
-<li>
-<p>Docker versions as old as may 1.9.1 work with <a href=CHANGELOG.md#191>known issues</a> but this is not guaranteed</p>
-</li>
-<li>
-<p>rkt version 1.21.0</p>
-<ul>
-<li>known issues with the rkt runtime are <a href=http://kubernetes.io/docs/getting-started-guides/rkt/notes/>listed here</a></li>
-</ul>
-</li>
-<li>
-<p>etcd version 2.2.1</p>
-<ul>
-<li>etcd version 3.0.14 <a href=https://k8s-gubernator.appspot.com/builds/kubernetes-jenkins/logs/ci-kubernetes-e2e-gce-etcd3/>has also been validated</a> but does require <a href=https://coreos.com/blog/migrating-applications-etcd-v3.html>specific configuration steps</a></li>
-</ul>
-<p><a href=https://docs.k8s.io>Documentation</a> & <a href=https://releases.k8s.io/release-1.5/examples>Examples</a></p>
-</li>
-</ul>
-</div>
-<div class="navigation navigation-single">
-<a href=/posts/2016-12-08-weekly-reading-list/ class=navigation-prev>
-<i aria-hidden=true class="fa fa-chevron-left"></i>
+before and after upgrading to convert them to StatefulSets. (<a href=http://kubernetes.io/docs/tasks/manage-stateful-set/upgrade-pet-set-to-stateful-set/>docs</a>) ([<a href=https://github.com/kubernetes/kubernetes/pull/35663>#35663</a>](<a href=https://github.com/kubernetes/kubernetes/pull/35663)>https://github.com/kubernetes/kubernetes/pull/35663)</a>, [<a href=https://github.com/janetkuo>@janetkuo</a>](<a href=https://github.com/janetkuo>https://github.com/janetkuo</a>))</li><li>If you are upgrading your Cluster Federation components from v1.4.x, please update your <code>federation-apiserver</code> and <code>federation-controller-manager</code> manifests to the new version ([<a href=https://github.com/kubernetes/kubernetes/pull/30601>#30601</a>](<a href=https://github.com/kubernetes/kubernetes/pull/30601)>https://github.com/kubernetes/kubernetes/pull/30601)</a>, [<a href=https://github.com/madhusudancs>@madhusudancs</a>](<a href=https://github.com/madhusudancs>https://github.com/madhusudancs</a>))</li><li>The deprecated kubelet &ndash;configure-cbr0 flag has been removed, and with that the &ldquo;classic&rdquo; networking mode as well. If you depend on this mode, please investigate whether the other network plugins <code>kubenet</code> or <code>cni</code> meet your needs. ([<a href=https://github.com/kubernetes/kubernetes/pull/34906>#34906</a>](<a href=https://github.com/kubernetes/kubernetes/pull/34906)>https://github.com/kubernetes/kubernetes/pull/34906)</a>, [<a href=https://github.com/luxas>@luxas</a>](<a href=https://github.com/luxas>https://github.com/luxas</a>))</li><li>New client-go structure, refer to kubernetes/client-go for versioning policy ([<a href=https://github.com/kubernetes/kubernetes/pull/34989>#34989</a>](<a href=https://github.com/kubernetes/kubernetes/pull/34989)>https://github.com/kubernetes/kubernetes/pull/34989)</a>, [<a href=https://github.com/caesarxuchao>@caesarxuchao</a>](<a href=https://github.com/caesarxuchao>https://github.com/caesarxuchao</a>))</li><li>The deprecated kube-scheduler &ndash;bind-pods-qps and &ndash;bind-pods burst flags have been removed, use &ndash;kube-api-qps and &ndash;kube-api-burst instead ([<a href=https://github.com/kubernetes/kubernetes/pull/34471>#34471</a>](<a href=https://github.com/kubernetes/kubernetes/pull/34471)>https://github.com/kubernetes/kubernetes/pull/34471)</a>, [<a href=https://github.com/timothysc>@timothysc</a>](<a href=https://github.com/timothysc>https://github.com/timothysc</a>))</li><li>If you used the <a href=http://kubernetes.io/docs/admin/disruptions/>PodDisruptionBudget</a> feature in 1.4 (i.e. created <code>PodDisruptionBudget</code> objects), then <strong>BEFORE</strong> upgrading from 1.4 to 1.5, you must delete all <code>PodDisruptionBudget</code> objects (<code>policy/v1alpha1/PodDisruptionBudget</code>) that you have created. It is not possible to delete these objects after you upgrade, and their presence will prevent you from using the beta PodDisruptionBudget feature in 1.5 (which uses <code>policy/v1beta1/PodDisruptionBudget</code>). If you have already upgraded, you will need to downgrade the master to 1.4 to delete the <code>policy/v1alpha1/PodDisruptionBudget</code> objects.</li></ul><h2 id=external-dependency-version-information>External Dependency Version Information</h2><p>Continuous integration builds have used the following versions of external dependencies, however, this is not a strong recommendation and users should consult an appropriate installation or upgrade guide before deciding what versions of etcd, docker or rkt to use.</p><ul><li><p>Docker versions 1.10.3 - 1.12.3</p><ul><li>Docker version 1.11.2 known issues<ul><li>Kernel crash with Aufs storage driver on Debian Jessie ([<a href=https://github.com/kubernetes/kubernetes/pull/27885>#27885</a>](<a href=https://github.com/kubernetes/kubernetes/issues/27885>https://github.com/kubernetes/kubernetes/issues/27885</a>))
+which can be identified by the <a href=http://kubernetes.io/docs/admin/node-problem/>node problem detector</a></li><li>Leaked File descriptors (<a href=https://github.com/docker/containerd/issues/275>#275</a>)</li><li>Additional memory overhead per container ([<a href=https://github.com/kubernetes/kubernetes/pull/21737>#21737</a>](<a href=https://github.com/docker/docker/issues/21737>https://github.com/docker/docker/issues/21737</a>))</li></ul></li><li>Docker version 1.12.1 <a href=https://github.com/kubernetes/kubernetes/issues/28698>has been validated</a> through the Kubernetes docker automated validation framework as has Docker version 1.12.3</li></ul></li><li><p>Docker 1.10.3 contains <a href=https://github.com/docker/docker/compare/v1.10.3...runcom:docker-1.10.3-stable>backports provided by RedHat</a> for known issues</p></li><li><p>Docker versions as old as may 1.9.1 work with <a href=CHANGELOG.md#191>known issues</a> but this is not guaranteed</p></li><li><p>rkt version 1.21.0</p><ul><li>known issues with the rkt runtime are <a href=http://kubernetes.io/docs/getting-started-guides/rkt/notes/>listed here</a></li></ul></li><li><p>etcd version 2.2.1</p><ul><li>etcd version 3.0.14 <a href=https://k8s-gubernator.appspot.com/builds/kubernetes-jenkins/logs/ci-kubernetes-e2e-gce-etcd3/>has also been validated</a> but does require <a href=https://coreos.com/blog/migrating-applications-etcd-v3.html>specific configuration steps</a></li></ul><p><a href=https://docs.k8s.io>Documentation</a> & <a href=https://releases.k8s.io/release-1.5/examples>Examples</a></p></li></ul></div><div class="navigation navigation-single"><a href=/posts/2016-12-08-weekly-reading-list/ class=navigation-prev><i aria-hidden=true class="fa fa-chevron-left"></i>
 <span class=navigation-tittle>Weekly reading list</span>
-</a>
-<a href=/posts/2017-01-05-grumpy-%E4%BD%BF%E7%94%A8go%E6%9D%A5%E8%BF%90%E8%A1%8Cpython%E7%A8%8B%E5%BA%8F/ class=navigation-next>
-<span class=navigation-tittle>Grumpy: 使用Go来运行Python程序</span>
-<i aria-hidden=true class="fa fa-chevron-right"></i>
-</a>
-</div>
-<div class=post__related>
-<h2>Related Articles</h2>
-<ul class=related-posts>
-<li>
-<span class=list__title--small>
-<a href=/posts/2016-11-14-kubecon-2016%E8%A7%81%E9%97%BB/>KubeCon/CloudNativeCon 2016见闻</a>
-<time class="pull-right hidden-tablet">Nov 14 '16</time>
-</span>
-</li>
-<li>
-<span class=list__title--small>
-<a href=/posts/2016-09-25-kubernetes-container-runtime-interface/>Kubernetes container runtime interface</a>
-<time class="pull-right hidden-tablet">Sep 25 '16</time>
-</span>
-</li>
-<li>
-<span class=list__title--small>
-<a href=/posts/2016-09-11-kubernetes%E4%B8%AD%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0%E4%B8%8E%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/>Kubernetes中的服务发现与负载均衡</a>
-<time class="pull-right hidden-tablet">Sep 11 '16</time>
-</span>
-</li>
-<li>
-<span class=list__title--small>
-<a href=/posts/2016-06-07-kubernetes-mesos-architecture/>Kubernetes-mesos architecture</a>
-<time class="pull-right hidden-tablet">Jun 07 '16</time>
-</span>
-</li>
-<li>
-<span class=list__title--small>
-<a href=/posts/2016-03-04-borg-omega-and-kubernetes-acm-queue/>Borg, Omega, and Kubernetes (ACM Queue)</a>
-<time class="pull-right hidden-tablet">Mar 04 '16</time>
-</span>
-</li>
-</ul>
-</div>
-<div id=disqus_thread></div>
-<script type=text/javascript>(function(){var a,b;if(location.hostname==="localhost"||location.hostname==="127.0.0.1"||location.hostname==="")return;a=document.createElement('script'),a.type='text/javascript',a.async=!0,b='feisky',a.src='//'+b+'.disqus.com/embed.js',(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(a)})()</script>
-<noscript>
-Please enable JavaScript to view the
-<a href=http://disqus.com/?ref_noscript>comments powered by Disqus.</a>
-</noscript>
-<a href=http://disqus.com/ class=dsq-brlink>comments powered by
-<span class=logo-disqus>Disqus</span>
-</a>
-</article>
-</div>
-<script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','UA-69699206-1','auto'),ga('send','pageview'))</script>
-<script async src=https://www.google-analytics.com/analytics.js></script>
-<script defer src=https://use.fontawesome.com/releases/v5.12.1/js/all.js integrity=sha384-ZbbbT1gw3joYkKRqh0kWyRp32UAvdqkpbLedQJSlnI8iLQcFVxaGyrOgOJiDQTTR crossorigin=anonymous></script>
-<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js></script>
-<script type=text/javascript>hljs.initHighlightingOnLoad()</script>
-<script src=https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.js></script>
-<script type=text/javascript>tocbot&&tocbot.init({tocSelector:'.toc',contentSelector:'.post',headingSelector:'h2, h3, h4',collapseDepth:4})</script>
-</body>
-</html>
+</a><a href=/posts/2017-01-05-grumpy-%E4%BD%BF%E7%94%A8go%E6%9D%A5%E8%BF%90%E8%A1%8Cpython%E7%A8%8B%E5%BA%8F/ class=navigation-next><span class=navigation-tittle>Grumpy: 使用Go来运行Python程序</span>
+<i aria-hidden=true class="fa fa-chevron-right"></i></a></div><div class=post__related><h2>Related Articles</h2><ul class=related-posts><li><span class=list__title--small><a href=/posts/2016-11-14-kubecon-2016%E8%A7%81%E9%97%BB/>KubeCon/CloudNativeCon 2016见闻</a>
+<time class="pull-right hidden-tablet">Nov 14 '16</time></span></li><li><span class=list__title--small><a href=/posts/2016-09-25-kubernetes-container-runtime-interface/>Kubernetes container runtime interface</a>
+<time class="pull-right hidden-tablet">Sep 25 '16</time></span></li><li><span class=list__title--small><a href=/posts/2016-09-11-kubernetes%E4%B8%AD%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0%E4%B8%8E%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/>Kubernetes中的服务发现与负载均衡</a>
+<time class="pull-right hidden-tablet">Sep 11 '16</time></span></li><li><span class=list__title--small><a href=/posts/2016-06-07-kubernetes-mesos-architecture/>Kubernetes-mesos architecture</a>
+<time class="pull-right hidden-tablet">Jun 07 '16</time></span></li><li><span class=list__title--small><a href=/posts/2016-03-04-borg-omega-and-kubernetes-acm-queue/>Borg, Omega, and Kubernetes (ACM Queue)</a>
+<time class="pull-right hidden-tablet">Mar 04 '16</time></span></li></ul></div><div id=disqus_thread></div><script type=text/javascript>(function(){if(location.hostname==="localhost"||location.hostname==="127.0.0.1"||location.hostname==="")return;var t,e=document.createElement("script");e.type="text/javascript",e.async=!0,t="feisky",e.src="//"+t+".disqus.com/embed.js",(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)})()</script><noscript>Please enable JavaScript to view the
+<a href=http://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=http://disqus.com/ class=dsq-brlink>comments powered by
+<span class=logo-disqus>Disqus</span></a></article></div><script async src="https://www.googletagmanager.com/gtag/js?id=G-1GD5S2NKS3"></script><script>var dnt,doNotTrack=!1;if(!1&&(dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes"),!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-1GD5S2NKS3")}</script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js></script><script type=text/javascript>hljs.initHighlightingOnLoad()</script><script src=https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.js></script><script type=text/javascript>tocbot&&tocbot.init({tocSelector:".toc",contentSelector:".post",headingSelector:"h2, h3, h4",collapseDepth:4})</script></body></html>

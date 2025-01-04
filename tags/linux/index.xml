@@ -1,4 +1,99 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Linux on Feisky</title><link>https://feisky.xyz/tags/linux/</link><description>Recent content in Linux on Feisky</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sat, 20 Jun 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://feisky.xyz/tags/linux/index.xml" rel="self" type="application/rss+xml"/><item><title>10个问题带你全面理解Linux性能优化</title><link>https://feisky.xyz/posts/2020-06-06-linux-perf/</link><pubDate>Sat, 20 Jun 2020 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2020-06-06-linux-perf/</guid><description>本文整理自极客时间“10个问题带你全面理解Linux性能优化”直播，PPT下载请参考文末的 InfoQ 官方网站[1]。 1. 为什么面试官喜欢考察性能优化问</description></item><item><title>awesome quick start</title><link>https://feisky.xyz/posts/2015-03-20-awesome-quick-start/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-03-20-awesome-quick-start/</guid><description>awesome是Linux平台出色的窗口管理器，具有速度快、界面简捷等优点。其安装也比较简单： sudo apt-get install -y awesome awesome-extra gnome-settings-daemon nautilus sudo apt-get install -y --no-install-recommends gnome-session mkdir -p ~/.config/awesome 常用快捷键整</description></item><item><title>cannot change locale</title><link>https://feisky.xyz/posts/2015-02-10-cannot-change-locale/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-02-10-cannot-change-locale/</guid><description>运行locale命令LANG= LANGUAGE= LC_CTYPE=&amp;ldquo;POSIX&amp;rdquo; LC_NUMERIC=&amp;ldquo;POSIX&amp;rdquo; LC_TIME=&amp;ldquo;POSIX&amp;rdquo; LC_COLLATE=&amp;ldquo;POSIX&amp;rdquo; LC_MONETARY=&amp;ldquo;POSIX&amp;rdquo; LC_MESSAGES=&amp;ldquo;POSIX&amp;rdquo; LC_PAPER=&amp;ldquo;POSIX&amp;rdquo; LC_NAME=&amp;ldquo;POSIX&amp;rdquo; LC_ADDRESS=&amp;ldquo;POSIX&amp;rdquo; LC_TELEPHONE=&amp;ldquo;POSIX&amp;rdquo; LC_MEASUREMENT=&amp;ldquo;POSIX&amp;rdquo; LC_IDENTIFICATION=&amp;ldquo;POSIX&amp;rdquo; LC_ALL= 修改profile vi /etc/profile 添加如下内容 export LC_ALL=en_US.UTF-8 source /etc/profile 得到错误 setlocale: LC_ALL: cannot change locale (en_US.UTF-8): No such file or directory 运行 dpkg-reconfigure locales 得</description></item><item><title>Dive in Linux capabilites</title><link>https://feisky.xyz/posts/2015-03-03-dive-in-linux-capabilites/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-03-03-dive-in-linux-capabilites/</guid><description>Introduction Capabilities in Linux are flags that tell the kernel what the application is allowed to do, If you have no additional security mechanism in place, the Linux root user has all capabilities assigned to it. As capabilities are a way for running processes with some privileges, without having the need to grant them root privileges, it is important to understand that they exist. Consider the ping utility. It is</description></item><item><title>How to disable ubuntu services</title><link>https://feisky.xyz/posts/2015-03-18-how-to-disable-ubuntu-services/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-03-18-how-to-disable-ubuntu-services/</guid><description>To toggle a service from starting or stopping permanently you would need to:
-echo manual | sudo tee /etc/init/SERVICE.override where the stanza manual will stop Upstart from automatically loading the service on next boot. Any service with the .override ending will take precedence over the original service file. You will only be able to start the service manually afterwards. If you do not want this then simply delete the .</description></item><item><title>Installing Realtek rltwifi driver for Ubuntu 14.10</title><link>https://feisky.xyz/posts/2015-02-15-installing-realtek-rltwifi-driver-for-ubuntu-1410/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-02-15-installing-realtek-rltwifi-driver-for-ubuntu-1410/</guid><description>安装方法 Ubuntu 14默认内核版本没有带RTL8192ee的网卡驱动，因而就无法通过无线网络联网，并且Reltek官方网站也没有提供合适的驱动。而最</description></item><item><title>Linux kernel network call flow</title><link>https://feisky.xyz/posts/2015-03-04-linux-kernel-network-call-flow/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-03-04-linux-kernel-network-call-flow/</guid><description>Refer http://blog.csdn.net/night_elf_1020/article/details/19935813</description></item><item><title>Linux netcat examples</title><link>https://feisky.xyz/posts/2015-02-12-linux-netcat-examples/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-02-12-linux-netcat-examples/</guid><description>端口扫描 nc -z -v -n 172.31.100.7 21-25 Chat Server Server: nc -l 1567 Client: nc 172.31.100.7 1567 文件传输 Server to Client: Server: nc -l 1567 &amp;lt; file.txt Client: nc -n 172.31.100.7 1567 &amp;gt; file.txt Client to Server: Server: nc -l 1567 &amp;gt; file.txt Client: nc 172.31.100.23 1567 &amp;lt; file.txt 目录传输 Server: tar -cvf - dir_name | nc -l 1567 Client: nc</description></item><item><title>Redhat Atomic Host</title><link>https://feisky.xyz/posts/2015-03-06-redhat-atomic-host/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-03-06-redhat-atomic-host/</guid><description>Introduction Red Hat has announced first public beta of Red Hat Enterprise Linux 7 Atomic Host. The beta is available from Red Hat and on Amazon Web Services and Google Compute Platform.
-What can you expect from the Red Hat Enterprise Linux 7 Atomic Host Beta?
-Specifically Designed to Run Containers Red Hat Enterprise Linux 7 Atomic Host Beta provides a streamlined host platform that is optimized to run application containers.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Linux on Feisky</title><link>https://feisky.xyz/tags/linux/</link><description>Recent content in Linux on Feisky</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sat, 20 Jun 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://feisky.xyz/tags/linux/index.xml" rel="self" type="application/rss+xml"/><item><title>10个问题带你全面理解Linux性能优化</title><link>https://feisky.xyz/posts/2020-06-06-linux-perf/</link><pubDate>Sat, 20 Jun 2020 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2020-06-06-linux-perf/</guid><description>&lt;blockquote>
+&lt;p>本文整理自极客时间“10个问题带你全面理解Linux性能优化”直播，PPT下载请参考文末的 InfoQ 官方网站[1]。&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="1-为什么面试官喜欢考察性能优化问题">&lt;strong>1. 为什么面试官喜欢考察性能优化问题？&lt;/strong>&lt;/h2>
+&lt;p>面试官考察性能优化问题的目的可能并不是要你设计一个性能很高的系统，而是为了全方位考察一个面试者的知识背景和实践能力。&lt;/p></description></item><item><title>awesome quick start</title><link>https://feisky.xyz/posts/2015-03-20-awesome-quick-start/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-03-20-awesome-quick-start/</guid><description>&lt;p>awesome是Linux平台出色的窗口管理器，具有速度快、界面简捷等优点。其安装也比较简单：&lt;/p>
+&lt;pre tabindex="0">&lt;code>sudo apt-get install -y awesome awesome-extra gnome-settings-daemon nautilus
+sudo apt-get install -y --no-install-recommends gnome-session
+mkdir -p ~/.config/awesome
+&lt;/code>&lt;/pre>&lt;p>常用快捷键整理：&lt;/p>
+&lt;pre>&lt;code>切换程序
+切换到下一个程序：Mod4 + j
+切换到上一个程序：Mod4 + k
+切换到主窗口中的第一个程序：Mod4 + Ctrl + Return
+
+切换tag
+切换到上一个选择的tag：Mod4 + Esc
+切换到某个指定的tag：Mod4 + 1-9
+切换到前一个tag：Mod4 + Left
+切换到下一个tag：Mod4 + Right
+
+程序窗口状态修改
+最大化/非最大化：Mod4 + m
+浮动/平铺：Mod4 + Ctrl + Space
+最小化：Mod4 + n
+从最小化中恢复：Mod4 + Ctrl + n
+关闭程序：Mod4 + Shift + C
+
+程序窗口的转移和显示
+转移到某个tag：Mod4 + Shift + 1-9（或在某个tag名上按Mod4+鼠标左键）
+增加到某些tag：Mod4 + Shift + Ctrl + 1-9
+转移到下一个窗口中的位置：Mod4 + Shift + j
+转移到上一个窗口中的位置：Mod4 + Shift + k
+
+布局修改
+当前程序窗口宽度增加5％：Mod4 + Shift + h
+当前程序窗口宽度减少5％：Mod4 + Shift + l
+切换到下一种布局方式：Mod4 + Space
+切换到上一种布局方式：Mod4 + Ctrl + Space
+
+窗口管理
+重启awesome：Mod4 + Ctrl + r
+退出awesome：Mod4 + Shift + q
+运行某个命令：Mod4 + r
+打开awesome菜单：Mod4 + w
+
+多显示器下的操作
+切换到下一个屏幕：Mod4 + Ctrl + j
+切换到上一个屏幕：Mod4 + Ctrl + k
+将程序发送到下一个屏幕：Mod4 + o
+&lt;/code>&lt;/pre></description></item><item><title>cannot change locale</title><link>https://feisky.xyz/posts/2015-02-10-cannot-change-locale/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-02-10-cannot-change-locale/</guid><description>&lt;p>运行locale命令&lt;!-- raw HTML omitted -->&lt;!-- raw HTML omitted -->&lt;br>
+LANG=&lt;br>
+LANGUAGE=&lt;br>
+LC_CTYPE=&amp;ldquo;POSIX&amp;rdquo;&lt;br>
+LC_NUMERIC=&amp;ldquo;POSIX&amp;rdquo;&lt;br>
+LC_TIME=&amp;ldquo;POSIX&amp;rdquo;&lt;br>
+LC_COLLATE=&amp;ldquo;POSIX&amp;rdquo;&lt;br>
+LC_MONETARY=&amp;ldquo;POSIX&amp;rdquo;&lt;br>
+LC_MESSAGES=&amp;ldquo;POSIX&amp;rdquo;&lt;br>
+LC_PAPER=&amp;ldquo;POSIX&amp;rdquo;&lt;br>
+LC_NAME=&amp;ldquo;POSIX&amp;rdquo;&lt;br>
+LC_ADDRESS=&amp;ldquo;POSIX&amp;rdquo;&lt;br>
+LC_TELEPHONE=&amp;ldquo;POSIX&amp;rdquo;&lt;br>
+LC_MEASUREMENT=&amp;ldquo;POSIX&amp;rdquo;&lt;br>
+LC_IDENTIFICATION=&amp;ldquo;POSIX&amp;rdquo;&lt;br>
+LC_ALL=&lt;/p>
+&lt;p>修改profile&lt;/p>
+&lt;p>vi /etc/profile&lt;/p>
+&lt;p>添加如下内容&lt;/p>
+&lt;p>export LC_ALL=en_US.UTF-8&lt;/p>
+&lt;p>source /etc/profile&lt;/p>
+&lt;p>得到错误 setlocale: LC_ALL: cannot change locale (en_US.UTF-8): No such file or directory&lt;br>
+ 运行 dpkg-reconfigure locales&lt;/p></description></item><item><title>Dive in Linux capabilites</title><link>https://feisky.xyz/posts/2015-03-03-dive-in-linux-capabilites/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-03-03-dive-in-linux-capabilites/</guid><description>&lt;h3 id="introduction">Introduction&lt;/h3>
+&lt;p>Capabilities in Linux are flags that tell the kernel what the application is allowed to do, If you have no additional security mechanism in place, the Linux root user has all capabilities assigned to it. As capabilities are a way for running processes with some privileges, without having the need to grant them root privileges, it is important to understand that they exist.&lt;/p>
+&lt;p>Consider the ping utility. It is marked setuid root on some distributions, because the utility requires the (cap)ability to send raw packets. This capability is known as CAP_NET_RAW. However, thanks to capabilities, you can now mark the ping application with this capability and drop the setuid from the file. As a result, the application does not run with full root privileges anymore, but with the restricted privileges of the user plus one capability, namely the CAP_NET_RAW.&lt;/p></description></item><item><title>How to disable ubuntu services</title><link>https://feisky.xyz/posts/2015-03-18-how-to-disable-ubuntu-services/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-03-18-how-to-disable-ubuntu-services/</guid><description>&lt;p>To toggle a service from starting or stopping permanently you would need to:&lt;/p>
+&lt;pre>&lt;code>echo manual | sudo tee /etc/init/SERVICE.override
+&lt;/code>&lt;/pre>
+&lt;p>where the stanza manual will stop Upstart from automatically loading the service on next boot. Any service with the .override ending will take precedence over the original service file. You will only be able to start the service manually afterwards. If you do not want this then simply delete the .override. For example:&lt;/p></description></item><item><title>Installing Realtek rltwifi driver for Ubuntu 14.10</title><link>https://feisky.xyz/posts/2015-02-15-installing-realtek-rltwifi-driver-for-ubuntu-1410/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-02-15-installing-realtek-rltwifi-driver-for-ubuntu-1410/</guid><description>&lt;h3 id="安装方法">安装方法&lt;/h3>
+&lt;p>Ubuntu 14默认内核版本没有带RTL8192ee的网卡驱动，因而就无法通过无线网络联网，并且Reltek官方网站也没有提供合适的驱动。而最新的Linux内核已经带了相应驱动，所以一般建议修复的方法就是升级内核版本到最新。但如果不想内核升级咋办呢？幸好Github上已经有人将这个驱动写好了，直接安装即可：&lt;/p></description></item><item><title>Linux kernel network call flow</title><link>https://feisky.xyz/posts/2015-03-04-linux-kernel-network-call-flow/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-03-04-linux-kernel-network-call-flow/</guid><description>&lt;p>&lt;img src="https://feisky.xyz/images/network_flow.jpg" alt="">&lt;/p>
+&lt;p>Refer &lt;a href="http://blog.csdn.net/night_elf_1020/article/details/19935813">http://blog.csdn.net/night_elf_1020/article/details/19935813&lt;/a>&lt;/p></description></item><item><title>Linux netcat examples</title><link>https://feisky.xyz/posts/2015-02-12-linux-netcat-examples/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-02-12-linux-netcat-examples/</guid><description>&lt;h3 id="端口扫描">端口扫描&lt;/h3>
+&lt;p>nc -z -v -n 172.31.100.7 21-25&lt;/p>
+&lt;h3 id="chat-server">Chat Server&lt;/h3>
+&lt;p>Server: nc -l 1567&lt;/p>
+&lt;p>Client: nc 172.31.100.7 1567&lt;/p>
+&lt;h3 id="文件传输">文件传输&lt;/h3>
+&lt;p>Server to Client:&lt;/p>
+&lt;p>Server: nc -l 1567 &amp;lt; file.txt&lt;/p>
+&lt;p>Client: nc -n 172.31.100.7 1567 &amp;gt; file.txt&lt;/p>
+&lt;p>Client to Server:&lt;/p>
+&lt;p>Server: nc -l 1567 &amp;gt; file.txt&lt;/p>
+&lt;p>Client: nc 172.31.100.23 1567 &amp;lt; file.txt&lt;/p>
+&lt;h3 id="目录传输">目录传输&lt;/h3>
+&lt;p>Server: tar -cvf - dir_name | nc -l 1567&lt;/p>
+&lt;p>Client: nc -n 172.31.100.7 1567 | tar -xvf -&lt;/p>
+&lt;h3 id="视频播放">视频播放&lt;/h3>
+&lt;p>Server: cat video.avi | nc -l 1567&lt;/p></description></item><item><title>Redhat Atomic Host</title><link>https://feisky.xyz/posts/2015-03-06-redhat-atomic-host/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-03-06-redhat-atomic-host/</guid><description>&lt;h3 id="introduction">Introduction&lt;/h3>
+&lt;p>Red Hat has announced first public beta of &lt;a href="http://www.projectatomic.io/">Red Hat Enterprise Linux 7 Atomic Host&lt;/a>. The beta is available from Red Hat and on Amazon Web Services and Google Compute Platform.&lt;/p>
+&lt;p>What can you expect from the Red Hat Enterprise Linux 7 Atomic Host Beta?&lt;/p>
+&lt;h4 id="specifically-designed-to-run-containers">Specifically Designed to Run Containers&lt;/h4>
+&lt;p>Red Hat Enterprise Linux 7 Atomic Host Beta provides a streamlined host platform that is optimized to run application containers. The software components included in Red Hat Enterprise Linux 7 Atomic Host Beta, as well as the default system tunings, have been designed to enhance the performance, scalability and security of containers, giving you the optimal platform on which to deploy and run application containers.&lt;/p></description></item></channel></rss>

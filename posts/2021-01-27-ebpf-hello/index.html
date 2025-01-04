@@ -1,228 +1,65 @@
-<!doctype html><html lang=zh-cn>
-<head>
-<link href=https://gmpg.org/xfn/11 rel=profile>
-<link rel=canonical href=https://feisky.xyz/posts/2021-01-27-ebpf-hello/>
-<meta charset=utf-8>
-<meta http-equiv=x-ua-compatible content="IE=edge">
-<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1">
-<meta name=generator content="Hugo 0.87.0">
-<title>eBPF 入门之初体验 • Feisky</title>
-<meta name=twitter:card content="summary">
-<meta name=twitter:title content="eBPF 入门之初体验">
-<meta name=twitter:description content="eBPF 提供了强大的跟踪、探测以及高效内核网络等功能，但由于其接口处于操作系统底层，新手入门起来还是有很大难度。幸好，eBPF 的维护者也看到了这个">
-<meta property="og:title" content="eBPF 入门之初体验">
-<meta property="og:description" content="eBPF 提供了强大的跟踪、探测以及高效内核网络等功能，但由于其接口处于操作系统底层，新手入门起来还是有很大难度。幸好，eBPF 的维护者也看到了这个">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://feisky.xyz/posts/2021-01-27-ebpf-hello/"><meta property="article:section" content="posts">
-<meta property="article:published_time" content="2021-01-27T00:00:00+00:00">
-<meta property="article:modified_time" content="2021-01-27T00:00:00+00:00">
-<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai.min.css>
-<link rel=stylesheet href=/scss/hyde-hyde.3081c4981fb69a2783dd36ecfdd0e6ba7a158d4cbfdd290ebce8f78ba0469fc6.css integrity="sha256-MIHEmB+2mieD3Tbs/dDmunoVjUy/3SkOvOj3i6BGn8Y=">
-<link rel=stylesheet href=/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58+TzH3icCkSHGoJ+ed7w=" media=print>
-<link rel=stylesheet href=/scss/tocbot.5ef07cebc3c477b54270456f149ee02922479bb7555fd344b2c69f953b0e7e5e.css integrity="sha256-XvB868PEd7VCcEVvFJ7gKSJHm7dVX9NEssaflTsOfl4="><!--[if lt IE 9]><script src=https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js></script>
-<script src=https://oss.maxcdn.com/respond/1.4.2/respond.min.js></script><![endif]-->
-<link rel=apple-touch-icon-precomposed sizes=144x144 href=/apple-touch-icon-144-precomposed.png>
-<link rel="shortcut icon" href=/favicon.png>
-</head>
-<body class=theme-base-0d>
-<div class=sidebar>
-<div class=container>
-<div class=sidebar-about>
-<span class=site__title>
-<a href=https://feisky.xyz/>
-Feisky
-</a>
-</span>
-<div class=author-image>
-<img src="https://www.gravatar.com/avatar/f86d2faa0f91793a2163d226d82a7620?s=240&d=mp" class="img--circle img--headshot element--center" alt=gravatar>
-</div>
-<p class=site__description>
-</p>
-</div>
-<div class=collapsible-menu>
-<input type=checkbox id=menuToggle>
-<label for=menuToggle>Feisky</label>
-<div class=menu-content>
-<div>
-<ul class=sidebar-nav>
-<li>
-<a href=https://time.geekbang.org/column/intro/100020901>
-<span>Linux性能优化实战</span>
-</a>
-</li>
-<li>
-<a href=https://time.geekbang.org/column/intro/100104501>
-<span>EBPF核心技术与实战</span>
-</a>
-</li>
-<li>
-<a href=https://kubernetes.feisky.xyz>
-<span>Kubernetes指南</span>
-</a>
-</li>
-<li>
-<a href=https://sdn.feisky.xyz>
-<span>SDN网络指南</span>
-</a>
-</li>
-<li>
-<a href=/assets/mp.png>
-<span>微信公众号</span>
-</a>
-</li>
-<li>
-<a href=https://zhuanlan.zhihu.com/kubernetes>
-<span>知乎专栏</span>
-</a>
-</li>
-<li>
-<a href=/about/>
-<span>关于我</span>
-</a>
-</li>
-</ul>
-</div>
-<section class=social>
-<a href=https://twitter.com/feisky rel=me><i class="fab fa-twitter fa-lg" aria-hidden=true></i></a>
-<a href=https://github.com/feiskyer rel=me><i class="fab fa-github fa-lg" aria-hidden=true></i></a>
-</section>
-</div>
-</div>
-<div class=copyright>
-&copy; 2022 feiskyer
-<a href=https://creativecommons.org/licenses/by-sa/4.0>CC BY-SA 4.0</a>
-</div>
-<div class=builtwith>
-Built with <a href=https://gohugo.io>Hugo</a> ❤️ <a href=https://github.com/htr3n/hyde-hyde>hyde-hyde</a>.
-</div>
-</div>
-</div>
-<div class="content container">
-<article>
-<header>
-<h1>eBPF 入门之初体验</h1>
-<div class=post__meta>
-<i class="fas fa-calendar-alt"></i> Jan 27, 2021
-<br>
-<i class="fas fa-tags"></i>
-<a class="badge badge-tag" href=/tags/ebpf>ebpf</a>
-<br>
-<i class="fas fa-clock"></i> 3 min read
-</div>
-</header>
-<div class=toc-wrapper>
-<input type=checkbox id=tocToggle>
-<label for=tocToggle>Table of Content</label>
-<div class=toc id=TableOfContents></div>
-</div>
-<div class=post>
-<p>eBPF 提供了强大的跟踪、探测以及高效内核网络等功能，但由于其接口处于操作系统底层，新手入门起来还是有很大难度。幸好，eBPF 的维护者也看到了这个问题，并开发了一系列的工具来简化 eBPF 程序的开发和使用。这其中，最常用的两个工具是 BCC 和 bpftrace。</p>
-<h2 id=bcc>BCC</h2>
-<p><a href=https://github.com/iovisor/bcc>BCC</a>(BPF Compiler Collection) 在 eBPF 编程接口之上封装了 eBPF 程序的构建过程，提供了 Python、C++ 和 Lua 等高级语言接口，并基于 Python 接口实现了大量的工具，是新手入门体验 eBPF 的最好项目。</p>
-<p>BCC 的安装比较简单，比如 Ubuntu 和 RHEL 直接运行下面的命令就可以（其他发行版可以参考 <a href=https://github.com/iovisor/bcc/blob/master/INSTALL.md>INSTALL</a> 安装）：</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=color:#75715e># Ubuntu</span>
-sudo apt-get install bpfcc-tools linux-headers-<span style=color:#66d9ef>$(</span>uname -r<span style=color:#66d9ef>)</span> linux-tools-common
-
-<span style=color:#75715e># RHEL</span>
-sudo yum install bcc-tools
-</code></pre></div><p>安装后，BCC 会把所有示例（包括 Python 和 lua），放到 /usr/share/bcc/examples 目录中。</p>
-<p>不过发行版自带的 BCC 版本通常比较旧，并不包含很多已经修复的问题或者新的特性，在运行时可能会碰到意想不到的错误。比如，在 Ubuntu 18.04 中，执行 /usr/sbin/tcpconnect-bpfcc 你会碰到下面的&rsquo;asm goto' 问题：</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>error: <span style=color:#e6db74>&#39;asm goto&#39;</span> constructs are not supported yet
-</code></pre></div><p>这是一个已知的问题，BCC Github 上面对应的 issue 是 <a href=https://github.com/iovisor/bcc/issues/2119>#2119</a>。</p>
-<p>所以，在学习的时候，更推荐从源码安装最新版本：</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>apt-get install -y build-essential git bison cmake flex  libedit-dev libllvm6.0 llvm-6.0-dev libclang-6.0-dev python zlib1g-dev libelf-dev python3-distutils libfl-dev
-git clone https://github.com/iovisor/bcc.git
-mkdir bcc/build <span style=color:#f92672>&amp;&amp;</span> cd bcc/build
-cmake ..
-make <span style=color:#f92672>&amp;&amp;</span> make install
-cmake -DPYTHON_CMD<span style=color:#f92672>=</span>python3 .. <span style=color:#75715e># build python3 binding</span>
-pushd src/python/
-make <span style=color:#f92672>&amp;&amp;</span> make install
-</code></pre></div><p>这样，所有的 BCC 工具会安装到 <code>/usr/share/bcc</code> 目录中。比如，你可以通过 <code>/usr/share/bcc/tools/tcpconnect</code> 命令来执行 tcpconnect 工具。</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>$ /usr/share/bcc/tools/tcpconnect
-Tracing connect ... Hit Ctrl-C to end
-PID    COMM         IP SADDR            DADDR            DPORT
-<span style=color:#ae81ff>192664</span> curl         <span style=color:#ae81ff>4</span>  10.240.1.2       39.156.69.79     <span style=color:#ae81ff>80</span>
-</code></pre></div><h2 id=bpftrace>bpftrace</h2>
-<p><a href=https://github.com/iovisor/bpftrace>bpftrace</a> 类似于 DTrace 或 SystemTap，它在 eBPF 之上构建了一个简化的跟踪语言，通过简单的几行脚本，就可以达到复杂的跟踪功能。多行的跟踪指令也可以放到脚本文件中执行，脚本后缀通常为 <code>.bt</code>。</p>
-<p><img src=2021-01-25-14-44-55.png alt></p>
-<p>Ubuntu 19.04 或者更新的系统可以直接通过 apt-get 命令安装 bpftrace：</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=color:#75715e># Ubuntu</span>
-sudo apt-get install -y bpftrace
-</code></pre></div><p>而在其他系统或者生产环境中，推荐使用 docker 来运行 bpftrace。比如：</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>$ docker run -ti --rm -v /usr/src:/usr/src:ro <span style=color:#ae81ff>\
-</span><span style=color:#ae81ff></span>       -v /lib/modules/:/lib/modules:ro <span style=color:#ae81ff>\
-</span><span style=color:#ae81ff></span>       -v /sys/kernel/debug/:/sys/kernel/debug:rw <span style=color:#ae81ff>\
-</span><span style=color:#ae81ff></span>       --net<span style=color:#f92672>=</span>host --pid<span style=color:#f92672>=</span>host --privileged <span style=color:#ae81ff>\
-</span><span style=color:#ae81ff></span>       quay.io/iovisor/bpftrace:latest <span style=color:#ae81ff>\
-</span><span style=color:#ae81ff></span>       tcplife.bt
-Attaching <span style=color:#ae81ff>3</span> probes...
-PID    COMM       LADDR           LPORT RADDR           RPORT TX_KB RX_KB MS
-<span style=color:#ae81ff>192855</span> curl       10.240.1.2      <span style=color:#ae81ff>44790</span> 220.181.38.148  <span style=color:#ae81ff>80</span>        <span style=color:#ae81ff>0</span>     <span style=color:#ae81ff>0</span> <span style=color:#ae81ff>233</span>
-</code></pre></div><p><a href=https://github.com/iovisor/bpftrace/blob/master/docs/tutorial_one_liners.md>bpftrace 文档</a> 提供了很多的单行示例，可以作为学习 bpftrace 的入门教程：</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=color:#75715e># Files opened by process</span>
-bpftrace -e <span style=color:#e6db74>&#39;tracepoint:syscalls:sys_enter_open {printf(&#34;%s %s\n&#34;, comm, str(args-&gt;filename)); }&#39;</span>
-
-<span style=color:#75715e># Syscall count by program</span>
-bpftrace -e <span style=color:#e6db74>&#39;tracepoint:raw_syscalls:sys_enter {@[comm] = count(); }&#39;</span>
-
-<span style=color:#75715e># Read bytes by process:</span>
-bpftrace -e <span style=color:#e6db74>&#39;tracepoint:syscalls:sys_exit_read /args-&gt;ret/ {@[comm] = sum(args-&gt;ret); }&#39;</span>
-
-<span style=color:#75715e># Read size distribution by process:</span>
-bpftrace -e <span style=color:#e6db74>&#39;tracepoint:syscalls:sys_exit_read {@[comm] = hist(args-&gt;ret); }&#39;</span>
-
-<span style=color:#75715e># Show per-second syscall rates:</span>
-bpftrace -e <span style=color:#e6db74>&#39;tracepoint:raw_syscalls:sys_enter {@ = count(); } interval:s:1 { print(@); clear(@); }&#39;</span>
-
-<span style=color:#75715e># Trace disk size by process</span>
-bpftrace -e <span style=color:#e6db74>&#39;tracepoint:block:block_rq_issue {printf(&#34;%d %s %d\n&#34;, pid, comm, args-&gt;bytes); }&#39;</span>
-
-<span style=color:#75715e># Count page faults by process</span>
-bpftrace -e <span style=color:#e6db74>&#39;software:faults:1 {@[comm] = count(); }&#39;</span>
-</code></pre></div><p>在 Kubernetes 集群中，你可以通过 <a href=https://github.com/iovisor/kubectl-trace>kubectl trace</a> 简化 bpftrace 的调度和运行。其运行原理如下图所示：</p>
-<p><img src=2021-01-25-14-49-01.png alt></p>
-<p>kubectl trace 支持单行方式或者脚本文件方式，比如</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=color:#75715e># Run a program from string literal</span>
-kubectl trace run node-1 -e <span style=color:#e6db74>&#34;tracepoint:syscalls:sys_enter_* {@[probe] = count(); }&#34;</span>
-<span style=color:#75715e># Run a program from file</span>
-kubectl trace run node-1 -f read.bt
-</code></pre></div><p><img src=2021-01-25-14-45-25.png alt></p>
-<p>kubectl trace 也可以通过 uprobe 直接跟踪一个 Pod：</p>
-<p><img src=2021-01-25-14-54-41.png alt></p>
-<h2 id=小结>小结</h2>
-<p>BCC 和 bpftrace 是两个最简单易用的 eBPF 跟踪工具，推荐初学者先学会它们的使用方法，并作为排错和性能调优的工具应用到实际系统中。</p>
-<hr>
-<p>欢迎扫描下面的二维码关注<strong>漫谈云原生</strong>公众号，回复<strong>任意关键字</strong>查询更多云原生知识库，或回复<strong>联系</strong>加我微信。</p>
-<p><img src=/assets/mp.png alt></p>
-</div>
-<div class="navigation navigation-single">
-<a href=/posts/2021-01-20-eks-gke-aks/ class=navigation-prev>
-<i aria-hidden=true class="fa fa-chevron-left"></i>
+<!doctype html><html lang=zh-cn><head><link href=https://gmpg.org/xfn/11 rel=profile><link rel=canonical href=https://feisky.xyz/posts/2021-01-27-ebpf-hello/><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta name=generator content="Hugo 0.140.2"><title>eBPF 入门之初体验 • Feisky</title>
+<meta name=twitter:card content="summary"><meta name=twitter:title content="eBPF 入门之初体验"><meta name=twitter:description content="eBPF 提供了强大的跟踪、探测以及高效内核网络等功能，但由于其接口处于操作系统底层，新手入门起来还是有很大难度。幸好，eBPF 的维护者也看到了这个问题，并开发了一系列的工具来简化 eBPF 程序的开发和使用。这其中，最常用的两个工具是 BCC 和 bpftrace。"><meta name=twitter:site content="@feisky"><meta property="og:url" content="https://feisky.xyz/posts/2021-01-27-ebpf-hello/"><meta property="og:site_name" content="Feisky"><meta property="og:title" content="eBPF 入门之初体验"><meta property="og:description" content="eBPF 提供了强大的跟踪、探测以及高效内核网络等功能，但由于其接口处于操作系统底层，新手入门起来还是有很大难度。幸好，eBPF 的维护者也看到了这个问题，并开发了一系列的工具来简化 eBPF 程序的开发和使用。这其中，最常用的两个工具是 BCC 和 bpftrace。"><meta property="og:locale" content="zh_cn"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2021-01-27T00:00:00+00:00"><meta property="article:modified_time" content="2021-01-27T00:00:00+00:00"><meta property="article:tag" content="EBPF"><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/monokai.min.css><link rel=stylesheet href=/scss/triple-hyde.ef937e1c8a424ea6419b858ae4cfbdb5f7e764eb1075e9ac50fa2de759dde8a2.css integrity="sha256-75N+HIpCTqZBm4WK5M+9tffnZOsQdemsUPot51nd6KI="><link rel=stylesheet href=/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58+TzH3icCkSHGoJ+ed7w=" media=print><link rel=stylesheet href=/scss/tocbot.5ef07cebc3c477b54270456f149ee02922479bb7555fd344b2c69f953b0e7e5e.css integrity="sha256-XvB868PEd7VCcEVvFJ7gKSJHm7dVX9NEssaflTsOfl4="><!--[if lt IE 9]><script src=https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js></script><script src=https://oss.maxcdn.com/respond/1.4.2/respond.min.js></script><![endif]--><link rel=apple-touch-icon-precomposed sizes=144x144 href=/apple-touch-icon-144-precomposed.png><link rel="shortcut icon" href=/favicon.png></head><body class=theme-base-0d><div class=sidebar><div class=container><div class=sidebar-about><span class=site__title><a href=https://feisky.xyz/>Feisky</a></span><div class=author-image><img src="https://www.gravatar.com/avatar/f86d2faa0f91793a2163d226d82a7620?s=240&d=mp" class="img--circle img--headshot element--center" alt=gravatar></div><p class=site__description></p></div><div class=collapsible-menu><input type=checkbox id=menuToggle>
+<label for=menuToggle>Feisky</label><div class=menu-content><div><ul class=sidebar-nav><li><a href=https://time.geekbang.org/column/intro/100020901><span>Linux性能优化实战</span></a></li><li><a href=https://time.geekbang.org/column/intro/100104501><span>EBPF核心技术与实战</span></a></li><li><a href=https://kubernetes.feisky.xyz><span>Kubernetes指南</span></a></li><li><a href=https://sdn.feisky.xyz><span>SDN网络指南</span></a></li><li><a href=/assets/mp.png><span>微信公众号</span></a></li><li><a href=https://zhuanlan.zhihu.com/kubernetes><span>知乎专栏</span></a></li><li><a href=/about/><span>关于我</span></a></li></ul></div><section class=social><a href=https://twitter.com/feisky rel=me><span class="relative block icon"><svg viewBox="0 0 512 512"><path fill="currentcolor" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645.0 138.72-105.583 298.558-298.558 298.558-59.452.0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055.0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421.0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391.0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04.0-57.828 46.782-104.934 104.934-104.934 30.213.0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+</span></a><a href=https://github.com/feiskyer rel=me><span class="relative block icon"><svg viewBox="0 0 496 512"><path fill="currentcolor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6.0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6.0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3.0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1.0-6.2-.3-40.4-.3-61.4.0.0-70 15-84.7-29.8.0.0-11.4-29.1-27.8-36.6.0.0-22.9-15.7 1.6-15.4.0.0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5.0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9.0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4.0 33.7-.3 75.4-.3 83.6.0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6.0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9.0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span></a></section></div></div><div class=copyright>&copy; 2025 feiskyer
+<a href=https://creativecommons.org/licenses/by-sa/4.0>CC BY-SA 4.0</a></div><div class=builtwith>Built with <a href=https://gohugo.io>Hugo</a> ❤️ <a href=https://github.com/derme302/triple-hyde>triple-hyde</a>.</div></div></div><div class="content container"><article><header><h1>eBPF 入门之初体验</h1><div class=post__meta><i class="fas fa-calendar-alt"></i> Jan 27, 2021<br><i class="fas fa-tags"></i>
+<a class="badge badge-tag" href=/tags/ebpf>ebpf</a><br><i class="fas fa-clock"></i> 3 min read</div></header><div class=toc-wrapper><input type=checkbox id=tocToggle>
+<label for=tocToggle>Table of Content</label><div class=toc id=TableOfContents></div></div><div class=post><p>eBPF 提供了强大的跟踪、探测以及高效内核网络等功能，但由于其接口处于操作系统底层，新手入门起来还是有很大难度。幸好，eBPF 的维护者也看到了这个问题，并开发了一系列的工具来简化 eBPF 程序的开发和使用。这其中，最常用的两个工具是 BCC 和 bpftrace。</p><h2 id=bcc>BCC</h2><p><a href=https://github.com/iovisor/bcc>BCC</a>(BPF Compiler Collection) 在 eBPF 编程接口之上封装了 eBPF 程序的构建过程，提供了 Python、C++ 和 Lua 等高级语言接口，并基于 Python 接口实现了大量的工具，是新手入门体验 eBPF 的最好项目。</p><p>BCC 的安装比较简单，比如 Ubuntu 和 RHEL 直接运行下面的命令就可以（其他发行版可以参考 <a href=https://github.com/iovisor/bcc/blob/master/INSTALL.md>INSTALL</a> 安装）：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span><span style=color:#75715e># Ubuntu</span>
+</span></span><span style=display:flex><span>sudo apt-get install bpfcc-tools linux-headers-<span style=color:#66d9ef>$(</span>uname -r<span style=color:#66d9ef>)</span> linux-tools-common
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># RHEL</span>
+</span></span><span style=display:flex><span>sudo yum install bcc-tools
+</span></span></code></pre></div><p>安装后，BCC 会把所有示例（包括 Python 和 lua），放到 /usr/share/bcc/examples 目录中。</p><p>不过发行版自带的 BCC 版本通常比较旧，并不包含很多已经修复的问题或者新的特性，在运行时可能会碰到意想不到的错误。比如，在 Ubuntu 18.04 中，执行 /usr/sbin/tcpconnect-bpfcc 你会碰到下面的&rsquo;asm goto&rsquo; 问题：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>error: <span style=color:#e6db74>&#39;asm goto&#39;</span> constructs are not supported yet
+</span></span></code></pre></div><p>这是一个已知的问题，BCC Github 上面对应的 issue 是 <a href=https://github.com/iovisor/bcc/issues/2119>#2119</a>。</p><p>所以，在学习的时候，更推荐从源码安装最新版本：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>apt-get install -y build-essential git bison cmake flex  libedit-dev libllvm6.0 llvm-6.0-dev libclang-6.0-dev python zlib1g-dev libelf-dev python3-distutils libfl-dev
+</span></span><span style=display:flex><span>git clone https://github.com/iovisor/bcc.git
+</span></span><span style=display:flex><span>mkdir bcc/build <span style=color:#f92672>&amp;&amp;</span> cd bcc/build
+</span></span><span style=display:flex><span>cmake ..
+</span></span><span style=display:flex><span>make <span style=color:#f92672>&amp;&amp;</span> make install
+</span></span><span style=display:flex><span>cmake -DPYTHON_CMD<span style=color:#f92672>=</span>python3 .. <span style=color:#75715e># build python3 binding</span>
+</span></span><span style=display:flex><span>pushd src/python/
+</span></span><span style=display:flex><span>make <span style=color:#f92672>&amp;&amp;</span> make install
+</span></span></code></pre></div><p>这样，所有的 BCC 工具会安装到 <code>/usr/share/bcc</code> 目录中。比如，你可以通过 <code>/usr/share/bcc/tools/tcpconnect</code> 命令来执行 tcpconnect 工具。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>$ /usr/share/bcc/tools/tcpconnect
+</span></span><span style=display:flex><span>Tracing connect ... Hit Ctrl-C to end
+</span></span><span style=display:flex><span>PID    COMM         IP SADDR            DADDR            DPORT
+</span></span><span style=display:flex><span><span style=color:#ae81ff>192664</span> curl         <span style=color:#ae81ff>4</span>  10.240.1.2       39.156.69.79     <span style=color:#ae81ff>80</span>
+</span></span></code></pre></div><h2 id=bpftrace>bpftrace</h2><p><a href=https://github.com/iovisor/bpftrace>bpftrace</a> 类似于 DTrace 或 SystemTap，它在 eBPF 之上构建了一个简化的跟踪语言，通过简单的几行脚本，就可以达到复杂的跟踪功能。多行的跟踪指令也可以放到脚本文件中执行，脚本后缀通常为 <code>.bt</code>。</p><p><img src=2021-01-25-14-44-55.png alt></p><p>Ubuntu 19.04 或者更新的系统可以直接通过 apt-get 命令安装 bpftrace：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span><span style=color:#75715e># Ubuntu</span>
+</span></span><span style=display:flex><span>sudo apt-get install -y bpftrace
+</span></span></code></pre></div><p>而在其他系统或者生产环境中，推荐使用 docker 来运行 bpftrace。比如：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>$ docker run -ti --rm -v /usr/src:/usr/src:ro <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>       -v /lib/modules/:/lib/modules:ro <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>       -v /sys/kernel/debug/:/sys/kernel/debug:rw <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>       --net<span style=color:#f92672>=</span>host --pid<span style=color:#f92672>=</span>host --privileged <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>       quay.io/iovisor/bpftrace:latest <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>       tcplife.bt
+</span></span><span style=display:flex><span>Attaching <span style=color:#ae81ff>3</span> probes...
+</span></span><span style=display:flex><span>PID    COMM       LADDR           LPORT RADDR           RPORT TX_KB RX_KB MS
+</span></span><span style=display:flex><span><span style=color:#ae81ff>192855</span> curl       10.240.1.2      <span style=color:#ae81ff>44790</span> 220.181.38.148  <span style=color:#ae81ff>80</span>        <span style=color:#ae81ff>0</span>     <span style=color:#ae81ff>0</span> <span style=color:#ae81ff>233</span>
+</span></span></code></pre></div><p><a href=https://github.com/iovisor/bpftrace/blob/master/docs/tutorial_one_liners.md>bpftrace 文档</a> 提供了很多的单行示例，可以作为学习 bpftrace 的入门教程：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span><span style=color:#75715e># Files opened by process</span>
+</span></span><span style=display:flex><span>bpftrace -e <span style=color:#e6db74>&#39;tracepoint:syscalls:sys_enter_open {printf(&#34;%s %s\n&#34;, comm, str(args-&gt;filename)); }&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Syscall count by program</span>
+</span></span><span style=display:flex><span>bpftrace -e <span style=color:#e6db74>&#39;tracepoint:raw_syscalls:sys_enter {@[comm] = count(); }&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Read bytes by process:</span>
+</span></span><span style=display:flex><span>bpftrace -e <span style=color:#e6db74>&#39;tracepoint:syscalls:sys_exit_read /args-&gt;ret/ {@[comm] = sum(args-&gt;ret); }&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Read size distribution by process:</span>
+</span></span><span style=display:flex><span>bpftrace -e <span style=color:#e6db74>&#39;tracepoint:syscalls:sys_exit_read {@[comm] = hist(args-&gt;ret); }&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Show per-second syscall rates:</span>
+</span></span><span style=display:flex><span>bpftrace -e <span style=color:#e6db74>&#39;tracepoint:raw_syscalls:sys_enter {@ = count(); } interval:s:1 { print(@); clear(@); }&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Trace disk size by process</span>
+</span></span><span style=display:flex><span>bpftrace -e <span style=color:#e6db74>&#39;tracepoint:block:block_rq_issue {printf(&#34;%d %s %d\n&#34;, pid, comm, args-&gt;bytes); }&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Count page faults by process</span>
+</span></span><span style=display:flex><span>bpftrace -e <span style=color:#e6db74>&#39;software:faults:1 {@[comm] = count(); }&#39;</span>
+</span></span></code></pre></div><p>在 Kubernetes 集群中，你可以通过 <a href=https://github.com/iovisor/kubectl-trace>kubectl trace</a> 简化 bpftrace 的调度和运行。其运行原理如下图所示：</p><p><img src=2021-01-25-14-49-01.png alt></p><p>kubectl trace 支持单行方式或者脚本文件方式，比如</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span><span style=color:#75715e># Run a program from string literal</span>
+</span></span><span style=display:flex><span>kubectl trace run node-1 -e <span style=color:#e6db74>&#34;tracepoint:syscalls:sys_enter_* {@[probe] = count(); }&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Run a program from file</span>
+</span></span><span style=display:flex><span>kubectl trace run node-1 -f read.bt
+</span></span></code></pre></div><p><img src=2021-01-25-14-45-25.png alt></p><p>kubectl trace 也可以通过 uprobe 直接跟踪一个 Pod：</p><p><img src=2021-01-25-14-54-41.png alt></p><h2 id=小结>小结</h2><p>BCC 和 bpftrace 是两个最简单易用的 eBPF 跟踪工具，推荐初学者先学会它们的使用方法，并作为排错和性能调优的工具应用到实际系统中。</p><hr><p>欢迎扫描下面的二维码关注<strong>漫谈云原生</strong>公众号，回复<strong>任意关键字</strong>查询更多云原生知识库，或回复<strong>联系</strong>加我微信。</p><p><img src=/assets/mp.png alt></p></div><div class="navigation navigation-single"><a href=/posts/2021-01-20-eks-gke-aks/ class=navigation-prev><i aria-hidden=true class="fa fa-chevron-left"></i>
 <span class=navigation-tittle>三大公有云托管 Kubernetes 服务 (EKS、GKE、AKS) 评估</span>
-</a>
-<a href=/posts/2021-01-29-ebpf-program/ class=navigation-next>
-<span class=navigation-tittle>eBPF 入门之编程</span>
-<i aria-hidden=true class="fa fa-chevron-right"></i>
-</a>
-</div>
-<div id=disqus_thread></div>
-<script type=text/javascript>(function(){var a,b;if(location.hostname==="localhost"||location.hostname==="127.0.0.1"||location.hostname==="")return;a=document.createElement('script'),a.type='text/javascript',a.async=!0,b='feisky',a.src='//'+b+'.disqus.com/embed.js',(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(a)})()</script>
-<noscript>
-Please enable JavaScript to view the
-<a href=http://disqus.com/?ref_noscript>comments powered by Disqus.</a>
-</noscript>
-<a href=http://disqus.com/ class=dsq-brlink>comments powered by
-<span class=logo-disqus>Disqus</span>
-</a>
-</article>
-</div>
-<script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','UA-69699206-1','auto'),ga('send','pageview'))</script>
-<script async src=https://www.google-analytics.com/analytics.js></script>
-<script defer src=https://use.fontawesome.com/releases/v5.12.1/js/all.js integrity=sha384-ZbbbT1gw3joYkKRqh0kWyRp32UAvdqkpbLedQJSlnI8iLQcFVxaGyrOgOJiDQTTR crossorigin=anonymous></script>
-<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js></script>
-<script type=text/javascript>hljs.initHighlightingOnLoad()</script>
-<script src=https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.js></script>
-<script type=text/javascript>tocbot&&tocbot.init({tocSelector:'.toc',contentSelector:'.post',headingSelector:'h2, h3, h4',collapseDepth:4})</script>
-</body>
-</html>
+</a><a href=/posts/2021-01-29-ebpf-program/ class=navigation-next><span class=navigation-tittle>eBPF 入门之编程</span>
+<i aria-hidden=true class="fa fa-chevron-right"></i></a></div><div id=disqus_thread></div><script type=text/javascript>(function(){if(location.hostname==="localhost"||location.hostname==="127.0.0.1"||location.hostname==="")return;var t,e=document.createElement("script");e.type="text/javascript",e.async=!0,t="feisky",e.src="//"+t+".disqus.com/embed.js",(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)})()</script><noscript>Please enable JavaScript to view the
+<a href=http://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=http://disqus.com/ class=dsq-brlink>comments powered by
+<span class=logo-disqus>Disqus</span></a></article></div><script async src="https://www.googletagmanager.com/gtag/js?id=G-1GD5S2NKS3"></script><script>var dnt,doNotTrack=!1;if(!1&&(dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes"),!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-1GD5S2NKS3")}</script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js></script><script type=text/javascript>hljs.initHighlightingOnLoad()</script><script src=https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.js></script><script type=text/javascript>tocbot&&tocbot.init({tocSelector:".toc",contentSelector:".post",headingSelector:"h2, h3, h4",collapseDepth:4})</script></body></html>

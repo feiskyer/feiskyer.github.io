@@ -1,140 +1,17 @@
-<!doctype html><html lang=zh-cn>
-<head>
-<link href=https://gmpg.org/xfn/11 rel=profile>
-<link rel=canonical href=https://feisky.xyz/posts/2021-01-13-config-manage/>
-<meta charset=utf-8>
-<meta http-equiv=x-ua-compatible content="IE=edge">
-<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1">
-<meta name=generator content="Hugo 0.87.0">
-<title>Kubernetes 配置更新的那些事 • Feisky</title>
-<meta name=twitter:card content="summary">
-<meta name=twitter:title content="Kubernetes 配置更新的那些事">
-<meta name=twitter:description content="任何应用都需要一些特定的配置项，用来自定义应用的特性。这些配置通常可以分为两类：一类是诸如运行环境和外部依赖等非敏感配置，另一类是诸如密钥和">
-<meta property="og:title" content="Kubernetes 配置更新的那些事">
-<meta property="og:description" content="任何应用都需要一些特定的配置项，用来自定义应用的特性。这些配置通常可以分为两类：一类是诸如运行环境和外部依赖等非敏感配置，另一类是诸如密钥和">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://feisky.xyz/posts/2021-01-13-config-manage/"><meta property="article:section" content="posts">
-<meta property="article:published_time" content="2021-01-13T00:00:00+00:00">
-<meta property="article:modified_time" content="2021-01-13T00:00:00+00:00">
-<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai.min.css>
-<link rel=stylesheet href=/scss/hyde-hyde.3081c4981fb69a2783dd36ecfdd0e6ba7a158d4cbfdd290ebce8f78ba0469fc6.css integrity="sha256-MIHEmB+2mieD3Tbs/dDmunoVjUy/3SkOvOj3i6BGn8Y=">
-<link rel=stylesheet href=/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58+TzH3icCkSHGoJ+ed7w=" media=print>
-<link rel=stylesheet href=/scss/tocbot.5ef07cebc3c477b54270456f149ee02922479bb7555fd344b2c69f953b0e7e5e.css integrity="sha256-XvB868PEd7VCcEVvFJ7gKSJHm7dVX9NEssaflTsOfl4="><!--[if lt IE 9]><script src=https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js></script>
-<script src=https://oss.maxcdn.com/respond/1.4.2/respond.min.js></script><![endif]-->
-<link rel=apple-touch-icon-precomposed sizes=144x144 href=/apple-touch-icon-144-precomposed.png>
-<link rel="shortcut icon" href=/favicon.png>
-</head>
-<body class=theme-base-0d>
-<div class=sidebar>
-<div class=container>
-<div class=sidebar-about>
-<span class=site__title>
-<a href=https://feisky.xyz/>
-Feisky
-</a>
-</span>
-<div class=author-image>
-<img src="https://www.gravatar.com/avatar/f86d2faa0f91793a2163d226d82a7620?s=240&d=mp" class="img--circle img--headshot element--center" alt=gravatar>
-</div>
-<p class=site__description>
-</p>
-</div>
-<div class=collapsible-menu>
-<input type=checkbox id=menuToggle>
-<label for=menuToggle>Feisky</label>
-<div class=menu-content>
-<div>
-<ul class=sidebar-nav>
-<li>
-<a href=https://time.geekbang.org/column/intro/100020901>
-<span>Linux性能优化实战</span>
-</a>
-</li>
-<li>
-<a href=https://time.geekbang.org/column/intro/100104501>
-<span>EBPF核心技术与实战</span>
-</a>
-</li>
-<li>
-<a href=https://kubernetes.feisky.xyz>
-<span>Kubernetes指南</span>
-</a>
-</li>
-<li>
-<a href=https://sdn.feisky.xyz>
-<span>SDN网络指南</span>
-</a>
-</li>
-<li>
-<a href=/assets/mp.png>
-<span>微信公众号</span>
-</a>
-</li>
-<li>
-<a href=https://zhuanlan.zhihu.com/kubernetes>
-<span>知乎专栏</span>
-</a>
-</li>
-<li>
-<a href=/about/>
-<span>关于我</span>
-</a>
-</li>
-</ul>
-</div>
-<section class=social>
-<a href=https://twitter.com/feisky rel=me><i class="fab fa-twitter fa-lg" aria-hidden=true></i></a>
-<a href=https://github.com/feiskyer rel=me><i class="fab fa-github fa-lg" aria-hidden=true></i></a>
-</section>
-</div>
-</div>
-<div class=copyright>
-&copy; 2022 feiskyer
-<a href=https://creativecommons.org/licenses/by-sa/4.0>CC BY-SA 4.0</a>
-</div>
-<div class=builtwith>
-Built with <a href=https://gohugo.io>Hugo</a> ❤️ <a href=https://github.com/htr3n/hyde-hyde>hyde-hyde</a>.
-</div>
-</div>
-</div>
-<div class="content container">
-<article>
-<header>
-<h1>Kubernetes 配置更新的那些事</h1>
-<div class=post__meta>
-<i class="fas fa-calendar-alt"></i> Jan 13, 2021
-<br>
-<i class="fas fa-tags"></i>
+<!doctype html><html lang=zh-cn><head><link href=https://gmpg.org/xfn/11 rel=profile><link rel=canonical href=https://feisky.xyz/posts/2021-01-13-config-manage/><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta name=generator content="Hugo 0.140.2"><title>Kubernetes 配置更新的那些事 • Feisky</title>
+<meta name=twitter:card content="summary"><meta name=twitter:title content="Kubernetes 配置更新的那些事"><meta name=twitter:description content="任何应用都需要一些特定的配置项，用来自定义应用的特性。这些配置通常可以分为两类：一类是诸如运行环境和外部依赖等非敏感配置，另一类是诸如密钥和 SSH 证书等敏感配置。"><meta name=twitter:site content="@feisky"><meta property="og:url" content="https://feisky.xyz/posts/2021-01-13-config-manage/"><meta property="og:site_name" content="Feisky"><meta property="og:title" content="Kubernetes 配置更新的那些事"><meta property="og:description" content="任何应用都需要一些特定的配置项，用来自定义应用的特性。这些配置通常可以分为两类：一类是诸如运行环境和外部依赖等非敏感配置，另一类是诸如密钥和 SSH 证书等敏感配置。"><meta property="og:locale" content="zh_cn"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2021-01-13T00:00:00+00:00"><meta property="article:modified_time" content="2021-01-13T00:00:00+00:00"><meta property="article:tag" content="Kubernetes"><meta property="article:tag" content="Devops"><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/monokai.min.css><link rel=stylesheet href=/scss/triple-hyde.ef937e1c8a424ea6419b858ae4cfbdb5f7e764eb1075e9ac50fa2de759dde8a2.css integrity="sha256-75N+HIpCTqZBm4WK5M+9tffnZOsQdemsUPot51nd6KI="><link rel=stylesheet href=/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58+TzH3icCkSHGoJ+ed7w=" media=print><link rel=stylesheet href=/scss/tocbot.5ef07cebc3c477b54270456f149ee02922479bb7555fd344b2c69f953b0e7e5e.css integrity="sha256-XvB868PEd7VCcEVvFJ7gKSJHm7dVX9NEssaflTsOfl4="><!--[if lt IE 9]><script src=https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js></script><script src=https://oss.maxcdn.com/respond/1.4.2/respond.min.js></script><![endif]--><link rel=apple-touch-icon-precomposed sizes=144x144 href=/apple-touch-icon-144-precomposed.png><link rel="shortcut icon" href=/favicon.png></head><body class=theme-base-0d><div class=sidebar><div class=container><div class=sidebar-about><span class=site__title><a href=https://feisky.xyz/>Feisky</a></span><div class=author-image><img src="https://www.gravatar.com/avatar/f86d2faa0f91793a2163d226d82a7620?s=240&d=mp" class="img--circle img--headshot element--center" alt=gravatar></div><p class=site__description></p></div><div class=collapsible-menu><input type=checkbox id=menuToggle>
+<label for=menuToggle>Feisky</label><div class=menu-content><div><ul class=sidebar-nav><li><a href=https://time.geekbang.org/column/intro/100020901><span>Linux性能优化实战</span></a></li><li><a href=https://time.geekbang.org/column/intro/100104501><span>EBPF核心技术与实战</span></a></li><li><a href=https://kubernetes.feisky.xyz><span>Kubernetes指南</span></a></li><li><a href=https://sdn.feisky.xyz><span>SDN网络指南</span></a></li><li><a href=/assets/mp.png><span>微信公众号</span></a></li><li><a href=https://zhuanlan.zhihu.com/kubernetes><span>知乎专栏</span></a></li><li><a href=/about/><span>关于我</span></a></li></ul></div><section class=social><a href=https://twitter.com/feisky rel=me><span class="relative block icon"><svg viewBox="0 0 512 512"><path fill="currentcolor" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645.0 138.72-105.583 298.558-298.558 298.558-59.452.0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055.0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421.0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391.0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04.0-57.828 46.782-104.934 104.934-104.934 30.213.0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+</span></a><a href=https://github.com/feiskyer rel=me><span class="relative block icon"><svg viewBox="0 0 496 512"><path fill="currentcolor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6.0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6.0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3.0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1.0-6.2-.3-40.4-.3-61.4.0.0-70 15-84.7-29.8.0.0-11.4-29.1-27.8-36.6.0.0-22.9-15.7 1.6-15.4.0.0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5.0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9.0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4.0 33.7-.3 75.4-.3 83.6.0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6.0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9.0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span></a></section></div></div><div class=copyright>&copy; 2025 feiskyer
+<a href=https://creativecommons.org/licenses/by-sa/4.0>CC BY-SA 4.0</a></div><div class=builtwith>Built with <a href=https://gohugo.io>Hugo</a> ❤️ <a href=https://github.com/derme302/triple-hyde>triple-hyde</a>.</div></div></div><div class="content container"><article><header><h1>Kubernetes 配置更新的那些事</h1><div class=post__meta><i class="fas fa-calendar-alt"></i> Jan 13, 2021<br><i class="fas fa-tags"></i>
 <a class="badge badge-tag" href=/tags/kubernetes>kubernetes</a>
-<a class="badge badge-tag" href=/tags/devops>devops</a>
-<br>
-<i class="fas fa-clock"></i> 4 min read
-</div>
-</header>
-<div class=toc-wrapper>
-<input type=checkbox id=tocToggle>
-<label for=tocToggle>Table of Content</label>
-<div class=toc id=TableOfContents></div>
-</div>
-<div class=post>
-<p>任何应用都需要一些特定的配置项，用来自定义应用的特性。这些配置通常可以分为两类：一类是诸如运行环境和外部依赖等非敏感配置，另一类是诸如密钥和 SSH 证书等敏感配置。</p>
-<p>这些配置不应该直接放到容器镜像中，而是应该配配置与容器分离，通过数据卷、环境变量等方式在运行时动态挂载。</p>
-<h2 id=如何为pod提供配置>如何为Pod提供配置</h2>
-<p>对 Kubernetes 应用来说，敏感配置推荐放到 Secret 中，而非敏感配置推荐放到 ConfigMap 中。Secret 相对于 ConfigMap 来说，提供了更多的数据安全保证机制从而更适合敏感数据配置：</p>
-<ul>
-<li>支持<strong>静态数据加密</strong>[1]，将加密后的数据再存储到 etcd 中。</li>
-<li>以 Volume 形式挂载到 Pod 时，数据存在 tmpfs 中而不是直接写入磁盘存储中。</li>
-</ul>
-<p>Pod 可以通过 Volume 和环境变量两种方式引用 ConfigMap 和 Secret，并且以 Volume 形式挂载后还支持热更新。这种热更新机制看起来非常好，但在实际 Devops 流程中实际上也有不少的问题，需要使用的时候特别注意。</p>
-<h2 id=kubernetes热更新>Kubernetes热更新</h2>
-<p>使用 Secret 和 ConfigMap 最简单的方法是以 Volume 形式挂载到 Pod 中，这种方式也支持自动更新。比如：</p>
-<pre><code>apiVersion: v1
+<a class="badge badge-tag" href=/tags/devops>devops</a><br><i class="fas fa-clock"></i> 4 min read</div></header><div class=toc-wrapper><input type=checkbox id=tocToggle>
+<label for=tocToggle>Table of Content</label><div class=toc id=TableOfContents></div></div><div class=post><p>任何应用都需要一些特定的配置项，用来自定义应用的特性。这些配置通常可以分为两类：一类是诸如运行环境和外部依赖等非敏感配置，另一类是诸如密钥和 SSH 证书等敏感配置。</p><p>这些配置不应该直接放到容器镜像中，而是应该配配置与容器分离，通过数据卷、环境变量等方式在运行时动态挂载。</p><h2 id=如何为pod提供配置>如何为Pod提供配置</h2><p>对 Kubernetes 应用来说，敏感配置推荐放到 Secret 中，而非敏感配置推荐放到 ConfigMap 中。Secret 相对于 ConfigMap 来说，提供了更多的数据安全保证机制从而更适合敏感数据配置：</p><ul><li>支持<strong>静态数据加密</strong>[1]，将加密后的数据再存储到 etcd 中。</li><li>以 Volume 形式挂载到 Pod 时，数据存在 tmpfs 中而不是直接写入磁盘存储中。</li></ul><p>Pod 可以通过 Volume 和环境变量两种方式引用 ConfigMap 和 Secret，并且以 Volume 形式挂载后还支持热更新。这种热更新机制看起来非常好，但在实际 Devops 流程中实际上也有不少的问题，需要使用的时候特别注意。</p><h2 id=kubernetes热更新>Kubernetes热更新</h2><p>使用 Secret 和 ConfigMap 最简单的方法是以 Volume 形式挂载到 Pod 中，这种方式也支持自动更新。比如：</p><pre tabindex=0><code>apiVersion: v1
 kind: ConfigMap
 metadata:
   name: myconfigmap
 data:
-  config1: &quot;data1&quot;
-  config2: &quot;data2&quot;
+  config1: &#34;data1&#34;
+  config2: &#34;data2&#34;
     
 ---
 apiVersion: v1
@@ -149,57 +26,35 @@ spec:
     tty: true
     volumeMounts:
     - name: foo
-      mountPath: &quot;/etc/foo&quot;
+      mountPath: &#34;/etc/foo&#34;
       readOnly: true
   volumes:
   - name: foo
     configMap:
       name: myconfigmap
-</code></pre><p>不过需要注意的是，在挂载时不要使用 <code>subPath</code>，因为使用 <code>subPath</code> 之后就不支持自动更新了。</p>
-<p>因为是文件的更新，容器应用可以用 inotify 机制监控文件的变化情况，进而再加载新配置。比如，对于 Go 应用来说，可以使用 <strong>fsnotify</strong>[2] 库。</p>
-<p>当然，这种方法有很多限制：</p>
-<ul>
-<li>每个容器应用都需要监控配置文件变化的机制，或者为不支持自动监控配置文件变化的服务配置 sidecar。</li>
-<li>不支持滚动更新，只要 Secret 和 ConfigMap 更新了，所有使用他们的容器都会全部更新。这会导致配置错误一下子更新到所有容器，而不是滚动更新，无法实现第一个Pod发现错误时停止后续的更新。</li>
-<li>配置生效时间并不确定，生效时间依赖于Kubelet刷新，在 Devops 流水线中很难检测配置全部生效的时刻。</li>
-<li>大量 ConfigMap 和 Secret 的 watch 请求会加重 kube-apiserver 的负载，影响 kube-apiserver 的性能。</li>
-</ul>
-<p>基于这些限制，Kubernetes 自动更新的方法仅推荐用于简单且副本数很少的应用中，而复杂的应用推荐使用下述的滚动更新机制。使用滚动更新的另一个好处是对挂载方式没有限制，<code>subPath</code> 和环境变量都是支持的。</p>
-<h2 id=滚动更新>滚动更新</h2>
-<p>为了降低 kube-apiserver 的负担，Kubernetes 从 v1.19 开始自动开启了 ImmutableEphemeralVolumes 特性，开启后禁止 Secret 和 ConfigMap 的自动更新：</p>
-<pre><code>apiVersion: v1
+</code></pre><p>不过需要注意的是，在挂载时不要使用 <code>subPath</code>，因为使用 <code>subPath</code> 之后就不支持自动更新了。</p><p>因为是文件的更新，容器应用可以用 inotify 机制监控文件的变化情况，进而再加载新配置。比如，对于 Go 应用来说，可以使用 <strong>fsnotify</strong>[2] 库。</p><p>当然，这种方法有很多限制：</p><ul><li>每个容器应用都需要监控配置文件变化的机制，或者为不支持自动监控配置文件变化的服务配置 sidecar。</li><li>不支持滚动更新，只要 Secret 和 ConfigMap 更新了，所有使用他们的容器都会全部更新。这会导致配置错误一下子更新到所有容器，而不是滚动更新，无法实现第一个Pod发现错误时停止后续的更新。</li><li>配置生效时间并不确定，生效时间依赖于Kubelet刷新，在 Devops 流水线中很难检测配置全部生效的时刻。</li><li>大量 ConfigMap 和 Secret 的 watch 请求会加重 kube-apiserver 的负载，影响 kube-apiserver 的性能。</li></ul><p>基于这些限制，Kubernetes 自动更新的方法仅推荐用于简单且副本数很少的应用中，而复杂的应用推荐使用下述的滚动更新机制。使用滚动更新的另一个好处是对挂载方式没有限制，<code>subPath</code> 和环境变量都是支持的。</p><h2 id=滚动更新>滚动更新</h2><p>为了降低 kube-apiserver 的负担，Kubernetes 从 v1.19 开始自动开启了 ImmutableEphemeralVolumes 特性，开启后禁止 Secret 和 ConfigMap 的自动更新：</p><pre tabindex=0><code>apiVersion: v1
 kind: Secret
 metadata:
   ...
 data:
   ...
 immutable: true
-</code></pre><p>关闭自动更新后，在更新 ConfigMap 和 Secret 的时候就需要一些额外的步骤对应用进行滚动更新。这其中最常用的几种方法是 Reloader、checksum 注解以及动态Secret/ConfigMap名称。</p>
-<h3 id=reloader>Reloader</h3>
-<p><strong>Reloader</strong>[3] 是一个监视 ConfigMap/Secret 更改并对其关联的 Deployment、Daemonset、StatefulSet、DeploymentConfig 进行滚动更新的开源项目。</p>
-<p>Reloader的使用方法比较简单，首先部署 Reloader 控制器：</p>
-<pre><code>kubectl apply -k https://github.com/stakater/Reloader/deployments/kubernetes
-</code></pre><p>然后，给想要滚动更新配置的应用加上 reloader 注解即可：</p>
-<pre><code>kind: Deployment
+</code></pre><p>关闭自动更新后，在更新 ConfigMap 和 Secret 的时候就需要一些额外的步骤对应用进行滚动更新。这其中最常用的几种方法是 Reloader、checksum 注解以及动态Secret/ConfigMap名称。</p><h3 id=reloader>Reloader</h3><p><strong>Reloader</strong>[3] 是一个监视 ConfigMap/Secret 更改并对其关联的 Deployment、Daemonset、StatefulSet、DeploymentConfig 进行滚动更新的开源项目。</p><p>Reloader的使用方法比较简单，首先部署 Reloader 控制器：</p><pre tabindex=0><code>kubectl apply -k https://github.com/stakater/Reloader/deployments/kubernetes
+</code></pre><p>然后，给想要滚动更新配置的应用加上 reloader 注解即可：</p><pre tabindex=0><code>kind: Deployment
 metadata:
   annotations:
-    secret.reloader.stakater.com/reload: &quot;foo-secret&quot;
-    configmap.reloader.stakater.com/reload: &quot;foo-configmap&quot;
+    secret.reloader.stakater.com/reload: &#34;foo-secret&#34;
+    configmap.reloader.stakater.com/reload: &#34;foo-configmap&#34;
 spec:
   template: metadata:
-</code></pre><h3 id=checksum-注解>checksum 注解</h3>
-<p>checksum 注解是 Helm Charts 中最常用的滚动更新方法，即在 Deployment 的 annotations 中加上 Secret 或者 ConfigMap 的 sha256sum，这样已有的 Pod 就会随着 Secret 或者 ConfigMap 的变更而更新。</p>
-<pre><code>kind: Deployment
+</code></pre><h3 id=checksum-注解>checksum 注解</h3><p>checksum 注解是 Helm Charts 中最常用的滚动更新方法，即在 Deployment 的 annotations 中加上 Secret 或者 ConfigMap 的 sha256sum，这样已有的 Pod 就会随着 Secret 或者 ConfigMap 的变更而更新。</p><pre tabindex=0><code>kind: Deployment
 spec:
   template:
     metadata:
       annotations:
-        checksum/config: {{ include (print $.Template.BasePath &quot;/configmap.yaml&quot;) . | sha256sum }}
+        checksum/config: {{ include (print $.Template.BasePath &#34;/configmap.yaml&#34;) . | sha256sum }}
 [...]
-</code></pre><h3 id=动态secretconfigmap名称>动态Secret/ConfigMap名称</h3>
-<p>动态Secret/ConfigMap名称是 Kustomize 中最常用的滚动更新方法，即 <strong>configMapGenerator</strong>[4] 和 <strong>secretGenerator</strong>[5]。它们根据 Secret和ConfigMap 的数据动态生成一个名称，进而在执行 <code>kubectl apply --kustomize</code> 命令的时候触发 Deployment 的滚动更新。</p>
-<p>比如使用 configMapGenerator：</p>
-<pre><code># kustomization.yaml
+</code></pre><h3 id=动态secretconfigmap名称>动态Secret/ConfigMap名称</h3><p>动态Secret/ConfigMap名称是 Kustomize 中最常用的滚动更新方法，即 <strong>configMapGenerator</strong>[4] 和 <strong>secretGenerator</strong>[5]。它们根据 Secret和ConfigMap 的数据动态生成一个名称，进而在执行 <code>kubectl apply --kustomize</code> 命令的时候触发 Deployment 的滚动更新。</p><p>比如使用 configMapGenerator：</p><pre tabindex=0><code># kustomization.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 configMapGenerator:
@@ -208,89 +63,21 @@ configMapGenerator:
   - application.properties
 
 # 其中 application.properties 的内容是 FOO=Bar
-</code></pre><p>将生成下面的 Manifest：</p>
-<pre><code>apiVersion: v1
+</code></pre><p>将生成下面的 Manifest：</p><pre tabindex=0><code>apiVersion: v1
 data:
   application.properties: |-
         FOO=Bar
 kind: ConfigMap
 metadata:
   name: my-application-properties-f7mm6mhf59
-</code></pre><p>而在 Deployment 只要使用 ConfigMap 名字 my-application-properties，kustomize 会把原始名字替换成生成后的名字。</p>
-<h3 id=参考资料>参考资料</h3>
-<ul>
-<li>[1] 静态数据加密: <em><a href=https://kubernetes.io/zh/docs/tasks/administer-cluster/encrypt-data/>https://kubernetes.io/zh/docs/tasks/administer-cluster/encrypt-data/</a></em></li>
-<li>[2] fsnotify: <em><a href=https://github.com/fsnotify/fsnotify>https://github.com/fsnotify/fsnotify</a></em></li>
-<li>[3] Reloader: <em><a href=https://github.com/stakater/Reloader>https://github.com/stakater/Reloader</a></em></li>
-<li>[4] configMapGenerator: <em><a href=https://kubectl.docs.kubernetes.io/references/kustomize/configmapgenerator/>https://kubectl.docs.kubernetes.io/references/kustomize/configmapgenerator/</a></em></li>
-<li>[5] secretGenerator: <em><a href=https://kubectl.docs.kubernetes.io/references/kustomize/secretgenerator/>https://kubectl.docs.kubernetes.io/references/kustomize/secretgenerator/</a></em></li>
-</ul>
-<hr>
-<p>欢迎扫描下面的二维码关注<strong>漫谈云原生</strong>公众号，回复<strong>任意关键字</strong>查询更多云原生知识库，或回复<strong>联系</strong>加我微信。</p>
-<p><img src=/assets/mp.png alt></p>
-</div>
-<div class="navigation navigation-single">
-<a href=/posts/2021-01-08-cloud-native-perf/ class=navigation-prev>
-<i aria-hidden=true class="fa fa-chevron-left"></i>
+</code></pre><p>而在 Deployment 只要使用 ConfigMap 名字 my-application-properties，kustomize 会把原始名字替换成生成后的名字。</p><h3 id=参考资料>参考资料</h3><ul><li>[1] 静态数据加密: <em><a href=https://kubernetes.io/zh/docs/tasks/administer-cluster/encrypt-data/>https://kubernetes.io/zh/docs/tasks/administer-cluster/encrypt-data/</a></em></li><li>[2] fsnotify: <em><a href=https://github.com/fsnotify/fsnotify>https://github.com/fsnotify/fsnotify</a></em></li><li>[3] Reloader: <em><a href=https://github.com/stakater/Reloader>https://github.com/stakater/Reloader</a></em></li><li>[4] configMapGenerator: <em><a href=https://kubectl.docs.kubernetes.io/references/kustomize/configmapgenerator/>https://kubectl.docs.kubernetes.io/references/kustomize/configmapgenerator/</a></em></li><li>[5] secretGenerator: <em><a href=https://kubectl.docs.kubernetes.io/references/kustomize/secretgenerator/>https://kubectl.docs.kubernetes.io/references/kustomize/secretgenerator/</a></em></li></ul><hr><p>欢迎扫描下面的二维码关注<strong>漫谈云原生</strong>公众号，回复<strong>任意关键字</strong>查询更多云原生知识库，或回复<strong>联系</strong>加我微信。</p><p><img src=/assets/mp.png alt></p></div><div class="navigation navigation-single"><a href=/posts/2021-01-08-cloud-native-perf/ class=navigation-prev><i aria-hidden=true class="fa fa-chevron-left"></i>
 <span class=navigation-tittle>云原生应用性能优化之道（附免费电子书分享）</span>
-</a>
-<a href=/posts/2021-01-18-rolling-update/ class=navigation-next>
-<span class=navigation-tittle>为什么已经用了滚动更新服务还会中断</span>
-<i aria-hidden=true class="fa fa-chevron-right"></i>
-</a>
-</div>
-<div class=post__related>
-<h2>Related Articles</h2>
-<ul class=related-posts>
-<li>
-<span class=list__title--small>
-<a href=/posts/2020-04-19-ci-cd/>Kubernetes中的CI/CD</a>
-<time class="pull-right hidden-tablet">Apr 19 '20</time>
-</span>
-</li>
-<li>
-<span class=list__title--small>
-<a href=/posts/2020-06-01-container-image/>镜像构建的正确姿势</a>
-<time class="pull-right hidden-tablet">Jun 01 '20</time>
-</span>
-</li>
-<li>
-<span class=list__title--small>
-<a href=/posts/2020-04-09-dns-latency/>如何解决 Kubernetes 的 DNS 延迟问题</a>
-<time class="pull-right hidden-tablet">Apr 09 '20</time>
-</span>
-</li>
-<li>
-<span class=list__title--small>
-<a href=/posts/2017-11-27-aci/>Azure Container Instance (ACI)</a>
-<time class="pull-right hidden-tablet">Nov 27 '17</time>
-</span>
-</li>
-<li>
-<span class=list__title--small>
-<a href=/posts/2017-11-23-acs-introduction/>Azure Container Service（ACS）简介</a>
-<time class="pull-right hidden-tablet">Nov 20 '17</time>
-</span>
-</li>
-</ul>
-</div>
-<div id=disqus_thread></div>
-<script type=text/javascript>(function(){var a,b;if(location.hostname==="localhost"||location.hostname==="127.0.0.1"||location.hostname==="")return;a=document.createElement('script'),a.type='text/javascript',a.async=!0,b='feisky',a.src='//'+b+'.disqus.com/embed.js',(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(a)})()</script>
-<noscript>
-Please enable JavaScript to view the
-<a href=http://disqus.com/?ref_noscript>comments powered by Disqus.</a>
-</noscript>
-<a href=http://disqus.com/ class=dsq-brlink>comments powered by
-<span class=logo-disqus>Disqus</span>
-</a>
-</article>
-</div>
-<script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','UA-69699206-1','auto'),ga('send','pageview'))</script>
-<script async src=https://www.google-analytics.com/analytics.js></script>
-<script defer src=https://use.fontawesome.com/releases/v5.12.1/js/all.js integrity=sha384-ZbbbT1gw3joYkKRqh0kWyRp32UAvdqkpbLedQJSlnI8iLQcFVxaGyrOgOJiDQTTR crossorigin=anonymous></script>
-<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js></script>
-<script type=text/javascript>hljs.initHighlightingOnLoad()</script>
-<script src=https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.js></script>
-<script type=text/javascript>tocbot&&tocbot.init({tocSelector:'.toc',contentSelector:'.post',headingSelector:'h2, h3, h4',collapseDepth:4})</script>
-</body>
-</html>
+</a><a href=/posts/2021-01-18-rolling-update/ class=navigation-next><span class=navigation-tittle>为什么已经用了滚动更新服务还会中断</span>
+<i aria-hidden=true class="fa fa-chevron-right"></i></a></div><div class=post__related><h2>Related Articles</h2><ul class=related-posts><li><span class=list__title--small><a href=/posts/2020-04-19-ci-cd/>Kubernetes中的CI/CD</a>
+<time class="pull-right hidden-tablet">Apr 19 '20</time></span></li><li><span class=list__title--small><a href=/posts/2020-06-01-container-image/>镜像构建的正确姿势</a>
+<time class="pull-right hidden-tablet">Jun 01 '20</time></span></li><li><span class=list__title--small><a href=/posts/2020-04-09-dns-latency/>如何解决 Kubernetes 的 DNS 延迟问题</a>
+<time class="pull-right hidden-tablet">Apr 09 '20</time></span></li><li><span class=list__title--small><a href=/posts/2017-11-27-aci/>Azure Container Instance (ACI)</a>
+<time class="pull-right hidden-tablet">Nov 27 '17</time></span></li><li><span class=list__title--small><a href=/posts/2017-11-23-acs-introduction/>Azure Container Service（ACS）简介</a>
+<time class="pull-right hidden-tablet">Nov 20 '17</time></span></li></ul></div><div id=disqus_thread></div><script type=text/javascript>(function(){if(location.hostname==="localhost"||location.hostname==="127.0.0.1"||location.hostname==="")return;var t,e=document.createElement("script");e.type="text/javascript",e.async=!0,t="feisky",e.src="//"+t+".disqus.com/embed.js",(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)})()</script><noscript>Please enable JavaScript to view the
+<a href=http://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=http://disqus.com/ class=dsq-brlink>comments powered by
+<span class=logo-disqus>Disqus</span></a></article></div><script async src="https://www.googletagmanager.com/gtag/js?id=G-1GD5S2NKS3"></script><script>var dnt,doNotTrack=!1;if(!1&&(dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes"),!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-1GD5S2NKS3")}</script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js></script><script type=text/javascript>hljs.initHighlightingOnLoad()</script><script src=https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.js></script><script type=text/javascript>tocbot&&tocbot.init({tocSelector:".toc",contentSelector:".post",headingSelector:"h2, h3, h4",collapseDepth:4})</script></body></html>

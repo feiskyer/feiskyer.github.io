@@ -1,26 +1,441 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>docker on Feisky</title><link>https://feisky.xyz/tags/docker/</link><description>Recent content in docker on Feisky</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Thu, 19 Oct 2017 18:10:18 +0000</lastBuildDate><atom:link href="https://feisky.xyz/tags/docker/index.xml" rel="self" type="application/rss+xml"/><item><title>Docker MTA Program</title><link>https://feisky.xyz/posts/2017-10-19-docker-mta-program/</link><pubDate>Thu, 19 Oct 2017 18:10:18 +0000</pubDate><guid>https://feisky.xyz/posts/2017-10-19-docker-mta-program/</guid><description>在容器化和云原生的大潮下，很多公司都已经开始了容器化的进程。然而，将已有应用转化为容器和云原生架构并不容易，并且这些遗留应用的维护可能会花费</description></item><item><title>Docker CE/EE 原生支持Kubernetes</title><link>https://feisky.xyz/posts/2017-10-17-docker-ce-ee-%E5%8E%9F%E7%94%9F%E6%94%AF%E6%8C%81kubernetes/</link><pubDate>Tue, 17 Oct 2017 17:18:31 +0000</pubDate><guid>https://feisky.xyz/posts/2017-10-17-docker-ce-ee-%E5%8E%9F%E7%94%9F%E6%94%AF%E6%8C%81kubernetes/</guid><description>在今年的 DockerCon EU (2017) 上，Solomon、Brendan、Hockin等联合宣布Docker将原生支持Kubernetes，也就是说Kubernet</description></item><item><title>Debugging application in containers</title><link>https://feisky.xyz/posts/2017-02-14-debugging-application-in-containers/</link><pubDate>Tue, 14 Feb 2017 21:24:48 +0000</pubDate><guid>https://feisky.xyz/posts/2017-02-14-debugging-application-in-containers/</guid><description>对于普通的服务器进程，我们可以很方便的使用宿主机上的各种工具来调试；但容器经常是仅包含必要的应用程序，一般不包含常用的调试工具，那如何在线调</description></item><item><title>使用docker dind创建swarm集群</title><link>https://feisky.xyz/posts/2017-01-09-%E4%BD%BF%E7%94%A8docker-dind%E5%88%9B%E5%BB%BAswarm%E9%9B%86%E7%BE%A4/</link><pubDate>Mon, 09 Jan 2017 21:01:18 +0000</pubDate><guid>https://feisky.xyz/posts/2017-01-09-%E4%BD%BF%E7%94%A8docker-dind%E5%88%9B%E5%BB%BAswarm%E9%9B%86%E7%BE%A4/</guid><description>在OS X系统上，由于Docker for Mac只能创建一台虚拟机，所以要创建多节点swarm集群的话，就需要额外启动其他的虚拟机，并手动安装和配置</description></item><item><title>如何快速启动一个Kubernetes集群</title><link>https://feisky.xyz/posts/2016-08-24-%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8%E4%B8%80%E4%B8%AAkubernetes%E9%9B%86%E7%BE%A4/</link><pubDate>Wed, 24 Aug 2016 14:48:44 +0000</pubDate><guid>https://feisky.xyz/posts/2016-08-24-%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8%E4%B8%80%E4%B8%AAkubernetes%E9%9B%86%E7%BE%A4/</guid><description>相比Docker一个二进制文件解决所有问题，Kubernetes则为不同的服务提供了不同的二进制文件，并将一些服务放到了addons中。故而</description></item><item><title>Play with docker v1.12</title><link>https://feisky.xyz/posts/2016-06-24-play-with-docker-v1-12/</link><pubDate>Fri, 24 Jun 2016 12:39:49 +0000</pubDate><guid>https://feisky.xyz/posts/2016-06-24-play-with-docker-v1-12/</guid><description>[TOC]
-Docker v1.12 brings in its integrated orchestration into docker engine.
-Starting with Docker 1.12, we have added features to the core Docker Engine to make multi-host and multi-container orchestration easy. We’ve added new API objects, like Service and Node, that will let you use the Docker API to deploy and manage apps on a group of Docker Engines called a swarm. With Docker 1.12, the best way to orchestrate Docker is Docker!</description></item><item><title>Playing docker with hypervisor container runtime runV</title><link>https://feisky.xyz/posts/2016-06-17-playing-docker-with-hypervisor-container-runtime-runv/</link><pubDate>Fri, 17 Jun 2016 17:12:38 +0000</pubDate><guid>https://feisky.xyz/posts/2016-06-17-playing-docker-with-hypervisor-container-runtime-runv/</guid><description>Table of contents: [TOC] The latest master branch of runV has already supported running as an runtime in docker. Since v1.11, docker introduced OCI contain runtime (runc) integration via containerd. Since runc and runV are both recommended implementation of OCI, it is natural to make runV working with containerd. Now let&amp;rsquo;s have a try. Install runv and docker Docker could be installed via https://docs.docker.com/engine/installation/. Since only master branch of runV</description></item><item><title>How docker 1.11 share network accross containers</title><link>https://feisky.xyz/posts/2016-05-11-how-docker-1-11-share-network-accross-containers/</link><pubDate>Wed, 11 May 2016 10:25:06 +0000</pubDate><guid>https://feisky.xyz/posts/2016-05-11-how-docker-1-11-share-network-accross-containers/</guid><description>Docker 1.11 has moved to runc with containerd, I am interested in how it processing shared netns accross containers.
-For example, I have already running a container 75599a6f387b7842c6da57efd38f9742b2ca621782f891402f83852c66dbd706. A new container within same netns can be created with cmd:
-docker run -itd --net=container:75599a6f387b alpine sh This will generate a runc config.json as follows:
-{ &amp;#34;ociVersion&amp;#34;: &amp;#34;0.6.0-dev&amp;#34;, &amp;#34;platform&amp;#34;: { &amp;#34;os&amp;#34;: &amp;#34;linux&amp;#34;, &amp;#34;arch&amp;#34;: &amp;#34;amd64&amp;#34; }, &amp;#34;process&amp;#34;: { &amp;#34;terminal&amp;#34;: true, &amp;#34;user&amp;#34;: { &amp;#34;additionalGids&amp;#34;: [ 0, 1, 2, 3, 4, 6, 10, 11, 20, 26, 27 ] }, &amp;#34;args&amp;#34;: [ &amp;#34;sh&amp;#34; ], &amp;#34;env&amp;#34;: [ &amp;#34;PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin&amp;#34;, &amp;#34;HOSTNAME=75599a6f387b&amp;#34;, &amp;#34;TERM=xterm&amp;#34; ], &amp;#34;cwd&amp;#34;: &amp;#34;/&amp;#34;, &amp;#34;capabilities&amp;#34;: [ &amp;#34;CAP_CHOWN&amp;#34;, &amp;#34;CAP_DAC_OVERRIDE&amp;#34;, &amp;#34;CAP_FSETID&amp;#34;, &amp;#34;CAP_FOWNER&amp;#34;, &amp;#34;CAP_MKNOD&amp;#34;, &amp;#34;CAP_NET_RAW&amp;#34;, &amp;#34;CAP_SETGID&amp;#34;, &amp;#34;CAP_SETUID&amp;#34;, &amp;#34;CAP_SETFCAP&amp;#34;, &amp;#34;CAP_SETPCAP&amp;#34;, &amp;#34;CAP_NET_BIND_SERVICE&amp;#34;, &amp;#34;CAP_SYS_CHROOT&amp;#34;, &amp;#34;CAP_KILL&amp;#34;, &amp;#34;CAP_AUDIT_WRITE&amp;#34; ] }, &amp;#34;root&amp;#34;: { &amp;#34;path&amp;#34;: &amp;#34;/var/lib/docker/devicemapper/mnt/d33c7932917e64bde482b437fc3ccaad9a00a04e0cf49e39f9d3be5d71991db6/rootfs&amp;#34;, &amp;#34;readonly&amp;#34;: false }, &amp;#34;hostname&amp;#34;: &amp;#34;75599a6f387b&amp;#34;, &amp;#34;mounts&amp;#34;: [ { &amp;#34;destination&amp;#34;: &amp;#34;/proc&amp;#34;, &amp;#34;type&amp;#34;: &amp;#34;proc&amp;#34;, &amp;#34;source&amp;#34;: &amp;#34;proc&amp;#34;, &amp;#34;options&amp;#34;: [ &amp;#34;nosuid&amp;#34;, &amp;#34;noexec&amp;#34;, &amp;#34;nodev&amp;#34; ] }, { &amp;#34;destination&amp;#34;: &amp;#34;/dev&amp;#34;, &amp;#34;type&amp;#34;: &amp;#34;tmpfs&amp;#34;, &amp;#34;source&amp;#34;: &amp;#34;tmpfs&amp;#34;, &amp;#34;options&amp;#34;: [ &amp;#34;nosuid&amp;#34;, &amp;#34;strictatime&amp;#34;, &amp;#34;mode=755&amp;#34; ] }, { &amp;#34;destination&amp;#34;: &amp;#34;/dev/pts&amp;#34;, &amp;#34;type&amp;#34;: &amp;#34;devpts&amp;#34;, &amp;#34;source&amp;#34;: &amp;#34;devpts&amp;#34;, &amp;#34;options&amp;#34;: [ &amp;#34;nosuid&amp;#34;, &amp;#34;noexec&amp;#34;, &amp;#34;newinstance&amp;#34;, &amp;#34;ptmxmode=0666&amp;#34;, &amp;#34;mode=0620&amp;#34;, &amp;#34;gid=5&amp;#34; ] }, { &amp;#34;destination&amp;#34;: &amp;#34;/sys&amp;#34;, &amp;#34;type&amp;#34;: &amp;#34;sysfs&amp;#34;, &amp;#34;source&amp;#34;: &amp;#34;sysfs&amp;#34;, &amp;#34;options&amp;#34;: [ &amp;#34;nosuid&amp;#34;, &amp;#34;noexec&amp;#34;, &amp;#34;nodev&amp;#34;, &amp;#34;ro&amp;#34; ] }, { &amp;#34;destination&amp;#34;: &amp;#34;/sys/fs/cgroup&amp;#34;, &amp;#34;type&amp;#34;: &amp;#34;cgroup&amp;#34;, &amp;#34;source&amp;#34;: &amp;#34;cgroup&amp;#34;, &amp;#34;options&amp;#34;: [ &amp;#34;ro&amp;#34;, &amp;#34;nosuid&amp;#34;, &amp;#34;noexec&amp;#34;, &amp;#34;nodev&amp;#34; ] }, { &amp;#34;destination&amp;#34;: &amp;#34;/dev/mqueue&amp;#34;, &amp;#34;type&amp;#34;: &amp;#34;mqueue&amp;#34;, &amp;#34;source&amp;#34;: &amp;#34;mqueue&amp;#34;, &amp;#34;options&amp;#34;: [ &amp;#34;nosuid&amp;#34;, &amp;#34;noexec&amp;#34;, &amp;#34;nodev&amp;#34; ] }, { &amp;#34;destination&amp;#34;: &amp;#34;/etc/resolv.</description></item><item><title>Reading notes of week 17</title><link>https://feisky.xyz/posts/2016-04-29-reading-notes-of-week-17/</link><pubDate>Fri, 29 Apr 2016 16:50:14 +0000</pubDate><guid>https://feisky.xyz/posts/2016-04-29-reading-notes-of-week-17/</guid><description>SIG-Networking: Kubernetes Network Policy APIs Coming in 1.3 One problem many users have is that the open access network policy of Kubernetes is not suitable for applications that need more precise control over the traffic that accesses a pod or service. Today, this could be a multi-tier application where traffic is only allowed from a tier’s neighbor. But as new Cloud Native applications are built</description></item><item><title>runc and runV</title><link>https://feisky.xyz/posts/2016-04-28-runc/</link><pubDate>Thu, 28 Apr 2016 11:15:03 +0000</pubDate><guid>https://feisky.xyz/posts/2016-04-28-runc/</guid><description>runc is a CLI tool for spawning and running containers according to the OCI specification, while runV is a hypervisor-based runtime for OCI. Both of them are recommanded (implementations](https://github.com/opencontainers/runtime-spec/blob/master/implementations.md) of OCI.
-Playing with runc Install runc:
-yum install -y libseccomp-devel mkdir -p $GOPATH/src/github.com/opencontainers cd $GOPATH/src/github.com/opencontainers git clone https://github.com/opencontainers/runc cd runc make sudo make install Run busybox:
-$ docker pull busybox $ mkdir rootfs $ docker export $(docker create busybox) | tar -C rootfs -xvf - $ runc spec .</description></item><item><title>Container runtime in Docker v1.11</title><link>https://feisky.xyz/posts/2016-04-28-docker-1-11-runtime/</link><pubDate>Thu, 28 Apr 2016 10:07:23 +0000</pubDate><guid>https://feisky.xyz/posts/2016-04-28-docker-1-11-runtime/</guid><description>Docker v1.11正式集成了runc（终于支持OCI了），并将原来的一个二进制文件拆分为多个，同时还保持docker CLI和API不变： docker docker-containerd docker-containerd-shim docker-runc docker-containerd-ctr</description></item><item><title>Docker overlay network dive</title><link>https://feisky.xyz/posts/2016-03-04-docker-overlay-network-dive/</link><pubDate>Fri, 04 Mar 2016 13:41:54 +0000</pubDate><guid>https://feisky.xyz/posts/2016-03-04-docker-overlay-network-dive/</guid><description>DON MILLS写的Docker Multi-Host Networking: Overlays to the Rescue对Docker的overlay network做了细致的分析，值得看一看。</description></item><item><title>10 things to avoid in docker containers</title><link>https://feisky.xyz/posts/2016-03-01-10-things-to-avoid-in-docker-containers/</link><pubDate>Tue, 01 Mar 2016 16:33:16 +0000</pubDate><guid>https://feisky.xyz/posts/2016-03-01-10-things-to-avoid-in-docker-containers/</guid><description>Redhat发布的10 things to avoid in docker containers对于构建基于Container的服务非常有意义。摘录如下： Don’t store data in containers – A container can be stopped,</description></item><item><title>Carina by Rackspace</title><link>https://feisky.xyz/posts/2016-02-29-carina-by-rackspace/</link><pubDate>Mon, 29 Feb 2016 19:20:27 +0000</pubDate><guid>https://feisky.xyz/posts/2016-02-29-carina-by-rackspace/</guid><description>What is Carina? Carina is a container runtime environment (currently in Beta) that offers performance, container-native tools, and portability without sacrificing ease of use. You can get started in minutes by using open-source software on managed infrastructure to run your containerized applications.
-Your containers run in a bare-metal environment, which avoids the &amp;ldquo;hypervisor tax&amp;rdquo; on performance. Applications in this environment launch as much as 20 percent faster and run as much as 60 percent faster.</description></item><item><title>Apache的Mesos和Google的Kubernetes 有什么区别</title><link>https://feisky.xyz/posts/2015-02-06-apachemesosgooglekubernetes-/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-02-06-apachemesosgooglekubernetes-/</guid><description>Kubernetes是一个开源项目，它把谷歌的集群管理工具引入到虚拟机和裸机场景中。它可以完美运行在现代的操作系统环境（比如CoreOS和R</description></item><item><title>Deploy a Mesos Cluster Using Docker</title><link>https://feisky.xyz/posts/2015-02-05-deploy-a-mesos-cluster-using-docker/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-02-05-deploy-a-mesos-cluster-using-docker/</guid><description>his tutorial will show you how to bring up a single node Mesos cluster all provisioned out using Docker containers (a future post will show how to easily scale this out to multi nodes or see the update on the bottom). This means that you can startup an entire cluster with 7 commands! Nothing to install except for starting out with a working Docker server.
-This will startup 4 containers:</description></item><item><title>Docker</title><link>https://feisky.xyz/posts/2015-01-27-docker/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-01-27-docker/</guid><description>简介 Docker 是 dotCloud 最近几个月刚宣布的开源引擎，旨在提供一种应用程序的自动化部署解决方案，简单的说就是，在 Linux 系统上迅速创建一个容器（类似虚拟机）并在容</description></item><item><title>Docker acquires SDN startup SocketPlane</title><link>https://feisky.xyz/posts/2015-03-05-docker-acquires-sdn-startup-socketplane/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-03-05-docker-acquires-sdn-startup-socketplane/</guid><description>At Socketplane we started out as four guys with a collectively strong belief in open source and open communities. We aligned around a shared vision that we wanted to be a critical part of Docker’s once in a decade disruption. Now that we are part of the Docker team, we couldn’t be happier.
-We never looked to hedge our bets, our success was and obviously still is tied to the success of Docker.</description></item><item><title>docker in tencent</title><link>https://feisky.xyz/posts/2015-03-20-docker-in-tencent/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-03-20-docker-in-tencent/</guid><description>腾讯内部对Docker有着广泛的使用，其基于Yarn的代号为Gaia的调度平台可以同时兼容Docker和非Docker类型的应用，并提供高并</description></item><item><title>docker internal</title><link>https://feisky.xyz/posts/2015-01-27-docker-internal/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-01-27-docker-internal/</guid><description>docker-baseAbstractA subsystem is a module that makes use of the task grouping facilities provided by cgroups to treat groups of tasks in particular ways. A subsystem is typically a &amp;ldquo;resource controller&amp;rdquo; that schedules a resource or applies per-cgroup limits, but it may be anything that wants to act on a group of processes, e.g. a virtualization subsystem. &amp;ldquo;docker diff&amp;rdquo; is implemented by just scanning the container filesystem and the parent</description></item><item><title>How to use docker compose to deploy a flask app</title><link>https://feisky.xyz/posts/2015-02-12-how-to-use-docker-compose-to-deploy-a-flask-app/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-02-12-how-to-use-docker-compose-to-deploy-a-flask-app/</guid><description>The flask app is very simple, you have an index page where your can write and read comments.
-To start So what we need ?
-In my case a Digital Ocean droplet (I&amp;rsquo;m using Fedora 21).
-So, first of all we connect to our vm with ssh.
-Now that we are inside we need to install git, Docker and docker-compose.
-That&amp;rsquo;s all we need to play with Docker.
-This is our directory tree of our project, quietly standard as you can see.</description></item><item><title>Installing nova docker on OpenStack Juno</title><link>https://feisky.xyz/posts/2015-02-13-installing-nova-docker-on-openstack-juno/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-02-13-installing-nova-docker-on-openstack-juno/</guid><description>This post comes about indirectly by a request on IRC in #rdo for help getting nova-docker installed on Fedora 21. I ran through the process from start to finish and decided to write everything down for posterity.
-Getting started I started with the Fedora 21 Cloud Image, because I&amp;rsquo;m installing onto OpenStack and the cloud images include some features that are useful in this environment.
-We&amp;rsquo;ll be using OpenStack packages from the RDO Juno repository.</description></item><item><title>Integrating Openstack and Kubernetes with Murano</title><link>https://feisky.xyz/posts/2015-02-26-integrating-openstack-and-kubernetes-with-murano/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-02-26-integrating-openstack-and-kubernetes-with-murano/</guid><description>There’s a perceived competition between OpenStack and containers such as Docker, but in reality, the two technologies are a powerful combination. They both solve similar problems, but on different layers of the stack, so combining the two can give users more scalability and automation than ever before.
-That containers app you wrote needs to run somewhere. This is particularly true for orchestrated container applications, such as those managed by Kubernetes. What’s more, if your application is complicated enough that it needs to scale up and down, you need to be running it in an environment that can, itself, scale up and down.</description></item><item><title>Microservice Infrastructure</title><link>https://feisky.xyz/posts/2015-03-17-microservice-infrastructure/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-03-17-microservice-infrastructure/</guid><description>Microservices Infrastructure Modern platform for rapidly deploying globally distributed services provided by cisco.
-https://github.com/CiscoCloud/microservices-infrastructure
-Features the ability to deploy applications utilizing resources across multiple datacenters (and even clouds), deploying in a decentralized control model, supporting intelligent endpoints, heavy automation, and the on-demand nature of deploying these services to support business requirements and scale. Architectural Overview Mesos cluster manager for efficient resource isolation and sharing across distributed services Marathon for cluster management of long running containerized services Consul for service discovery (By using Consul&amp;rsquo;s inbuilt DNS server) Docker container runtime supported by Marathon Multi-datacenter support High availablity Single Data Center Architecture The base platform contains control nodes that manage the cluster and any number of compute nodes.</description></item><item><title>Redhat Atomic Host</title><link>https://feisky.xyz/posts/2015-03-06-redhat-atomic-host/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-03-06-redhat-atomic-host/</guid><description>Introduction Red Hat has announced first public beta of Red Hat Enterprise Linux 7 Atomic Host. The beta is available from Red Hat and on Amazon Web Services and Google Compute Platform.
-What can you expect from the Red Hat Enterprise Linux 7 Atomic Host Beta?
-Specifically Designed to Run Containers Red Hat Enterprise Linux 7 Atomic Host Beta provides a streamlined host platform that is optimized to run application containers.</description></item><item><title>Setting up GRE for Kubernetes</title><link>https://feisky.xyz/posts/2015-03-02-setting-up-gre-for-kubernetes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-03-02-setting-up-gre-for-kubernetes/</guid><description>首先修改Docker的默认网桥： #停止Docker Daemon进程 systemctl stop docker #设置默认网桥docker0为down，并删除 ip link set dev docker0 down brctl delbr docker0 #新</description></item><item><title>Using cAdvisor to monitor docker</title><link>https://feisky.xyz/posts/2015-03-13-usging-cadvisor-to-monitor-docker/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-03-13-usging-cadvisor-to-monitor-docker/</guid><description>cAdvisor (Container Advisor) provides container users an understanding of the resource usage and performance characteristics of their running containers. It is a running daemon that collects, aggregates, processes, and exports information about running containers. Specifically, for each container it keeps resource isolation parameters, historical resource usage, histograms of complete historical resource usage and network statistics. This data is exported by container and machine-wide.
-cAdvisor has native support for Docker containers and should support just about any other container type out of the box.</description></item><item><title>使用Mesos来管理Docker集群</title><link>https://feisky.xyz/posts/2015-02-06-mesosdocker/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-02-06-mesosdocker/</guid><description>Introduction Apache Mesos能够在同样的集群机器上运行多种分布式系统类型，更加动态有效率低共享资源。提供失败侦测，任务发布，任务跟踪，任务监控，低层次资源</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docker on Feisky</title><link>https://feisky.xyz/tags/docker/</link><description>Recent content in Docker on Feisky</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Thu, 19 Oct 2017 18:10:18 +0000</lastBuildDate><atom:link href="https://feisky.xyz/tags/docker/index.xml" rel="self" type="application/rss+xml"/><item><title>Docker MTA Program</title><link>https://feisky.xyz/posts/2017-10-19-docker-mta-program/</link><pubDate>Thu, 19 Oct 2017 18:10:18 +0000</pubDate><guid>https://feisky.xyz/posts/2017-10-19-docker-mta-program/</guid><description>&lt;p>在容器化和云原生的大潮下，很多公司都已经开始了容器化的进程。然而，将已有应用转化为容器和云原生架构并不容易，并且这些遗留应用的维护可能会花费80%的精力。如果能够自动的将这些应用转化为容器应用，显然会是一个巨大的市场。Docker也看到了这个市场，并在 DockerCon EU (2017) 上发布了&lt;a href="https://goto.docker.com/MTAkit.html">Modernize Traditional Applications (MTA) program&lt;/a>，它由 咨询服务、Docker EE以及合作伙伴提供的混合云基础架构组成。首批MTA的合作伙伴包括Avanade, Booz Allen, Cisco, HPE 和 Microsoft 等。&lt;/p></description></item><item><title>Docker CE/EE 原生支持Kubernetes</title><link>https://feisky.xyz/posts/2017-10-17-docker-ce-ee-%E5%8E%9F%E7%94%9F%E6%94%AF%E6%8C%81kubernetes/</link><pubDate>Tue, 17 Oct 2017 17:18:31 +0000</pubDate><guid>https://feisky.xyz/posts/2017-10-17-docker-ce-ee-%E5%8E%9F%E7%94%9F%E6%94%AF%E6%8C%81kubernetes/</guid><description>&lt;p>在今年的 DockerCon EU (2017) 上，Solomon、Brendan、Hockin等联合&lt;a href="https://blog.docker.com/2017/10/kubernetes-docker-platform-and-moby-project/">宣布&lt;/a>Docker将原生支持Kubernetes，也就是说Kubernetes将和Swarm一样作为Docker平台的编排管理系统。这&lt;a href="https://www.docker.com/kubernetes">包括Docker EE、Docker CE以及Docker for Mac/Windows等全平台&lt;/a>的支持。&lt;/p></description></item><item><title>Debugging application in containers</title><link>https://feisky.xyz/posts/2017-02-14-debugging-application-in-containers/</link><pubDate>Tue, 14 Feb 2017 21:24:48 +0000</pubDate><guid>https://feisky.xyz/posts/2017-02-14-debugging-application-in-containers/</guid><description>&lt;p>对于普通的服务器进程，我们可以很方便的使用宿主机上的各种工具来调试；但容器经常是仅包含必要的应用程序，一般不包含常用的调试工具，那如何在线调试容器中的进程呢？最简单的方法是再起一个新的包含了调试工具的容器。&lt;/p></description></item><item><title>使用docker dind创建swarm集群</title><link>https://feisky.xyz/posts/2017-01-09-%E4%BD%BF%E7%94%A8docker-dind%E5%88%9B%E5%BB%BAswarm%E9%9B%86%E7%BE%A4/</link><pubDate>Mon, 09 Jan 2017 21:01:18 +0000</pubDate><guid>https://feisky.xyz/posts/2017-01-09-%E4%BD%BF%E7%94%A8docker-dind%E5%88%9B%E5%BB%BAswarm%E9%9B%86%E7%BE%A4/</guid><description>&lt;p>在OS X系统上，由于Docker for Mac只能创建一台虚拟机，所以要创建多节点swarm集群的话，就需要额外启动其他的虚拟机，并手动安装和配置docker。不过借助dind (docker in docker)，不需要创建额外的虚拟机也可以启动一个swarm集群。&lt;/p></description></item><item><title>如何快速启动一个Kubernetes集群</title><link>https://feisky.xyz/posts/2016-08-24-%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8%E4%B8%80%E4%B8%AAkubernetes%E9%9B%86%E7%BE%A4/</link><pubDate>Wed, 24 Aug 2016 14:48:44 +0000</pubDate><guid>https://feisky.xyz/posts/2016-08-24-%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8%E4%B8%80%E4%B8%AAkubernetes%E9%9B%86%E7%BE%A4/</guid><description>&lt;p>相比Docker一个二进制文件解决所有问题，Kubernetes则为不同的服务提供了不同的二进制文件，并将一些服务放到了addons中。故而，Kubernetes的部署相对要麻烦的多。借助&lt;a href="https://github.com/kubernetes/minikube">minikube&lt;/a>项目，现在可以很方便的在本机快速启动一个单节点的Kubernetes集群。&lt;/p></description></item><item><title>Play with docker v1.12</title><link>https://feisky.xyz/posts/2016-06-24-play-with-docker-v1-12/</link><pubDate>Fri, 24 Jun 2016 12:39:49 +0000</pubDate><guid>https://feisky.xyz/posts/2016-06-24-play-with-docker-v1-12/</guid><description>&lt;p>[TOC]&lt;/p>
+&lt;p>Docker v1.12 brings in its integrated orchestration into docker engine.&lt;/p>
+&lt;blockquote>
+&lt;p>Starting with Docker 1.12, we have added features to the core Docker Engine to make multi-host and multi-container orchestration easy. We’ve added new API objects, like Service and Node, that will let you use the Docker API to deploy and manage apps on a group of Docker Engines called a swarm. With Docker 1.12, the best way to orchestrate Docker is Docker!&lt;/p></description></item><item><title>Playing docker with hypervisor container runtime runV</title><link>https://feisky.xyz/posts/2016-06-17-playing-docker-with-hypervisor-container-runtime-runv/</link><pubDate>Fri, 17 Jun 2016 17:12:38 +0000</pubDate><guid>https://feisky.xyz/posts/2016-06-17-playing-docker-with-hypervisor-container-runtime-runv/</guid><description>&lt;p>Table of contents:&lt;/p>
+&lt;p>[TOC]&lt;/p>
+&lt;hr>
+&lt;p>The latest master branch of &lt;a href="https://github.com/hyperhq/runv">runV&lt;/a> has already supported running as an runtime in docker. Since v1.11, docker introduced OCI contain runtime (runc) integration via containerd. Since runc and runV are both &lt;a href="https://github.com/opencontainers/runtime-spec/blob/master/implementations.md">recommended implementation of OCI&lt;/a>, it is natural to make runV working with containerd.&lt;/p>
+&lt;p>Now let&amp;rsquo;s have a try.&lt;/p>
+&lt;h3 id="install-runv-and-docker">Install runv and docker&lt;/h3>
+&lt;p>Docker could be installed via &lt;a href="https://docs.docker.com/engine/installation/">https://docs.docker.com/engine/installation/&lt;/a>.&lt;/p>
+&lt;p>Since only master branch of runV supports running integrated with docker, we should compile runV by source.&lt;/p></description></item><item><title>How docker 1.11 share network accross containers</title><link>https://feisky.xyz/posts/2016-05-11-how-docker-1-11-share-network-accross-containers/</link><pubDate>Wed, 11 May 2016 10:25:06 +0000</pubDate><guid>https://feisky.xyz/posts/2016-05-11-how-docker-1-11-share-network-accross-containers/</guid><description>&lt;p>Docker 1.11 has moved to runc with containerd, I am interested in how it processing shared netns accross containers.&lt;/p>
+&lt;p>For example, I have already running a container 75599a6f387b7842c6da57efd38f9742b2ca621782f891402f83852c66dbd706. A new container within same netns can be created with cmd:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>docker run -itd --net&lt;span style="color:#f92672">=&lt;/span>container:75599a6f387b alpine sh
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>This will generate a runc &lt;code>config.json&lt;/code> as follows:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;ociVersion&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;0.6.0-dev&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;platform&amp;#34;&lt;/span>: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;os&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;linux&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;arch&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;amd64&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;process&amp;#34;&lt;/span>: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;terminal&amp;#34;&lt;/span>: &lt;span style="color:#66d9ef">true&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;user&amp;#34;&lt;/span>: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;additionalGids&amp;#34;&lt;/span>: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ae81ff">0&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ae81ff">1&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ae81ff">2&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ae81ff">3&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ae81ff">4&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ae81ff">6&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ae81ff">10&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ae81ff">11&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ae81ff">20&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ae81ff">26&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ae81ff">27&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;args&amp;#34;&lt;/span>: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;sh&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ],
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;env&amp;#34;&lt;/span>: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;HOSTNAME=75599a6f387b&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;TERM=xterm&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ],
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;cwd&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;/&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;capabilities&amp;#34;&lt;/span>: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;CAP_CHOWN&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;CAP_DAC_OVERRIDE&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;CAP_FSETID&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;CAP_FOWNER&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;CAP_MKNOD&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;CAP_NET_RAW&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;CAP_SETGID&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;CAP_SETUID&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;CAP_SETFCAP&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;CAP_SETPCAP&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;CAP_NET_BIND_SERVICE&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;CAP_SYS_CHROOT&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;CAP_KILL&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;CAP_AUDIT_WRITE&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;root&amp;#34;&lt;/span>: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;path&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;/var/lib/docker/devicemapper/mnt/d33c7932917e64bde482b437fc3ccaad9a00a04e0cf49e39f9d3be5d71991db6/rootfs&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;readonly&amp;#34;&lt;/span>: &lt;span style="color:#66d9ef">false&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;hostname&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;75599a6f387b&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;mounts&amp;#34;&lt;/span>: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;destination&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;/proc&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;type&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;proc&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;source&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;proc&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;options&amp;#34;&lt;/span>: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;nosuid&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;noexec&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;nodev&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;destination&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;/dev&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;type&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;tmpfs&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;source&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;tmpfs&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;options&amp;#34;&lt;/span>: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;nosuid&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;strictatime&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;mode=755&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;destination&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;/dev/pts&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;type&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;devpts&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;source&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;devpts&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;options&amp;#34;&lt;/span>: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;nosuid&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;noexec&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;newinstance&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;ptmxmode=0666&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;mode=0620&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;gid=5&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;destination&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;/sys&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;type&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;sysfs&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;source&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;sysfs&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;options&amp;#34;&lt;/span>: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;nosuid&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;noexec&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;nodev&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;ro&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;destination&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;/sys/fs/cgroup&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;type&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;cgroup&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;source&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;cgroup&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;options&amp;#34;&lt;/span>: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;ro&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;nosuid&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;noexec&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;nodev&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;destination&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;/dev/mqueue&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;type&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;mqueue&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;source&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;mqueue&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;options&amp;#34;&lt;/span>: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;nosuid&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;noexec&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;nodev&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;destination&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;/etc/resolv.conf&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;type&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;bind&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;source&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;/var/lib/docker/containers/75599a6f387b7842c6da57efd38f9742b2ca621782f891402f83852c66dbd706/resolv.conf&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;options&amp;#34;&lt;/span>: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;rbind&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;rprivate&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;destination&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;/etc/hostname&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;type&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;bind&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;source&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;/var/lib/docker/containers/75599a6f387b7842c6da57efd38f9742b2ca621782f891402f83852c66dbd706/hostname&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;options&amp;#34;&lt;/span>: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;rbind&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;rprivate&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;destination&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;/etc/hosts&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;type&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;bind&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;source&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;/var/lib/docker/containers/75599a6f387b7842c6da57efd38f9742b2ca621782f891402f83852c66dbd706/hosts&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;options&amp;#34;&lt;/span>: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;rbind&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;rprivate&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;destination&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;/dev/shm&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;type&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;bind&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;source&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;/var/lib/docker/containers/d8230e57e88d15515a94138ef512a4271e31d03bb6fb257b3d57a847e70b5c68/shm&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;options&amp;#34;&lt;/span>: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;rbind&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;rprivate&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ],
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;hooks&amp;#34;&lt;/span>: {},
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;linux&amp;#34;&lt;/span>: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;resources&amp;#34;&lt;/span>: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;devices&amp;#34;&lt;/span>: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;allow&amp;#34;&lt;/span>: &lt;span style="color:#66d9ef">false&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;access&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;rwm&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;allow&amp;#34;&lt;/span>: &lt;span style="color:#66d9ef">true&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;type&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;c&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;major&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">1&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;minor&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">5&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;access&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;rwm&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;allow&amp;#34;&lt;/span>: &lt;span style="color:#66d9ef">true&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;type&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;c&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;major&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">1&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;minor&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">3&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;access&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;rwm&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;allow&amp;#34;&lt;/span>: &lt;span style="color:#66d9ef">true&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;type&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;c&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;major&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">1&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;minor&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">9&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;access&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;rwm&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;allow&amp;#34;&lt;/span>: &lt;span style="color:#66d9ef">true&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;type&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;c&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;major&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">1&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;minor&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">8&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;access&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;rwm&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;allow&amp;#34;&lt;/span>: &lt;span style="color:#66d9ef">true&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;type&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;c&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;major&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">5&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;minor&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">0&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;access&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;rwm&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;allow&amp;#34;&lt;/span>: &lt;span style="color:#66d9ef">true&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;type&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;c&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;major&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">5&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;minor&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">1&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;access&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;rwm&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;allow&amp;#34;&lt;/span>: &lt;span style="color:#66d9ef">false&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;type&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;c&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;major&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">10&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;minor&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">229&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;access&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;rwm&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ],
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;disableOOMKiller&amp;#34;&lt;/span>: &lt;span style="color:#66d9ef">false&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;oomScoreAdj&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">0&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;memory&amp;#34;&lt;/span>: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;kernelTCP&amp;#34;&lt;/span>: &lt;span style="color:#66d9ef">null&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;swappiness&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">18446744073709551615&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;cpu&amp;#34;&lt;/span>: {},
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;pids&amp;#34;&lt;/span>: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;limit&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;blockIO&amp;#34;&lt;/span>: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;blkioWeight&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;cgroupsPath&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;/docker/d8230e57e88d15515a94138ef512a4271e31d03bb6fb257b3d57a847e70b5c68&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;namespaces&amp;#34;&lt;/span>: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;type&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;mount&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;type&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;network&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;path&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;/proc/14702/ns/net&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;type&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;uts&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;type&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;pid&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;type&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;ipc&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ],
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;devices&amp;#34;&lt;/span>: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;path&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;/dev/zero&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;type&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;c&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;major&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">1&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;minor&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">5&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;fileMode&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">438&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;uid&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">0&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;gid&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;path&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;/dev/null&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;type&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;c&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;major&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">1&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;minor&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">3&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;fileMode&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">438&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;uid&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">0&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;gid&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;path&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;/dev/urandom&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;type&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;c&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;major&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">1&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;minor&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">9&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;fileMode&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">438&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;uid&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">0&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;gid&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;path&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;/dev/random&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;type&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;c&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;major&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">1&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;minor&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">8&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;fileMode&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">438&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;uid&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">0&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;gid&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;path&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;/dev/fuse&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;type&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;c&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;major&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">10&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;minor&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">229&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;fileMode&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">438&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;uid&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">0&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;gid&amp;#34;&lt;/span>: &lt;span style="color:#ae81ff">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ],
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;maskedPaths&amp;#34;&lt;/span>: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;/proc/kcore&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;/proc/latency_stats&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;/proc/timer_stats&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;/proc/sched_debug&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ],
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;#34;readonlyPaths&amp;#34;&lt;/span>: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;/proc/asound&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;/proc/bus&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;/proc/fs&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;/proc/irq&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;/proc/sys&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;/proc/sysrq-trigger&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>So, it is very clear how it works:&lt;/p></description></item><item><title>Reading notes of week 17</title><link>https://feisky.xyz/posts/2016-04-29-reading-notes-of-week-17/</link><pubDate>Fri, 29 Apr 2016 16:50:14 +0000</pubDate><guid>https://feisky.xyz/posts/2016-04-29-reading-notes-of-week-17/</guid><description>&lt;p>&lt;strong>&lt;a href="http://blog.kubernetes.io/2016/04/Kubernetes-Network-Policy-APIs.html">SIG-Networking: Kubernetes Network Policy APIs Coming in 1.3&lt;/a>&lt;/strong>&lt;/p>
+&lt;blockquote>
+&lt;p>One problem many users have is that the open access network policy of Kubernetes is not suitable for applications that need more precise control over the traffic that accesses a pod or service. Today, this could be a multi-tier application where traffic is only allowed from a tier’s neighbor. But as new Cloud Native applications are built by composing microservices, the ability to control traffic as it flows among these services becomes even more critical.&lt;/p></description></item><item><title>runc and runV</title><link>https://feisky.xyz/posts/2016-04-28-runc/</link><pubDate>Thu, 28 Apr 2016 11:15:03 +0000</pubDate><guid>https://feisky.xyz/posts/2016-04-28-runc/</guid><description>&lt;p>runc is a CLI tool for spawning and running containers according to the OCI specification, while runV is a hypervisor-based runtime for OCI. Both of them are recommanded (implementations](&lt;a href="https://github.com/opencontainers/runtime-spec/blob/master/implementations.md">https://github.com/opencontainers/runtime-spec/blob/master/implementations.md&lt;/a>) of OCI.&lt;/p>
+&lt;h2 id="playing-with-runc">Playing with runc&lt;/h2>
+&lt;p>Install runc:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>yum install -y libseccomp-devel
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>mkdir -p $GOPATH/src/github.com/opencontainers
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>cd $GOPATH/src/github.com/opencontainers
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git clone https://github.com/opencontainers/runc
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>cd runc
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>make
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>sudo make install
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Run busybox:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>$ docker pull busybox
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ mkdir rootfs
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ docker export &lt;span style="color:#66d9ef">$(&lt;/span>docker create busybox&lt;span style="color:#66d9ef">)&lt;/span> | tar -C rootfs -xvf -
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ runc spec .
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ runc start test
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>/ &lt;span style="color:#75715e"># ps&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>PID USER COMMAND
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ae81ff">1&lt;/span> root sh
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ae81ff">9&lt;/span> root ps
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="playing-with-docker-containerd">Playing with docker-containerd&lt;/h2>
+&lt;p>docker-containerd is installed togather with docker 1.11.&lt;/p></description></item><item><title>Container runtime in Docker v1.11</title><link>https://feisky.xyz/posts/2016-04-28-docker-1-11-runtime/</link><pubDate>Thu, 28 Apr 2016 10:07:23 +0000</pubDate><guid>https://feisky.xyz/posts/2016-04-28-docker-1-11-runtime/</guid><description>&lt;p>Docker v1.11正式集成了runc（终于支持OCI了），并将原来的一个二进制文件拆分为多个，同时还保持docker CLI和API不变：&lt;/p>
+&lt;ul>
+&lt;li>docker&lt;/li>
+&lt;li>docker-containerd&lt;/li>
+&lt;li>docker-containerd-shim&lt;/li>
+&lt;li>docker-runc&lt;/li>
+&lt;li>docker-containerd-ctr&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="https://feisky.xyz/images/docker-v11.png" alt="">&lt;/p></description></item><item><title>Docker overlay network dive</title><link>https://feisky.xyz/posts/2016-03-04-docker-overlay-network-dive/</link><pubDate>Fri, 04 Mar 2016 13:41:54 +0000</pubDate><guid>https://feisky.xyz/posts/2016-03-04-docker-overlay-network-dive/</guid><description>&lt;p>DON MILLS写的&lt;a href="http://www.singlestoneconsulting.com/blog/2016/january/docker-networking?mkt_tok=3RkMMJWWfF9wsRonuqTMZKXonjHpfsX57usvUK%2B2lMI%2F0ER3fOvrPUfGjI4DS8FjI%2BSLDwEYGJlv6SgFQ7LMMaZq1rgMXBk%3D">Docker Multi-Host Networking: Overlays to the Rescue&lt;/a>对Docker的overlay network做了细致的分析，&lt;a href="https://feisky.xyz/assets/DockerNetworking2.pdf">值得看一看&lt;/a>。&lt;/p></description></item><item><title>10 things to avoid in docker containers</title><link>https://feisky.xyz/posts/2016-03-01-10-things-to-avoid-in-docker-containers/</link><pubDate>Tue, 01 Mar 2016 16:33:16 +0000</pubDate><guid>https://feisky.xyz/posts/2016-03-01-10-things-to-avoid-in-docker-containers/</guid><description>&lt;p>Redhat发布的&lt;a href="https://developerblog.redhat.com/2016/02/24/10-things-to-avoid-in-docker-containers/">10 things to avoid in docker containers&lt;/a>对于构建基于Container的服务非常有意义。摘录如下：&lt;/p>
+&lt;blockquote>
+&lt;ol>
+&lt;li>Don’t store data in containers – A container can be stopped, destroyed, or replaced. An application version 1.0 running in container should be easily replaced by the version 1.1 without any impact or loss of data. For that reason, if you need to store data, store it in a volume, but take care if two containers write data on the same volume because it could cause corruption. Make sure your applications are designed to write to shared data stores.&lt;/li>
+&lt;/ol>
+&lt;/blockquote>
+&lt;p>需要持久化的数据存在volume中，这个是共识了。&lt;/p></description></item><item><title>Carina by Rackspace</title><link>https://feisky.xyz/posts/2016-02-29-carina-by-rackspace/</link><pubDate>Mon, 29 Feb 2016 19:20:27 +0000</pubDate><guid>https://feisky.xyz/posts/2016-02-29-carina-by-rackspace/</guid><description>&lt;h2 id="what-is-carina">What is Carina?&lt;/h2>
+&lt;p>Carina is a container runtime environment (currently in Beta) that offers performance, container-native tools, and portability without sacrificing ease of use. You can get started in minutes by using open-source software on managed infrastructure to run your containerized applications.&lt;/p>
+&lt;p>Your containers run in a bare-metal environment, which avoids the &amp;ldquo;hypervisor tax&amp;rdquo; on performance. Applications in this environment launch as much as 20 percent faster and run as much as 60 percent faster. This environment builds on the standard restrictions set out by libcontainer by using an AppArmor profile as an additional security layer to keep your resources isolated.&lt;/p></description></item><item><title>Apache的Mesos和Google的Kubernetes 有什么区别</title><link>https://feisky.xyz/posts/2015-02-06-apachemesosgooglekubernetes-/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-02-06-apachemesosgooglekubernetes-/</guid><description>&lt;p>Kubernetes是一个开源项目，它把谷歌的集群管理工具引入到虚拟机和裸机场景中。它可以完美运行在现代的操作系统环境（比如CoreOS和Red Hat Atomic），并提供可以被你管控的轻量级的计算节点。Kubernetes使用Golang开发，具有轻量化、模块化、便携以及可扩展的特点。我们（Kubernetes开发团队）正在和一些不同的技术公司（包括维护着Mesos项目的MesoSphere）合作来把Kubernetes升级为一种与计算集群交互的标准方式。Kubernetes重新实现了Google在构建集群应用时积累的经验。这些概念包括如下内容：&lt;/p></description></item><item><title>Deploy a Mesos Cluster Using Docker</title><link>https://feisky.xyz/posts/2015-02-05-deploy-a-mesos-cluster-using-docker/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-02-05-deploy-a-mesos-cluster-using-docker/</guid><description>&lt;p>his tutorial will show you how to bring up a single node &lt;a href="http://mesosphere.com/">Mesos&lt;/a> cluster all provisioned out using &lt;a href="http://docker.io/">Docker&lt;/a> containers (a future post will show how to easily scale this out to multi nodes or see the update on the bottom). This means that you can startup an entire cluster with 7 commands! Nothing to install except for starting out with a working Docker server.&lt;/p>
+&lt;p>This will startup 4 containers:&lt;/p>
+&lt;ol>
+&lt;li>ZooKeeper&lt;/li>
+&lt;li>Meso Master&lt;/li>
+&lt;li>Marathon&lt;/li>
+&lt;li>Mesos Slave Container&lt;/li>
+&lt;/ol>
+&lt;p>As mentioned the only prerequisite is to have a working Docker server. This means you can bring up a local &lt;a href="https://docs.vagrantup.com/v2/provisioning/docker.html">Vagrant box with Docker installed&lt;/a>, use &lt;a href="http://boot2docker.io/">Boot2Docker&lt;/a>, use &lt;a href="https://coreos.com/">CoreOS&lt;/a>, instance on AWS, or however you like to get a Docker server.&lt;/p></description></item><item><title>Docker</title><link>https://feisky.xyz/posts/2015-01-27-docker/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-01-27-docker/</guid><description>&lt;h3 id="简介">简介&lt;/h3>
+&lt;p>Docker 是 dotCloud 最近几个月刚宣布的开源引擎，旨在提供一种应用程序的自动化部署解决方案，简单的说就是，在 Linux 系统上迅速创建一个容器（类似虚拟机）并在容器上部署和运行应用程序，并通过配置文件可以轻松实现应用程序的自动化安装、部署和升级，非常方便。因为使用了容器，所以可以很方便的把生产环境和开发环境分开，互不影响，这是 docker 最普遍的一个玩法。更多的玩法还有大规模 web 应用、数据库部署、持续部署、集群、测试环境、面向服务的云计算、虚拟桌面 VDI 等等。&lt;/p></description></item><item><title>Docker acquires SDN startup SocketPlane</title><link>https://feisky.xyz/posts/2015-03-05-docker-acquires-sdn-startup-socketplane/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-03-05-docker-acquires-sdn-startup-socketplane/</guid><description>&lt;p>At &lt;a href="http://socketplane.io/">Socketplane&lt;/a> we started out as four guys with a collectively strong belief in open source and open communities.  We aligned around a shared vision that we wanted to be a critical part of Docker’s once in a decade disruption. Now that we are &lt;a href="http://www.businesswire.com/news/home/20150304005595/en/Docker-Acquires-SocketPlane-Drive-Open-Collaborative-Networking#.VPcQAVPF-Tk">part of the Docker team&lt;/a>, we couldn’t be happier.&lt;/p>
+&lt;p>We never looked to hedge our bets, our success was and obviously still is tied to the success of Docker. While there are many reasons that we decided to join the team, first and foremost Docker is unlike any other projects we have worked on in the past; the focus on user experience and simplicity is unmatched. Our early work with Docker during the open network design sprints gave us clear indications that the Docker maintainers were interested in being good open source stewards for the networking community in a project with an already staggering community of users and contributors. We also saw a genuine desire from Docker leadership to do right by both, individual contributors and the ecosystem. That made it all the more easy to jump in head first.&lt;/p></description></item><item><title>docker in tencent</title><link>https://feisky.xyz/posts/2015-03-20-docker-in-tencent/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-03-20-docker-in-tencent/</guid><description>&lt;p>腾讯内部对Docker有着广泛的使用，其基于Yarn的代号为Gaia的调度平台可以同时兼容Docker和非Docker类型的应用，并提供高并发任务调度和资源管理，它具有高度可伸缩性和可靠性，能够支持MR等离线业务。&lt;/p></description></item><item><title>docker internal</title><link>https://feisky.xyz/posts/2015-01-27-docker-internal/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-01-27-docker-internal/</guid><description>&lt;p>&lt;!-- raw HTML omitted -->&lt;!-- raw HTML omitted -->docker-base&lt;!-- raw HTML omitted -->&lt;!-- raw HTML omitted -->&lt;!-- raw HTML omitted -->&lt;!-- raw HTML omitted -->Abstract&lt;!-- raw HTML omitted -->&lt;/p>
+&lt;!-- raw HTML omitted -->
+&lt;p>A &lt;em>subsystem&lt;/em> is a module that makes use of the task grouping
+facilities provided by cgroups to treat groups of tasks in
+particular ways. A subsystem is typically a &amp;ldquo;resource controller&amp;rdquo; that
+schedules a resource or applies per-cgroup limits, but it may be
+anything that wants to act on a group of processes, e.g. a
+virtualization subsystem.
+&lt;!-- raw HTML omitted -->&lt;!-- raw HTML omitted -->&lt;/p></description></item><item><title>How to use docker compose to deploy a flask app</title><link>https://feisky.xyz/posts/2015-02-12-how-to-use-docker-compose-to-deploy-a-flask-app/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-02-12-how-to-use-docker-compose-to-deploy-a-flask-app/</guid><description>&lt;p>The flask app is very simple, you have an index page where your can write and read comments.&lt;/p>
+&lt;h2 id="to-start">To start&lt;/h2>
+&lt;p>So what we need ?&lt;/p>
+&lt;p>In my case a &lt;a href="https://www.digitalocean.com/?refcode=16e2312f412e" title="Digital Ocean">Digital Ocean&lt;/a> droplet (I&amp;rsquo;m using Fedora 21).&lt;/p>
+&lt;p>So, first of all we connect to our vm with ssh.&lt;/p>
+&lt;!-- raw HTML omitted -->
+&lt;!-- raw HTML omitted -->
+&lt;p>Now that we are inside we need to install git, Docker and docker-compose.&lt;/p>
+&lt;!-- raw HTML omitted -->
+&lt;!-- raw HTML omitted -->
+&lt;p>That&amp;rsquo;s all we need to play with Docker.&lt;/p></description></item><item><title>Installing nova docker on OpenStack Juno</title><link>https://feisky.xyz/posts/2015-02-13-installing-nova-docker-on-openstack-juno/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-02-13-installing-nova-docker-on-openstack-juno/</guid><description>&lt;p>This post comes about indirectly by a request on IRC in #rdo for help getting nova-docker installed on Fedora 21. I ran through the process from start to finish and decided to write everything down for posterity.&lt;/p>
+&lt;p>Getting started
+I started with the Fedora 21 Cloud Image, because I&amp;rsquo;m installing onto OpenStack and the cloud images include some features that are useful in this environment.&lt;/p>
+&lt;p>We&amp;rsquo;ll be using OpenStack packages from the RDO Juno repository. Because there is often some skew between the RDO packages and the current Fedora selinux policy, we&amp;rsquo;re going to start by putting SELinux into permissive mode (sorry, Dan):&lt;/p></description></item><item><title>Integrating Openstack and Kubernetes with Murano</title><link>https://feisky.xyz/posts/2015-02-26-integrating-openstack-and-kubernetes-with-murano/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-02-26-integrating-openstack-and-kubernetes-with-murano/</guid><description>&lt;p>There’s a perceived competition between OpenStack and containers such as Docker, but in reality, the two technologies are a powerful combination. They both solve similar problems, but on different layers of the stack, so combining the two can give users more scalability and automation than ever before.&lt;/p>
+&lt;p>That containers app you wrote needs to run somewhere. This is particularly true for orchestrated container applications, such as those managed by Kubernetes. What’s more, if your application is complicated enough that it needs to scale up and down, you need to be running it in an environment that can, itself, scale up and down. This is where OpenStack comes in.&lt;/p></description></item><item><title>Microservice Infrastructure</title><link>https://feisky.xyz/posts/2015-03-17-microservice-infrastructure/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-03-17-microservice-infrastructure/</guid><description>&lt;h2 id="microservices-infrastructure">Microservices Infrastructure&lt;/h2>
+&lt;p>Modern platform for rapidly deploying globally distributed services provided by cisco.&lt;/p>
+&lt;p>&lt;a href="https://github.com/CiscoCloud/microservices-infrastructure">https://github.com/CiscoCloud/microservices-infrastructure&lt;/a>&lt;/p>
+&lt;h2 id="features">Features&lt;/h2>
+&lt;ul>
+&lt;li>the ability to deploy applications utilizing resources across multiple datacenters (and even clouds),&lt;/li>
+&lt;li>deploying in a decentralized control model,&lt;/li>
+&lt;li>supporting intelligent endpoints,&lt;/li>
+&lt;li>heavy automation, and&lt;/li>
+&lt;li>the on-demand nature of deploying these services to support business requirements and scale.&lt;/li>
+&lt;/ul>
+&lt;h2 id="architectural-overview">Architectural Overview&lt;/h2>
+&lt;ul>
+&lt;li>Mesos cluster manager for efficient resource isolation and sharing across distributed services&lt;/li>
+&lt;li>Marathon for cluster management of long running containerized services&lt;/li>
+&lt;li>Consul for service discovery (By using Consul&amp;rsquo;s inbuilt DNS server)&lt;/li>
+&lt;li>Docker container runtime supported by Marathon&lt;/li>
+&lt;li>Multi-datacenter support&lt;/li>
+&lt;li>High availablity&lt;/li>
+&lt;/ul>
+&lt;h2 id="single-data-center-architecture">Single Data Center Architecture&lt;/h2>
+&lt;p>The base platform contains control nodes that manage the cluster and any number of compute nodes. Containers automatically register themselves into DNS so that other services can locate them.&lt;/p></description></item><item><title>Redhat Atomic Host</title><link>https://feisky.xyz/posts/2015-03-06-redhat-atomic-host/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-03-06-redhat-atomic-host/</guid><description>&lt;h3 id="introduction">Introduction&lt;/h3>
+&lt;p>Red Hat has announced first public beta of &lt;a href="http://www.projectatomic.io/">Red Hat Enterprise Linux 7 Atomic Host&lt;/a>. The beta is available from Red Hat and on Amazon Web Services and Google Compute Platform.&lt;/p>
+&lt;p>What can you expect from the Red Hat Enterprise Linux 7 Atomic Host Beta?&lt;/p>
+&lt;h4 id="specifically-designed-to-run-containers">Specifically Designed to Run Containers&lt;/h4>
+&lt;p>Red Hat Enterprise Linux 7 Atomic Host Beta provides a streamlined host platform that is optimized to run application containers. The software components included in Red Hat Enterprise Linux 7 Atomic Host Beta, as well as the default system tunings, have been designed to enhance the performance, scalability and security of containers, giving you the optimal platform on which to deploy and run application containers.&lt;/p></description></item><item><title>Setting up GRE for Kubernetes</title><link>https://feisky.xyz/posts/2015-03-02-setting-up-gre-for-kubernetes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-03-02-setting-up-gre-for-kubernetes/</guid><description>&lt;p>首先修改Docker的默认网桥：&lt;/p>
+&lt;pre tabindex="0">&lt;code>#停止Docker Daemon进程
+systemctl stop docker
+
+#设置默认网桥docker0为down，并删除
+ip link set dev docker0 down
+brctl delbr docker0
+
+#新建Linux网桥localbr0
+brctl addbr localbr0
+
+#在每台主机上更改10.10.x.0/24，注意各台主机之间不要重复
+ip addr add 10.10.2.1/24 dev localbr0
+ip link set dev localbr0 up
+
+echo &amp;#39;OPTIONS=&amp;#34;--bridge localbr0 --iptables=false&amp;#34;&amp;#39;&amp;gt;&amp;gt;/etc/sysconfig/docker
+systemctl start Docker
+&lt;/code>&lt;/pre>&lt;p>为上述网桥添加GRE连接&lt;/p></description></item><item><title>Using cAdvisor to monitor docker</title><link>https://feisky.xyz/posts/2015-03-13-usging-cadvisor-to-monitor-docker/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-03-13-usging-cadvisor-to-monitor-docker/</guid><description>&lt;p>cAdvisor (Container Advisor) provides container users an understanding of the resource usage and performance characteristics of their running containers. It is a running daemon that collects, aggregates, processes, and exports information about running containers. Specifically, for each container it keeps resource isolation parameters, historical resource usage, histograms of complete historical resource usage and network statistics. This data is exported by container and machine-wide.&lt;/p>
+&lt;p>cAdvisor has native support for Docker containers and should support just about any other container type out of the box. We strive for support accross the board so feel free to open an issue if that is not the case. cAdvisor&amp;rsquo;s container abstraction is based on lmctfy&amp;rsquo;s so containers are inherently nested hierarchically.&lt;/p></description></item><item><title>使用Mesos来管理Docker集群</title><link>https://feisky.xyz/posts/2015-02-06-mesosdocker/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-02-06-mesosdocker/</guid><description>&lt;h3 id="introduction">Introduction&lt;/h3>
+&lt;p>Apache Mesos能够在同样的集群机器上运行多种分布式系统类型，更加动态有效率低共享资源。提供失败侦测，任务发布，任务跟踪，任务监控，低层次资源管理和细粒度的资源共享，可以扩展伸缩到数千个节点。Mesos已经被Twitter用来管理它们的数据中心。&lt;/p></description></item></channel></rss>

@@ -1,396 +1,213 @@
-<!doctype html><html lang=zh-cn>
-<head>
-<link href=https://gmpg.org/xfn/11 rel=profile>
-<link rel=canonical href=https://feisky.xyz/posts/2016-04-28-runc/>
-<meta charset=utf-8>
-<meta http-equiv=x-ua-compatible content="IE=edge">
-<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1">
-<meta name=generator content="Hugo 0.87.0">
-<title>runc and runV • Feisky</title>
-<meta name=twitter:card content="summary">
-<meta name=twitter:title content="runc and runV">
-<meta name=twitter:description content="runc is a CLI tool for spawning and running containers according to the OCI specification, while runV is a hypervisor-based runtime for OCI. Both of them are recommanded (implementations](https://github.com/opencontainers/runtime-spec/blob/master/implementations.md) of OCI.
+<!doctype html><html lang=zh-cn><head><link href=https://gmpg.org/xfn/11 rel=profile><link rel=canonical href=https://feisky.xyz/posts/2016-04-28-runc/><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta name=generator content="Hugo 0.140.2"><title>runc and runV • Feisky</title>
+<meta name=twitter:card content="summary"><meta name=twitter:title content="runc and runV"><meta name=twitter:description content="runc is a CLI tool for spawning and running containers according to the OCI specification, while runV is a hypervisor-based runtime for OCI. Both of them are recommanded (implementations](https://github.com/opencontainers/runtime-spec/blob/master/implementations.md) of OCI.
 Playing with runc Install runc:
 yum install -y libseccomp-devel mkdir -p $GOPATH/src/github.com/opencontainers cd $GOPATH/src/github.com/opencontainers git clone https://github.com/opencontainers/runc cd runc make sudo make install Run busybox:
-$ docker pull busybox $ mkdir rootfs $ docker export $(docker create busybox) | tar -C rootfs -xvf - $ runc spec .">
-<meta property="og:title" content="runc and runV">
-<meta property="og:description" content="runc is a CLI tool for spawning and running containers according to the OCI specification, while runV is a hypervisor-based runtime for OCI. Both of them are recommanded (implementations](https://github.com/opencontainers/runtime-spec/blob/master/implementations.md) of OCI.
+$ docker pull busybox $ mkdir rootfs $ docker export $(docker create busybox) | tar -C rootfs -xvf - $ runc spec . $ runc start test / # ps PID USER COMMAND 1 root sh 9 root ps Playing with docker-containerd docker-containerd is installed togather with docker 1.11."><meta name=twitter:site content="@feisky"><meta property="og:url" content="https://feisky.xyz/posts/2016-04-28-runc/"><meta property="og:site_name" content="Feisky"><meta property="og:title" content="runc and runV"><meta property="og:description" content="runc is a CLI tool for spawning and running containers according to the OCI specification, while runV is a hypervisor-based runtime for OCI. Both of them are recommanded (implementations](https://github.com/opencontainers/runtime-spec/blob/master/implementations.md) of OCI.
 Playing with runc Install runc:
 yum install -y libseccomp-devel mkdir -p $GOPATH/src/github.com/opencontainers cd $GOPATH/src/github.com/opencontainers git clone https://github.com/opencontainers/runc cd runc make sudo make install Run busybox:
-$ docker pull busybox $ mkdir rootfs $ docker export $(docker create busybox) | tar -C rootfs -xvf - $ runc spec .">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://feisky.xyz/posts/2016-04-28-runc/"><meta property="article:section" content="posts">
-<meta property="article:published_time" content="2016-04-28T11:15:03+00:00">
-<meta property="article:modified_time" content="2016-04-28T11:15:03+00:00">
-<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai.min.css>
-<link rel=stylesheet href=/scss/hyde-hyde.3081c4981fb69a2783dd36ecfdd0e6ba7a158d4cbfdd290ebce8f78ba0469fc6.css integrity="sha256-MIHEmB+2mieD3Tbs/dDmunoVjUy/3SkOvOj3i6BGn8Y=">
-<link rel=stylesheet href=/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58+TzH3icCkSHGoJ+ed7w=" media=print>
-<link rel=stylesheet href=/scss/tocbot.5ef07cebc3c477b54270456f149ee02922479bb7555fd344b2c69f953b0e7e5e.css integrity="sha256-XvB868PEd7VCcEVvFJ7gKSJHm7dVX9NEssaflTsOfl4="><!--[if lt IE 9]><script src=https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js></script>
-<script src=https://oss.maxcdn.com/respond/1.4.2/respond.min.js></script><![endif]-->
-<link rel=apple-touch-icon-precomposed sizes=144x144 href=/apple-touch-icon-144-precomposed.png>
-<link rel="shortcut icon" href=/favicon.png>
-</head>
-<body class=theme-base-0d>
-<div class=sidebar>
-<div class=container>
-<div class=sidebar-about>
-<span class=site__title>
-<a href=https://feisky.xyz/>
-Feisky
-</a>
-</span>
-<div class=author-image>
-<img src="https://www.gravatar.com/avatar/f86d2faa0f91793a2163d226d82a7620?s=240&d=mp" class="img--circle img--headshot element--center" alt=gravatar>
-</div>
-<p class=site__description>
-</p>
-</div>
-<div class=collapsible-menu>
-<input type=checkbox id=menuToggle>
-<label for=menuToggle>Feisky</label>
-<div class=menu-content>
-<div>
-<ul class=sidebar-nav>
-<li>
-<a href=https://time.geekbang.org/column/intro/100020901>
-<span>Linux性能优化实战</span>
-</a>
-</li>
-<li>
-<a href=https://time.geekbang.org/column/intro/100104501>
-<span>EBPF核心技术与实战</span>
-</a>
-</li>
-<li>
-<a href=https://kubernetes.feisky.xyz>
-<span>Kubernetes指南</span>
-</a>
-</li>
-<li>
-<a href=https://sdn.feisky.xyz>
-<span>SDN网络指南</span>
-</a>
-</li>
-<li>
-<a href=/assets/mp.png>
-<span>微信公众号</span>
-</a>
-</li>
-<li>
-<a href=https://zhuanlan.zhihu.com/kubernetes>
-<span>知乎专栏</span>
-</a>
-</li>
-<li>
-<a href=/about/>
-<span>关于我</span>
-</a>
-</li>
-</ul>
-</div>
-<section class=social>
-<a href=https://twitter.com/feisky rel=me><i class="fab fa-twitter fa-lg" aria-hidden=true></i></a>
-<a href=https://github.com/feiskyer rel=me><i class="fab fa-github fa-lg" aria-hidden=true></i></a>
-</section>
-</div>
-</div>
-<div class=copyright>
-&copy; 2022 feiskyer
-<a href=https://creativecommons.org/licenses/by-sa/4.0>CC BY-SA 4.0</a>
-</div>
-<div class=builtwith>
-Built with <a href=https://gohugo.io>Hugo</a> ❤️ <a href=https://github.com/htr3n/hyde-hyde>hyde-hyde</a>.
-</div>
-</div>
-</div>
-<div class="content container">
-<article>
-<header>
-<h1>runc and runV</h1>
-<div class=post__meta>
-<i class="fas fa-calendar-alt"></i> Apr 28, 2016
-<br>
-<i class="fas fa-tags"></i>
+$ docker pull busybox $ mkdir rootfs $ docker export $(docker create busybox) | tar -C rootfs -xvf - $ runc spec . $ runc start test / # ps PID USER COMMAND 1 root sh 9 root ps Playing with docker-containerd docker-containerd is installed togather with docker 1.11."><meta property="og:locale" content="zh_cn"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2016-04-28T11:15:03+00:00"><meta property="article:modified_time" content="2016-04-28T11:15:03+00:00"><meta property="article:tag" content="Docker"><meta property="article:tag" content="Container"><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/monokai.min.css><link rel=stylesheet href=/scss/triple-hyde.ef937e1c8a424ea6419b858ae4cfbdb5f7e764eb1075e9ac50fa2de759dde8a2.css integrity="sha256-75N+HIpCTqZBm4WK5M+9tffnZOsQdemsUPot51nd6KI="><link rel=stylesheet href=/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58+TzH3icCkSHGoJ+ed7w=" media=print><link rel=stylesheet href=/scss/tocbot.5ef07cebc3c477b54270456f149ee02922479bb7555fd344b2c69f953b0e7e5e.css integrity="sha256-XvB868PEd7VCcEVvFJ7gKSJHm7dVX9NEssaflTsOfl4="><!--[if lt IE 9]><script src=https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js></script><script src=https://oss.maxcdn.com/respond/1.4.2/respond.min.js></script><![endif]--><link rel=apple-touch-icon-precomposed sizes=144x144 href=/apple-touch-icon-144-precomposed.png><link rel="shortcut icon" href=/favicon.png></head><body class=theme-base-0d><div class=sidebar><div class=container><div class=sidebar-about><span class=site__title><a href=https://feisky.xyz/>Feisky</a></span><div class=author-image><img src="https://www.gravatar.com/avatar/f86d2faa0f91793a2163d226d82a7620?s=240&d=mp" class="img--circle img--headshot element--center" alt=gravatar></div><p class=site__description></p></div><div class=collapsible-menu><input type=checkbox id=menuToggle>
+<label for=menuToggle>Feisky</label><div class=menu-content><div><ul class=sidebar-nav><li><a href=https://time.geekbang.org/column/intro/100020901><span>Linux性能优化实战</span></a></li><li><a href=https://time.geekbang.org/column/intro/100104501><span>EBPF核心技术与实战</span></a></li><li><a href=https://kubernetes.feisky.xyz><span>Kubernetes指南</span></a></li><li><a href=https://sdn.feisky.xyz><span>SDN网络指南</span></a></li><li><a href=/assets/mp.png><span>微信公众号</span></a></li><li><a href=https://zhuanlan.zhihu.com/kubernetes><span>知乎专栏</span></a></li><li><a href=/about/><span>关于我</span></a></li></ul></div><section class=social><a href=https://twitter.com/feisky rel=me><span class="relative block icon"><svg viewBox="0 0 512 512"><path fill="currentcolor" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645.0 138.72-105.583 298.558-298.558 298.558-59.452.0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055.0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421.0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391.0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04.0-57.828 46.782-104.934 104.934-104.934 30.213.0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+</span></a><a href=https://github.com/feiskyer rel=me><span class="relative block icon"><svg viewBox="0 0 496 512"><path fill="currentcolor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6.0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6.0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3.0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1.0-6.2-.3-40.4-.3-61.4.0.0-70 15-84.7-29.8.0.0-11.4-29.1-27.8-36.6.0.0-22.9-15.7 1.6-15.4.0.0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5.0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9.0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4.0 33.7-.3 75.4-.3 83.6.0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6.0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9.0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span></a></section></div></div><div class=copyright>&copy; 2025 feiskyer
+<a href=https://creativecommons.org/licenses/by-sa/4.0>CC BY-SA 4.0</a></div><div class=builtwith>Built with <a href=https://gohugo.io>Hugo</a> ❤️ <a href=https://github.com/derme302/triple-hyde>triple-hyde</a>.</div></div></div><div class="content container"><article><header><h1>runc and runV</h1><div class=post__meta><i class="fas fa-calendar-alt"></i> Apr 28, 2016<br><i class="fas fa-tags"></i>
 <a class="badge badge-tag" href=/tags/docker>docker</a>
-<a class="badge badge-tag" href=/tags/container>container</a>
-<br>
-<i class="fas fa-clock"></i> 3 min read
-</div>
-</header>
-<div class=toc-wrapper>
-<input type=checkbox id=tocToggle>
-<label for=tocToggle>Table of Content</label>
-<div class=toc id=TableOfContents></div>
-</div>
-<div class=post>
-<p>runc is a CLI tool for spawning and running containers according to the OCI specification, while runV is a hypervisor-based runtime for OCI. Both of them are recommanded (implementations](<a href=https://github.com/opencontainers/runtime-spec/blob/master/implementations.md>https://github.com/opencontainers/runtime-spec/blob/master/implementations.md</a>) of OCI.</p>
-<h2 id=playing-with-runc>Playing with runc</h2>
-<p>Install runc:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>yum install -y libseccomp-devel
-mkdir -p $GOPATH/src/github.com/opencontainers
-cd $GOPATH/src/github.com/opencontainers
-git clone https://github.com/opencontainers/runc
-cd runc
-make
-sudo make install
-</code></pre></div><p>Run busybox:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>$ docker pull busybox
-$ mkdir rootfs
-$ docker export <span style=color:#66d9ef>$(</span>docker create busybox<span style=color:#66d9ef>)</span> | tar -C rootfs -xvf -
-$ runc spec .
-$ runc start test
-/ <span style=color:#75715e># ps</span>
-PID   USER     COMMAND
-<span style=color:#ae81ff>1</span> root     sh
-<span style=color:#ae81ff>9</span> root     ps
-</code></pre></div><h2 id=playing-with-docker-containerd>Playing with docker-containerd</h2>
-<p>docker-containerd is installed togather with docker 1.11.</p>
-<pre><code>$ docker-containerd-ctr --address &quot;/var/run/docker/libcontainerd/docker-containerd.sock&quot; containers
+<a class="badge badge-tag" href=/tags/container>container</a><br><i class="fas fa-clock"></i> 3 min read</div></header><div class=toc-wrapper><input type=checkbox id=tocToggle>
+<label for=tocToggle>Table of Content</label><div class=toc id=TableOfContents></div></div><div class=post><p>runc is a CLI tool for spawning and running containers according to the OCI specification, while runV is a hypervisor-based runtime for OCI. Both of them are recommanded (implementations](<a href=https://github.com/opencontainers/runtime-spec/blob/master/implementations.md>https://github.com/opencontainers/runtime-spec/blob/master/implementations.md</a>) of OCI.</p><h2 id=playing-with-runc>Playing with runc</h2><p>Install runc:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>yum install -y libseccomp-devel
+</span></span><span style=display:flex><span>mkdir -p $GOPATH/src/github.com/opencontainers
+</span></span><span style=display:flex><span>cd $GOPATH/src/github.com/opencontainers
+</span></span><span style=display:flex><span>git clone https://github.com/opencontainers/runc
+</span></span><span style=display:flex><span>cd runc
+</span></span><span style=display:flex><span>make
+</span></span><span style=display:flex><span>sudo make install
+</span></span></code></pre></div><p>Run busybox:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>$ docker pull busybox
+</span></span><span style=display:flex><span>$ mkdir rootfs
+</span></span><span style=display:flex><span>$ docker export <span style=color:#66d9ef>$(</span>docker create busybox<span style=color:#66d9ef>)</span> | tar -C rootfs -xvf -
+</span></span><span style=display:flex><span>$ runc spec .
+</span></span><span style=display:flex><span>$ runc start test
+</span></span><span style=display:flex><span>/ <span style=color:#75715e># ps</span>
+</span></span><span style=display:flex><span>PID   USER     COMMAND
+</span></span><span style=display:flex><span><span style=color:#ae81ff>1</span> root     sh
+</span></span><span style=display:flex><span><span style=color:#ae81ff>9</span> root     ps
+</span></span></code></pre></div><h2 id=playing-with-docker-containerd>Playing with docker-containerd</h2><p>docker-containerd is installed togather with docker 1.11.</p><pre tabindex=0><code>$ docker-containerd-ctr --address &#34;/var/run/docker/libcontainerd/docker-containerd.sock&#34; containers
 ID                                                                 PATH                                                                                             STATUS              PROCESSES
 346c1b7bbb04b760032557e1324a4027ec0055ea84dca109134c02e03dc1242c   /var/run/docker/libcontainerd/346c1b7bbb04b760032557e1324a4027ec0055ea84dca109134c02e03dc1242c   running             init
 bca15f3420e3218987314e1cbbf440120ff880af44844778293c4130526c85cc   /var/run/docker/libcontainerd/bca15f3420e3218987314e1cbbf440120ff880af44844778293c4130526c85cc   running             init
-$ docker-containerd-ctr --address &quot;/var/run/docker/libcontainerd/docker-containerd.sock&quot; containers exec --id=346c1b7bbb04b760032557e1324a4027ec0055ea84dca109134c02e03dc1242c --pid=20 --cwd=/ -a /bin/ps aux
+$ docker-containerd-ctr --address &#34;/var/run/docker/libcontainerd/docker-containerd.sock&#34; containers exec --id=346c1b7bbb04b760032557e1324a4027ec0055ea84dca109134c02e03dc1242c --pid=20 --cwd=/ -a /bin/ps aux
 PID   USER     TIME   COMMAND
     1 root       0:00 sh
    51 root       0:00 /bin/ps aux
-$ docker-containerd-ctr --address &quot;/var/run/docker/libcontainerd/docker-containerd.sock&quot; state 346c1b7bbb04b760032557e1324a4027ec0055ea84dca109134c02e03dc1242c
-{&quot;containers&quot;:[{&quot;id&quot;:&quot;346c1b7bbb04b760032557e1324a4027ec0055ea84dca109134c02e03dc1242c&quot;,&quot;bundlePath&quot;:&quot;/var/run/docker/libcontainerd/346c1b7bbb04b760032557e1324a4027ec0055ea84dca109134c02e03dc1242c&quot;,&quot;processes&quot;:[{&quot;pid&quot;:&quot;init&quot;,&quot;terminal&quot;:true,&quot;user&quot;:{&quot;additionalGids&quot;:[10]},&quot;args&quot;:[&quot;sh&quot;],&quot;env&quot;:[&quot;PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin&quot;,&quot;HOSTNAME=346c1b7bbb04&quot;,&quot;TERM=xterm&quot;],&quot;cwd&quot;:&quot;/&quot;,&quot;systemPid&quot;:3716,&quot;stdin&quot;:&quot;/var/run/docker/libcontainerd/346c1b7bbb04b760032557e1324a4027ec0055ea84dca109134c02e03dc1242c/init-stdin&quot;,&quot;stdout&quot;:&quot;/var/run/docker/libcontainerd/346c1b7bbb04b760032557e1324a4027ec0055ea84dca109134c02e03dc1242c/init-stdout&quot;,&quot;stderr&quot;:&quot;/var/run/docker/libcontainerd/346c1b7bbb04b760032557e1324a4027ec0055ea84dca109134c02e03dc1242c/init-stderr&quot;,&quot;capabilities&quot;:[&quot;CAP_CHOWN&quot;,&quot;CAP_DAC_OVERRIDE&quot;,&quot;CAP_FSETID&quot;,&quot;CAP_FOWNER&quot;,&quot;CAP_MKNOD&quot;,&quot;CAP_NET_RAW&quot;,&quot;CAP_SETGID&quot;,&quot;CAP_SETUID&quot;,&quot;CAP_SETFCAP&quot;,&quot;CAP_SETPCAP&quot;,&quot;CAP_NET_BIND_SERVICE&quot;,&quot;CAP_SYS_CHROOT&quot;,&quot;CAP_KILL&quot;,&quot;CAP_AUDIT_WRITE&quot;]}],&quot;status&quot;:&quot;running&quot;,&quot;pids&quot;:[3716],&quot;runtime&quot;:&quot;docker-runc&quot;}],&quot;machine&quot;:{&quot;cpus&quot;:2,&quot;memory&quot;:7982}}
-</code></pre><h2 id=playing-with-runv>Playing with runV</h2>
-<p>Install runV:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>mkdir -p $GOPATH/src/github.com/hyperhq
-cd $GOPATH/src/github.com/hyperhq
-git clone https://github.com/hyperhq/runv/
-cd runv
-./autogen.sh
-./configure
-make
-sudo make install
-</code></pre></div><p>To run container in runV, kernel and initrd are needed since runV is based on hypervisor. They could be compiled from <a href=https://github.com/hyperhq/hyperstart>hyperstart</a>.</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>$ docker pull busybox
-$ mkdir rootfs
-$ docker export <span style=color:#66d9ef>$(</span>docker create busybox<span style=color:#66d9ef>)</span> | tar -C rootfs -xvf -
-$ runv spec .
-$ runv --kernel<span style=color:#f92672>=</span>/var/lib/hyper/kernel --initrd<span style=color:#f92672>=</span>/var/lib/hyper/hyper-initrd.img start test
-</code></pre></div><h2 id=playing-with-runv-containerd>Playing with runv-containerd</h2>
-<p>Install ctr CLI from containerd</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>cd $GOPATH/src/github.com/docker
-git clone https://github.com/docker/containerd.git
-cd containerd
-make
-make install
-</code></pre></div><p>Start runv containerd</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>runv-containerd --kernel<span style=color:#f92672>=</span>/var/lib/hyper/kernel --initrd<span style=color:#f92672>=</span>/var/lib/hyper/hyper-initrd.img
-</code></pre></div><p>Run ctr command now:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>ctr --address<span style=color:#f92672>=</span>unix:///run/runv-containerd/containerd.sock containers
-</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=color:#75715e># Creating OCI bundles</span>
-mkdir -p busybox/rootfs
-docker export <span style=color:#66d9ef>$(</span>docker create busybox<span style=color:#66d9ef>)</span> | tar -C busybox/rootfs -xvf -
-cd busybox
-runv spec .
-</code></pre></div><p>Change the contents of config.json to</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>{
-  <span style=color:#f92672>&#34;ociVersion&#34;</span>: <span style=color:#e6db74>&#34;0.5.0-dev&#34;</span>,
-  <span style=color:#f92672>&#34;platform&#34;</span>: {
-    <span style=color:#f92672>&#34;os&#34;</span>: <span style=color:#e6db74>&#34;linux&#34;</span>,
-    <span style=color:#f92672>&#34;arch&#34;</span>: <span style=color:#e6db74>&#34;amd64&#34;</span>
-  },
-  <span style=color:#f92672>&#34;process&#34;</span>: {
-    <span style=color:#f92672>&#34;terminal&#34;</span>: <span style=color:#66d9ef>true</span>,
-    <span style=color:#f92672>&#34;user&#34;</span>: {},
-    <span style=color:#f92672>&#34;args&#34;</span>: [
-      <span style=color:#e6db74>&#34;sh&#34;</span>
-    ],
-    <span style=color:#f92672>&#34;env&#34;</span>: [
-      <span style=color:#e6db74>&#34;PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin&#34;</span>,
-      <span style=color:#e6db74>&#34;TERM=xterm&#34;</span>
-    ],
-    <span style=color:#f92672>&#34;cwd&#34;</span>: <span style=color:#e6db74>&#34;/&#34;</span>
-  },
-  <span style=color:#f92672>&#34;root&#34;</span>: {
-    <span style=color:#f92672>&#34;path&#34;</span>: <span style=color:#e6db74>&#34;rootfs&#34;</span>,
-    <span style=color:#f92672>&#34;readonly&#34;</span>: <span style=color:#66d9ef>false</span>
-  },
-  <span style=color:#f92672>&#34;hostname&#34;</span>: <span style=color:#e6db74>&#34;shell&#34;</span>,
-  <span style=color:#f92672>&#34;mounts&#34;</span>: [
-    {
-      <span style=color:#f92672>&#34;destination&#34;</span>: <span style=color:#e6db74>&#34;/proc&#34;</span>,
-      <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;proc&#34;</span>,
-      <span style=color:#f92672>&#34;source&#34;</span>: <span style=color:#e6db74>&#34;proc&#34;</span>
-    },
-    {
-      <span style=color:#f92672>&#34;destination&#34;</span>: <span style=color:#e6db74>&#34;/dev&#34;</span>,
-      <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;tmpfs&#34;</span>,
-      <span style=color:#f92672>&#34;source&#34;</span>: <span style=color:#e6db74>&#34;tmpfs&#34;</span>,
-      <span style=color:#f92672>&#34;options&#34;</span>: [
-        <span style=color:#e6db74>&#34;nosuid&#34;</span>,
-        <span style=color:#e6db74>&#34;strictatime&#34;</span>,
-        <span style=color:#e6db74>&#34;mode=755&#34;</span>,
-        <span style=color:#e6db74>&#34;size=65536k&#34;</span>
-      ]
-    },
-    {
-      <span style=color:#f92672>&#34;destination&#34;</span>: <span style=color:#e6db74>&#34;/dev/pts&#34;</span>,
-      <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;devpts&#34;</span>,
-      <span style=color:#f92672>&#34;source&#34;</span>: <span style=color:#e6db74>&#34;devpts&#34;</span>,
-      <span style=color:#f92672>&#34;options&#34;</span>: [
-        <span style=color:#e6db74>&#34;nosuid&#34;</span>,
-        <span style=color:#e6db74>&#34;noexec&#34;</span>,
-        <span style=color:#e6db74>&#34;newinstance&#34;</span>,
-        <span style=color:#e6db74>&#34;ptmxmode=0666&#34;</span>,
-        <span style=color:#e6db74>&#34;mode=0620&#34;</span>,
-        <span style=color:#e6db74>&#34;gid=5&#34;</span>
-      ]
-    },
-    {
-      <span style=color:#f92672>&#34;destination&#34;</span>: <span style=color:#e6db74>&#34;/dev/shm&#34;</span>,
-      <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;tmpfs&#34;</span>,
-      <span style=color:#f92672>&#34;source&#34;</span>: <span style=color:#e6db74>&#34;shm&#34;</span>,
-      <span style=color:#f92672>&#34;options&#34;</span>: [
-        <span style=color:#e6db74>&#34;nosuid&#34;</span>,
-        <span style=color:#e6db74>&#34;noexec&#34;</span>,
-        <span style=color:#e6db74>&#34;nodev&#34;</span>,
-        <span style=color:#e6db74>&#34;mode=1777&#34;</span>,
-        <span style=color:#e6db74>&#34;size=65536k&#34;</span>
-      ]
-    },
-    {
-      <span style=color:#f92672>&#34;destination&#34;</span>: <span style=color:#e6db74>&#34;/dev/mqueue&#34;</span>,
-      <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;mqueue&#34;</span>,
-      <span style=color:#f92672>&#34;source&#34;</span>: <span style=color:#e6db74>&#34;mqueue&#34;</span>,
-      <span style=color:#f92672>&#34;options&#34;</span>: [
-        <span style=color:#e6db74>&#34;nosuid&#34;</span>,
-        <span style=color:#e6db74>&#34;noexec&#34;</span>,
-        <span style=color:#e6db74>&#34;nodev&#34;</span>
-      ]
-    },
-    {
-      <span style=color:#f92672>&#34;destination&#34;</span>: <span style=color:#e6db74>&#34;/sys&#34;</span>,
-      <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;sysfs&#34;</span>,
-      <span style=color:#f92672>&#34;source&#34;</span>: <span style=color:#e6db74>&#34;sysfs&#34;</span>,
-      <span style=color:#f92672>&#34;options&#34;</span>: [
-        <span style=color:#e6db74>&#34;nosuid&#34;</span>,
-        <span style=color:#e6db74>&#34;noexec&#34;</span>,
-        <span style=color:#e6db74>&#34;nodev&#34;</span>,
-        <span style=color:#e6db74>&#34;ro&#34;</span>
-      ]
-    },
-    {
-      <span style=color:#f92672>&#34;destination&#34;</span>: <span style=color:#e6db74>&#34;/sys/fs/cgroup&#34;</span>,
-      <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;cgroup&#34;</span>,
-      <span style=color:#f92672>&#34;source&#34;</span>: <span style=color:#e6db74>&#34;cgroup&#34;</span>,
-      <span style=color:#f92672>&#34;options&#34;</span>: [
-        <span style=color:#e6db74>&#34;nosuid&#34;</span>,
-        <span style=color:#e6db74>&#34;noexec&#34;</span>,
-        <span style=color:#e6db74>&#34;nodev&#34;</span>,
-        <span style=color:#e6db74>&#34;relatime&#34;</span>,
-        <span style=color:#e6db74>&#34;ro&#34;</span>
-      ]
-    }
-  ],
-  <span style=color:#f92672>&#34;hooks&#34;</span>: {},
-  <span style=color:#f92672>&#34;linux&#34;</span>: {
-    <span style=color:#f92672>&#34;resources&#34;</span>: {
-      <span style=color:#f92672>&#34;devices&#34;</span>: [
-				{
-          <span style=color:#f92672>&#34;allow&#34;</span>: <span style=color:#66d9ef>false</span>,
-          <span style=color:#f92672>&#34;access&#34;</span>: <span style=color:#e6db74>&#34;rwm&#34;</span>
-        }
-			]
-    },
-    <span style=color:#f92672>&#34;namespaces&#34;</span>: [
-      {
-        <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;pid&#34;</span>
-      },
-      {
-        <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;ipc&#34;</span>
-      },
-      {
-        <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;uts&#34;</span>
-      },
-      {
-        <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;mount&#34;</span>
-      }
-    ],
-		<span style=color:#f92672>&#34;devices&#34;</span>: <span style=color:#66d9ef>null</span>
-  }
-}
-</code></pre></div><p>Start container:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>ctr --address<span style=color:#f92672>=</span>unix:///run/runv-containerd/containerd.sock containers start test /root/busybox
-</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>$ ctr --address<span style=color:#f92672>=</span>unix:///run/runv-containerd/containerd.sock containers
-ID                  PATH                STATUS              PROCESSES
-test                /root/busybox       running             init
-
-$ ctr --address<span style=color:#f92672>=</span>unix:///run/runv-containerd/containerd.sock containers exec --id<span style=color:#f92672>=</span>test --pid<span style=color:#f92672>=</span><span style=color:#ae81ff>20</span> --cwd<span style=color:#f92672>=</span>/ -a  ps aux
-PID   USER     TIME   COMMAND
-    <span style=color:#ae81ff>1</span> root       0:00 /init
-    <span style=color:#ae81ff>2</span> root       0:00 sh
-    <span style=color:#ae81ff>4</span> root       0:00 ps aux
-
-ps -ef | grep qemu
-qemu-system-x86_64 -machine pc-i440fx-2.0,usb<span style=color:#f92672>=</span>off -cpu core2duo -kernel /var/lib/hyper/kernel -initrd /var/lib/hyper/hyper-initrd.img -append <span style=color:#e6db74>&#34;console=ttyS0 panic=1 no_timer_check&#34;</span> -realtime mlock<span style=color:#f92672>=</span>off -no-user-config -nodefaults -no-hpet -rtc base<span style=color:#f92672>=</span>utc,driftfix<span style=color:#f92672>=</span>slew -no-reboot -display none -boot strict<span style=color:#f92672>=</span>on -m <span style=color:#ae81ff>128</span> -smp <span style=color:#ae81ff>1</span> -qmp unix:/var/run/hyper/vm-JRPdDUOkqA/qmp.sock,server,nowait -serial unix:/var/run/hyper/vm-JRPdDUOkqA/console.sock,server,nowait -device virtio-serial-pci,id<span style=color:#f92672>=</span>virtio-serial0,bus<span style=color:#f92672>=</span>pci.0,addr<span style=color:#f92672>=</span>0x2 -device virtio-scsi-pci,id<span style=color:#f92672>=</span>scsi0,bus<span style=color:#f92672>=</span>pci.0,addr<span style=color:#f92672>=</span>0x3 -chardev socket,id<span style=color:#f92672>=</span>charch0,path<span style=color:#f92672>=</span>/var/run/hyper/vm-JRPdDUOkqA/hyper.sock,server,nowait -device virtserialport,bus<span style=color:#f92672>=</span>virtio-serial0.0,nr<span style=color:#f92672>=</span>1,chardev<span style=color:#f92672>=</span>charch0,id<span style=color:#f92672>=</span>channel0,name<span style=color:#f92672>=</span>sh.hyper.channel.0 -chardev socket,id<span style=color:#f92672>=</span>charch1,path<span style=color:#f92672>=</span>/var/run/hyper/vm-JRPdDUOkqA/tty.sock,server,nowait -device virtserialport,bus<span style=color:#f92672>=</span>virtio-serial0.0,nr<span style=color:#f92672>=</span>2,chardev<span style=color:#f92672>=</span>charch1,id<span style=color:#f92672>=</span>channel1,name<span style=color:#f92672>=</span>sh.hyper.channel.1 -fsdev local,id<span style=color:#f92672>=</span>virtio9p,path<span style=color:#f92672>=</span>/var/run/hyper/vm-JRPdDUOkqA/share_dir,security_model<span style=color:#f92672>=</span>none -device virtio-9p-pci,fsdev<span style=color:#f92672>=</span>virtio9p,mount_tag<span style=color:#f92672>=</span>share_dir
-</code></pre></div>
-</div>
-<div class="navigation navigation-single">
-<a href=/posts/2016-04-28-docker-1-11-runtime/ class=navigation-prev>
-<i aria-hidden=true class="fa fa-chevron-left"></i>
+$ docker-containerd-ctr --address &#34;/var/run/docker/libcontainerd/docker-containerd.sock&#34; state 346c1b7bbb04b760032557e1324a4027ec0055ea84dca109134c02e03dc1242c
+{&#34;containers&#34;:[{&#34;id&#34;:&#34;346c1b7bbb04b760032557e1324a4027ec0055ea84dca109134c02e03dc1242c&#34;,&#34;bundlePath&#34;:&#34;/var/run/docker/libcontainerd/346c1b7bbb04b760032557e1324a4027ec0055ea84dca109134c02e03dc1242c&#34;,&#34;processes&#34;:[{&#34;pid&#34;:&#34;init&#34;,&#34;terminal&#34;:true,&#34;user&#34;:{&#34;additionalGids&#34;:[10]},&#34;args&#34;:[&#34;sh&#34;],&#34;env&#34;:[&#34;PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin&#34;,&#34;HOSTNAME=346c1b7bbb04&#34;,&#34;TERM=xterm&#34;],&#34;cwd&#34;:&#34;/&#34;,&#34;systemPid&#34;:3716,&#34;stdin&#34;:&#34;/var/run/docker/libcontainerd/346c1b7bbb04b760032557e1324a4027ec0055ea84dca109134c02e03dc1242c/init-stdin&#34;,&#34;stdout&#34;:&#34;/var/run/docker/libcontainerd/346c1b7bbb04b760032557e1324a4027ec0055ea84dca109134c02e03dc1242c/init-stdout&#34;,&#34;stderr&#34;:&#34;/var/run/docker/libcontainerd/346c1b7bbb04b760032557e1324a4027ec0055ea84dca109134c02e03dc1242c/init-stderr&#34;,&#34;capabilities&#34;:[&#34;CAP_CHOWN&#34;,&#34;CAP_DAC_OVERRIDE&#34;,&#34;CAP_FSETID&#34;,&#34;CAP_FOWNER&#34;,&#34;CAP_MKNOD&#34;,&#34;CAP_NET_RAW&#34;,&#34;CAP_SETGID&#34;,&#34;CAP_SETUID&#34;,&#34;CAP_SETFCAP&#34;,&#34;CAP_SETPCAP&#34;,&#34;CAP_NET_BIND_SERVICE&#34;,&#34;CAP_SYS_CHROOT&#34;,&#34;CAP_KILL&#34;,&#34;CAP_AUDIT_WRITE&#34;]}],&#34;status&#34;:&#34;running&#34;,&#34;pids&#34;:[3716],&#34;runtime&#34;:&#34;docker-runc&#34;}],&#34;machine&#34;:{&#34;cpus&#34;:2,&#34;memory&#34;:7982}}
+</code></pre><h2 id=playing-with-runv>Playing with runV</h2><p>Install runV:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>mkdir -p $GOPATH/src/github.com/hyperhq
+</span></span><span style=display:flex><span>cd $GOPATH/src/github.com/hyperhq
+</span></span><span style=display:flex><span>git clone https://github.com/hyperhq/runv/
+</span></span><span style=display:flex><span>cd runv
+</span></span><span style=display:flex><span>./autogen.sh
+</span></span><span style=display:flex><span>./configure
+</span></span><span style=display:flex><span>make
+</span></span><span style=display:flex><span>sudo make install
+</span></span></code></pre></div><p>To run container in runV, kernel and initrd are needed since runV is based on hypervisor. They could be compiled from <a href=https://github.com/hyperhq/hyperstart>hyperstart</a>.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>$ docker pull busybox
+</span></span><span style=display:flex><span>$ mkdir rootfs
+</span></span><span style=display:flex><span>$ docker export <span style=color:#66d9ef>$(</span>docker create busybox<span style=color:#66d9ef>)</span> | tar -C rootfs -xvf -
+</span></span><span style=display:flex><span>$ runv spec .
+</span></span><span style=display:flex><span>$ runv --kernel<span style=color:#f92672>=</span>/var/lib/hyper/kernel --initrd<span style=color:#f92672>=</span>/var/lib/hyper/hyper-initrd.img start test
+</span></span></code></pre></div><h2 id=playing-with-runv-containerd>Playing with runv-containerd</h2><p>Install ctr CLI from containerd</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>cd $GOPATH/src/github.com/docker
+</span></span><span style=display:flex><span>git clone https://github.com/docker/containerd.git
+</span></span><span style=display:flex><span>cd containerd
+</span></span><span style=display:flex><span>make
+</span></span><span style=display:flex><span>make install
+</span></span></code></pre></div><p>Start runv containerd</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>runv-containerd --kernel<span style=color:#f92672>=</span>/var/lib/hyper/kernel --initrd<span style=color:#f92672>=</span>/var/lib/hyper/hyper-initrd.img
+</span></span></code></pre></div><p>Run ctr command now:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>ctr --address<span style=color:#f92672>=</span>unix:///run/runv-containerd/containerd.sock containers
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span><span style=color:#75715e># Creating OCI bundles</span>
+</span></span><span style=display:flex><span>mkdir -p busybox/rootfs
+</span></span><span style=display:flex><span>docker export <span style=color:#66d9ef>$(</span>docker create busybox<span style=color:#66d9ef>)</span> | tar -C busybox/rootfs -xvf -
+</span></span><span style=display:flex><span>cd busybox
+</span></span><span style=display:flex><span>runv spec .
+</span></span></code></pre></div><p>Change the contents of config.json to</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;ociVersion&#34;</span>: <span style=color:#e6db74>&#34;0.5.0-dev&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;platform&#34;</span>: {
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;os&#34;</span>: <span style=color:#e6db74>&#34;linux&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;arch&#34;</span>: <span style=color:#e6db74>&#34;amd64&#34;</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;process&#34;</span>: {
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;terminal&#34;</span>: <span style=color:#66d9ef>true</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;user&#34;</span>: {},
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;args&#34;</span>: [
+</span></span><span style=display:flex><span>      <span style=color:#e6db74>&#34;sh&#34;</span>
+</span></span><span style=display:flex><span>    ],
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;env&#34;</span>: [
+</span></span><span style=display:flex><span>      <span style=color:#e6db74>&#34;PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#e6db74>&#34;TERM=xterm&#34;</span>
+</span></span><span style=display:flex><span>    ],
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;cwd&#34;</span>: <span style=color:#e6db74>&#34;/&#34;</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;root&#34;</span>: {
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;path&#34;</span>: <span style=color:#e6db74>&#34;rootfs&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;readonly&#34;</span>: <span style=color:#66d9ef>false</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;hostname&#34;</span>: <span style=color:#e6db74>&#34;shell&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;mounts&#34;</span>: [
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;destination&#34;</span>: <span style=color:#e6db74>&#34;/proc&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;proc&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;source&#34;</span>: <span style=color:#e6db74>&#34;proc&#34;</span>
+</span></span><span style=display:flex><span>    },
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;destination&#34;</span>: <span style=color:#e6db74>&#34;/dev&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;tmpfs&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;source&#34;</span>: <span style=color:#e6db74>&#34;tmpfs&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;options&#34;</span>: [
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;nosuid&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;strictatime&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;mode=755&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;size=65536k&#34;</span>
+</span></span><span style=display:flex><span>      ]
+</span></span><span style=display:flex><span>    },
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;destination&#34;</span>: <span style=color:#e6db74>&#34;/dev/pts&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;devpts&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;source&#34;</span>: <span style=color:#e6db74>&#34;devpts&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;options&#34;</span>: [
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;nosuid&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;noexec&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;newinstance&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;ptmxmode=0666&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;mode=0620&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;gid=5&#34;</span>
+</span></span><span style=display:flex><span>      ]
+</span></span><span style=display:flex><span>    },
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;destination&#34;</span>: <span style=color:#e6db74>&#34;/dev/shm&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;tmpfs&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;source&#34;</span>: <span style=color:#e6db74>&#34;shm&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;options&#34;</span>: [
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;nosuid&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;noexec&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;nodev&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;mode=1777&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;size=65536k&#34;</span>
+</span></span><span style=display:flex><span>      ]
+</span></span><span style=display:flex><span>    },
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;destination&#34;</span>: <span style=color:#e6db74>&#34;/dev/mqueue&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;mqueue&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;source&#34;</span>: <span style=color:#e6db74>&#34;mqueue&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;options&#34;</span>: [
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;nosuid&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;noexec&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;nodev&#34;</span>
+</span></span><span style=display:flex><span>      ]
+</span></span><span style=display:flex><span>    },
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;destination&#34;</span>: <span style=color:#e6db74>&#34;/sys&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;sysfs&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;source&#34;</span>: <span style=color:#e6db74>&#34;sysfs&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;options&#34;</span>: [
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;nosuid&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;noexec&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;nodev&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;ro&#34;</span>
+</span></span><span style=display:flex><span>      ]
+</span></span><span style=display:flex><span>    },
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;destination&#34;</span>: <span style=color:#e6db74>&#34;/sys/fs/cgroup&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;cgroup&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;source&#34;</span>: <span style=color:#e6db74>&#34;cgroup&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;options&#34;</span>: [
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;nosuid&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;noexec&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;nodev&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;relatime&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;ro&#34;</span>
+</span></span><span style=display:flex><span>      ]
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>  ],
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;hooks&#34;</span>: {},
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;linux&#34;</span>: {
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;resources&#34;</span>: {
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;devices&#34;</span>: [
+</span></span><span style=display:flex><span>				{
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;allow&#34;</span>: <span style=color:#66d9ef>false</span>,
+</span></span><span style=display:flex><span>          <span style=color:#f92672>&#34;access&#34;</span>: <span style=color:#e6db74>&#34;rwm&#34;</span>
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>			]
+</span></span><span style=display:flex><span>    },
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;namespaces&#34;</span>: [
+</span></span><span style=display:flex><span>      {
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;pid&#34;</span>
+</span></span><span style=display:flex><span>      },
+</span></span><span style=display:flex><span>      {
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;ipc&#34;</span>
+</span></span><span style=display:flex><span>      },
+</span></span><span style=display:flex><span>      {
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;uts&#34;</span>
+</span></span><span style=display:flex><span>      },
+</span></span><span style=display:flex><span>      {
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;mount&#34;</span>
+</span></span><span style=display:flex><span>      }
+</span></span><span style=display:flex><span>    ],
+</span></span><span style=display:flex><span>		<span style=color:#f92672>&#34;devices&#34;</span>: <span style=color:#66d9ef>null</span>
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>Start container:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>ctr --address<span style=color:#f92672>=</span>unix:///run/runv-containerd/containerd.sock containers start test /root/busybox
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>$ ctr --address<span style=color:#f92672>=</span>unix:///run/runv-containerd/containerd.sock containers
+</span></span><span style=display:flex><span>ID                  PATH                STATUS              PROCESSES
+</span></span><span style=display:flex><span>test                /root/busybox       running             init
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>$ ctr --address<span style=color:#f92672>=</span>unix:///run/runv-containerd/containerd.sock containers exec --id<span style=color:#f92672>=</span>test --pid<span style=color:#f92672>=</span><span style=color:#ae81ff>20</span> --cwd<span style=color:#f92672>=</span>/ -a  ps aux
+</span></span><span style=display:flex><span>PID   USER     TIME   COMMAND
+</span></span><span style=display:flex><span>    <span style=color:#ae81ff>1</span> root       0:00 /init
+</span></span><span style=display:flex><span>    <span style=color:#ae81ff>2</span> root       0:00 sh
+</span></span><span style=display:flex><span>    <span style=color:#ae81ff>4</span> root       0:00 ps aux
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>ps -ef | grep qemu
+</span></span><span style=display:flex><span>qemu-system-x86_64 -machine pc-i440fx-2.0,usb<span style=color:#f92672>=</span>off -cpu core2duo -kernel /var/lib/hyper/kernel -initrd /var/lib/hyper/hyper-initrd.img -append <span style=color:#e6db74>&#34;console=ttyS0 panic=1 no_timer_check&#34;</span> -realtime mlock<span style=color:#f92672>=</span>off -no-user-config -nodefaults -no-hpet -rtc base<span style=color:#f92672>=</span>utc,driftfix<span style=color:#f92672>=</span>slew -no-reboot -display none -boot strict<span style=color:#f92672>=</span>on -m <span style=color:#ae81ff>128</span> -smp <span style=color:#ae81ff>1</span> -qmp unix:/var/run/hyper/vm-JRPdDUOkqA/qmp.sock,server,nowait -serial unix:/var/run/hyper/vm-JRPdDUOkqA/console.sock,server,nowait -device virtio-serial-pci,id<span style=color:#f92672>=</span>virtio-serial0,bus<span style=color:#f92672>=</span>pci.0,addr<span style=color:#f92672>=</span>0x2 -device virtio-scsi-pci,id<span style=color:#f92672>=</span>scsi0,bus<span style=color:#f92672>=</span>pci.0,addr<span style=color:#f92672>=</span>0x3 -chardev socket,id<span style=color:#f92672>=</span>charch0,path<span style=color:#f92672>=</span>/var/run/hyper/vm-JRPdDUOkqA/hyper.sock,server,nowait -device virtserialport,bus<span style=color:#f92672>=</span>virtio-serial0.0,nr<span style=color:#f92672>=</span>1,chardev<span style=color:#f92672>=</span>charch0,id<span style=color:#f92672>=</span>channel0,name<span style=color:#f92672>=</span>sh.hyper.channel.0 -chardev socket,id<span style=color:#f92672>=</span>charch1,path<span style=color:#f92672>=</span>/var/run/hyper/vm-JRPdDUOkqA/tty.sock,server,nowait -device virtserialport,bus<span style=color:#f92672>=</span>virtio-serial0.0,nr<span style=color:#f92672>=</span>2,chardev<span style=color:#f92672>=</span>charch1,id<span style=color:#f92672>=</span>channel1,name<span style=color:#f92672>=</span>sh.hyper.channel.1 -fsdev local,id<span style=color:#f92672>=</span>virtio9p,path<span style=color:#f92672>=</span>/var/run/hyper/vm-JRPdDUOkqA/share_dir,security_model<span style=color:#f92672>=</span>none -device virtio-9p-pci,fsdev<span style=color:#f92672>=</span>virtio9p,mount_tag<span style=color:#f92672>=</span>share_dir
+</span></span></code></pre></div></div><div class="navigation navigation-single"><a href=/posts/2016-04-28-docker-1-11-runtime/ class=navigation-prev><i aria-hidden=true class="fa fa-chevron-left"></i>
 <span class=navigation-tittle>Container runtime in Docker v1.11</span>
-</a>
-<a href=/posts/2016-04-29-reading-notes-of-week-17/ class=navigation-next>
-<span class=navigation-tittle>Reading notes of week 17</span>
-<i aria-hidden=true class="fa fa-chevron-right"></i>
-</a>
-</div>
-<div class=post__related>
-<h2>Related Articles</h2>
-<ul class=related-posts>
-<li>
-<span class=list__title--small>
-<a href=/posts/2016-04-28-docker-1-11-runtime/>Container runtime in Docker v1.11</a>
-<time class="pull-right hidden-tablet">Apr 28 '16</time>
-</span>
-</li>
-<li>
-<span class=list__title--small>
-<a href=/posts/2016-03-04-docker-overlay-network-dive/>Docker overlay network dive</a>
-<time class="pull-right hidden-tablet">Mar 04 '16</time>
-</span>
-</li>
-<li>
-<span class=list__title--small>
-<a href=/posts/2016-03-01-10-things-to-avoid-in-docker-containers/>10 things to avoid in docker containers</a>
-<time class="pull-right hidden-tablet">Mar 01 '16</time>
-</span>
-</li>
-<li>
-<span class=list__title--small>
-<a href=/posts/2016-02-29-carina-by-rackspace/>Carina by Rackspace</a>
-<time class="pull-right hidden-tablet">Feb 29 '16</time>
-</span>
-</li>
-<li>
-<span class=list__title--small>
-<a href=/posts/2015-02-06-apachemesosgooglekubernetes-/>Apache的Mesos和Google的Kubernetes 有什么区别</a>
-</span>
-</li>
-</ul>
-</div>
-<div id=disqus_thread></div>
-<script type=text/javascript>(function(){var a,b;if(location.hostname==="localhost"||location.hostname==="127.0.0.1"||location.hostname==="")return;a=document.createElement('script'),a.type='text/javascript',a.async=!0,b='feisky',a.src='//'+b+'.disqus.com/embed.js',(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(a)})()</script>
-<noscript>
-Please enable JavaScript to view the
-<a href=http://disqus.com/?ref_noscript>comments powered by Disqus.</a>
-</noscript>
-<a href=http://disqus.com/ class=dsq-brlink>comments powered by
-<span class=logo-disqus>Disqus</span>
-</a>
-</article>
-</div>
-<script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','UA-69699206-1','auto'),ga('send','pageview'))</script>
-<script async src=https://www.google-analytics.com/analytics.js></script>
-<script defer src=https://use.fontawesome.com/releases/v5.12.1/js/all.js integrity=sha384-ZbbbT1gw3joYkKRqh0kWyRp32UAvdqkpbLedQJSlnI8iLQcFVxaGyrOgOJiDQTTR crossorigin=anonymous></script>
-<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js></script>
-<script type=text/javascript>hljs.initHighlightingOnLoad()</script>
-<script src=https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.js></script>
-<script type=text/javascript>tocbot&&tocbot.init({tocSelector:'.toc',contentSelector:'.post',headingSelector:'h2, h3, h4',collapseDepth:4})</script>
-</body>
-</html>
+</a><a href=/posts/2016-04-29-reading-notes-of-week-17/ class=navigation-next><span class=navigation-tittle>Reading notes of week 17</span>
+<i aria-hidden=true class="fa fa-chevron-right"></i></a></div><div class=post__related><h2>Related Articles</h2><ul class=related-posts><li><span class=list__title--small><a href=/posts/2016-04-28-docker-1-11-runtime/>Container runtime in Docker v1.11</a>
+<time class="pull-right hidden-tablet">Apr 28 '16</time></span></li><li><span class=list__title--small><a href=/posts/2016-03-04-docker-overlay-network-dive/>Docker overlay network dive</a>
+<time class="pull-right hidden-tablet">Mar 04 '16</time></span></li><li><span class=list__title--small><a href=/posts/2016-03-01-10-things-to-avoid-in-docker-containers/>10 things to avoid in docker containers</a>
+<time class="pull-right hidden-tablet">Mar 01 '16</time></span></li><li><span class=list__title--small><a href=/posts/2016-02-29-carina-by-rackspace/>Carina by Rackspace</a>
+<time class="pull-right hidden-tablet">Feb 29 '16</time></span></li><li><span class=list__title--small><a href=/posts/2015-02-06-apachemesosgooglekubernetes-/>Apache的Mesos和Google的Kubernetes 有什么区别</a></span></li></ul></div><div id=disqus_thread></div><script type=text/javascript>(function(){if(location.hostname==="localhost"||location.hostname==="127.0.0.1"||location.hostname==="")return;var t,e=document.createElement("script");e.type="text/javascript",e.async=!0,t="feisky",e.src="//"+t+".disqus.com/embed.js",(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)})()</script><noscript>Please enable JavaScript to view the
+<a href=http://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=http://disqus.com/ class=dsq-brlink>comments powered by
+<span class=logo-disqus>Disqus</span></a></article></div><script async src="https://www.googletagmanager.com/gtag/js?id=G-1GD5S2NKS3"></script><script>var dnt,doNotTrack=!1;if(!1&&(dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes"),!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-1GD5S2NKS3")}</script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js></script><script type=text/javascript>hljs.initHighlightingOnLoad()</script><script src=https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.js></script><script type=text/javascript>tocbot&&tocbot.init({tocSelector:".toc",contentSelector:".post",headingSelector:"h2, h3, h4",collapseDepth:4})</script></body></html>

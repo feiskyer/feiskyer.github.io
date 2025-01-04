@@ -1,317 +1,110 @@
-<!doctype html><html lang=zh-cn>
-<head>
-<link href=https://gmpg.org/xfn/11 rel=profile>
-<link rel=canonical href=https://feisky.xyz/posts/2015-02-06-mesosdocker/>
-<meta charset=utf-8>
-<meta http-equiv=x-ua-compatible content="IE=edge">
-<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1">
-<meta name=generator content="Hugo 0.87.0">
-<title>使用Mesos来管理Docker集群 • Feisky</title>
-<meta name=twitter:card content="summary">
-<meta name=twitter:title content="使用Mesos来管理Docker集群">
-<meta name=twitter:description content="Introduction Apache Mesos能够在同样的集群机器上运行多种分布式系统类型，更加动态有效率低共享资源。提供失败侦测，任务发布，任务跟踪，任务监控，低层次资源">
-<meta property="og:title" content="使用Mesos来管理Docker集群">
-<meta property="og:description" content="Introduction Apache Mesos能够在同样的集群机器上运行多种分布式系统类型，更加动态有效率低共享资源。提供失败侦测，任务发布，任务跟踪，任务监控，低层次资源">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://feisky.xyz/posts/2015-02-06-mesosdocker/"><meta property="article:section" content="posts">
-<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai.min.css>
-<link rel=stylesheet href=/scss/hyde-hyde.3081c4981fb69a2783dd36ecfdd0e6ba7a158d4cbfdd290ebce8f78ba0469fc6.css integrity="sha256-MIHEmB+2mieD3Tbs/dDmunoVjUy/3SkOvOj3i6BGn8Y=">
-<link rel=stylesheet href=/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58+TzH3icCkSHGoJ+ed7w=" media=print>
-<link rel=stylesheet href=/scss/tocbot.5ef07cebc3c477b54270456f149ee02922479bb7555fd344b2c69f953b0e7e5e.css integrity="sha256-XvB868PEd7VCcEVvFJ7gKSJHm7dVX9NEssaflTsOfl4="><!--[if lt IE 9]><script src=https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js></script>
-<script src=https://oss.maxcdn.com/respond/1.4.2/respond.min.js></script><![endif]-->
-<link rel=apple-touch-icon-precomposed sizes=144x144 href=/apple-touch-icon-144-precomposed.png>
-<link rel="shortcut icon" href=/favicon.png>
-</head>
-<body class=theme-base-0d>
-<div class=sidebar>
-<div class=container>
-<div class=sidebar-about>
-<span class=site__title>
-<a href=https://feisky.xyz/>
-Feisky
-</a>
-</span>
-<div class=author-image>
-<img src="https://www.gravatar.com/avatar/f86d2faa0f91793a2163d226d82a7620?s=240&d=mp" class="img--circle img--headshot element--center" alt=gravatar>
-</div>
-<p class=site__description>
-</p>
-</div>
-<div class=collapsible-menu>
-<input type=checkbox id=menuToggle>
-<label for=menuToggle>Feisky</label>
-<div class=menu-content>
-<div>
-<ul class=sidebar-nav>
-<li>
-<a href=https://time.geekbang.org/column/intro/100020901>
-<span>Linux性能优化实战</span>
-</a>
-</li>
-<li>
-<a href=https://time.geekbang.org/column/intro/100104501>
-<span>EBPF核心技术与实战</span>
-</a>
-</li>
-<li>
-<a href=https://kubernetes.feisky.xyz>
-<span>Kubernetes指南</span>
-</a>
-</li>
-<li>
-<a href=https://sdn.feisky.xyz>
-<span>SDN网络指南</span>
-</a>
-</li>
-<li>
-<a href=/assets/mp.png>
-<span>微信公众号</span>
-</a>
-</li>
-<li>
-<a href=https://zhuanlan.zhihu.com/kubernetes>
-<span>知乎专栏</span>
-</a>
-</li>
-<li>
-<a href=/about/>
-<span>关于我</span>
-</a>
-</li>
-</ul>
-</div>
-<section class=social>
-<a href=https://twitter.com/feisky rel=me><i class="fab fa-twitter fa-lg" aria-hidden=true></i></a>
-<a href=https://github.com/feiskyer rel=me><i class="fab fa-github fa-lg" aria-hidden=true></i></a>
-</section>
-</div>
-</div>
-<div class=copyright>
-&copy; 2022 feiskyer
-<a href=https://creativecommons.org/licenses/by-sa/4.0>CC BY-SA 4.0</a>
-</div>
-<div class=builtwith>
-Built with <a href=https://gohugo.io>Hugo</a> ❤️ <a href=https://github.com/htr3n/hyde-hyde>hyde-hyde</a>.
-</div>
-</div>
-</div>
-<div class="content container">
-<article>
-<header>
-<h1>使用Mesos来管理Docker集群</h1>
-<div class=post__meta>
-<br>
-<i class="fas fa-tags"></i>
+<!doctype html><html lang=zh-cn><head><link href=https://gmpg.org/xfn/11 rel=profile><link rel=canonical href=https://feisky.xyz/posts/2015-02-06-mesosdocker/><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta name=generator content="Hugo 0.140.2"><title>使用Mesos来管理Docker集群 • Feisky</title>
+<meta name=twitter:card content="summary"><meta name=twitter:title content="使用Mesos来管理Docker集群"><meta name=twitter:description content="Introduction Apache Mesos能够在同样的集群机器上运行多种分布式系统类型，更加动态有效率低共享资源。提供失败侦测，任务发布，任务跟踪，任务监控，低层次资源管理和细粒度的资源共享，可以扩展伸缩到数千个节点。Mesos已经被Twitter用来管理它们的数据中心。"><meta name=twitter:site content="@feisky"><meta property="og:url" content="https://feisky.xyz/posts/2015-02-06-mesosdocker/"><meta property="og:site_name" content="Feisky"><meta property="og:title" content="使用Mesos来管理Docker集群"><meta property="og:description" content="Introduction Apache Mesos能够在同样的集群机器上运行多种分布式系统类型，更加动态有效率低共享资源。提供失败侦测，任务发布，任务跟踪，任务监控，低层次资源管理和细粒度的资源共享，可以扩展伸缩到数千个节点。Mesos已经被Twitter用来管理它们的数据中心。"><meta property="og:locale" content="zh_cn"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:tag" content="Docker"><meta property="article:tag" content="Mesos"><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/monokai.min.css><link rel=stylesheet href=/scss/triple-hyde.ef937e1c8a424ea6419b858ae4cfbdb5f7e764eb1075e9ac50fa2de759dde8a2.css integrity="sha256-75N+HIpCTqZBm4WK5M+9tffnZOsQdemsUPot51nd6KI="><link rel=stylesheet href=/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58+TzH3icCkSHGoJ+ed7w=" media=print><link rel=stylesheet href=/scss/tocbot.5ef07cebc3c477b54270456f149ee02922479bb7555fd344b2c69f953b0e7e5e.css integrity="sha256-XvB868PEd7VCcEVvFJ7gKSJHm7dVX9NEssaflTsOfl4="><!--[if lt IE 9]><script src=https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js></script><script src=https://oss.maxcdn.com/respond/1.4.2/respond.min.js></script><![endif]--><link rel=apple-touch-icon-precomposed sizes=144x144 href=/apple-touch-icon-144-precomposed.png><link rel="shortcut icon" href=/favicon.png></head><body class=theme-base-0d><div class=sidebar><div class=container><div class=sidebar-about><span class=site__title><a href=https://feisky.xyz/>Feisky</a></span><div class=author-image><img src="https://www.gravatar.com/avatar/f86d2faa0f91793a2163d226d82a7620?s=240&d=mp" class="img--circle img--headshot element--center" alt=gravatar></div><p class=site__description></p></div><div class=collapsible-menu><input type=checkbox id=menuToggle>
+<label for=menuToggle>Feisky</label><div class=menu-content><div><ul class=sidebar-nav><li><a href=https://time.geekbang.org/column/intro/100020901><span>Linux性能优化实战</span></a></li><li><a href=https://time.geekbang.org/column/intro/100104501><span>EBPF核心技术与实战</span></a></li><li><a href=https://kubernetes.feisky.xyz><span>Kubernetes指南</span></a></li><li><a href=https://sdn.feisky.xyz><span>SDN网络指南</span></a></li><li><a href=/assets/mp.png><span>微信公众号</span></a></li><li><a href=https://zhuanlan.zhihu.com/kubernetes><span>知乎专栏</span></a></li><li><a href=/about/><span>关于我</span></a></li></ul></div><section class=social><a href=https://twitter.com/feisky rel=me><span class="relative block icon"><svg viewBox="0 0 512 512"><path fill="currentcolor" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645.0 138.72-105.583 298.558-298.558 298.558-59.452.0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055.0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421.0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391.0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04.0-57.828 46.782-104.934 104.934-104.934 30.213.0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+</span></a><a href=https://github.com/feiskyer rel=me><span class="relative block icon"><svg viewBox="0 0 496 512"><path fill="currentcolor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6.0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6.0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3.0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1.0-6.2-.3-40.4-.3-61.4.0.0-70 15-84.7-29.8.0.0-11.4-29.1-27.8-36.6.0.0-22.9-15.7 1.6-15.4.0.0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5.0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9.0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4.0 33.7-.3 75.4-.3 83.6.0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6.0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9.0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span></a></section></div></div><div class=copyright>&copy; 2025 feiskyer
+<a href=https://creativecommons.org/licenses/by-sa/4.0>CC BY-SA 4.0</a></div><div class=builtwith>Built with <a href=https://gohugo.io>Hugo</a> ❤️ <a href=https://github.com/derme302/triple-hyde>triple-hyde</a>.</div></div></div><div class="content container"><article><header><h1>使用Mesos来管理Docker集群</h1><div class=post__meta><br><i class="fas fa-tags"></i>
 <a class="badge badge-tag" href=/tags/docker>docker</a>
-<a class="badge badge-tag" href=/tags/mesos>mesos</a>
-<br>
-<i class="fas fa-clock"></i> 4 min read
-</div>
-</header>
-<div class=toc-wrapper>
-<input type=checkbox id=tocToggle>
-<label for=tocToggle>Table of Content</label>
-<div class=toc id=TableOfContents></div>
-</div>
-<div class=post>
-<h3 id=introduction>Introduction</h3>
-<p>Apache Mesos能够在同样的集群机器上运行多种分布式系统类型，更加动态有效率低共享资源。提供失败侦测，任务发布，任务跟踪，任务监控，低层次资源管理和细粒度的资源共享，可以扩展伸缩到数千个节点。Mesos已经被Twitter用来管理它们的数据中心。</p>
-<p><img src=/assets/mesos_1.png alt></p>
-<p>Mesos架构图如下：</p>
-<p><img src=/assets/mesos_2.png alt></p>
-<p>Mesos框架是一个在Mesos上运行分布式应用的应用程序，它有两个组件：</p>
-<ol>
-<li>调度器 : 与Mesos交互，订阅资源，然后在mesos从服务器中加载任务。</li>
-<li>执行器 : 从框架的环境变量 配置中获得信息，在mesos从服务器中运行任务。</li>
-</ol>
-<p>下面看看其是如何实现资源调用？Mesos通过"resources offers" 分配资源，资源其实是当前可用资源的一个快照，调度器将使用这些资源在mesos从服务器上运行任务。</p>
-<p>Mesos主从服务器调度资源的顺序图如下：</p>
-<p><img src=/assets/mesos_3.png alt></p>
-<p>首先由Mesos主服务器查询可用资源给调度器，第二步调度器向主服务器发出加载任务，主服务器再传达给从服务器，从服务器向执行器命令加载任务执行，执行器执行任务以后，将状态反馈上报给从服务器，最终告知调度器 。</p>
-<p>从服务器下管理多个执行器，每个执行器是一个容器，以前可以使用Linux容器LXC，现在使用Docker容器。</p>
-<p><img src=/assets/mesos_4.png alt></p>
-<h3 id=失败恢复和高可用性>失败恢复和高可用性</h3>
-<p>Mesos主服务器使用Zookeeper进行服务选举和发现。它有一个注册器记录了所有运行任何和从服务器信息，使用MultiPaxos进行日志复制实现一致性。</p>
-<p>Mesos有一个从服务器恢复机制，无论什么时候一个从服务器死机了，用户的任务还是能够继续运行，从服务器会将一些关键点信息如任务信息 状态更新持久化到本地磁盘上，重新启动时可以从磁盘上恢复运行这些任务(类似Java中的钝化和唤醒)</p>
-<h3 id=什么是marathon>什么是Marathon</h3>
-<p>它是一个mesos框架，能够支持运行长服务，比如web应用等。是集群的分布式Init.d，能够原样运行任何Linux二进制发布版本，如Tomcat Play等等，可以集群的多进程管理。也是一种私有的Pass，实现服务的发现，为部署提供提供REST API服务，有授权和SSL、配置约束，通过HAProxy实现服务发现和负载平衡。</p>
-<p><img src=/assets/mesos_5.png alt></p>
-<p>这样，我们可以如同一台Linux主机一样管理数千台服务器，它们的对应原理如下图，使用Marathon类似Linux主机内的init Systemd等外壳管理，而Mesos则不只包含一个Linux核，可以调度数千台服务器的Linux核，实际是一个数据中心的内核：</p>
-<p><img src=/assets/mesos_6.png alt></p>
-<h3 id=部署方法>部署方法</h3>
-<p>首先安装Mesos和Marathon，并配置slave使用docker：</p>
-<pre><code>sudo apt-key adv --keyserver keyserver.ubuntu.com --recv E56151BF
-DISTRO=$(lsb_release -is | tr '[:upper:]' '[:lower:]')
+<a class="badge badge-tag" href=/tags/mesos>mesos</a><br><i class="fas fa-clock"></i> 4 min read</div></header><div class=toc-wrapper><input type=checkbox id=tocToggle>
+<label for=tocToggle>Table of Content</label><div class=toc id=TableOfContents></div></div><div class=post><h3 id=introduction>Introduction</h3><p>Apache Mesos能够在同样的集群机器上运行多种分布式系统类型，更加动态有效率低共享资源。提供失败侦测，任务发布，任务跟踪，任务监控，低层次资源管理和细粒度的资源共享，可以扩展伸缩到数千个节点。Mesos已经被Twitter用来管理它们的数据中心。</p><p><img src=/assets/mesos_1.png alt></p><p>Mesos架构图如下：</p><p><img src=/assets/mesos_2.png alt></p><p>Mesos框架是一个在Mesos上运行分布式应用的应用程序，它有两个组件：</p><ol><li>调度器 : 与Mesos交互，订阅资源，然后在mesos从服务器中加载任务。</li><li>执行器 : 从框架的环境变量 配置中获得信息，在mesos从服务器中运行任务。</li></ol><p>下面看看其是如何实现资源调用？Mesos通过"resources offers" 分配资源，资源其实是当前可用资源的一个快照，调度器将使用这些资源在mesos从服务器上运行任务。</p><p>Mesos主从服务器调度资源的顺序图如下：</p><p><img src=/assets/mesos_3.png alt></p><p>首先由Mesos主服务器查询可用资源给调度器，第二步调度器向主服务器发出加载任务，主服务器再传达给从服务器，从服务器向执行器命令加载任务执行，执行器执行任务以后，将状态反馈上报给从服务器，最终告知调度器 。</p><p>从服务器下管理多个执行器，每个执行器是一个容器，以前可以使用Linux容器LXC，现在使用Docker容器。</p><p><img src=/assets/mesos_4.png alt></p><h3 id=失败恢复和高可用性>失败恢复和高可用性</h3><p>Mesos主服务器使用Zookeeper进行服务选举和发现。它有一个注册器记录了所有运行任何和从服务器信息，使用MultiPaxos进行日志复制实现一致性。</p><p>Mesos有一个从服务器恢复机制，无论什么时候一个从服务器死机了，用户的任务还是能够继续运行，从服务器会将一些关键点信息如任务信息 状态更新持久化到本地磁盘上，重新启动时可以从磁盘上恢复运行这些任务(类似Java中的钝化和唤醒)</p><h3 id=什么是marathon>什么是Marathon</h3><p>它是一个mesos框架，能够支持运行长服务，比如web应用等。是集群的分布式Init.d，能够原样运行任何Linux二进制发布版本，如Tomcat Play等等，可以集群的多进程管理。也是一种私有的Pass，实现服务的发现，为部署提供提供REST API服务，有授权和SSL、配置约束，通过HAProxy实现服务发现和负载平衡。</p><p><img src=/assets/mesos_5.png alt></p><p>这样，我们可以如同一台Linux主机一样管理数千台服务器，它们的对应原理如下图，使用Marathon类似Linux主机内的init Systemd等外壳管理，而Mesos则不只包含一个Linux核，可以调度数千台服务器的Linux核，实际是一个数据中心的内核：</p><p><img src=/assets/mesos_6.png alt></p><h3 id=部署方法>部署方法</h3><p>首先安装Mesos和Marathon，并配置slave使用docker：</p><pre tabindex=0><code>sudo apt-key adv --keyserver keyserver.ubuntu.com --recv E56151BF
+DISTRO=$(lsb_release -is | tr &#39;[:upper:]&#39; &#39;[:lower:]&#39;)
 CODENAME=$(lsb_release -cs)
-echo &quot;deb http://repos.mesosphere.io/${DISTRO} ${CODENAME} main&quot; | \
+echo &#34;deb http://repos.mesosphere.io/${DISTRO} ${CODENAME} main&#34; | \
   sudo tee /etc/apt/sources.list.d/mesosphere.list
 sudo apt-get -y update
 sudo apt-get -y install mesos marathon
-echo 'docker,mesos' &gt; /etc/mesos-slave/containerizers
-echo '5mins' &gt; /etc/mesos-slave/executor_registration_timeout
-</code></pre><p>启动所有服务</p>
-<pre><code>sudo service zookeeper restart
+echo &#39;docker,mesos&#39; &gt; /etc/mesos-slave/containerizers
+echo &#39;5mins&#39; &gt; /etc/mesos-slave/executor_registration_timeout
+</code></pre><p>启动所有服务</p><pre tabindex=0><code>sudo service zookeeper restart
 sudo service mesos-master start
 sudo service mesos-slave start
 sudo service marathon start
-</code></pre><p>现在打开浏览器，访问<code>http://localhost:8080</code>和<code>http://localhost:5050</code>就可以分别看到Mesos和Marathon的界面了.</p>
-<p><img src=/assets/mesos1.png alt></p>
-<p>执行下面的命令，来运行一个简单的任务确认Mesos部署正常：</p>
-<pre><code>MASTER=$(mesos-resolve `cat /etc/mesos/zk` 2&gt;/dev/null)
-mesos-execute --master=$MASTER --name=&quot;cluster-test&quot; --command=&quot;sleep 5&quot;
-</code></pre><h3 id=部署docker容器>部署docker容器</h3>
-<p>通过Marathon提供了RestAPI，方便管理和部署各种应用，并支持通过HAProxy实现负载均衡。下面我们就通过Rest API来创建docker容器：</p>
-<pre><code>curl -X POST -H &quot;Accept: application/json&quot; -H &quot;Content-Type: application/json&quot; http://localhost:8080/v2/apps -d '{
-  &quot;container&quot;: {
-    &quot;type&quot;: &quot;DOCKER&quot;,
-    &quot;docker&quot;: {
-      &quot;image&quot;: &quot;centos&quot;
+</code></pre><p>现在打开浏览器，访问<code>http://localhost:8080</code>和<code>http://localhost:5050</code>就可以分别看到Mesos和Marathon的界面了.</p><p><img src=/assets/mesos1.png alt></p><p>执行下面的命令，来运行一个简单的任务确认Mesos部署正常：</p><pre tabindex=0><code>MASTER=$(mesos-resolve `cat /etc/mesos/zk` 2&gt;/dev/null)
+mesos-execute --master=$MASTER --name=&#34;cluster-test&#34; --command=&#34;sleep 5&#34;
+</code></pre><h3 id=部署docker容器>部署docker容器</h3><p>通过Marathon提供了RestAPI，方便管理和部署各种应用，并支持通过HAProxy实现负载均衡。下面我们就通过Rest API来创建docker容器：</p><pre tabindex=0><code>curl -X POST -H &#34;Accept: application/json&#34; -H &#34;Content-Type: application/json&#34; http://localhost:8080/v2/apps -d &#39;{
+  &#34;container&#34;: {
+    &#34;type&#34;: &#34;DOCKER&#34;,
+    &#34;docker&#34;: {
+      &#34;image&#34;: &#34;centos&#34;
     }
   },
-  &quot;id&quot;: &quot;cent&quot;,
-  &quot;instances&quot;: 1,
-  &quot;cpus&quot;: 0.5,
-  &quot;mem&quot;: 512,
-  &quot;uris&quot;: [],
-  &quot;cmd&quot;: &quot;while sleep 10; do date -u +%T; done&quot;
-}'
-</code></pre><p>返回数据为：</p>
-<pre><code>{
-    &quot;id&quot;: &quot;/cent&quot;,
-    &quot;cmd&quot;: &quot;while sleep 10; do date -u +%T; done&quot;,
-    &quot;args&quot;: null,
-    &quot;user&quot;: null,
-    &quot;env&quot;: {
+  &#34;id&#34;: &#34;cent&#34;,
+  &#34;instances&#34;: 1,
+  &#34;cpus&#34;: 0.5,
+  &#34;mem&#34;: 512,
+  &#34;uris&#34;: [],
+  &#34;cmd&#34;: &#34;while sleep 10; do date -u +%T; done&#34;
+}&#39;
+</code></pre><p>返回数据为：</p><pre tabindex=0><code>{
+    &#34;id&#34;: &#34;/cent&#34;,
+    &#34;cmd&#34;: &#34;while sleep 10; do date -u +%T; done&#34;,
+    &#34;args&#34;: null,
+    &#34;user&#34;: null,
+    &#34;env&#34;: {
     },
-    &quot;instances&quot;: 1,
-    &quot;cpus&quot;: 0.5,
-    &quot;mem&quot;: 512.0,
-    &quot;disk&quot;: 0.0,
-    &quot;executor&quot;: &quot;&quot;,
-    &quot;constraints&quot;: [
+    &#34;instances&#34;: 1,
+    &#34;cpus&#34;: 0.5,
+    &#34;mem&#34;: 512.0,
+    &#34;disk&#34;: 0.0,
+    &#34;executor&#34;: &#34;&#34;,
+    &#34;constraints&#34;: [
     ],
-    &quot;uris&quot;: [
+    &#34;uris&#34;: [
     ],
-    &quot;storeUrls&quot;: [
+    &#34;storeUrls&#34;: [
     ],
-    &quot;ports&quot;: [
+    &#34;ports&#34;: [
         0
     ],
-    &quot;requirePorts&quot;: false,
-    &quot;backoffSeconds&quot;: 1,
-    &quot;backoffFactor&quot;: 1.15,
-    &quot;maxLaunchDelaySeconds&quot;: 3600,
-    &quot;container&quot;: {
-        &quot;type&quot;: &quot;DOCKER&quot;,
-        &quot;volumes&quot;: [
+    &#34;requirePorts&#34;: false,
+    &#34;backoffSeconds&#34;: 1,
+    &#34;backoffFactor&#34;: 1.15,
+    &#34;maxLaunchDelaySeconds&#34;: 3600,
+    &#34;container&#34;: {
+        &#34;type&#34;: &#34;DOCKER&#34;,
+        &#34;volumes&#34;: [
         ],
-        &quot;docker&quot;: {
-            &quot;image&quot;: &quot;centos&quot;,
-            &quot;network&quot;: null,
-            &quot;portMappings&quot;: null,
-            &quot;privileged&quot;: false,
-            &quot;parameters&quot;: [
+        &#34;docker&#34;: {
+            &#34;image&#34;: &#34;centos&#34;,
+            &#34;network&#34;: null,
+            &#34;portMappings&#34;: null,
+            &#34;privileged&#34;: false,
+            &#34;parameters&#34;: [
             ]
         }
     },
-    &quot;healthChecks&quot;: [
+    &#34;healthChecks&#34;: [
     ],
-    &quot;dependencies&quot;: [
+    &#34;dependencies&#34;: [
     ],
-    &quot;upgradeStrategy&quot;: {
-        &quot;minimumHealthCapacity&quot;: 1.0,
-        &quot;maximumOverCapacity&quot;: 1.0
+    &#34;upgradeStrategy&#34;: {
+        &#34;minimumHealthCapacity&#34;: 1.0,
+        &#34;maximumOverCapacity&#34;: 1.0
     },
-    &quot;labels&quot;: {
+    &#34;labels&#34;: {
     },
-    &quot;version&quot;: &quot;2015-02-06T01:25:27.392Z&quot;
+    &#34;version&#34;: &#34;2015-02-06T01:25:27.392Z&#34;
 }
-</code></pre><p>此时，通过Marathon的界面<a href=http://localhost:8080>http://localhost:8080</a>就可以看到已经有一个app在Deploying了，稍等一会该状态会变成Running。在Slave上执行<code>docker ps</code>也可以看到正在运行的容器。</p>
-<p>Mesos也支持通过端口映射将容器内部的服务开放出来：</p>
-<pre><code>curl -X POST -H &quot;Accept: application/json&quot; -H &quot;Content-Type: application/json&quot; http://localhost:8080/v2/apps -d '{
-  &quot;id&quot;: &quot;webserver&quot;,
-  &quot;cmd&quot;: &quot;python -m SimpleHTTPServer 8080&quot;,
-  &quot;cpus&quot;: 0.5,
-  &quot;mem&quot;: 64.0,
-  &quot;instances&quot;: 1,
-  &quot;container&quot;: {
-    &quot;type&quot;: &quot;DOCKER&quot;,
-    &quot;docker&quot;: {
-      &quot;image&quot;: &quot;centos&quot;,
-      &quot;network&quot;: &quot;BRIDGE&quot;,
-      &quot;portMappings&quot;: [
-        { &quot;containerPort&quot;: 8080, &quot;hostPort&quot;: 0, &quot;servicePort&quot;: 9000, &quot;protocol&quot;: &quot;tcp&quot; }
+</code></pre><p>此时，通过Marathon的界面<a href=http://localhost:8080>http://localhost:8080</a>就可以看到已经有一个app在Deploying了，稍等一会该状态会变成Running。在Slave上执行<code>docker ps</code>也可以看到正在运行的容器。</p><p>Mesos也支持通过端口映射将容器内部的服务开放出来：</p><pre tabindex=0><code>curl -X POST -H &#34;Accept: application/json&#34; -H &#34;Content-Type: application/json&#34; http://localhost:8080/v2/apps -d &#39;{
+  &#34;id&#34;: &#34;webserver&#34;,
+  &#34;cmd&#34;: &#34;python -m SimpleHTTPServer 8080&#34;,
+  &#34;cpus&#34;: 0.5,
+  &#34;mem&#34;: 64.0,
+  &#34;instances&#34;: 1,
+  &#34;container&#34;: {
+    &#34;type&#34;: &#34;DOCKER&#34;,
+    &#34;docker&#34;: {
+      &#34;image&#34;: &#34;centos&#34;,
+      &#34;network&#34;: &#34;BRIDGE&#34;,
+      &#34;portMappings&#34;: [
+        { &#34;containerPort&#34;: 8080, &#34;hostPort&#34;: 0, &#34;servicePort&#34;: 9000, &#34;protocol&#34;: &#34;tcp&#34; }
       ]
     }
   }
-}'
-</code></pre><p><img src=/assets/mesos2.png alt></p>
-<h3 id=部署其他应用>部署其他应用</h3>
-<p>前面是通过单机来测试了Mesos部署docker的功能的，而Mesos通常都是用在集群中，关于Mesos集群的部署请参考<a href=http://mesosphere.com/docs/getting-started/datacenter/install/>http://mesosphere.com/docs/getting-started/datacenter/install/</a>.</p>
-<p>Mesos支持部署各种集群应用，如Kubernets、Hadoop、Spark、Chronos、Storm等，具体部署方法参考<a href=http://mesosphere.com/docs/tutorials/>http://mesosphere.com/docs/tutorials/</a>.</p>
-<h3 id=参考文档>参考文档</h3>
-<ul>
-<li><a href=http://mesosphere.com/docs/getting-started/developer/single-node-install/>http://mesosphere.com/docs/getting-started/developer/single-node-install/</a></li>
-<li><a href=http://mesosphere.com/docs/tutorials/>http://mesosphere.com/docs/tutorials/</a></li>
-<li><a href=http://mesosphere.com/docs/getting-started/datacenter/install/>http://mesosphere.com/docs/getting-started/datacenter/install/</a></li>
-</ul>
-</div>
-<div class="navigation navigation-single">
-<a href=/posts/2015-06-24-weekly-reading-list-20150626/ class=navigation-next>
-<span class=navigation-tittle>Weekly reading list (20150626)</span>
-<i aria-hidden=true class="fa fa-chevron-right"></i>
-</a>
-</div>
-<div class=post__related>
-<h2>Related Articles</h2>
-<ul class=related-posts>
-<li>
-<span class=list__title--small>
-<a href=/posts/2015-02-06-apachemesosgooglekubernetes-/>Apache的Mesos和Google的Kubernetes 有什么区别</a>
-</span>
-</li>
-<li>
-<span class=list__title--small>
-<a href=/posts/2015-02-05-deploy-a-mesos-cluster-using-docker/>Deploy a Mesos Cluster Using Docker</a>
-</span>
-</li>
-<li>
-<span class=list__title--small>
-<a href=/posts/2017-10-19-docker-mta-program/>Docker MTA Program</a>
-<time class="pull-right hidden-tablet">Oct 19 '17</time>
-</span>
-</li>
-<li>
-<span class=list__title--small>
-<a href=/posts/2017-10-17-docker-ce-ee-%E5%8E%9F%E7%94%9F%E6%94%AF%E6%8C%81kubernetes/>Docker CE/EE 原生支持Kubernetes</a>
-<time class="pull-right hidden-tablet">Oct 17 '17</time>
-</span>
-</li>
-<li>
-<span class=list__title--small>
-<a href=/posts/2017-02-14-debugging-application-in-containers/>Debugging application in containers</a>
-<time class="pull-right hidden-tablet">Feb 14 '17</time>
-</span>
-</li>
-</ul>
-</div>
-<div id=disqus_thread></div>
-<script type=text/javascript>(function(){var a,b;if(location.hostname==="localhost"||location.hostname==="127.0.0.1"||location.hostname==="")return;a=document.createElement('script'),a.type='text/javascript',a.async=!0,b='feisky',a.src='//'+b+'.disqus.com/embed.js',(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(a)})()</script>
-<noscript>
-Please enable JavaScript to view the
-<a href=http://disqus.com/?ref_noscript>comments powered by Disqus.</a>
-</noscript>
-<a href=http://disqus.com/ class=dsq-brlink>comments powered by
-<span class=logo-disqus>Disqus</span>
-</a>
-</article>
-</div>
-<script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','UA-69699206-1','auto'),ga('send','pageview'))</script>
-<script async src=https://www.google-analytics.com/analytics.js></script>
-<script defer src=https://use.fontawesome.com/releases/v5.12.1/js/all.js integrity=sha384-ZbbbT1gw3joYkKRqh0kWyRp32UAvdqkpbLedQJSlnI8iLQcFVxaGyrOgOJiDQTTR crossorigin=anonymous></script>
-<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js></script>
-<script type=text/javascript>hljs.initHighlightingOnLoad()</script>
-<script src=https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.js></script>
-<script type=text/javascript>tocbot&&tocbot.init({tocSelector:'.toc',contentSelector:'.post',headingSelector:'h2, h3, h4',collapseDepth:4})</script>
-</body>
-</html>
+}&#39;
+</code></pre><p><img src=/assets/mesos2.png alt></p><h3 id=部署其他应用>部署其他应用</h3><p>前面是通过单机来测试了Mesos部署docker的功能的，而Mesos通常都是用在集群中，关于Mesos集群的部署请参考<a href=http://mesosphere.com/docs/getting-started/datacenter/install/>http://mesosphere.com/docs/getting-started/datacenter/install/</a>.</p><p>Mesos支持部署各种集群应用，如Kubernets、Hadoop、Spark、Chronos、Storm等，具体部署方法参考<a href=http://mesosphere.com/docs/tutorials/>http://mesosphere.com/docs/tutorials/</a>.</p><h3 id=参考文档>参考文档</h3><ul><li><a href=http://mesosphere.com/docs/getting-started/developer/single-node-install/>http://mesosphere.com/docs/getting-started/developer/single-node-install/</a></li><li><a href=http://mesosphere.com/docs/tutorials/>http://mesosphere.com/docs/tutorials/</a></li><li><a href=http://mesosphere.com/docs/getting-started/datacenter/install/>http://mesosphere.com/docs/getting-started/datacenter/install/</a></li></ul></div><div class="navigation navigation-single"><a href=/posts/2015-06-24-weekly-reading-list-20150626/ class=navigation-next><span class=navigation-tittle>Weekly reading list (20150626)</span>
+<i aria-hidden=true class="fa fa-chevron-right"></i></a></div><div class=post__related><h2>Related Articles</h2><ul class=related-posts><li><span class=list__title--small><a href=/posts/2015-02-06-apachemesosgooglekubernetes-/>Apache的Mesos和Google的Kubernetes 有什么区别</a></span></li><li><span class=list__title--small><a href=/posts/2015-02-05-deploy-a-mesos-cluster-using-docker/>Deploy a Mesos Cluster Using Docker</a></span></li><li><span class=list__title--small><a href=/posts/2017-10-19-docker-mta-program/>Docker MTA Program</a>
+<time class="pull-right hidden-tablet">Oct 19 '17</time></span></li><li><span class=list__title--small><a href=/posts/2017-10-17-docker-ce-ee-%E5%8E%9F%E7%94%9F%E6%94%AF%E6%8C%81kubernetes/>Docker CE/EE 原生支持Kubernetes</a>
+<time class="pull-right hidden-tablet">Oct 17 '17</time></span></li><li><span class=list__title--small><a href=/posts/2017-02-14-debugging-application-in-containers/>Debugging application in containers</a>
+<time class="pull-right hidden-tablet">Feb 14 '17</time></span></li></ul></div><div id=disqus_thread></div><script type=text/javascript>(function(){if(location.hostname==="localhost"||location.hostname==="127.0.0.1"||location.hostname==="")return;var t,e=document.createElement("script");e.type="text/javascript",e.async=!0,t="feisky",e.src="//"+t+".disqus.com/embed.js",(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)})()</script><noscript>Please enable JavaScript to view the
+<a href=http://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=http://disqus.com/ class=dsq-brlink>comments powered by
+<span class=logo-disqus>Disqus</span></a></article></div><script async src="https://www.googletagmanager.com/gtag/js?id=G-1GD5S2NKS3"></script><script>var dnt,doNotTrack=!1;if(!1&&(dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes"),!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-1GD5S2NKS3")}</script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js></script><script type=text/javascript>hljs.initHighlightingOnLoad()</script><script src=https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.js></script><script type=text/javascript>tocbot&&tocbot.init({tocSelector:".toc",contentSelector:".post",headingSelector:"h2, h3, h4",collapseDepth:4})</script></body></html>

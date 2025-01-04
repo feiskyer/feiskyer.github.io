@@ -1,263 +1,53 @@
-<!doctype html><html lang=zh-cn>
-<head>
-<link href=https://gmpg.org/xfn/11 rel=profile>
-<link rel=canonical href=https://feisky.xyz/posts/2021-03-20-multi-cluster/>
-<meta charset=utf-8>
-<meta http-equiv=x-ua-compatible content="IE=edge">
-<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1">
-<meta name=generator content="Hugo 0.87.0">
-<title>基于Kubernetes的多集群实践 • Feisky</title>
-<meta name=twitter:card content="summary">
-<meta name=twitter:title content="基于Kubernetes的多集群实践">
-<meta name=twitter:description content="在 基于Kubernetes的多云和混合云 文章中，我介绍了多云和混合云的由来以及常用方案。多云和混合云的目的主要有以下几个： 解除云服务商锁定，">
-<meta property="og:title" content="基于Kubernetes的多集群实践">
-<meta property="og:description" content="在 基于Kubernetes的多云和混合云 文章中，我介绍了多云和混合云的由来以及常用方案。多云和混合云的目的主要有以下几个： 解除云服务商锁定，">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://feisky.xyz/posts/2021-03-20-multi-cluster/"><meta property="article:section" content="posts">
-<meta property="article:published_time" content="2021-03-20T00:00:00+00:00">
-<meta property="article:modified_time" content="2021-03-20T00:00:00+00:00">
-<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai.min.css>
-<link rel=stylesheet href=/scss/hyde-hyde.3081c4981fb69a2783dd36ecfdd0e6ba7a158d4cbfdd290ebce8f78ba0469fc6.css integrity="sha256-MIHEmB+2mieD3Tbs/dDmunoVjUy/3SkOvOj3i6BGn8Y=">
-<link rel=stylesheet href=/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58+TzH3icCkSHGoJ+ed7w=" media=print>
-<link rel=stylesheet href=/scss/tocbot.5ef07cebc3c477b54270456f149ee02922479bb7555fd344b2c69f953b0e7e5e.css integrity="sha256-XvB868PEd7VCcEVvFJ7gKSJHm7dVX9NEssaflTsOfl4="><!--[if lt IE 9]><script src=https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js></script>
-<script src=https://oss.maxcdn.com/respond/1.4.2/respond.min.js></script><![endif]-->
-<link rel=apple-touch-icon-precomposed sizes=144x144 href=/apple-touch-icon-144-precomposed.png>
-<link rel="shortcut icon" href=/favicon.png>
-</head>
-<body class=theme-base-0d>
-<div class=sidebar>
-<div class=container>
-<div class=sidebar-about>
-<span class=site__title>
-<a href=https://feisky.xyz/>
-Feisky
-</a>
-</span>
-<div class=author-image>
-<img src="https://www.gravatar.com/avatar/f86d2faa0f91793a2163d226d82a7620?s=240&d=mp" class="img--circle img--headshot element--center" alt=gravatar>
-</div>
-<p class=site__description>
-</p>
-</div>
-<div class=collapsible-menu>
-<input type=checkbox id=menuToggle>
-<label for=menuToggle>Feisky</label>
-<div class=menu-content>
-<div>
-<ul class=sidebar-nav>
-<li>
-<a href=https://time.geekbang.org/column/intro/100020901>
-<span>Linux性能优化实战</span>
-</a>
-</li>
-<li>
-<a href=https://time.geekbang.org/column/intro/100104501>
-<span>EBPF核心技术与实战</span>
-</a>
-</li>
-<li>
-<a href=https://kubernetes.feisky.xyz>
-<span>Kubernetes指南</span>
-</a>
-</li>
-<li>
-<a href=https://sdn.feisky.xyz>
-<span>SDN网络指南</span>
-</a>
-</li>
-<li>
-<a href=/assets/mp.png>
-<span>微信公众号</span>
-</a>
-</li>
-<li>
-<a href=https://zhuanlan.zhihu.com/kubernetes>
-<span>知乎专栏</span>
-</a>
-</li>
-<li>
-<a href=/about/>
-<span>关于我</span>
-</a>
-</li>
-</ul>
-</div>
-<section class=social>
-<a href=https://twitter.com/feisky rel=me><i class="fab fa-twitter fa-lg" aria-hidden=true></i></a>
-<a href=https://github.com/feiskyer rel=me><i class="fab fa-github fa-lg" aria-hidden=true></i></a>
-</section>
-</div>
-</div>
-<div class=copyright>
-&copy; 2022 feiskyer
-<a href=https://creativecommons.org/licenses/by-sa/4.0>CC BY-SA 4.0</a>
-</div>
-<div class=builtwith>
-Built with <a href=https://gohugo.io>Hugo</a> ❤️ <a href=https://github.com/htr3n/hyde-hyde>hyde-hyde</a>.
-</div>
-</div>
-</div>
-<div class="content container">
-<article>
-<header>
-<h1>基于Kubernetes的多集群实践</h1>
-<div class=post__meta>
-<i class="fas fa-calendar-alt"></i> Mar 20, 2021
-<br>
-<i class="fas fa-tags"></i>
-<a class="badge badge-tag" href=/tags/kubernetes>kubernetes</a>
-<br>
-<i class="fas fa-clock"></i> 5 min read
-</div>
-</header>
-<div class=toc-wrapper>
-<input type=checkbox id=tocToggle>
-<label for=tocToggle>Table of Content</label>
-<div class=toc id=TableOfContents></div>
-</div>
-<div class=post>
-<p>在 <a href=https://mp.weixin.qq.com/s/uM4d3_fwLIdQ95fBWcmRjw>基于Kubernetes的多云和混合云</a> 文章中，我介绍了多云和混合云的由来以及常用方案。多云和混合云的目的主要有以下几个：</p>
-<ul>
-<li>解除云服务商锁定，避免服务单纯依赖于某一家云服务商。</li>
-<li>提高服务可用性，不仅可以跨地区和跨地域，更可以在某个云服务商故障时继续在其他正常的云服务商中运行。</li>
-<li>优化基础设施成本，根据云服务商的价格选择成本较低的方案。</li>
-<li>保障业务突发的弹性扩展，在某个云服务商容量不足时扩展到其他云服务商中。</li>
-</ul>
-<p>有了这么多好处，多云和混合云的缺点也很多，特别是提高了基础架构的复杂度。而 Kubernetes 的诞生则是解决了云平台异构的问题：无论是在哪家云服务上中运行 Kubernetes，其底层的云平台异构问题都被封装为相同的 Kubernetes API。这样，对用户来说，只需要在部署 Kubernetes 集群本身的时候考虑每家云平台的不同，而其上的管理平台和业务应用都可以用相同的 Kubernetes API 进行操作。本文就给大家介绍一下多 Kubernetes 集群的常用实践。</p>
-<h2 id=集群部署>集群部署</h2>
-<p>多集群的第一步就是 Kubernetes 集群的部署。由于各家云厂商的 API 并不相同，在管理各个云平台的资源时一般需要借助额外的 CMP（云管理平台）或者 <a href=https://www.terraform.io/>terraform</a> 等进行统一管理。既然常见的公有云平台都提供了托管 Kubernetes 服务，部署这些托管集群一般并不需要很复杂的操作，所以使用 Terraform 就可以满足大部分需要。</p>
-<p><img src=image-20210321155207074.png alt=image-20210321155207074></p>
-<p>使用 Terraform 的好处是它是声明式的，在使用时只需要声明预期的基础架构是什么样子，具体的执行步骤会有 Terraform 自动完成，包括下载云服务商模块、与云服务商 API 对接以及执行具体的部署等。</p>
-<p>比如，下图就是一个使用 Terraform 部署 AWS 资源的示例：</p>
-<p><img src=oss-cli-demo-20210321154457049.mp4 alt></p>
-<p>Kubernetes 集群部署完成之后，剩下的就是多集群的应用管理了，包括配置管理、服务治理以及对外服务的负载均衡等等。</p>
-<h2 id=配置管理>配置管理</h2>
-<p>对于同一个应用，部署到多集群时，绝大部分配置都是相同的。所以，可以把应用的配置通过 Helm Charts、Kustomize 甚至是放在不同目录的 Kubernetes YAML 文件等管理起来。多集群不同的地方可通过变量进行区分，如使用 Helm Charts 可以根据 Values 的不同设置不同的 YAML 配置：</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml>{{<span style=color:#ae81ff>/* Returns Horizontal Pod Autoscaler replicas for GraphQL*/}}</span>
-{{- <span style=color:#ae81ff>define &#34;graphql.hpaReplicas&#34; -}}</span>
-{{- <span style=color:#ae81ff>if eq .Values.global.env &#34;prod&#34; }}</span>
-{{- <span style=color:#ae81ff>if eq .Values.global.region &#34;europe-west1&#34; }}</span>
-<span style=color:#f92672>minReplicas</span>: <span style=color:#ae81ff>40</span>
-{{- <span style=color:#ae81ff>else }}</span>
-<span style=color:#f92672>minReplicas</span>: <span style=color:#ae81ff>150</span>
-{{- <span style=color:#ae81ff>end }}</span>
-<span style=color:#f92672>maxReplicas</span>: <span style=color:#ae81ff>1400</span>
-{{- <span style=color:#ae81ff>else }}</span>
-<span style=color:#f92672>minReplicas</span>: <span style=color:#ae81ff>4</span>
-<span style=color:#f92672>maxReplicas</span>: <span style=color:#ae81ff>20</span>
-{{- <span style=color:#ae81ff>end }}</span>
-{{- <span style=color:#ae81ff>end -}}</span>
-</code></pre></div><p>这样，将应用配置部署到不同集群的时候，给 <code>.Values.global.region</code> 设置不同的值就可以实现多集群的区分部署。</p>
-<p>应用配置准备好之后，接下来就可以结合 gitops、CI/CD 等将其融入 Devops 流水线中。比如，一个最简单的 Jenkins 部署步骤如下图所示：</p>
-<p><img src=1*aVw14rBd5nyCOIeuX2nMRg.png alt=img></p>
-<p>（图片来自 <a href=https://medium.com/dailymotion/deploying-apps-on-multiple-kubernetes-clusters-with-helm-19ee2b06179e>Medium</a>）</p>
-<p>这个图式就是一个常规的 CI/CD 流水线，包括单元测试、集成测试、镜像发布、生产环境部署等几个步骤。其中，最后一个部署步骤会把应用部署到多个不同的集群中。</p>
-<h2 id=负载均衡>负载均衡</h2>
-<p>应用部署完成之后，对于需要暴露到集群外部的服务来说，通常可以通过 LoadBalancer 或 NodePort 类型的 Service 为每个集群内部的应用分配公网 IP 并结合 DNS 绑定一个子域名。</p>
-<p>但由于单个集群有可能会发生故障，在这些集群之上还应该再加一层跨集群的负载均衡。这一般有两种实现方法：</p>
-<ul>
-<li>DNS 负载均衡：即在 DNS 服务器中给同一个主机名配置多个 IP 地址，分别指向单个集群中对应服务的公网 IP。这种方式简单灵活，常用在 Web 服务中，缺点是不支持高可靠性，即便单个集群出现了故障，DNS 服务器仍然会为其分配请求。</li>
-<li>全局负载均衡（GSLB）：即使用跨地区的负载均衡服务，根据后端各个服务的健康状况以及客户端的位置，选择最佳的后端服务器进行转发。GSLB 的优点是会进行后端服务的健康检查，确保请求只转发给健康的服务器；缺点是自建复杂，一般推荐使用云服务商提供的 GSLB 。下图是一个 Azure 全局负载均衡器的示例：</li>
-</ul>
-<p><img src=68747470733a2f2f646f63732e6d6963726f736f66742e636f6d2f656e2d75732f617a7572652f6c6f61642d62616c616e6365722f6d656469612f63726f73732d726567696f6e2d6f766572766965772f63726f73732d726567696f6e2d6c6f61642d62616c616e6365722e706e67.png alt=img></p>
-<h2 id=服务治理>服务治理</h2>
-<p>通常说到服务治理，是指服务的注册、发现、观测、流控、安全控制等。在多集群场景中，还包括跨集群访问服务的能力。</p>
-<p>不同集群的网络可以通过 Service Mesh 打通，实现网络流量的灵活调度和故障转移。常见的 Service Mesh 项目均提供了多集群打通的能力，如下图是 Linkerd 多集群的示意图：</p>
-<p><img src=image-20210321174651279.png alt=image-20210321174651279></p>
-<p>（图片来自 <a href=https://linkerd.io/2.10/features/multicluster/>Linkerd multi-cluster communication</a>）</p>
-<p>这个示意图等价于下面的命令，即把 <code>east</code> 集群的服务暴露到 <code>west </code>集群中：</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>linkerd --context<span style=color:#f92672>=</span>east multicluster link --cluster-name east |
-  kubectl --context<span style=color:#f92672>=</span>west apply -f -
-</code></pre></div><p>当 <code>east</code> 集群中的 Service 加上 <code>mirror.linkerd.io/exported=true</code> 标签之后，Linkerd 会自动在 <code>west</code> 集群中创建其镜像 Service。之后，在 <code>west</code> 集群中就可以通过镜像 Service 访问 <code>east</code> 集群中的 Service：</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=color:#75715e># 在east集群中为服务打开多集群镜像支持</span>
-kubectl --context<span style=color:#f92672>=</span>east label svc -n test podinfo mirror.linkerd.io/exported<span style=color:#f92672>=</span>true
-<span style=color:#75715e># 查询west集群中的镜像服务</span>
-kubectl --context<span style=color:#f92672>=</span>west -n test get svc podinfo-east
-</code></pre></div><p>当然，只有镜像还是不够的，更重要的是故障转移。在 Linkerd 中可以创建 <code>TrafficSplit</code> 对象，确保集群故障时自动把流量调度到健康的后端中：</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>cat <span style=color:#e6db74>&lt;&lt;EOF | kubectl --context=west apply -f -
-</span><span style=color:#e6db74>apiVersion: split.smi-spec.io/v1alpha1
-</span><span style=color:#e6db74>kind: TrafficSplit
-</span><span style=color:#e6db74>metadata:
-</span><span style=color:#e6db74>  name: podinfo
-</span><span style=color:#e6db74>  namespace: test
-</span><span style=color:#e6db74>spec:
-</span><span style=color:#e6db74>  service: podinfo
-</span><span style=color:#e6db74>  backends:
-</span><span style=color:#e6db74>  - service: podinfo
-</span><span style=color:#e6db74>    weight: 50
-</span><span style=color:#e6db74>  - service: podinfo-east
-</span><span style=color:#e6db74>    weight: 50
-</span><span style=color:#e6db74>EOF</span>
-</code></pre></div><p><img src=image-20210321175202202.png alt=image-20210321175202202></p>
-<p>除了 Service Mesh，如果多集群之间的网络配置并不冲突（如 IP 网段不重合），还可以通过专线打通，实现更低延迟的跨集群访问。</p>
-<h2 id=小结>小结</h2>
-<p>虽然多云多集群可以解决云服务商锁定、跨地域跨云高可靠以及跨云弹性突发等诸多的问题，但从前面的这些方案可以看出来，多云多集群中不同的功能还都需要不同的服务来提供，并非一个完整的解决方案。故而主流的云服务商也都提供了相应的解决方案，如 Azure Arc、GKE Anthos、AWS Outposts 等。各大云服务商和开源社区也在着力解决多云多集群中的各种挑战，如网络延迟、跨地域数据同步、统一安全等等，多云多集群依然还有很长的路要走。</p>
-<hr>
-<p>欢迎长按下面的二维码关注<strong>漫谈云原生</strong>公众号，输入<strong>任意关键字</strong>查询更多云原生知识库。</p>
-<p><img src=https://feisky.xyz/assets/mp.png alt></p>
-</div>
-<div class="navigation navigation-single">
-<a href=/posts/2021-03-19-ingress-viz/ class=navigation-prev>
-<i aria-hidden=true class="fa fa-chevron-left"></i>
+<!doctype html><html lang=zh-cn><head><link href=https://gmpg.org/xfn/11 rel=profile><link rel=canonical href=https://feisky.xyz/posts/2021-03-20-multi-cluster/><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta name=generator content="Hugo 0.140.2"><title>基于Kubernetes的多集群实践 • Feisky</title>
+<meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://feisky.xyz/posts/2021-03-20-multi-cluster/feature-overview.svg"><meta name=twitter:title content="基于Kubernetes的多集群实践"><meta name=twitter:description content="在 基于Kubernetes的多云和混合云 文章中，我介绍了多云和混合云的由来以及常用方案。多云和混合云的目的主要有以下几个：
+解除云服务商锁定，避免服务单纯依赖于某一家云服务商。 提高服务可用性，不仅可以跨地区和跨地域，更可以在某个云服务商故障时继续在其他正常的云服务商中运行。 优化基础设施成本，根据云服务商的价格选择成本较低的方案。 保障业务突发的弹性扩展，在某个云服务商容量不足时扩展到其他云服务商中。 有了这么多好处，多云和混合云的缺点也很多，特别是提高了基础架构的复杂度。而 Kubernetes 的诞生则是解决了云平台异构的问题：无论是在哪家云服务上中运行 Kubernetes，其底层的云平台异构问题都被封装为相同的 Kubernetes API。这样，对用户来说，只需要在部署 Kubernetes 集群本身的时候考虑每家云平台的不同，而其上的管理平台和业务应用都可以用相同的 Kubernetes API 进行操作。本文就给大家介绍一下多 Kubernetes 集群的常用实践。"><meta name=twitter:site content="@feisky"><meta property="og:url" content="https://feisky.xyz/posts/2021-03-20-multi-cluster/"><meta property="og:site_name" content="Feisky"><meta property="og:title" content="基于Kubernetes的多集群实践"><meta property="og:description" content="在 基于Kubernetes的多云和混合云 文章中，我介绍了多云和混合云的由来以及常用方案。多云和混合云的目的主要有以下几个：
+解除云服务商锁定，避免服务单纯依赖于某一家云服务商。 提高服务可用性，不仅可以跨地区和跨地域，更可以在某个云服务商故障时继续在其他正常的云服务商中运行。 优化基础设施成本，根据云服务商的价格选择成本较低的方案。 保障业务突发的弹性扩展，在某个云服务商容量不足时扩展到其他云服务商中。 有了这么多好处，多云和混合云的缺点也很多，特别是提高了基础架构的复杂度。而 Kubernetes 的诞生则是解决了云平台异构的问题：无论是在哪家云服务上中运行 Kubernetes，其底层的云平台异构问题都被封装为相同的 Kubernetes API。这样，对用户来说，只需要在部署 Kubernetes 集群本身的时候考虑每家云平台的不同，而其上的管理平台和业务应用都可以用相同的 Kubernetes API 进行操作。本文就给大家介绍一下多 Kubernetes 集群的常用实践。"><meta property="og:locale" content="zh_cn"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2021-03-20T00:00:00+00:00"><meta property="article:modified_time" content="2021-03-20T00:00:00+00:00"><meta property="article:tag" content="Kubernetes"><meta property="og:image" content="https://feisky.xyz/posts/2021-03-20-multi-cluster/feature-overview.svg"><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/monokai.min.css><link rel=stylesheet href=/scss/triple-hyde.ef937e1c8a424ea6419b858ae4cfbdb5f7e764eb1075e9ac50fa2de759dde8a2.css integrity="sha256-75N+HIpCTqZBm4WK5M+9tffnZOsQdemsUPot51nd6KI="><link rel=stylesheet href=/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58+TzH3icCkSHGoJ+ed7w=" media=print><link rel=stylesheet href=/scss/tocbot.5ef07cebc3c477b54270456f149ee02922479bb7555fd344b2c69f953b0e7e5e.css integrity="sha256-XvB868PEd7VCcEVvFJ7gKSJHm7dVX9NEssaflTsOfl4="><!--[if lt IE 9]><script src=https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js></script><script src=https://oss.maxcdn.com/respond/1.4.2/respond.min.js></script><![endif]--><link rel=apple-touch-icon-precomposed sizes=144x144 href=/apple-touch-icon-144-precomposed.png><link rel="shortcut icon" href=/favicon.png></head><body class=theme-base-0d><div class=sidebar><div class=container><div class=sidebar-about><span class=site__title><a href=https://feisky.xyz/>Feisky</a></span><div class=author-image><img src="https://www.gravatar.com/avatar/f86d2faa0f91793a2163d226d82a7620?s=240&d=mp" class="img--circle img--headshot element--center" alt=gravatar></div><p class=site__description></p></div><div class=collapsible-menu><input type=checkbox id=menuToggle>
+<label for=menuToggle>Feisky</label><div class=menu-content><div><ul class=sidebar-nav><li><a href=https://time.geekbang.org/column/intro/100020901><span>Linux性能优化实战</span></a></li><li><a href=https://time.geekbang.org/column/intro/100104501><span>EBPF核心技术与实战</span></a></li><li><a href=https://kubernetes.feisky.xyz><span>Kubernetes指南</span></a></li><li><a href=https://sdn.feisky.xyz><span>SDN网络指南</span></a></li><li><a href=/assets/mp.png><span>微信公众号</span></a></li><li><a href=https://zhuanlan.zhihu.com/kubernetes><span>知乎专栏</span></a></li><li><a href=/about/><span>关于我</span></a></li></ul></div><section class=social><a href=https://twitter.com/feisky rel=me><span class="relative block icon"><svg viewBox="0 0 512 512"><path fill="currentcolor" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645.0 138.72-105.583 298.558-298.558 298.558-59.452.0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055.0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421.0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391.0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04.0-57.828 46.782-104.934 104.934-104.934 30.213.0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+</span></a><a href=https://github.com/feiskyer rel=me><span class="relative block icon"><svg viewBox="0 0 496 512"><path fill="currentcolor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6.0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6.0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3.0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1.0-6.2-.3-40.4-.3-61.4.0.0-70 15-84.7-29.8.0.0-11.4-29.1-27.8-36.6.0.0-22.9-15.7 1.6-15.4.0.0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5.0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9.0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4.0 33.7-.3 75.4-.3 83.6.0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6.0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9.0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span></a></section></div></div><div class=copyright>&copy; 2025 feiskyer
+<a href=https://creativecommons.org/licenses/by-sa/4.0>CC BY-SA 4.0</a></div><div class=builtwith>Built with <a href=https://gohugo.io>Hugo</a> ❤️ <a href=https://github.com/derme302/triple-hyde>triple-hyde</a>.</div></div></div><div class="content container"><article><header><h1>基于Kubernetes的多集群实践</h1><div class=post__meta><i class="fas fa-calendar-alt"></i> Mar 20, 2021<br><i class="fas fa-tags"></i>
+<a class="badge badge-tag" href=/tags/kubernetes>kubernetes</a><br><i class="fas fa-clock"></i> 5 min read</div></header><div class=toc-wrapper><input type=checkbox id=tocToggle>
+<label for=tocToggle>Table of Content</label><div class=toc id=TableOfContents></div></div><div class=post><p>在 <a href=https://mp.weixin.qq.com/s/uM4d3_fwLIdQ95fBWcmRjw>基于Kubernetes的多云和混合云</a> 文章中，我介绍了多云和混合云的由来以及常用方案。多云和混合云的目的主要有以下几个：</p><ul><li>解除云服务商锁定，避免服务单纯依赖于某一家云服务商。</li><li>提高服务可用性，不仅可以跨地区和跨地域，更可以在某个云服务商故障时继续在其他正常的云服务商中运行。</li><li>优化基础设施成本，根据云服务商的价格选择成本较低的方案。</li><li>保障业务突发的弹性扩展，在某个云服务商容量不足时扩展到其他云服务商中。</li></ul><p>有了这么多好处，多云和混合云的缺点也很多，特别是提高了基础架构的复杂度。而 Kubernetes 的诞生则是解决了云平台异构的问题：无论是在哪家云服务上中运行 Kubernetes，其底层的云平台异构问题都被封装为相同的 Kubernetes API。这样，对用户来说，只需要在部署 Kubernetes 集群本身的时候考虑每家云平台的不同，而其上的管理平台和业务应用都可以用相同的 Kubernetes API 进行操作。本文就给大家介绍一下多 Kubernetes 集群的常用实践。</p><h2 id=集群部署>集群部署</h2><p>多集群的第一步就是 Kubernetes 集群的部署。由于各家云厂商的 API 并不相同，在管理各个云平台的资源时一般需要借助额外的 CMP（云管理平台）或者 <a href=https://www.terraform.io/>terraform</a> 等进行统一管理。既然常见的公有云平台都提供了托管 Kubernetes 服务，部署这些托管集群一般并不需要很复杂的操作，所以使用 Terraform 就可以满足大部分需要。</p><p><img src=image-20210321155207074.png alt=image-20210321155207074></p><p>使用 Terraform 的好处是它是声明式的，在使用时只需要声明预期的基础架构是什么样子，具体的执行步骤会有 Terraform 自动完成，包括下载云服务商模块、与云服务商 API 对接以及执行具体的部署等。</p><p>比如，下图就是一个使用 Terraform 部署 AWS 资源的示例：</p><p><img src=oss-cli-demo-20210321154457049.mp4 alt></p><p>Kubernetes 集群部署完成之后，剩下的就是多集群的应用管理了，包括配置管理、服务治理以及对外服务的负载均衡等等。</p><h2 id=配置管理>配置管理</h2><p>对于同一个应用，部署到多集群时，绝大部分配置都是相同的。所以，可以把应用的配置通过 Helm Charts、Kustomize 甚至是放在不同目录的 Kubernetes YAML 文件等管理起来。多集群不同的地方可通过变量进行区分，如使用 Helm Charts 可以根据 Values 的不同设置不同的 YAML 配置：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span>{{<span style=color:#ae81ff>/* Returns Horizontal Pod Autoscaler replicas for GraphQL*/}}</span>
+</span></span><span style=display:flex><span>{{- <span style=color:#ae81ff>define &#34;graphql.hpaReplicas&#34; -}}</span>
+</span></span><span style=display:flex><span>{{- <span style=color:#ae81ff>if eq .Values.global.env &#34;prod&#34; }}</span>
+</span></span><span style=display:flex><span>{{- <span style=color:#ae81ff>if eq .Values.global.region &#34;europe-west1&#34; }}</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>minReplicas</span>: <span style=color:#ae81ff>40</span>
+</span></span><span style=display:flex><span>{{- <span style=color:#ae81ff>else }}</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>minReplicas</span>: <span style=color:#ae81ff>150</span>
+</span></span><span style=display:flex><span>{{- <span style=color:#ae81ff>end }}</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>maxReplicas</span>: <span style=color:#ae81ff>1400</span>
+</span></span><span style=display:flex><span>{{- <span style=color:#ae81ff>else }}</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>minReplicas</span>: <span style=color:#ae81ff>4</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>maxReplicas</span>: <span style=color:#ae81ff>20</span>
+</span></span><span style=display:flex><span>{{- <span style=color:#ae81ff>end }}</span>
+</span></span><span style=display:flex><span>{{- <span style=color:#ae81ff>end -}}</span>
+</span></span></code></pre></div><p>这样，将应用配置部署到不同集群的时候，给 <code>.Values.global.region</code> 设置不同的值就可以实现多集群的区分部署。</p><p>应用配置准备好之后，接下来就可以结合 gitops、CI/CD 等将其融入 Devops 流水线中。比如，一个最简单的 Jenkins 部署步骤如下图所示：</p><p><img src=1*aVw14rBd5nyCOIeuX2nMRg.png alt=img></p><p>（图片来自 <a href=https://medium.com/dailymotion/deploying-apps-on-multiple-kubernetes-clusters-with-helm-19ee2b06179e>Medium</a>）</p><p>这个图式就是一个常规的 CI/CD 流水线，包括单元测试、集成测试、镜像发布、生产环境部署等几个步骤。其中，最后一个部署步骤会把应用部署到多个不同的集群中。</p><h2 id=负载均衡>负载均衡</h2><p>应用部署完成之后，对于需要暴露到集群外部的服务来说，通常可以通过 LoadBalancer 或 NodePort 类型的 Service 为每个集群内部的应用分配公网 IP 并结合 DNS 绑定一个子域名。</p><p>但由于单个集群有可能会发生故障，在这些集群之上还应该再加一层跨集群的负载均衡。这一般有两种实现方法：</p><ul><li>DNS 负载均衡：即在 DNS 服务器中给同一个主机名配置多个 IP 地址，分别指向单个集群中对应服务的公网 IP。这种方式简单灵活，常用在 Web 服务中，缺点是不支持高可靠性，即便单个集群出现了故障，DNS 服务器仍然会为其分配请求。</li><li>全局负载均衡（GSLB）：即使用跨地区的负载均衡服务，根据后端各个服务的健康状况以及客户端的位置，选择最佳的后端服务器进行转发。GSLB 的优点是会进行后端服务的健康检查，确保请求只转发给健康的服务器；缺点是自建复杂，一般推荐使用云服务商提供的 GSLB 。下图是一个 Azure 全局负载均衡器的示例：</li></ul><p><img src=68747470733a2f2f646f63732e6d6963726f736f66742e636f6d2f656e2d75732f617a7572652f6c6f61642d62616c616e6365722f6d656469612f63726f73732d726567696f6e2d6f766572766965772f63726f73732d726567696f6e2d6c6f61642d62616c616e6365722e706e67.png alt=img></p><h2 id=服务治理>服务治理</h2><p>通常说到服务治理，是指服务的注册、发现、观测、流控、安全控制等。在多集群场景中，还包括跨集群访问服务的能力。</p><p>不同集群的网络可以通过 Service Mesh 打通，实现网络流量的灵活调度和故障转移。常见的 Service Mesh 项目均提供了多集群打通的能力，如下图是 Linkerd 多集群的示意图：</p><p><img src=image-20210321174651279.png alt=image-20210321174651279></p><p>（图片来自 <a href=https://linkerd.io/2.10/features/multicluster/>Linkerd multi-cluster communication</a>）</p><p>这个示意图等价于下面的命令，即把 <code>east</code> 集群的服务暴露到 <code>west </code>集群中：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>linkerd --context<span style=color:#f92672>=</span>east multicluster link --cluster-name east |
+</span></span><span style=display:flex><span>  kubectl --context<span style=color:#f92672>=</span>west apply -f -
+</span></span></code></pre></div><p>当 <code>east</code> 集群中的 Service 加上 <code>mirror.linkerd.io/exported=true</code> 标签之后，Linkerd 会自动在 <code>west</code> 集群中创建其镜像 Service。之后，在 <code>west</code> 集群中就可以通过镜像 Service 访问 <code>east</code> 集群中的 Service：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span><span style=color:#75715e># 在east集群中为服务打开多集群镜像支持</span>
+</span></span><span style=display:flex><span>kubectl --context<span style=color:#f92672>=</span>east label svc -n test podinfo mirror.linkerd.io/exported<span style=color:#f92672>=</span>true
+</span></span><span style=display:flex><span><span style=color:#75715e># 查询west集群中的镜像服务</span>
+</span></span><span style=display:flex><span>kubectl --context<span style=color:#f92672>=</span>west -n test get svc podinfo-east
+</span></span></code></pre></div><p>当然，只有镜像还是不够的，更重要的是故障转移。在 Linkerd 中可以创建 <code>TrafficSplit</code> 对象，确保集群故障时自动把流量调度到健康的后端中：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>cat <span style=color:#e6db74>&lt;&lt;EOF | kubectl --context=west apply -f -
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>apiVersion: split.smi-spec.io/v1alpha1
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>kind: TrafficSplit
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>metadata:
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>  name: podinfo
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>  namespace: test
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>spec:
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>  service: podinfo
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>  backends:
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>  - service: podinfo
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    weight: 50
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>  - service: podinfo-east
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    weight: 50
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>EOF</span>
+</span></span></code></pre></div><p><img src=image-20210321175202202.png alt=image-20210321175202202></p><p>除了 Service Mesh，如果多集群之间的网络配置并不冲突（如 IP 网段不重合），还可以通过专线打通，实现更低延迟的跨集群访问。</p><h2 id=小结>小结</h2><p>虽然多云多集群可以解决云服务商锁定、跨地域跨云高可靠以及跨云弹性突发等诸多的问题，但从前面的这些方案可以看出来，多云多集群中不同的功能还都需要不同的服务来提供，并非一个完整的解决方案。故而主流的云服务商也都提供了相应的解决方案，如 Azure Arc、GKE Anthos、AWS Outposts 等。各大云服务商和开源社区也在着力解决多云多集群中的各种挑战，如网络延迟、跨地域数据同步、统一安全等等，多云多集群依然还有很长的路要走。</p><hr><p>欢迎长按下面的二维码关注<strong>漫谈云原生</strong>公众号，输入<strong>任意关键字</strong>查询更多云原生知识库。</p><p><img src=https://feisky.xyz/assets/mp.png alt></p></div><div class="navigation navigation-single"><a href=/posts/2021-03-19-ingress-viz/ class=navigation-prev><i aria-hidden=true class="fa fa-chevron-left"></i>
 <span class=navigation-tittle>Kubernetes Ingress 可视化编辑器</span>
-</a>
-<a href=/posts/2021-08-02-kubernetes-122/ class=navigation-next>
-<span class=navigation-tittle>Kubernetes 1.22 新特性预览</span>
-<i aria-hidden=true class="fa fa-chevron-right"></i>
-</a>
-</div>
-<div class=post__related>
-<h2>Related Articles</h2>
-<ul class=related-posts>
-<li>
-<span class=list__title--small>
-<a href=/posts/2021-03-19-ingress-viz/>Kubernetes Ingress 可视化编辑器</a>
-<time class="pull-right hidden-tablet">Mar 19 '21</time>
-</span>
-</li>
-<li>
-<span class=list__title--small>
-<a href=/posts/2021-03-17-storage-expansion/>如何无宕机扩容 Kubernetes 存储</a>
-<time class="pull-right hidden-tablet">Mar 17 '21</time>
-</span>
-</li>
-<li>
-<span class=list__title--small>
-<a href=/posts/2021-03-12-k8s-network-learn/>如何快速掌握 Kubernetes 网络</a>
-<time class="pull-right hidden-tablet">Mar 12 '21</time>
-</span>
-</li>
-<li>
-<span class=list__title--small>
-<a href=/posts/2021-03-03-yaml/>云原生时代的 YAML 教程</a>
-<time class="pull-right hidden-tablet">Mar 03 '21</time>
-</span>
-</li>
-<li>
-<span class=list__title--small>
-<a href=/posts/2021-03-01-gke-autopilot/>聊一聊 GKE Autopilot</a>
-<time class="pull-right hidden-tablet">Mar 01 '21</time>
-</span>
-</li>
-</ul>
-</div>
-<div id=disqus_thread></div>
-<script type=text/javascript>(function(){var a,b;if(location.hostname==="localhost"||location.hostname==="127.0.0.1"||location.hostname==="")return;a=document.createElement('script'),a.type='text/javascript',a.async=!0,b='feisky',a.src='//'+b+'.disqus.com/embed.js',(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(a)})()</script>
-<noscript>
-Please enable JavaScript to view the
-<a href=http://disqus.com/?ref_noscript>comments powered by Disqus.</a>
-</noscript>
-<a href=http://disqus.com/ class=dsq-brlink>comments powered by
-<span class=logo-disqus>Disqus</span>
-</a>
-</article>
-</div>
-<script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','UA-69699206-1','auto'),ga('send','pageview'))</script>
-<script async src=https://www.google-analytics.com/analytics.js></script>
-<script defer src=https://use.fontawesome.com/releases/v5.12.1/js/all.js integrity=sha384-ZbbbT1gw3joYkKRqh0kWyRp32UAvdqkpbLedQJSlnI8iLQcFVxaGyrOgOJiDQTTR crossorigin=anonymous></script>
-<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js></script>
-<script type=text/javascript>hljs.initHighlightingOnLoad()</script>
-<script src=https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.js></script>
-<script type=text/javascript>tocbot&&tocbot.init({tocSelector:'.toc',contentSelector:'.post',headingSelector:'h2, h3, h4',collapseDepth:4})</script>
-</body>
-</html>
+</a><a href=/posts/2021-08-02-kubernetes-122/ class=navigation-next><span class=navigation-tittle>Kubernetes 1.22 新特性预览</span>
+<i aria-hidden=true class="fa fa-chevron-right"></i></a></div><div class=post__related><h2>Related Articles</h2><ul class=related-posts><li><span class=list__title--small><a href=/posts/2021-03-19-ingress-viz/>Kubernetes Ingress 可视化编辑器</a>
+<time class="pull-right hidden-tablet">Mar 19 '21</time></span></li><li><span class=list__title--small><a href=/posts/2021-03-17-storage-expansion/>如何无宕机扩容 Kubernetes 存储</a>
+<time class="pull-right hidden-tablet">Mar 17 '21</time></span></li><li><span class=list__title--small><a href=/posts/2021-03-12-k8s-network-learn/>如何快速掌握 Kubernetes 网络</a>
+<time class="pull-right hidden-tablet">Mar 12 '21</time></span></li><li><span class=list__title--small><a href=/posts/2021-03-03-yaml/>云原生时代的 YAML 教程</a>
+<time class="pull-right hidden-tablet">Mar 03 '21</time></span></li><li><span class=list__title--small><a href=/posts/2021-03-01-gke-autopilot/>聊一聊 GKE Autopilot</a>
+<time class="pull-right hidden-tablet">Mar 01 '21</time></span></li></ul></div><div id=disqus_thread></div><script type=text/javascript>(function(){if(location.hostname==="localhost"||location.hostname==="127.0.0.1"||location.hostname==="")return;var t,e=document.createElement("script");e.type="text/javascript",e.async=!0,t="feisky",e.src="//"+t+".disqus.com/embed.js",(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)})()</script><noscript>Please enable JavaScript to view the
+<a href=http://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=http://disqus.com/ class=dsq-brlink>comments powered by
+<span class=logo-disqus>Disqus</span></a></article></div><script async src="https://www.googletagmanager.com/gtag/js?id=G-1GD5S2NKS3"></script><script>var dnt,doNotTrack=!1;if(!1&&(dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes"),!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-1GD5S2NKS3")}</script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js></script><script type=text/javascript>hljs.initHighlightingOnLoad()</script><script src=https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.js></script><script type=text/javascript>tocbot&&tocbot.init({tocSelector:".toc",contentSelector:".post",headingSelector:"h2, h3, h4",collapseDepth:4})</script></body></html>
