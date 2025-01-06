@@ -54,7 +54,7 @@ tbody tr:nth-child(odd) th {
   background-color: #f9f9f9; }
 
 .container {
-  max-width: 38rem;
+  max-width: 76rem;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   margin-left: auto;
@@ -649,7 +649,7 @@ a.badge-tag {
   .content {
     margin-left: 20rem;
     margin-right: 2rem;
-    max-width: 38rem; }
+    max-width: 76rem; }
   .layout-reverse .sidebar {
     left: auto;
     right: 0; }
@@ -678,7 +678,7 @@ a.badge-tag {
   .content {
     margin-left: 20rem;
     margin-right: 2rem;
-    max-width: 38rem; }
+    max-width: 76rem; }
   .layout-reverse .content {
     margin-left: 4rem;
     margin-right: 22rem; }

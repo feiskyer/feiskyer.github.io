@@ -71,3 +71,6 @@ enableRobotsTXT = true
     name = "关于我"
     weight = 100
     url = "/about/"
+
+[markup.goldmark.renderer]
+unsafe= true

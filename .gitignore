@@ -6,4 +6,6 @@ node_modules/
 .deploy*/
 .vscode
 .MWebMetaData
+.obsidian/
+.smtcmp_chat_histories/
 docs
