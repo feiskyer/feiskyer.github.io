@@ -372,24 +372,31 @@
 &lt;/ol>
 &lt;p>As mentioned the only prerequisite is to have a working Docker server. This means you can bring up a local &lt;a href="https://docs.vagrantup.com/v2/provisioning/docker.html">Vagrant box with Docker installed&lt;/a>, use &lt;a href="http://boot2docker.io/">Boot2Docker&lt;/a>, use &lt;a href="https://coreos.com/">CoreOS&lt;/a>, instance on AWS, or however you like to get a Docker server.&lt;/p></description></item><item><title>Docker</title><link>https://feisky.xyz/posts/2015-01-27-docker/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-01-27-docker/</guid><description>&lt;h3 id="简介">简介&lt;/h3>
 &lt;p>Docker 是 dotCloud 最近几个月刚宣布的开源引擎，旨在提供一种应用程序的自动化部署解决方案，简单的说就是，在 Linux 系统上迅速创建一个容器（类似虚拟机）并在容器上部署和运行应用程序，并通过配置文件可以轻松实现应用程序的自动化安装、部署和升级，非常方便。因为使用了容器，所以可以很方便的把生产环境和开发环境分开，互不影响，这是 docker 最普遍的一个玩法。更多的玩法还有大规模 web 应用、数据库部署、持续部署、集群、测试环境、面向服务的云计算、虚拟桌面 VDI 等等。&lt;/p></description></item><item><title>Docker acquires SDN startup SocketPlane</title><link>https://feisky.xyz/posts/2015-03-05-docker-acquires-sdn-startup-socketplane/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-03-05-docker-acquires-sdn-startup-socketplane/</guid><description>&lt;p>At &lt;a href="http://socketplane.io/">Socketplane&lt;/a> we started out as four guys with a collectively strong belief in open source and open communities.  We aligned around a shared vision that we wanted to be a critical part of Docker’s once in a decade disruption. Now that we are &lt;a href="http://www.businesswire.com/news/home/20150304005595/en/Docker-Acquires-SocketPlane-Drive-Open-Collaborative-Networking#.VPcQAVPF-Tk">part of the Docker team&lt;/a>, we couldn’t be happier.&lt;/p>
-&lt;p>We never looked to hedge our bets, our success was and obviously still is tied to the success of Docker. While there are many reasons that we decided to join the team, first and foremost Docker is unlike any other projects we have worked on in the past; the focus on user experience and simplicity is unmatched. Our early work with Docker during the open network design sprints gave us clear indications that the Docker maintainers were interested in being good open source stewards for the networking community in a project with an already staggering community of users and contributors. We also saw a genuine desire from Docker leadership to do right by both, individual contributors and the ecosystem. That made it all the more easy to jump in head first.&lt;/p></description></item><item><title>docker in tencent</title><link>https://feisky.xyz/posts/2015-03-20-docker-in-tencent/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-03-20-docker-in-tencent/</guid><description>&lt;p>腾讯内部对Docker有着广泛的使用，其基于Yarn的代号为Gaia的调度平台可以同时兼容Docker和非Docker类型的应用，并提供高并发任务调度和资源管理，它具有高度可伸缩性和可靠性，能够支持MR等离线业务。&lt;/p></description></item><item><title>docker internal</title><link>https://feisky.xyz/posts/2015-01-27-docker-internal/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-01-27-docker-internal/</guid><description>&lt;p>&lt;!-- raw HTML omitted -->&lt;!-- raw HTML omitted -->docker-base&lt;!-- raw HTML omitted -->&lt;!-- raw HTML omitted -->&lt;!-- raw HTML omitted -->&lt;!-- raw HTML omitted -->Abstract&lt;!-- raw HTML omitted -->&lt;/p>
-&lt;!-- raw HTML omitted -->
-&lt;p>A &lt;em>subsystem&lt;/em> is a module that makes use of the task grouping
-facilities provided by cgroups to treat groups of tasks in
-particular ways. A subsystem is typically a &amp;ldquo;resource controller&amp;rdquo; that
-schedules a resource or applies per-cgroup limits, but it may be
-anything that wants to act on a group of processes, e.g. a
-virtualization subsystem.
-&lt;!-- raw HTML omitted -->&lt;!-- raw HTML omitted -->&lt;/p></description></item><item><title>How to use docker compose to deploy a flask app</title><link>https://feisky.xyz/posts/2015-02-12-how-to-use-docker-compose-to-deploy-a-flask-app/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-02-12-how-to-use-docker-compose-to-deploy-a-flask-app/</guid><description>&lt;p>The flask app is very simple, you have an index page where your can write and read comments.&lt;/p>
+&lt;p>We never looked to hedge our bets, our success was and obviously still is tied to the success of Docker. While there are many reasons that we decided to join the team, first and foremost Docker is unlike any other projects we have worked on in the past; the focus on user experience and simplicity is unmatched. Our early work with Docker during the open network design sprints gave us clear indications that the Docker maintainers were interested in being good open source stewards for the networking community in a project with an already staggering community of users and contributors. We also saw a genuine desire from Docker leadership to do right by both, individual contributors and the ecosystem. That made it all the more easy to jump in head first.&lt;/p></description></item><item><title>docker in tencent</title><link>https://feisky.xyz/posts/2015-03-20-docker-in-tencent/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-03-20-docker-in-tencent/</guid><description>&lt;p>腾讯内部对Docker有着广泛的使用，其基于Yarn的代号为Gaia的调度平台可以同时兼容Docker和非Docker类型的应用，并提供高并发任务调度和资源管理，它具有高度可伸缩性和可靠性，能够支持MR等离线业务。&lt;/p></description></item><item><title>docker internal</title><link>https://feisky.xyz/posts/2015-01-27-docker-internal/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-01-27-docker-internal/</guid><description>&lt;p>&lt;/style>&lt;title>docker-base&lt;/title>&lt;/head>&lt;body>&lt;h2 id="abstract">Abstract&lt;/h2>&lt;/p>
+&lt;p>本文在现有文档的基础上总结了以下几点内容&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>docker的介绍，包括由来、适用场景等&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>docker背后的一系列技术 - namespace, cgroup, lxc, aufs等&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>docker在利用LXC的同时提供了哪些创新&lt;/p></description></item><item><title>How to use docker compose to deploy a flask app</title><link>https://feisky.xyz/posts/2015-02-12-how-to-use-docker-compose-to-deploy-a-flask-app/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-02-12-how-to-use-docker-compose-to-deploy-a-flask-app/</guid><description>&lt;p>The flask app is very simple, you have an index page where your can write and read comments.&lt;/p>
 &lt;h2 id="to-start">To start&lt;/h2>
 &lt;p>So what we need ?&lt;/p>
 &lt;p>In my case a &lt;a href="https://www.digitalocean.com/?refcode=16e2312f412e" title="Digital Ocean">Digital Ocean&lt;/a> droplet (I&amp;rsquo;m using Fedora 21).&lt;/p>
 &lt;p>So, first of all we connect to our vm with ssh.&lt;/p>
-&lt;!-- raw HTML omitted -->
-&lt;!-- raw HTML omitted -->
+&lt;pre class="code literal-block">
+&lt;span class="nv">$ &lt;/span>ssh root@yourvmip
+&lt;/pre>
 &lt;p>Now that we are inside we need to install git, Docker and docker-compose.&lt;/p>
-&lt;!-- raw HTML omitted -->
-&lt;!-- raw HTML omitted -->
+&lt;pre class="code literal-block">
+&lt;span class="nv">$ &lt;/span>yum -y install git docker python-pip
+&lt;span class="nv">$ &lt;/span>pip install docker-compose&lt;span class="o">==&lt;/span>1.1.0-rc2
+&lt;span class="nv">$ &lt;/span>systemctl start docker
+&lt;span class="nv">$ &lt;/span>systemctl &lt;span class="nb">enable &lt;/span>docker
+&lt;/pre>
 &lt;p>That&amp;rsquo;s all we need to play with Docker.&lt;/p></description></item><item><title>Installing nova docker on OpenStack Juno</title><link>https://feisky.xyz/posts/2015-02-13-installing-nova-docker-on-openstack-juno/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-02-13-installing-nova-docker-on-openstack-juno/</guid><description>&lt;p>This post comes about indirectly by a request on IRC in #rdo for help getting nova-docker installed on Fedora 21. I ran through the process from start to finish and decided to write everything down for posterity.&lt;/p>
 &lt;p>Getting started
 I started with the Fedora 21 Cloud Image, because I&amp;rsquo;m installing onto OpenStack and the cloud images include some features that are useful in this environment.&lt;/p>

