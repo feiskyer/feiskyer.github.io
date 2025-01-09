@@ -53,11 +53,6 @@ enableRobotsTXT = true
     url = "https://kubernetes.feisky.xyz"
 
 [[menu.main]]
-    name = "知乎专栏"
-    weight = 40
-    url = "https://zhuanlan.zhihu.com/kubernetes"
-
-[[menu.main]]
     name = "Linux性能优化实战"
     weight = 1
     url = "https://time.geekbang.org/column/intro/100020901"

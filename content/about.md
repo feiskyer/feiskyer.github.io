@@ -18,17 +18,11 @@ Hi，我是倪朋飞，工作在云计算领域，Kubernetes 项目维护者，K
 
 ![linux-perf](intro.jpg)
 
-## 知识星球
-
-![zsxq](/images/zsxq.jpg)
-
 ## 社交网络
 
 - Github：@[feiskyer](https://github.com/feiskyer)
 - Twitter：@[feisky](https://twitter.com/feisky)
 - 微博：@[feisky](https://weibo.com/371069890)
-- 知乎：[云原生架构专栏](https://zhuanlan.zhihu.com/kubernetes)
-- cnblogs: @[feisky](http://www.cnblogs.com/feisky/)
 
 ## 主要作品
 
