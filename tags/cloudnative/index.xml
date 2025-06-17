@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>CloudNative on Feisky</title><link>https://feisky.xyz/tags/cloudnative/</link><description>Recent content in CloudNative on Feisky</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Wed, 20 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://feisky.xyz/tags/cloudnative/index.xml" rel="self" type="application/rss+xml"/><item><title>三大公有云托管 Kubernetes 服务 (EKS、GKE、AKS) 评估</title><link>https://feisky.xyz/posts/2021-01-20-eks-gke-aks/</link><pubDate>Wed, 20 Jan 2021 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2021-01-20-eks-gke-aks/</guid><description>&lt;p>作为发展最快的开源项目，Kubernetes 已经在越来越多的企业落地。而作为全球三大公有云提供商，AWS、Azure 和 GCP 都提供了托管 Kubernetes 集群服务，即 Elastic Kubernetes Service (EKS)、Azure Kubernetes Service (AKS) 和 Google Kubernetes Engine (GKE)。&lt;/p></description></item><item><title>云原生应用性能优化之道（附免费电子书分享）</title><link>https://feisky.xyz/posts/2021-01-08-cloud-native-perf/</link><pubDate>Fri, 08 Jan 2021 00:00:00 +0000</pubDate><guid>https://feisky.xyz/posts/2021-01-08-cloud-native-perf/</guid><description>&lt;blockquote>
-&lt;p>本文整理自2020年我在 A2M 人工智能与机器学习创新峰会上的同名分享。&lt;/p>
-&lt;/blockquote>
+&lt;p>本文整理自2020年我在 A2M 人工智能与机器学习创新峰会上的同名分享。&lt;/p>&lt;/blockquote>
 &lt;h2 id="何为云原生">何为云原生&lt;/h2>
 &lt;p>什么是云原生并没有一个统一的定义，比较权威的是 CNCF 的定义：&lt;/p>
 &lt;blockquote>
