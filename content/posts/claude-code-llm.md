@@ -64,6 +64,7 @@ export ANTHROPIC_BASE_URL=http://localhost:4000
 export ANTHROPIC_MODEL=gemini-2.5-pro-preview-06-05
 export ANTHROPIC_SMALL_FAST_MODEL=gemini-2.5-flash-preview-05-20
 export DISABLE_PROMPT_CACHING=1
+export ANTHROPIC_AUTH_TOKEN=litellm
 claude
 ```
 
@@ -93,6 +94,7 @@ litellm -c config.yaml --detailed_debug
 export ANTHROPIC_BASE_URL=http://localhost:4000
 export ANTHROPIC_MODEL=deepseek-reasoner
 export ANTHROPIC_SMALL_FAST_MODEL=deepseek-reasoner
+export ANTHROPIC_AUTH_TOKEN=litellm
 claude
 ```
 
@@ -130,6 +132,7 @@ litellm -c config.yaml --detailed_debug
 export ANTHROPIC_BASE_URL=http://localhost:4000
 export ANTHROPIC_MODEL=gpt-4.1
 export ANTHROPIC_SMALL_FAST_MODEL=gpt-4o
+export ANTHROPIC_AUTH_TOKEN=litellm
 claude
 ```
 
@@ -167,6 +170,7 @@ litellm -c config.yaml
 export ANTHROPIC_BASE_URL=http://localhost:4000
 export ANTHROPIC_MODEL=o3
 export ANTHROPIC_SMALL_FAST_MODEL=gpt-4.1
+export ANTHROPIC_AUTH_TOKEN=litellm
 claude
 ```
 
@@ -180,6 +184,7 @@ claude
 - `ANTHROPIC_MODEL`: 主要模型，用于复杂的编程任务
 - `ANTHROPIC_SMALL_FAST_MODEL`: 快速模型，用于简单的辅助任务
 - `DISABLE_PROMPT_CACHING`: 某些模型可能需要禁用提示缓存
+- `ANTHROPIC_AUTH_TOKEN`：用于跳过 Anthropic 登陆验证
 
 ### 模型选择建议
 
