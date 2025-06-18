@@ -39,14 +39,14 @@ pip install 'litellm[proxy]'
 
 ```yaml
 model_list:
-- model_name: gemini-2.5-pro-preview-06-05
+- model_name: gemini-2.5-pro
   litellm_params:
-    model: openai/gemini-2.5-pro-preview-06-05
+    model: openai/gemini-2.5-pro
     api_key: os.environ/GEMINI_API_KEY
     api_base: "https://generativelanguage.googleapis.com/v1beta/openai/"
-- model_name: gemini-2.5-flash-preview-05-20
+- model_name: gemini-2.5-flash
   litellm_params:
-    model: openai/gemini-2.5-flash-preview-05-20
+    model: openai/gemini-2.5-flash
     api_key: os.environ/GEMINI_API_KEY
     api_base: "https://generativelanguage.googleapis.com/v1beta/openai/"
 ```
@@ -61,10 +61,18 @@ litellm -c config.yaml
 
 ```sh
 export ANTHROPIC_BASE_URL=http://localhost:4000
-export ANTHROPIC_MODEL=gemini-2.5-pro-preview-06-05
-export ANTHROPIC_SMALL_FAST_MODEL=gemini-2.5-flash-preview-05-20
+export ANTHROPIC_MODEL=gemini-2.5-pro
+export ANTHROPIC_SMALL_FAST_MODEL=gemini-2.5-flash
 export DISABLE_PROMPT_CACHING=1
 export ANTHROPIC_AUTH_TOKEN=litellm
+claude
+```
+
+为了方便使用，你还可以自定义个 alias，简化这些环境变量的定义，比如：
+
+```sh
+alias claude='ANTHROPIC_TOKEN=litellm DISABLE_PROMPT_CACHING=1 ANTHROPIC_BASE_URL=http://localhost:4000 ANTHROPIC_MODEL=gemini-2.5-pro ANTHROPIC_SMALL_FAST_MODEL=gemini-2.5-flash claude'
+
 claude
 ```
 
