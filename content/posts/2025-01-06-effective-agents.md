@@ -1,6 +1,7 @@
 ---
 title: "构建高效的 AI 代理系统"
 date: 2025-01-06T22:10:12+08:00
+tags: [AI, AI Agent]
 draft: false
 ---
 

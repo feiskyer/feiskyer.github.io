@@ -1,6 +1,7 @@
 ---
 title: "推荐一款 VSCode AI 插件 —— Chatgpt Copilot"
 date: 2025-01-08T20:30:51+08:00
+tags: [AI, Copilot]
 draft: false
 ---
 
