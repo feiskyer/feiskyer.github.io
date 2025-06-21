@@ -157,13 +157,13 @@ model_list:
     model: azure/gpt-4.1
     api_base: https://<replace-this>.openai.azure.com/
     api_version: "2025-04-01-preview"
-    api_key: os.environ/AZURE_OPENAI_API_VERSION
+    api_key: os.environ/AZURE_OPENAI_API_KEY
 - model_name: o3
   litellm_params:
     model: azure/o3
     api_base: https://<replace-this>.openai.azure.com/
     api_version: "2025-04-01-preview"
-    api_key: os.environ/AZURE_OPENAI_API_VERSION
+    api_key: os.environ/AZURE_OPENAI_API_KEY
 ```
 
 启动 LiteLLM 代理服务：
