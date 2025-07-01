@@ -151,6 +151,8 @@ Claude API 支持 Server-Sent Events (SSE) 流式响应，claude-trace 专门针
 
 claude-trace 为我们提供了一个深入了解 Claude Code 内部工作机制的窗口。通过巧妙的拦截器设计，它在不影响工具正常使用的前提下，完整记录了人机交互的全过程。这种透明化的能力不仅有助于我们更好地理解 AI 编程助手的工作原理，也为提示工程和 AI 工具的进一步优化提供了宝贵的数据支持。
 
+>  顺便提一下，隔壁 Google 家的 Gemini CLI 完整复刻了 Claude Code 的实现，甚至连提示词都原样复制了过去。如果你只对提示词感兴趣的话，也可以去看看 Gemini CLI 的源代码（提示词路径在 [packages/core/src/core/prompts.ts](https://github.com/google-gemini/gemini-cli/blob/main/packages/core/src/core/prompts.ts)）。
+
 ---
 
 如果你对这个话题感兴趣，欢迎关注我的技术博客，我会持续分享关于 AI 工具、云原生和系统工程的最新实践。你也可以通过微信与我交流：
