@@ -1,0 +1,163 @@
+<!doctype html><html lang=zh-cn><head><link href=https://gmpg.org/xfn/11 rel=profile><link rel=canonical href=https://feisky.xyz/posts/2025-06-26-google-free-gemini-cli/><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta name=generator content="Hugo 0.147.9"><title>谷歌发布开源免费命令行编程工具 Gemini CLI • Feisky</title><meta name=twitter:card content="summary"><meta name=twitter:title content="谷歌发布开源免费命令行编程工具 Gemini CLI"><meta name=twitter:description content="类似于 Claude Code 和 OpenAI Codex CLI，谷歌也下场发布了命令行编程工具—— Gemini CLI，提供了慷慨的免费额度，其代码还是完全 开源 的。
+什么是 Gemini CLI？ Gemini CLI 是一个 AI 驱动的终端工具，它具备以下核心特点："><meta name=twitter:site content="@feisky"><meta property="og:url" content="https://feisky.xyz/posts/2025-06-26-google-free-gemini-cli/"><meta property="og:site_name" content="Feisky"><meta property="og:title" content="谷歌发布开源免费命令行编程工具 Gemini CLI"><meta property="og:description" content="类似于 Claude Code 和 OpenAI Codex CLI，谷歌也下场发布了命令行编程工具—— Gemini CLI，提供了慷慨的免费额度，其代码还是完全 开源 的。
+什么是 Gemini CLI？ Gemini CLI 是一个 AI 驱动的终端工具，它具备以下核心特点："><meta property="og:locale" content="zh_cn"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2025-06-26T06:50:06+08:00"><meta property="article:modified_time" content="2025-06-26T06:50:06+08:00"><meta property="article:tag" content="AI"><meta property="article:tag" content="Vibe Coding"><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/monokai.min.css><link rel=stylesheet href=/scss/triple-hyde.9e606bf339ab725ad1f7f06c9fe271099ac7709da56e4d541670f116255e9cd6.css integrity="sha256-nmBr8zmrclrR9/Bsn+JxCZrHcJ2lbk1UFnDxFiVenNY="><link rel=stylesheet href=/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58+TzH3icCkSHGoJ+ed7w=" media=print><link rel=stylesheet href=/scss/tocbot.5ef07cebc3c477b54270456f149ee02922479bb7555fd344b2c69f953b0e7e5e.css integrity="sha256-XvB868PEd7VCcEVvFJ7gKSJHm7dVX9NEssaflTsOfl4="><!--[if lt IE 9]><script src=https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js></script><script src=https://oss.maxcdn.com/respond/1.4.2/respond.min.js></script><![endif]--><link rel=apple-touch-icon-precomposed sizes=144x144 href=/apple-touch-icon-144-precomposed.png><link rel="shortcut icon" href=/favicon.png></head><body class=theme-base-0d><div class=sidebar><div class=container><div class=sidebar-about><span class=site__title><a href=https://feisky.xyz/>Feisky</a></span><div class=author-image><img src="https://www.gravatar.com/avatar/f86d2faa0f91793a2163d226d82a7620?s=240&d=mp" class="img--circle img--headshot element--center" alt=gravatar></div><p class=site__description></p></div><div class=collapsible-menu><input type=checkbox id=menuToggle>
+<label for=menuToggle>Feisky</label><div class=menu-content><div><ul class=sidebar-nav><li><a href=https://time.geekbang.org/column/intro/100020901><span>Linux性能优化实战</span></a></li><li><a href=https://time.geekbang.org/column/intro/100104501><span>EBPF核心技术与实战</span></a></li><li><a href=https://kubernetes.feisky.xyz><span>Kubernetes指南</span></a></li><li><a href=https://sdn.feisky.xyz><span>SDN网络指南</span></a></li><li><a href=/assets/mp.png><span>微信公众号</span></a></li><li><a href=/about/><span>关于我</span></a></li></ul></div><section class=social><a href=https://twitter.com/feisky rel=me><span class="relative block icon"><svg viewBox="0 0 512 512"><path fill="currentColor" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645.0 138.72-105.583 298.558-298.558 298.558-59.452.0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055.0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421.0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391.0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04.0-57.828 46.782-104.934 104.934-104.934 30.213.0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+</span></a><a href=https://github.com/feiskyer rel=me><span class="relative block icon"><svg viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6.0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6.0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3.0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1.0-6.2-.3-40.4-.3-61.4.0.0-70 15-84.7-29.8.0.0-11.4-29.1-27.8-36.6.0.0-22.9-15.7 1.6-15.4.0.0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5.0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9.0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4.0 33.7-.3 75.4-.3 83.6.0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6.0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9.0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span></a></section></div></div><div class=copyright>&copy; 2025 feiskyer
+<a href=https://creativecommons.org/licenses/by-sa/4.0>CC BY-SA 4.0</a></div><div class=builtwith>Built with <a href=https://gohugo.io>Hugo</a> ❤️ <a href=https://github.com/derme302/triple-hyde>triple-hyde</a>.</div></div></div><div class="content container"><article><header><h1>谷歌发布开源免费命令行编程工具 Gemini CLI</h1><div class=post__meta><i class="fas fa-calendar-alt"></i> Jun 26, 2025<br><i class="fas fa-tags"></i>
+<a class="badge badge-tag" href=/tags/ai>ai</a>
+<a class="badge badge-tag" href=/tags/vibe-coding>vibe coding</a><br><i class="fas fa-clock"></i> 7 min read</div></header><div class=toc-wrapper><input type=checkbox id=tocToggle>
+<label for=tocToggle>Table of Content</label><div class=toc id=TableOfContents></div></div><div class=post><p>类似于 Claude Code 和 OpenAI Codex CLI，谷歌也下场发布了命令行编程工具—— Gemini CLI，提供了慷慨的免费额度，其代码还是完全 <a href=https://github.com/google-gemini/gemini-cli>开源</a> 的。</p><h2 id=什么是-gemini-cli>什么是 Gemini CLI？</h2><p>Gemini CLI 是一个 <strong>AI 驱动的终端工具</strong>，它具备以下核心特点：</p><ul><li><strong>命令行集成</strong>：直接在终端中与 AI 交互的工具。</li><li><strong>大型代码库处理</strong>：1M 令牌上下文窗口，能够查询和编辑大型代码库。</li><li><strong>多模态能力</strong>：支持从 PDF、草图等多种输入生成应用。</li><li><strong>开源架构</strong>：Apache 2.0 开源协议，代码完全透明。</li><li><strong>内置搜索增强</strong>：使用内置于 Gemini 的 Google 搜索工具提供事实依据。</li><li><strong>丰富工具集成</strong>：连接 MCP、Imagen、Veo、Lyria 等外部工具。</li><li><strong>免费配额</strong>：个人 Google 账号即可享受每分钟 60 次、每天 1000 次的免费请求。</li></ul><hr><h2 id=使用方法>使用方法</h2><ol><li><p><strong>临时运行</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>npx https://github.com/google-gemini/gemini-cli
+</span></span></code></pre></div></li><li><p><strong>全局安装</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>npm install -g @google/gemini-cli
+</span></span><span style=display:flex><span>gemini
+</span></span></code></pre></div></li><li><p><strong>完成认证</strong></p><p>启动 gemini 命令行后会自动引导你完成 Google 账号认证：</p><ul><li><strong>个人 Google 账号</strong>：默认选项，免费使用</li><li><strong>API Key 方式</strong>：从 Google AI Studio 生成 API Key，设置环境变量 <code>export GEMINI_API_KEY="YOUR_API_KEY"</code></li></ul></li></ol><hr><h2 id=架构原理>架构原理</h2><h3 id=核心组件>核心组件</h3><p>Gemini CLI 主要由两个核心包组成，以及一套可供系统在处理命令行输入时使用的工具套件：</p><p><strong>1. CLI 包 (packages/cli)</strong></p><ul><li><strong>用途</strong>：包含面向用户的 Gemini CLI 部分，负责处理初始用户输入、呈现最终输出并管理整体用户体验</li><li><strong>关键功能</strong>：<ul><li>输入处理</li><li>历史记录管理</li><li>显示渲染</li><li>主题和 UI 定制</li><li>CLI 配置设置</li></ul></li></ul><p><strong>2. Core 包 (packages/core)</strong></p><ul><li><strong>用途</strong>：作为 Gemini CLI 的后端，接收来自 CLI 包的请求，协调与 Gemini API 的交互，并管理可用工具的执行</li><li><strong>关键功能</strong>：<ul><li>与 Google Gemini API 通信的 API 客户端</li><li>提示构建和管理</li><li>工具注册和执行逻辑</li><li>对话或会话的状态管理</li><li>服务端配置</li></ul></li></ul><p><strong>3. 工具套件 (packages/core/src/tools/)</strong></p><ul><li><strong>用途</strong>：扩展 Gemini 模型功能的独立模块，允许其与本地环境交互（如文件系统、shell 命令、网络获取）</li><li><strong>交互方式</strong>：Core 包根据 Gemini 模型的请求调用这些工具</li></ul><h3 id=交互流程>交互流程</h3><p>典型的 Gemini CLI 交互遵循以下流程：</p><ol><li><strong>用户输入</strong>：用户在终端输入提示或命令，由 CLI 包管理</li><li><strong>请求发送到 Core</strong>：CLI 包将用户输入发送到 Core 包</li><li><strong>请求处理</strong>：Core 包执行以下操作：<ul><li>为 Gemini API 构建适当的提示，可能包括对话历史和可用工具定义</li><li>将提示发送到 Gemini API</li></ul></li><li><strong>Gemini API 响应</strong>：Gemini API 处理提示并返回响应，响应可能是直接答案或使用可用工具的请求</li><li><strong>工具执行（如适用）</strong>：<ul><li>当 Gemini API 请求工具时，Core 包准备执行它</li><li>如果请求的工具可以修改文件系统或执行 shell 命令，会首先向用户提供工具及其参数的详细信息，用户必须批准执行</li><li>只读操作（如读取文件）可能不需要明确的用户确认即可继续</li><li>确认后，或如果不需要确认，Core 包在相关工具内执行相关操作，结果由 Core 包发送回 Gemini API</li><li>Gemini API 处理工具结果并生成最终响应</li></ul></li><li><strong>响应返回 CLI</strong>：Core 包将最终响应发送回 CLI 包</li><li><strong>显示给用户</strong>：CLI 包格式化响应并在终端中显示给用户</li></ol><h3 id=关键设计原则>关键设计原则</h3><ul><li><strong>模块化</strong>：将 CLI（前端）与 Core（后端）分离允许独立开发和潜在的未来扩展</li><li><strong>可扩展性</strong>：工具系统设计为可扩展的，允许添加新功能</li><li><strong>用户体验</strong>：CLI 专注于提供丰富的交互式终端体验</li></ul><hr><h2 id=基础用法示例>基础用法示例</h2><h3 id=简单示例>简单示例</h3><p>启动 Gemini CLI 后，试试这些基本命令：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 启动 Gemini CLI</span>
+</span></span><span style=display:flex><span>gemini
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 分析代码库</span>
+</span></span><span style=display:flex><span>&gt; Summarize the changes in this project since last week
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 探索系统架构</span>
+</span></span><span style=display:flex><span>&gt; Help me understand the architecture of this system
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 迁移代码库</span>
+</span></span><span style=display:flex><span>&gt; Migrate this codebase from JavaScript to TypeScript
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 创建 Discord 机器人</span>
+</span></span><span style=display:flex><span>&gt; Create a Discord bot that responds to messages
+</span></span></code></pre></div><h3 id=多模态能力体验>多模态能力体验</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 分析图像</span>
+</span></span><span style=display:flex><span>&gt; analyze this screenshot and explain what it shows
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 基于设计图生成代码</span>
+</span></span><span style=display:flex><span>&gt; convert this UI mockup to React components
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 处理多种文件类型</span>
+</span></span><span style=display:flex><span>&gt; explain the relationship between these config files
+</span></span></code></pre></div><hr><h2 id=核心功能>核心功能</h2><h3 id=1-代码库查询和分析>1. 代码库查询和分析</h3><p>Gemini CLI 最强大的功能是理解和分析大型代码库：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 项目概览</span>
+</span></span><span style=display:flex><span>&gt; give me a high-level overview of this project<span style=color:#960050;background-color:#1e0010>&#39;</span>s architecture
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 依赖关系分析</span>
+</span></span><span style=display:flex><span>&gt; show me the dependency graph <span style=color:#66d9ef>for</span> this module
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 性能分析</span>
+</span></span><span style=display:flex><span>&gt; identify potential performance bottlenecks in this codebase
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 安全审计</span>
+</span></span><span style=display:flex><span>&gt; scan <span style=color:#66d9ef>for</span> common security vulnerabilities
+</span></span></code></pre></div><hr><h3 id=2-智能代码编辑>2. 智能代码编辑</h3><p>直接修改代码文件：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 添加新功能</span>
+</span></span><span style=display:flex><span>&gt; add a caching layer to the database queries
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 重构代码</span>
+</span></span><span style=display:flex><span>&gt; refactor this class to follow SOLID principles
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 修复 bug</span>
+</span></span><span style=display:flex><span>&gt; fix the memory leak in the event listener cleanup
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 优化性能</span>
+</span></span><span style=display:flex><span>&gt; optimize this algorithm <span style=color:#66d9ef>for</span> better time complexity
+</span></span></code></pre></div><hr><h3 id=3-文件系统操作>3. 文件系统操作</h3><p>内置的文件系统工具让你能够：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 批量文件操作</span>
+</span></span><span style=display:flex><span>&gt; rename all .js files to .ts and update imports
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 文件搜索和过滤</span>
+</span></span><span style=display:flex><span>&gt; find all unused CSS classes in the stylesheets
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 目录结构优化</span>
+</span></span><span style=display:flex><span>&gt; reorganize the components folder following best practices
+</span></span></code></pre></div><h3 id=4-shell-命令集成>4. Shell 命令集成</h3><p>无缝执行系统命令：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 构建和测试</span>
+</span></span><span style=display:flex><span>&gt; run the test suite and fix any failing tests
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 部署相关</span>
+</span></span><span style=display:flex><span>&gt; prepare this application <span style=color:#66d9ef>for</span> production deployment
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 开发环境设置</span>
+</span></span><span style=display:flex><span>&gt; set up the development environment <span style=color:#66d9ef>for</span> new contributors
+</span></span></code></pre></div><hr><h3 id=5-网络搜索和获取>5. 网络搜索和获取</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 技术调研</span>
+</span></span><span style=display:flex><span>&gt; search <span style=color:#66d9ef>for</span> the latest best practices <span style=color:#66d9ef>for</span> React state management
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 实时信息获取</span>
+</span></span><span style=display:flex><span>&gt; fetch the current status of this API endpoint
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 文档查询</span>
+</span></span><span style=display:flex><span>&gt; find the official documentation <span style=color:#66d9ef>for</span> this library version
+</span></span></code></pre></div><hr><h2 id=高级功能>高级功能</h2><h3 id=自动化工作流>自动化工作流</h3><p>创建复杂的自动化任务：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 端到端功能开发</span>
+</span></span><span style=display:flex><span>&gt; create a complete user authentication system with:
+</span></span><span style=display:flex><span>  1. backend API endpoints
+</span></span><span style=display:flex><span>  2. frontend login/signup forms
+</span></span><span style=display:flex><span>  3. JWT token handling
+</span></span><span style=display:flex><span>  4. password validation
+</span></span><span style=display:flex><span>  5. unit tests
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 项目初始化</span>
+</span></span><span style=display:flex><span>&gt; bootstrap a new microservice with:
+</span></span><span style=display:flex><span>  - Docker configuration
+</span></span><span style=display:flex><span>  - CI/CD pipeline
+</span></span><span style=display:flex><span>  - logging and monitoring
+</span></span><span style=display:flex><span>  - API documentation
+</span></span><span style=display:flex><span>  - health check endpoints
+</span></span></code></pre></div><h3 id=多模态应用生成>多模态应用生成</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 基于设计生成应用</span>
+</span></span><span style=display:flex><span>&gt; create a mobile app based on this design mockup
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 数据可视化</span>
+</span></span><span style=display:flex><span>&gt; generate interactive charts from this CSV data
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 界面原型开发</span>
+</span></span><span style=display:flex><span>&gt; build a prototype dashboard with these requirements
+</span></span></code></pre></div><h3 id=系统集成>系统集成</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 数据库迁移</span>
+</span></span><span style=display:flex><span>&gt; create migration scripts <span style=color:#66d9ef>for</span> schema changes
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># API 集成</span>
+</span></span><span style=display:flex><span>&gt; integrate this third-party API with error handling
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 监控和日志</span>
+</span></span><span style=display:flex><span>&gt; add comprehensive logging and metrics collection
+</span></span></code></pre></div><hr><h2 id=配置和定制>配置和定制</h2><h3 id=内置工具概述>内置工具概述</h3><p>Gemini CLI 包含内置工具，供 Gemini 模型用于与本地环境交互、访问信息和执行操作。这些工具增强了 CLI 的功能，以便完成各种复杂任务。</p><p><strong>工具工作原理</strong>：
+在 Gemini CLI 中，工具是 Gemini 模型可以请求执行的特定函数或模块。例如，当你要求 Gemini &ldquo;总结 <code>my_document.txt</code> 的内容&rdquo; 时，模型会识别需要读取该文件，并请求执行 <code>read_file</code> 工具。</p><p><strong>核心能力</strong>：</p><ul><li><strong>访问本地信息</strong>：访问本地文件系统、读取文件内容、列出目录等</li><li><strong>执行命令</strong>：通过 <code>run_shell_command</code> 等工具运行 shell 命令（具备安全措施和用户确认）</li><li><strong>网络交互</strong>：从 URL 获取内容</li><li><strong>执行操作</strong>：修改文件、创建新文件或在系统上执行其他操作（通常带有安全防护）</li><li><strong>增强响应准确性</strong>：通过工具获取实时或特定本地数据，使 Gemini 的响应更准确、相关且基于实际环境</li></ul><p><strong>内置工具分类</strong>：</p><ul><li><strong>文件系统工具</strong>：用于与文件和目录交互（读取、写入、列出、搜索等）</li><li><strong>Shell 工具</strong> (<code>run_shell_command</code>)：执行 shell 命令</li><li><strong>网络获取工具</strong> (<code>web_fetch</code>)：从 URL 检索内容</li><li><strong>网络搜索工具</strong> (<code>web_search</code>)：搜索网络</li><li><strong>多文件读取工具</strong> (<code>read_many_files</code>)：专用于从多个文件或目录读取内容的工具，常与 <code>@</code> 命令一起使用</li><li><strong>内存工具</strong> (<code>save_memory</code>)：跨会话保存和回忆信息</li></ul><p><strong>扩展工具集成</strong>：</p><ul><li><strong>MCP 服务器</strong>：MCP 服务器充当 Gemini 模型与本地环境或其他服务（如 API）之间的桥梁</li><li><strong>沙箱隔离</strong>：沙箱将模型及其更改与环境隔离，以降低潜在风险</li></ul><p><strong>安全和确认机制</strong>：</p><p>许多工具，特别是那些可以修改文件系统或执行命令的工具（<code>write_file</code>、<code>edit</code>、<code>run_shell_command</code>），都具有安全设计：</p><ul><li><strong>需要确认</strong>：在执行潜在敏感操作之前提示用户，显示即将采取的操作</li><li><strong>沙箱隔离</strong>：所有工具都受到沙箱执行的限制，将模型及其更改与环境隔离以降低潜在风险</li></ul><hr><h2 id=实际应用场景>实际应用场景</h2><h3 id=1-探索新代码库>1. 探索新代码库</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 快速上手陌生项目</span>
+</span></span><span style=display:flex><span>&gt; I<span style=color:#960050;background-color:#1e0010>&#39;</span>m new to this codebase, help me understand:
+</span></span><span style=display:flex><span>  - project structure
+</span></span><span style=display:flex><span>  - main technologies used
+</span></span><span style=display:flex><span>  - how to run locally
+</span></span><span style=display:flex><span>  - where to start contributing
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 代码审查</span>
+</span></span><span style=display:flex><span>&gt; review recent commits and highlight important changes
+</span></span></code></pre></div><h3 id=2-现有代码维护>2. 现有代码维护</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 技术债务处理</span>
+</span></span><span style=display:flex><span>&gt; identify technical debt and suggest refactoring priorities
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 依赖升级</span>
+</span></span><span style=display:flex><span>&gt; analyze dependencies and create upgrade plan
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 性能优化</span>
+</span></span><span style=display:flex><span>&gt; profile the application and optimize critical paths
+</span></span></code></pre></div><h3 id=3-运维自动化>3. 运维自动化</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 部署脚本生成</span>
+</span></span><span style=display:flex><span>&gt; create deployment scripts <span style=color:#66d9ef>for</span> multiple environments
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 监控设置</span>
+</span></span><span style=display:flex><span>&gt; set up comprehensive monitoring and alerting
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 故障排查</span>
+</span></span><span style=display:flex><span>&gt; analyze these error logs and suggest solutions
+</span></span></code></pre></div><hr><h2 id=使用配额和定价>使用配额和定价</h2><h3 id=免费使用配额>免费使用配额</h3><p><strong>个人 Google 账号</strong> 提供慷慨的免费配额：</p><ul><li><strong>请求频率</strong>：每分钟 60 次请求</li><li><strong>日配额</strong>：每天 1000 次请求</li><li><strong>上下文窗口</strong>：完整的 100 万 token</li><li><strong>功能限制</strong>：无功能限制</li></ul><h3 id=高级使用选项>高级使用选项</h3><p>如需更高配额或企业级功能：</p><ul><li><strong>Google AI Studio API Key</strong>：按使用量付费</li><li><strong>Vertex AI 集成</strong>：企业级部署</li><li><strong>Gemini Code Assist 集成</strong>：标准版和企业版许可</li></ul><hr><h2 id=最佳实践>最佳实践</h2><h3 id=1-清晰描述需求>1. 清晰描述需求</h3><p>❌ 不好：<code>fix this code</code></p><p>✅ 更好：<code>fix the race condition in the async data fetching that causes UI flicker</code></p><h3 id=2-结构化复杂任务>2. 结构化复杂任务</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>&gt; Create a user management system with:
+</span></span><span style=display:flex><span>  1. User model with validation
+</span></span><span style=display:flex><span>  2. CRUD API endpoints
+</span></span><span style=display:flex><span>  3. Authentication middleware
+</span></span><span style=display:flex><span>  4. Admin dashboard UI
+</span></span><span style=display:flex><span>  5. Role-based permissions
+</span></span><span style=display:flex><span>  6. Comprehensive tests
+</span></span></code></pre></div><h3 id=3-充分利用上下文>3. 充分利用上下文</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 先让 Gemini 理解项目背景</span>
+</span></span><span style=display:flex><span>&gt; analyze the existing authentication system
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 然后基于理解进行修改</span>
+</span></span><span style=display:flex><span>&gt; enhance it with two-factor authentication
+</span></span></code></pre></div><h3 id=4-增量开发>4. 增量开发</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>&gt; start with basic user registration
+</span></span><span style=display:flex><span>&gt; add email verification
+</span></span><span style=display:flex><span>&gt; implement password reset
+</span></span><span style=display:flex><span>&gt; add social login options
+</span></span></code></pre></div><hr><h2 id=开源生态和社区>开源生态和社区</h2><p>Gemini CLI 代码完全开源在 <a href=https://github.com/google-gemini/gemini-cli>GitHub</a>，使用 Apache 2.0 许可证，刚刚发布就冲到了 1 万 + Star，可见其受欢迎程度。作为完全开源的项目，所有功能实现都可审查，无中间服务器，直连 Google API，安全可信。如果你在使用过程中发现任何问题，都可以随时通过 Issues 提交 bug 和功能请求，或者遵循贡献指南提交 PR 修复问题、完善文档。社区驱动的开发模式使得这个工具能够快速迭代和改进。</p><hr><h2 id=与其他-ai-工具对比>与其他 AI 工具对比</h2><table><thead><tr><th>特性</th><th>Gemini CLI</th><th>Claude Code</th><th>OpenAI Codex CLI</th><th>Cursor</th></tr></thead><tbody><tr><td><strong>免费配额</strong></td><td>✅ 慷慨</td><td>❌ 需付费</td><td>需自带模型</td><td>短期试用</td></tr><tr><td><strong>开源</strong></td><td>✅ 开源</td><td>❌ 闭源</td><td>✅ 开源</td><td>❌ 闭源</td></tr><tr><td><strong>终端集成</strong></td><td>✅ 原生</td><td>✅ 原生</td><td>✅ 原生</td><td>❌ IDE</td></tr><tr><td><strong>MCP 集成</strong></td><td>✅ 完整</td><td>✅ 完整</td><td>仅 Rust 实现</td><td>✅ 完整</td></tr><tr><td><strong>内置搜索</strong></td><td>✅ Google</td><td>✅ Claude</td><td>❌</td><td>❌</td></tr><tr><td><strong>实际体验</strong></td><td>⭐️⭐️⭐️⭐️⭐️</td><td>⭐️⭐️⭐️⭐️⭐️</td><td>⭐️⭐️</td><td>⭐️⭐️⭐️⭐️</td></tr></tbody></table><hr><p>欢迎长按下面的二维码关注 <strong>漫谈云原生</strong> 公众号，了解更多云原生和 AI 知识。</p><p><img src=https://feisky.xyz/assets/mp.png alt></p></div><div class="navigation navigation-single"><a href=/posts/2025-06-25-claude-code-tracing/ class=navigation-prev><i aria-hidden=true class="fa fa-chevron-left"></i>
+<span class=navigation-tittle>跟踪 Claude Code 的大语言模型调用过程</span>
+</a><a href=/posts/2025-07-01-claude-code-slash-command/ class=navigation-next><span class=navigation-tittle>掌握 Claude Code / 命令：让 AI 成为你的开发利器</span>
+<i aria-hidden=true class="fa fa-chevron-right"></i></a></div><div class=post__related><h2>Related Articles</h2><ul class=related-posts><li><span class=list__title--small><a href=/posts/2025-06-24-claude-code-system-prompts/>Claude Code 系统提示词赏析</a>
+<time class="pull-right hidden-tablet">Jun 24 '25</time></span></li><li><span class=list__title--small><a href=/posts/2025-06-21-software-3.0/>还得是 Andrej Karpathy！一句话道破 AI 时代的本质：“英语就是新的编程语言”</a>
+<time class="pull-right hidden-tablet">Jun 21 '25</time></span></li><li><span class=list__title--small><a href=/posts/2025-06-18-claude-code-mcp/>Claude Code MCP 扩展：外部工具接入指南</a>
+<time class="pull-right hidden-tablet">Jun 18 '25</time></span></li><li><span class=list__title--small><a href=/posts/2025-06-17-claude-code-llm/>Claude Code 省钱开挂：一键接入 OpenAI/Gemini/DeepSeek</a>
+<time class="pull-right hidden-tablet">Jun 17 '25</time></span></li><li><span class=list__title--small><a href=/posts/2025-06-16-claude-code-basic/>Claude Code 从0到1入门指南</a>
+<time class="pull-right hidden-tablet">Jun 16 '25</time></span></li></ul></div><div id=disqus_thread></div><script type=text/javascript>(function(){if(location.hostname==="localhost"||location.hostname==="127.0.0.1"||location.hostname==="")return;var t,e=document.createElement("script");e.type="text/javascript",e.async=!0,t="feisky",e.src="//"+t+".disqus.com/embed.js",(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)})()</script><noscript>Please enable JavaScript to view the
+<a href=http://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=http://disqus.com/ class=dsq-brlink>comments powered by
+<span class=logo-disqus>Disqus</span></a></article></div><script async src="https://www.googletagmanager.com/gtag/js?id=G-1GD5S2NKS3"></script><script>var dnt,doNotTrack=!1;if(!1&&(dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes"),!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-1GD5S2NKS3")}</script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js></script><script type=text/javascript>hljs.initHighlightingOnLoad()</script><script src=https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.js></script><script type=text/javascript>tocbot&&tocbot.init({tocSelector:".toc",contentSelector:".post",headingSelector:"h2, h3, h4",collapseDepth:4})</script></body></html>
