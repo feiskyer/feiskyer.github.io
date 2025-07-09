@@ -272,7 +272,7 @@
 </span></span><span style=display:flex><span><span style=color:#e6db74>&#34;并行运行不同的测试套件&#34;</span>
 </span></span><span style=display:flex><span><span style=color:#e6db74>&#34;同时分析多个日志文件&#34;</span>
 </span></span><span style=display:flex><span><span style=color:#e6db74>&#34;批量处理多个配置文件&#34;</span>
-</span></span></code></pre></div><h3 id=72-git-worktree-并行开发>7.2 Git Worktree 并行开发</h3><p>使用 <code>git worktree</code> 创建多个工作区，各自运行独立的 Claude 实例：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 创建功能分支工作区</span>
+</span></span></code></pre></div><h3 id=62-git-worktree-并行开发>6.2 Git Worktree 并行开发</h3><p>使用 <code>git worktree</code> 创建多个工作区，各自运行独立的 Claude 实例：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 创建功能分支工作区</span>
 </span></span><span style=display:flex><span>git worktree add -b feature-auth ../auth-workspace
 </span></span><span style=display:flex><span>git worktree add -b feature-payment ../payment-workspace
 </span></span><span style=display:flex><span>git worktree add -b feature-admin ../admin-workspace
