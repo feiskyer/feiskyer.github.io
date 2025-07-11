@@ -531,6 +531,6 @@ cd ../admin-workspace && claude --resume
 
 ---
 
-欢迎扫描下面的二维码关注 **漫谈云原生** 公众号，回复 **任意关键字** 查询更多云原生知识库，或回复 **联系** 加我微信。
+欢迎长按下面的二维码关注 **漫谈云原生** 公众号，了解更多云原生和 AI 知识。
 
-![](/assets/mp.png)
+![](https://feisky.xyz/assets/mp.png)
