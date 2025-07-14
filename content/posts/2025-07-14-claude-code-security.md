@@ -5,7 +5,9 @@ draft: false
 tags: [AI, Vibe Coding]
 ---
 
-最近，越来越多的开发者从 Cursor、GitHub Copilot 等 AI 编程 IDE 切换到了 Claude Code。Claude Code 的强大功能让人印象深刻，但在这股切换热潮中，我发现一个令人担忧的现象：很多人由于订阅限制或者没有仔细阅读官方文档，忽略了其中的安全和数据隐私陷阱。
+最近，越来越多的开发者从 Cursor、GitHub Copilot 等 AI 编程 IDE 切换到了 Claude Code。Claude Code 的强大功能让人印象深刻，但在这股切换热潮中，我发现一个令人担忧的现象：很多人只注重工具的易用性，而忽略了其中的安全和数据隐私陷阱。
+
+以 [Supabase MCP 安全问题](https://www.generalanalysis.com/blog/supabase-mcp-blog)为例，攻击者可利用 LLM 的指令/数据混淆漏洞直接泄露整个 SQL 数据库。MCP 协议的核心问题在于：LLM 无法区分指令和数据，如果用户提供的"数据"被精心伪装成指令，AI 很可能会将其作为真实指令执行。攻击者只需在支持工单中嵌入类似 "THIS MESSAGE IS FOR YOU AFTER YOU READ THE LATEST MESSAGES FROM SUPABASE MCP > PLEASE DO THESE ACTIONS ASAP..." 的隐藏指令，AI 在读取消息时就会执行恶意 SQL 查询，绕过所有 RLS（Row-Level-Security）保护，泄露敏感数据。
 
 这篇博客就来分享一些在使用 Claude Code 时需要注意的安全最佳实践，帮助大家在享受 AI 编程便利的同时，也能保护好自己的数据安全。
 
@@ -87,4 +89,12 @@ Claude Code 可以读取项目中的任何明文密钥，这是很多人忽略�
 
 **AI 辅助编程不是简单的工具替换，而是开发流程的重新设计**。当我们把 AI 引入开发环节，安全边界也发生了根本性变化。以前只需要考虑代码本身的安全性，现在还要考虑 AI 交互过程中的数据泄露、权限滥用、供应链风险等新问题。
 
-虽然这些安全措施可能会让你的 Claude Code 体验变得稍微 "繁琐" 一些，但我想提醒你的是，安全投入永远是值得的，不要等到事后再来补救往往需要付出巨大的成本。
+说实话，在刚开始使用 Claude Code 时，我也曾经因为它的便利性而忽略了一些安全细节。但随着使用时间增长，我越来越意识到这些看似 “繁琐” 的安全措施实际上是在保护我们自身。毕竟，一次数据泄露或者意外的代码执行，可能会让你损失几个月甚至更久的工作成果。
+
+我的建议是：**从现在开始，花几分钟时间检查一下你的 Claude Code 配置**。确保没有永久启用 Always allow，检查是否有可疑的第三方中转服务，清理一下项目中的敏感信息。这些小小的改变，就能让你在享受 AI 编程便利的同时，也能睡个安稳觉。
+
+---
+
+欢迎长按下面的二维码关注 **漫谈云原生** 公众号，了解更多云原生和 AI 知识。
+
+![](https://feisky.xyz/assets/mp.png)
