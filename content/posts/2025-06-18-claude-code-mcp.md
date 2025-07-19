@@ -1,7 +1,7 @@
 ---
 title: "Claude Code MCP 扩展：外部工具接入指南"
 date: 2025-06-18T18:19:45+08:00
-tags: [AI, Vibe Coding]
+tags: [AI, Vibe Coding, Claude Code]
 draft: false
 ---
 

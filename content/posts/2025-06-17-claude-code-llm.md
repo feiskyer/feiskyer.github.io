@@ -1,7 +1,7 @@
 ---
 title: "Claude Code 省钱开挂：一键接入 OpenAI/Gemini/DeepSeek"
 date: 2025-06-17T12:20:15+08:00
-tags: [AI, Vibe Coding]
+tags: [AI, Vibe Coding, Claude Code]
 draft: false
 ---
 

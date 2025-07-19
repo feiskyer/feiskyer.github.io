@@ -1,7 +1,7 @@
 ---
 title: "掌握 Claude Code / 命令：让 AI 成为你的开发利器"
 date: 2025-07-01T19:17:01+08:00
-tags: [AI, Vibe Coding]
+tags: [AI, Vibe Coding, Claude Code]
 draft: false
 ---
 

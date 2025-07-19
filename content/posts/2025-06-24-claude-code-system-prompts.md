@@ -1,7 +1,7 @@
 ---
 title: "Claude Code 系统提示词赏析"
 date: 2025-06-24T18:36:02+08:00
-tags: [AI, Vibe Coding]
+tags: [AI, Vibe Coding, Claude Code]
 draft: false
 ---
 

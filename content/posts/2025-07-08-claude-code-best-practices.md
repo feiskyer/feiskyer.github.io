@@ -2,7 +2,7 @@
 title: "Claude Code 最佳实践和使用技巧"
 date: 2025-07-08T20:18:53+08:00
 draft: false
-tags: [AI, Vibe Coding]
+tags: [AI, Vibe Coding, Claude Code]
 ---
 
 Claude Code 是 Anthropic 推出的智能编程助手，它直接集成到你的终端环境中，能够理解你的代码库，并通过自然语言命令帮助你更快地编程。

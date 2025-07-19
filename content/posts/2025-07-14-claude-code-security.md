@@ -2,7 +2,7 @@
 title: "Claude Code 安全最佳实践"
 date: 2025-07-14T21:55:29+08:00
 draft: false
-tags: [AI, Vibe Coding]
+tags: [AI, Vibe Coding, Claude Code]
 ---
 
 最近，越来越多的开发者从 Cursor、GitHub Copilot 等 AI 编程 IDE 切换到了 Claude Code。Claude Code 的强大功能让人印象深刻，但在这股切换热潮中，我发现一个令人担忧的现象：很多人只注重工具的易用性，而忽略了其中的安全和数据隐私陷阱。

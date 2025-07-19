@@ -2,7 +2,7 @@
 title: "Claude Code 接入 Github Copilot 模型"
 date: 2025-07-11T14:44:38+08:00
 draft: false
-tags: [AI, Vibe Coding]
+tags: [AI, Vibe Coding, Claude Code]
 ---
 
 还在为 Claude API 费用发愁？想用最强的 Claude Code 却又舍不得公司提供的 GitHub Copilot 订阅？

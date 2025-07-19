@@ -1,7 +1,7 @@
 ---
 title: "Claude Code 从0到1入门指南"
 date: 2025-06-16T12:15:30+08:00
-tags: [AI, Vibe Coding]
+tags: [AI, Vibe Coding, Claude Code]
 draft: false
 ---
 
