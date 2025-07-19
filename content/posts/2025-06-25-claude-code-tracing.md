@@ -1,7 +1,7 @@
 ---
 title: "跟踪 Claude Code 的大语言模型调用过程"
 date: 2025-06-25T19:17:44+08:00
-tags: [AI, LLM, , Claude Code]
+tags: [AI, LLM, Vibe Coding, Claude Code]
 draft: false
 ---
 
