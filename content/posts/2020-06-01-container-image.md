@@ -125,7 +125,7 @@ FROM golang:1.13 AS builder
 WORKDIR /go/src/my-app
 COPY . .
 RUN go build -a -o app .
-FROM alpine:latest  
+FROM alpine:latest
 RUN apk --no-cache add ca-certificates
 COPY --from=builder /go/src/my-app/app .
 CMD ["./app"]
@@ -167,6 +167,6 @@ CMD ["node", "app.js"]
 
 ---
 
-欢迎扫描下面的二维码关注**漫谈云原生**公众号，回复**任意关键字**查询更多云原生知识库，或回复**联系**加我微信。
+欢迎扫描下面的二维码关注 **Feisky** 公众号，回复**任意关键字**查询更多云原生知识库，或回复**联系**加我微信。
 
 ![](/assets/mp.png)

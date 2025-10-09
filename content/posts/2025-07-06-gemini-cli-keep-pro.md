@@ -172,6 +172,6 @@ grep -rl --exclude-dir=test 'DEFAULT_GEMINI_FLASH_MODEL = "gemini-2.5-flash"' \
 
 ---
 
-欢迎长按下面的二维码关注 **漫谈云原生** 公众号，了解更多云原生和 AI 知识。
+欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
 
 ![](https://feisky.xyz/assets/mp.png)

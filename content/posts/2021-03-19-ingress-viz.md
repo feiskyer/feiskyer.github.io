@@ -32,6 +32,6 @@ Ingress Builder 的访问网址为 <https://ingressbuilder.jetstack.io>，祝你
 
 ---
 
-欢迎长按下面的二维码关注**漫谈云原生**公众号，输入**任意关键字**查询更多云原生知识库。
+欢迎长按下面的二维码关注 **Feisky** 公众号，输入**任意关键字**查询更多云原生知识库。
 
 ![](https://feisky.xyz/assets/mp.png)
