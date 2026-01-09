@@ -34,7 +34,7 @@ draft: false
 
 在学习 CNI 网络插件的时候，可以从最基本的 bridge 插件开始，从 Pod 创建并获取 IP、同节点 Pod 间通信再到跨节点 Pod 通信等逐步深入。
 
-![](cni-bridge.png)
+![](/images/cni-bridge.png)
 
 关于常见网络插件的原理可以参考开源电子书《Kubernetes指南》的[网络插件模块](https://kubernetes.feisky.xyz/extension/network)。
 
@@ -49,7 +49,7 @@ draft: false
 * 当需要对复杂微服务进行治理时，你想要实现诸如金丝雀部署、流量控制、网络观测、服务间请求加密等需求时，Service Mesh 是你的不二选择。
 * 当网络的性能是你的瓶颈时，eBPF、DPDK、SR-IOV 等提供了绕过内核协议栈的方法以极致优化网络的性能。
 
-![](image2_3.jpg)
+![](/images/image2_3.jpg)
 (图片来自 redhat.com)
 
 更多 Kubernetes 网络相关的细节和学习资料请参考《[Kubernetes 指南](https://kubernetes.feisky.xyz/)》。
@@ -59,4 +59,4 @@ draft: false
 
 欢迎长按下面的二维码关注 **Feisky** 公众号，输入**任意关键字**查询更多云原生知识库。
 
-![](https://feisky.xyz/assets/mp.png)
+![](/images/mp.png)

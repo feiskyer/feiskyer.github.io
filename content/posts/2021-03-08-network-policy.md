@@ -43,7 +43,7 @@ spec:
 
 而 Cilium 提供的可视化编辑器则会将其展示为（其中红色表示禁止，而绿色表示允许）：
 
-![图片](640.png)
+![](/images/77723043-c27b-49dd-a491-7d046eaf1b23.png)
 
 从这个图，你可以一眼看出网络策略的含义，即只允许 my-namespace 中标签为 app=frontend 的 Pod 访问相同 namespace 中标签为 app=backend 的 Pod，而 app=backend 的 Pod 则只能访问 Kubernetes DNS。
 
@@ -60,4 +60,4 @@ hubble observe --json --last 1000 --follow --namespace my-namespace > my-namespa
 
 欢迎长按下面的二维码关注 **Feisky** 公众号，输入**任意关键字**查询更多云原生知识库。
 
-![](https://feisky.xyz/assets/mp.png)
+![](/images/mp.png)

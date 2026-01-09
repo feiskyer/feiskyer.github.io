@@ -1,0 +1,25 @@
+{
+  "name": "Feisky Blog",
+  "short_name": "Feisky",
+  "description": "极客时间专栏作者，专注于 Kubernetes、AI Infra、AI Agent 领域的深度技术分享",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0d73de",
+  "orientation": "portrait-primary",
+  "lang": "zh-CN",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["technology", "education", "blog"]
+}

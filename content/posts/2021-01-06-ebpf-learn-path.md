@@ -17,7 +17,7 @@ Linux 内核一直是实现监控/可观察性、网络和安全性的理想场�
 
 eBPF 开发了全新一代的软件，能够对 Linux 内核的行为进行重新编程，甚至在传统上完全独立的多个子系统中应用逻辑。
 
-![bpf_arch](bpf_arch.png)
+![bpf_arch](/images/bpf_arch.png)
 
 BPF 技术目前主要用于以下场景：
 
@@ -44,9 +44,9 @@ BPF 技术目前主要用于以下场景：
 >
 > 这两者的区别主要在于数据的搜集和聚合是否在内测层面进行的，观测和监控主要是侧重于在内核导出指标、直方图或相关事件。
 
-| ![bpf_cls_trace](bpf_cls_trace.png)     | ![bpf_cls_monitor](bpf_cls_monitor.png)   |
+| ![bpf_cls_trace](/images/bpf_cls_trace.png)     | ![bpf_cls_monitor](/images/bpf_cls_monitor.png)   |
 | :-------------------------------------- | :---------------------------------------- |
-| ![bpf_cls_network](bpf_cls_network.png) | ![bpf_cls_security](bpf_cls_security.png) |
+| ![bpf_cls_network](/images/bpf_cls_network.png) | ![bpf_cls_security](/images/bpf_cls_security.png) |
 
 BPF 技术的整体介绍请参见 [eBPF 结束简介](https://www.ebpf.top/post/bpf_intro_blog/)。
 
@@ -211,4 +211,4 @@ BPF 技术的整体介绍请参见 [eBPF 结束简介](https://www.ebpf.top/post
 
 欢迎扫描下面的二维码关注 **Feisky** 公众号，回复**任意关键字**查询更多云原生知识库，或回复**联系**加我微信。
 
-![](/assets/mp.png)
+![](/images/mp.png)

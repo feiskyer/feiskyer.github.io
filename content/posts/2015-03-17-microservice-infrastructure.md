@@ -36,28 +36,28 @@ Modern platform for rapidly deploying globally distributed services provided by 
 
 The base platform contains control nodes that manage the cluster and any number of compute nodes. Containers automatically register themselves into DNS so that other services can locate them.
 
-![](https://github.com/CiscoCloud/microservices-infrastructure/blob/master/docs/_static/single_dc.png)
+
 
 
 ## Multi Data Center
 
 Each datacenter contains a set of control nodes and computes nodes.  The architecture is “share nothing” with the exception of Consul. Consul nodes for all datacenters are automatically joined together to form a single WAN gossip pool. This enables application to local instance in the same datacenter and instances other datacenters with DNS or the Consul exposed API.
 
-![](https://github.com/CiscoCloud/microservices-infrastructure/raw/master/docs/_static/multi_dc.png)
+![](/images/0e56c829-3999-4e97-b5ba-4324e44ee650.png)
 
 
 ## Control Nodes
 
 The control nodes manage a single datacenter. Each control node runs Consul for service discovery, Mesos leaders for resource scheduling and Mesos frameworks like Marathon.
 
-![](https://github.com/CiscoCloud/microservices-infrastructure/raw/master/docs/_static/control_node.png)
+![](/images/control_node.png)
 
 
 ## Compute Nodes
 
 The compute nodes launch containers and other Mesos-based workloads. Registrator is used to update Consul as containers are launched and exit.
 
-![](https://github.com/CiscoCloud/microservices-infrastructure/raw/master/docs/_static/compute_node.png)
+
 
 ## Have a try
 

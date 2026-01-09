@@ -1,0 +1,33 @@
+{{/* FAQ Schema - Enable by adding 'faq' in frontmatter
+Example frontmatter:
+---
+title: "My Article"
+faq:
+  - question: "What is Kubernetes?"
+    answer: "Kubernetes is an open-source container orchestration platform."
+  - question: "How do I install it?"
+    answer: "You can install Kubernetes using kubeadm, minikube, or managed services."
+---
+*/}}
+
+{{ with .Params.faq }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {{ range $index, $item := . }}
+    {{ if $index }},{{ end }}
+    {
+      "@type": "Question",
+      "name": "{{ $item.question }}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{{ $item.answer }}"
+      }
+    }
+    {{ end }}
+  ]
+}
+</script>
+{{ end }}

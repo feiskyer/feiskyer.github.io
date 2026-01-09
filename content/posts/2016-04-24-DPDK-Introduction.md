@@ -12,7 +12,7 @@ DPDK官方网站为<http://dpdk.org/>，官方文档为<http://dpdk.org/doc/guid
 
 DPDK基本组件包括：
 
-![dpdk_lib](https://cloud.githubusercontent.com/assets/676637/14767274/70bb59c0-0a54-11e6-862d-2f19c721c45d.png)
+![](/images/9240e632-7a4b-4f35-94cd-dcb45dde86eb.png)
 
 * EAL（Environment Abstraction Layer）即环境抽象层，为应用提供了一个通用接口，隐藏了与底层库与设备打交道的相关细节。EAL实现了DPDK运行的初始化工作，基于大页表的内存分配，多核亲缘性设置，原子和锁操作，并将PCI设备地址映射到用户空间，方便应用程序访问。
 * Buffer Manager API通过预先从EAL上分配固定大小的多个内存对象，避免了在运行过程中动态进行内存分配和回收来提高效率，常常用作数据包buffer来使用。
@@ -38,7 +38,7 @@ DPDK核心思想：
 
 ## 架构
 
-![dpdk](https://cloud.githubusercontent.com/assets/676637/14767276/7dfb9ed8-0a54-11e6-914f-b041ddcdd40d.png)
+![](/images/69ac4ed7-e341-45ba-9822-9a8c12837120.png)
 
 在最底部的内核态(Linux Kernel)DPDK 有两个模块:KNI 与 IGB_UIO。 其中,KNI 提供给用户一个使用 Linux 内核态的协议栈,以及传统的 Linux 网络工具(如ethtool, ifconfig)。IGB_UIO(igb_uio.ko 和 kni.ko. IGB_UIO)则借助了 UIO 技术,在初始化过程中将网卡硬件寄存器映射到用户态。
 

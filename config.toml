@@ -13,7 +13,19 @@ enableRobotsTXT = true
 
 [params]
   author = "Pengfei Ni"
+  authorimage = "/images/avatar.jpg"
   themeColor = "theme-base-0d"
+  # SEO Configuration
+  description = "极客时间专栏作者，专注于 Kubernetes、AI Infra、AI Agent 领域的深度技术分享，让 AI 成为你的第二大脑"
+  keywords = "Kubernetes,AI Infra,AI Agent,云原生,eBPF,LLM,系统工程,容器,DevOps"
+
+[params.meta]
+  description = "极客时间专栏作者，专注于 Kubernetes、AI Infra、AI Agent 领域的深度技术分享，让 AI 成为你的第二大脑"
+  keywords = "Kubernetes,AI Infra,AI Agent,云原生,eBPF,LLM,系统工程,容器,DevOps"
+
+[params.seo]
+  # Default image for OpenGraph and Twitter Cards (place image in static/images/)
+  defaultImage = "/images/og-default.png"
   copyright = "feiskyer"
   license = "CC BY-SA 4.0"
   licenseURL = "https://creativecommons.org/licenses/by-sa/4.0"
@@ -27,10 +39,15 @@ enableRobotsTXT = true
   disqusShortname = "feisky"
   googleAnalytics = "G-1GD5S2NKS3"
 
+  [params.seo.geo]
+    region = "CN-31" # Shanghai
+    placename = "Shanghai"
+    position = "31.2304;121.4737"
+
 [params.social]
 	twitter = "feisky"
 	github = "feiskyer"
-  gravatar = "feiskyer@gmail.com"
+  # gravatar = "feiskyer@gmail.com"
 
 [sitemap]
   changefreq = "weekly"
@@ -40,7 +57,7 @@ enableRobotsTXT = true
 [[menu.main]]
     name = "微信公众号"
     weight = 30
-    url = "/assets/mp.png"
+    url = "/images/mp.png"
 
 [[menu.main]]
     name = "SDN网络指南"

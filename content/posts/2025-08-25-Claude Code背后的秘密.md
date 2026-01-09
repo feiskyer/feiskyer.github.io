@@ -39,13 +39,13 @@ tags: [AI, Vibe Coding, Claude Code]
 
 > **注意**：这不是一篇 Claude Code 架构解析文（网上已经有不少了）。这篇文章是基于我过去几个月使用和折腾 Claude Code 的经验（还有我们拦截分析的所有日志），教你怎么打造一个同样好用的 LLM Agent。你可以在 [附录部分](https://minusx.ai/blog/decoding-claude-code/#appendix) 找到 [提示词](https://minusx.ai/blog/decoding-claude-code/#appendix) 和[工具](https://minusx.ai/blog/decoding-claude-code/#appendix)。这篇文章大概 2000 字，系好安全带！如果你赶时间，可以直接看[TL;DR 部分](https://minusx.ai/blog/decoding-claude-code/#how-to-build-a-claude-code-like-agent-tldr)。
 
-![prompts](./assets/prompts.png)
+![](/images/20251127090657.png)
 
 Claude Code 用起来非常顺畅，因为它 *确实实用*。设计者深刻理解了大语言模型的优势与不足，通过巧妙的提示词和工具设计，弥补了模型的短板，让其在擅长的领域充分发挥。循环控制非常简单，调试也极为轻松。
 
 我们 MinusX 团队自 Claude Code 发布以来就一直在使用它。为了深入了解其内部机制，[Sreejith](https://x.com/ppsreejith_) 开发了一个日志记录器，用于拦截和记录每一次网络请求。以下分析基于我过去几个月的丰富使用经验。**本文的核心问题是：“Claude Code 为什么如此好用？你如何在自己的聊天式 LLM Agent 中复现这种体验？”** 我们已经将大部分技巧应用到了 MinusX 中，期待你也能尝试！
 
-![prompts](./assets/tools.png)
+![](/images/20251127090722.png)
 
 如果只记住一点，那就是——**保持简单**（Keep Things Simple, Dummy）。LLM 本身已经很难调试和评估了，任何额外的复杂性（如多智能体、智能体切换或复杂的 RAG 搜索）只会让调试难度成倍增加。如果系统本身就很脆弱，即使能运行，后续做大改动时也会让你望而却步。因此，尽量把所有内容放在一个文件里，避免过度模板化代码，必要时大胆重构几次：）
 
@@ -76,7 +76,7 @@ Claude Code 用起来非常顺畅，因为它 *确实实用*。设计者深刻�
 
 我强烈怀疑你的应用真的需要多智能体系统。每增加一层抽象，系统的调试难度就会提升，更重要的是，这会让你偏离通用模型优化的方向。
 
-![Control Loop](https://minusx.ai/images/claude-code/control_loop.gif)
+![Control Loop](/images/09497417-aa87-49a3-bf45-b9dfb7189060.gif)
 
 ## 1.2 用小模型处理所有事情
 
@@ -212,4 +212,4 @@ Claude Code 明确规范了智能体的美学行为。在系统提示词中，�
 
 欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
 
-![](https://feisky.xyz/assets/mp.png)
+![](/images/mp.png)

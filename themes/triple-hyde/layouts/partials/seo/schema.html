@@ -1,0 +1,156 @@
+{{/* Schema.org JSON-LD Structured Data */}}
+
+{{/* Person/Author Schema */}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "{{ .Site.BaseURL }}#author",
+  "name": "{{ .Site.Params.author | default "Pengfei Ni" }}",
+  "url": "{{ .Site.BaseURL }}",
+  "sameAs": [
+    {{ with .Site.Params.social.twitter }}"https://twitter.com/{{ . }}"{{ end }}
+    {{ with .Site.Params.social.github }}, "https://github.com/{{ . }}"{{ end }}
+  ]
+}
+</script>
+
+{{/* Website Schema */}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "{{ .Site.BaseURL }}#website",
+  "name": "{{ .Site.Title }}",
+  "url": "{{ .Site.BaseURL }}",
+  "description": "{{ .Site.Params.description | default .Site.Params.meta.description }}",
+  "inLanguage": "{{ .Site.LanguageCode | default "zh-cn" }}",
+  "author": {
+    "@id": "{{ .Site.BaseURL }}#author"
+  },
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://www.google.com/search?q=site:{{ .Site.BaseURL | replaceRE "^https?://" "" | replaceRE "/$" "" }}+{search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
+{{ if .IsPage }}
+{{/* BlogPosting Schema for single posts */}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "@id": "{{ .Permalink }}#article",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ .Permalink }}"
+  },
+  "headline": "{{ .Title }}",
+  "description": "{{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify | truncate 160 }}{{ end }}",
+  "datePublished": "{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}",
+  "dateModified": "{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}",
+  "author": {
+    "@type": "Person",
+    "@id": "{{ .Site.BaseURL }}#author",
+    "name": "{{ .Site.Params.author | default "Pengfei Ni" }}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ .Site.Title }}",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ .Site.BaseURL }}favicon.png"
+    }
+  },
+  "inLanguage": "{{ .Site.LanguageCode | default "zh-cn" }}",
+  "isPartOf": {
+    "@id": "{{ .Site.BaseURL }}#website"
+  },
+  "wordCount": {{ .WordCount }},
+  "timeRequired": "PT{{ .ReadingTime }}M",
+  "articleSection": "{{ .Section }}"
+  {{ with .Params.tags }}
+  ,"keywords": "{{ delimit . ", " }}"
+  {{ end }}
+  {{ with .Params.image }}
+  ,"image": {
+    "@type": "ImageObject",
+    "url": "{{ . | absURL }}"
+  }
+  {{ else }}
+  {{ with $.Site.Params.seo.defaultImage }}
+  ,"image": {
+    "@type": "ImageObject",
+    "url": "{{ . | absURL }}"
+  }
+  {{ end }}
+  {{ end }}
+}
+</script>
+
+{{/* Breadcrumb Schema */}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "首页",
+      "item": "{{ .Site.BaseURL }}"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "文章",
+      "item": "{{ .Site.BaseURL }}posts/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "{{ .Title }}",
+      "item": "{{ .Permalink }}"
+    }
+  ]
+}
+</script>
+{{ end }}
+
+{{ if .IsHome }}
+{{/* Blog Schema for homepage */}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "@id": "{{ .Site.BaseURL }}#blog",
+  "name": "{{ .Site.Title }}",
+  "description": "{{ .Site.Params.description | default .Site.Params.meta.description }}",
+  "url": "{{ .Site.BaseURL }}",
+  "inLanguage": "{{ .Site.LanguageCode | default "zh-cn" }}",
+  "author": {
+    "@id": "{{ .Site.BaseURL }}#author"
+  },
+  "blogPost": [
+    {{ $posts := first 10 (where .Site.RegularPages "Section" "posts") }}
+    {{ range $index, $post := $posts }}
+    {{ if $index }},{{ end }}
+    {
+      "@type": "BlogPosting",
+      "headline": "{{ $post.Title }}",
+      "url": "{{ $post.Permalink }}",
+      "datePublished": "{{ $post.Date.Format "2006-01-02" }}"
+    }
+    {{ end }}
+  ]
+}
+</script>
+{{ end }}
+
+{{/* Optional FAQ Schema - enabled via frontmatter */}}
+{{ partial "seo/schema-faq.html" . }}
+
+{{/* Optional HowTo Schema - enabled via frontmatter */}}
+{{ partial "seo/schema-howto.html" . }}

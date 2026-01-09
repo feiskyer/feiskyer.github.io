@@ -25,6 +25,8 @@
         {{ with .Get "align" }}align="{{ . }}"{{ end }}
         {{ with .Get "height" }}width="{{ . }}"{{ end }}
         {{ with .Get "width" }}width="{{ . }}"{{ end }} style="max-width: 100%;"
+        loading="lazy"
+        decoding="async"
          />
   {{ if .Get "link"}}</a>{{ end }}
   <!-- caption and attr-->

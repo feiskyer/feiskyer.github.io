@@ -248,7 +248,7 @@ ID、网络和lxc管理的资源限制等具体container的配置，构成一个
 <p>[6]<a href="http://en.wikipedia.org/wiki/Aufs">http://en.wikipedia.org/wiki/Aufs</a></p>
 <p>[7]<a href="http://docs.docker.io/en/latest/terms/filesystem/">http://docs.docker.io/en/latest/terms/filesystem/</a></p>
 <p>[8]<a href="http://docs.docker.io/en/latest/terms/layer/">http://docs.docker.io/en/latest/terms/layer/</a></p>
-<p>[9]<a href="http://docs.docker.io/en/latest/terms/image/">http://docs.docker.io/en/latest/terms/image/</a></p>
+<p>[9]<a href="http://docs.docker.io/en/latest/terms/images/">http://docs.docker.io/en/latest/terms/images/</a></p>
 <p>[10]<a href="http://docs.docker.io/en/latest/terms/container/">http://docs.docker.io/en/latest/terms/container/</a></p>
 <h3 id="grsec">GRSEC</h3>
 <p><code>grsec</code>是linux kernel安全相关的patch, 用于保护host防止非法入侵。由于其并不是docker的一部分，我们只进行简单的介绍。

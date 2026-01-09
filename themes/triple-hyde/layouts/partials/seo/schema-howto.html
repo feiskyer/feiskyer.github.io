@@ -1,0 +1,43 @@
+{{/* HowTo Schema - Enable by adding 'howto' in frontmatter
+Example frontmatter:
+---
+title: "How to Deploy Kubernetes"
+howto:
+  name: "Deploy a Kubernetes Cluster"
+  description: "Step-by-step guide to deploy Kubernetes using kubeadm"
+  totalTime: "PT30M"
+  steps:
+    - name: "Install kubeadm"
+      text: "Run apt-get install kubeadm kubelet kubectl"
+    - name: "Initialize the cluster"
+      text: "Run kubeadm init on the master node"
+    - name: "Join worker nodes"
+      text: "Run kubeadm join command on worker nodes"
+---
+*/}}
+
+{{ with .Params.howto }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "{{ .name | default $.Title }}",
+  "description": "{{ .description | default ($.Summary | plainify | truncate 160) }}",
+  {{ with .totalTime }}"totalTime": "{{ . }}",{{ end }}
+  {{ with .image }}"image": "{{ . | absURL }}",{{ end }}
+  "step": [
+    {{ range $index, $step := .steps }}
+    {{ if $index }},{{ end }}
+    {
+      "@type": "HowToStep",
+      "position": {{ add $index 1 }},
+      "name": "{{ $step.name }}",
+      "text": "{{ $step.text }}"
+      {{ with $step.image }},"image": "{{ . | absURL }}"{{ end }}
+      {{ with $step.url }},"url": "{{ . }}"{{ end }}
+    }
+    {{ end }}
+  ]
+}
+</script>
+{{ end }}

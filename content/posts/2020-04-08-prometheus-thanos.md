@@ -14,7 +14,7 @@ Thanos (没错，就是灭霸) 可以帮我们简化分布式 Prometheus 的部�
 
 这是官方给出的架构图：
 
-![图片](640-20210121124159478)
+![图片](/images/640-20210121124159478)
 
 这张图中包含了 Thanos 的几个核心组件，但并不包括所有组件，为了便于理解，我们先不细讲，简单介绍下图中这几个组件的作用：
 
@@ -40,13 +40,13 @@ Thanos (没错，就是灭霸) 可以帮我们简化分布式 Prometheus 的部�
 
 那么 Thanos Query 又如何去查下游分散的数据呢？Thanos 为此抽象了一套叫 Store API 的内部 gRPC 接口，其它一些组件通过这个接口来暴露数据给 Thanos Query，它自身也就可以做到完全无状态部署，实现高可用与动态扩展。
 
-![图片](640-20210121124252738)
+![图片](/images/640-20210121124252738)
 
 ![img](data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==)
 
 这些分散的数据可能来自哪些地方呢？首先，Prometheus 会将采集的数据存到本机磁盘上，如果我们直接用这些分散在各个磁盘上的数据，可以给每个 Prometheus 附带部署一个 Sidecar，这个 Sidecar 实现 Thanos Store API，当 Thanos Query 对其发起查询时，Sidecar 就读取跟它绑定部署的 Prometheus 实例上的监控数据返回给 Thanos Query。
 
-![图片](640-20210121124159518)
+![图片](/images/640-20210121124159518)
 
 由于 Thanos Query 可以对数据进行聚合与去重，所以可以很轻松实现高可用：相同的 Prometheus 部署多个副本(都附带 Sidecar)，然后 Thanos Query 去所有 Sidecar 查数据，即便有一个 Prometheus 实例挂掉过一段时间，数据聚合与去重后仍然能得到完整数据。
 
@@ -66,7 +66,7 @@ Thanos (没错，就是灭霸) 可以帮我们简化分布式 Prometheus 的部�
 
 Thanos 有几个组件都支持将数据上传到各种对象存储以供长期保存 (Prometheus TSDB 数据格式)，比如我们刚刚说的 Sidecar:
 
-![图片](640-20210121124327275.png)
+![图片](/images/640-20210121124327275.png)
 
 ### Store Gateway
 
@@ -74,7 +74,7 @@ Thanos 有几个组件都支持将数据上传到各种对象存储以供长期�
 
 那么这些被上传到了对象存储里的监控数据该如何查询呢？理论上 Thanos Query 也可以直接去对象存储查，但会让 Thanos Query 的逻辑变的很重。我们刚才也看到了，Thanos 抽象出了 Store API，只要实现了该接口的组件都可以作为 Thanos Query 查询的数据源，Thanos Store Gateway 这个组件也实现了 Store API，向 Thanos Query 暴露对象存储的数据。Thanos Store Gateway 内部还做了一些加速数据获取的优化逻辑，一是缓存了 TSDB 索引，二是优化了对象存储的请求 (用尽可能少的请求量拿到所有需要的数据)。
 
-![图片](640-20210121124353968.png)
+![图片](/images/640-20210121124353968.png)
 
 这样就实现了监控数据的长期储存，由于对象存储容量无限，所以理论上我们可以存任意时长的数据，监控历史数据也就变得可追溯查询，便于问题排查与统计分析。
 
@@ -89,7 +89,7 @@ Thanos 有几个组件都支持将数据上传到各种对象存储以供长期�
 
 由于我们将 Prometheus 进行分布式部署，每个 Prometheus 实例本地并没有完整数据，有些有关联的数据可能存在多个 Prometheus 实例中，单机 Prometheus 看不到数据的全局视图，这种情况我们就不能依赖 Prometheus 来做这些工作，Thanos Ruler 应运而生，它通过查询 Thanos Query 获取全局数据，然后根据 rules 配置计算新指标并存储，同时也通过 Store API 将数据暴露给 Thanos Query，同样还可以将数据上传到对象存储以供长期保存 (这里上传到对象存储中的数据一样也是通过 Thanos Store Gateway 暴露给 Thanos Query)。
 
-![图片](640-20210121124411070.png)
+![图片](/images/640-20210121124411070.png)
 
 看起来 Thanos Query 跟 Thanos Ruler 之间会相互查询，不过这个不冲突，Thanos Ruler 为 Thanos Query 提供计算出的新指标数据，而 Thanos Query 为 Thanos Ruler 提供计算新指标所需要的全局原始指标数据。
 
@@ -109,7 +109,7 @@ Thanos 有几个组件都支持将数据上传到各种对象存储以供长期�
 
 
 
-![图片](640-20210121124159483.png)
+![图片](/images/640-20210121124159483.png)
 
 ### 再看架构图
 
@@ -119,7 +119,7 @@ Thanos 有几个组件都支持将数据上传到各种对象存储以供长期�
 
 
 
-![图片](640-20210121124159478)
+![图片](/images/640-20210121124159478)
 
 理解是否更加深刻了？
 
@@ -153,7 +153,7 @@ Receiver 是做什么的呢？为什么需要 Receiver？它跟 Sidecar 有什�
 
 为了解决这个问题，Thanos Receiver 组件被提出，它适配了 Prometheus 的 remote write API，也就是所有 Prometheus 实例可以实时将数据 push 到 Thanos Receiver，最新数据也得以集中起来，然后 Thanos Query 也不用去所有 Sidecar 查最新数据了，直接查 Thanos Receiver 即可。另外，Thanos Receiver 也将数据上传到对象存储以供长期保存，当然，对象存储中的数据同样由 Thanos Store Gateway 暴露给 Thanos Query。
 
-![图片](640-20210121124159426.png)
+![图片](/images/640-20210121124159426.png)
 
 有同学可能会问：如果规模很大，Receiver 压力会不会很大，成为性能瓶颈？当然设计这个组件时肯定会考虑这个问题，Receiver 实现了一致性哈希，支持集群部署，所以即使规模很大也不会成为性能瓶颈。
 
@@ -167,4 +167,4 @@ Receiver 是做什么的呢？为什么需要 Receiver？它跟 Sidecar 有什�
 
 欢迎扫描下面的二维码关注 **Feisky** 公众号，回复**任意关键字**查询更多云原生知识库，或回复**联系**加我微信。
 
-![](/assets/mp.png)
+![](/images/mp.png)

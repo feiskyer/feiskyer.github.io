@@ -1,0 +1,54 @@
+{{/* Enhanced OpenGraph Meta Tags */}}
+{{/* This supplements Hugo's internal opengraph template with additional article metadata */}}
+
+{{/* Basic OpenGraph - use Hugo's internal template as base */}}
+{{ template "_internal/opengraph.html" . }}
+
+{{/* Enhanced article metadata for blog posts */}}
+{{ if .IsPage }}
+<meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+<meta property="article:modified_time" content="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}">
+<meta property="article:author" content="{{ .Site.Params.author | default "Pengfei Ni" }}">
+{{ with .Params.tags }}
+{{ range . }}
+<meta property="article:tag" content="{{ . }}">
+{{ end }}
+{{ end }}
+{{ end }}
+
+{{/* OpenGraph Image - use post image or fallback to default */}}
+{{ $ogImage := "" }}
+{{ with .Params.image }}
+  {{ $ogImage = . | absURL }}
+{{ else }}
+  {{ $images := findRE "<img src=\"([^\"]+)\"" .Content 1 }}
+  {{ range $images }}
+     {{ $ogImage = . | replaceRE "<img src=\"([^\"]+)\"" "$1" | absURL }}
+  {{ end }}
+  {{ if not $ogImage }}
+    {{ with $.Site.Params.seo.defaultImage }}
+      {{ $ogImage = . | absURL }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+{{ with $ogImage }}
+<meta property="og:image" content="{{ . }}">
+<meta property="og:image:alt" content="{{ $.Title }}">
+{{ end }}
+
+{{/* Enhanced description */}}
+{{ $description := "" }}
+{{ with .Description }}
+  {{ $description = . }}
+{{ else }}
+  {{ with .Summary }}
+    {{ $description = . | plainify | truncate 200 }}
+  {{ else }}
+    {{ with $.Site.Params.description }}
+      {{ $description = . }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+{{ with $description }}
+<meta property="og:description" content="{{ . }}">
+{{ end }}

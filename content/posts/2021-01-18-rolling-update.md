@@ -11,7 +11,7 @@ draft: false
 
 在 Kubernetes 中，我们一般通过 Deployment、Daemonset 等控制器管理 Pod，并且把他们放到 Service 后面，使用 Service 的虚拟 IP 或者负载均衡器 IP 去访问。在 Pod 配置变更（如更新镜像）时，这些控制器默认就会采用滚动更新的方式逐步用新 Pod 替换已有的 Pod。下图所示就是一个典型的**滚动更新**[1]过程：
 
-![图片](640.gif)
+![图片](/images/640.gif)
 
 由于新的 Pod Ready 之后才会去删除旧的 Pod，在滚动更新中新的连接过来会自动路由到健康的 Pod 上，所以一般来说，新连接不会出问题，容易出问题的是旧连接。
 
@@ -57,7 +57,7 @@ lifecycle:
 
 滚动更新涉及到 kube-apiserver、kubelet、kube-controller-manager（包括 endpoint controller、service controller 和 cloud provider）以及 CNI 插件等。假设新建Pod的名字为Pod2，而旧的Pod名字为Pod1，这些组件在滚动更新过程中的典型过程如下图所示
 
-![图片](640-20210121134637459.png)
+![图片](/images/640-20210121134637459.png)
 
 注意 Endpoints 更新（加入新 Pod2 IP 和删除旧 Pod1 IP）以及以后的步骤都是异步的。如果 Pod1 的 IP 摘除时间过早，Pod2 的 IP 还没有更新到 iptables 中，那么新的连接进来就会因为没有健康 Pod 而无法连接。
 
@@ -192,4 +192,4 @@ spec:
 
 欢迎扫描下面的二维码关注 **Feisky** 公众号，回复**任意关键字**查询更多云原生知识库，或回复**联系**加我微信。
 
-![](/assets/mp.png)
+![](/images/mp.png)

@@ -11,7 +11,7 @@ Kubernetes 从 1.11 开始支持 Persistent Volumes Claim（PVC）的动态扩�
 
 第一种存储插件是网络文件系统，如 GlusterFS、Azure File 等。这类存储插件在扩容时无需 Node 本地文件系统的扩展，因而只需要修改 PVC 的大小即可扩容。
 
-![pvc-storageclass](pvc-storageclass.png)
+![pvc-storageclass](/images/pvc-storageclass.png)
 
 ## 块存储设备
 
@@ -46,4 +46,4 @@ kubectl edit pvc pvc-rabbitmq-0 # 增大Capacity
 
 欢迎长按下面的二维码关注 **Feisky** 公众号，输入**任意关键字**查询更多云原生知识库。
 
-![](https://feisky.xyz/assets/mp.png)
+![](/images/mp.png)

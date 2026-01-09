@@ -1,0 +1,63 @@
+{{/* Enhanced Twitter Cards Meta Tags */}}
+
+{{/* Determine if we have an image - use summary_large_image if available */}}
+{{ $hasImage := false }}
+{{ $twitterImage := "" }}
+{{ with .Params.image }}
+  {{ $hasImage = true }}
+  {{ $twitterImage = . | absURL }}
+{{ else }}
+  {{ $images := findRE "<img src=\"([^\"]+)\"" .Content 1 }}
+  {{ range $images }}
+     {{ $twitterImage = . | replaceRE "<img src=\"([^\"]+)\"" "$1" | absURL }}
+     {{ $hasImage = true }}
+  {{ end }}
+  {{ if not $twitterImage }}
+    {{ with $.Site.Params.seo.defaultImage }}
+      {{ $hasImage = true }}
+      {{ $twitterImage = . | absURL }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{/* Card type based on image availability */}}
+{{ if $hasImage }}
+<meta name="twitter:card" content="summary_large_image">
+{{ else }}
+<meta name="twitter:card" content="summary">
+{{ end }}
+
+{{/* Site and creator */}}
+{{ with .Site.Params.social.twitter }}
+<meta name="twitter:site" content="@{{ . }}">
+<meta name="twitter:creator" content="@{{ . }}">
+{{ end }}
+
+{{/* Title */}}
+<meta name="twitter:title" content="{{ .Title }}">
+
+{{/* Description */}}
+{{ $description := "" }}
+{{ with .Description }}
+  {{ $description = . }}
+{{ else }}
+  {{ with .Summary }}
+    {{ $description = . | plainify | truncate 200 }}
+  {{ else }}
+    {{ with $.Site.Params.description }}
+      {{ $description = . }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+{{ with $description }}
+<meta name="twitter:description" content="{{ . }}">
+{{ end }}
+
+{{/* Image */}}
+{{ with $twitterImage }}
+<meta name="twitter:image" content="{{ . }}">
+<meta name="twitter:image:alt" content="{{ $.Title }}">
+{{ end }}
+
+{{/* Domain for better display */}}
+<meta name="twitter:domain" content="{{ .Site.BaseURL | replaceRE "^https?://" "" | replaceRE "/$" "" }}">

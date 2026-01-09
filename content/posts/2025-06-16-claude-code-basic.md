@@ -3,6 +3,15 @@ title: "Claude Code 从0到1入门指南"
 date: 2025-06-16T12:15:30+08:00
 tags: [AI, Vibe Coding, Claude Code]
 draft: false
+faq:
+  - question: "Claude Code 是什么？"
+    answer: "Claude Code 是 Anthropic 推出的智能编程助手，直接集成到终端环境中，能够理解代码库并通过自然语言命令帮助编程。"
+  - question: "Claude Code 支持哪些操作系统？"
+    answer: "Claude Code 支持 macOS 10.15+、Ubuntu 20.04+/Debian 10+ 以及通过 WSL 运行的 Windows 系统。"
+  - question: "使用 Claude Code 需要付费吗？"
+    answer: "Claude Code 需要 Anthropic API 密钥，按 API 调用量计费。也可以使用 Claude Pro/Max 订阅获得更优惠的价格。"
+  - question: "Claude Code 和 GitHub Copilot 有什么区别？"
+    answer: "Claude Code 是代理式编程工具，可以理解整个代码库并执行复杂任务（如文件编辑、Git操作），而 Copilot 主要提供行级代码补全。"
 ---
 
 Claude Code 是 Anthropic 推出的智能编程助手，它直接集成到你的终端环境中，能够理解你的代码库，并通过自然语言命令帮助你更快地编程。本指南将带你从零开始，快速掌握 Claude Code 的使用。
@@ -343,4 +352,4 @@ Claude Code 是一个强大的 AI 编程助手，它能够：
 
 欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
 
-![](https://feisky.xyz/assets/mp.png)
+![](/images/mp.png)

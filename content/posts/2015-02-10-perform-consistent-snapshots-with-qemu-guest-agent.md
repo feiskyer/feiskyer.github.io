@@ -24,7 +24,7 @@ The principle is quite easy. A virtual machine boots with a new virtio device at
 
 A picture is always better:
 
-![](/assets/qemu-agent-freeze-thaw.png)
+![](/images/qemu-agent-freeze-thaw.png)
 
 
 # Configure the QEMU agent

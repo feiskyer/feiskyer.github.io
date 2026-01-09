@@ -40,35 +40,35 @@ NOTE: &nbsp;The following steps are in development, and will be available will b
 
 * Deploy an OpenStack cluster, and install Murano. &nbsp;(In Mirantis OpenStack, this is simply a matter of checking the “Murano” box in the “Create Environment” wizard.
 
-![](https://www.mirantis.com/wp-content/uploads/2015/02/install-murano1.png)(https://www.mirantis.com/wp-content/uploads/2015/02/install-murano1.png)
+![](/images/install-murano1.png)
 
 * Open the OpenStack Dashboard (Horizon).
 
-![](https://www.mirantis.com/wp-content/uploads/2015/02/open-the-openstack-dashboard1.png)(https://www.mirantis.com/wp-content/uploads/2015/02/open-the-openstack-dashboard1.png)
+![](/images/open-the-openstack-dashboard1.png)
 
 * Click Murano and create a new environment.
 
-![](https://www.mirantis.com/wp-content/uploads/2015/02/Click-Murano-and-create-a-new-environment1.png)(https://www.mirantis.com/wp-content/uploads/2015/02/Click-Murano-and-create-a-new-environment1.png)
+![](/images/Click-Murano-and-create-a-new-environment1.png)
 
 * Add the Kubernetes application to the environment.
 
-![](https://www.mirantis.com/wp-content/uploads/2015/02/add-the-kubernetes-application-to-the-environment1.png)(https://www.mirantis.com/wp-content/uploads/2015/02/add-the-kubernetes-application-to-the-environment1.png)
+![](/images/add-the-kubernetes-application-to-the-environment1.png)
 
 * Add the Kubernetes Pod to the environment.
 
-![](https://www.mirantis.com/wp-content/uploads/2015/02/add-kubernetes-pod-to-environment1.png)(https://www.mirantis.com/wp-content/uploads/2015/02/add-kubernetes-pod-to-environment1.png)
+![](/images/add-kubernetes-pod-to-environment1.png)
 
 * Add an application to the Pod. &nbsp;In this case, we’ll add a web server just so we can see it work.
 
-![](https://www.mirantis.com/wp-content/uploads/2015/02/add-application-to-pod1.png)(https://www.mirantis.com/wp-content/uploads/2015/02/add-application-to-pod1.png)
+![](/images/add-application-to-pod1.png)
 
 * Deploy the environment.
 
-![](https://www.mirantis.com/wp-content/uploads/2015/02/deploy1.png)(https://www.mirantis.com/wp-content/uploads/2015/02/deploy1.png)
+![](/images/deploy1.png)
 
 * Test.
 
-![](https://www.mirantis.com/wp-content/uploads/2015/02/test.png)(https://www.mirantis.com/wp-content/uploads/2015/02/test.png)
+![](/images/test.png)
 
 That’s it.
 

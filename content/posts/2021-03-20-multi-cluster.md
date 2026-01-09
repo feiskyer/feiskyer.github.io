@@ -18,13 +18,13 @@ draft: false
 
 多集群的第一步就是 Kubernetes  集群的部署。由于各家云厂商的 API 并不相同，在管理各个云平台的资源时一般需要借助额外的 CMP（云管理平台）或者  [terraform](https://www.terraform.io/) 等进行统一管理。既然常见的公有云平台都提供了托管 Kubernetes 服务，部署这些托管集群一般并不需要很复杂的操作，所以使用 Terraform 就可以满足大部分需要。
 
-![image-20210321155207074](image-20210321155207074.png)
+![image-20210321155207074](/images/image-20210321155207074.png)
 
 使用 Terraform 的好处是它是声明式的，在使用时只需要声明预期的基础架构是什么样子，具体的执行步骤会有 Terraform 自动完成，包括下载云服务商模块、与云服务商 API 对接以及执行具体的部署等。
 
 比如，下图就是一个使用 Terraform 部署 AWS 资源的示例：
 
-![](oss-cli-demo-20210321154457049.mp4)
+![](/images/oss-cli-demo-20210321154457049.mp4)
 
 Kubernetes 集群部署完成之后，剩下的就是多集群的应用管理了，包括配置管理、服务治理以及对外服务的负载均衡等等。
 
@@ -53,7 +53,7 @@ maxReplicas: 20
 
 应用配置准备好之后，接下来就可以结合 gitops、CI/CD 等将其融入 Devops 流水线中。比如，一个最简单的 Jenkins 部署步骤如下图所示：
 
-![img](1*aVw14rBd5nyCOIeuX2nMRg.png)
+![img](/images/1*aVw14rBd5nyCOIeuX2nMRg.png)
 
 （图片来自 [Medium](https://medium.com/dailymotion/deploying-apps-on-multiple-kubernetes-clusters-with-helm-19ee2b06179e)）
 
@@ -68,7 +68,7 @@ maxReplicas: 20
 * DNS 负载均衡：即在 DNS 服务器中给同一个主机名配置多个 IP 地址，分别指向单个集群中对应服务的公网 IP。这种方式简单灵活，常用在 Web 服务中，缺点是不支持高可靠性，即便单个集群出现了故障，DNS 服务器仍然会为其分配请求。
 * 全局负载均衡（GSLB）：即使用跨地区的负载均衡服务，根据后端各个服务的健康状况以及客户端的位置，选择最佳的后端服务器进行转发。GSLB 的优点是会进行后端服务的健康检查，确保请求只转发给健康的服务器；缺点是自建复杂，一般推荐使用云服务商提供的 GSLB 。下图是一个 Azure 全局负载均衡器的示例：
 
-![img](68747470733a2f2f646f63732e6d6963726f736f66742e636f6d2f656e2d75732f617a7572652f6c6f61642d62616c616e6365722f6d656469612f63726f73732d726567696f6e2d6f766572766965772f63726f73732d726567696f6e2d6c6f61642d62616c616e6365722e706e67.png)
+![img](/images/68747470733a2f2f646f63732e6d6963726f736f66742e636f6d2f656e2d75732f617a7572652f6c6f61642d62616c616e6365722f6d656469612f63726f73732d726567696f6e2d6f766572766965772f63726f73732d726567696f6e2d6c6f61642d62616c616e6365722e706e67.png)
 
 ## 服务治理
 
@@ -76,7 +76,7 @@ maxReplicas: 20
 
 不同集群的网络可以通过 Service Mesh 打通，实现网络流量的灵活调度和故障转移。常见的 Service Mesh 项目均提供了多集群打通的能力，如下图是 Linkerd 多集群的示意图：
 
-![image-20210321174651279](image-20210321174651279.png)
+![image-20210321174651279](/images/image-20210321174651279.png)
 
 （图片来自 [Linkerd multi-cluster communication](https://linkerd.io/2.10/features/multicluster/)）
 
@@ -115,7 +115,7 @@ spec:
 EOF
 ```
 
-![image-20210321175202202](image-20210321175202202.png)
+![image-20210321175202202](/images/image-20210321175202202.png)
 
 除了 Service Mesh，如果多集群之间的网络配置并不冲突（如 IP 网段不重合），还可以通过专线打通，实现更低延迟的跨集群访问。
 
@@ -130,4 +130,4 @@ EOF
 
 欢迎长按下面的二维码关注 **Feisky** 公众号，输入**任意关键字**查询更多云原生知识库。
 
-![](https://feisky.xyz/assets/mp.png)
+![](/images/mp.png)

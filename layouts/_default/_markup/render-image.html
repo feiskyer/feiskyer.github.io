@@ -1,0 +1,17 @@
+{{- /* Render hook for Markdown images with lazy loading and SEO optimization */ -}}
+{{- $alt := .Text -}}
+{{- $src := .Destination -}}
+{{- $title := .Title -}}
+<img
+  src="{{ $src | safeURL }}"
+  alt="{{ $alt }}"
+  {{- with $title }} title="{{ . }}"{{ end }}
+  loading="lazy"
+  decoding="async"
+/>
+{{- /*
+  SEO Notes:
+  - loading="lazy": Defers loading of off-screen images
+  - decoding="async": Allows browser to decode image asynchronously
+  - alt text comes from Markdown ![alt text](src) syntax
+*/ -}}

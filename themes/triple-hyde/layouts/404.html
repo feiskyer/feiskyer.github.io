@@ -3,8 +3,42 @@
 {{ end }}
 
 {{ define "content" }}
-<h1>404: Page not found</h1>
-<p class="lead">Sorry, we've misplaced that URL or it's pointing to something that doesn't exist. <a href="{{ .Site.BaseURL }}">Head back home</a> to try finding it again.</p>
+<article class="page">
+  <h1>404: 页面未找到</h1>
+  <p class="lead">抱歉，您访问的页面不存在或已被移动。</p>
+
+  <p><a href="{{ .Site.BaseURL }}">← 返回首页</a></p>
+
+  <hr>
+
+  <h2>推荐阅读</h2>
+  <ul>
+    {{ $recent := first 5 (where .Site.RegularPages "Section" "posts") }}
+    {{ range $recent }}
+    <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+    {{ end }}
+  </ul>
+
+  <h2>热门标签</h2>
+  <p>
+    {{ range first 10 .Site.Taxonomies.tags.ByCount }}
+    <a href="{{ .Page.Permalink }}" style="margin-right: 10px;">{{ .Page.Title }} ({{ .Count }})</a>
+    {{ end }}
+  </p>
+</article>
+
+{{/* 404 Page Schema */}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "页面未找到 - 404",
+  "description": "您访问的页面不存在",
+  "isPartOf": {
+    "@id": "{{ .Site.BaseURL }}#website"
+  }
+}
+</script>
 {{ end }}
 
 {{ define "footer" }}

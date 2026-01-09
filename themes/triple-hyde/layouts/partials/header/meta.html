@@ -1,17 +1,67 @@
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 {{ "<!-- Enable responsiveness on mobile devices -->" | safeHTML }}
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-{{ hugo.Generator }}
-{{ if .IsHome }}
-    {{ $.Scratch.Set "theTitle" .Site.Title }}
-{{else}}
-    {{ $.Scratch.Set "theTitle" .Title}}
-    {{ $.Scratch.Add "theTitle" " • "}}
-    {{ $.Scratch.Add "theTitle" .Site.Title}}
-{{ end }}
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0, maximum-scale=1"
+/>
+{{ hugo.Generator }} {{/* PWA Support */}}
+<meta name="theme-color" content="#0d73de" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta
+  name="apple-mobile-web-app-status-bar-style"
+  content="black-translucent"
+/>
+<meta name="apple-mobile-web-app-title" content="{{ .Site.Title }}" />
+<meta name="mobile-web-app-capable" content="yes" />
+<link rel="manifest" href="/manifest.json" />
+
+{{/* Open Search */}}
+<link
+  rel="search"
+  type="application/opensearchdescription+xml"
+  href="/opensearch.xml"
+  title="{{ .Site.Title }} Search"
+/>
+
+{{/* Title with site name */}} {{ if .IsHome }} {{ $.Scratch.Set "theTitle"
+.Site.Title }} {{else}} {{ $.Scratch.Set "theTitle" .Title}} {{ $.Scratch.Add
+"theTitle" " • "}} {{ $.Scratch.Add "theTitle" .Site.Title}} {{ end }}
 <title>{{ $.Scratch.Get "theTitle" }}</title>
-{{ with .Site.Params.meta.description }}<meta name="description" content="{{ . }}">{{ end }}
-{{ with .Site.Params.meta.keywords }}<meta name="keywords" content="{{.}}">{{ end }}
-{{ template "_internal/twitter_cards.html" . }}
-{{ template "_internal/opengraph.html" . }}
+
+{{/* Meta Description - page level > site level */}} {{ $description := "" }} {{
+with .Description }} {{ $description = . }} {{ else }} {{ with .Summary }} {{
+$description = . | plainify | truncate 160 }} {{ else }} {{ with
+.Site.Params.meta.description }} {{ $description = . }} {{ end }} {{ end }} {{
+end }} {{ with $description }}
+<meta name="description" content="{{ . }}" />
+{{ end }} {{/* Meta Keywords - page tags > site keywords */}} {{ with
+.Params.tags }} <meta name="keywords" content="{{ delimit . ", " }}"> {{ else }}
+{{ with .Site.Params.meta.keywords }}
+<meta name="keywords" content="{{ . }}" />
+{{ end }} {{ end }} {{/* Author */}} <meta name="author" content="{{
+.Site.Params.author | default "Pengfei Ni" }}"> {{/* Canonical URL */}} {{ if
+.Params.canonicalUrl }}
+<link rel="canonical" href="{{ .Params.canonicalUrl }}" />
+{{ else }}
+<link rel="canonical" href="{{ .Permalink }}" />
+{{ end }} {{/* GEO Meta Tags */}} {{ with .Site.Params.seo.geo.region }}<meta
+  name="geo.region"
+  content="{{ . }}"
+/>{{ end }} {{ with .Site.Params.seo.geo.placename }}<meta
+  name="geo.placename"
+  content="{{ . }}"
+/>{{ end }} {{ with .Site.Params.seo.geo.position }}<meta
+  name="geo.position"
+  content="{{ . }}"
+/>{{ end }} {{ with .Site.Params.seo.geo.position }}<meta
+  name="ICBM"
+  content="{{ . }}"
+/>{{ end }} {{/* Enhanced OpenGraph Meta Tags */}} {{ partial
+"seo/opengraph-enhanced.html" . }} {{/* Enhanced Twitter Cards */}} {{ partial
+"seo/twitter-cards-enhanced.html" . }} {{/* Schema.org JSON-LD Structured Data
+*/}} {{ partial "seo/schema.html" . }} {{/* Pagination SEO links */}} {{ partial
+"seo/pagination-links.html" . }} {{/* Related posts links for GEO */}} {{ if
+.IsPage }} {{ with .Site.RegularPages.Related . }} {{ range first 5 . }}
+<link rel="related" href="{{ .Permalink }}" title="{{ .Title }}" />
+{{ end }} {{ end }} {{ end }}

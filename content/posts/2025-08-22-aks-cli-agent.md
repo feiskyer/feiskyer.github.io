@@ -2,7 +2,7 @@
 title: "AKS发布首个K8S AI Agent，Kubernetes运维进入智能时代"
 date: 2025-08-22T22:20:28+08:00
 draft: false
-tags: [AI, Vibe Coding, MCP, 大模型, Kubernetes]
+tags: [AI, MCP, Kubernetes, Agent]
 ---
 
 > **题记**：本文将带你一起了解 AKS 团队最近在 AI Agent 方面的新产品，即由 Agentic AI 驱动的智能运维和诊断命令行工具——AKS CLI Agent，专门用来解决 K8s 运维中那些让人头疼的问题。
@@ -160,4 +160,4 @@ AKS CLI Agent 在提升 Kubernetes 操作的易用性、智能化和安全性方
 
 欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
 
-![](https://feisky.xyz/assets/mp.png)
+![](/images/mp.png)

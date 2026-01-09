@@ -3,6 +3,16 @@ title: "构建高效的 AI 代理系统"
 date: 2025-01-06T22:10:12+08:00
 tags: [AI, AI Agent]
 draft: false
+description: "基于 Anthropic 研究报告，深入解析 AI 代理系统的构建模式：从增强型 LLM 到工作流设计，再到自主代理的最佳实践。"
+faq:
+  - question: "什么是 AI 代理（Agent）？"
+    answer: "AI 代理是能够动态指导自身流程和工具使用的系统，自主控制如何完成任务。与预定义工作流不同，代理可以根据环境反馈灵活调整执行策略。"
+  - question: "何时应该使用 AI 代理而不是简单的 LLM 调用？"
+    answer: "当任务需要灵活性和模型驱动决策，无法预测所需步骤数量，且无法硬编码固定路径时，应考虑使用代理。对于定义明确的任务，简单的 LLM 调用或工作流通常就足够了。"
+  - question: "AI 代理有哪些常见的工作流模式？"
+    answer: "常见模式包括：提示链（任务分解为顺序步骤）、路由（输入分类导向专门处理）、并行化（同时处理多个子任务）、编排器-工作者（动态任务分配）、评估器-优化器（迭代改进）。"
+  - question: "如何设计好的 AI 代理工具？"
+    answer: "关键是设计好代理-计算机接口（ACI）：提供清晰的工具文档和使用示例，使用绝对路径避免歧义，给模型足够的思考空间，并通过大量测试迭代优化。"
 ---
 
 题记：本文改编自 Anthropic 公司的研究报告《[Building effective agents](https://www.anthropic.com/research/building-effective-agents)》。原文发表于 2024 年 12 月 20 日, 由 Erik Schluntz 和 Barry Zhang 撰写。本文对原文进行了翻译、整理和补充, 旨在为中文读者提供关于构建高效 AI 代理系统的实用指南。
@@ -49,7 +59,7 @@ draft: false
 
 代理系统的基本构建模块是经过增强的 LLM, 具备检索、工具使用和记忆等能力。当前的模型可以主动使用这些能力——生成自己的搜索查询、选择适当的工具, 并决定保留哪些信息。
 
-![img](/assets/augmented-LLM.png)
+![增强型 LLM 架构图：展示 LLM 与检索、工具和记忆模块的集成](/images/augmented-LLM.png)
 
 <center> 增强型 LLM</center>
 
@@ -61,7 +71,7 @@ draft: false
 
 提示链将任务分解为一系列步骤, 每个 LLM 调用处理前一个调用的输出。可以在任何中间步骤添加程序化检查 (见下图中的 "门控"), 以确保流程仍在正轨上。
 
-![img](/assets/prompt-chaining.png)
+![提示链工作流：任务分解为顺序执行的 LLM 调用，每步可添加门控检查](/images/prompt-chaining.png)
 
 <center> 提示链工作流 </center>
 
@@ -76,7 +86,7 @@ draft: false
 
 路由对输入进行分类, 并将其导向专门的后续任务。这种工作流允许关注点分离, 并构建更专门化的提示。如果没有这种工作流, 为一种输入优化可能会损害其他输入的性能。
 
-![img](/assets/routing-wf.png)
+![路由工作流：根据输入分类将请求导向不同的专门处理路径](/images/routing-wf.png)
 
 <center> 路由工作流 </center>
 
@@ -94,7 +104,7 @@ LLM 有时可以同时处理一个任务, 然后以编程方式汇总它们的�
 * **分段:** 将任务分解为并行运行的独立子任务。
 * **投票:** 多次运行相同的任务以获得多样化的输出。
 
-![img](/assets/parallelization-wf.png)
+![并行化工作流：多个 LLM 同时处理子任务，结果汇总输出](/images/parallelization-wf.png)
 
 <center> 并行化工作流 </center>
 
@@ -113,7 +123,7 @@ LLM 有时可以同时处理一个任务, 然后以编程方式汇总它们的�
 
 在编排器 - 工作者工作流中, 一个中央 LLM 动态分解任务, 将它们委派给工作者 LLM, 并综合他们的结果。
 
-![img](/assets/orchestrator-wf.png)
+![编排器-工作者工作流：中央 LLM 动态分解任务并分配给多个工作者 LLM](/images/orchestrator-wf.png)
 
 <center> 编排器 - 工作者工作流 </center>
 
@@ -128,7 +138,7 @@ LLM 有时可以同时处理一个任务, 然后以编程方式汇总它们的�
 
 在评估器 - 优化器工作流中, 一个 LLM 调用生成响应, 而另一个在循环中提供评估和反馈。
 
-![img](/assets/evaluator-optimizer.png)
+![评估器-优化器工作流：生成器 LLM 产出内容，评估器 LLM 提供反馈迭代改进](/images/evaluator-optimizer.png)
 
 <center> 评估器 - 优化器工作流 </center>
 
@@ -145,7 +155,7 @@ LLM 有时可以同时处理一个任务, 然后以编程方式汇总它们的�
 
 代理可以处理复杂的任务, 但它们的实现往往很简单。它们通常只是基于环境反馈在循环中使用工具的 LLM。因此, 清晰、周到地设计工具集及其文档至关重要。我们在附录 2("工具的提示工程") 中详细阐述了工具开发的最佳实践。
 
-![img](/assets/Autonomous-agent.png)
+![自主代理架构：LLM 在循环中根据环境反馈动态使用工具完成任务](/images/Autonomous-agent.png)
 
 <center> 自主代理 </center>
 
@@ -160,7 +170,7 @@ LLM 有时可以同时处理一个任务, 然后以编程方式汇总它们的�
 * 一个编码代理, 用于解决 [SWE-bench 任务](https://www.anthropic.com/research/swe-bench-sonnet), 这涉及根据任务描述对多个文件进行编辑;
 * Anthropic 的 ["计算机使用" 参考实现](https://github.com/anthropics/anthropic-quickstarts/tree/main/computer-use-demo), 其中 Claude 使用计算机完成任务。
 
-![img](/assets/coding-agent.png)
+![编码代理流程：从问题描述到代码生成、测试、迭代修复的完整流程](/images/coding-agent.png)
 
 <center>编码代理的高级流程</center>
 
@@ -234,3 +244,9 @@ Anthropic 与客户的合作揭示了两个特别有前景的 AI 代理应用, �
 通过仔细设计工具、优化工作流程, 并在必要时引入自主代理, 你可以创建既强大又可靠的 AI 系统。无论是改善客户支持还是推动软件开发, AI 代理都展现了巨大的潜力。但关键在于始终保持批判性思考, 不断测试和迭代, 确保你的系统不仅智能, 而且值得信赖。
 
 随着 AI 技术的不断发展, 我们期待看到更多创新的代理系统应用。希望这篇文章能为你在这个领域中的探索提供有价值的指导。记住, 在 AI 的世界里, 最好的系统往往是那些既能发挥技术优势, 又能与人类智慧无缝协作的系统。
+
+---
+
+欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
+
+![](/images/mp.png)

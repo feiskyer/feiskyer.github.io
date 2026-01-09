@@ -15,7 +15,7 @@ draft: false
 
 简单来说，由于 UDP 是无连接的，内核 netfilter 模块在处理同一个 socket 上的并发 UDP 包时就可能会有三个竞争问题。以下面的 conntrack 和 DNAT 工作流程为例：
 
-![图片](640-20210121125028619)
+![图片](/images/640-20210121125028619)
 
 由于 UDP 的 connect 系统调用不会立即创建 conntrack 记录，而是在 UDP 包发送之后才去创建，这就可能会导致下面三种问题：
 
@@ -77,4 +77,4 @@ kubectl apply -f https://github.com/feiskyer/kubernetes-handbook/raw/master/exam
 
 欢迎扫描下面的二维码关注 **Feisky** 公众号，回复**任意关键字**查询更多云原生知识库，或回复**联系**加我微信。
 
-![](/assets/mp.png)
+![](/images/mp.png)

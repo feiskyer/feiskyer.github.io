@@ -27,7 +27,7 @@ The interesting part of HyperContainer is not only that it is secure enough for 
 One of the most important concepts in Kubernetes is Pods. The design of Pods is a lesson learned ([Borg paper section 8.1](http://static.googleusercontent.com/media/research.google.com/zh-CN//pubs/archive/43438.pdf)) from real world workloads, where in many cases people want an atomic scheduling unit composed of multiple containers (please check this [example](https://github.com/kubernetes/kubernetes/tree/master/examples/javaweb-tomcat-sidecar) for further information). In the context of Linux containers, a Pod wraps and encapsulates several containers into a logical group. But in HyperContainer, the hypervisor serves as a natural boundary, and Pods are introduced as first-class objects:  
 
 
-![](https://lh6.googleusercontent.com/8DjNb9IE0HjinFxkaoGbPaaKbts5_Osbj-8NVWQMgY_8D32643Aum0SaMc2OedV2gECG3EXov8qj_f8XDe0IfpptZt61HxfJEonLo3RA5xkr5zSmd2nxqVc8yESc423nPEZTj1H3)
+![](/images/8DjNb9IE0HjinFxkaoGbPaaKbts5_Osbj-8NVWQMgY_8D32643Aum0SaMc2OedV2gECG3EXov8qj_f8XDe0IfpptZt61HxfJEonLo3RA5xkr5zSmd2nxqVc8yESc423nPEZTj1H3.png)
 
 
 HyperContainer wraps a Pod of light-weight application containers and exposes the container interface at Pod level. Inside the Pod, a minimalist Linux kernel called HyperKernel is booted. This HyperKernel is built with a tiny Init service called HyperStart. It will act as the PID 1 process and creates the Pod, setup Mount namespace, and launch apps from the loaded images. 
@@ -80,7 +80,7 @@ apiVersion: v1  kind: Namespace  metadata:    name: ns1  spec:    network: net1
 If a Namespace does not have a Network spec, it will use the default Kubernetes network model instead, including the default kube-proxy. So if a user creates a Pod in a Namespace with an associated Network, Hypernetes will follow the [Kubernetes Network Plugin Model](http://kubernetes.io/docs/admin/network-plugins/) to set up a Neutron network for this Pod. Here is a high level example:
 
 
-![A Hypernetes Network Workflow.png](https://lh4.googleusercontent.com/ij88fHWT3wDSxDh4W7S0sARfjdRd5oTJTZGT_r8oQoqoGGjZWmHLJtPG8TT3U_tZ2rFqK7lwK56l3UIq3csSUxSdgGvfzORaAEAkl9fChxiLzVgz-mExTMi8sxUlfsesS59G0Fsa)
+![A Hypernetes Network Workflow.png](/images/ij88fHWT3wDSxDh4W7S0sARfjdRd5oTJTZGT_r8oQoqoGGjZWmHLJtPG8TT3U_tZ2rFqK7lwK56l3UIq3csSUxSdgGvfzORaAEAkl9fChxiLzVgz-mExTMi8sxUlfsesS59G0Fsa.png)
 
 
 

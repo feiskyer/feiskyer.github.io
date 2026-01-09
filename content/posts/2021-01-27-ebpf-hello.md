@@ -57,7 +57,7 @@ PID    COMM         IP SADDR            DADDR            DPORT
 
 [bpftrace](https://github.com/iovisor/bpftrace) 类似于 DTrace 或 SystemTap，它在 eBPF 之上构建了一个简化的跟踪语言，通过简单的几行脚本，就可以达到复杂的跟踪功能。多行的跟踪指令也可以放到脚本文件中执行，脚本后缀通常为 `.bt`。
 
-![](2021-01-25-14-44-55.png)
+![](/images/2021-01-25-14-44-55.png)
 
 Ubuntu 19.04 或者更新的系统可以直接通过 apt-get 命令安装 bpftrace：
 
@@ -107,7 +107,7 @@ bpftrace -e 'software:faults:1 {@[comm] = count(); }'
 
 在 Kubernetes 集群中，你可以通过 [kubectl trace](https://github.com/iovisor/kubectl-trace) 简化 bpftrace 的调度和运行。其运行原理如下图所示：
 
-![](2021-01-25-14-49-01.png)
+![](/images/2021-01-25-14-49-01.png)
 
 kubectl trace 支持单行方式或者脚本文件方式，比如
 
@@ -118,11 +118,11 @@ kubectl trace run node-1 -e "tracepoint:syscalls:sys_enter_* {@[probe] = count()
 kubectl trace run node-1 -f read.bt
 ```
 
-![](2021-01-25-14-45-25.png)
+![](/images/2021-01-25-14-45-25.png)
 
 kubectl trace 也可以通过 uprobe 直接跟踪一个 Pod：
 
-![](2021-01-25-14-54-41.png)
+![](/images/2021-01-25-14-54-41.png)
 
 ## 小结
 
@@ -132,4 +132,4 @@ BCC 和 bpftrace 是两个最简单易用的 eBPF 跟踪工具，推荐初学者
 
 欢迎扫描下面的二维码关注 **Feisky** 公众号，回复**任意关键字**查询更多云原生知识库，或回复**联系**加我微信。
 
-![](/assets/mp.png)
+![](/images/mp.png)

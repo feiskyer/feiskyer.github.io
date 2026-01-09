@@ -23,7 +23,7 @@ BPF 在数据包过滤上引入了两大革新来提高性能：
 
 ● BPF 使用简单无共享的缓存模型。数据包会先经过 BPF 过滤再拷贝到缓存，缓存不会拷贝所有数据包数据，这样可以最大程度地减少了处理的数据量从而提高性能。
 
-![img](bpf_overview.png)
+![img](/images/bpf_overview.png)
 
 ## 3 Linux 超能力终于到来了：eBPF 架构演变
 
@@ -52,15 +52,15 @@ BPF 在数据包过滤上引入了两大革新来提高性能：
 
 BPF 是一个通用执行引擎，能够高效地安全地执行基于系统事件的特定代码。BPF 内部由字节码指令，存储对象和帮助函数组成。从某种意义上看，BPF和Java虚拟机功能类似。对于Java 开发人员而言，可以使用 javac 将高级编程语言编译成机器代码，Java虚拟机是运行该机器代码的专用程序。相应地，BPF 开发人员可以使用编译器 LLVM 将 C 代码编译成 BPF 字节码，字节码指令在内核执行前必须通过 BPF 验证器进行验证，同时使用内核中的 BPF JIT 模块，将字节码指令直接转成内核可执行的本地指令。编译后的程序附加到内核的各种事件上，以便在 Linux 内核中运行该 BPF 程序。下图是 BPF 架构图：
 
-![img](bpf_architecture-20210121133843008.png)
+![img](/images/bpf_architecture-20210121133843008.png)
 
 BPF 使内核具有可编程性。BPF 程序是运行在各种内核事件上的小型程序。这与JavaScript 程序有一些相似之处：JavaScript 是允许在浏览器事件，例如：鼠标单击上运行的微型 Web 程序。BPF 是允许内核在系统和应用程序事件，例如：磁盘 I/O 上运行的微型程序。内核运行 BPF 程序之前，需要知道程序附加的执行点。程序执行点是由BPF程序类型确定。通过查看/kernel-src/sample/bpf/bpf_load.c 可以查看 BPF 程序类型。下面是定义在 bpf 头文件中的 bpf 程序类型：
 
-![img](bpf_prog_type.png)
+![img](/images/bpf_prog_type.png)
 
 BPF 映射提供了内核和用户空间双向数据共享，允许用户从内核和用户空间读取和写入数据。BPF 映射的数据结构类型可以从简单数组、哈希映射到自定义类型映射。下面是定义在 bpf 头文件中的 bpf 映射类型：
 
-![img](https://www.ebpf.top/post/ebpf_container_security/imgs/bpf_map_type.png)
+![](/images/0feb9d4a-86d0-488e-a4a9-52e3fbe8cb46.png)
 
 ### 3.3.BPF 与传统 Linux 内核模块的对比
 
@@ -99,7 +99,7 @@ BPF跟踪是 Linux 可观测性的新方法。在BPF 技术的众多应用场景
 
 ❏ perf_events：定时采样和 PMC。
 
-![img](bpf_tracing.png)
+![img](/images/bpf_tracing.png)
 
 ## 5 容器安全
 
@@ -121,7 +121,7 @@ BPF跟踪是 Linux 可观测性的新方法。在BPF 技术的众多应用场景
 
 ❏ 容器和容器编排给系统增加了新的元素,带来新的风险!
 
-![img](container-20210121133855743.png)
+![img](/images/container-20210121133855743.png)
 
 ### 5.2 容器安全事故：容器逃逸
 
@@ -129,11 +129,11 @@ BPF跟踪是 Linux 可观测性的新方法。在BPF 技术的众多应用场景
 
 ❏ 危险配置导致容器逃逸。在这些年的迭代中，容器社区一直在努力将「纵深防御」、「最小权限」等理念和原则落地。例如，Docker已经将容器运行时的Capabilities黑名单机制改为如今的默认禁止所有Capabilities，再以白名单方式赋予容器运行所需的最小权限。如果容器启动，配置危险能力，或特权模式容器，或容器以root用户权限运行都会导致容器逃逸。下面是容器运行时默认的最小权限。
 
-![img](docker_default_capability.png)
+![img](/images/docker_default_capability.png)
 
 ❏ 危险挂载导致容器逃逸。Docker Socket 是 Docker 守护进程监听的 Unix 域套接字，用来与守护进程通信——查询信息或下发命令。如果在攻击者可控的容器内挂载了该套接字文件（/var/run/docker.sock），容器逃逸就相当容易了，除非有进一步的权限限制。
 
-![img](container_escape.png)
+![img](/images/container_escape.png)
 
 下面通过一个小实验来展示这种逃逸可能性：
 
@@ -153,7 +153,7 @@ BPF跟踪是 Linux 可观测性的新方法。在BPF 技术的众多应用场景
 [root@bpftest ~]#docker run -it -v /:/host dockertest /bin/bash
 ```
 
-![img](container_escape_1.png)
+![img](/images/container_escape_1.png)
 
 ❏ 相关程序漏洞导致容器逃逸，例如：runc漏洞CVE-2019-5736 导致容器逃逸。
 
@@ -161,7 +161,7 @@ BPF跟踪是 Linux 可观测性的新方法。在BPF 技术的众多应用场景
 
 下面是2019年排名最高的容器安全事故列表：
 
-![img](container_runtime_violation.png)
+![img](/images/container_runtime_violation.png)
 
 ## 6 容器安全主控引擎
 
@@ -185,13 +185,13 @@ BPF跟踪是 Linux 可观测性的新方法。在BPF 技术的众多应用场景
 
 ❏ 检测容器中用户操作及可疑的shell脚本的执行。
 
-![img](ebpf_container_security-20210121133905910.png)
+![img](/images/ebpf_container_security-20210121133905910.png)
 
 ### 6.2 隔离有问题的容器和节点
 
 如果检测到有问题的容器或节点，可以将节点设置为维护状态，或使用网络策略隔离有问题的容器，或将deployment的副本数设置为0，删除有问题的容器。同时，使用sidecar WAF，进行虚拟补丁等进行容器应用安全防范。
 
-![img](container_isolation.png)
+![img](/images/container_isolation.png)
 
 ### 6.3 大型公有云容器平台安全主控引擎
 
@@ -203,7 +203,7 @@ BPF跟踪是 Linux 可观测性的新方法。在BPF 技术的众多应用场景
 
 ❏ 安全主控引擎组件 jasmine 从消息队列中拉取事件，对数据进行分析，对有故障的容器和主机进行隔离。并将事件推送给SIEM安全信息事件管理平台进行管理。
 
-![img](secuirty_engine.png)
+![img](/images/secuirty_engine.png)
 
 参考资料：
 
@@ -220,4 +220,4 @@ BPF跟踪是 Linux 可观测性的新方法。在BPF 技术的众多应用场景
 
 欢迎扫描下面的二维码关注 **Feisky** 公众号，回复**任意关键字**查询更多云原生知识库，或回复**联系**加我微信。
 
-![](/assets/mp.png)
+![](/images/mp.png)

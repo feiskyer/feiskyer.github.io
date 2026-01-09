@@ -65,7 +65,7 @@ draft: false
 
 下图是 Google Cloud 推荐的一种最简单的多集群服务发现方案：
 
-![图片](640-20210121131333488.png)
+![图片](/images/640-20210121131333488.png)
 
 (图片来自 Google Cloud）
 
@@ -81,11 +81,11 @@ draft: false
 
 
 
-![图片](640-20210121131313318.png)
+![图片](/images/640-20210121131313318.png)
 
 **第二种方案是侧重解决服务治理和流量调度的问题**，典型的是 Service Mesh。不同集群的网络可以通过 Service Mesh（或者 Mesh Federation）打通，就可以实现网络流量的灵活调度和故障转移。实际上，也有很多应用通过隧道或者专线打通多个集群，进一步保证了多集群之间网络通信的可靠性。
 
-![图片](640-20210121131354489.png)
+![图片](/images/640-20210121131354489.png)
 
 （图片来自 https://www.cloudtp.com/doppler/kubernetes-and-multicloud/）
 
@@ -95,7 +95,7 @@ draft: false
 
 
 
-![图片](640-20210121131313395.png)
+![图片](/images/640-20210121131313395.png)
 
 （图片来自 https://www.cloudtp.com/doppler/kubernetes-and-multicloud/）
 
@@ -153,4 +153,4 @@ draft: false
 
 欢迎扫描下面的二维码关注 **Feisky** 公众号，回复**任意关键字**查询更多云原生知识库，或回复**联系**加我微信。
 
-![](/assets/mp.png)
+![](/images/mp.png)

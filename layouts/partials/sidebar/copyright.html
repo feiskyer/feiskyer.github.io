@@ -1,0 +1,31 @@
+{{ with .Site.Params.copyright }}
+<div class="copyright">
+  &copy; {{ with $.Site.Params.since }}{{ if lt . now.Year }}{{ . | safeHTML }} - {{ end }}{{ end }}{{ now.Format "2006"}} {{ . | safeHTML }}
+  {{ with $.Site.Params.license }}
+    <a href="{{$.Site.Params.licenseURL | safeHTML}}">{{ . | safeHTML }}</a>
+  {{end}}
+</div>
+{{ end }}
+
+{{ with .Site.Params.seo.geo }}
+<div class="geo-location" style="font-size: 0.8rem; margin-top: 0.5rem; opacity: 0.8;">
+  <span itemscope itemtype="https://schema.org/Place">
+    <i class="fas fa-map-marker-alt"></i> 
+    <span itemprop="name">{{ .placename }}</span>, 
+    <span itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+      <span itemprop="addressRegion">{{ .region }}</span>
+    </span>
+    {{ $pos := split .position ";" }}
+    <meta itemprop="latitude" content="{{ index $pos 0 }}" />
+    <meta itemprop="longitude" content="{{ index $pos 1 }}" />
+  </span>
+</div>
+{{ end }}
+
+{{/* BuiltWith hidden as per user request
+{{ with .Site.Params.showBuiltWith }}
+<div class="builtwith">
+Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/derme302/triple-hyde">triple-hyde</a>.
+</div>
+{{ end }}
+*/}}

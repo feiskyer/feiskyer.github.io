@@ -1,11 +1,8 @@
 <head>
     <link href="https://gmpg.org/xfn/11" rel="profile">
-    {{ if .Params.canonicalUrl }}
-    <link rel="canonical" href="{{ .Params.canonicalUrl }}">
-    {{ else }}
-    <link rel="canonical" href="{{ .Permalink }}">
-    {{ end }}
+    {{/* Canonical URL is handled in header/meta.html */}}
     {{ partial "header/meta.html" . }}
+    {{ partial "header/web-fonts.html" . }}
     {{ partial "header/styles.html" . }}
     {{ `<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -16,5 +13,6 @@
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
     <link rel="shortcut icon" href="/favicon.png">
     {{ partial "header/feeds.html" . }}
-    {{ partial "header/custom.html" }}
+    {{ partial "seo/pagination-links.html" . }}
+    {{ partial "header/custom.html" . }}
 </head>

@@ -21,7 +21,7 @@ Simply put:
 
 	   Hypernetes = Bare-metal + Hyper + Kubernetes + Cinder(Ceph) + Neutron + Keystone
 
-![Hypernetes](https://github.com/hyperhq/hypernetes/raw/master/architecture.png?raw=true)
+![](/images/052bd9c3-f403-4f0d-8d76-e0ecce15ff74.png)
 
 - Hyper (Hyperd) runs directly on all your bare-metal machines to provision HyperVM (with Docker images) in milliseconds
 - Within the VM, the "Hyperstart" init process is launched on top of the Hyper Kernel (or any compatible Linux kernel) to run Docker images as Pod

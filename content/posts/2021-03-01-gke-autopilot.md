@@ -13,11 +13,11 @@ Google Cloud 前两天推出了 GKE Autopilot，其官方博客 [Introducing GKE
 
 GKE Autopilot 模式图示如下：
 
-![](2021-02-28-11-33-00.png)
+![](/images/2021-02-28-11-33-00.png)
 
 GKE 标准模式图示如下：
 
-![](2021-02-28-11-33-19.png)
+![](/images/2021-02-28-11-33-19.png)
 
 Autopilot 会预先配置和管理整个集群的底层基础架构，包括
 
@@ -38,9 +38,9 @@ Autopilot 会预先配置和管理整个集群的底层基础架构，包括
 
 GKE 集群创建后，可以在其详细信息页面看到其他禁止的特性：
 
-![](2021-02-28-11-33-44.png)
-![](2021-02-28-11-33-58.png)
-![](2021-02-28-11-34-07.png)
+![](/images/2021-02-28-11-33-44.png)
+![](/images/2021-02-28-11-33-58.png)
+![](/images/2021-02-28-11-34-07.png)
 
 更多的限制可以参考 [GKE Autopilot 文档](https://cloud.google.com/kubernetes-engine/docs/concepts/autopilot-overview)。
 
@@ -58,4 +58,4 @@ GKE 集群创建后，可以在其详细信息页面看到其他禁止的特性�
 
 欢迎扫描下面的二维码关注 **Feisky** 公众号，回复**任意关键字**查询更多云原生知识库，或回复**联系**加我微信。
 
-![](https://feisky.xyz/assets/mp.png)
+![](/images/mp.png)

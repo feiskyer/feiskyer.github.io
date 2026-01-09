@@ -2,7 +2,7 @@
 title: "开源 AKS MCP：解锁智能 Kubernetes 运维"
 date: 2025-08-14T22:20:28+08:00
 draft: false
-tags: [AI, Vibe Coding, MCP, 大模型, Kubernetes]
+tags: [AI, MCP, Agent, Kubernetes]
 ---
 
 > 题记：本文根据 AKS 官方博客《Announcing the AKS-MCP Server: Unlock Intelligent Kubernetes Operations》整理，并结合中文表达习惯进行了适当调整。原文作者 Pavneet Ahluwalia。
@@ -101,7 +101,7 @@ AKS-MCP Server 作为 AI Agent 与 AKS 集群间的标准化桥梁，具备三�
 **3. 社区驱动扩展**
 完全开源，针对新工具快速适配。Istio、ArgoCD、Prometheus 等工具的支持正在路上。
 
-![](/images20251127085207.png)
+![](/images/images20251127085207.png)
 
 完整的工具和功能列表请查看 [AKS MCP 工具列表](https://github.com/Azure/aks-mcp#available-tools)。
 
@@ -209,4 +209,4 @@ AKS MCP 实现了智能化、代理驱动的云运维。以下是在 GitHub Copi
 
 欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
 
-![](https://feisky.xyz/assets/mp.png)
+![](/images/mp.png)

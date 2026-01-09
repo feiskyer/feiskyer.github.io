@@ -2,7 +2,7 @@
 title: "Claude Code SubAgent"
 date: 2025-08-04T18:22:28+08:00
 draft: false
-tags: [AI, Vibe Coding, Claude Code]
+tags: [AI, Vibe Coding, Claude Code, Agent]
 ---
 
 你在使用 Claude Code 时，是否碰到复杂多任务场景无法应对的问题？当你需要同时进行代码审查、文档编写和性能优化时，上下文混乱是否让你感到力不从心？
@@ -294,4 +294,4 @@ Claude Code 会根据上下文智能选择最合适的代理。优化选择准�
 
 欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
 
-![](https://feisky.xyz/assets/mp.png)
+![](/images/mp.png)

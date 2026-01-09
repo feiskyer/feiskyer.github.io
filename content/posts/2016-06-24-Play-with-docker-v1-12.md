@@ -10,7 +10,7 @@ Docker v1.12 brings in its integrated orchestration into docker engine.
 
 > Starting with Docker 1.12, we have added features to the core Docker Engine to make multi-host and multi-container orchestration easy.  We’ve added new API objects, like Service and Node, that will let you use the Docker API to deploy and manage apps on a group of Docker Engines called a swarm. With Docker 1.12, the best way to orchestrate Docker is Docker!
 
-![docker-v1 12](https://cloud.githubusercontent.com/assets/676637/16327966/a4f34346-3a07-11e6-8d21-153509596cec.png)
+![](/images/12ecd728-02c0-476d-9f16-12a51aa8f708.png)
 
 ## Playing on GCE
 

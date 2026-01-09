@@ -25,11 +25,11 @@ Kubernetes 网络原理中，最复杂的一块应该就是它的服务发现和
 
 1.用户通过 API 创建一个 Service2.kube-controller-manager 通过 Label 绑定 Pod 并创建同名 Endpoints 对象3.每个 Node 上面的 kube-proxy 为 Service 和 Endpoints 创建 iptables 规则，实现负载均衡和 DNAT
 
-![图片](640-20210121132022771.png)
+![图片](/images/640-20210121132022771.png)
 
 Kubernetes 网络中最核心的一块是 kube-proxy 如何实现了服务发现和负载均衡。默认 iptables 模式的工作流程如下图所示，掌握这个流程是理解 Kubernetes 网络的工作原理以及日常网络排错的关键。
 
-![图片](640-20210121132022685)
+![图片](/images/640-20210121132022685)
 
 ## 网络排错
 
@@ -60,4 +60,4 @@ Kubernetes 网络中最核心的一块是 kube-proxy 如何实现了服务发现
 
 欢迎扫描下面的二维码关注 **Feisky** 公众号，回复**任意关键字**查询更多云原生知识库，或回复**联系**加我微信。
 
-![](/assets/mp.png)
+![](/images/mp.png)

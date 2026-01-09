@@ -99,7 +99,7 @@ Then you should get a page like this but probably at first without all the items
 
 <figure name="d978" id="d978" class="graf--figure">
     <div class="aspectRatioPlaceholder is-locked" style="max-width: 700px; max-height: 554px;">
-        <div class="aspect-ratio-fill" style="padding-bottom: 79.2%;"></div>![](https://d262ilb51hltx0.cloudfront.net/max/1010/1*jaUBLpqWBgviqteTk4CuTQ.png)
+        <div class="aspect-ratio-fill" style="padding-bottom: 79.2%;"></div>![](/images/e260db5e-1792-44fc-8895-8835e6fb10e7.png)
     </div>
 </figure>
 
@@ -113,7 +113,7 @@ http://${HOST_IP}:8080
 
 <figure name="dbcb" id="dbcb" class="graf--figure">
     <div class="aspectRatioPlaceholder is-locked" style="max-width: 700px; max-height: 189px;">
-        <div class="aspect-ratio-fill" style="padding-bottom: 27%;"></div>![](https://d262ilb51hltx0.cloudfront.net/max/1400/1*0dKOQ7S8Sc53dTK1tezVLA.png)
+        <div class="aspect-ratio-fill" style="padding-bottom: 27%;"></div>![](/images/fb3cdf71-0e5e-4ace-9e50-63445ba9ba83.png)
     </div>
 </figure>
 
@@ -121,7 +121,7 @@ Clicking on the “New App” button on the top right gives you the following me
 
 <figure name="7586" id="7586" class="graf--figure">
     <div class="aspectRatioPlaceholder is-locked" style="max-width: 700px; max-height: 1096px;">
-        <div class="aspect-ratio-fill" style="padding-bottom: 156.6%;"></div>![](https://d262ilb51hltx0.cloudfront.net/max/700/1*T2RuhLQE5xawA_whqbB7ig.png)
+        <div class="aspect-ratio-fill" style="padding-bottom: 156.6%;"></div>![](/images/a92f8a6f-23c4-4507-93c5-4ad7a6e7413c.png)
     </div>
 </figure>
 

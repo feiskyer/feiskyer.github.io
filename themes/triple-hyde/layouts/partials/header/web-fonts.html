@@ -1,2 +1,28 @@
-<link rel="dns-prefetch" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,300i,400,400i,700|Source+Code+Pro:400,400i" rel="stylesheet">
+{{/* Resource hints for performance optimization */}}
+
+{{/* Critical external resources - preconnect establishes early connections */}}
+<link rel="preconnect" href="https://fonts.loli.net" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+
+{{/* Gravatar for author avatar - using Cravatar mirror */}}
+{{ with .Site.Params.social.gravatar }}
+<link rel="preconnect" href="https://cravatar.cn" crossorigin>
+{{ end }}
+
+{{/* Google Analytics - Removed preconnect to avoid blocking */}}
+
+{{/* Disqus comments */}}
+{{ with .Site.Config.Services.Disqus.Shortname }}
+<link rel="dns-prefetch" href="https://disqus.com">
+<link rel="dns-prefetch" href="https://c.disquscdn.com">
+{{ end }}
+
+{{/* DNS prefetch as fallback */}}
+<link rel="dns-prefetch" href="https://fonts.loli.net">
+<link rel="dns-prefetch" href="https://fonts.gstatic.com">
+<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+<link rel="dns-prefetch" href="https://cravatar.cn">
+
+{{/* Google Fonts mirror */}}
+<link href="https://fonts.loli.net/css?family=IBM+Plex+Sans:300,300i,400,400i,700|Source+Code+Pro:400,400i&display=swap" rel="stylesheet">

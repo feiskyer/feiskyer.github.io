@@ -12,7 +12,7 @@ http://www.csdn.net/article/2015-06-02/2824827
 
 > Magnum是去年巴黎峰会后开始的一个新项目，专门用来向用户提供容器服务，其最新的架构如图2所示。从去年11月份开始在StackForge提交第一个Patch，到今年3月份进入OpenStack Namespace，Magnum应该是OpenStack社区从StackForge迁移到OpenStack Namespace最快的一个项目。Magnum现在可以为用户提供Kubernetes as a Service和Swarm as a Service，大家应该会很快在L版看到Mesos as a Service。Magnum的一些Contributor，Adrian Otto是Rackspace的杰出工程师，Magnum和Solum的双重PTL；Steven Dake刚刚离开Redhat加入Cisco，他是Heat的创始人，现在Kolla的PTL，同时还在积极推动一个新项目Machine Learning as a Service；Davanum Srinivas (Dims)刚刚从IBM加入Mirantis，现在担任Oslo的PTL。关于他们的时间分配问题，Adrian的原话是会重点放在Magnum。
 
-![](https://wiki.openstack.org/w/images/thumb/6/61/Magnum_architecture.png/800px-Magnum_architecture.png)
+![](/images/d70d0803-e152-47ff-801b-11fb56052f62.png)
 
 <http://mp.weixin.qq.com/s?__biz=MzA4NTA0NjgwNg==&mid=207823495&idx=1&sn=cc13b6cc0106c48950019377bd9ff5e1&3rd=MzA3MDU4NTYzMw==&scene=6#rd>
 

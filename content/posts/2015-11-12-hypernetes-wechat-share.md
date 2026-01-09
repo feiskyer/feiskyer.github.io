@@ -49,7 +49,7 @@ Hypernetes在Kubernetes基础上增加了一些组件
 
 具体到Hypernetes内部，详细的架构是这样的
 
-![](https://github.com/hyperhq/hypernetes/raw/master/architecture.png?raw=true)
+![](/images/c87b81af-1a10-40c9-95c7-519c128a8267.png)
 
 为了支持多租户，Hypernetes基于Kubernetes增加了很多组件，这些组件都是以Plugin的形式提供的。
 

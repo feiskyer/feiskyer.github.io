@@ -35,7 +35,7 @@ Kubernetes 已经成为容器编排调度领域的事实标准，其优良的架
 - kube-proxy 负责为 Service 提供 cluster 内部的服务发现和负载均衡
 - Network plugin 负责为容器配置网络
 
-![image-20181014230247199](/assets/image-20181014230247199.png)
+![image-20181014230247199](/images/image-20181014230247199.png)
 
 Kubernetes 除了这些核心的组件以外，还有很多丰富的功能，而这些额外的功能都是通过“Addon”的方式来部署的。比如 kube-dns 和 metrics-server 等，都是以容器的方式部署在集群里面，并提供 API 给其他组件调用。
 
@@ -43,7 +43,7 @@ Kubernetes 除了这些核心的组件以外，还有很多丰富的功能，而
 
 Kubelet 负责维持容器的生命周期，同时也配合 kube-controller-manager 管理容器的存储卷，并配合 CNI 管理容器的网络。接下来，我们再来仔细看看 Kubelet 的架构。
 
-![image-20181014230306984](/assets/image-20181014230306984.png)
+![image-20181014230306984](/images/image-20181014230306984.png)
 
 Kubelet 也是有很多组件构成，包括
 
@@ -76,7 +76,7 @@ Kubelet 通过 CRI 接口跟外部容器运行时交互，它包括
 
 ## 容器运行时演进过程
 
-![image-20181014230405547](/assets/image-20181014230405547.png)
+![image-20181014230405547](/images/image-20181014230405547.png)
 
 容器运行时的演进可以分为三个阶段：
 
@@ -95,7 +95,7 @@ Kubelet 通过 CRI 接口跟外部容器运行时交互，它包括
 
 除了 gRPC API，CRI 还包括用于实现 streaming server 的库（用于 Exec、Attach、PortForward 等接口）和 CRI Tools。
 
-![image-20181014230459955](/assets/image-20181014230459955.png)
+![image-20181014230459955](/images/image-20181014230459955.png)
 
 基于 CRI 接口的容器运行时通常称为 CRI shim， 这是一个 gRPC Server，监听在本地的unix socket上；而kubelet作为gRPC的客户端来调用CRI接口。另外，外部容器运行时需要自己负责管理容器的网络，推荐使用CNI，这样跟Kubernetes的网络模型保持一致。
 
@@ -113,7 +113,7 @@ CRI 的推出为容器社区带来了新的繁荣，cri-o、frakti、cri-contain
 
 CRI 接口包括 `RuntimeService` 和 `ImageService` 两个服务，这两个服务可以在一个 gRPC server 里面实现，当然也可以分开成两个独立服务。目前社区的很多运行时都是将其在一个 gRPC server 里面实现。
 
-![image-20181014230528339](/assets/image-20181014230528339.png)
+![image-20181014230528339](/images/image-20181014230528339.png)
 
 管理镜像的 ImageService 提供了 5 个接口，分别是查询镜像列表、拉取镜像到本地、查询镜像状态、删除本地镜像以及查询镜像占用空间等。这些都很容易映射到 docker API 或者 CLI 上面。
 
@@ -130,7 +130,7 @@ Streaming API 用于客户端与容器进行交互，包括Exec、PortForward �
 
 这是因为所有容器的流式请求都会经过 Kubelet，这有可能会给节点的网络流量带来瓶颈，因而 CRI 要求容器运行时启动一个对应请求的单独的流服务器，将地址返回给Kubelet。Kubelet然后将这个信息再返回给Kubernetes API Server，它会打开直接与运行时提供的服务器相连的流连接，并通过它跟客户端连通。
 
-![image-20181014230541934](/assets/image-20181014230541934.png)
+![image-20181014230541934](/images/image-20181014230541934.png)
 
 这样一个完整的 Exec 流程就如上图所示，分为多个阶段：
 
@@ -243,7 +243,7 @@ spec:
 
 Virtual Kubelet 是针对 Serverless 容器平台设计的虚拟 Kubernetes 节点，它模拟了 Kubelet 的功能，并将 Serverless 容器平台抽象为一个虚拟的无限资源的 Node。这样就可以通过 Kubernetes API 来管理其上的容器。
 
-![image-20181014230850615](/assets/image-20181014230850615.png)
+![image-20181014230850615](/images/image-20181014230850615.png)
 
 目前 Virtual Kubelet 已经支持了众多的云平台，包括
 

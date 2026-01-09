@@ -1,0 +1,85 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: {{ .Site.BaseURL }}sitemap.xml
+
+# LLM-friendly content description
+# See: https://llmstxt.org/
+# llms.txt: {{ .Site.BaseURL }}llms.txt
+
+# Crawl delay for respectful crawling (optional)
+# Crawl-delay: 1
+
+# ============================================
+# AI Search Bots (GEO - Generative Engine Optimization)
+# ============================================
+
+# OpenAI SearchBot - for ChatGPT search results
+User-agent: OAI-SearchBot
+Allow: /
+
+# GPTBot - for OpenAI training (allow for visibility)
+User-agent: GPTBot
+Allow: /
+
+# Anthropic Claude bots
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# Google Gemini/Bard
+User-agent: Google-Extended
+Allow: /
+
+# Perplexity AI
+User-agent: PerplexityBot
+Allow: /
+
+# Common Crawl (used by many AI systems)
+User-agent: CCBot
+Allow: /
+
+# ============================================
+# Traditional Search Engines
+# ============================================
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: Yandex
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+# ============================================
+# SEO Tools (rate limited)
+# ============================================
+
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+User-agent: MJ12bot
+Crawl-delay: 10
+
+# ============================================
+# Blocked Bots (spam/scraping)
+# ============================================
+
+User-agent: PetalBot
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /

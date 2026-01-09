@@ -14,7 +14,7 @@ An application catalog developed by Mirantis, HP and others (now including Cisco
 
 ### Functionality Highlights
 
-![ui](/assets/OpenStack-Centric-Applications-Murano-Application-Catalog-UI.png)
+![ui](/images/OpenStack-Centric-Applications-Murano-Application-Catalog-UI.png)
 
 1.  Supports Windows and Linux applications
 2.  Leverages HOT templates for application definition
@@ -75,7 +75,7 @@ The Cloud Administrator is responsible for running the application catalog and p
 
 Currently, Murano applications may be packaged using two different formats to describe the application – the MuranoPL or a HOT template. There’s roadmap to support addition application description formats. While these two methodologies vary in terms of how the orchestration is performed during provisioning of an instance of the app, their are common attributes (catalog metadata) like an application display name, logo, description, author, tags. For those familiar with other domain-specific languages of other popular configuration management frameworks, the MuranoPL is of little challenge to pick up (you may lean into  use Bash or Powershell if more comfortable) or you may opt to use SoftwareConfig and SoftwareDeploy of HOT.
 
-![](/assets/OpenStack-Centric-Applications-Murano-Application-Packaging.png)
+![](/images/OpenStack-Centric-Applications-Murano-Application-Packaging.png)
 
 ### Architectural Overview & Core Services Integration
 
