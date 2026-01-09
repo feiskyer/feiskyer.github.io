@@ -1,0 +1,62 @@
+# Feisky 技术博客
+
+> 极客时间专栏作者 Pengfei Ni 的个人技术博客，专注于 Kubernetes、AI Infra、AI Agent 领域的深度技术分享。
+
+## 作者简介
+
+- **姓名**: Pengfei Ni (倪朋飞)
+- **专业领域**: Kubernetes、云原生、AI 基础设施、AI Agent、eBPF、系统性能优化
+- **极客时间专栏**: 《Linux性能优化实战》《eBPF核心技术与实战》
+
+## 核心主题
+
+### Kubernetes 与云原生
+- Kubernetes 架构与最佳实践
+- 容器网络与服务发现
+- 云原生应用部署与运维
+
+### AI 基础设施
+- LLM 部署与优化
+- AI Agent 开发与实践
+- AI 编程工具 (Claude Code, Cursor, GitHub Copilot)
+
+### 系统工程
+- Linux 性能分析与优化
+- eBPF 技术与实战
+- 容器运行时与底层技术
+
+## 重要资源
+
+- [Kubernetes 指南](https://kubernetes.feisky.xyz) - 全面的 Kubernetes 学习指南
+- [SDN 网络指南](https://sdn.feisky.xyz) - 软件定义网络技术指南
+- [博客文章列表](https://feisky.xyz/posts/) - 所有技术文章
+- [关于作者](https://feisky.xyz/about/) - 详细个人介绍
+
+## 近期热门文章
+
+### AI 编程与 Agent
+- 从 Claude Code 到 Koder：我为什么要自己写一个 Coding Agent
+- AI 编程助手的正确打开方式：OpenAI 工程师的实战指南
+- 一个 Claude Skill，解决 AI 编程最头疼的问题
+- Codex CLI 也能用 Skills 了：把 Claude Code 的"技能包"迁了过来
+- Claude Code 使用指南与最佳实践
+
+### AI Agent 与行业动态
+- Anthropic 万字报告揭秘 AI Agents 落地真相
+- OpenAI 和 Anthropic 居然合作了？聊聊 Agentic AI 基金会背后的野心
+- Agent RFT 深度解析：如何让 AI 智能体自我进化
+- 上下文工程：AI 为什么会"失忆"
+
+### Kubernetes 与云原生
+- 当 Kubernetes 遇见 AI：云厂商如何为大模型训练重塑基础设施
+- Kubernetes 迎来智能体时代：Agent Sandbox 解决 AI 代码执行安全难题
+- Kubernetes 版本更新解读
+
+## 联系方式
+
+- GitHub: [@feiskyer](https://github.com/feiskyer)
+- Twitter: [@feisky](https://twitter.com/feisky)
+
+## 许可证
+
+本站内容采用 [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0) 许可证。
