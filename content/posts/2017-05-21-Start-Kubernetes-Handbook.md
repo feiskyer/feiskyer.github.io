@@ -3,6 +3,7 @@ layout: post
 title: 开始一本开源电子书《Kubernetes指南》
 date: 2017-05-21 17:42:34
 tags: [kubernetes]
+description: "开源电子书《Kubernetes 指南》启动公告，介绍这本系统整理 Kubernetes 部署、服务发现、自动伸缩、存储与扩展机制的参考手册，以及 GitBook 在线阅读和 ePub、PDF 下载方式。"
 ---
 
 Kubernetes是谷歌开源的容器集群管理系统，是Google多年大规模容器管理技术Borg的开源版本，也是CNCF最重要的组件之一，主要功能包括：

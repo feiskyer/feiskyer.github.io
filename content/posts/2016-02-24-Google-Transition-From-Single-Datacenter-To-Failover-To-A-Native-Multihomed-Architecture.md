@@ -1,8 +1,10 @@
+---
 layout: "post"
 title: "Google's Transition From Single Datacenter, To Failover, To A Native Multihomed Architecture"
-date: "2016-02-24 10:33"
+date: 2016-02-24T10:33:00+08:00
 category: cluster
 tags: [highscalability, google]
+description: "解读 Google 论文，剖析从单数据中心到主备容灾、再到原生多宿架构的演进。多宿系统在多个数据中心同时运行并自适应迁移负载，以更少资源实现高可用与一致性，透明应对故障和维护。"
 ---
 
 The main idea of the paper is that the typical [failover](https://en.wikipedia.org/wiki/Failover) architecture used when moving from a single datacenter to multiple datacenters doesn’t work well in practice. What does work, where work means using fewer resources while providing high availability and consistency, is a **natively multihomed architecture**:

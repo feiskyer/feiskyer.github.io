@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="{{ .Site.Language.Locale | default "zh-CN" }}">
+  {{ partial "header.html" . }}
+  <body class="editorial-site">
+    <a class="skip-link" href="#main-content">跳到主要内容</a>
+    {{ partial "site-header.html" . }}
+    <main id="main-content" class="site-main" tabindex="-1">
+      {{ block "content" . }}{{ end }}
+    </main>
+    {{ partial "site-footer.html" . }}
+    {{ block "footer" . }}{{ end }}
+  </body>
+</html>

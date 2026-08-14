@@ -3,6 +3,7 @@ title: "Agent RFT 深度解析：如何让 AI 智能体自我进化"
 date: 2025-11-27
 draft: false
 tags: [Agent, AI, Vibe Coding, 大模型, MCP]
+description: "OpenAI 在 Build Hour 分享的 Agent RFT 强化微调走了一条与人工调 Prompt 完全不同的路，让 Agent 在真实任务中试错、对了奖励错了惩罚，从而自我进化找到最优路径，本文是视频学习笔记与要点梳理。"
 ---
 
 做过 Agent 开发的朋友应该都有体会，调 Prompt 真是个细活儿。有时候就改了几个词，模型的表现就可能天差地别。工具描述写得不够清楚，工具数量一多，模型就不知道该怎么选择了。任务定义稍微含糊一点，输出就开始极不稳定。这也是为什么很多 Agent 产品发布都很惊艳，但实际场景一上手就完全是另外一回事了。

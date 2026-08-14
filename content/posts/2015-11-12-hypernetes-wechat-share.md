@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Hypernetes wechat share"
-description: ""
+description: "整理 Hypernetes 微信技术分享内容，介绍这一多租户 Kubernetes 发行版在认证授权、容器 SDN 网络与 Hyper 执行引擎上的实践。"
 category: Kubernetes
 tags: []
 ---

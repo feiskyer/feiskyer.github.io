@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Hypernetes   The multi tenant Kubernetes distribution"
-description: ""
+description: "介绍多租户 Kubernetes 发行版 Hypernetes，探讨在容器即服务（CaaS）浪潮下，它如何为公有云场景提供真正的多租户隔离。"
 category: Kubernetes
 tags: [Kubernetes]
 ---

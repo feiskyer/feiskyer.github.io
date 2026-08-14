@@ -2,6 +2,7 @@
 title: 10 things to avoid in docker containers
 date: 2016-03-01 16:33:16
 tags: [docker]
+description: "翻译整理 Redhat 提出的构建容器服务应避免的十件事，涵盖不要在容器内存数据、不要分两部分交付应用、避免过大镜像等实践，帮助你构建不可变、可替换的容器化应用。"
 ---
 
 Redhat发布的[10 things to avoid in docker containers](https://developerblog.redhat.com/2016/02/24/10-things-to-avoid-in-docker-containers/)对于构建基于Container的服务非常有意义。摘录如下：

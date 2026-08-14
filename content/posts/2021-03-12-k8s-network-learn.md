@@ -3,6 +3,7 @@ title: "如何快速掌握 Kubernetes 网络"
 date: 2021-03-12
 tags: [Kubernetes]
 draft: false
+description: "分享快速掌握 Kubernetes 网络的方法，强调先吃透 IP-per-Pod、扁平网络、Service Cluster IP 三条核心网络模型，理解容器间无需 NAT 直接互通的本质，再深入 Calico、Cilium 等插件。"
 ---
 
 经常听到周边的人谈到 Kubernetes 网络很难掌握，今天来谈谈如何快速学习和掌握 Kubernetes 网络。

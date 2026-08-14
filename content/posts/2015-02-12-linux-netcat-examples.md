@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Linux netcat examples"
-description: ""
+description: "整理 netcat 常见用法示例，包括端口扫描、简易聊天服务器、文件传输等场景，帮助你把 nc 用作网络排障与测试利器。"
 category: 
 tags: [Linux]
 ---

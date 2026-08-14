@@ -2,6 +2,7 @@
 title: 'Borg, Omega, and Kubernetes (ACM Queue)'
 date: 2016-03-04 15:46:28
 tags: [kubernetes, borg]
+description: "解读 Google 发表于 ACM Queue 的论文，回顾十年间 Borg、Omega、Kubernetes 三代容器管理系统的设计演进与经验教训，理解大规模容器调度与集群状态管理的思路。"
 ---
 
 Brendan Burns, Brian Grant等在[Borg, Omega, and Kubernetes - Lessons learned from three container-management systems over a decade](http://queue.acm.org/detail.cfm?id=2898444)分享了Google在容器管理的经验教训。

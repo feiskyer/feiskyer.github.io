@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Dive in Linux capabilites"
-description: ""
+description: "深入讲解 Linux Capabilities 机制，说明它如何细粒度地拆分 root 权限、控制应用可执行的特权操作，是容器安全的重要基础。"
 category:
 tags: [Linux]
 ---

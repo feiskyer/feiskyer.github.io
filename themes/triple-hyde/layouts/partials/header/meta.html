@@ -29,11 +29,12 @@
 "theTitle" " • "}} {{ $.Scratch.Add "theTitle" .Site.Title}} {{ end }}
 <title>{{ $.Scratch.Get "theTitle" }}</title>
 
-{{/* Meta Description - page level > site level */}} {{ $description := "" }} {{
-with .Description }} {{ $description = . }} {{ else }} {{ with .Summary }} {{
-$description = . | plainify | truncate 160 }} {{ else }} {{ with
-.Site.Params.meta.description }} {{ $description = . }} {{ end }} {{ end }} {{
-end }} {{ with $description }}
+{{/* Meta Description - page level > synthesized term > site level */}} {{
+$description := "" }} {{ with .Description }} {{ $description = . }} {{ else }} {{
+with .Summary }} {{ $description = . | plainify | truncate 160 }} {{ else }} {{
+if eq .Kind "term" }} {{ $description = printf "%s 相关的技术文章合集，共 %d 篇，涵盖 %s 的原理、实践与踩坑经验。作者 %s。" .Title (len .Pages) .Title (.Site.Params.author | default "Pengfei Ni") }} {{ else }} {{
+with .Site.Params.meta.description }} {{ $description = . }} {{ end }} {{ end }}
+{{ end }} {{ end }} {{ with $description }}
 <meta name="description" content="{{ . }}" />
 {{ end }} {{/* Meta Keywords - page tags > site keywords */}} {{ with
 .Params.tags }} <meta name="keywords" content="{{ delimit . ", " }}"> {{ else }}

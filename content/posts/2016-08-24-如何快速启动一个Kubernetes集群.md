@@ -2,6 +2,7 @@
 title: 如何快速启动一个Kubernetes集群
 date: 2016-08-24 14:48:44
 tags: [Kubernetes, docker]
+description: "Kubernetes 组件众多、部署繁琐，借助 minikube 可以在本机一键启动单节点集群。文章给出 macOS、Linux、Windows 三个平台的安装命令和 xhyve、VirtualBox 等驱动的选择方法。"
 ---
 
 相比Docker一个二进制文件解决所有问题，Kubernetes则为不同的服务提供了不同的二进制文件，并将一些服务放到了addons中。故而，Kubernetes的部署相对要麻烦的多。借助[minikube](https://github.com/kubernetes/minikube)项目，现在可以很方便的在本机快速启动一个单节点的Kubernetes集群。

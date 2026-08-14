@@ -3,6 +3,7 @@ title: "Claude Code 省钱开挂：一键接入 OpenAI/Gemini/DeepSeek"
 date: 2025-06-17T12:20:15+08:00
 tags: [AI, Vibe Coding, Claude Code]
 draft: false
+description: "教你借助 LiteLLM 网关代理为 Claude Code 接入 OpenAI GPT、DeepSeek、Gemini 等其他大模型，通过集中认证、成本控制和模型路由降低 API 开销，享受灵活切换模型的省钱玩法。"
 ---
 
 Claude Code 虽然好用，但其订阅和 API 实在是太贵了。很多时候你可能想让 Claude Code 使用其他大模型（如 OpenAI GPT、DeepSeek、Gemini 等）来处理编程任务。虽然 Claude Code 原生设计为与 Anthropic 的 Claude 模型配合使用，但通过 LLM 网关代理，我们可以实现与其他模型的集成。

@@ -3,6 +3,7 @@ title: "从 Claude Code 到 Koder：我为什么要自己写一个 Coding Agent"
 date: 2026-01-05T10:00:00+08:00
 tags: [AI, AI Agent, Coding Agent, Koder]
 draft: false
+description: "会用 AI Agent 和理解其背后原理是两回事，本文分享作者为什么放着 Claude Code、Cursor、Codex 不用，偏要自己写一个 Coding Agent Koder，深入拆解工具调用循环、内存管理与上下文工程的实现细节。"
 ---
 
 ![](/images/9a5f603b-f847-41b7-8c45-4ce72ac0fa54.png)

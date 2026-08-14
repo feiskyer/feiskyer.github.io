@@ -1,7 +1,9 @@
+---
 layout: post
 title: Software Engineering at Google
 date: 2017-02-13 19:36:09
 tags: [Google]
+description: "解读 Fergus Henderson 的论文，系统梳理 Google 的软件工程实践，涵盖单一代码仓库与主干开发、Blaze 分布式构建、强制代码审查、分层测试体系以及 Buganizer 缺陷跟踪流程。"
 ---
 
 Google的Fergus Henderson在[Software Engineering at Google](https://arxiv.org/pdf/1702.01715.pdf)中介绍了Google的软件工程实践。

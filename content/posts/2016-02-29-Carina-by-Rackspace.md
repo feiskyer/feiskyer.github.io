@@ -2,6 +2,7 @@
 title: Carina by Rackspace
 date: 2016-02-29 19:20:27
 tags: [docker, rackspace]
+description: "介绍 Rackspace 推出的容器运行环境 Carina，它基于开源 Docker Swarm、运行在裸金属之上避免虚拟化性能损耗，并借助 AppArmor 增强隔离，提供开箱即用的容器托管平台。"
 ---
 
 ## What is Carina?

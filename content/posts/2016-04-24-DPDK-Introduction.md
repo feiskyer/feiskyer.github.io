@@ -2,6 +2,7 @@
 title: DPDK Introduction
 date: 2016-04-24 19:43:07
 tags: [dpdk]
+description: "介绍 Intel DPDK 数据平面开发工具集，讲解它如何在用户空间绕过 Linux 内核协议栈实现高性能数据包处理，并剖析 EAL 环境抽象层、Buffer Manager、无锁环形队列等核心组件。"
 ---
 
 ## DPDK Introduction

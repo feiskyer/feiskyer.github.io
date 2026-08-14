@@ -3,6 +3,7 @@ title: "开源我的 Claude Code 配置：Vibe Coding 的终极工作流"
 date: 2025-07-19T10:22:28+08:00
 draft: false
 tags: [AI, Vibe Coding, Claude Code]
+description: "作者开源自己打磨数月的 Claude Code 配置，介绍这套借鉴 Kiro 的规范驱动 Vibe Coding 工作流，涵盖 spec、design、task、execute 等自定义命令以及代码分析和 GitHub 集成能力。"
 ---
 
 经过数月的实践和调优，我将自己的 Claude Code 配置开源。这套配置不仅包含了常用的 Claude Code 配置和自定义命令，还参考 Kiro，引入了 **Vibe Coding** 流程，支持规范驱动的开发流程。

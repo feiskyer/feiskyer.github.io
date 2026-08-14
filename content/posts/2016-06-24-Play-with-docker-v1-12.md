@@ -2,6 +2,7 @@
 title: Play with docker v1.12
 date: 2016-06-24 12:39:49
 tags: [docker]
+description: "体验 Docker v1.12 的新特性，重点介绍内置的 Swarm Mode 集群编排能力，展示如何用原生命令快速搭建和管理 Docker 容器集群。"
 ---
 
 [TOC]

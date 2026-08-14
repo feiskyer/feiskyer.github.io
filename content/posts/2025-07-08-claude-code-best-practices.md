@@ -3,6 +3,7 @@ title: "Claude Code 最佳实践和使用技巧"
 date: 2025-07-08T20:18:53+08:00
 draft: false
 tags: [AI, Vibe Coding, Claude Code]
+description: "系统分享 Claude Code 的最佳实践与使用技巧，从初始化配置、编写 CLAUDE.md 核心配置文件讲起，涵盖自定义命令、上下文管理等实用方法，帮你充分释放这款 AI 编程助手的效率。"
 ---
 
 Claude Code 是 Anthropic 推出的智能编程助手，它直接集成到你的终端环境中，能够理解你的代码库，并通过自然语言命令帮助你更快地编程。

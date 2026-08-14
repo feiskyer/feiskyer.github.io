@@ -1,8 +1,9 @@
 ---
-title: "推荐一款 VSCode AI 插件 —— Chatgpt Copilot"
+title: "推荐一款 VSCode AI 插件：Chatgpt Copilot"
 date: 2025-01-08T20:30:51+08:00
-tags: [AI, Copilot]
 draft: false
+tags: [AI, Copilot]
+description: "开源 VSCode 插件 ChatGPT Copilot 下载量已突破 40 万，在侧边栏提供类 ChatGPT 的聊天式 AI 编程助手，支持接入 OpenAI、Claude 等多种主流大模型，并允许在对话中添加文件和图片作为上下文，本文介绍它的核心功能与安装配置方法。"
 ---
 
 今天我想和大家分享一个 **ChatGPT Copilot** VSCode 插件。这是一款完全开源的 AI 助手, 目前在 VSCode 市场的下载量已突破 400k。它的核心功能非常简洁 - 在 VSCode 侧边栏中提供了一个灵活的类 ChatGPT 聊天工具。它不仅支持接入各种主流 AI 模型, 还允许用户在对话中添加文件和图片等聊天上下文。
@@ -21,7 +22,7 @@ draft: false
 ## 核心特性
 
 <div align=center>
- <img src="/assets/image-20250109215246111.png"/>
+ <img src="assets/image-20250109215246111.png"/>
 </div>
 
 1. **AI 模型支持**: 支持 OpenAI、Claude、Gemini、Ollama、Azure 以及各类 OpenAI 兼容的大模型。
@@ -37,7 +38,7 @@ draft: false
 想要体验 ChatGPT Copilot? 只需几个简单步骤:
 
 <div align=center>
- <img src="/assets/image-20250109215343918.png"/>
+ <img src="assets/image-20250109215343918.png"/>
 </div>
 
 1. 在 VSCode 扩展市场搜索 "ChatGPT Copilot"，认准上面的 LOGO。
@@ -50,3 +51,9 @@ draft: false
 ## 项目开源
 
 插件是完全开源的，项目地址 <https://github.com/feiskyer/chatgpt-copilot>，欢迎大家 star、fork 和贡献代码！
+
+---
+
+欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
+
+![Feisky 公众号二维码](/images/mp.png)

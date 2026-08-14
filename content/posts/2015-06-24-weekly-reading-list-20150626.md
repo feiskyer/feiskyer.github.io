@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Weekly reading list (20150626)"
-description: ""
+description: "每周技术阅读清单，本期聚焦 DockerCon 与开放容器项目 OCP，汇总 CoreOS、Docker 等推动容器标准化的重要动态。"
 category: Readings
 tags: []
 ---

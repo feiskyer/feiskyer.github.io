@@ -3,6 +3,7 @@ title: "为什么已经用了滚动更新服务还会中断"
 date: 2021-01-18
 tags: [Kubernetes, Devops]
 draft: false
+description: "剖析为什么用了滚动更新服务仍会中断的问题，讲解 Kubernetes 中 Deployment 结合 Service 的滚动更新原理，重点分析长连接、短连接在 Pod 替换过程中断连的原因及应对办法。"
 ---
 
 滚动更新作为一个最佳实践，是每个服务在变更时都会采纳的方案。但在 Kubernetes 实践中，即便使用了滚动更新，也并不一定能够保证服务在更新和维护时总是可用的。

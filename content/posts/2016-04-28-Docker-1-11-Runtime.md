@@ -2,6 +2,7 @@
 title: Container runtime in Docker v1.11
 date: 2016-04-28 10:07:23
 tags: [docker, runc, container]
+description: "解析 Docker v1.11 正式集成 runc 并拆分为 containerd、containerd-shim 等多个二进制的架构变化，说明这样带来的重启不影响容器、运行时可插拔、性能优化等好处。"
 ---
 
 Docker v1.11正式集成了runc（终于支持OCI了），并将原来的一个二进制文件拆分为多个，同时还保持docker CLI和API不变：

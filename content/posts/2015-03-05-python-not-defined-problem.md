@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Python __file__ not defined problem"
-description: ""
+description: "解决 Python 交互式命令行中 __file__ 未定义的问题，给出借助 inspect 模块获取当前脚本路径的通用变通写法。"
 category: 
 tags: [python]
 ---

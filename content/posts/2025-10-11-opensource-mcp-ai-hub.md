@@ -3,6 +3,7 @@ title: "Vibe Coding 了一个 MCP AI Hub，给你的 AI Agent 一键接入 100+ 
 date: 2025-10-11T19:00:00+08:00
 draft: false
 tags: [Agent, AI, MCP, Claude Code, Vibe Coding]
+description: "开源项目 MCP AI Hub 通过 LiteLLM 把 Claude Code、Codex 等 Agent 工具一键接入 100+ AI 模型，只需在配置文件里填好 API Key，就能在同一工具里自由切换 OpenAI、Anthropic、Google 各家模型，本文分享项目由来与使用方法。"
 ---
 
 之前用 Claude Code 的时候，只能和 Claude Code 配置的单个模型聊天。想用 GPT-5 或者 Gemini 2.5 Pro，得切换到别的工具。这种来回切换不仅麻烦，还会打断思路。为了在一个工具里用上不同的模型，所以就 Vibe Coding 了 MCP AI Hub 这个项目，并开源在 <https://github.com/feiskyer/mcp-ai-hub>。

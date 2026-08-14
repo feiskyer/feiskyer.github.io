@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Redhat Atomic Host"
-description: ""
+description: "介绍红帽发布的 RHEL 7 Atomic Host 首个公测版，梳理这一面向容器优化的精简操作系统在云平台上的特性与使用场景。"
 category:
 tags: [Linux, docker]
 ---

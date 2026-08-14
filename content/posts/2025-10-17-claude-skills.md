@@ -3,6 +3,17 @@ title: "Claude Skills 来了：给 AI 装上专业“技能包”"
 date: 2025-10-17T19:00:00+08:00
 draft: false
 tags: [AI, Vibe Coding, Claude Code, MCP]
+description: "解析 Anthropic 推出的 Claude Skills，讲清 SKILL.md、参考文档与可执行代码的组成，以及渐进式披露如何省 Token，并演示在 Claude 应用、API 和 Claude Code 中的用法。"
+faq:
+  - question: "Claude Skills 是什么？"
+    answer: "Claude Skills 是 Anthropic 推出的能力打包机制，通过一个包含 SKILL.md、参考文档和可执行脚本的文件夹，让 Claude 在需要时自动加载专业技能，一次创建即可在 Claude 应用、API 和 Claude Code 中通用。"
+  - question: "Claude Skills 和 MCP 有什么区别？"
+    answer: "MCP 侧重让模型连接外部工具和数据源，会常驻占用上下文；Skills 侧重把指令和流程打包成文件，通过渐进式披露按需加载，只在触发时才读入细节，因此更省 Token。"
+  - question: "Skills 如何做到省 Token？"
+    answer: "Skills 采用渐进式披露：平时只加载简短的名称和描述，Claude 判断需要某个技能时才读取完整的 SKILL.md 和参考文档，避免把所有说明一次性塞进上下文。"
+  - question: "如何创建一个 Claude Skill？"
+    answer: "在一个文件夹中放入 SKILL.md 描述技能的用途和使用步骤，按需附加参考文档与可执行脚本，然后放到 Claude 应用、API 或 Claude Code 能识别的 skills 目录即可。"
+
 ---
 
 Anthropic 刚刚为 Claude 推出了 Skills 功能，通过文件夹形式打包指令、脚本和资源，让 Claude 在需要时自动加载专业能力。

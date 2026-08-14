@@ -2,6 +2,7 @@
 title: Go performance optimize
 date: 2016-05-06 20:40:06
 tags: [go]
+description: "汇总 Go 性能优化技巧，包括 string 与 []byte 转换如何借助 unsafe 避免底层字节数组复制的开销，以及其他常见的高性能编码实践，帮助你写出更高效的 Go 代码。"
 ---
 
 **[Go性能优化技巧(By 雨痕)](http://mp.weixin.qq.com/s?src=3&timestamp=1461920086&ver=1&signature=dvsw--b6KnMYdRt43I2g4kMRIN37-tbcl2AnwpG58mxVaoZpqG24Aou2amIcFH1aIgXelirKZ0iSYJnPud*qh3uzFrbmeM*bcDNCVC0t*m4oEblW1GOp0FHTsG-lSzRzE67RaskRf7u4*B5NZlkmYhTbWJNF44Bvwz9D58*D-54=)

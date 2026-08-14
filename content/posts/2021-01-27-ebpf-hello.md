@@ -3,6 +3,7 @@ title: "eBPF 入门之初体验"
 date: 2021-01-27
 tags: [eBPF]
 draft: false
+description: "eBPF 入门初体验，介绍简化 eBPF 程序开发的两大工具 BCC 和 bpftrace，重点讲解基于 Python 接口的 BCC 工具集及其在 Ubuntu、RHEL 上的安装方法，帮助新手快速上手。"
 ---
 
 eBPF 提供了强大的跟踪、探测以及高效内核网络等功能，但由于其接口处于操作系统底层，新手入门起来还是有很大难度。幸好，eBPF 的维护者也看到了这个问题，并开发了一系列的工具来简化 eBPF 程序的开发和使用。这其中，最常用的两个工具是 BCC 和 bpftrace。

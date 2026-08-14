@@ -1,0 +1,19 @@
+{{ define "content" }}
+<div class="archive shell">
+  {{ partial "breadcrumbs.html" . }}
+  <header class="archive__header rise rise-1">
+    <p class="eyebrow">ARCHIVE / INDEX</p>
+    <h1>{{ if eq .Kind "taxonomy" }}主题索引{{ else }}{{ .Title }}{{ end }}</h1>
+    {{ with .Description }}<p>{{ . }}</p>{{ else }}<p>按时间与主题浏览长期积累的技术文章。</p>{{ end }}
+  </header>
+  {{ if eq .Kind "taxonomy" }}
+    <nav class="topic-links topic-links--archive rise rise-2" aria-label="全部主题">
+      {{ range .Data.Terms.ByCount }}<a href="{{ .Page.RelPermalink }}"><span>{{ .Page.Title }}</span><small>{{ .Count }} 篇</small></a>{{ end }}
+    </nav>
+  {{ else }}
+    {{ $paginator := .Paginate .Pages.ByDate.Reverse 12 }}
+    <div class="story-grid story-grid--archive rise rise-2">{{ range $paginator.Pages }}{{ partial "post-card.html" . }}{{ end }}</div>
+    {{ partial "pagination.html" . }}
+  {{ end }}
+</div>
+{{ end }}

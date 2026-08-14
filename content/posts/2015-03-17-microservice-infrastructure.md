@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Microservice Infrastructure"
-description: ""
+description: "介绍 Cisco 开源的 Microservices Infrastructure 平台，说明它如何跨资源快速部署全球分布式服务，为微服务落地提供基础设施。"
 category:
 tags: [Docker]
 ---

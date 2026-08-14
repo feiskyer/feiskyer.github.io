@@ -21,7 +21,7 @@
     <link>{{ .Permalink }}</link>
     <description>{{ with .Site.Params.description }}{{ . }}{{ else }}{{ with .Site.Params.meta.description }}{{ . }}{{ end }}{{ end }}</description>
     <generator>Hugo {{ hugo.Version }}</generator>
-    <language>{{ .Site.LanguageCode }}</language>
+    <language>{{ .Site.Language.Locale }}</language>
     <managingEditor>{{ with .Site.Params.author }}{{ . }}{{ end }}</managingEditor>
     <webMaster>{{ with .Site.Params.author }}{{ . }}{{ end }}</webMaster>
     {{ with .Site.Params.copyright }}<copyright>{{ . }}</copyright>{{ end }}

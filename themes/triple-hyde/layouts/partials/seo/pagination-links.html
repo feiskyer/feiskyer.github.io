@@ -1,7 +1,7 @@
 {{/* Pagination SEO - rel=prev/next links for paginated pages */}}
 {{/* These links help search engines understand the relationship between paginated pages */}}
 {{/* Only applies to list-type pages that support pagination */}}
-{{- $supportsPagination := or .IsHome (eq .Kind "section") (eq .Kind "taxonomy") (eq .Kind "term") -}}
+{{- $supportsPagination := or (eq .Kind "section") (eq .Kind "taxonomy") (eq .Kind "term") -}}
 {{- if $supportsPagination -}}
   {{- $pag := .Paginator -}}
   {{- if gt $pag.TotalPages 1 -}}

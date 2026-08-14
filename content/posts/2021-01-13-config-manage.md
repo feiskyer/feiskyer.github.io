@@ -3,6 +3,7 @@ title: "Kubernetes 配置更新的那些事"
 date: 2021-01-13
 tags: [Kubernetes, Devops]
 draft: false
+description: "讲解 Kubernetes 配置更新的那些事，区分敏感与非敏感配置，说明为何用 ConfigMap 和 Secret 与容器分离管理配置，剖析 Volume 挂载热更新机制及其在 DevOps 流程中容易踩的坑。"
 ---
 
 任何应用都需要一些特定的配置项，用来自定义应用的特性。这些配置通常可以分为两类：一类是诸如运行环境和外部依赖等非敏感配置，另一类是诸如密钥和 SSH 证书等敏感配置。

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "How to use docker compose to deploy a flask app"
-description: ""
+description: "通过一个简单的留言板应用，演示如何用 Docker Compose 部署 Flask 应用，涵盖服务编排与容器化上线的完整流程。"
 category: Docker
 tags: [Docker]
 ---

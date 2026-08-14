@@ -2,6 +2,7 @@
 title: Kubernetes中的服务发现与负载均衡
 date: 2016-09-11 09:48:09
 tags: [kubernetes]
+description: "梳理 Kubernetes 的服务发现与负载均衡机制，对比 Service、Ingress Controller、Service Load Balancer 和自定义负载均衡四种方案的原理与适用场景，帮你为不同业务选对入口方式。"
 ---
 
 Kubernetes在设计之初就充分考虑了针对容器的服务发现与负载均衡机制，提供了Service资源，并通过kube-proxy配合cloud provider来适应不同的应用场景。随着kubernetes用户的激增，用户场景的不断丰富，又产生了一些新的负载均衡机制。目前，kubernetes中的负载均衡大致可以分为以下几种机制，每种机制都有其特定的应用场景：

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Integrating Openstack and Kubernetes with Murano"
-description: ""
+description: "探讨如何通过 Murano 把 OpenStack 与 Kubernetes 结合，说明两者分处不同技术栈层次、可优势互补，为用户带来更强能力。"
 category: OpenStack
 tags: [OpenStack, Docker]
 ---

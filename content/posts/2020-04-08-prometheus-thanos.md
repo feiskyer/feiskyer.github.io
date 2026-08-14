@@ -2,6 +2,7 @@
 title: "打造云原生大型分布式监控系统(二): Thanos 架构详解"
 date: 2020-04-08
 tags: [Prometheus]
+description: "详解开源项目 Thanos 的架构设计，讲解它如何简化分布式 Prometheus 的部署与管理，并提供全局查询视图、基于对象存储的长期存储和高可用等高级特性，解决时序监控数据的冷存储难题。"
 ---
 
 > 作者简介： 大家好，我是 roc，来自腾讯云容器服务(TKE)团队，继上一篇 [**大规模场景下 Prometheus 的优化手段**](http://mp.weixin.qq.com/s?__biz=MzU5Mzc0NDUyNg==&mid=2247483831&idx=1&sn=7ace7cf41c71e69b64bd7c76af15a281&chksm=fe0a8656c97d0f409abff6d6cf7719464c69618b8b8e5aa5e96f31bcb72bc67ae1afa1b2ef39&scene=21#wechat_redirect)，这次带来本系列第二篇，Thanos 架构讲解

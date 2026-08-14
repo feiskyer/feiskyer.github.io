@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "git commit修改前一次提交的方法"
-description: ""
+description: "介绍修改上一次 Git 提交的两种方法：用 commit --amend 快速修补并保留 Change-Id，或先 reset 再重新提交以完全掌控提交内容。"
 category: Linux
 tags: []
 ---

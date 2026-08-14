@@ -1,0 +1,14 @@
+<footer class="site-footer">
+  <div class="shell site-footer__grid">
+    <div>
+      <strong>{{ site.Title }}</strong>
+      <p>让 AI 成为你的第二大脑</p>
+    </div>
+    <nav aria-label="页脚导航">
+      <a href="{{ "/posts/" | relURL }}">全部文章</a>
+      <a href="{{ "/tags/" | relURL }}">标签索引</a>
+      <a href="{{ "/index.xml" | relURL }}">RSS</a>
+    </nav>
+    <p class="site-footer__copyright">© {{ now.Year }} {{ site.Params.author | default site.Title }}</p>
+  </div>
+</footer>

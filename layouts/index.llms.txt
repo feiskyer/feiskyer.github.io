@@ -1,0 +1,24 @@
+# {{ .Site.Title }}
+
+> {{ with .Site.Params.meta.description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}
+
+作者：{{ .Site.Params.author | default "Pengfei Ni" }}（倪朋飞），极客时间专栏作者，专注 Kubernetes、云原生、AI Infra、AI Agent、eBPF 与系统性能优化。
+
+- 博客首页：{{ .Site.BaseURL }}
+- 关于作者：{{ .Site.BaseURL }}about/
+- 全部文章：{{ .Site.BaseURL }}posts/
+- GitHub：https://github.com/feiskyer
+
+## 全部文章
+
+{{ range (where .Site.RegularPages "Section" "posts").ByDate.Reverse -}}
+- [{{ .Title }}]({{ .Permalink }}){{ with .Description }}：{{ . }}{{ end }} ({{ .Date.Format "2006-01-02" }})
+{{ end }}
+## 主题索引
+
+{{ range .Site.Taxonomies.tags.ByCount -}}
+- {{ .Page.Title }}（{{ .Count }} 篇）：{{ .Page.Permalink }}
+{{ end }}
+## 许可证
+
+本站内容采用 CC BY-SA 4.0 许可证。

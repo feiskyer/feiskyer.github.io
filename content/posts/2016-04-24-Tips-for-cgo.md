@@ -2,6 +2,7 @@
 title: Tips for cgo
 date: 2016-04-24 08:29:02
 tags: [go]
+description: "汇总使用 cgo 的实用技巧，涵盖 C 基本数值类型在 Go 中的映射、结构体和联合体的访问方式、类型大小获取，以及 Go 处理 C union 类型的注意事项。"
 ---
 
 cgo的一些tips

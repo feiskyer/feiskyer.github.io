@@ -2,6 +2,7 @@
 title: 'Hypernetes: Bringing Security and Multi-tenancy to Kubernetes'
 date: 2016-06-06 16:10:25
 tags: [Kubernetes]
+description: "转载 Kubernetes 官方博客，介绍 HyperHQ 打造的基于 hypervisor 的容器 HyperContainer，为多租户环境提供比 Linux 容器更强的隔离，而无需为每个容器单独运行虚拟机。"
 ---
 
 > Notes: this post is copied from [http://blog.kubernetes.io/2016/05/hypernetes-security-and-multi-tenancy-in-kubernetes.html](http://blog.kubernetes.io/2016/05/hypernetes-security-and-multi-tenancy-in-kubernetes.html).

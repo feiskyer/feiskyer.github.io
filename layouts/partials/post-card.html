@@ -1,0 +1,16 @@
+<article class="story-card">
+  <div class="story-card__meta">
+    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01.02" }}</time>
+    <span aria-hidden="true">·</span>
+    <span>{{ .ReadingTime }} 分钟阅读</span>
+  </div>
+  <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+  <p>{{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify | truncate 126 }}{{ end }}</p>
+  {{ with .Params.tags }}
+  <ul class="tag-list" aria-label="文章标签">
+    {{ range first 3 . }}
+    <li><a href="{{ printf "/tags/%s/" (. | urlize) | relURL }}">{{ . }}</a></li>
+    {{ end }}
+  </ul>
+  {{ end }}
+</article>

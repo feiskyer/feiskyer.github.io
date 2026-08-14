@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "docker internal"
-description: ""
+description: "深入解析 Docker 的由来与适用场景，梳理其背后的 Namespace、Cgroups、镜像分层等核心技术，帮助你理解容器运行原理。"
 category: docker
 tags: [docker]
 ---

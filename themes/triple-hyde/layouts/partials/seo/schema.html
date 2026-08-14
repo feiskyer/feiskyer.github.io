@@ -7,10 +7,18 @@
   "@type": "Person",
   "@id": "{{ .Site.BaseURL }}#author",
   "name": "{{ .Site.Params.author | default "Pengfei Ni" }}",
-  "url": "{{ .Site.BaseURL }}",
+  "url": "{{ .Site.BaseURL }}about/",
+  {{ with .Site.Params.authorimage }}"image": "{{ . | absURL }}",{{ end }}
+  "jobTitle": "Cloud Native & AI Infrastructure Engineer",
+  "knowsAbout": ["Kubernetes", "Cloud Native", "eBPF", "AI Infrastructure", "AI Agent", "LLM", "DevOps"],
   "sameAs": [
-    {{ with .Site.Params.social.twitter }}"https://twitter.com/{{ . }}"{{ end }}
-    {{ with .Site.Params.social.github }}, "https://github.com/{{ . }}"{{ end }}
+    {{ $links := slice }}
+    {{ with .Site.Params.social.twitter }}{{ $links = $links | append (printf "https://twitter.com/%s" .) }}{{ end }}
+    {{ with .Site.Params.social.github }}{{ $links = $links | append (printf "https://github.com/%s" .) }}{{ end }}
+    {{ with .Site.Params.social.weibo }}{{ $links = $links | append (printf "https://weibo.com/u/%s" .) }}{{ end }}
+    {{ $links = $links | append "https://time.geekbang.org/column/intro/100020901" }}
+    {{ $links = $links | append "https://time.geekbang.org/column/intro/100104501" }}
+    {{ range $i, $u := $links }}{{ if $i }}, {{ end }}"{{ $u }}"{{ end }}
   ]
 }
 </script>
@@ -24,19 +32,14 @@
   "name": "{{ .Site.Title }}",
   "url": "{{ .Site.BaseURL }}",
   "description": "{{ .Site.Params.description | default .Site.Params.meta.description }}",
-  "inLanguage": "{{ .Site.LanguageCode | default "zh-cn" }}",
+  "inLanguage": "{{ .Site.Language.Locale | default "zh-CN" }}",
   "author": {
     "@id": "{{ .Site.BaseURL }}#author"
-  },
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": "https://www.google.com/search?q=site:{{ .Site.BaseURL | replaceRE "^https?://" "" | replaceRE "/$" "" }}+{search_term_string}",
-    "query-input": "required name=search_term_string"
   }
 }
 </script>
 
-{{ if .IsPage }}
+{{ if and .IsPage (eq .Section "posts") }}
 {{/* BlogPosting Schema for single posts */}}
 <script type="application/ld+json">
 {
@@ -61,10 +64,12 @@
     "name": "{{ .Site.Title }}",
     "logo": {
       "@type": "ImageObject",
-      "url": "{{ .Site.BaseURL }}favicon.png"
+      "url": "{{ .Site.Params.authorimage | default "/images/avatar.jpg" | absURL }}",
+      "width": 460,
+      "height": 460
     }
   },
-  "inLanguage": "{{ .Site.LanguageCode | default "zh-cn" }}",
+  "inLanguage": "{{ .Site.Language.Locale | default "zh-CN" }}",
   "isPartOf": {
     "@id": "{{ .Site.BaseURL }}#website"
   },
@@ -129,7 +134,7 @@
   "name": "{{ .Site.Title }}",
   "description": "{{ .Site.Params.description | default .Site.Params.meta.description }}",
   "url": "{{ .Site.BaseURL }}",
-  "inLanguage": "{{ .Site.LanguageCode | default "zh-cn" }}",
+  "inLanguage": "{{ .Site.Language.Locale | default "zh-CN" }}",
   "author": {
     "@id": "{{ .Site.BaseURL }}#author"
   },
@@ -144,6 +149,48 @@
       "datePublished": "{{ $post.Date.Format "2006-01-02" }}"
     }
     {{ end }}
+  ]
+}
+</script>
+{{ end }}
+
+{{ if eq .Kind "term" }}
+{{/* CollectionPage + ItemList Schema for tag pages */}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "@id": "{{ .Permalink }}#collection",
+  "name": "{{ .Title }}",
+  "description": "{{ .Title }} 相关的技术文章合集，共 {{ len .Pages }} 篇。",
+  "url": "{{ .Permalink }}",
+  "inLanguage": "{{ .Site.Language.Locale | default "zh-CN" }}",
+  "isPartOf": { "@id": "{{ .Site.BaseURL }}#website" },
+  "author": { "@id": "{{ .Site.BaseURL }}#author" },
+  "mainEntity": {
+    "@type": "ItemList",
+    "numberOfItems": {{ len .Pages }},
+    "itemListElement": [
+      {{ range $i, $p := .Pages.ByDate.Reverse }}{{ if $i }},{{ end }}
+      {
+        "@type": "ListItem",
+        "position": {{ add $i 1 }},
+        "url": "{{ $p.Permalink }}",
+        "name": "{{ $p.Title }}"
+      }{{ end }}
+    ]
+  }
+}
+</script>
+{{/* Breadcrumb for tag pages */}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "首页", "item": "{{ .Site.BaseURL }}" },
+    { "@type": "ListItem", "position": 2, "name": "主题", "item": "{{ .Site.BaseURL }}tags/" },
+    { "@type": "ListItem", "position": 3, "name": "{{ .Title }}", "item": "{{ .Permalink }}" }
   ]
 }
 </script>

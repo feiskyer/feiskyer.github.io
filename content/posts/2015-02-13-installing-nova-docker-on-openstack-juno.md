@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Installing nova docker on OpenStack Juno"
-description: ""
+description: "记录在 Fedora 21 与 OpenStack Juno 上从零安装配置 nova-docker 的完整过程，帮助你把 Docker 容器接入 OpenStack 计算服务。"
 category: Docker
 tags: [Docker]
 ---

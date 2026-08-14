@@ -3,6 +3,7 @@ title: "AKS发布首个K8S AI Agent，Kubernetes运维进入智能时代"
 date: 2025-08-22T22:20:28+08:00
 draft: false
 tags: [AI, MCP, Kubernetes, Agent]
+description: "AKS 团队在 KubeCon India 发布了首个 Kubernetes AI Agent，也就是 AKS CLI Agent，它基于开源 HolmesGPT 和 AKS MCP 服务构建，把安全智能的 Agentic 运维诊断工作流直接带到终端。"
 ---
 
 > **题记**：本文将带你一起了解 AKS 团队最近在 AI Agent 方面的新产品，即由 Agentic AI 驱动的智能运维和诊断命令行工具——AKS CLI Agent，专门用来解决 K8s 运维中那些让人头疼的问题。

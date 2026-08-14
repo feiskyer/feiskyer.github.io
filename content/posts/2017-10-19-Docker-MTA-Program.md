@@ -3,6 +3,7 @@ layout: post
 title: Docker MTA Program
 date: 2017-10-19 18:10:18
 tags: [docker]
+description: "解读 Docker 在 DockerCon EU 2017 发布的传统应用现代化计划 MTA，它由咨询服务、Docker EE 和混合云基础架构组成，并提供 Image2Docker、v2c 等自动容器化的概念验证工具。"
 ---
 
 在容器化和云原生的大潮下，很多公司都已经开始了容器化的进程。然而，将已有应用转化为容器和云原生架构并不容易，并且这些遗留应用的维护可能会花费80%的精力。如果能够自动的将这些应用转化为容器应用，显然会是一个巨大的市场。Docker也看到了这个市场，并在 DockerCon EU (2017) 上发布了[Modernize Traditional Applications (MTA) program](https://goto.docker.com/MTAkit.html)，它由 咨询服务、Docker EE以及合作伙伴提供的混合云基础架构组成。首批MTA的合作伙伴包括Avanade, Booz Allen, Cisco, HPE 和 Microsoft 等。

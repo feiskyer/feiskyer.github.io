@@ -3,6 +3,7 @@ title: "Kubernetes Ingress 可视化编辑器"
 date: 2021-03-19
 tags: [Kubernetes]
 draft: false
+description: "介绍 Kubernetes Ingress 可视化编辑器，讲解 Ingress 作为管理服务外部访问的 API 对象如何提供七层负载均衡、SSL 终结和虚拟主机，以及 Ingress 控制器的工作原理和特性对比。"
 ---
 
 [Ingress](https://kubernetes.io/zh/docs/concepts/services-networking/ingress/) 是 Kubernetes 集群中用于管理服务外部访问的 API 对象，典型的访问方式是 HTTP 和 HTTPS。Ingress 可以提供七层负载均衡、SSL 终结、基于名称的虚拟主机等。

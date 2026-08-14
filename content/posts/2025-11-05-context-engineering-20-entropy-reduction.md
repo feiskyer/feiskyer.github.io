@@ -3,6 +3,7 @@ title: "上海交大 28 页论文：Context Engineering 2.0 的本质是“熵�
 date: 2025-11-05T19:00:00+08:00
 draft: false
 tags: [Agent, AI, Vibe Coding, 大模型]
+description: "解读上海交大 28 页论文《Context Engineering 2.0》，从熵减这一全新视角阐释上下文工程的本质是弥合人机认知差距，回溯二十年发展历程，说明写 Prompt、调 RAG、设计 Agent 其实都在帮机器理解人的意图。"
 ---
 
 最近在看 Context Engineering 相关的资料，刚好看到上海交大团队发布的《Context Engineering 2.0: The Context of Context Engineering》，从一个完全不同的视角阐释了 Context Engineering 的涵义和发展历程，很有意思的思路，这儿写篇文章分享一下。

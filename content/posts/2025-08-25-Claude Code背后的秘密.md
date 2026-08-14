@@ -3,6 +3,7 @@ title: "Claude Code 背后的秘密：为什么它能秒杀其他 AI 编程助�
 date: 2025-08-25T22:20:28+08:00
 draft: false
 tags: [AI, Vibe Coding, Claude Code]
+description: "解读 MinusX 团队拦截分析 Claude Code 网络请求的发现，揭秘它为何能秒杀其他 AI 编程助手：单主循环的极简设计、大量调用廉价 Haiku 模型控成本，以及自主管理任务清单等核心秘密。"
 ---
 
 题记：终于有人把 Claude Code 的核心秘密说透了——原来我们都被 "复杂" 骗了。MinusX 团队[通过拦截分析了几个月的网络请求](https://minusx.ai/blog/decoding-claude-code/)，把 Claude Code 的底裤都扒了个干净。

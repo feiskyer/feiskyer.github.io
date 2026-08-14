@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Going Native with OpenStack Centric Applications: Murano"
-description: ""
+description: "深入介绍 OpenStack 原生应用目录项目 Murano，探讨它如何在 OpenStack 上打包、发布与管理应用，简化云端应用交付。"
 category: 
 tags: [OpenStack]
 ---

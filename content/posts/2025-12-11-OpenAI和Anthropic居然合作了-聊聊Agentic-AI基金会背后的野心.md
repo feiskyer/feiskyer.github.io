@@ -3,6 +3,7 @@ title: "OpenAI 和 Anthropic 居然合作了？聊聊 Agentic AI 基金会背后
 date: 2025-12-11
 draft: false
 tags: [Agent, AI, Vibe Coding, 大模型, MCP]
+description: "OpenAI、Anthropic 联合 Block 成立 Agentic AI 基金会并把核心开源项目捐给 Linux Foundation，本文类比当年 CNCF 统一容器编排的历史，解读这场合作背后争夺 AI Agent 标准话语权的野心。"
 ---
 
 ![](/images/0cf18915-355f-4005-89eb-b25fd9d19aae.png)

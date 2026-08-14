@@ -2,6 +2,7 @@
 title: Kubernetes v1.5.0 release
 date: 2016-12-13 11:51:29
 tags: [kubernetes]
+description: "梳理 Kubernetes v1.5.0 的新特性，包括 StatefulSets 进入 beta、kubefed 联邦支持增强、kubeadm 部署简化和 Master 高可用，并提醒因匿名认证默认开启的安全问题应直接升级到 v1.5.1。"
 ---
 
 **Update on 2016.12.14:**

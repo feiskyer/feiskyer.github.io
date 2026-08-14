@@ -1,6 +1,8 @@
 ---
 title: "Notes about serverless"
 date: 2016-02-26 21:26:00
+description: "梳理 Serverless 无服务器计算的理念及主要玩家，对比 AWS Lambda、Google Cloud Functions、Azure Functions 等产品的触发机制、应用场景与计费模式，理解事件驱动的函数计算。"
+tags: [Serverless, CloudNative]
 ---
 
 “只需要关注数据和业务逻辑，无需维护服务器，也不需要关心系统的容量和扩容”， serverless将大家从server中解放了出来，只需要关注业务逻辑本身。serverless的概念跟PaaS很像，又比传统的PaaS有着更好的易用性。

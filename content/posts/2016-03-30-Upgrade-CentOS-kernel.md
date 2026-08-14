@@ -1,6 +1,8 @@
 ---
 title: "Upgrade CentOS kernel"
 date: 2016-03-30T12:20:15+08:00
+description: "记录在 CentOS 7 上升级内核的方法，对比 elrepo 提供的长期支持版 kernel-lt（4.4）与主线稳定版 kernel-ml（4.5）的区别，并给出通过 rpm 导入密钥完成安装的具体步骤。"
+tags: [Linux]
 ---
 
 终于耐不住要升级下kernel了，目前epel提供两个版本: kernel-lt (4.4)和kernel-ml (4.5):

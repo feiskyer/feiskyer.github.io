@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Installing Realtek rltwifi driver for Ubuntu 14.10"
-description: ""
+description: "针对 Ubuntu 14.10 默认内核缺少 RTL8192ee 网卡驱动导致无法联网的问题，给出编译安装 Realtek 无线驱动的具体修复步骤。"
 category: Linux
 tags: [Linux]
 ---

@@ -1,6 +1,9 @@
+---
 layout: "post"
 title: "Kubernetes network policy"
-date: "2016-02-17 18:53"
+date: 2016-02-17T18:53:00+08:00
+description: "梳理 Kubernetes Network SIG 正在讨论的 Network Policy 提案，介绍它如何满足 SDN、网络隔离、IP Overlapping 等复杂网络需求，并给出基于命名空间和标签选择器的策略配置示例。"
+tags: [Kubernetes, Networking, CloudNative]
 ---
 
 Kubernetes network policy

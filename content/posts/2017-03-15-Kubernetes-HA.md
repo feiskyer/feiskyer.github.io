@@ -1,8 +1,10 @@
+---
 layout: post
 title: Kubernetes HA
 date: 2017-03-15 18:12:47
 tags: [kubernetes]
 
+description: "讲解 Kubernetes 高可用集群的搭建方法，涵盖 etcd 集群模式配置、apiserver 负载均衡，以及 controller manager、scheduler 和 cluster autoscaler 的自动选主机制。"
 ---
 
 Kubernetes 从 1.5 开始，通过`kops`或者`kube-up.sh`部署的集群会自动部署一个高可用的系统，包括

@@ -2,6 +2,7 @@
 title: Reading notes of week 17
 date: 2016-04-29 16:50:14
 tags: [docker, blockchain, container]
+description: "第 17 周技术阅读笔记，涵盖 Kubernetes 1.3 即将引入的 Network Policy API、微服务间流量精细控制等话题，梳理容器与网络策略领域的最新动态。"
 ---
 
 **[SIG-Networking: Kubernetes Network Policy APIs Coming in 1.3](http://blog.kubernetes.io/2016/04/Kubernetes-Network-Policy-APIs.html)**

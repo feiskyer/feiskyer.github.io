@@ -3,6 +3,17 @@ title: "Claude Code SubAgent"
 date: 2025-08-04T18:22:28+08:00
 draft: false
 tags: [AI, Vibe Coding, Claude Code, Agent]
+description: "讲解 Claude Code SubAgent 的工作原理，如何用独立上下文窗口解决多任务下的上下文混乱与工具选择问题，并分享创建、调用 SubAgent 以及链式调用、动态选择等进阶技巧。"
+faq:
+  - question: "Claude Code SubAgent 是什么？"
+    answer: "SubAgent 是 Claude Code 中的子代理机制，每个子代理拥有独立的上下文窗口和专属配置，可以承担代码审查、文档编写、性能优化等特定任务，从而避免主会话上下文混乱。"
+  - question: "为什么要使用 SubAgent？"
+    answer: "当一个会话同时处理多个复杂任务时，上下文容易互相干扰、工具选择也会出错。SubAgent 通过独立上下文和任务专属提示词，把复杂问题拆分给不同的专家子代理并行处理，更高效也更有条理。"
+  - question: "如何创建和调用 SubAgent？"
+    answer: "在项目或用户级的 agents 配置中定义子代理的名称、描述、可用工具和系统提示词，Claude Code 会根据任务描述自动匹配调用，也可以在对话中显式指定某个 SubAgent。"
+  - question: "SubAgent 有哪些进阶用法？"
+    answer: "可以让多个 SubAgent 链式协作，前一个的输出作为后一个的输入；也可以根据任务内容动态选择合适的子代理，实现类似流水线的自动化协作。"
+
 ---
 
 你在使用 Claude Code 时，是否碰到复杂多任务场景无法应对的问题？当你需要同时进行代码审查、文档编写和性能优化时，上下文混乱是否让你感到力不从心？

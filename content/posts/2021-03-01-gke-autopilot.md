@@ -3,6 +3,7 @@ title: "聊一聊 GKE Autopilot"
 date: 2021-03-01
 tags: [Kubernetes]
 draft: false
+description: "聊聊 Google Cloud 推出的 GKE Autopilot 模式，对比它与 GKE 标准模式的区别，剖析它如何自动配置和管理底层节点、按工作负载自动创建与扩缩容，实现更彻底的托管 Kubernetes 体验。"
 ---
 
 Google Cloud 前两天推出了 GKE Autopilot，其官方博客 [Introducing GKE Autopilot: a revolution in managed Kubernetes](https://cloud.google.com/blog/products/containers-kubernetes/introducing-gke-autopilot) 称之为革命性的托管 Kubernetes 服务。但其“革命性”的亮点都有哪些呢？

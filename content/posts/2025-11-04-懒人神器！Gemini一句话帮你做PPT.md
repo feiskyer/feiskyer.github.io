@@ -3,6 +3,7 @@ title: "懒人神器！Gemini 一句话帮你做 PPT"
 date: 2025-11-04T19:00:00+08:00
 draft: false
 tags: [AI, Vibe Coding, Gemini]
+description: "Google Gemini 借助 Canvas 模式支持一句话自动生成 PPT，上传网络文章或学术论文即可提取要点生成幻灯片并导出到 Google Slides，本文实测其效果、风格与图表不能自动嵌入等使用细节。"
 ---
 
 Google Gemini 支持通过 AI 一键自动生成 PPT 演示文档了，用起来挺方便的，分享给需要的同学。

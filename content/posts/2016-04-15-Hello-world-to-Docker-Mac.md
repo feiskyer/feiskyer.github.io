@@ -1,6 +1,9 @@
+---
 layout: "post"
 title: "Hello world to Docker Mac"
-date: "2016-04-15 16:34"
+date: 2016-04-15T16:34:00+08:00
+description: "分享 Docker for Mac 的初次使用体验，介绍它作为标准 Mac 应用的简易安装、原生 osxfs 文件共享、xhyve 虚拟机管理，以及与 Docker Toolbox 共存的方式，性能已接近 Linux。"
+tags: [docker, Docker]
 ---
 
 终于等到了Docker for Mac。如之前期待的，体验真的很棒：

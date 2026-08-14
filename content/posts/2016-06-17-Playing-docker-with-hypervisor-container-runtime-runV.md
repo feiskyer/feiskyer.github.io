@@ -2,6 +2,7 @@
 title: Playing docker with hypervisor container runtime runV
 date: 2016-06-17 17:12:38
 tags: [docker, runV]
+description: "手把手演示如何让基于 hypervisor 的 OCI 运行时 runV 与 Docker 的 containerd 集成，从源码编译 runV、安装 Docker 到配置运行时，体验虚拟化隔离的安全容器。"
 ---
 
 Table of contents:

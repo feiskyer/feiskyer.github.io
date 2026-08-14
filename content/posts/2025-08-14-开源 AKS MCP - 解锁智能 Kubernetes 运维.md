@@ -3,6 +3,7 @@ title: "开源 AKS MCP：解锁智能 Kubernetes 运维"
 date: 2025-08-14T22:20:28+08:00
 draft: false
 tags: [AI, MCP, Agent, Kubernetes]
+description: "整理自 AKS 官方博客，介绍开源的 AKS MCP 服务如何通过标准化 MCP 协议深度集成 AKS API，让 AI Agent 直接诊断集群健康、分析网络配置并智能扩缩容，赋予云原生运维原生 AI 能力。"
 ---
 
 > 题记：本文根据 AKS 官方博客《Announcing the AKS-MCP Server: Unlock Intelligent Kubernetes Operations》整理，并结合中文表达习惯进行了适当调整。原文作者 Pavneet Ahluwalia。

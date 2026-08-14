@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "docker in tencent"
-description: ""
+description: "介绍腾讯内部对 Docker 的大规模使用，重点解析其基于 Yarn 的 Gaia 调度平台如何统一管理容器与非容器应用，实现高并发资源调度。"
 category: Docker
 tags: [Docker]
 ---

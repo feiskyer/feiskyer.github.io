@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "awesome quick start"
-description: ""
+description: "awesome 是速度快、界面简洁的 Linux 窗口管理器。本文介绍它的快速安装与基础配置，帮助你搭建高效的平铺式桌面环境。"
 category: Linux
 tags: [Linux]
 ---

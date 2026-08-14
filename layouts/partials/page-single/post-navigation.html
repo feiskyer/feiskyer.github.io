@@ -1,0 +1,23 @@
+{{ $enabledPostNavigation := .Site.Params.postNavigation | default true }}
+{{ if $enabledPostNavigation }}
+<nav class="navigation navigation-single" aria-label="上一篇 / 下一篇">
+    {{ with .PrevInSection }}
+    <a href="{{ .RelPermalink }}" class="navigation-prev" rel="prev">
+      <span class="navigation-arrow" aria-hidden="true">←</span>
+      <span class="navigation-meta">
+        <span class="navigation-dir">上一篇</span>
+        <span class="navigation-tittle">{{ .Title }}</span>
+      </span>
+    </a>
+    {{ end }}
+    {{ with .NextInSection }}
+    <a href="{{ .RelPermalink }}" class="navigation-next" rel="next">
+      <span class="navigation-meta">
+        <span class="navigation-dir">下一篇</span>
+        <span class="navigation-tittle">{{ .Title }}</span>
+      </span>
+      <span class="navigation-arrow" aria-hidden="true">→</span>
+    </a>
+    {{ end }}
+</nav>
+{{ end }}

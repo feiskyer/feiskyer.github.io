@@ -3,6 +3,7 @@ title: "谷歌发布开源免费命令行编程工具 Gemini CLI"
 date: 2025-06-26T06:50:06+08:00
 draft: false
 tags: [AI, Vibe Coding]
+description: "介绍谷歌开源免费的命令行编程工具 Gemini CLI，它提供 100 万 token 上下文、多模态输入、内置 Google 搜索和 MCP 工具集成，个人账号即可享受每天 1000 次的慷慨免费额度。"
 ---
 
 类似于 Claude Code 和 OpenAI Codex CLI，谷歌也下场发布了命令行编程工具—— Gemini CLI，提供了慷慨的免费额度，其代码还是完全 [开源](https://github.com/google-gemini/gemini-cli) 的。

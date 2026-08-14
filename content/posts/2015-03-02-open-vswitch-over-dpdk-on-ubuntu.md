@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Open vSwitch over DPDK on Ubuntu"
-description: ""
+description: "介绍在 Ubuntu 上为 Open vSwitch 启用 DPDK 加速的两种方案，对比 Intel dpdk-ovs 与 OVS 原生实现的差异与配置要点。"
 category:
 tags: [ovs]
 ---

@@ -2,6 +2,7 @@
 title: Setup hyperd with flannel network
 date: 2016-07-19 15:58:26
 tags: [flannel, hyper, container]
+description: "演示如何为 hyperd 安全容器配置 flannel 覆盖网络，讲解 flanneld 如何借助 etcd 为每台主机分配子网、通过 UDP 或 VXLAN 后端转发报文，实现容器跨主机的可路由 IP 通信。"
 ---
 
 # Flannel

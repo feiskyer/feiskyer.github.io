@@ -3,6 +3,7 @@ title: "OpenAI承认Chat API是周末草台班子产品，是时候切换到 Res
 date: 2025-09-29T20:20:28+08:00
 draft: false
 tags: [AI, Vibe Coding, Codex, OpenAI]
+description: "OpenAI 承认 Chat Completions API 是仓促赶出的草台产品，推出全新 Responses API 作为下一代方案，原生支持推理状态保持与多模态交互，缓存利用率提升 40-80%，本文详解其设计动机、技术优势与迁移要点。"
 ---
 
 刚刚，OpenAI 在最新发布的《Why we built the Responses API》 中承认，作为 AI 界 API 事实标准的 Chat Completions API 就是一个周末快速赶出来的草台产品，存在着各种各样的限制。所以，作为 Chat Completions API 的下一代演进方案，OpenAI 在 2025 年 3 月发布了全新的 Responses API（`/v1/responses`） 。根据官方基准测试，它在缓存利用率方面可以提升 40-80%，而在 TAUBench 评测（Benchmark for Tool-Agent-User Interaction in Real-World Domains）中性能提升 5%，并原生支持推理状态保持和多模态交互。

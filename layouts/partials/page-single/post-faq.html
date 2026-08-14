@@ -1,0 +1,16 @@
+{{/* Visible FAQ block. Google requires FAQPage schema content to be visible
+     on the page, so this renders the same `faq` frontmatter that
+     seo/schema-faq.html turns into JSON-LD. */}}
+{{ with .Params.faq }}
+<section class="post__faq" aria-labelledby="post-faq-title">
+  <h2 class="post__faq-title" id="post-faq-title">常见问题</h2>
+  <dl class="faq-list">
+    {{ range . }}
+    <div class="faq-item">
+      <dt>{{ .question }}</dt>
+      <dd>{{ .answer }}</dd>
+    </div>
+    {{ end }}
+  </dl>
+</section>
+{{ end }}

@@ -3,6 +3,7 @@ title: "Claude Code MCP 扩展：外部工具接入指南"
 date: 2025-06-18T18:19:45+08:00
 tags: [AI, Vibe Coding, Claude Code]
 draft: false
+description: "Claude Code 的 MCP 扩展指南，介绍 Model Context Protocol 如何让 Claude Code 无缝接入外部工具和数据源，讲解内置工具能力、MCP 服务器配置方法，并提示防范提示注入等安全风险。"
 ---
 
 Claude Code 虽然内置了丰富的工具，但在某些场景下你可能需要接入外部服务或自定义工具。Model Context Protocol (MCP) 正是为此而生的开放协议，它让 Claude Code 能够无缝集成各种外部工具和数据源，大大扩展了其能力边界。

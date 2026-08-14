@@ -3,6 +3,7 @@ title: "Kubernetes 迎来智能体时代：Agent Sandbox 解决 AI 代码执行�
 date: 2025-11-12T22:00:00+08:00
 draft: false
 tags: [AI, Vibe Coding, Agent, Kubernetes]
+description: "KubeCon NA 2025 上 Google 发布开源项目 Agent Sandbox，专为 AI Agent 代码执行设计，解决传统容器隔离不足、提示词注入风险以及数千沙箱快速创建销毁等难题，本文剖析其由来与 Kubernetes 的智能体演进。"
 ---
 
 AI Agent 正在改变整个软件行业的游戏规则。

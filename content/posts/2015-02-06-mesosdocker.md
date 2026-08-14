@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "使用Mesos来管理Docker集群"
-description: ""
+description: "介绍如何用 Apache Mesos 管理 Docker 集群，涵盖失败侦测、任务发布与跟踪、细粒度资源共享等能力，实现高效的资源调度。"
 category: docker
 tags: [docker, mesos]
 ---

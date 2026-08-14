@@ -4,6 +4,7 @@ title: Azure Container Service（ACS）简介
 date: 2017-11-20 21:00:00
 tags: [Azure, Kubernetes]
 category: "Kubernetes"
+description: "介绍微软 Azure 容器服务 ACS，它同时支持 Kubernetes、DC/OS 和 Docker Swarm 三种编排工具且核心 acs-engine 开源，并说明它与下一代托管服务 AKS 的关系和迁移路径。"
 ---
 
 Azure Container Service（ACS）是 Microsoft Azure 在2015年推出的容器服务，支持 Kubernetes、DCOS 以及 Dockers Swarm 等多种容器编排工具。并且 ACS 的核心功能是开源的，用户可以通过<https://github.com/Azure/acs-engine>来查看和下载使用。

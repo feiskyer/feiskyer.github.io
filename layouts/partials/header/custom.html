@@ -1,0 +1,6 @@
+{{/* Sole stylesheet for the site. The theme's styles.html is overridden at project level
+     (layouts/partials/header/styles.html) so triple-hyde.scss / print.scss / tocbot.scss
+     never load — editorial.css is self-contained, print rules included. */}}
+<meta name="color-scheme" content="light dark">
+{{ $editorial := resources.Get "css/editorial.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $editorial.RelPermalink }}" integrity="{{ $editorial.Data.Integrity }}">

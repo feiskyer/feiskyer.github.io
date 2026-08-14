@@ -3,6 +3,7 @@ title: "基于Kubernetes的多集群实践"
 date: 2021-03-20
 tags: [Kubernetes]
 draft: false
+description: "介绍基于 Kubernetes 的多集群实践，说明多云混合云如何借助统一的 Kubernetes API 封装云平台异构问题，并梳理多 Kubernetes 集群的部署方式与常用管理方案。"
 ---
 
 在 [基于Kubernetes的多云和混合云](https://mp.weixin.qq.com/s/uM4d3_fwLIdQ95fBWcmRjw) 文章中，我介绍了多云和混合云的由来以及常用方案。多云和混合云的目的主要有以下几个：

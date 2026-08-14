@@ -2,6 +2,7 @@
 title: How docker 1.11 share network accross containers
 date: 2016-05-11 10:25:06
 tags: [docker]
+description: "剖析 Docker 1.11 迁移到 runc 与 containerd 后如何在容器间共享网络命名空间，通过 --net=container 参数和生成的 runc config.json 揭示共享 netns 的实现细节。"
 ---
 
 Docker 1.11 has moved to runc with containerd, I am interested in how it processing shared netns accross containers.

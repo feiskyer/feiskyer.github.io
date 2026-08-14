@@ -2,6 +2,8 @@
 title: "Kubernetes 容器运行时演进"
 date: 2018-10-14T22:08:45+08:00
 draft: false
+description: "整理自中国云原生大会的演讲，系统讲解 Kubernetes 容器运行时的演进历程，剖析 Kubelet 架构中运行时的位置、CRI 容器运行时接口的设计与实现方法，以及应对强隔离多租户场景的社区发展方向。"
+tags: [Kubernetes, container, CloudNative]
 ---
 
 >  注：本文是我在[中国云原生大会（CEUC 2018）](http://ceuc.k8smeetup.com/part) 上同名演讲的文字整理。 

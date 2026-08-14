@@ -2,6 +2,7 @@
 title: Kubernetes sig-node (Asia) meeting notes
 date: 2016-03-02 17:07:00
 tags: [kubernetes, hyper, rkt]
+description: "记录 Kubernetes SIG-Node 亚洲会议纪要，涵盖 v1.2 发布状态、Docker 版本兼容、华为 Conformance 测试、Hyper 集成进展以及 etcd v3.0 计划等社区讨论要点。"
 ---
 
 ## Kubernetes 1.2 Status Update (@dchen)

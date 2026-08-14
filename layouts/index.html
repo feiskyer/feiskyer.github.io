@@ -1,0 +1,60 @@
+{{ define "content" }}
+{{ $posts := where .Site.RegularPages "Section" "posts" }}
+{{ $lead := index $posts 0 }}
+<div class="home shell">
+  <section class="home-opening" aria-labelledby="home-title">
+    {{ with $lead }}
+    <article class="home-opening__story rise rise-1">
+      <div class="home-opening__label" aria-hidden="true">
+        <span>最新</span>
+        <strong>01</strong>
+      </div>
+      <div class="home-opening__content">
+        <div class="story-card__meta">
+          <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006 年 01 月 02 日" }}</time>
+          <span aria-hidden="true">·</span><span>{{ .ReadingTime }} 分钟阅读</span>
+        </div>
+        <h1 id="home-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h1>
+        <p>{{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify | truncate 210 }}{{ end }}</p>
+        {{ with .Params.tags }}
+        <ul class="tag-list" aria-label="文章标签">{{ range first 4 . }}<li><a href="{{ printf "/tags/%s/" (. | urlize) | relURL }}">{{ . }}</a></li>{{ end }}</ul>
+        {{ end }}
+        <a class="home-opening__read" href="{{ .RelPermalink }}">阅读全文 <span aria-hidden="true">→</span></a>
+      </div>
+    </article>
+    {{ end }}
+    <div class="home-opening__seconds rise rise-2">
+      {{ range $i, $p := after 1 (first 3 $posts) }}
+      <article class="home-second">
+        <p class="home-second__index" aria-hidden="true">{{ printf "0%d" (add $i 2) }}</p>
+        <div class="story-card__meta">
+          <time datetime="{{ $p.Date.Format "2006-01-02" }}">{{ $p.Date.Format "2006 年 01 月 02 日" }}</time>
+          <span aria-hidden="true">·</span><span>{{ $p.ReadingTime }} 分钟阅读</span>
+        </div>
+        <h2><a href="{{ $p.RelPermalink }}">{{ $p.Title }}</a></h2>
+        <p class="home-second__excerpt">{{ with $p.Description }}{{ . }}{{ else }}{{ $p.Summary | plainify | truncate 120 }}{{ end }}</p>
+      </article>
+      {{ end }}
+    </div>
+  </section>
+
+  <section class="latest" aria-labelledby="latest-heading">
+    <div class="section-heading">
+      <div><p class="eyebrow">更多内容</p><h2 id="latest-heading">继续阅读</h2></div>
+      <a class="text-link" href="{{ "/posts/" | relURL }}">查看全部 <span aria-hidden="true">→</span></a>
+    </div>
+    <div class="story-grid">
+      {{ range after 3 (first 9 $posts) }}{{ partial "post-card.html" . }}{{ end }}
+    </div>
+  </section>
+
+  <section class="topics" aria-labelledby="topics-heading">
+    <div><p class="eyebrow">FIELD NOTES</p><h2 id="topics-heading">按主题阅读</h2><p>从持续积累的主题进入，而不是被时间线淹没。</p></div>
+    <nav class="topic-links" aria-label="热门文章标签">
+      {{ range first 8 .Site.Taxonomies.tags.ByCount }}
+      <a href="{{ .Page.RelPermalink }}"><span>{{ .Page.Title }}</span><small>{{ .Count }} 篇</small></a>
+      {{ end }}
+    </nav>
+  </section>
+</div>
+{{ end }}

@@ -3,6 +3,7 @@ title: "OpenAI Codex 零基础入门指南"
 date: 2025-09-04T22:20:28+08:00
 draft: false
 tags: [AI, Vibe Coding, Codex, OpenAI]
+description: "OpenAI Codex 零基础入门指南，介绍 Codex Cloud、Codex CLI 和 VSCode 扩展三大产品形态，分析它相比 Claude Code 在开源、GPT-5 指令遵循、慷慨限额和外接模型方面的优势与上手技巧。"
 ---
 
 Codex 是 OpenAI 推出的 AI 编程工具，包含三个核心产品：

@@ -1,6 +1,9 @@
+---
 layout: "post"
 title: "Kubernetes drain"
-date: "2016-02-17 18:57"
+date: 2016-02-17T18:57:00+08:00
+description: "介绍 Kubernetes v1.2 新增的 kubectl drain 和 uncordon 命令，讲解如何将节点切换到维护模式并自动驱逐 Pod，简化以往手动 patch 节点、逐一删除 Pod 的运维流程。"
+tags: [Kubernetes, docker, container]
 ---
 
 Kubernetes v1.2以前，如果想要对某个NODE（也就是Kubelet和Docker所在的机器）进行维护（比如升级Docker或者内核等）又不想影响运行中的Pod的话，需要手动做很多的步骤：

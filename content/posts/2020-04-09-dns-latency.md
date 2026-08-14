@@ -3,6 +3,7 @@ title: "如何解决 Kubernetes 的 DNS 延迟问题"
 date: 2020-04-09
 tags: [Kubernetes, Networking]
 draft: false
+description: "解析 Kubernetes 集群中恼人的 DNS 间歇性 5 秒延迟问题，从 Linux 内核 netfilter 处理并发 UDP 包的 conntrack 竞争条件入手剖析根因，并给出规避这一内核缺陷的实用方案。"
 ---
 
 

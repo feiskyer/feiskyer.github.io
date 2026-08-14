@@ -24,6 +24,15 @@ User-agent: GPTBot
 Allow: /
 
 # Anthropic Claude bots
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
 User-agent: Claude-Web
 Allow: /
 
@@ -36,6 +45,9 @@ Allow: /
 
 # Perplexity AI
 User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
 Allow: /
 
 # Common Crawl (used by many AI systems)

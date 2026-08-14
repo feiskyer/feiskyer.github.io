@@ -1,0 +1,18 @@
+<header class="masthead">
+  <div class="masthead__bar shell">
+    <a class="brand" href="{{ site.Home.RelPermalink }}" aria-label="{{ site.Title }} 首页">
+      <img class="brand__mark" src="{{ site.Params.authorimage | default "/images/avatar.jpg" | relURL }}" alt="" width="48" height="48" loading="eager" decoding="async">
+
+      <span>
+        <strong>{{ site.Title }}</strong>
+        <small>让 AI 成为你的第二大脑</small>
+      </span>
+    </a>
+    <nav class="primary-nav" aria-label="主要导航">
+      <a href="{{ site.Home.RelPermalink }}">首页</a>
+      <a href="{{ "/posts/" | relURL }}">文章</a>
+      <a href="{{ "/tags/" | relURL }}">分类索引</a>
+      <a href="{{ "/about/" | relURL }}">关于我</a>
+    </nav>
+  </div>
+</header>

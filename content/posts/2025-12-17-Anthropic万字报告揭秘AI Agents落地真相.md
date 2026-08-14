@@ -3,6 +3,7 @@ title: "Anthropic万字报告揭秘 AI Agents 落地真相"
 date: 2025-12-17
 draft: false
 tags: [Agent, AI, Vibe Coding, 大模型, MCP]
+description: "解读 Anthropic《2026 State of AI Agents Report》，报告调研 500 多家企业，发现 57% 已部署多阶段工作流 Agent、80% 看到投资回报、90% 使用 AI 辅助编程，揭示 AI Agents 从试点走向规模化落地的真相。"
 ---
 
 如果你还在观望到底要不要在项目里使用 AI Agents，Anthropic 刚刚发布的《2026 State of AI Agents Report》会给你一个明确答案。

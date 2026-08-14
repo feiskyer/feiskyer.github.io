@@ -4,8 +4,105 @@
 {{ end }}
 
 {{ define "content" }}
-    {{ partial "breadcrumbs.html" . }}
-    {{ partial "page-single/content.html" . }}
+{{ $toc := .TableOfContents | string }}
+{{ $hasToc := strings.Contains $toc "<li" }}
+<div class="reading-progress" aria-hidden="true"><span class="reading-progress__bar" id="reading-progress-bar"></span></div>
+<div class="article-shell shell">
+  {{ partial "breadcrumbs.html" . }}
+  <div class="article-layout{{ if not $hasToc }} article-layout--wide{{ end }}">
+    <article class="article" itemscope itemtype="https://schema.org/Article">
+      <header class="article__header rise rise-1">
+        <p class="eyebrow">{{ with index .Params.tags 0 }}{{ . }}{{ else }}LONG READ{{ end }}</p>
+        <h1 itemprop="headline">{{ .Title }}</h1>
+        {{ with .Params.subtitle }}<p class="article__dek">{{ . }}</p>{{ else with .Description }}<p class="article__dek">{{ . }}</p>{{ end }}
+        <div class="article__byline">
+          <img src="{{ site.Params.authorimage | relURL }}" alt="" width="52" height="52">
+          <p><span>撰文</span><strong itemprop="author">{{ site.Params.author }}</strong></p>
+          <p><span>发布</span><time itemprop="datePublished" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006 年 01 月 02 日" }}</time></p>
+          <p><span>阅读时间</span><strong>{{ .ReadingTime }} 分钟</strong></p>
+        </div>
+        {{ with .Params.tags }}<nav class="tag-list" aria-label="文章标签">{{ range . }}<a href="{{ printf "/tags/%s/" (. | urlize) | relURL }}">{{ . }}</a>{{ end }}</nav>{{ end }}
+      </header>
+      <div class="article__body post rise rise-2" itemprop="articleBody">{{ .Content }}</div>
+      {{ partial "page-single/post-faq.html" . }}
+      {{ partial "page-single/post-navigation.html" . }}
+      {{ partial "page-single/post-related.html" . }}
+    </article>
+
+    {{ if $hasToc }}
+    <details class="article-toc rise rise-3" id="article-toc" open>
+      <summary class="article-toc__summary">目录</summary>
+      <div class="article-toc__inner">
+        <p class="article-toc__title">本页目录</p>
+        {{ .TableOfContents }}
+      </div>
+    </details>
+    {{ end }}
+  </div>
+</div>
+
+<script>
+(function () {
+  var mq = function (q) { return window.matchMedia ? window.matchMedia(q).matches : false; };
+  var reduce = mq("(prefers-reduced-motion: reduce)");
+  var bar = document.getElementById("reading-progress-bar");
+  var body = document.querySelector(".article__body");
+  var toc = document.getElementById("article-toc");
+  var links = toc ? Array.prototype.slice.call(toc.querySelectorAll("nav a")) : [];
+
+  /* Collapsed by default on narrow screens, open on the desktop rail. */
+  if (toc && mq("(max-width: 900px)")) { toc.open = false; }
+
+  function progress() {
+    if (!bar || !body) { return; }
+    var rect = body.getBoundingClientRect();
+    var span = rect.height - window.innerHeight;
+    var pct = span > 0 ? Math.min(1, Math.max(0, -rect.top / span)) : (rect.top <= 0 ? 1 : 0);
+    bar.style.transform = "scaleX(" + pct.toFixed(4) + ")";
+  }
+
+  var targets = links.map(function (a) {
+    var id = decodeURIComponent((a.getAttribute("href") || "").replace(/^#/, ""));
+    var el = id ? document.getElementById(id) : null;
+    return el ? { link: a, el: el } : null;
+  }).filter(Boolean);
+
+  function spy() {
+    if (!targets.length) { return; }
+    var current = null;
+    for (var i = 0; i < targets.length; i++) {
+      if (targets[i].el.getBoundingClientRect().top <= 140) { current = targets[i]; }
+    }
+    for (var j = 0; j < links.length; j++) { links[j].classList.remove("is-active"); }
+    if (current) { current.link.classList.add("is-active"); }
+  }
+
+  var raf = window.requestAnimationFrame || function (f) { return setTimeout(f, 16); };
+  var ticking = false;
+  function onScroll() {
+    if (ticking) { return; }
+    ticking = true;
+    raf(function () { progress(); spy(); ticking = false; });
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll, { passive: true });
+  progress();
+  spy();
+
+  if (!reduce) {
+    links.forEach(function (a) {
+      a.addEventListener("click", function (e) {
+        var id = decodeURIComponent((a.getAttribute("href") || "").replace(/^#/, ""));
+        var el = id ? document.getElementById(id) : null;
+        if (!el) { return; }
+        e.preventDefault();
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+        if (history.replaceState) { history.replaceState(null, "", "#" + id); }
+      });
+    });
+  }
+})();
+</script>
 {{ end }}
 
 {{ define "footer" }}

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Programming Resources"
-description: ""
+description: "汇总编程学习资源索引，涵盖 Android、Angular、Docker、Cassandra 等众多技术方向的书籍与链接，方便按主题快速查阅。"
 category: Book
 tags: [Book]
 ---

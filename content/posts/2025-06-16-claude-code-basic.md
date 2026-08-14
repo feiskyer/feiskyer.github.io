@@ -12,6 +12,7 @@ faq:
     answer: "Claude Code 需要 Anthropic API 密钥，按 API 调用量计费。也可以使用 Claude Pro/Max 订阅获得更优惠的价格。"
   - question: "Claude Code 和 GitHub Copilot 有什么区别？"
     answer: "Claude Code 是代理式编程工具，可以理解整个代码库并执行复杂任务（如文件编辑、Git操作），而 Copilot 主要提供行级代码补全。"
+description: "Claude Code 从零到一入门指南，介绍这款 Anthropic 推出的代理式终端编程助手的核心特点，涵盖系统要求、安装设置和自然语言交互方式，带你快速上手用 AI 理解代码库并执行任务。"
 ---
 
 Claude Code 是 Anthropic 推出的智能编程助手，它直接集成到你的终端环境中，能够理解你的代码库，并通过自然语言命令帮助你更快地编程。本指南将带你从零开始，快速掌握 Claude Code 的使用。

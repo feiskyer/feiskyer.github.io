@@ -3,6 +3,7 @@ title: Weekly reading list
 date: 2016-12-08 14:00:22
 category: Readings
 tags: []
+description: "每周技术阅读清单，重点解析 Docker 收购分布式存储厂商 Infinit 的意义，剖析其去中心化点对点架构、基于策略的可编程能力以及自愈合与多协议存储接口的设计。"
 ---
 
 # [Docker收购Infinit](https://blog.docker.com/2016/12/docker-acquires-infinit/) [PDF](/assets/infinit.pdf)

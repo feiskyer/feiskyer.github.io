@@ -3,6 +3,7 @@ title: "Claude Code 安全最佳实践"
 date: 2025-07-14T21:55:29+08:00
 draft: false
 tags: [AI, Vibe Coding, Claude Code]
+description: "讲解 Claude Code 的安全最佳实践，以 Supabase MCP 数据泄露为例剖析 LLM 无法区分指令与数据带来的提示注入风险，提醒切换 AI 编程工具时切莫忽视数据隐私与权限管控陷阱。"
 ---
 
 最近，越来越多的开发者从 Cursor、GitHub Copilot 等 AI 编程 IDE 切换到了 Claude Code。Claude Code 的强大功能让人印象深刻，但在这股切换热潮中，我发现一个令人担忧的现象：很多人只注重工具的易用性，而忽略了其中的安全和数据隐私陷阱。

@@ -3,6 +3,7 @@ title: "开源我的 Codex 配置：把 AI 编程助手调教成你的专属助�
 date: 2025-10-13T19:00:00+08:00
 draft: false
 tags: [AI, Codex, OpenAI, GitHub Copilot]
+description: "开源我的 OpenAI Codex CLI 配置，支持 ChatGPT、GitHub Copilot、DeepSeek、Ollama 等多种模型提供商，默认用 LiteLLM 网关统一接入，并迁移了 Kiro 工作流和 GitHub Spec Kit 两套完整开发流程，克隆即用。"
 ---
 
 继 Claude Code 配置开源后，我把 OpenAI Codex CLI 的配置也开源了，放在 <https://github.com/feiskyer/codex-settings> 上。这套配置支持多种模型提供商（包括 ChatGPT、GitHub Copilot、DeepSeek、Ollama），并把之前 Claude Code 的配置迁移了过来，包括  Kiro 工作流和 GitHub Spec Kit 两套完整的开发流程。

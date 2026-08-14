@@ -1,0 +1,5 @@
+{{/* Project-level override of the theme's styles.html.
+     Purpose: stop the theme SCSS (triple-hyde.scss / print.scss / tocbot.scss) from loading —
+     the editorial.css design system is fully self-contained.
+     We KEEP styles-highlight.html: highlight.js monokai supplies the code-block background. */}}
+{{ partial "header/styles-highlight.html" . }}

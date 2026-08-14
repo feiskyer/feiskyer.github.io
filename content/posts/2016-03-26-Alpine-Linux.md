@@ -1,6 +1,9 @@
+---
 layout: "post"
 title: "Alpine Linux"
-date: "2016-03-26 14:27"
+date: 2016-03-26T14:27:00+08:00
+description: "介绍面向安全的轻量级发行版 Alpine Linux，它基于 musl libc 和 busybox、自带 apk 包管理器，内核打了 grsecurity 补丁。文章还讲解其在虚拟机中的体验以及仅 4.7MB 的官方 Docker 镜像。"
+tags: [Linux, docker, container]
 ---
 
 Alpine Linux

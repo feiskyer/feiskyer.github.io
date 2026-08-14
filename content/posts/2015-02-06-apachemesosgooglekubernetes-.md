@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Apache的Mesos和Google的Kubernetes 有什么区别"
-description: ""
+description: "对比 Apache Mesos 与 Google Kubernetes 的设计理念与适用场景，帮助你理解两大集群管理工具在架构与定位上的差异。"
 category: 
 tags: [docker, mesos]
 ---

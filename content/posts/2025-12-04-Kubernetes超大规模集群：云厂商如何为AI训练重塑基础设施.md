@@ -3,6 +3,7 @@ title: "当 Kubernetes 遇见 AI：云厂商如何为大模型训练重塑基础
 date: 2025-12-04
 draft: false
 tags: [Agent, AI, Vibe Coding, 大模型, MCP]
+description: "Google Cloud 实验环境跑通 13 万节点 GKE、AWS 支持 10 万节点 EKS，本文从 xAI、Meta、Anthropic 的算力竞赛切入，剖析云厂商如何为大模型训练重塑超大规模 Kubernetes 集群的底层基础设施。"
 ---
 
 上个月的 KubeCon 上，Google Cloud 宣布在实验环境中成功运行了 13 万节点的 GKE 集群。而在更早的 7 月，AWS 也发布了 EKS 正式支持 10 万节点集群的消息。

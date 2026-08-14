@@ -1,0 +1,8 @@
+{{- /* Render hook for Markdown headings.
+  The template already emits the sole page <h1> (article headline). Any top-level
+  `# ` heading inside post body would emit a second <h1>, weakening the document
+  outline / SEO and rendering with UA default styling (no .article__body h1 rule).
+  Demote body h1 -> h2 so it inherits the editorial heading styles and keeps h1 unique. */ -}}
+{{- $level := .Level -}}
+{{- if eq $level 1 }}{{ $level = 2 }}{{ end -}}
+<h{{ $level }} id="{{ .Anchor | safeURL }}"{{ with .Attributes.class }} class="{{ . }}"{{ end }}>{{ .Text | safeHTML }}</h{{ $level }}>

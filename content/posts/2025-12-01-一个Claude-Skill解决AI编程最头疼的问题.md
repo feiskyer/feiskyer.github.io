@@ -3,6 +3,7 @@ title: "一个 Claude Skill，解决 AI 编程最头疼的问题"
 date: 2025-12-01
 tags: [AI, Claude Code, Claude Skill, AI Agent]
 draft: false
+description: "Claude Code 在长时任务中常出现记忆丢失、上下文窗口受限和会话切换丢进度的问题，本文从 Compaction 压缩机制讲清 AI 为何失忆，并分享用一个 Claude Skill 解决大批量查询验证任务的实战思路。"
 ---
 
 上周我想让 Claude Code 帮我验证一个项目中所有数据查询的问题。虽然它们都散乱在项目的不同位置，但任务本身其实不算复杂，大概涉及 100 多个查询。主要复杂的问题在于失败后的处理：找到正确的数据结构、查询一些数据确认有效字段、汇总查询确认可能取值、最后再去重新构造查询。

@@ -3,6 +3,7 @@ title: "三大公有云托管 Kubernetes 服务 (EKS、GKE、AKS) 评估"
 date: 2021-01-20
 tags: [CloudNative, Kubernetes]
 draft: false
+description: "基于 2021 年官方文档评估 AWS EKS、Google GKE 和 Azure AKS 三大公有云托管 Kubernetes 服务，对比它们在版本支持、控制平面自动更新、节点健康自愈等方面的差异与生态特点。"
 ---
 
 作为发展最快的开源项目，Kubernetes 已经在越来越多的企业落地。而作为全球三大公有云提供商，AWS、Azure 和 GCP 都提供了托管 Kubernetes 集群服务，即 Elastic Kubernetes Service (EKS)、Azure Kubernetes Service (AKS) 和 Google Kubernetes Engine (GKE)。

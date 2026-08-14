@@ -3,6 +3,7 @@ title: "GitHub Spec Kit 把规范驱动开发标准化了，AI 编程终于有�
 date: 2025-09-29T22:20:28+08:00
 draft: false
 tags: [AI, Vibe Coding, Codex, Claude Code]
+description: "介绍 GitHub 拥有 27k 星标的 Spec Kit，它通过 Constitution、Specify、Plan、Tasks、Implement 等标准化步骤把规范驱动开发标准化，解决 AI 编程凭运气、代码偏离意图的 vibe-coding 危机。"
 ---
 
 你在用 AI 编程时，是否遇到过这样的情况？你向 Claude Code 提出需求后，它生成了一大段代码，虽然能编译通过，功能也基本实现了，但总有很多细节不尽如人意——架构设计不是你想要的，界面风格也总是差点意思。经过几轮迭代，项目代码变得越来越臃肿，甚至让你失去了阅读和维护的兴趣。

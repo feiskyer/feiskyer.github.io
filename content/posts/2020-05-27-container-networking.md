@@ -3,6 +3,7 @@ title: "漫谈容器网络"
 date: 2020-05-27
 tags: [Networking, CloudNative]
 draft: false
+description: "漫谈 Kubernetes 容器网络，从 IP-per-Pod、扁平网络、Service Cluster IP 三条核心网络模型讲起，梳理 CNI 插件、CoreDNS、Ingress 控制器和服务网格如何组合出强大而复杂的容器网络。"
 ---
 
 计算、存储和网络是云时代的三大基础服务，作为新一代基础架构的 Kubernetes 也不例外。而这三者之中，网络又是一个最难掌握和最容易出问题的服务。

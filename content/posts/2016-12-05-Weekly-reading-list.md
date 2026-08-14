@@ -3,6 +3,7 @@ title: Weekly reading list
 date: 2016-12-05 07:59:01
 category: Readings
 tags: []
+description: "每周技术阅读清单，介绍腾讯开源的毫秒服务引擎 MSEC，它集 RPC、服务发现、负载均衡、灰度发布、Key-Value 存储于一体，并附带 SELinux 角色机制等延伸阅读。"
 ---
 
 ## [分布式后台毫秒服务引擎](http://mp.weixin.qq.com/s?__biz=MjM5MDE0Mjc4MA==&mid=2650994968&idx=1&sn=6713bb3b59e1fb38c70f7178de136cfc&scene=0#wechat_redirect)

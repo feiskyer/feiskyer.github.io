@@ -1,8 +1,9 @@
 ---
 title: "跟踪 Claude Code 的大语言模型调用过程"
 date: 2025-06-25T19:17:44+08:00
-tags: [AI, LLM, Vibe Coding, Claude Code]
 draft: false
+tags: [AI, LLM, Vibe Coding, Claude Code]
+description: "使用 Claude Code 时我们往往只能看到最终输出，看不到内部的系统提示和工具调用过程。本文介绍轻量级跟踪工具 claude-trace，通过拦截 Node.js 模块加载机制，完整记录 Claude Code 与 Anthropic API 之间的交互，帮助你透视 AI 编程助手的内部工作原理。"
 ---
 
 在使用 Claude Code 进行开发时，我们往往只能看到最终的输出结果，但对于其内部的系统提示、工具调用和 API 交互过程却一无所知。这种黑盒操作虽然简化了使用体验，但也限制了我们对 AI 编程助手工作机制的深入理解。
@@ -35,7 +36,7 @@ claude-trace 会自动启动 Claude Code，并将所有交互过程记录到项�
 
 打开生成的 HTML 文件，可以看到结构化的交互界面：
 
-![](/images/claude-code-trace-1.png)
+![claude-trace 生成的 HTML 交互记录界面](/images/claude-code-trace-1.png)
 
 界面分为两个主要部分：
 
@@ -45,7 +46,7 @@ claude-trace 会自动启动 Claude Code，并将所有交互过程记录到项�
 
 所有标记 `[+]` 的内容都支持展开查看详细信息。比如，点击 System Prompt 可以查看完整的系统提示词：
 
-![](/images/claude-code-trace-2.png)
+![展开查看的完整系统提示词内容](/images/claude-code-trace-2.png)
 
 关于系统提示词和工具列表的详细分析，可以参考 [上一篇博文](/posts/2025-06-24-claude-code-system-prompts)。
 
@@ -155,6 +156,6 @@ claude-trace 为我们提供了一个深入了解 Claude Code 内部工作机制
 
 ---
 
-如果你对这个话题感兴趣，欢迎关注我的技术博客，我会持续分享关于 AI 工具、云原生和系统工程的最新实践。你也可以通过微信与我交流：
+欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
 
-![微信二维码](/images/wechat-qrcode.png)
+![Feisky 公众号二维码](/images/mp.png)

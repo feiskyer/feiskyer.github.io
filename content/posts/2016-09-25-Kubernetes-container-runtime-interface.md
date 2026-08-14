@@ -2,6 +2,7 @@
 title: Kubernetes container runtime interface
 date: 2016-09-25 06:59:31
 tags: [kubernetes]
+description: "深入讲解 Kubernetes 容器运行时接口 CRI 的设计动机与架构，剖析旧 Runtime 接口在抽象层次、代码耦合、镜像与容器生命周期混杂等方面的缺陷，以及 CRI 如何以插件方式接入外部容器引擎。"
 ---
 
 题记：最近一段时间在做Kubernetes容器引擎接口（Container Runtime Interface， CRI）的重构，并支持以插件的方式引入外部容器引擎。CRI还在紧张有序的开发中，预计在v1.5发布第一个alpha版。

@@ -3,6 +3,7 @@ title: "镜像构建的正确姿势"
 date: 2020-06-01
 tags: [CloudNative, Kubernetes]
 draft: false
+description: "讲解容器镜像构建的正确姿势，从 Dockerfile 的基本指令 FROM、ENTRYPOINT 讲起，介绍 docker build 的构建流程，并深入镜像分层、缓存复用与精简优化等实用技巧。"
 ---
 
 ## Dockerfile

@@ -3,6 +3,7 @@ title: "Codex CLI 也能用 Skills 了：把 Claude Code 的“技能包”迁�
 date: 2025-12-08
 draft: false
 tags: [Agent, AI, Vibe Coding, 大模型, Codex]
+description: "Codex CLI v0.65.0 开始支持 Skills，本文说明它为什么能缓解 MCP 带来的上下文膨胀，介绍 Codex 中 Skills 的用法、我迁移的技能包以及目前还存在的小问题。"
 ---
 
 Codex CLI v0.65.0 带来了一个我期待已久的功能——Skills 支持。

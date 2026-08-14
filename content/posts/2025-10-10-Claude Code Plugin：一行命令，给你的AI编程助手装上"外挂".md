@@ -3,6 +3,7 @@ title: "Claude Code Plugin：一行命令，给你的AI编程助手装上“外�
 date: 2025-10-10T20:20:28+08:00
 draft: false
 tags: [AI, Vibe Coding, Claude Code]
+description: "介绍 Claude Code Plugin 如何把自定义命令、SubAgent、Hooks 和 MCP 服务打包共享，讲解插件清单的写法、插件市场的用法，以及实际使用中踩过的坑和建议。"
 ---
 
 在 Gemini CLI 支持扩展（Extension）之后，Claude Code 版的扩展也来了，不过它叫 Claude Code Plugin。

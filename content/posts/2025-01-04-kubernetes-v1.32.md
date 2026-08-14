@@ -1,8 +1,9 @@
 ---
 title: "Kubernetes 1.32 新特性解析"
 date: 2025-01-04T15:41:42+08:00
-tags: [Kubernetes]
 draft: false
+tags: [Kubernetes]
+description: "Kubernetes v1.32 是社区推动云原生技术十年发展的里程碑版本，本文系统梳理了这一版本的核心新特性（GA），并整理了从旧版本升级到 v1.32 时需要注意的 DRA、FlowSchema 等兼容性变更事项，帮助你顺利完成集群升级。"
 ---
 
 Kubernetes v1.32 是一次充满意义的版本更新，它不仅标志着 Kubernetes 十周年的里程碑，更展现了社区在推动云原生计算领域技术发展的坚持与创新。本文将带你一起看一看 1.32 版本带来了哪些新的功能特性以及升级过程中需要注意的事项。
@@ -98,7 +99,7 @@ CRD 字段选择器允许客户端根据一个或多个资源字段的值选择�
 
 ### 支持调整内存支持的卷大小
 
-该功能允许用户根据 Pod 的资源限制动态调整内存卷的大小（默认是节点内存的 50%），提升了资源利用率。
+该功能允许用户根据 Pod 的资源限制动态调整内存卷的大小（默认是节点内存的 50% ），提升了资源利用率。
 
 比如，emptyDir 默认使用节点存储，设置 `emptyDir.medium` 为 "Memory" 后使用内存存储，现在也可以通过 sizeLimit 配置内存大小：
 
@@ -220,7 +221,7 @@ Kubernetes v1.32 将 API Streaming（watch list）特性升级到 Beta 阶段。
 
 ## Alpha 特性
 
-Alpha特性代表了Kubernetes的实验性功能,虽然不建议在生产环境中使用,但它们展示了平台未来的发展方向。1.32版本引入了多项令人兴奋的Alpha特性:
+Alpha 特性代表了 Kubernetes 的实验性功能,虽然不建议在生产环境中使用,但它们展示了平台未来的发展方向。1.32 版本引入了多项令人兴奋的 Alpha 特性:
 
 - [基于 CEL 的准入策略](https://github.com/kubernetes/enhancements/issues/3962)
 - [放宽 DNS 搜索字符串验证](https://github.com/kubernetes/enhancements/issues/4427)
@@ -291,7 +292,6 @@ Windows 节点现已支持优雅关闭，确保 Pod 在节点关闭时能够正�
 
 改进后的 CPU 和内存管理功能提升了 Windows 节点的性能和资源分配效率。
 
-
 ### 允许 PreStop 钩子的 sleep 动作为零
 
 此增强功能引入了在 Kubernetes 中为 PreStop 生命周期钩子设置零秒睡眠时间的能力，为资源验证和定制提供了更灵活且无操作的选项。
@@ -310,8 +310,14 @@ DRA 添加了一个新字段，允许驱动程序报告资源请求中每个分�
 
 ## 升级注意事项
 
-在升级就版本集群到 v1.32之前，需要注意：
+在升级就版本集群到 v1.32 之前，需要注意：
 
 1. 删除了 1.26 引入的旧版 DRA（Classic DRA），使用了旧版 DRA 的用户需要先升级到新版本再进行升级。
 
 2. FlowSchema 和 PriorityLevelConfiguration 的 `flowcontrol.apiserver.k8s.io/v1beta3` API 版本已移除，需切换到 v1.29 引入的 `flowcontrol.apiserver.k8s.io/v1` （所有现有持久化对象都可通过新 API 访问）。另外，注意优先级配置 `spec.limited.nominalConcurrencyShares` 字段仅在未指定时默认为 30，显式值 0 不会被更改为 30。
+
+---
+
+欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
+
+![Feisky 公众号二维码](/images/mp.png)

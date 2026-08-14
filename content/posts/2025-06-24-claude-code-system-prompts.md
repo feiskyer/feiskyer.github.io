@@ -3,6 +3,7 @@ title: "Claude Code 系统提示词赏析"
 date: 2025-06-24T18:36:02+08:00
 tags: [AI, Vibe Coding, Claude Code]
 draft: false
+description: "深入赏析 Claude Code 的系统提示词，逐段解读其作为交互式 CLI 工具的身份定义、防御性安全原则和行为准则，帮助你理解其设计思路并学会更高效地与 AI 编程助手协作。"
 ---
 
 在《[Claude Code 从 0 到 1 入门指南](/posts/2025-06-16-claude-code-basic)》中，我们学习了如何安装和使用 Claude Code。今天，我们将更进一步，深入 Claude Code 的 “大脑”，探究其强大的系统提示词（System Prompt）。这些提示词是指导 Claude Code 行为的核心准则，理解它们，不仅能帮助我们更好地使用这款工具，还能启发我们如何更有效地与 AI 协作。让我们一起开始这场“赏析” 之旅吧！

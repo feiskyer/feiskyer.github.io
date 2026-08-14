@@ -1,4 +1,0 @@
-<blockquote {{ with .Get "class" }}class="{{.}}"{{ end }}>
-    <strong>{{ .Get 0 | default "Note" | markdownify }}</strong><br>
-    {{ .Inner | markdownify }}
-</blockquote>

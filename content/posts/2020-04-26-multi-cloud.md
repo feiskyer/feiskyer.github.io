@@ -3,6 +3,7 @@ title: "基于Kubernetes的多云和混合云"
 date: 2020-04-26
 tags: [CloudNative, MultiCloud]
 draft: false
+description: "讲解基于 Kubernetes 的多云与混合云方案，分析跨数据中心和多云服务商部署带来的解除锁定、可用性保障、成本优化与弹性突发等价值，以及跨云网络打通、数据一致性等落地难点。"
 ---
 
 ## 什么是多云和混合云

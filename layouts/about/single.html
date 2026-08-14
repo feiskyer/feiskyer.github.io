@@ -1,401 +1,70 @@
-{{ define "header" }}
-    {{ partial "page-single/variables-init.html" . }}
-    {{ partial "header.html" . }}
-{{ end }}
-
 {{ define "content" }}
-    {{ partial "breadcrumbs.html" . }}
-
-<article class="post">
-    <div class="about-container">
-        
-        <!-- Profile Header -->
-        <div class="about-profile">
-            <div class="about-avatar">
-                <img src="{{ .Site.Params.authorimage }}" alt="{{ .Title }}" onerror="this.src='/images/og-default.png'">
-            </div>
-            <div class="about-bio">
-                <h1>{{ .Title }}</h1>
-                <div class="bio-text">{{ .Params.bio | markdownify }}</div>
-                
-                <!-- Social Icons -->
-                <div class="social-links">
-                    {{ with .Params.social.github }}
-                    <a href="https://github.com/{{ . }}" target="_blank" rel="noopener" title="GitHub">
-                        {{ partial "icon.html" "github" }}
-                    </a>
-                    {{ end }}
-                    {{ with .Params.social.twitter }}
-                    <a href="https://twitter.com/{{ . }}" target="_blank" rel="noopener" title="Twitter">
-                        {{ partial "icon.html" "twitter" }}
-                    </a>
-                    {{ end }}
-                    {{ with .Params.social.weibo }}
-                    <a href="https://weibo.com/{{ . }}" target="_blank" rel="noopener" title="Weibo">
-                        {{ partial "icon.html" "weibo" }}
-                    </a>
-                    {{ end }}
-                </div>
-            </div>
-        </div>
-
-        <hr class="divider">
-
-        <!-- Featured Columns -->
-        {{ if .Params.columns }}
-        <section class="about-section">
-            <h2><i class="fas fa-pen-nib"></i> 极客时间专栏</h2>
-            <div class="grid-container">
-                {{ range .Params.columns }}
-                <a href="{{ .url }}" target="_blank" class="grid-item card">
-                    <div class="card-image">
-                        <img src="{{ .image }}" alt="{{ .title }}">
-                    </div>
-                    <div class="card-content">
-                        <h3>{{ .title }}</h3>
-                        <p>点击查看专栏详情</p>
-                    </div>
-                </a>
-                {{ end }}
-            </div>
-        </section>
-        {{ end }}
-
-        <!-- Projects -->
-        {{ if .Params.projects }}
-        <section class="about-section">
-            <h2><i class="fas fa-code-branch"></i> 开源项目</h2>
-            <div class="grid-container">
-                {{ range .Params.projects }}
-                <a href="{{ .url }}" target="_blank" class="grid-item card project-card">
-                    <div class="card-content">
-                        <div class="project-header">
-                            <i class="fab fa-github project-icon"></i>
-                            <h3>{{ .title }}</h3>
-                        </div>
-                        <p class="project-desc">{{ .description }}</p>
-                    </div>
-                </a>
-                {{ end }}
-            </div>
-        </section>
-        {{ end }}
-
-        <!-- Books -->
-        {{ if .Params.books }}
-        <section class="about-section">
-            <h2><i class="fas fa-book"></i> 开源书籍</h2>
-            <div class="grid-container">
-                {{ range .Params.books }}
-                <a href="{{ .url }}" target="_blank" class="grid-item card book-card">
-                    <div class="card-content">
-                        <div class="project-header">
-                            <i class="fas fa-book-open project-icon"></i>
-                            <h3>{{ .title }}</h3>
-                        </div>
-                        <p class="project-desc">{{ .description }}</p>
-                    </div>
-                </a>
-                {{ end }}
-            </div>
-        </section>
-        {{ end }}
-
-        <!-- Talks -->
-        {{ if .Params.talks }}
-        <section class="about-section">
-            <h2><i class="fas fa-microphone-alt"></i> 技术演讲</h2>
-            <ul class="talks-list">
-                {{ range .Params.talks }}
-                <li>
-                    <span class="talk-event">{{ .event }}</span>
-                    <a href="{{ .url }}" target="_blank" class="talk-title">{{ .title }}</a>
-                </li>
-                {{ end }}
-            </ul>
-        </section>
-        {{ end }}
-
+<div class="about-page shell">
+  {{ partial "breadcrumbs.html" . }}
+  <header class="about-intro">
+    <div class="about-intro__portrait">
+      <img src="{{ site.Params.authorimage | relURL }}" alt="{{ site.Params.author }} 的头像" width="220" height="220">
+      <span aria-hidden="true">PF</span>
     </div>
-</article>
+    <div class="about-intro__copy">
+      <p class="eyebrow">ABOUT ME</p>
+      <h1>你好，我是<br><em>{{ site.Params.author }}</em>。</h1>
+      <div class="about-intro__bio">{{ .Params.bio | markdownify }}</div>
+      <p class="about-intro__note">我在这里分享自己对技术、工程实践与 AI 的理解，也记录持续学习和构建过程中的经验。</p>
+      <nav class="about-social" aria-label="个人主页">
+        {{ with .Params.social.github }}<a href="https://github.com/{{ . }}" rel="me noopener" target="_blank">GitHub <span aria-hidden="true">↗</span></a>{{ end }}
+        {{ with .Params.social.twitter }}<a href="https://x.com/{{ . }}" rel="me noopener" target="_blank">X / Twitter <span aria-hidden="true">↗</span></a>{{ end }}
+        {{ with .Params.social.weibo }}<a href="https://weibo.com/{{ . }}" rel="me noopener" target="_blank">微博 <span aria-hidden="true">↗</span></a>{{ end }}
+      </nav>
+    </div>
+  </header>
 
-<style>
-/* About Page - Modern Card Design */
+  {{ with .Params.columns }}
+  <section class="about-block" aria-labelledby="columns-title">
+    <div class="about-block__heading"><p class="eyebrow">COURSES</p><h2 id="columns-title">极客时间专栏</h2><p>将多年实践经验整理成系统化课程。</p></div>
+    <div class="about-featured-grid">
+      {{ range $index, $column := . }}
+      <a class="about-featured" href="{{ .url }}" target="_blank" rel="noopener">
+        <span class="about-featured__index" aria-hidden="true">{{ printf "%02d" (add $index 1) }}</span>
+        <div><h3>{{ .title }}</h3><p>查看专栏介绍与课程目录</p></div>
+        <span aria-hidden="true">↗</span>
+      </a>
+      {{ end }}
+    </div>
+  </section>
+  {{ end }}
 
-/* Page wrapper */
-.post {
-    background: transparent;
-}
+  {{ with .Params.projects }}
+  <section class="about-block about-block--split" aria-labelledby="projects-title">
+    <div class="about-block__heading"><p class="eyebrow">OPEN SOURCE</p><h2 id="projects-title">开源项目</h2><p>一些仍在维护、也欢迎共同参与的工具与实验。</p></div>
+    <div class="about-link-list">
+      {{ range . }}
+      <a href="{{ .url }}" target="_blank" rel="noopener"><div><h3>{{ .title }}</h3><p>{{ .description }}</p></div><span aria-hidden="true">↗</span></a>
+      {{ end }}
+    </div>
+  </section>
+  {{ end }}
 
-.about-container {
-    max-width: 900px;
-    margin: 0 auto;
-}
+  {{ with .Params.books }}
+  <section class="about-block about-block--split" aria-labelledby="books-title">
+    <div class="about-block__heading"><p class="eyebrow">HANDBOOKS</p><h2 id="books-title">开源书籍</h2><p>可以在线阅读，也可以在 GitHub 上参与完善。</p></div>
+    <div class="about-link-list about-link-list--books">
+      {{ range . }}
+      <a href="{{ .url }}" target="_blank" rel="noopener"><div><h3>{{ .title }}</h3><p>{{ .description }}</p></div><span aria-hidden="true">阅读 ↗</span></a>
+      {{ end }}
+    </div>
+  </section>
+  {{ end }}
 
-/* Profile Card */
-.about-profile {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    margin-bottom: 2.5rem;
-    padding: 2.5rem;
-    background: rgba(106, 159, 181, 0.08);
-    border-radius: 16px;
-}
-
-@media (min-width: 768px) {
-    .about-profile {
-        flex-direction: row;
-        text-align: left;
-        align-items: center;
-        gap: 2.5rem;
-    }
-}
-
-.about-avatar {
-    flex-shrink: 0;
-}
-
-.about-avatar img {
-    width: 140px;
-    height: 140px;
-    min-width: 140px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 4px solid #6a9fb5;
-    box-shadow: 0 4px 12px rgba(106,159,181,0.3);
-}
-
-.about-bio h1 {
-    margin: 1rem 0 0.5rem 0;
-    font-size: 1.8rem;
-    color: #2c3e50;
-    font-weight: 700;
-}
-
-@media (min-width: 768px) {
-    .about-bio h1 {
-        margin-top: 0;
-    }
-}
-
-.bio-text {
-    color: #666;
-    line-height: 1.7;
-    font-size: 1rem;
-    margin-bottom: 1.2rem;
-}
-
-/* Social Links */
-.social-links {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-@media (min-width: 768px) {
-    .social-links {
-        justify-content: flex-start;
-    }
-}
-
-.social-links a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: #f0f4f7;
-    color: #6a9fb5;
-    transition: all 0.2s ease;
-}
-
-.social-links svg {
-    width: 1.4rem;
-    height: 1.4rem;
-    fill: currentColor;
-}
-
-.social-links a:hover {
-    background: #6a9fb5;
-    color: #fff;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(106,159,181,0.4);
-}
-
-/* Sections */
-.about-section {
-    margin-bottom: 2.5rem;
-}
-
-.about-section h2 {
-    font-size: 1.3rem;
-    font-weight: 600;
-    padding: 0.8rem 1.2rem;
-    margin-bottom: 1.5rem;
-    background: #6a9fb5;
-    color: #fff;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-}
-
-.about-section h2 i {
-    color: rgba(255,255,255,0.9);
-}
-
-/* Grid Layout */
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.2rem;
-}
-
-/* Cards */
-.card {
-    background: rgba(106, 159, 181, 0.08);
-    border: none;
-    border-radius: 12px;
-    overflow: hidden;
-    transition: all 0.25s ease;
-    text-decoration: none;
-    color: inherit;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-
-.card:hover {
-    background: rgba(106, 159, 181, 0.15);
-    transform: translateY(-2px);
-}
-
-.card-image img {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-    display: block;
-}
-
-.card-content {
-    padding: 1.2rem;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.card-content h3 {
-    margin: 0 0 0.5rem 0;
-    font-size: 1.05rem;
-    font-weight: 600;
-    color: #2c3e50;
-    line-height: 1.4;
-}
-
-.card-content p {
-    color: #6a9fb5;
-    margin: 0;
-    font-size: 0.9rem;
-}
-
-/* Project Cards */
-.project-card {
-    border-left: 3px solid #6a9fb5;
-}
-
-.project-header {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    margin-bottom: 0.5rem;
-}
-
-.project-icon {
-    font-size: 1.2rem;
-    color: #6a9fb5;
-}
-
-.project-desc {
-    font-size: 0.9rem;
-    color: #666;
-    line-height: 1.5;
-    margin: 0;
-}
-
-/* Book Cards */
-.book-card {
-    border-left: 3px solid #6a9fb5;
-}
-
-.book-card .card-content {
-    padding: 1.5rem 1.2rem;
-}
-
-/* Talks List */
-.talks-list {
-    list-style: none;
-    padding: 0;
-    background: rgba(106, 159, 181, 0.08);
-    border-radius: 12px;
-    overflow: hidden;
-}
-
-.talks-list li {
-    padding: 1rem 1.2rem;
-    border-bottom: 1px solid #f0f0f0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-    transition: background 0.2s ease;
-}
-
-.talks-list li:last-child {
-    border-bottom: none;
-}
-
-.talks-list li:hover {
-    background: rgba(106, 159, 181, 0.15);
-}
-
-@media (min-width: 768px) {
-    .talks-list li {
-        flex-direction: row;
-        align-items: center;
-        gap: 1.5rem;
-    }
-}
-
-.talk-event {
-    min-width: 220px;
-    font-weight: 600;
-    color: #2c3e50;
-    font-size: 0.9rem;
-}
-
-.talk-title {
-    color: #6a9fb5;
-    text-decoration: none;
-    flex: 1;
-    font-weight: 500;
-    font-size: 0.95rem;
-}
-
-.talk-title:hover {
-    color: #5a8fa5;
-    text-decoration: underline;
-}
-
-
-
-</style>
-
-{{ end }}
-
-{{ define "footer" }}
-    {{ partial "page-single/footer.html" . }}
-    {{ partial "page-single/variables-deinit.html" . }}
+  {{ with .Params.talks }}
+  <section class="about-block about-talks" aria-labelledby="talks-title">
+    <div class="about-block__heading"><p class="eyebrow">SELECTED TALKS</p><h2 id="talks-title">技术演讲</h2><p>关于 Kubernetes、云原生、性能与工程实践的部分公开分享。</p></div>
+    <ol>
+      {{ range . }}
+      <li><span>{{ .event }}</span><a href="{{ .url }}" target="_blank" rel="noopener">{{ .title }} <i aria-hidden="true">↗</i></a></li>
+      {{ end }}
+    </ol>
+  </section>
+  {{ end }}
+</div>
 {{ end }}

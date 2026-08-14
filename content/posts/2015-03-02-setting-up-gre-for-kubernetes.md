@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Setting up GRE for Kubernetes"
-description: ""
+description: "手把手演示如何修改 Docker 默认网桥并配置 GRE 隧道，为 Kubernetes 集群打通跨主机容器网络，实现 Pod 间互通。"
 category: 
 tags: [Docker]
 ---

@@ -2,6 +2,7 @@
 title: 'Grumpy: 使用Go来运行Python程序'
 date: 2017-01-05 17:11:09
 tags: [Go]
+description: "介绍 Google 开源的 Grumpy，它把 Python 程序翻译成 Go 程序再编译运行，用 goroutine 替代线程以绕开 GIL 全局解释器锁。文章说明它与 PyPy 的区别并给出上手示例。"
 ---
 
 Grumpy是Google近期开源（[https://github.com/google/grumpy](https://github.com/google/grumpy)）的把Python程序编译成Go程序的工具，主要是为了解决Python GIL（Global Interpreter Lock）锁的问题，把Python中的多线程转换成goroutine来避免锁的问题。注意它跟PyPy不一样，PyPy是一个Python解释器，而Grumpy不是，它只是把Python程序翻译成了Go程序，然后再编译运行。

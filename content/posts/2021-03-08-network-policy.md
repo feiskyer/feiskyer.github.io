@@ -3,6 +3,7 @@ title: "Kubernetes网络策略可视化编辑器"
 date: 2021-02-01
 tags: [Kubernetes]
 draft: false
+description: "介绍 Cilium 出品的 Kubernetes 网络策略可视化编辑器，针对 NetworkPolicy YAML 难写易错的痛点，演示如何通过可视化界面直观地编写和理解复杂的 Ingress、Egress 网络策略。"
 ---
 
 Kubernetes网络策略通常需要通过 YAML 来定义，在编写复杂网络策略时一点也不直观，很容易出错。虽然 Kubernetes 的官方文档已经详细介绍了网络策略的编写方法，但实际掌握起来也不太容易。今天，我就给大家介绍一个网络策略的可视化编辑器，方便你通过可视化界面编写网络策略。

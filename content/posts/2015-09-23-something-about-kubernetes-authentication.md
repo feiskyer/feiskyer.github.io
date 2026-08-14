@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Something about kubernetes authentication"
-description: ""
+description: "介绍如何为 Kubernetes 开启认证，说明 kube-apiserver 的鉴权配置方法，帮助你用 curl 等工具安全访问集群 API。"
 category: kubernetes
 tags: [kubernetes]
 ---

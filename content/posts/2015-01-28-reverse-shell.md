@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "reverse shell"
-description: ""
+description: "整理多种反弹 Shell 的实现方式，涵盖 nc、bash、Python 等工具，适合渗透测试与应急排障时快速建立远程连接（仅供学习）。"
 category: 
 tags: []
 ---

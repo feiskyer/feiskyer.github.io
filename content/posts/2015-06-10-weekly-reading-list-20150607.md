@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Weekly reading list (20150607)"
-description: ""
+description: "每周技术阅读清单，本期聚焦 OpenStack Magnum 容器服务项目及其最新架构，汇总云原生与容器领域的精选文章。"
 category: Readings
 tags: []
 ---

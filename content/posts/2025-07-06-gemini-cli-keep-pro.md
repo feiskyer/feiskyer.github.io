@@ -3,6 +3,7 @@ title: "Gemini CLI 降智原因及解决方法"
 date: 2025-07-06T14:16:05+08:00
 draft: false
 tags: [AI, Vibe Coding]
+description: "分析 Gemini CLI 从 2.5 Pro 悄悄降级到 Flash 导致生成质量下降的智能路由机制，剖析任务复杂度评估、慢响应监控等触发条件，并给出保持 Pro 模型的验证解决方案。"
 ---
 
 最近在使用 Gemini CLI 时，相信不少开发者都遇到过这样的困扰：明明设置了 Gemini 2.5 Pro 模型，却发现在使用过程中很快就降级到了 Gemini 2.5 Flash，导致生成质量明显下降。这种 "智能降级" 机制背后的原理是什么？我们又该如何应对？

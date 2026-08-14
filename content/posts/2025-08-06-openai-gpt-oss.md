@@ -3,6 +3,7 @@ title: "OpenAI gpt-oss 深度解析"
 date: 2025-08-06T19:22:28+08:00
 draft: false
 tags: [AI, Vibe Coding, OpenAI, 大模型]
+description: "深度解析 OpenAI 时隔多年重返开源发布的 gpt-oss 系列模型，剖析其采用 Apache 2.0 许可、MoE 架构和原生 MXFP4 量化，让 120B 参数模型在单张 80GB GPU 上运行的技术创新与部署方法。"
 ---
 
 OpenAI 在 GPT-2 之后时隔多年重返开源社区，发布了 gpt-oss 系列模型。作为 OpenAI 回归开源的第一个语言模型，gpt-oss 不仅在技术架构上有重大创新，更重要的是它采用了 Apache 2.0 许可证，真正实现了商业友好的开源。这个模型通过 MoE 架构和原生 MXFP4 量化，让 120B 参数的模型能在单张 80GB GPU 上运行，在 AIME 数学竞赛上达到 96.6% 的准确率，超越了人类优秀学生的平均水平。

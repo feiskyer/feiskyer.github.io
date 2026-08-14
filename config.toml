@@ -1,6 +1,6 @@
 title = "Feisky"
 baseURL = "https://feisky.xyz/"
-languageCode = "zh-cn"
+locale = "zh-CN"
 theme = "triple-hyde"
 publishDir = "docs"
 disqusShortname = "feisky"
@@ -10,6 +10,22 @@ metaDataFormat = "yaml"
 enableEmoji = true
 buildDrafts = false
 enableRobotsTXT = true
+# Derive lastmod from git commit dates (CI checks out full history)
+enableGitInfo = true
+
+# lastmod: frontmatter first, then git commit date, then publish date
+[frontmatter]
+  lastmod = ["lastmod", ":git", "date", "publishDate"]
+
+# llms.txt for AI/LLM crawlers (https://llmstxt.org/), generated from real posts
+[outputFormats.LLMS]
+  mediaType = "text/plain"
+  baseName = "llms"
+  isPlainText = true
+  notAlternative = true
+
+[outputs]
+  home = ["HTML", "RSS", "LLMS"]
 
 [params]
   author = "Pengfei Ni"
@@ -47,6 +63,7 @@ enableRobotsTXT = true
 [params.social]
 	twitter = "feisky"
 	github = "feiskyer"
+	weibo = "371069890"
   # gravatar = "feiskyer@gmail.com"
 
 [sitemap]

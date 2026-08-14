@@ -1,75 +1,11 @@
-<style>
-  .breadcrumb-container {
-    font-size: 0.9rem;
-    margin-bottom: 1.5rem;
-    padding-top: 1rem;
-    color: #666;
-  }
-  .breadcrumb {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-wrap: wrap;
-  }
-  .breadcrumb-item {
-    display: flex;
-    align-items: center;
-  }
-  .breadcrumb-item + .breadcrumb-item::before {
-    content: "/";
-    padding: 0 0.5rem;
-    color: #ccc;
-  }
-  .breadcrumb-item a {
-    color: inherit;
-    text-decoration: none;
-    border-bottom: 1px solid transparent;
-    transition: border-bottom-color 0.2s;
-  }
-  .breadcrumb-item a:hover {
-    border-bottom-color: currentColor;
-  }
-  .breadcrumb-item.active {
-    color: #333; /* Darker for active/current page */
-    font-weight: 500;
-  }
-  /* Dark mode adjustment for triple-hyde if applicable, usually handled by body class */
-  .theme-base-0d .breadcrumb-item.active {
-      color: #dfdfdf;
-  }
-  .theme-base-0d .breadcrumb-container {
-      color: #a6a6a6;
-  }
-</style>
-
-<nav aria-label="breadcrumb" class="breadcrumb-container">
-  <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
-    <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-      <a href="{{ .Site.BaseURL }}" itemprop="item">
-        <span itemprop="name">Home</span>
-      </a>
-      <meta itemprop="position" content="1" />
-    </li>
-    
+<nav class="breadcrumbs" aria-label="面包屑导航">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="{{ site.Home.RelPermalink }}" itemprop="item"><span itemprop="name">首页</span></a><meta itemprop="position" content="1"></li>
     {{ if .IsPage }}
-      {{ with .Section }}
-        <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-          <a href="{{ $.Site.BaseURL }}{{ . | urlize }}/" itemprop="item">
-            <span itemprop="name">{{ . | humanize }}</span>
-          </a>
-          <meta itemprop="position" content="2" />
-        </li>
-      {{ end }}
-      <li class="breadcrumb-item active" aria-current="page" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-        <span itemprop="name">{{ .Title }}</span>
-        <meta itemprop="position" content="3" />
-      </li>
-    {{ else if .IsSection }}
-       <li class="breadcrumb-item active" aria-current="page" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-        <span itemprop="name">{{ .Title }}</span>
-        <meta itemprop="position" content="2" />
-      </li>
+      {{ with .Section }}<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="{{ printf "/%s/" . | relURL }}" itemprop="item"><span itemprop="name">文章</span></a><meta itemprop="position" content="2"></li>{{ end }}
+      <li aria-current="page"><span>{{ .Title }}</span></li>
+    {{ else }}
+      <li aria-current="page"><span>{{ .Title }}</span></li>
     {{ end }}
   </ol>
 </nav>

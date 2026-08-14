@@ -3,6 +3,7 @@ title: "如何像 OpenAI 工程师一样用 AI 编程：10 倍效率提升实践
 date: 2025-09-29T18:20:28+08:00
 draft: false
 tags: [AI, Vibe Coding, Codex, OpenAI]
+description: "根据 OpenAI 内部工程团队分享，系统梳理 Codex 在企业级软件开发中的七大应用场景，涵盖代码理解、批量重构、性能优化到并行开发工作流，每个场景配有真实案例和 prompt，方法论同样适用于 Cursor、Copilot、Claude 等主流 AI 编程工具。"
 ---
 
 **“我开了一天会，还是合并了 4 个 PR，因为有 Codex 在后台帮我干活。”**

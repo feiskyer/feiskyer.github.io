@@ -3,6 +3,7 @@ title: "如何无宕机扩容 Kubernetes 存储"
 date: 2021-03-17
 tags: [Kubernetes]
 draft: false
+description: "讲解如何无宕机扩容 Kubernetes 存储，介绍从 1.11 起支持的 PVC 动态扩容，并按网络文件系统与块存储设备两类分别剖析扩容时是否需要卸载 PV 或重启 Pod 的差异。"
 ---
 
 Kubernetes 从 1.11 开始支持 Persistent Volumes Claim（PVC）的动态扩容，诸如 AWS EBS、GlusterFS、rbd 等都可以修改 PVC 增大持久化存储的大小。但是，具体扩容时是否对应用有影响还要看具体的存储插件实现，有些存储插件的实现无需重启 Pod，而有些存储插件则需要把 PV 从 Node 上卸载之后才支持扩容。今天，我们就来看看各种不同的存储插件如何实现无宕机扩容。

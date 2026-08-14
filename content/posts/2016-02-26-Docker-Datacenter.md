@@ -1,8 +1,10 @@
+---
 layout: "post"
 title: "Docker Datacenter"
-date: "2016-02-26 17:38"
+date: 2016-02-26T17:38:00+08:00
 category: docker
 tags: [docker, cluster]
+description: "介绍 Docker 发布的企业级容器平台 Docker Datacenter，涵盖商业支持的 Docker 引擎、内嵌 Swarm 的通用控制平面 UCP 和可信镜像仓库 DTR，帮助企业落地容器即服务的私有云方案。"
 ---
 
 Docker annonced `Docker Datacenter (DDC)` at Februrary 23. It is an integrated, end-to-end platform for agile application development and management from the datacenter to the cloud.

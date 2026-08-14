@@ -2,6 +2,7 @@
 title: 使用docker dind创建swarm集群
 date: 2017-01-09 21:01:18
 tags: [Docker]
+description: "在 macOS 上 Docker for Mac 只能创建一台虚拟机，借助 dind（Docker in Docker）无需额外虚拟机即可搭建多节点 Swarm 集群。文章给出初始化 Swarm、批量启动 worker 节点的完整脚本。"
 ---
 
 在OS X系统上，由于Docker for Mac只能创建一台虚拟机，所以要创建多节点swarm集群的话，就需要额外启动其他的虚拟机，并手动安装和配置docker。不过借助dind (docker in docker)，不需要创建额外的虚拟机也可以启动一个swarm集群。
