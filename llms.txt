@@ -1,62 +1,396 @@
-# Feisky 技术博客
+# Feisky
 
-> 极客时间专栏作者 Pengfei Ni 的个人技术博客，专注于 Kubernetes、AI Infra、AI Agent 领域的深度技术分享。
+> 极客时间专栏作者，专注于 Kubernetes、AI Infra、AI Agent 领域的深度技术分享，让 AI 成为你的第二大脑
 
-## 作者简介
+作者：Pengfei Ni（倪朋飞），极客时间专栏作者，专注 Kubernetes、云原生、AI Infra、AI Agent、eBPF 与系统性能优化。
 
-- **姓名**: Pengfei Ni (倪朋飞)
-- **专业领域**: Kubernetes、云原生、AI 基础设施、AI Agent、eBPF、系统性能优化
-- **极客时间专栏**: 《Linux性能优化实战》《eBPF核心技术与实战》
+- 博客首页：https://feisky.xyz/
+- 关于作者：https://feisky.xyz/about/
+- 全部文章：https://feisky.xyz/posts/
+- GitHub：https://github.com/feiskyer
 
-## 核心主题
+## 全部文章
 
-### Kubernetes 与云原生
-- Kubernetes 架构与最佳实践
-- 容器网络与服务发现
-- 云原生应用部署与运维
+- [DeepSeek Harness 入门指南：一切皆插件的 Agent 到底怎么用](https://feisky.xyz/posts/2026-08-14-deepseek-harness/)：DeepSeek 开源首个 Agent 产品 DeepSeek Harness，模型、工具、会话乃至 Agent 循环全部做成可热插拔插件，并用一篇 88 页论文的数学证明保证运行时装卸安全。本文从安装、第一个任务到 Agent 预设、插件系统架构全流程实测讲解。 (2026-08-14)
+- [用 AI 审核 AI 的代码，踩了一堆坑之后我的方法](https://feisky.xyz/posts/2026-08-13-ai-code-review/)：AI 生成的代码量越来越大，人工审查早已跟不上节奏。作者分享一套用 AI 审 AI 代码的实战方法：质量门控打底、给 Agent 完整代码库上下文、真实环境验证、对抗式审查测试、安全扫描以及本地环境信息清理，兼顾审查效率与可靠性，避免被 AI 的完美推理链带偏。 (2026-08-13)
+- [Claude Code 用了一年多，我终于受不了它的终端了](https://feisky.xyz/posts/2026-08-06-paseo-multi-agent-console/)：用了一年多 Claude Code 后，作者被 TUI 的刷屏和消息审查体验逼到极限，转而使用多 Agent 控制台 Paseo。它不重造 Harness，原生兼容 Claude Code、Codex 等主流 Agent，支持跨设备远程操控和多 Agent 跨 Provider 协作。 (2026-08-06)
+- [Claude Code 作者说：用好 Fable 5 的关键是管理你的未知](https://feisky.xyz/posts/2026-07-06-fable-field-guide-unknowns/)：Claude Code 团队 Thariq 的 Fable 5 实战指南：瓶颈不再是模型能力，而是你能否讲清自己的未知。本文拆解四种未知类型，给出盲点扫描、原型头脑风暴、反向面试、实现笔记等消除未知的具体方法，并整理社区最新玩法。 (2026-07-06)
+- [Claude Code 官方教你用 Loop：你可能一直卡在最基础那层](https://feisky.xyz/posts/2026-07-01-claude-code-loops/)：Claude Code 官方把 loop 分成四层：交出验证步骤、停止条件、触发时机和整个决策流程，分别对应 Skill、/goal、/loop 与 /schedule 以及 Proactive 流水线，并给出控制 token 消耗的实操建议。 (2026-07-01)
+- [OpenAI Codex 白皮书：怎么让 Codex 工作不断线](https://feisky.xyz/posts/2026-06-27-codex-maxxing-white-paper/)：OpenAI 27 页 Codex 白皮书解读：用持久会话线程、语音输入、实时插话、记忆库、连接器、手机远程操控、线程自动化和可验收的目标，把 Codex 组织成一个长时间不断线的 AI Agent 工作台，并附三个可直接复用的实战循环。 (2026-06-27)
+- [终于搞明白 Claude Code 为什么会忽略我的指令了](https://feisky.xyz/posts/2026-06-23-claude-code-steering/)：Claude Code 忽略指令的根因是上下文膨胀。本文编译 Anthropic 官方指南，讲清 CLAUDE.md、Rules、Skills、Subagents、Hooks、Output Styles 这 7 种引导方法的加载时机、压缩行为与上下文成本，并给出四层分级的实践顺序。 (2026-06-23)
+- [Loop Engineering 很好，但先想清楚一个问题](https://feisky.xyz/posts/2026-06-10-loop-engineering/)：Loop Engineering 火了，但它到底是什么？本文梳理从 ReAct、Ralph loop 到 Codex /goal 的演进，讲清它与定时任务的区别、独立验证为何是关键，以及上 loop 前你必须想清楚的那个朴素问题：能不能把「做完了」写清楚。 (2026-06-10)
+- [烧了 20 亿 token 总结的 Codex 使用指南](https://feisky.xyz/posts/2026-06-03-%E7%83%A7%E4%BA%8620%E4%BA%BFtoken%E6%80%BB%E7%BB%93%E7%9A%84codex%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/)：烧掉 20 多亿 token 后总结的 Codex 桌面客户端实战指南：从给足上下文、验证优先、批量操作审查门，到 Side Panel 边看边改、文件记忆、远程接管、定时自动化，10 条经验帮你把 Codex 用成一个通用 Agent 而不只是编程工具。 (2026-06-03)
+- [Claude Code 动态工作流：让 AI 自己写 Harness，这事靠谱吗](https://feisky.xyz/posts/2026-06-03-dynamic-workflows/)：Claude Code 现在能针对具体任务自己写调度脚本，实时生成动态工作流。本文编译自 Anthropic 官方博客，讲清分类路由、扇出合并、对抗验证、锦标赛等六种调度模式，以及大规模重构、深度验证、根因分析等实战场景，还有什么时候完全不需要动用工作流。 (2026-06-03)
+- [Claude Code 在大型代码库里到底怎么用？Anthropic 给出了官方答案](https://feisky.xyz/posts/2026-05-16-claude-code-large-codebase/)：Anthropic 官方博客系统讲解在大型代码库里用好 Claude Code 的方法论：agentic search、CLAUDE.md 分层、Hooks、Skills、Plugins、LSP、MCP、Subagent 七件套，以及配置随模型升级瘦身与组织落地。 (2026-05-16)
+- [Codex 进手机：OpenAI 版的龙虾来了](https://feisky.xyz/posts/2026-05-15-codex%E8%BF%9B%E6%89%8B%E6%9C%BAopenai%E7%89%88%E7%9A%84%E9%BE%99%E8%99%BE%E6%9D%A5%E4%BA%86/)：OpenAI 发布 Codex Mobile 预览版，让 ChatGPT 手机端远程接管本地 Codex 桌面客户端。本文详解连接配置流程，并对比 Claude Code Remote Control 的架构与用量差异，聊聊移动端异步编程的真正价值。 (2026-05-15)
+- [Claude Code 也有 /goal 了，跟 Codex 的有什么不一样](https://feisky.xyz/posts/2026-05-13-claude-code-goal/)：Claude Code 新增 /goal 命令，靠一个独立小模型评估任务是否真的完成，从而实现无人值守跑长任务。本文详细拆解它的实现原理和 Stop hook 机制，并与 Ralph Loop、Codex /goal 做对比，附具体使用技巧和踩坑经验。 (2026-05-13)
+- [Codex /goal 上线后，我把 Ralph loop 卸了](https://feisky.xyz/posts/2026-05-08-codex-goal/)：Codex 新增的 /goal 命令搭配 GPT-5.5，让长时任务第一次变得丝滑可托付。本文解析 /goal 状态持久化、权限控制、自审注入的三层设计，对比 Ralph loop 的痛点，并分享适合跑 Goal 的任务类型与工作流。 (2026-05-08)
+- [Karpathy：10x 工程师已经不够看了](https://feisky.xyz/posts/2026-05-02-karpathy-10x/)：Karpathy 在 Sequoia AI Ascent 2026 对谈中坦言自己作为工程师已经落伍：Agentic Engineering 与 Vibe Coding 的本质区别、LLM 锯齿形智能背后的原因，以及为什么理解力才是工程师不能外包给 AI 的核心竞争力。 (2026-05-02)
+- [100万条对话揭开AI的讨好型人格](https://feisky.xyz/posts/2026-05-01-%E4%BD%A0%E7%9A%84ai%E6%9C%89%E5%A4%9A%E4%BC%9A%E6%8B%8D%E9%A9%AC%E5%B1%81/)：Anthropic 分析 100 万条 Claude 对话，揭示 AI 的讨好型人格：整体谄媚率 9%，灵性和感情话题最严重，用户反驳后还会翻倍。本文解读研究发现与 Opus 4.7 的改进，并给出 4 个让 AI 说真话的实用技巧。 (2026-05-01)
+- [OpenClaw 的正确打开方式：从也就那样到离不开](https://feisky.xyz/posts/2026-04-28-openclaw%E7%9A%84%E6%AD%A3%E7%A1%AE%E6%89%93%E5%BC%80%E6%96%B9%E5%BC%8F/)：刚装完 OpenClaw 觉得也就那样？问题不在工具而在没养好。本文分享如何用 SOUL/USER/AGENTS 三个文件、文件记忆系统、Skills、ACP 与 Cron 定时任务，一步步把 OpenClaw 从套壳养成离不开的 agent runtime。 (2026-04-28)
+- [“试了一圈Hermes，还是差点意思”](https://feisky.xyz/posts/2026-04-25-hermes%E5%8F%96%E4%BB%A3%E4%B8%8D%E4%BA%86openclaw/)：很多人问 Hermes 能不能替代 OpenClaw。实测发现 Hermes 只把技能积累做出来了，治理完全没跟上，skills 越堆越乱反而拖慢效率；面对每天都有新问题的复杂开发场景，OpenClaw 依然是更稳定可靠的日常工具。 (2026-04-25)
+- [MCP 不只是开发工具：生产级 Agent 集成的三条路](https://feisky.xyz/posts/2026-04-23-mcp%E4%B8%8D%E5%8F%AA%E6%98%AF%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%E7%94%9F%E4%BA%A7%E7%BA%A7agent%E9%9B%86%E6%88%90%E7%9A%84%E4%B8%89%E6%9D%A1%E8%B7%AF/)：Anthropic 系统梳理了 Agent 连接外部系统的三条路：直接调 API、CLI 和 MCP 协议。本文详解生产级 MCP 服务器的设计模式、认证标准化、Tool Search 上下文优化，以及 Skills 与 MCP 的互补定位。 (2026-04-23)
+- [从 Recall 到 Chronicle：AI 为什么这么想看你的屏幕?](https://feisky.xyz/posts/2026-04-21-%E4%BB%8Erecall%E5%88%B0chronicle-ai%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E6%83%B3%E7%9C%8B%E4%BD%A0%E7%9A%84%E5%B1%8F%E5%B9%95/)：从微软 Recall 到 OpenAI Codex 的 Chronicle，AI 为何执着于持续截取你的屏幕？本文对比 Chronicle 的读屏记忆与 Claude Code 的 Auto Memory 两条路线，剖析上下文争夺战背后的隐私风险与产品逻辑。 (2026-04-21)
+- [Harness 不只是脚手架：从 Claude Code、Hermes 和 OpenClaw 看 Agent 架构的三条路](https://feisky.xyz/posts/2026-04-21-%E4%B8%89%E7%A7%8Dagent%E5%93%B2%E5%AD%A6/)：拆解 Claude Code、Hermes Agent 和 OpenClaw 三个项目的源码与架构，对比它们在 Harness、记忆系统、扩展性和应对模型进步上的三种不同哲学，看 AI Agent 架构设计的三条路线如何起点各异却殊途同归。 (2026-04-21)
+- [Claude Code 作者亲授：百万 token 上下文的正确用法](https://feisky.xyz/posts/2026-04-16-claude-code%E4%BD%9C%E8%80%85%E4%BA%B2%E6%8E%88%E7%99%BE%E4%B8%87token%E4%B8%8A%E4%B8%8B%E6%96%87%E7%9A%84%E6%AD%A3%E7%A1%AE%E7%94%A8%E6%B3%95/) (2026-04-16)
+- [用 Claude Code 处理视频太麻烦,我顺手写了个 Skill](https://feisky.xyz/posts/2026-04-15-%E7%94%A8claude-code%E5%A4%84%E7%90%86%E8%A7%86%E9%A2%91%E5%A4%AA%E9%BA%BB%E7%83%A6-%E6%88%91%E9%A1%BA%E6%89%8B%E5%86%99%E4%BA%86%E4%B8%AAskill/)：介绍开源项目 video-skills：用 Claude Code 一句话完成视频下载、字幕转录和自动配音。详解 download-video、transcribe-video、narrate-video 三个 Skill 的安装方法与两个实战场景，让处理 YouTube、Bilibili 等平台视频变得轻松高效。 (2026-04-15)
+- [多 Agent 协调的五种模式：从最简单的开始，按需演进](https://feisky.xyz/posts/2026-04-14-%E5%A4%9Aagent%E5%8D%8F%E8%B0%83%E7%9A%84%E4%BA%94%E7%A7%8D%E6%A8%A1%E5%BC%8F%E4%BB%8E%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E5%BC%80%E5%A7%8B%E6%8C%89%E9%9C%80%E6%BC%94%E8%BF%9B/)：编译 Anthropic 多 Agent 协调五种模式：生成-验证、编排-子 Agent、Agent 团队、消息总线、共享状态。逐一拆解适用场景、常见坑和演进信号，帮你从最简单的模式起步按需升级。 (2026-04-14)
+- [Managed Agents 架构拆解：Anthropic 给 Agent 造了一套 K8s](https://feisky.xyz/posts/2026-04-09-anthropic%E7%BB%99ai-agent%E9%80%A0%E4%BA%86%E4%B8%80%E5%A5%97kubernetes/)：深度解读 Anthropic Managed Agents 架构：把 session、harness、sandbox 三个组件虚拟化成接口，像 Kubernetes 抽象 Pod、Volume、Service 一样实现脑手分离、状态持久化与安全隔离。 (2026-04-09)
+- [Claude Code 降智怎么办?这几个配置救回来](https://feisky.xyz/posts/2026-04-09-claude-code%E9%99%8D%E6%99%BA%E6%80%8E%E4%B9%88%E5%8A%9E/)：Claude Code 最近变笨了？原因是 adaptive thinking 自作主张减少思考量，加上默认 effort 从 high 降到 medium。本文给出 /effort max 和环境变量配置，把推理深度调回来。 (2026-04-09)
+- [Claude Code 终于不闪了：全屏渲染模式详解](https://feisky.xyz/posts/2026-04-07-claude-code%E7%BB%88%E4%BA%8E%E4%B8%8D%E9%97%AA%E4%BA%86%E5%85%A8%E5%B1%8F%E6%B8%B2%E6%9F%93%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3/)：Claude Code 推出全屏渲染模式（NO_FLICKER），彻底解决终端闪烁、内存膨胀和滚动跳跃问题。本文详解开启方式、技术原理和使用技巧，特别适合 VSCode 终端、WSL、SSH 等慢速环境用户。 (2026-04-07)
+- [Claude Code 源码泄漏：51万行代码里藏着什么](https://feisky.xyz/posts/2026-03-31-claude-code%E6%BA%90%E7%A0%81%E6%B3%84%E6%BC%8F51%E4%B8%87%E8%A1%8C%E4%BB%A3%E7%A0%81%E9%87%8C%E8%97%8F%E7%9D%80%E4%BB%80%E4%B9%88/)：Claude Code 因 npm 包中遗留的 source map 文件导致全部源码泄漏。本文分析泄漏经过，拆解 51 万行 TypeScript 源码中的核心架构、隐藏功能和工程细节。 (2026-03-31)
+- [总把软件升到最新版？是时候改改这个习惯了](https://feisky.xyz/posts/2026-03-26-%E8%BD%AF%E4%BB%B6%E5%8D%87%E7%BA%A7%E6%9C%80%E6%96%B0%E4%B9%A0%E6%83%AF%E8%A6%81%E6%94%B9%E4%B8%80%E6%94%B9%E4%BA%86/)：Trivy 被投毒、LiteLLM 发布密钥被盗、OpenClaw 大版本升级导致插件全崩，三起事件说明「有新版就升」的默认心态该改了。本文复盘攻击链，给出依赖锁定与延迟升级的实操建议。 (2026-03-26)
+- [为什么单 Agent 搞不定复杂应用？Anthropic 的 Harness 设计给出了答案](https://feisky.xyz/posts/2026-03-26-%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8D%95agent%E6%90%9E%E4%B8%8D%E5%AE%9A%E5%A4%8D%E6%9D%82%E5%BA%94%E7%94%A8anthropic%E7%9A%84harness%E8%AE%BE%E8%AE%A1%E7%BB%99%E5%87%BA%E4%BA%86%E7%AD%94%E6%A1%88/)：让 AI 从一句话需求连续开发几小时，交付完整全栈应用有多难？Anthropic Labs 借鉴 GAN 思路，用 Planner、Generator、Evaluator 三 Agent 分工的 Harness 设计，攻克上下文焦虑和自我评估偏差两大死穴。 (2026-03-26)
+- [写好一个 Skill 有多难？Anthropic 踩了几百个坑之后的答案](https://feisky.xyz/posts/2026-03-18-%E5%86%99%E5%A5%BD%E4%B8%80%E4%B8%AAskill%E6%9C%89%E5%A4%9A%E9%9A%BEanthropic%E8%B8%A9%E4%BA%86%E5%87%A0%E7%99%BE%E4%B8%AA%E5%9D%91%E4%B9%8B%E5%90%8E%E7%9A%84%E7%AD%94%E6%A1%88/)：Anthropic 内部有几百个 Skill 在日常使用，工程师 Thariq 把踩过的坑写成长文。本文梳理 9 类 Skill 分类，以及写好 Claude Code Skill 的关键原则：Gotchas、渐进式披露、description 触发词、按需 Hook 等。 (2026-03-18)
+- [OpenClaw 必备 Skill 清单：装完这些再开始干活](https://feisky.xyz/posts/2026-03-16-openclaw%E5%BF%85%E5%A4%87skill%E6%B8%85%E5%8D%95/)：OpenClaw 必备 Skill 清单，涵盖 self-improving-agent、find-skills、skill-vetter 三个基础项，Tavily Search 等联网三件套，社交媒体 CLI 工具，以及用 Mcporter 桥接 MCP，每个都附安装命令。 (2026-03-16)
+- [十个顶级 Claude Code Skills，装上就不想卸](https://feisky.xyz/posts/2026-03-12-%E5%8D%81%E4%B8%AA%E9%A1%B6%E7%BA%A7claude-code-skills/)：精选十个真正改变工作方式的 Claude Code Skills 和 Plugin，包括 Superpowers、Planning with Files、UI UX Pro Max、Code Review、Ralph Loop、MCP Builder 等，每个都附安装命令和实际使用体验。 (2026-03-12)
+- [你养龙虾，大厂卖铲：OpenClaw一键部署背后的生意经](https://feisky.xyz/posts/2026-03-09-%E5%A4%A7%E5%8E%82%E6%8A%A2%E7%9D%80%E5%B8%AE%E4%BD%A0%E5%85%BB%E9%BE%99%E8%99%BE%E5%9B%BD%E5%86%85openclaw%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1%E6%A8%AA%E8%AF%84/)：阿里云、火山、百度、华为的镜像方案，Kimi Claw 和 MaxClaw 的 SaaS 方案，腾讯 QClaw 与 WorkBuddy，国内 OpenClaw 一键部署服务横评。免费装机背后是 Token 生意，本文帮你看清差别并选对方案。 (2026-03-09)
+- [写 Claude Skill 最大的盲区，Anthropic 终于帮你补上了](https://feisky.xyz/posts/2026-03-04-%E5%86%99-claude-skill-%E6%9C%80%E5%A4%A7%E7%9A%84%E7%9B%B2%E5%8C%BAanthropic-%E7%BB%88%E4%BA%8E%E5%B8%AE%E4%BD%A0%E8%A1%A5%E4%B8%8A%E4%BA%86/)：Anthropic 更新 skill-creator，把软件工程的测试、基准评估和迭代改进搬进 Skill 开发。本文讲解如何用 eval 取代凭感觉判断，验证 Skill 是否真正起作用、判断触发时机并做多 Agent 并行 A/B 对比。 (2026-03-04)
+- [23万个OpenClaw在公网裸奔，有人做了个曝光看板](https://feisky.xyz/posts/2026-03-03-23%E4%B8%87openclaw%E5%85%AC%E7%BD%91%E8%A3%B8%E5%A5%94/)：OpenClaw Exposure Watchboard 曝光了 23 万个裸奔在公网的 OpenClaw 实例，叠加 CVE-2026-25253 一键 RCE 漏洞风险极高。本文给出开启认证、绑定 127.0.0.1、隧道代理和升级版本的自查清单。 (2026-03-03)
+- [一条提示词，让你的 AI 记忆随身携带](https://feisky.xyz/posts/2026-03-02-%E4%B8%80%E6%9D%A1%E6%8F%90%E7%A4%BA%E8%AF%8D%E8%AE%A9%E4%BD%A0%E7%9A%84ai%E8%AE%B0%E5%BF%86%E9%9A%8F%E8%BA%AB%E6%90%BA%E5%B8%A6/)：Claude 上线记忆导入功能，而它提供的那条导出提示词才是通用宝藏。本文拆解这条提示词的设计思路，实测在 ChatGPT、Gemini 等平台提取 AI 记忆档案，并用于 OpenClaw 与 CLAUDE.md 初始化。 (2026-03-02)
+- [像 Agent 一样思考：Claude Code 工具设计的进化史](https://feisky.xyz/posts/2026-02-28-%E5%83%8Fagent%E4%B8%80%E6%A0%B7%E6%80%9D%E8%80%83claude-code%E5%B7%A5%E5%85%B7%E8%AE%BE%E8%AE%A1%E7%9A%84%E8%BF%9B%E5%8C%96%E5%8F%B2/)：编译自 Claude Code 工程师 Thariq 的长文，复盘工具设计方法论：AskUserQuestion 的三次迭代、Todo 演化为 Task、搜索从 RAG 到 Grep，以及渐进式披露如何在不加工具的情况下扩展 Agent 能力。 (2026-02-28)
+- [Claude Code 自动记忆：AI 编程助手终于不失忆了](https://feisky.xyz/posts/2026-02-27-claude-code%E8%87%AA%E5%8A%A8%E8%AE%B0%E5%BF%86ai%E7%BC%96%E7%A8%8B%E5%8A%A9%E6%89%8B%E7%BB%88%E4%BA%8E%E4%B8%8D%E5%A4%B1%E5%BF%86%E4%BA%86/)：Claude Code 正式推出 auto-memory 自动记忆功能，可跨 session 记住项目上下文、调试习惯和偏好。本文拆解其工作机制、系统提示词、/memory 命令与 CLAUDE.md 的互补关系及使用注意事项。 (2026-02-27)
+- [装完OpenClaw不知道干嘛？这几个进阶玩法别错过](https://feisky.xyz/posts/2026-02-26-%E8%A3%85%E5%AE%8Copenclaw%E4%B8%8D%E7%9F%A5%E9%81%93%E5%B9%B2%E5%98%9B%E8%BF%99%E5%87%A0%E4%B8%AA%E8%BF%9B%E9%98%B6%E7%8E%A9%E6%B3%95%E5%88%AB%E9%94%99%E8%BF%87/)：装完 OpenClaw 不知道怎么用？本文分享 AI 日报自动生成、调度 Codex 与 Claude Code、打造第二大脑、内容创作工厂、K8s 安全部署等进阶玩法，帮你把 OpenClaw 从聊天机器人变成真正干活的 Agent。 (2026-02-26)
+- [OpenAI 长时间 Agent 实战指南：Skills、Shell 与上下文压缩](https://feisky.xyz/posts/2026-02-13-openai%E9%95%BF%E6%97%B6%E9%97%B4agent%E5%AE%9E%E6%88%98%E6%8C%87%E5%8D%97skillsshell%E4%B8%8E%E4%B8%8A%E4%B8%8B%E6%96%87%E5%8E%8B%E7%BC%A9/)：编译自 OpenAI 开发者博客的长时间 Agent 实战指南，讲解 Skills、Shell Tool 与 Compaction 三大能力如何协同，解决上下文压缩、执行环境与可复用指令包问题，并给出五条实践建议和三种递进构建模式。 (2026-02-13)
+- [Claude Code 多 Agent 组队开发：从原理到踩坑全指南](https://feisky.xyz/posts/2026-02-09-claude-code-agent-team%E4%BB%8E%E5%8E%9F%E7%90%86%E5%88%B0%E8%B8%A9%E5%9D%91%E5%85%A8%E6%8C%87%E5%8D%97/)：深入解析 Claude Code 的 Agent Team 多 Agent 组队开发功能，从系统提示词原理到快速上手、Delegate Mode、Plan Approval 等进阶技巧，并总结文件冲突、Token 消耗、会话恢复等实战踩坑经验与避坑指南。 (2026-02-09)
+- [OpenClaw Kubernetes 部署完全指南：从单机到 7x24 服务](https://feisky.xyz/posts/2026-02-03-kubernetes%E9%83%A8%E7%BD%B2openclaw%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/)：手把手教你用 Kubernetes 与 Helm 把 OpenClaw 从本地单机部署为 7x24 全天候在线服务，涵盖 Telegram bot 配置、免费 LLM 模型接入、用户授权、配置持久化以及版本升级回滚。 (2026-02-03)
+- [AI 时代程序员成长指南：为什么有人越用越强，有人越用越弱？](https://feisky.xyz/posts/2026-02-03-ai%E6%97%B6%E4%BB%A3%E7%A8%8B%E5%BA%8F%E5%91%98%E6%88%90%E9%95%BF%E6%8C%87%E5%8D%97/)：Anthropic 研究发现用 AI 学编程的人成绩反而低 17%。差距不在用不用 AI，而在怎么用。本文剖析答案机与老师两种使用模式，给出 AI 时代程序员保持成长与代码手感的实用建议。 (2026-02-03)
+- [10 万星爆款！OpenClaw（前 Clawdbot/Moltbot）极简部署指南](https://feisky.xyz/posts/2026-01-30-openclaw%E6%9E%81%E7%AE%80%E9%83%A8%E7%BD%B2%E6%8C%87%E5%8D%97/)：OpenClaw（前 Clawdbot/Moltbot）两周冲上 10 万星。本文手把手教你用 Lima、OrbStack、WSL 等虚拟机安全部署这款本地 AI Agent，涵盖安装、配置、启动与聊天平台连接。 (2026-01-30)
+- [AI 让人变蠢了吗？Anthropic 分析 150 万次对话后的发现](https://feisky.xyz/posts/2026-01-29-ai%E8%AE%A9%E4%BA%BA%E5%8F%98%E8%A0%A2%E4%BA%86%E5%90%97/)：Anthropic 分析 150 万次 Claude 对话，揭示 AI 让人失能的三种模式：现实扭曲、价值判断扭曲与行动扭曲。用户越满意风险反而越高，探讨 AI 如何悄悄削弱人的判断力与自主决策能力。 (2026-01-29)
+- [从手写代码到指挥 AI：AI 大神 Karpathy 的编程转型实录](https://feisky.xyz/posts/2026-01-27-%E4%BB%8E%E6%89%8B%E5%86%99%E4%BB%A3%E7%A0%81%E5%88%B0%E6%8C%87%E6%8C%A5aiai%E5%A4%A7%E7%A5%9Ekarpathy%E7%9A%84%E7%BC%96%E7%A8%8B%E8%BD%AC%E5%9E%8B%E5%AE%9E%E5%BD%95/)：AI 大神 Karpathy 分享用 Claude Code 编程的转型经历：几周内工作流从手写代码转向 80% 靠 Agent，谈 AI 编程带来的效率提升、模型缺陷、能力退化以及 2026 年的行业趋势。 (2026-01-27)
+- [深入 Codex Agent Loop：OpenAI 详解智能体核心循环](https://feisky.xyz/posts/2026-01-24-%E6%B7%B1%E5%85%A5codex-agent-loop/)：本文编译自 OpenAI 工程博客，深入讲解 Codex CLI 的 Agent Loop 实现细节，包括 Prompt 构建、模型推理、工具调用、上下文管理和性能优化。 (2026-01-24)
+- [Cursor 的多智能体实验：让数百个 AI 同时写代码是什么体验](https://feisky.xyz/posts/2026-01-20-cursor%E7%9A%84%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93%E5%AE%9E%E9%AA%8C%E8%AE%A9%E6%95%B0%E7%99%BE%E4%B8%AAai%E5%90%8C%E6%97%B6%E5%86%99%E4%BB%A3%E7%A0%81%E6%98%AF%E4%BB%80%E4%B9%88%E4%BD%93%E9%AA%8C/)：Cursor 让数百个编程智能体连续自主运行数周，写出百万行代码从零造浏览器。本文编译其多智能体协作经验：共享文件加锁的方案为何失败，规划者与执行者的角色分离如何奏效，以及模型选择和提示词为何比架构更关键。 (2026-01-20)
+- [Claude Code 终于解决了 MCP 最大的痛点](https://feisky.xyz/posts/2026-01-15-claude-code%E7%BB%88%E4%BA%8E%E8%A7%A3%E5%86%B3%E4%BA%86mcp%E6%9C%80%E5%A4%A7%E7%9A%84%E7%97%9B%E7%82%B9/)：Claude Code 新增 MCP Tool Search，用懒加载解决 MCP 工具定义预先占满上下文窗口的老问题。本文解析工具搜索的触发阈值与工作流程，对比 Skills 与 MCP 的分工差异，并给出 MCP 服务器开发者打磨 server instructions 的建议。 (2026-01-15)
+- [程序员的神器，现在人人都能用了](https://feisky.xyz/posts/2026-01-13-%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E7%A5%9E%E5%99%A8%E7%8E%B0%E5%9C%A8%E4%BA%BA%E4%BA%BA%E9%83%BD%E8%83%BD%E7%94%A8%E4%BA%86/)：Anthropic 推出 Cowork，把 Claude Code 的 Agent 能力搬进 macOS 桌面应用，不懂命令行也能让 AI 帮你读写文件、整理资料。本文介绍 Cowork 的定位与典型场景、虚拟机沙箱隔离和权限设计，以及提示词注入等需要留意的使用风险。 (2026-01-13)
+- [Anthropic 万字长文：AI Agent 评估体系全解析](https://feisky.xyz/posts/2026-01-12-anthropic%E4%B8%87%E5%AD%97%E9%95%BF%E6%96%87ai-agent%E8%AF%84%E4%BC%B0%E4%BD%93%E7%B3%BB%E5%85%A8%E8%A7%A3%E6%9E%90/)：本文编译自 Anthropic 工程博客，系统介绍 AI Agent 评估体系的构建方法，包括评估类型、评分器设计、不同类型 Agent 的评估策略以及从 0 到 1 的实操路线图。 (2026-01-12)
+- [从 Claude Code 到 Koder：我为什么要自己写一个 Coding Agent](https://feisky.xyz/posts/2026-01-05-%E4%BB%8Eclaude-code%E5%88%B0koder/)：会用 AI Agent 和理解其背后原理是两回事，本文分享作者为什么放着 Claude Code、Cursor、Codex 不用，偏要自己写一个 Coding Agent Koder，深入拆解工具调用循环、内存管理与上下文工程的实现细节。 (2026-01-05)
+- [Notion CEO：每个时代都有“奇迹材料”，现在轮到AI了](https://feisky.xyz/posts/2025-12-25-%E8%92%B8%E6%B1%BD%E9%92%A2%E9%93%81%E4%B8%8E%E6%97%A0%E9%99%90%E5%BF%83%E6%99%BA/)：Notion CEO Ivan Zhao 长文《蒸汽、钢铁与无限心智》全文翻译，通过类比钢铁与蒸汽机的历史，探讨 AI 作为这个时代的奇迹材料如何重塑知识工作，从提升个人效率到改变组织形态乃至重构经济结构。 (2025-12-25)
+- [Anthropic万字报告揭秘 AI Agents 落地真相](https://feisky.xyz/posts/2025-12-17-anthropic%E4%B8%87%E5%AD%97%E6%8A%A5%E5%91%8A%E6%8F%AD%E7%A7%98ai-agents%E8%90%BD%E5%9C%B0%E7%9C%9F%E7%9B%B8/)：解读 Anthropic《2026 State of AI Agents Report》，报告调研 500 多家企业，发现 57% 已部署多阶段工作流 Agent、80% 看到投资回报、90% 使用 AI 辅助编程，揭示 AI Agents 从试点走向规模化落地的真相。 (2025-12-17)
+- [AI 编程助手的正确打开方式：OpenAI 工程师的实战指南](https://feisky.xyz/posts/2025-12-15-ai%E7%BC%96%E7%A8%8B%E5%8A%A9%E6%89%8B%E7%9A%84%E6%AD%A3%E7%A1%AE%E6%89%93%E5%BC%80%E6%96%B9%E5%BC%8Fopenai%E5%B7%A5%E7%A8%8B%E5%B8%88%E7%9A%84%E5%AE%9E%E6%88%98%E6%8C%87%E5%8D%97/)：OpenAI 工程师用 Codex 在 28 天、50 亿 tokens 内做出生产级 Sora 安卓应用，本文提炼其四步方法：把 AI 当新员工培训、用计划文档引导长任务、让多个 AI 并行工作、重新定位人的角色。 (2025-12-15)
+- [OpenAI 和 Anthropic 居然合作了？聊聊 Agentic AI 基金会背后的野心](https://feisky.xyz/posts/2025-12-11-openai%E5%92%8Canthropic%E5%B1%85%E7%84%B6%E5%90%88%E4%BD%9C%E4%BA%86-%E8%81%8A%E8%81%8Aagentic-ai%E5%9F%BA%E9%87%91%E4%BC%9A%E8%83%8C%E5%90%8E%E7%9A%84%E9%87%8E%E5%BF%83/)：OpenAI、Anthropic 联合 Block 成立 Agentic AI 基金会并把核心开源项目捐给 Linux Foundation，本文类比当年 CNCF 统一容器编排的历史，解读这场合作背后争夺 AI Agent 标准话语权的野心。 (2025-12-11)
+- [Codex CLI 也能用 Skills 了：把 Claude Code 的“技能包”迁了过来](https://feisky.xyz/posts/2025-12-08-codex-cli-skills/)：Codex CLI v0.65.0 开始支持 Skills，本文说明它为什么能缓解 MCP 带来的上下文膨胀，介绍 Codex 中 Skills 的用法、我迁移的技能包以及目前还存在的小问题。 (2025-12-08)
+- [当 Kubernetes 遇见 AI：云厂商如何为大模型训练重塑基础设施](https://feisky.xyz/posts/2025-12-04-kubernetes%E8%B6%85%E5%A4%A7%E8%A7%84%E6%A8%A1%E9%9B%86%E7%BE%A4%E4%BA%91%E5%8E%82%E5%95%86%E5%A6%82%E4%BD%95%E4%B8%BAai%E8%AE%AD%E7%BB%83%E9%87%8D%E5%A1%91%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD/)：Google Cloud 实验环境跑通 13 万节点 GKE、AWS 支持 10 万节点 EKS，本文从 xAI、Meta、Anthropic 的算力竞赛切入，剖析云厂商如何为大模型训练重塑超大规模 Kubernetes 集群的底层基础设施。 (2025-12-04)
+- [一个 Claude Skill，解决 AI 编程最头疼的问题](https://feisky.xyz/posts/2025-12-01-%E4%B8%80%E4%B8%AAclaude-skill%E8%A7%A3%E5%86%B3ai%E7%BC%96%E7%A8%8B%E6%9C%80%E5%A4%B4%E7%96%BC%E7%9A%84%E9%97%AE%E9%A2%98/)：Claude Code 在长时任务中常出现记忆丢失、上下文窗口受限和会话切换丢进度的问题，本文从 Compaction 压缩机制讲清 AI 为何失忆，并分享用一个 Claude Skill 解决大批量查询验证任务的实战思路。 (2025-12-01)
+- [Agent RFT 深度解析：如何让 AI 智能体自我进化](https://feisky.xyz/posts/2025-11-27-agent-rft-%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E5%A6%82%E4%BD%95%E8%AE%A9-ai-%E6%99%BA%E8%83%BD%E4%BD%93%E8%87%AA%E6%88%91%E8%BF%9B%E5%8C%96/)：OpenAI 在 Build Hour 分享的 Agent RFT 强化微调走了一条与人工调 Prompt 完全不同的路，让 Agent 在真实任务中试错、对了奖励错了惩罚，从而自我进化找到最优路径，本文是视频学习笔记与要点梳理。 (2025-11-27)
+- [Gemini 3.0 霸榜：AI性能天花板被彻底捅破了](https://feisky.xyz/posts/2025-11-19-gemini-3/)：谷歌正式发布 Gemini 3.0 Pro 预览版，登顶 LMArena 并在 MathArena、ScreenSpot、ARC-AGI-2、人类终极考试等基准上大幅超越 GPT-5.1 和 Claude Sonnet 4.5，本文实测其编程与界面克隆能力表现。 (2025-11-19)
+- [CNCF AI 技术雷达报告解读：AI 推理、ML 编排与Agentic AI 工具](https://feisky.xyz/posts/2025-11-13-ai-radar/)：解读 CNCF 在 KubeCon NA 发布的最新技术雷达报告，聚焦 AI 推理工具与引擎、机器学习编排以及 Agentic AI 平台三大领域，基于 300 多位开发者的真实体验给出 Adopt、Trial、Assess、Hold 分级与技术选型参考。 (2025-11-13)
+- [Kubernetes 迎来智能体时代：Agent Sandbox 解决 AI 代码执行安全难题](https://feisky.xyz/posts/2025-11-12-kubernetes%E8%BF%8E%E6%9D%A5%E6%99%BA%E8%83%BD%E4%BD%93%E6%97%B6%E4%BB%A3-agent-sandbox%E8%A7%A3%E5%86%B3ai%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E5%AE%89%E5%85%A8%E9%9A%BE%E9%A2%98/)：KubeCon NA 2025 上 Google 发布开源项目 Agent Sandbox，专为 AI Agent 代码执行设计，解决传统容器隔离不足、提示词注入风险以及数千沙箱快速创建销毁等难题，本文剖析其由来与 Kubernetes 的智能体演进。 (2025-11-12)
+- [上下文工程：为什么你的 AI Agent 总是“断片”？](https://feisky.xyz/posts/2025-11-11-%E4%B8%8A%E4%B8%8B%E6%96%87%E5%B7%A5%E7%A8%8Bai%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E5%A4%B1%E5%BF%86/)：AI Agent 处理复杂任务时为什么总是断片健忘？本文结合 Chroma 上下文腐烂实验和 Manus、Anthropic、Cursor 等团队的实战经验，用管理计算机内存的思路讲清上下文工程的缓存、压缩与筛选方法。 (2025-11-11)
+- [MCP代码执行：构建高效Agent的新范式](https://feisky.xyz/posts/2025-11-05-mcp%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%9E%84%E5%BB%BA%E6%9B%B4%E9%AB%98%E6%95%88%E7%9A%84agent/)：Anthropic 工程团队发现让 Agent 写代码调用工具，可把上千工具带来的上下文爆炸从 15 万 token 降到 2 千，效率提升 98.7%，本文解析这一被称为 Code Mode 的新范式如何顺带解决 PII 脱敏、状态持久化与技能复用。 (2025-11-05)
+- [上海交大 28 页论文：Context Engineering 2.0 的本质是“熵减”](https://feisky.xyz/posts/2025-11-05-context-engineering-20-entropy-reduction/)：解读上海交大 28 页论文《Context Engineering 2.0》，从熵减这一全新视角阐释上下文工程的本质是弥合人机认知差距，回溯二十年发展历程，说明写 Prompt、调 RAG、设计 Agent 其实都在帮机器理解人的意图。 (2025-11-05)
+- [懒人神器！Gemini 一句话帮你做 PPT](https://feisky.xyz/posts/2025-11-04-%E6%87%92%E4%BA%BA%E7%A5%9E%E5%99%A8gemini%E4%B8%80%E5%8F%A5%E8%AF%9D%E5%B8%AE%E4%BD%A0%E5%81%9Appt/)：Google Gemini 借助 Canvas 模式支持一句话自动生成 PPT，上传网络文章或学术论文即可提取要点生成幻灯片并导出到 Google Slides，本文实测其效果、风格与图表不能自动嵌入等使用细节。 (2025-11-04)
+- [Claude Skills 来了：给 AI 装上专业“技能包”](https://feisky.xyz/posts/2025-10-17-claude-skills/)：解析 Anthropic 推出的 Claude Skills，讲清 SKILL.md、参考文档与可执行代码的组成，以及渐进式披露如何省 Token，并演示在 Claude 应用、API 和 Claude Code 中的用法。 (2025-10-17)
+- [nanochat：从分词到对话，Karpathy 教你复刻完整的 ChatGPT](https://feisky.xyz/posts/2025-10-14-nanochat/)：Karpathy 开源 nanochat，用约 8000 行代码复刻完整的 ChatGPT 全栈流程，涵盖分词器、预训练、微调、推理到 WebUI，租 8 卡 H100 训练 4 小时、成本约 100 美元就能得到一个可读可 hack 的对话模型。 (2025-10-14)
+- [开源我的 Codex 配置：把 AI 编程助手调教成你的专属助理](https://feisky.xyz/posts/2025-10-13-opensource-my-codex-settings/)：开源我的 OpenAI Codex CLI 配置，支持 ChatGPT、GitHub Copilot、DeepSeek、Ollama 等多种模型提供商，默认用 LiteLLM 网关统一接入，并迁移了 Kiro 工作流和 GitHub Spec Kit 两套完整开发流程，克隆即用。 (2025-10-13)
+- [Vibe Coding 了一个 MCP AI Hub，给你的 AI Agent 一键接入 100+ AI 模型](https://feisky.xyz/posts/2025-10-11-opensource-mcp-ai-hub/)：开源项目 MCP AI Hub 通过 LiteLLM 把 Claude Code、Codex 等 Agent 工具一键接入 100+ AI 模型，只需在配置文件里填好 API Key，就能在同一工具里自由切换 OpenAI、Anthropic、Google 各家模型，本文分享项目由来与使用方法。 (2025-10-11)
+- [Claude Code Plugin：一行命令，给你的AI编程助手装上“外挂”](https://feisky.xyz/posts/2025-10-10-claude-code-plugin%E4%B8%80%E8%A1%8C%E5%91%BD%E4%BB%A4%E7%BB%99%E4%BD%A0%E7%9A%84ai%E7%BC%96%E7%A8%8B%E5%8A%A9%E6%89%8B%E8%A3%85%E4%B8%8A%E5%A4%96%E6%8C%82/)：介绍 Claude Code Plugin 如何把自定义命令、SubAgent、Hooks 和 MCP 服务打包共享，讲解插件清单的写法、插件市场的用法，以及实际使用中踩过的坑和建议。 (2025-10-10)
+- [GitHub Spec Kit 把规范驱动开发标准化了，AI 编程终于有章法了](https://feisky.xyz/posts/2025-09-29-github-spec-kit%E6%8A%8A%E8%A7%84%E8%8C%83%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E6%A0%87%E5%87%86%E5%8C%96%E4%BA%86ai%E7%BC%96%E7%A8%8B%E7%BB%88%E4%BA%8E%E6%9C%89%E7%AB%A0%E6%B3%95%E4%BA%86/)：介绍 GitHub 拥有 27k 星标的 Spec Kit，它通过 Constitution、Specify、Plan、Tasks、Implement 等标准化步骤把规范驱动开发标准化，解决 AI 编程凭运气、代码偏离意图的 vibe-coding 危机。 (2025-09-29)
+- [OpenAI承认Chat API是周末草台班子产品，是时候切换到 Responses API了](https://feisky.xyz/posts/2025-09-29-openai-responses-api/)：OpenAI 承认 Chat Completions API 是仓促赶出的草台产品，推出全新 Responses API 作为下一代方案，原生支持推理状态保持与多模态交互，缓存利用率提升 40-80%，本文详解其设计动机、技术优势与迁移要点。 (2025-09-29)
+- [如何像 OpenAI 工程师一样用 AI 编程：10 倍效率提升实践](https://feisky.xyz/posts/2025-09-29-openai-codex-practice/)：根据 OpenAI 内部工程团队分享，系统梳理 Codex 在企业级软件开发中的七大应用场景，涵盖代码理解、批量重构、性能优化到并行开发工作流，每个场景配有真实案例和 prompt，方法论同样适用于 Cursor、Copilot、Claude 等主流 AI 编程工具。 (2025-09-29)
+- [OpenAI Codex 零基础入门指南](https://feisky.xyz/posts/2025-09-04-codex-basic-tutorial/)：OpenAI Codex 零基础入门指南，介绍 Codex Cloud、Codex CLI 和 VSCode 扩展三大产品形态，分析它相比 Claude Code 在开源、GPT-5 指令遵循、慷慨限额和外接模型方面的优势与上手技巧。 (2025-09-04)
+- [Claude Code 背后的秘密：为什么它能秒杀其他 AI 编程助手](https://feisky.xyz/posts/2025-08-25-claude-code%E8%83%8C%E5%90%8E%E7%9A%84%E7%A7%98%E5%AF%86/)：解读 MinusX 团队拦截分析 Claude Code 网络请求的发现，揭秘它为何能秒杀其他 AI 编程助手：单主循环的极简设计、大量调用廉价 Haiku 模型控成本，以及自主管理任务清单等核心秘密。 (2025-08-25)
+- [AKS发布首个K8S AI Agent，Kubernetes运维进入智能时代](https://feisky.xyz/posts/2025-08-22-aks-cli-agent/)：AKS 团队在 KubeCon India 发布了首个 Kubernetes AI Agent，也就是 AKS CLI Agent，它基于开源 HolmesGPT 和 AKS MCP 服务构建，把安全智能的 Agentic 运维诊断工作流直接带到终端。 (2025-08-22)
+- [开源 AKS MCP：解锁智能 Kubernetes 运维](https://feisky.xyz/posts/2025-08-14-%E5%BC%80%E6%BA%90-aks-mcp---%E8%A7%A3%E9%94%81%E6%99%BA%E8%83%BD-kubernetes-%E8%BF%90%E7%BB%B4/)：整理自 AKS 官方博客，介绍开源的 AKS MCP 服务如何通过标准化 MCP 协议深度集成 AKS API，让 AI Agent 直接诊断集群健康、分析网络配置并智能扩缩容，赋予云原生运维原生 AI 能力。 (2025-08-14)
+- [GPT-5 提示词指南](https://feisky.xyz/posts/2025-08-12-gpt-5-%E6%8F%90%E7%A4%BA%E8%AF%8D%E6%8C%87%E5%8D%97/)：分享 GPT-5 的提示词技巧，指出很多人沿用旧写法导致效果变差的常见误区，强调语调统一、格式一致、先规划再执行等原则，并给出提升输出质量的实用模板与新功能用法。 (2025-08-12)
+- [OpenAI gpt-oss 深度解析](https://feisky.xyz/posts/2025-08-06-openai-gpt-oss/)：深度解析 OpenAI 时隔多年重返开源发布的 gpt-oss 系列模型，剖析其采用 Apache 2.0 许可、MoE 架构和原生 MXFP4 量化，让 120B 参数模型在单张 80GB GPU 上运行的技术创新与部署方法。 (2025-08-06)
+- [Claude Code SubAgent](https://feisky.xyz/posts/2025-08-04-claude-code-subagent/)：讲解 Claude Code SubAgent 的工作原理，如何用独立上下文窗口解决多任务下的上下文混乱与工具选择问题，并分享创建、调用 SubAgent 以及链式调用、动态选择等进阶技巧。 (2025-08-04)
+- [开源我的 Claude Code 配置：Vibe Coding 的终极工作流](https://feisky.xyz/posts/2025-07-19-opensource-my-claude-code-settings/)：作者开源自己打磨数月的 Claude Code 配置，介绍这套借鉴 Kiro 的规范驱动 Vibe Coding 工作流，涵盖 spec、design、task、execute 等自定义命令以及代码分析和 GitHub 集成能力。 (2025-07-19)
+- [Claude Code 安全最佳实践](https://feisky.xyz/posts/2025-07-14-claude-code-security/)：讲解 Claude Code 的安全最佳实践，以 Supabase MCP 数据泄露为例剖析 LLM 无法区分指令与数据带来的提示注入风险，提醒切换 AI 编程工具时切莫忽视数据隐私与权限管控陷阱。 (2025-07-14)
+- [Claude Code 接入 Github Copilot 模型](https://feisky.xyz/posts/2025-07-11-claude-code-connect-github-copilot/)：教你用公司提供的 GitHub Copilot 订阅直接驱动 Claude Code，既享受最强的 AI 编程体验又省下 Claude API 费用，并说明调用 Copilot 模型的合规性与具体配置方法。 (2025-07-11)
+- [Claude Code 最佳实践和使用技巧](https://feisky.xyz/posts/2025-07-08-claude-code-best-practices/)：系统分享 Claude Code 的最佳实践与使用技巧，从初始化配置、编写 CLAUDE.md 核心配置文件讲起，涵盖自定义命令、上下文管理等实用方法，帮你充分释放这款 AI 编程助手的效率。 (2025-07-08)
+- [Gemini CLI 降智原因及解决方法](https://feisky.xyz/posts/2025-07-06-gemini-cli-keep-pro/)：分析 Gemini CLI 从 2.5 Pro 悄悄降级到 Flash 导致生成质量下降的智能路由机制，剖析任务复杂度评估、慢响应监控等触发条件，并给出保持 Pro 模型的验证解决方案。 (2025-07-06)
+- [掌握 Claude Code / 命令：让 AI 成为你的开发利器](https://feisky.xyz/posts/2025-07-01-claude-code-slash-command/)：详解 Claude Code 斜杠命令的用法，覆盖账户环境、项目内存、开发调试等内置命令，以及自定义命令的作用域划分与参数传递，帮你把重复的开发流程沉淀成一条可复用的命令。 (2025-07-01)
+- [谷歌发布开源免费命令行编程工具 Gemini CLI](https://feisky.xyz/posts/2025-06-26-google-free-gemini-cli/)：介绍谷歌开源免费的命令行编程工具 Gemini CLI，它提供 100 万 token 上下文、多模态输入、内置 Google 搜索和 MCP 工具集成，个人账号即可享受每天 1000 次的慷慨免费额度。 (2025-06-26)
+- [跟踪 Claude Code 的大语言模型调用过程](https://feisky.xyz/posts/2025-06-25-claude-code-tracing/)：使用 Claude Code 时我们往往只能看到最终输出，看不到内部的系统提示和工具调用过程。本文介绍轻量级跟踪工具 claude-trace，通过拦截 Node.js 模块加载机制，完整记录 Claude Code 与 Anthropic API 之间的交互，帮助你透视 AI 编程助手的内部工作原理。 (2025-06-25)
+- [Claude Code 系统提示词赏析](https://feisky.xyz/posts/2025-06-24-claude-code-system-prompts/)：深入赏析 Claude Code 的系统提示词，逐段解读其作为交互式 CLI 工具的身份定义、防御性安全原则和行为准则，帮助你理解其设计思路并学会更高效地与 AI 编程助手协作。 (2025-06-24)
+- [还得是 Andrej Karpathy！一句话道破 AI 时代的本质：“英语就是新的编程语言”](https://feisky.xyz/posts/2025-06-21-software-3.0/)：编译整理 Andrej Karpathy 在 AI Startup School 的演讲，围绕英语正在成为最热门编程语言的观点，讲解 Software 1.0、2.0 到 3.0 的软件演化三部曲及其对开发方式的颠覆。 (2025-06-21)
+- [Claude Code MCP 扩展：外部工具接入指南](https://feisky.xyz/posts/2025-06-18-claude-code-mcp/)：Claude Code 的 MCP 扩展指南，介绍 Model Context Protocol 如何让 Claude Code 无缝接入外部工具和数据源，讲解内置工具能力、MCP 服务器配置方法，并提示防范提示注入等安全风险。 (2025-06-18)
+- [Claude Code 省钱开挂：一键接入 OpenAI/Gemini/DeepSeek](https://feisky.xyz/posts/2025-06-17-claude-code-llm/)：教你借助 LiteLLM 网关代理为 Claude Code 接入 OpenAI GPT、DeepSeek、Gemini 等其他大模型，通过集中认证、成本控制和模型路由降低 API 开销，享受灵活切换模型的省钱玩法。 (2025-06-17)
+- [Claude Code 从0到1入门指南](https://feisky.xyz/posts/2025-06-16-claude-code-basic/)：Claude Code 从零到一入门指南，介绍这款 Anthropic 推出的代理式终端编程助手的核心特点，涵盖系统要求、安装设置和自然语言交互方式，带你快速上手用 AI 理解代码库并执行任务。 (2025-06-16)
+- [推荐一款 VSCode AI 插件：Chatgpt Copilot](https://feisky.xyz/posts/2025-01-08-chatgpt-copilot/)：开源 VSCode 插件 ChatGPT Copilot 下载量已突破 40 万，在侧边栏提供类 ChatGPT 的聊天式 AI 编程助手，支持接入 OpenAI、Claude 等多种主流大模型，并允许在对话中添加文件和图片作为上下文，本文介绍它的核心功能与安装配置方法。 (2025-01-08)
+- [构建高效的 AI 代理系统](https://feisky.xyz/posts/2025-01-06-effective-agents/)：基于 Anthropic 研究报告，深入解析 AI 代理系统的构建模式：从增强型 LLM 到工作流设计，再到自主代理的最佳实践。 (2025-01-06)
+- [Kubernetes 1.32 新特性解析](https://feisky.xyz/posts/2025-01-04-kubernetes-v1.32/)：Kubernetes v1.32 是社区推动云原生技术十年发展的里程碑版本，本文系统梳理了这一版本的核心新特性（GA），并整理了从旧版本升级到 v1.32 时需要注意的 DRA、FlowSchema 等兼容性变更事项，帮助你顺利完成集群升级。 (2025-01-04)
+- [Kubernetes 1.22 新特性预览](https://feisky.xyz/posts/2021-08-02-kubernetes-122/)：预览 Kubernetes 1.22 版本的新特性，重点介绍此版本删除的一系列已弃用 API 及其迁移路径，帮助你在测试升级前做好准备，平稳过渡到新版本。 (2021-08-02)
+- [基于Kubernetes的多集群实践](https://feisky.xyz/posts/2021-03-20-multi-cluster/)：介绍基于 Kubernetes 的多集群实践，说明多云混合云如何借助统一的 Kubernetes API 封装云平台异构问题，并梳理多 Kubernetes 集群的部署方式与常用管理方案。 (2021-03-20)
+- [Kubernetes Ingress 可视化编辑器](https://feisky.xyz/posts/2021-03-19-ingress-viz/)：介绍 Kubernetes Ingress 可视化编辑器，讲解 Ingress 作为管理服务外部访问的 API 对象如何提供七层负载均衡、SSL 终结和虚拟主机，以及 Ingress 控制器的工作原理和特性对比。 (2021-03-19)
+- [如何无宕机扩容 Kubernetes 存储](https://feisky.xyz/posts/2021-03-17-storage-expansion/)：讲解如何无宕机扩容 Kubernetes 存储，介绍从 1.11 起支持的 PVC 动态扩容，并按网络文件系统与块存储设备两类分别剖析扩容时是否需要卸载 PV 或重启 Pod 的差异。 (2021-03-17)
+- [如何快速掌握 Kubernetes 网络](https://feisky.xyz/posts/2021-03-12-k8s-network-learn/)：分享快速掌握 Kubernetes 网络的方法，强调先吃透 IP-per-Pod、扁平网络、Service Cluster IP 三条核心网络模型，理解容器间无需 NAT 直接互通的本质，再深入 Calico、Cilium 等插件。 (2021-03-12)
+- [云原生时代的 YAML 教程](https://feisky.xyz/posts/2021-03-03-yaml/)：云原生时代的 YAML 教程，讲解这门可读性强的数据序列化语言的基本语法规则，涵盖字典、列表、纯量等数据结构，帮助你读懂 Kubernetes、Ansible、Terraform 等工具的配置文件。 (2021-03-03)
+- [聊一聊 GKE Autopilot](https://feisky.xyz/posts/2021-03-01-gke-autopilot/)：聊聊 Google Cloud 推出的 GKE Autopilot 模式，对比它与 GKE 标准模式的区别，剖析它如何自动配置和管理底层节点、按工作负载自动创建与扩缩容，实现更彻底的托管 Kubernetes 体验。 (2021-03-01)
+- [Kubernetes网络策略可视化编辑器](https://feisky.xyz/posts/2021-03-08-network-policy/)：介绍 Cilium 出品的 Kubernetes 网络策略可视化编辑器，针对 NetworkPolicy YAML 难写易错的痛点，演示如何通过可视化界面直观地编写和理解复杂的 Ingress、Egress 网络策略。 (2021-02-01)
+- [eBPF 入门之编程](https://feisky.xyz/posts/2021-01-29-ebpf-program/)：eBPF 入门编程篇，介绍常用的 eBPF 编程框架，剖析 BCC 启动时编译、依赖内核头文件、排错困难等缺点，以及社区如何借助 libbpf 和 CO-RE 将工具转为无外部依赖的可执行二进制。 (2021-01-29)
+- [eBPF 入门之初体验](https://feisky.xyz/posts/2021-01-27-ebpf-hello/)：eBPF 入门初体验，介绍简化 eBPF 程序开发的两大工具 BCC 和 bpftrace，重点讲解基于 Python 接口的 BCC 工具集及其在 Ubuntu、RHEL 上的安装方法，帮助新手快速上手。 (2021-01-27)
+- [三大公有云托管 Kubernetes 服务 (EKS、GKE、AKS) 评估](https://feisky.xyz/posts/2021-01-20-eks-gke-aks/)：基于 2021 年官方文档评估 AWS EKS、Google GKE 和 Azure AKS 三大公有云托管 Kubernetes 服务，对比它们在版本支持、控制平面自动更新、节点健康自愈等方面的差异与生态特点。 (2021-01-20)
+- [为什么已经用了滚动更新服务还会中断](https://feisky.xyz/posts/2021-01-18-rolling-update/)：剖析为什么用了滚动更新服务仍会中断的问题，讲解 Kubernetes 中 Deployment 结合 Service 的滚动更新原理，重点分析长连接、短连接在 Pod 替换过程中断连的原因及应对办法。 (2021-01-18)
+- [Kubernetes 配置更新的那些事](https://feisky.xyz/posts/2021-01-13-config-manage/)：讲解 Kubernetes 配置更新的那些事，区分敏感与非敏感配置，说明为何用 ConfigMap 和 Secret 与容器分离管理配置，剖析 Volume 挂载热更新机制及其在 DevOps 流程中容易踩的坑。 (2021-01-13)
+- [云原生应用性能优化之道（附免费电子书分享）](https://feisky.xyz/posts/2021-01-08-cloud-native-perf/)：整理自 A2M 峰会的分享，讲解云原生应用的性能优化之道，从 CNCF 对云原生的定义、典型云原生应用架构入手，剖析容器、微服务、服务网格带来的挑战与优化方法，并附免费电子书分享。 (2021-01-08)
+- [BPF 学习路径总结](https://feisky.xyz/posts/2021-01-06-ebpf-learn-path/)：总结 BPF 的学习路径，从为什么要学 eBPF 讲起，介绍它在无需修改内核源码或加载模块的前提下运行沙盒程序的革命性能力，并梳理追踪性能分析、网络、安全等主要应用场景与进阶资料。 (2021-01-06)
+- [基于 eBPF 实现容器运行时安全](https://feisky.xyz/posts/2021-01-04-ebpf-runtime-security/)：介绍天翼云如何基于 eBPF 技术实现细粒度的容器运行时安全，通过对主机和容器异常行为的检测与自动隔离，在无需编译内核或加载模块的前提下保障多租户容器平台的运行时安全。 (2021-01-04)
+- [2020 年个人总结](https://feisky.xyz/posts/2020-12-31-2020-summary/)：作者的 2020 年个人年度总结，回顾疫情下在家办公、走上管理岗位带领团队成长的工作变化，梳理开源社区的参与情况，并分享这一年健康、生活方面的经历与新年展望。 (2020-12-31)
+- [10个问题带你全面理解Linux性能优化](https://feisky.xyz/posts/2020-06-06-linux-perf/)：整理自极客时间直播，用十个问题带你全面理解 Linux 性能优化，涵盖操作系统、算法、编程语言、框架到分布式系统各层面的优化思路，帮助你构建系统化的性能分析与调优知识体系。 (2020-06-20)
+- [镜像构建的正确姿势](https://feisky.xyz/posts/2020-06-01-container-image/)：讲解容器镜像构建的正确姿势，从 Dockerfile 的基本指令 FROM、ENTRYPOINT 讲起，介绍 docker build 的构建流程，并深入镜像分层、缓存复用与精简优化等实用技巧。 (2020-06-01)
+- [漫谈容器网络](https://feisky.xyz/posts/2020-05-27-container-networking/)：漫谈 Kubernetes 容器网络，从 IP-per-Pod、扁平网络、Service Cluster IP 三条核心网络模型讲起，梳理 CNI 插件、CoreDNS、Ingress 控制器和服务网格如何组合出强大而复杂的容器网络。 (2020-05-27)
+- [基于Kubernetes的多云和混合云](https://feisky.xyz/posts/2020-04-26-multi-cloud/)：讲解基于 Kubernetes 的多云与混合云方案，分析跨数据中心和多云服务商部署带来的解除锁定、可用性保障、成本优化与弹性突发等价值，以及跨云网络打通、数据一致性等落地难点。 (2020-04-26)
+- [Kubernetes中的CI/CD](https://feisky.xyz/posts/2020-04-19-ci-cd/)：讲解 Kubernetes 环境下的 CI/CD 实践，厘清持续集成与持续交付的概念及其与 DevOps 的关系，介绍 Docker 与 Kubernetes 如何简化流水线，并对比 Jenkins、GitLab 等主流工具的选型。 (2020-04-19)
+- [如何解决 Kubernetes 的 DNS 延迟问题](https://feisky.xyz/posts/2020-04-09-dns-latency/)：解析 Kubernetes 集群中恼人的 DNS 间歇性 5 秒延迟问题，从 Linux 内核 netfilter 处理并发 UDP 包的 conntrack 竞争条件入手剖析根因，并给出规避这一内核缺陷的实用方案。 (2020-04-09)
+- [打造云原生大型分布式监控系统(二): Thanos 架构详解](https://feisky.xyz/posts/2020-04-08-prometheus-thanos/)：详解开源项目 Thanos 的架构设计，讲解它如何简化分布式 Prometheus 的部署与管理，并提供全局查询视图、基于对象存储的长期存储和高可用等高级特性，解决时序监控数据的冷存储难题。 (2020-04-08)
+- [打造云原生大型分布式监控系统(一): 大规模场景下 Prometheus 的优化手段](https://feisky.xyz/posts/2020-04-06-prometheus-optimization/)：打造云原生大型分布式监控系统系列开篇，来自腾讯云 TKE 团队，深入讲解大规模场景下 Prometheus 的各种优化手段，覆盖采集、存储、查询等环节，帮助你应对海量指标带来的性能与容量挑战。 (2020-04-06)
+- [Kubernetes 容器运行时演进](https://feisky.xyz/posts/2018-10-14-kubernetes-container-runtime/)：整理自中国云原生大会的演讲，系统讲解 Kubernetes 容器运行时的演进历程，剖析 Kubelet 架构中运行时的位置、CRI 容器运行时接口的设计与实现方法，以及应对强隔离多租户场景的社区发展方向。 (2018-10-14)
+- [Azure Container Instance (ACI)](https://feisky.xyz/posts/2017-11-27-aci/)：介绍 Azure 容器实例 ACI，无需配置虚拟机即可秒级运行容器并获得虚拟机级别的安全隔离，支持自定义规格、公网 IP、持久化存储和容器组，还能通过 connector 作为 Kubernetes 的弹性节点。 (2017-11-27)
+- [Azure Container Service（ACS）简介](https://feisky.xyz/posts/2017-11-23-acs-introduction/)：介绍微软 Azure 容器服务 ACS，它同时支持 Kubernetes、DC/OS 和 Docker Swarm 三种编排工具且核心 acs-engine 开源，并说明它与下一代托管服务 AKS 的关系和迁移路径。 (2017-11-20)
+- [Azure Managed Kubernetes (AKS) 简介](https://feisky.xyz/posts/2017-11-17-aks/)：介绍 Azure 托管 Kubernetes 服务 AKS，它支持自动升级、故障自愈和资源池弹性伸缩，集群管理免费只收虚拟机费用。文章还对比了它与上一代 ACS 容器服务的差异并给出使用方法。 (2017-11-17)
+- [Docker MTA Program](https://feisky.xyz/posts/2017-10-19-docker-mta-program/)：解读 Docker 在 DockerCon EU 2017 发布的传统应用现代化计划 MTA，它由咨询服务、Docker EE 和混合云基础架构组成，并提供 Image2Docker、v2c 等自动容器化的概念验证工具。 (2017-10-19)
+- [Docker CE/EE 原生支持Kubernetes](https://feisky.xyz/posts/2017-10-17-docker-ce-ee-%E5%8E%9F%E7%94%9F%E6%94%AF%E6%8C%81kubernetes/)：DockerCon EU 2017 宣布 Docker 全平台原生支持 Kubernetes，Swarm 与 Kubernetes 共享同一套镜像、存储卷和容器，并借助 Custom Resources 把 Compose 应用部署为原生 Pod 和 Service。 (2017-10-17)
+- [重新开启HTTPS](https://feisky.xyz/posts/2017-10-16-%E9%87%8D%E6%96%B0%E5%BC%80%E5%90%AFhttps/)：GitHub Pages 自定义域名不支持 HTTPS，借助 Cloudflare 可以免费开启。文章给出添加站点、修改域名 NS 记录到 Cloudflare 的具体步骤，顺带获得 CDN 加速与 DNS 解析能力。 (2017-10-16)
+- [开始一本开源电子书《Kubernetes指南》](https://feisky.xyz/posts/2017-05-21-start-kubernetes-handbook/)：开源电子书《Kubernetes 指南》启动公告，介绍这本系统整理 Kubernetes 部署、服务发现、自动伸缩、存储与扩展机制的参考手册，以及 GitBook 在线阅读和 ePub、PDF 下载方式。 (2017-05-21)
+- [LinuxKit](https://feisky.xyz/posts/2017-04-19-linuxkit/)：介绍 Docker 发布的 LinuxKit 工具包，它根据 yaml 描述自动构建面向容器的安全可移植操作系统镜像，特性包括只读不可变根文件系统、精简内核以及全部服务基于 Docker 镜像的可扩展设计。 (2017-04-19)
+- [Kubernetes HA](https://feisky.xyz/posts/2017-03-15-kubernetes-ha/)：讲解 Kubernetes 高可用集群的搭建方法，涵盖 etcd 集群模式配置、apiserver 负载均衡，以及 controller manager、scheduler 和 cluster autoscaler 的自动选主机制。 (2017-03-15)
+- [AWS S3故障回顾和总结](https://feisky.xyz/posts/2017-03-03-aws-s3%E6%95%85%E9%9A%9C%E5%9B%9E%E9%A1%BE%E5%92%8C%E6%80%BB%E7%BB%93/)：复盘 2017 年 2 月 AWS S3 因运维误操作导致的四小时大规模故障，剖析 Index 与 Placement 核心系统的重启恢复过程，总结服务单元化拆分、删除限速等改进措施与高可用运维教训。 (2017-03-03)
+- [Gitlab故障回顾和总结](https://feisky.xyz/posts/2017-03-03-gitlab%E6%95%85%E9%9A%9C%E5%9B%9E%E9%A1%BE%E5%92%8C%E6%80%BB%E7%BB%93/)：复盘 GitLab 误删生产数据库并发现五重备份机制全部失效的事故，梳理 LVM 快照、pg_dump、S3 备份各自出问题的原因，以及事后监控备份、区分环境提示符等一系列改进措施。 (2017-03-03)
+- [Debugging application in containers](https://feisky.xyz/posts/2017-02-14-debugging-application-in-containers/)：容器镜像往往极度精简、不含调试工具，如何在线排查容器内进程？文章以 Go 编写的最小 webserver 和 scratch 镜像为例，演示通过启动带工具的调试容器共享命名空间来定位问题。 (2017-02-14)
+- [Software Engineering at Google](https://feisky.xyz/posts/2017-02-13-software-engineering-at-google/)：解读 Fergus Henderson 的论文，系统梳理 Google 的软件工程实践，涵盖单一代码仓库与主干开发、Blaze 分布式构建、强制代码审查、分层测试体系以及 Buganizer 缺陷跟踪流程。 (2017-02-13)
+- [使用docker dind创建swarm集群](https://feisky.xyz/posts/2017-01-09-%E4%BD%BF%E7%94%A8docker-dind%E5%88%9B%E5%BB%BAswarm%E9%9B%86%E7%BE%A4/)：在 macOS 上 Docker for Mac 只能创建一台虚拟机，借助 dind（Docker in Docker）无需额外虚拟机即可搭建多节点 Swarm 集群。文章给出初始化 Swarm、批量启动 worker 节点的完整脚本。 (2017-01-09)
+- [Grumpy: 使用Go来运行Python程序](https://feisky.xyz/posts/2017-01-05-grumpy-%E4%BD%BF%E7%94%A8go%E6%9D%A5%E8%BF%90%E8%A1%8Cpython%E7%A8%8B%E5%BA%8F/)：介绍 Google 开源的 Grumpy，它把 Python 程序翻译成 Go 程序再编译运行，用 goroutine 替代线程以绕开 GIL 全局解释器锁。文章说明它与 PyPy 的区别并给出上手示例。 (2017-01-05)
+- [Kubernetes v1.5.0 release](https://feisky.xyz/posts/2016-12-13-kubernetes-v1-5-0-release/)：梳理 Kubernetes v1.5.0 的新特性，包括 StatefulSets 进入 beta、kubefed 联邦支持增强、kubeadm 部署简化和 Master 高可用，并提醒因匿名认证默认开启的安全问题应直接升级到 v1.5.1。 (2016-12-13)
+- [Weekly reading list](https://feisky.xyz/posts/2016-12-08-weekly-reading-list/)：每周技术阅读清单，重点解析 Docker 收购分布式存储厂商 Infinit 的意义，剖析其去中心化点对点架构、基于策略的可编程能力以及自愈合与多协议存储接口的设计。 (2016-12-08)
+- [Weekly reading list](https://feisky.xyz/posts/2016-12-05-weekly-reading-list/)：每周技术阅读清单，介绍腾讯开源的毫秒服务引擎 MSEC，它集 RPC、服务发现、负载均衡、灰度发布、Key-Value 存储于一体，并附带 SELinux 角色机制等延伸阅读。 (2016-12-05)
+- [KubeCon/CloudNativeCon 2016见闻](https://feisky.xyz/posts/2016-11-14-kubecon-2016%E8%A7%81%E9%97%BB/)：西雅图 KubeCon 与 CloudNativeCon 2016 参会见闻，记录 Brendan Burns 关于把容器视作分布式系统汇编语言的 Metaparticle 演讲，以及 SIG Node 等多场精彩议题的要点。 (2016-11-14)
+- [Kubernetes container runtime interface](https://feisky.xyz/posts/2016-09-25-kubernetes-container-runtime-interface/)：深入讲解 Kubernetes 容器运行时接口 CRI 的设计动机与架构，剖析旧 Runtime 接口在抽象层次、代码耦合、镜像与容器生命周期混杂等方面的缺陷，以及 CRI 如何以插件方式接入外部容器引擎。 (2016-09-25)
+- [Kubernetes中的服务发现与负载均衡](https://feisky.xyz/posts/2016-09-11-kubernetes%E4%B8%AD%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0%E4%B8%8E%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/)：梳理 Kubernetes 的服务发现与负载均衡机制，对比 Service、Ingress Controller、Service Load Balancer 和自定义负载均衡四种方案的原理与适用场景，帮你为不同业务选对入口方式。 (2016-09-11)
+- [如何快速启动一个Kubernetes集群](https://feisky.xyz/posts/2016-08-24-%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8%E4%B8%80%E4%B8%AAkubernetes%E9%9B%86%E7%BE%A4/)：Kubernetes 组件众多、部署繁琐，借助 minikube 可以在本机一键启动单节点集群。文章给出 macOS、Linux、Windows 三个平台的安装命令和 xhyve、VirtualBox 等驱动的选择方法。 (2016-08-24)
+- [Setup hyperd with flannel network](https://feisky.xyz/posts/2016-07-19-setup-hyperd-with-flannel-network/)：演示如何为 hyperd 安全容器配置 flannel 覆盖网络，讲解 flanneld 如何借助 etcd 为每台主机分配子网、通过 UDP 或 VXLAN 后端转发报文，实现容器跨主机的可路由 IP 通信。 (2016-07-19)
+- [Play with docker v1.12](https://feisky.xyz/posts/2016-06-24-play-with-docker-v1-12/)：体验 Docker v1.12 的新特性，重点介绍内置的 Swarm Mode 集群编排能力，展示如何用原生命令快速搭建和管理 Docker 容器集群。 (2016-06-24)
+- [Playing docker with hypervisor container runtime runV](https://feisky.xyz/posts/2016-06-17-playing-docker-with-hypervisor-container-runtime-runv/)：手把手演示如何让基于 hypervisor 的 OCI 运行时 runV 与 Docker 的 containerd 集成，从源码编译 runV、安装 Docker 到配置运行时，体验虚拟化隔离的安全容器。 (2016-06-17)
+- [Kubernetes-mesos architecture](https://feisky.xyz/posts/2016-06-07-kubernetes-mesos-architecture/)：通过架构图展示 Kubernetes on Mesos 的整体架构，帮助读者直观理解 Kubernetes 与 Mesos 集成后各组件的协作关系。 (2016-06-07)
+- [Hypernetes: Bringing Security and Multi-tenancy to Kubernetes](https://feisky.xyz/posts/2016-06-06-hypernetes-bringing-security-and-multi-tenancy-to-kubernetes/)：转载 Kubernetes 官方博客，介绍 HyperHQ 打造的基于 hypervisor 的容器 HyperContainer，为多租户环境提供比 Linux 容器更强的隔离，而无需为每个容器单独运行虚拟机。 (2016-06-06)
+- [How docker 1.11 share network accross containers](https://feisky.xyz/posts/2016-05-11-how-docker-1-11-share-network-accross-containers/)：剖析 Docker 1.11 迁移到 runc 与 containerd 后如何在容器间共享网络命名空间，通过 --net=container 参数和生成的 runc config.json 揭示共享 netns 的实现细节。 (2016-05-11)
+- [Go performance optimize](https://feisky.xyz/posts/2016-05-06-go-performance-optimize/)：汇总 Go 性能优化技巧，包括 string 与 []byte 转换如何借助 unsafe 避免底层字节数组复制的开销，以及其他常见的高性能编码实践，帮助你写出更高效的 Go 代码。 (2016-05-06)
+- [The Rise of Cloud Computing Systems - Jeff Dean](https://feisky.xyz/posts/2016-05-05-the-rise-of-cloud-computing-systems-jeff-dean/)：分享 Google 首席工程师 Jeff Dean 的演讲《The Rise of Cloud Computing Systems》，回顾云计算系统的发展历程与技术演进，附完整幻灯片资料。 (2016-05-05)
+- [Reading notes of week 17](https://feisky.xyz/posts/2016-04-29-reading-notes-of-week-17/)：第 17 周技术阅读笔记，涵盖 Kubernetes 1.3 即将引入的 Network Policy API、微服务间流量精细控制等话题，梳理容器与网络策略领域的最新动态。 (2016-04-29)
+- [runc and runV](https://feisky.xyz/posts/2016-04-28-runc/)：介绍 OCI 规范的两种运行时实现 runc 与 runV，runc 是标准容器命令行工具，runV 是基于 hypervisor 的运行时。文章给出用 runc 导出 busybox 镜像并启动容器的实操步骤。 (2016-04-28)
+- [Container runtime in Docker v1.11](https://feisky.xyz/posts/2016-04-28-docker-1-11-runtime/)：解析 Docker v1.11 正式集成 runc 并拆分为 containerd、containerd-shim 等多个二进制的架构变化，说明这样带来的重启不影响容器、运行时可插拔、性能优化等好处。 (2016-04-28)
+- [DPDK Introduction](https://feisky.xyz/posts/2016-04-24-dpdk-introduction/)：介绍 Intel DPDK 数据平面开发工具集，讲解它如何在用户空间绕过 Linux 内核协议栈实现高性能数据包处理，并剖析 EAL 环境抽象层、Buffer Manager、无锁环形队列等核心组件。 (2016-04-24)
+- [Tips for cgo](https://feisky.xyz/posts/2016-04-24-tips-for-cgo/)：汇总使用 cgo 的实用技巧，涵盖 C 基本数值类型在 Go 中的映射、结构体和联合体的访问方式、类型大小获取，以及 Go 处理 C union 类型的注意事项。 (2016-04-24)
+- [cgo in go 1.6](https://feisky.xyz/posts/2016-04-19-cgo-in-go-1-6/)：解读 Go 1.6 中 cgo 关于 Go 指针与 C 代码共享内存的新规则，说明运行时如何检测违规并崩溃程序，以及通过 GODEBUG=cgocheck 调整检查，帮助你写出与垃圾回收兼容的 cgo 代码。 (2016-04-19)
+- [Hello world to Docker Mac](https://feisky.xyz/posts/2016-04-15-hello-world-to-docker-mac/)：分享 Docker for Mac 的初次使用体验，介绍它作为标准 Mac 应用的简易安装、原生 osxfs 文件共享、xhyve 虚拟机管理，以及与 Docker Toolbox 共存的方式，性能已接近 Linux。 (2016-04-15)
+- [Upgrade CentOS kernel](https://feisky.xyz/posts/2016-03-30-upgrade-centos-kernel/)：记录在 CentOS 7 上升级内核的方法，对比 elrepo 提供的长期支持版 kernel-lt（4.4）与主线稳定版 kernel-ml（4.5）的区别，并给出通过 rpm 导入密钥完成安装的具体步骤。 (2016-03-30)
+- [Alpine Linux](https://feisky.xyz/posts/2016-03-26-alpine-linux/)：介绍面向安全的轻量级发行版 Alpine Linux，它基于 musl libc 和 busybox、自带 apk 包管理器，内核打了 grsecurity 补丁。文章还讲解其在虚拟机中的体验以及仅 4.7MB 的官方 Docker 镜像。 (2016-03-26)
+- [Borg, Omega, and Kubernetes (ACM Queue)](https://feisky.xyz/posts/2016-03-04-borg-omega-and-kubernetes-acm-queue/)：解读 Google 发表于 ACM Queue 的论文，回顾十年间 Borg、Omega、Kubernetes 三代容器管理系统的设计演进与经验教训，理解大规模容器调度与集群状态管理的思路。 (2016-03-04)
+- [Docker overlay network dive](https://feisky.xyz/posts/2016-03-04-docker-overlay-network-dive/)：推荐并简介一篇深入剖析 Docker overlay 多主机网络的技术文章，帮助读者理解 Docker 跨主机容器通信的 overlay 网络实现原理。 (2016-03-04)
+- [Kubernetes sig-node (Asia) meeting notes](https://feisky.xyz/posts/2016-03-02-kubernetes-sig-node-asia-meeting-nodes/)：记录 Kubernetes SIG-Node 亚洲会议纪要，涵盖 v1.2 发布状态、Docker 版本兼容、华为 Conformance 测试、Hyper 集成进展以及 etcd v3.0 计划等社区讨论要点。 (2016-03-02)
+- [10 things to avoid in docker containers](https://feisky.xyz/posts/2016-03-01-10-things-to-avoid-in-docker-containers/)：翻译整理 Redhat 提出的构建容器服务应避免的十件事，涵盖不要在容器内存数据、不要分两部分交付应用、避免过大镜像等实践，帮助你构建不可变、可替换的容器化应用。 (2016-03-01)
+- [Carina by Rackspace](https://feisky.xyz/posts/2016-02-29-carina-by-rackspace/)：介绍 Rackspace 推出的容器运行环境 Carina，它基于开源 Docker Swarm、运行在裸金属之上避免虚拟化性能损耗，并借助 AppArmor 增强隔离，提供开箱即用的容器托管平台。 (2016-02-29)
+- [Notes about serverless](https://feisky.xyz/posts/2016-02-26-notes-about-serverless/)：梳理 Serverless 无服务器计算的理念及主要玩家，对比 AWS Lambda、Google Cloud Functions、Azure Functions 等产品的触发机制、应用场景与计费模式，理解事件驱动的函数计算。 (2016-02-26)
+- [Docker Datacenter](https://feisky.xyz/posts/2016-02-26-docker-datacenter/)：介绍 Docker 发布的企业级容器平台 Docker Datacenter，涵盖商业支持的 Docker 引擎、内嵌 Swarm 的通用控制平面 UCP 和可信镜像仓库 DTR，帮助企业落地容器即服务的私有云方案。 (2016-02-26)
+- [Google's Transition From Single Datacenter, To Failover, To A Native Multihomed Architecture](https://feisky.xyz/posts/2016-02-24-google-transition-from-single-datacenter-to-failover-to-a-native-multihomed-architecture/)：解读 Google 论文，剖析从单数据中心到主备容灾、再到原生多宿架构的演进。多宿系统在多个数据中心同时运行并自适应迁移负载，以更少资源实现高可用与一致性，透明应对故障和维护。 (2016-02-24)
+- [Kubernetes drain](https://feisky.xyz/posts/2016-02-17-kubernetes-drain/)：介绍 Kubernetes v1.2 新增的 kubectl drain 和 uncordon 命令，讲解如何将节点切换到维护模式并自动驱逐 Pod，简化以往手动 patch 节点、逐一删除 Pod 的运维流程。 (2016-02-17)
+- [Kubernetes network policy](https://feisky.xyz/posts/2016-02-17-kubernetes-network-policy/)：梳理 Kubernetes Network SIG 正在讨论的 Network Policy 提案，介绍它如何满足 SDN、网络隔离、IP Overlapping 等复杂网络需求，并给出基于命名空间和标签选择器的策略配置示例。 (2016-02-17)
+- [Hypernetes简介 - feisky](https://feisky.xyz/posts/2015-11-18-hypernetes%E7%AE%80%E4%BB%8B-feisky/)：介绍基于 Kubernetes 打造的多租户发行版 Hypernetes，它在 Kubernetes 之上增加了多租户认证授权、容器 SDN 网络以及基于 Hyper 的安全容器执行引擎，实现真正的多租户隔离。 (2015-11-18)
+- [kubernetes多节点部署解析 - feisky](https://feisky.xyz/posts/2014-11-19-kubernetes%E5%A4%9A%E8%8A%82%E7%82%B9%E9%83%A8%E7%BD%B2%E8%A7%A3%E6%9E%90-feisky/)：基于 CentOS 7 演示 Kubernetes 多节点集群的部署过程，讲解如何使用 Ansible 和 kubernetes-ansible 自动化安装组件，并配置 sshpass 等依赖完成多机搭建。 (2014-11-19)
+- [docker底层技术概览 - feisky](https://feisky.xyz/posts/2014-11-19-docker%E5%BA%95%E5%B1%82%E6%8A%80%E6%9C%AF%E6%A6%82%E8%A7%88-feisky/)：概览 Docker 依赖的 Linux 内核底层技术，从早期基于 LXC 到自研 libcontainer，剖析 namespace、cgroups 等容器隔离机制，理解容器引擎相比 KVM、Xen 虚拟化的资源优势。 (2014-11-19)
+- [docker存储结构解析 - feisky](https://feisky.xyz/posts/2014-11-19-docker%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84%E8%A7%A3%E6%9E%90-feisky/)：解析 Docker 的存储结构与存储引擎，对比 AUFS、LVM thin provisioning、OverlayFS 等方案在不同 Linux 发行版上的可用性和实现原理，帮助理解容器镜像与数据层的组织方式。 (2014-11-19)
+- [OpenStack部署工具总结 - feisky](https://feisky.xyz/posts/2014-11-18-openstack%E9%83%A8%E7%BD%B2%E5%B7%A5%E5%85%B7%E6%80%BB%E7%BB%93-feisky/)：对比总结 RDO、DevStack、Fuel 等主流 OpenStack 部署工具的特点与适用场景，分析各自基于 Puppet、脚本或图形界面的部署方式，帮助你选择合适的私有云搭建方案。 (2014-11-18)
+- [使用 Device Mapper来改变Docker容器的大小 - feisky](https://feisky.xyz/posts/2014-11-18-%E4%BD%BF%E7%94%A8-device-mapper%E6%9D%A5%E6%94%B9%E5%8F%98docker%E5%AE%B9%E5%99%A8%E7%9A%84%E5%A4%A7%E5%B0%8F-feisky/)：在 CentOS、RHEL 等默认不支持 AUFS 的系统上，Docker 使用 Device Mapper 作为存储驱动。本文翻译自 Docker 布道师文章，讲解如何通过 Device Mapper 调整容器的磁盘大小。 (2014-11-18)
+- [从veth看虚拟网络设备的qdisc - feisky](https://feisky.xyz/posts/2014-11-18-%E4%BB%8Eveth%E7%9C%8B%E8%99%9A%E6%8B%9F%E7%BD%91%E7%BB%9C%E8%AE%BE%E5%A4%87%E7%9A%84qdisc-feisky/)：结合一次 Docker 网络性能测试引发的 veth 问题，深入分析虚拟网络设备的 qdisc 队列机制，探讨 tx_queuelen 设置对容器网络吞吐的影响以及内核社区的讨论。 (2014-11-18)
+- [Kubernetes系统架构简介 - feisky](https://feisky.xyz/posts/2014-11-18-kubernetes%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E7%AE%80%E4%BB%8B-feisky/)：从整体上梳理 Kubernetes 的系统架构，介绍 Master 与 Node 节点的组成、API Server、调度器、控制器等核心组件的职责，帮助读者建立对这套容器编排框架的基础认知。 (2014-11-18)
+- [docker网络配置方法总结 - feisky](https://feisky.xyz/posts/2014-11-18-docker%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93-feisky/)：系统梳理 Docker 的网络配置方法，从默认的 docker0 网桥、容器间通信，到自定义网络接口和跨主机通信，帮助读者理解并掌握容器网络的多种配置方式。 (2014-11-18)
+- [集群工具ansible使用方法 - feisky](https://feisky.xyz/posts/2014-11-16-%E9%9B%86%E7%BE%A4%E5%B7%A5%E5%85%B7ansible%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-feisky/)：Ansible 是一款轻量的集群自动化管理工具，只依赖 SSH 和 Python，无需在被管节点安装客户端。本文介绍它与 Puppet、SaltStack 的区别，以及批量执行、模块化和 playbook 等核心功能的使用方法。 (2014-11-16)
+- [使用Mesos来管理Docker集群](https://feisky.xyz/posts/2015-02-06-mesosdocker/)：介绍如何用 Apache Mesos 管理 Docker 集群，涵盖失败侦测、任务发布与跟踪、细粒度资源共享等能力，实现高效的资源调度。 (0001-01-01)
+- [Weekly reading list (20150626)](https://feisky.xyz/posts/2015-06-24-weekly-reading-list-20150626/)：每周技术阅读清单，本期聚焦 DockerCon 与开放容器项目 OCP，汇总 CoreOS、Docker 等推动容器标准化的重要动态。 (0001-01-01)
+- [Weekly reading list (20150607)](https://feisky.xyz/posts/2015-06-10-weekly-reading-list-20150607/)：每周技术阅读清单，本期聚焦 OpenStack Magnum 容器服务项目及其最新架构，汇总云原生与容器领域的精选文章。 (0001-01-01)
+- [vagrant](https://feisky.xyz/posts/2015-01-27-vagrant/)：Vagrant 是一款跨平台虚拟机管理工具，可封装并分发一致的开发环境。本文介绍它的安装方法与基本用法，方便团队共享环境。 (0001-01-01)
+- [Using cAdvisor to monitor docker](https://feisky.xyz/posts/2015-03-13-usging-cadvisor-to-monitor-docker/)：介绍如何用 cAdvisor 监控 Docker 容器，实时采集与展示 CPU、内存、网络等资源使用情况，帮助你掌握容器运行性能。 (0001-01-01)
+- [Use kubectl to connect kubernetes cluster](https://feisky.xyz/posts/2015-11-04-use-kubectl-to-connect-kubernetes-cluster/)：介绍如何配置 kubectl 以带认证方式连接 Kubernetes 集群，通过 set-credentials 等命令替代默认的无鉴权本地访问。 (0001-01-01)
+- [sysdig](https://feisky.xyz/posts/2015-06-24-sysdig/)：介绍系统排障利器 sysdig，它基于内核 tracepoints 捕获系统调用与事件，可实时采集并保存系统级信息，方便深入分析与回溯。 (0001-01-01)
+- [Stateless Floating IPs](https://feisky.xyz/posts/2015-06-25-stateless-floating-ips/)：分析 Neutron 现有基于 iptables NAT 的 Floating IP 实现在性能与安全上的问题，探讨无状态 Floating IP 的改进思路。 (0001-01-01)
+- [Something about kubernetes authentication](https://feisky.xyz/posts/2015-09-23-something-about-kubernetes-authentication/)：介绍如何为 Kubernetes 开启认证，说明 kube-apiserver 的鉴权配置方法，帮助你用 curl 等工具安全访问集群 API。 (0001-01-01)
+- [Setting up GRE for Kubernetes](https://feisky.xyz/posts/2015-03-02-setting-up-gre-for-kubernetes/)：手把手演示如何修改 Docker 默认网桥并配置 GRE 隧道，为 Kubernetes 集群打通跨主机容器网络，实现 Pod 间互通。 (0001-01-01)
+- [reverse shell](https://feisky.xyz/posts/2015-01-28-reverse-shell/)：整理多种反弹 Shell 的实现方式，涵盖 nc、bash、Python 等工具，适合渗透测试与应急排障时快速建立远程连接（仅供学习）。 (0001-01-01)
+- [Redhat Atomic Host](https://feisky.xyz/posts/2015-03-06-redhat-atomic-host/)：介绍红帽发布的 RHEL 7 Atomic Host 首个公测版，梳理这一面向容器优化的精简操作系统在云平台上的特性与使用场景。 (0001-01-01)
+- [Python __file__ not defined problem](https://feisky.xyz/posts/2015-03-05-python-not-defined-problem/)：解决 Python 交互式命令行中 __file__ 未定义的问题，给出借助 inspect 模块获取当前脚本路径的通用变通写法。 (0001-01-01)
+- [Programming Resources](https://feisky.xyz/posts/2015-02-11-ios-blog-resources/)：汇总编程学习资源索引，涵盖 Android、Angular、Docker、Cassandra 等众多技术方向的书籍与链接，方便按主题快速查阅。 (0001-01-01)
+- [Pluribus Networks](https://feisky.xyz/posts/2015-01-27-pluribus-networks/)：介绍融资 9500 万美元的 Pluribus Networks 及其 Server Switch 产品，分析它如何兼顾扩展性、可见性与性能，突破传统网络厂商的局限。 (0001-01-01)
+- [Perform Consistent Snapshots with qemu guest agent](https://feisky.xyz/posts/2015-02-10-perform-consistent-snapshots-with-qemu-guest-agent/)：介绍如何借助 qemu-guest-agent 对虚拟机做一致性快照，避免传统方式的侵入性，适用于 OpenStack 等虚拟化环境的数据保护。 (0001-01-01)
+- [OVS 2.0 call flow](https://feisky.xyz/posts/2015-03-04-ovs-20-call-flow/)：用调用流程图展示 Open vSwitch 2.0 的数据包处理路径，帮助你理解 OVS 内部转发逻辑与关键函数的调用关系。 (0001-01-01)
+- [OpenStack Magnum社区及项目介绍](https://feisky.xyz/posts/2015-06-24-openstack-magnum/)：介绍 OpenStack Magnum 社区与项目进展，重点关注为原生 Docker 增加网络管理能力的相关蓝图与设计讨论。 (0001-01-01)
+- [Open vSwitch over DPDK on Ubuntu](https://feisky.xyz/posts/2015-03-02-open-vswitch-over-dpdk-on-ubuntu/)：介绍在 Ubuntu 上为 Open vSwitch 启用 DPDK 加速的两种方案，对比 Intel dpdk-ovs 与 OVS 原生实现的差异与配置要点。 (0001-01-01)
+- [Mininet links](https://feisky.xyz/posts/2015-06-04-mininet-links/)：汇总 Mininet 与 SDN 学习资源链接，涵盖 Mininet 入门、OpenFlow 教程、RYU 框架等，方便系统学习软件定义网络。 (0001-01-01)
+- [Microservice Infrastructure](https://feisky.xyz/posts/2015-03-17-microservice-infrastructure/)：介绍 Cisco 开源的 Microservices Infrastructure 平台，说明它如何跨资源快速部署全球分布式服务，为微服务落地提供基础设施。 (0001-01-01)
+- [Linux netcat examples](https://feisky.xyz/posts/2015-02-12-linux-netcat-examples/)：整理 netcat 常见用法示例，包括端口扫描、简易聊天服务器、文件传输等场景，帮助你把 nc 用作网络排障与测试利器。 (0001-01-01)
+- [Linux kernel network call flow](https://feisky.xyz/posts/2015-03-04-linux-kernel-network-call-flow/)：用一张调用流程图梳理 Linux 内核网络数据包的处理路径，帮助你直观理解协议栈各层之间的收发流转过程。 (0001-01-01)
+- [Integrating Openstack and Kubernetes with Murano](https://feisky.xyz/posts/2015-02-26-integrating-openstack-and-kubernetes-with-murano/)：探讨如何通过 Murano 把 OpenStack 与 Kubernetes 结合，说明两者分处不同技术栈层次、可优势互补，为用户带来更强能力。 (0001-01-01)
+- [Installing Realtek rltwifi driver for Ubuntu 14.10](https://feisky.xyz/posts/2015-02-15-installing-realtek-rltwifi-driver-for-ubuntu-1410/)：针对 Ubuntu 14.10 默认内核缺少 RTL8192ee 网卡驱动导致无法联网的问题，给出编译安装 Realtek 无线驱动的具体修复步骤。 (0001-01-01)
+- [Installing nova docker on OpenStack Juno](https://feisky.xyz/posts/2015-02-13-installing-nova-docker-on-openstack-juno/)：记录在 Fedora 21 与 OpenStack Juno 上从零安装配置 nova-docker 的完整过程，帮助你把 Docker 容器接入 OpenStack 计算服务。 (0001-01-01)
+- [Hypernetes wechat share](https://feisky.xyz/posts/2015-11-12-hypernetes-wechat-share/)：整理 Hypernetes 微信技术分享内容，介绍这一多租户 Kubernetes 发行版在认证授权、容器 SDN 网络与 Hyper 执行引擎上的实践。 (0001-01-01)
+- [Hypernetes   The multi tenant Kubernetes distribution](https://feisky.xyz/posts/2015-11-04-hypernetes---the-multi-tenant-kubernetes-distribution/)：介绍多租户 Kubernetes 发行版 Hypernetes，探讨在容器即服务（CaaS）浪潮下，它如何为公有云场景提供真正的多租户隔离。 (0001-01-01)
+- [How to use docker compose to deploy a flask app](https://feisky.xyz/posts/2015-02-12-how-to-use-docker-compose-to-deploy-a-flask-app/)：通过一个简单的留言板应用，演示如何用 Docker Compose 部署 Flask 应用，涵盖服务编排与容器化上线的完整流程。 (0001-01-01)
+- [How to disable ubuntu services](https://feisky.xyz/posts/2015-03-18-how-to-disable-ubuntu-services/)：介绍在 Ubuntu 上通过 Upstart override 机制永久禁用或启用系统服务的方法，帮助你精细控制开机自启项。 (0001-01-01)
+- [How enable OpenStack allinone vm to access external network](https://feisky.xyz/posts/2015-03-02-how-enable-openstack-allinone-vm-to-access-external-network/)：解决 OpenStack All-in-One 环境下虚拟机绑定公网 IP 后仍无法访问外网的问题，介绍公网网络配置与网关设置的具体方法。 (0001-01-01)
+- [Going Native with OpenStack Centric Applications: Murano](https://feisky.xyz/posts/2015-02-26-going-native-with-openstack-centric-applications-murano/)：深入介绍 OpenStack 原生应用目录项目 Murano，探讨它如何在 OpenStack 上打包、发布与管理应用，简化云端应用交付。 (0001-01-01)
+- [git commit修改前一次提交的方法](https://feisky.xyz/posts/2015-06-05-git-commit/)：介绍修改上一次 Git 提交的两种方法：用 commit --amend 快速修补并保留 Change-Id，或先 reset 再重新提交以完全掌控提交内容。 (0001-01-01)
+- [docker internal](https://feisky.xyz/posts/2015-01-27-docker-internal/)：深入解析 Docker 的由来与适用场景，梳理其背后的 Namespace、Cgroups、镜像分层等核心技术，帮助你理解容器运行原理。 (0001-01-01)
+- [docker in tencent](https://feisky.xyz/posts/2015-03-20-docker-in-tencent/)：介绍腾讯内部对 Docker 的大规模使用，重点解析其基于 Yarn 的 Gaia 调度平台如何统一管理容器与非容器应用，实现高并发资源调度。 (0001-01-01)
+- [Docker acquires SDN startup SocketPlane](https://feisky.xyz/posts/2015-03-05-docker-acquires-sdn-startup-socketplane/)：解读 Docker 收购 SDN 创业公司 SocketPlane 的背景与意义，分析这次收购对 Docker 原生网络能力演进的深远影响。 (0001-01-01)
+- [Docker](https://feisky.xyz/posts/2015-01-27-docker/)：介绍 Docker 这一开源容器引擎的基本概念与应用价值，讲解它基于 Go 语言、cgroup 和 LXC 的实现原理，并给出在 Ubuntu 12.04 上安装 Docker 及创建容器的完整步骤。 (0001-01-01)
+- [Dive in Linux capabilites](https://feisky.xyz/posts/2015-03-03-dive-in-linux-capabilites/)：深入讲解 Linux Capabilities 机制，说明它如何细粒度地拆分 root 权限、控制应用可执行的特权操作，是容器安全的重要基础。 (0001-01-01)
+- [Deploy a Mesos Cluster Using Docker](https://feisky.xyz/posts/2015-02-05-deploy-a-mesos-cluster-using-docker/)：手把手教你用 Docker 容器快速搭建单节点 Mesos 集群，并为后续扩展到多节点打下基础，是入门 Mesos 集群部署的实用教程。 (0001-01-01)
+- [cannot change locale](https://feisky.xyz/posts/2015-02-10-cannot-change-locale/)：记录 Linux 下 locale 无法切换、报 POSIX 默认值的常见问题，给出定位与修复方法，解决终端乱码与本地化设置失效。 (0001-01-01)
+- [bigdata](https://feisky.xyz/posts/2015-01-27-bigdata/)：精选大数据框架、工具与学习资源清单，涵盖分布式计算、存储、数据处理与分析等方向，适合快速了解大数据生态全景。 (0001-01-01)
+- [awk examples](https://feisky.xyz/posts/2015-01-28-awk-examples/)：汇总常用 awk 单行命令示例，包括行号处理、字段提取替换、文本格式化等实用技巧，帮助你在命令行快速处理文本数据。 (0001-01-01)
+- [awesome quick start](https://feisky.xyz/posts/2015-03-20-awesome-quick-start/)：awesome 是速度快、界面简洁的 Linux 窗口管理器。本文介绍它的快速安装与基础配置，帮助你搭建高效的平铺式桌面环境。 (0001-01-01)
+- [Apache的Mesos和Google的Kubernetes 有什么区别](https://feisky.xyz/posts/2015-02-06-apachemesosgooglekubernetes-/)：对比 Apache Mesos 与 Google Kubernetes 的设计理念与适用场景，帮助你理解两大集群管理工具在架构与定位上的差异。 (0001-01-01)
 
-### AI 基础设施
-- LLM 部署与优化
-- AI Agent 开发与实践
-- AI 编程工具 (Claude Code, Cursor, GitHub Copilot)
+## 主题索引
 
-### 系统工程
-- Linux 性能分析与优化
-- eBPF 技术与实战
-- 容器运行时与底层技术
-
-## 重要资源
-
-- [Kubernetes 指南](https://kubernetes.feisky.xyz) - 全面的 Kubernetes 学习指南
-- [SDN 网络指南](https://sdn.feisky.xyz) - 软件定义网络技术指南
-- [博客文章列表](https://feisky.xyz/posts/) - 所有技术文章
-- [关于作者](https://feisky.xyz/about/) - 详细个人介绍
-
-## 近期热门文章
-
-### AI 编程与 Agent
-- 从 Claude Code 到 Koder：我为什么要自己写一个 Coding Agent
-- AI 编程助手的正确打开方式：OpenAI 工程师的实战指南
-- 一个 Claude Skill，解决 AI 编程最头疼的问题
-- Codex CLI 也能用 Skills 了：把 Claude Code 的"技能包"迁了过来
-- Claude Code 使用指南与最佳实践
-
-### AI Agent 与行业动态
-- Anthropic 万字报告揭秘 AI Agents 落地真相
-- OpenAI 和 Anthropic 居然合作了？聊聊 Agentic AI 基金会背后的野心
-- Agent RFT 深度解析：如何让 AI 智能体自我进化
-- 上下文工程：AI 为什么会"失忆"
-
-### Kubernetes 与云原生
-- 当 Kubernetes 遇见 AI：云厂商如何为大模型训练重塑基础设施
-- Kubernetes 迎来智能体时代：Agent Sandbox 解决 AI 代码执行安全难题
-- Kubernetes 版本更新解读
-
-## 联系方式
-
-- GitHub: [@feiskyer](https://github.com/feiskyer)
-- Twitter: [@feisky](https://twitter.com/feisky)
+- AI（64 篇）：https://feisky.xyz/tags/ai/
+- Claude Code（43 篇）：https://feisky.xyz/tags/claude-code/
+- Kubernetes（41 篇）：https://feisky.xyz/tags/kubernetes/
+- Vibe Coding（38 篇）：https://feisky.xyz/tags/vibe-coding/
+- Docker（33 篇）：https://feisky.xyz/tags/docker/
+- AI Agent（31 篇）：https://feisky.xyz/tags/ai-agent/
+- Agent（21 篇）：https://feisky.xyz/tags/agent/
+- Codex（16 篇）：https://feisky.xyz/tags/codex/
+- Anthropic（15 篇）：https://feisky.xyz/tags/anthropic/
+- MCP（15 篇）：https://feisky.xyz/tags/mcp/
+- 大模型（14 篇）：https://feisky.xyz/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/
+- AI 编程（13 篇）：https://feisky.xyz/tags/ai-%E7%BC%96%E7%A8%8B/
+- OpenClaw（12 篇）：https://feisky.xyz/tags/openclaw/
+- Linux（11 篇）：https://feisky.xyz/tags/linux/
+- OpenAI（9 篇）：https://feisky.xyz/tags/openai/
+- Skills（9 篇）：https://feisky.xyz/tags/skills/
+- CloudNative（8 篇）：https://feisky.xyz/tags/cloudnative/
+- Container（7 篇）：https://feisky.xyz/tags/container/
+- Claude（6 篇）：https://feisky.xyz/tags/claude/
+- LLM（5 篇）：https://feisky.xyz/tags/llm/
+- 长时任务（5 篇）：https://feisky.xyz/tags/%E9%95%BF%E6%97%B6%E4%BB%BB%E5%8A%A1/
+- Devops（4 篇）：https://feisky.xyz/tags/devops/
+- EBPF（4 篇）：https://feisky.xyz/tags/ebpf/
+- Go（4 篇）：https://feisky.xyz/tags/go/
+- Mesos（4 篇）：https://feisky.xyz/tags/mesos/
+- OpenStack（4 篇）：https://feisky.xyz/tags/openstack/
+- Networking（3 篇）：https://feisky.xyz/tags/networking/
+- 多Agent架构（3 篇）：https://feisky.xyz/tags/%E5%A4%9Aagent%E6%9E%B6%E6%9E%84/
+- 架构设计（3 篇）：https://feisky.xyz/tags/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/
+- AI 工具（2 篇）：https://feisky.xyz/tags/ai-%E5%B7%A5%E5%85%B7/
+- AI 记忆（2 篇）：https://feisky.xyz/tags/ai-%E8%AE%B0%E5%BF%86/
+- AI安全（2 篇）：https://feisky.xyz/tags/ai%E5%AE%89%E5%85%A8/
+- Auto Memory（2 篇）：https://feisky.xyz/tags/auto-memory/
+- Azure（2 篇）：https://feisky.xyz/tags/azure/
+- ChatGPT（2 篇）：https://feisky.xyz/tags/chatgpt/
+- Gemini（2 篇）：https://feisky.xyz/tags/gemini/
+- Google（2 篇）：https://feisky.xyz/tags/google/
+- Harness（2 篇）：https://feisky.xyz/tags/harness/
+- Hyper（2 篇）：https://feisky.xyz/tags/hyper/
+- Karpathy（2 篇）：https://feisky.xyz/tags/karpathy/
+- Loop Engineering（2 篇）：https://feisky.xyz/tags/loop-engineering/
+- Ovs（2 篇）：https://feisky.xyz/tags/ovs/
+- Perf（2 篇）：https://feisky.xyz/tags/perf/
+- Prometheus（2 篇）：https://feisky.xyz/tags/prometheus/
+- Ralph Loop（2 篇）：https://feisky.xyz/tags/ralph-loop/
+- Skill（2 篇）：https://feisky.xyz/tags/skill/
+- 工作流（2 篇）：https://feisky.xyz/tags/%E5%B7%A5%E4%BD%9C%E6%B5%81/
+- 提示词工程（2 篇）：https://feisky.xyz/tags/%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%B7%A5%E7%A8%8B/
+- 效率工具（2 篇）：https://feisky.xyz/tags/%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7/
+- 教程（2 篇）：https://feisky.xyz/tags/%E6%95%99%E7%A8%8B/
+- 程序员（2 篇）：https://feisky.xyz/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/
+- 软件工程（2 篇）：https://feisky.xyz/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/
+- /Goal（1 篇）：https://feisky.xyz/tags//goal/
+- 7x24（1 篇）：https://feisky.xyz/tags/7x24/
+- Agent Harness（1 篇）：https://feisky.xyz/tags/agent-harness/
+- Agent Team（1 篇）：https://feisky.xyz/tags/agent-team/
+- Agentic Engineering（1 篇）：https://feisky.xyz/tags/agentic-engineering/
+- AI Infra（1 篇）：https://feisky.xyz/tags/ai-infra/
+- Aws（1 篇）：https://feisky.xyz/tags/aws/
+- Blockchain（1 篇）：https://feisky.xyz/tags/blockchain/
+- Book（1 篇）：https://feisky.xyz/tags/book/
+- Borg（1 篇）：https://feisky.xyz/tags/borg/
+- Chronicle（1 篇）：https://feisky.xyz/tags/chronicle/
+- Claude Skill（1 篇）：https://feisky.xyz/tags/claude-skill/
+- Clawdbot（1 篇）：https://feisky.xyz/tags/clawdbot/
+- Cluster（1 篇）：https://feisky.xyz/tags/cluster/
+- Code Review（1 篇）：https://feisky.xyz/tags/code-review/
+- Coding Agent（1 篇）：https://feisky.xyz/tags/coding-agent/
+- Context Window（1 篇）：https://feisky.xyz/tags/context-window/
+- Copilot（1 篇）：https://feisky.xyz/tags/copilot/
+- Cowork（1 篇）：https://feisky.xyz/tags/cowork/
+- Cursor（1 篇）：https://feisky.xyz/tags/cursor/
+- DeepSeek（1 篇）：https://feisky.xyz/tags/deepseek/
+- DeepSeek Harness（1 篇）：https://feisky.xyz/tags/deepseek-harness/
+- Dpdk（1 篇）：https://feisky.xyz/tags/dpdk/
+- Fable 5（1 篇）：https://feisky.xyz/tags/fable-5/
+- Flannel（1 篇）：https://feisky.xyz/tags/flannel/
+- GitHub Copilot（1 篇）：https://feisky.xyz/tags/github-copilot/
+- GPT-5.5（1 篇）：https://feisky.xyz/tags/gpt-5.5/
+- GPT-5.6（1 篇）：https://feisky.xyz/tags/gpt-5.6/
+- Helm（1 篇）：https://feisky.xyz/tags/helm/
+- Hermes（1 篇）：https://feisky.xyz/tags/hermes/
+- Hermes Agent（1 篇）：https://feisky.xyz/tags/hermes-agent/
+- Highscalability（1 篇）：https://feisky.xyz/tags/highscalability/
+- Hooks（1 篇）：https://feisky.xyz/tags/hooks/
+- Https（1 篇）：https://feisky.xyz/tags/https/
+- Koder（1 篇）：https://feisky.xyz/tags/koder/
+- Kubecon（1 篇）：https://feisky.xyz/tags/kubecon/
+- LiteLLM（1 篇）：https://feisky.xyz/tags/litellm/
+- Managed Agents（1 篇）：https://feisky.xyz/tags/managed-agents/
+- Memory（1 篇）：https://feisky.xyz/tags/memory/
+- Moltbot（1 篇）：https://feisky.xyz/tags/moltbot/
+- MultiCloud（1 篇）：https://feisky.xyz/tags/multicloud/
+- Npm（1 篇）：https://feisky.xyz/tags/npm/
+- Paseo（1 篇）：https://feisky.xyz/tags/paseo/
+- Prompt Engineering（1 篇）：https://feisky.xyz/tags/prompt-engineering/
+- Python（1 篇）：https://feisky.xyz/tags/python/
+- Rackspace（1 篇）：https://feisky.xyz/tags/rackspace/
+- Reflect（1 篇）：https://feisky.xyz/tags/reflect/
+- Rkt（1 篇）：https://feisky.xyz/tags/rkt/
+- Runc（1 篇）：https://feisky.xyz/tags/runc/
+- RunV（1 篇）：https://feisky.xyz/tags/runv/
+- Serverless（1 篇）：https://feisky.xyz/tags/serverless/
+- Session Management（1 篇）：https://feisky.xyz/tags/session-management/
+- Shell（1 篇）：https://feisky.xyz/tags/shell/
+- SOUL（1 篇）：https://feisky.xyz/tags/soul/
+- Sycophancy（1 篇）：https://feisky.xyz/tags/sycophancy/
+- Trivy（1 篇）：https://feisky.xyz/tags/trivy/
+- Ubuntu（1 篇）：https://feisky.xyz/tags/ubuntu/
+- Vagrant（1 篇）：https://feisky.xyz/tags/vagrant/
+- 上下文压缩（1 篇）：https://feisky.xyz/tags/%E4%B8%8A%E4%B8%8B%E6%96%87%E5%8E%8B%E7%BC%A9/
+- 上下文管理（1 篇）：https://feisky.xyz/tags/%E4%B8%8A%E4%B8%8B%E6%96%87%E7%AE%A1%E7%90%86/
+- 代码质量（1 篇）：https://feisky.xyz/tags/%E4%BB%A3%E7%A0%81%E8%B4%A8%E9%87%8F/
+- 使用技巧（1 篇）：https://feisky.xyz/tags/%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/
+- 供应链安全（1 篇）：https://feisky.xyz/tags/%E4%BE%9B%E5%BA%94%E9%93%BE%E5%AE%89%E5%85%A8/
+- 全栈开发（1 篇）：https://feisky.xyz/tags/%E5%85%A8%E6%A0%88%E5%BC%80%E5%8F%91/
+- 协作开发（1 篇）：https://feisky.xyz/tags/%E5%8D%8F%E4%BD%9C%E5%BC%80%E5%8F%91/
+- 协调模式（1 篇）：https://feisky.xyz/tags/%E5%8D%8F%E8%B0%83%E6%A8%A1%E5%BC%8F/
+- 多 Agent（1 篇）：https://feisky.xyz/tags/%E5%A4%9A-agent/
+- 多Agent（1 篇）：https://feisky.xyz/tags/%E5%A4%9Aagent/
+- 多智能体（1 篇）：https://feisky.xyz/tags/%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93/
+- 大型代码库（1 篇）：https://feisky.xyz/tags/%E5%A4%A7%E5%9E%8B%E4%BB%A3%E7%A0%81%E5%BA%93/
+- 字节（1 篇）：https://feisky.xyz/tags/%E5%AD%97%E8%8A%82/
+- 学习（1 篇）：https://feisky.xyz/tags/%E5%AD%A6%E4%B9%A0/
+- 安全（1 篇）：https://feisky.xyz/tags/%E5%AE%89%E5%85%A8/
+- 工具推荐（1 篇）：https://feisky.xyz/tags/%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/
+- 工具设计（1 篇）：https://feisky.xyz/tags/%E5%B7%A5%E5%85%B7%E8%AE%BE%E8%AE%A1/
+- 开发体验（1 篇）：https://feisky.xyz/tags/%E5%BC%80%E5%8F%91%E4%BD%93%E9%AA%8C/
+- 开发工具（1 篇）：https://feisky.xyz/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/
+- 开源（1 篇）：https://feisky.xyz/tags/%E5%BC%80%E6%BA%90/
+- 异步编程（1 篇）：https://feisky.xyz/tags/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/
+- 提示词（1 篇）：https://feisky.xyz/tags/%E6%8F%90%E7%A4%BA%E8%AF%8D/
+- 横向对比（1 篇）：https://feisky.xyz/tags/%E6%A8%AA%E5%90%91%E5%AF%B9%E6%AF%94/
+- 测试（1 篇）：https://feisky.xyz/tags/%E6%B5%8B%E8%AF%95/
+- 源码分析（1 篇）：https://feisky.xyz/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/
+- 白皮书（1 篇）：https://feisky.xyz/tags/%E7%99%BD%E7%9A%AE%E4%B9%A6/
+- 终端（1 篇）：https://feisky.xyz/tags/%E7%BB%88%E7%AB%AF/
+- 编程（1 篇）：https://feisky.xyz/tags/%E7%BC%96%E7%A8%8B/
+- 网络安全（1 篇）：https://feisky.xyz/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/
+- 腾讯（1 篇）：https://feisky.xyz/tags/%E8%85%BE%E8%AE%AF/
+- 自主性（1 篇）：https://feisky.xyz/tags/%E8%87%AA%E4%B8%BB%E6%80%A7/
+- 自动记忆（1 篇）：https://feisky.xyz/tags/%E8%87%AA%E5%8A%A8%E8%AE%B0%E5%BF%86/
+- 视频处理（1 篇）：https://feisky.xyz/tags/%E8%A7%86%E9%A2%91%E5%A4%84%E7%90%86/
+- 认知（1 篇）：https://feisky.xyz/tags/%E8%AE%A4%E7%9F%A5/
+- 评估（1 篇）：https://feisky.xyz/tags/%E8%AF%84%E4%BC%B0/
+- 选型指南（1 篇）：https://feisky.xyz/tags/%E9%80%89%E5%9E%8B%E6%8C%87%E5%8D%97/
+- 部署（1 篇）：https://feisky.xyz/tags/%E9%83%A8%E7%BD%B2/
+- 阿里云（1 篇）：https://feisky.xyz/tags/%E9%98%BF%E9%87%8C%E4%BA%91/
 
 ## 许可证
 
-本站内容采用 [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0) 许可证。
+本站内容采用 CC BY-SA 4.0 许可证。
