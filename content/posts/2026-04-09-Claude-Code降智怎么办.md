@@ -52,9 +52,3 @@ Boris 后来进一步确认：有用户已经设了 effort=high，但 adaptive t
 - Boris 在 HN 的回复:<https://news.ycombinator.com/item?id=47664442>
 - 原始 issue 讨论:<https://news.ycombinator.com/item?id=47660925>
 - Claude Code 设置文档:<https://code.claude.com/docs/en/settings>
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
-
-![Feisky 公众号二维码](/images/mp.png)

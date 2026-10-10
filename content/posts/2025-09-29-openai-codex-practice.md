@@ -156,10 +156,3 @@ OpenAI 的 Codex 应用实践证明，AI 辅助编程已经从概念验证阶段
 更重要的是，这些方法论并不是 OpenAI 独享的秘密武器。无论你用的是 Codex、Cursor、Claude 还是 GitHub Copilot，这些经过实战检验的提示词和工作流程都可以直接拿来用。
 
 *参考原文 <https://cdn.openai.com/pdf/6a2631dc-783e-479b-b1a4-af0cfbd38630/how-openai-uses-codex.pdf>。*
-
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
-
-![](/images/mp.png)

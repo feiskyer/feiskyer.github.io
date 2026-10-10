@@ -82,9 +82,3 @@ Paseo 还在 beta 阶段，有些粗糙的地方。移动端侧边栏滑动手�
 当然，如果你不需要远程访问和多 Agent 跨 Provider 编排，只是单纯想在本机上有个比 TUI 更舒服的界面，Claude Desktop 和 Codex App 也都是不错的选择。它们各自对自家 Agent 的集成更深，开箱即用，不需要额外部署 daemon。Paseo 的优势在跨 Agent 和跨设备这两个场景上，如果你同时用多个 Agent 或者经常需要远程操作，它才是更合适的选择。
 
 项目地址：<https://github.com/getpaseo/paseo>
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
-
-![Feisky 公众号二维码](/images/mp.png)

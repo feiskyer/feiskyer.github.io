@@ -249,9 +249,3 @@ Agent Team 把团队协作这件事搬到了 AI 编程领域，消息系统、�
 - Anthropic Engineering Blog - Building a C compiler：<https://www.anthropic.com/engineering/building-c-compiler>
 - Hacker News 讨论帖：<https://news.ycombinator.com/item?id=46743908>
 - kieranklaassen 的 Swarm 编排 SKILL：<https://gist.github.com/kieranklaassen/4f2aba89594a4aea4ad64d753984b2ea>
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
-
-![Feisky 公众号二维码](/images/mp.png)

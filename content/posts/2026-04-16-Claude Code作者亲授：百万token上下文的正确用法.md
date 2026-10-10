@@ -150,9 +150,3 @@ Subagent 默认继承主 Agent 的模型，但你可以在 Agent tool 参数里�
 - Thariq 原文（X Article）：<https://x.com/trq212/status/2044548257058328723>
 - Claude 官方博客版本：<https://claude.com/blog/using-claude-code-session-management-and-1m-context>
 - Claude Code 文档：<https://docs.anthropic.com/en/docs/claude-code>
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
-
-![Feisky 公众号二维码](/images/mp.png)

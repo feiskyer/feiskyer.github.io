@@ -11,6 +11,9 @@
       <h1>你好，我是<br><em>{{ site.Params.author }}</em>。</h1>
       <div class="about-intro__bio">{{ .Params.bio | markdownify }}</div>
       <p class="about-intro__note">我在这里分享自己对技术、工程实践与 AI 的理解，也记录持续学习和构建过程中的经验。</p>
+      <figure class="about-wechat">
+        <img src="{{ "images/mp.png" | relURL }}" alt="Feisky 公众号二维码：微信扫码或搜一搜 Feisky 关注" width="1710" height="624" decoding="async">
+      </figure>
       <nav class="about-social" aria-label="个人主页">
         {{ with .Params.social.github }}<a href="https://github.com/{{ . }}" rel="me noopener" target="_blank">GitHub <span aria-hidden="true">↗</span></a>{{ end }}
         {{ with .Params.social.twitter }}<a href="https://x.com/{{ . }}" rel="me noopener" target="_blank">X / Twitter <span aria-hidden="true">↗</span></a>{{ end }}

@@ -84,9 +84,3 @@ GitHub 上有个叫 Screenpipe 的开源项目，做的事情跟 Chronicle 类�
 - Claude Code Memory 文档：<https://code.claude.com/docs/en/memory>
 - Greg Brockman 发布推文：<https://x.com/gdb/status/2046293955009274019>
 - Screenpipe（开源本地方案）：<https://github.com/mediar-ai/screenpipe>
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
-
-![Feisky 公众号二维码](/images/mp.png)

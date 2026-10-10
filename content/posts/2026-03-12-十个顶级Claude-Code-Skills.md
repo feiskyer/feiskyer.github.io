@@ -175,9 +175,3 @@ claude plugin install skill-creator
 - Awesome Claude Skills 社区列表：<https://github.com/travisvn/awesome-claude-skills>
 - Claude Code Skills 文档：<https://code.claude.com/docs/en/skills>
 - Skills 市场：<https://skillsmp.com/>
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
-
-![Feisky 公众号二维码](/images/mp.png)

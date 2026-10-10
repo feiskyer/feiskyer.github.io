@@ -159,9 +159,3 @@ Agent 这个领域也一样。概念可以很快理解，“LLM + 工具 + 循�
 Koder 的代码完全开源，欢迎来看看、试试、提 PR。项目地址在 GitHub <https://github.com/feiskyer/koder>。
 
 在 AI Agent 大潮中，不要只做一个旁观者。以身入局，才能真正理解这场变革。
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
-
-![](/images/mp.png)

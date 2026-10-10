@@ -159,10 +159,3 @@ metadata:
 * [3] Reloader: *https://github.com/stakater/Reloader*
 * [4] configMapGenerator: *https://kubectl.docs.kubernetes.io/references/kustomize/configmapgenerator/*
 * [5] secretGenerator: *https://kubectl.docs.kubernetes.io/references/kustomize/secretgenerator/*
-
-
----
-
-欢迎扫描下面的二维码关注 **Feisky** 公众号，回复**任意关键字**查询更多云原生知识库，或回复**联系**加我微信。
-
-![](/images/mp.png)

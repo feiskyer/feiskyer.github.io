@@ -413,9 +413,3 @@ RFT 的核心启发是：有时候，最好的优化来自放手让模型自己�
 
 - 视频：https://www.youtube.com/watch?v=1s_7RMG4O4U
 - Agentic RFT 示例代码：https://github.com/openai/build-hours/tree/main/20-agent-rft
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
-
-![](/images/mp.png)

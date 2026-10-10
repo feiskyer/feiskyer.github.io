@@ -206,10 +206,3 @@ BPF 技术的整体介绍请参见 [eBPF 结束简介](https://www.ebpf.top/post
 - 在线内核源码 https://elixir.bootlin.com/
 
 > 本文转自深入浅出 eBPF，点击[这里](https://www.ebpf.top/post/ebpf_learn_path/)查看原文。
-
-
----
-
-欢迎扫描下面的二维码关注 **Feisky** 公众号，回复**任意关键字**查询更多云原生知识库，或回复**联系**加我微信。
-
-![](/images/mp.png)

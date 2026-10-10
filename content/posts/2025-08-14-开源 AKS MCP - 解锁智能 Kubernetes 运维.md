@@ -205,9 +205,3 @@ AKS MCP 实现了智能化、代理驱动的云运维。以下是在 GitHub Copi
 项目地址：[https://github.com/Azure/aks-mcp](https://github.com/Azure/aks-mcp)
 
 官方博客原文：<http://blog.aks.azure.com/2025/08/06/aks-mcp-server>
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
-
-![](/images/mp.png)

@@ -170,9 +170,3 @@ grep -rl --exclude-dir=test 'DEFAULT_GEMINI_FLASH_MODEL = "gemini-2.5-flash"' \
 - **及时清理会话**：发现性能下降时使用 `/clear` 或重启 CLI
 
 通过这些实践，可以最大化 Gemini CLI 的使用效果，避免因模型降级影响开发效率。
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
-
-![](/images/mp.png)

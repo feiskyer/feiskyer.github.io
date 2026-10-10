@@ -215,10 +215,3 @@ BPF跟踪是 Linux 可观测性的新方法。在BPF 技术的众多应用场景
 5. [容器逃逸成真：从CTF解题到CVE-2019-5736漏洞挖掘分析](https://mp.weixin.qq.com/s/UZ7VdGSUGSvoo-6GVl53qg)
 
 > 本文转自深入浅出 eBPF，点击[这里](https://www.ebpf.top/post/ebpf_container_security/)查看原文。
-
-
----
-
-欢迎扫描下面的二维码关注 **Feisky** 公众号，回复**任意关键字**查询更多云原生知识库，或回复**联系**加我微信。
-
-![](/images/mp.png)

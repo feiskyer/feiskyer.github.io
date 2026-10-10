@@ -163,9 +163,3 @@ autonomous-skill 把这个方案打包成了开箱即用的工具。它不是银
 - Effective harnesses for long-running agents https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents
 
 - Claude Code Settings Github: https://github.com/feiskyer/claude-code-settings
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
-
-![](/images/mp.png)

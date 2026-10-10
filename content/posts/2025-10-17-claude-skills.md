@@ -138,9 +138,3 @@ Anthropic 提供了一些官方 Skill，比如处理 Excel、PowerPoint、Word�
 - Claude Code 文档：<https://docs.claude.com/en/docs/claude-code/skills>
 - 官方示例 Skills：<https://github.com/anthropics/skills>
 - Skills Cookbook：<https://github.com/anthropics/claude-cookbooks/tree/main/skills>
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
-
-![](/images/mp.png)

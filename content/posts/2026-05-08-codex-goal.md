@@ -113,9 +113,3 @@ GPT-5.5 是少数会主动质疑自己的模型。/goal 的自审提示对一个
 
 - Codex /goal 官方文档：<https://developers.openai.com/codex/use-cases/follow-goals>
 - Codex GitHub 源码：<https://github.com/openai/codex>
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
-
-![Feisky 公众号二维码](/images/mp.png)

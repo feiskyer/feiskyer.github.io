@@ -181,9 +181,3 @@ append-system-prompt 是另一种用法，它是 CLI 启动时传入的 flag，�
 
 原文：Steering Claude Code: skills, hooks, subagents and more
 <https://www.anthropic.com/engineering/claude-code-best-practices>
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
-
-![Feisky 公众号二维码](/images/mp.png)

@@ -142,9 +142,3 @@ Claude Code 的 Auto Memory 走的是更简单的路线：纯本地 Markdown 文
 
 - Auto Memory 官方文档：<https://code.claude.com/docs/en/memory>
 - Thariq 的公告：<https://x.com/trq212>
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
-
-![Feisky 公众号二维码](/images/mp.png)

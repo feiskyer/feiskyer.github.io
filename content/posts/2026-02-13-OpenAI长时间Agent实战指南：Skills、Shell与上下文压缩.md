@@ -159,9 +159,3 @@ Skills 解决怎么做的问题，把经验固化成可复用的指令。Shell �
 ---
 
 原文链接：<https://developers.openai.com/blog/skills-shell-tips>
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
-
-![Feisky 公众号二维码](/images/mp.png)

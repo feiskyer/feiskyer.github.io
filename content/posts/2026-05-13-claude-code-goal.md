@@ -126,9 +126,3 @@ CLAUDE.md 和 AGENTS.md 里写的规则模型可能忽略，但代码层面的 h
 - Claude Code /goal 官方文档：<https://code.claude.com/docs/en/goal>
 - 上篇 Codex /goal 推荐：<https://mp.weixin.qq.com/s/qwjxsGpMacLNy93g6dz4Aw>
 - Claude Code GitHub：<https://github.com/anthropics/claude-code>
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
-
-![Feisky 公众号二维码](/images/mp.png)

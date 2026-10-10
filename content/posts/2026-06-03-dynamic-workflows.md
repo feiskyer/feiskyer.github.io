@@ -145,9 +145,3 @@ Bun 从 Zig 重写成 Rust 就用了工作流。核心思路是：把需要改�
 - 原文链接：<https://claude.com/blog/a-harness-for-every-task-dynamic-workflows-in-claude-code>
 - 动态工作流文档：<https://code.claude.com/docs/en/workflows>
 - 前作：Bun 重写（Jarred Sumner）：<https://x.com/jarredsumner/status/2060050578026189172>
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
-
-![Feisky 公众号二维码](/images/mp.png)

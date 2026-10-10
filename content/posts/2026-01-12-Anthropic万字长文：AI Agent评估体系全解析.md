@@ -288,9 +288,3 @@ Anthropic 总结的原则：
 - Agent SDK 文档：<https://platform.claude.com/docs/en/agent-sdk/overview>
 - SWE-bench Verified：<https://www.swebench.com/SWE-bench/>
 - Terminal-Bench：<https://www.tbench.ai/>
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
-
-![Feisky 公众号二维码](/images/mp.png)

@@ -122,9 +122,3 @@ AI Agent 的基础设施层还在快速成型。Anthropic 在做 Managed Agents�
 - 构建有效 Agent：<https://www.anthropic.com/engineering/building-effective-agents>
 - 长时间 Agent Harness 设计：<https://www.anthropic.com/engineering/harness-design-long-running-apps>
 - 上下文工程：<https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents>
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
-
-![Feisky 公众号二维码](/images/mp.png)

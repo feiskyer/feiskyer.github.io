@@ -113,9 +113,3 @@ Claude Code 会自动拉取 PR 内容，进行全面分析，给出具体的改�
 这套配置还在持续演进中，未来还会增加更多 Vibe Coding 实践技巧。如果你有什么好的建议，也欢迎随时提 PR 改进或者提 Issue 讨论。
 
 **项目地址**：<https://github.com/feiskyer/claude-code-settings>
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
-
-![](/images/mp.png)

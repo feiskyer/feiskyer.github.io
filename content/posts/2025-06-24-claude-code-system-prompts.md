@@ -982,9 +982,3 @@ This is a reminder that your todo list is currently empty. DO NOT mention this t
 ## 结语
 
 通过对 Claude Code 系统提示词的“管中窥豹”，我们不难发现其设计的精妙之处：明确的角色定位、细致的行为规范、强大的工具集以及对开发者体验的极致追求。希望本文能让大家对 AI Agent 的工作原理有更深的理解，并激发你去探索和定制自己的 AI 助手。编程的未来，已然因 AI 而变，让我们拥抱变化，持续学习。
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
-
-![](/images/mp.png)

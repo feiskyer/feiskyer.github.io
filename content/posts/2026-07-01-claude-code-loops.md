@@ -122,9 +122,3 @@ Turn-based 的问题是复杂任务一轮搞不定，Claude Code 会频繁停下
 - Claude Code 官方 Loop 博客：[https://claude.com/blog/getting-started-with-loops](https://claude.com/blog/getting-started-with-loops)
 - Loop Engineering 很好，但先想清楚一个问题：[https://mp.weixin.qq.com/s/QR40uuNa1oxtV5ds3i3Ukw](https://mp.weixin.qq.com/s/QR40uuNa1oxtV5ds3i3Ukw)
 - Codex /goal 上线后，我把 Ralph loop 卸了：[https://mp.weixin.qq.com/s/qwjxsGpMacLNy93g6dz4Aw](https://mp.weixin.qq.com/s/qwjxsGpMacLNy93g6dz4Aw)
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
-
-![Feisky 公众号二维码](/images/mp.png)

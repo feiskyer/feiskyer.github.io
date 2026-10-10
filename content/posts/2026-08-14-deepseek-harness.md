@@ -130,9 +130,3 @@ DeepSeek Harness 虽然刚开源一天，但生态已经非常丰富了。内测
 - 官方文档：deepseek.com/harness
 - GitHub 仓库：github.com/deepseek-ai/deepseek-harness
 - Cordis 论文：github.com/cordiverse/paper
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
-
-![Feisky 公众号二维码](/images/mp.png)

@@ -51,9 +51,3 @@ description: "开源 VSCode 插件 ChatGPT Copilot 下载量已突破 40 万，�
 ## 项目开源
 
 插件是完全开源的，项目地址 <https://github.com/feiskyer/chatgpt-copilot>，欢迎大家 star、fork 和贡献代码！
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
-
-![Feisky 公众号二维码](/images/mp.png)

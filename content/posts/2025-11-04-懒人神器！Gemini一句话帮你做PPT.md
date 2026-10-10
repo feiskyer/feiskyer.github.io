@@ -66,9 +66,3 @@ create a presentation based on attached doc
 
 - Gemini 官网：<https://gemini.google.com>
 - Google Workspace 更新公告：<https://workspaceupdates.googleblog.com/2025/10/generate-presentations-in-gemini-app.html>
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
-
-![](/images/mp.png)

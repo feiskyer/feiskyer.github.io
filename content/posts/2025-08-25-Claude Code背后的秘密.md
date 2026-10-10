@@ -208,9 +208,3 @@ Claude Code 明确规范了智能体的美学行为。在系统提示词中，�
 再次强调，最重要的经验就是保持简单。过于复杂的脚手架框架往往弊大于利。Claude Code 让我相信，“智能体” 可以既简单又极其强大。我们已经将这些经验应用到 MinusX 中，并会持续优化。
 
 如果你有兴趣将自己的 LLM 智能体 “Claude Code 化”，欢迎随时和我交流——可以在 [twitter](https://x.com/nuwandavek) 上联系我！如果你希望为你的 Metabase 引入可训练、类似 Claude Code 的数据智能体，欢迎访问 [MinusX](https://minusx.ai/) 或在 [这里](https://minusx.ai/demo) 预约演示。祝你编程愉快（Claude 风格）！
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
-
-![](/images/mp.png)

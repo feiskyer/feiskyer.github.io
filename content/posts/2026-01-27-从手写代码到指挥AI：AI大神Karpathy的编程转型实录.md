@@ -116,9 +116,3 @@ Karpathy 说的这些问题我也都遇到过，模型喜欢过度设计、不�
 
 - Karpathy 原推文：<https://x.com/karpathy/status/2015883857489522876>
 - Karpathy 的 2025 LLM 年度回顾：<https://karpathy.bearblog.dev/year-in-review-2025/>
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
-
-![Feisky 公众号二维码](/images/mp.png)

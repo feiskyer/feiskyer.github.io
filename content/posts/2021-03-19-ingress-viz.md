@@ -29,10 +29,3 @@ description: "介绍 Kubernetes Ingress 可视化编辑器，讲解 Ingress 作�
 在右侧选择不同的特性之后，在左侧的 Ingress 资源处就会自动添加对应的 annotation，使用起来非常方便。
 
 Ingress Builder 的访问网址为 <https://ingressbuilder.jetstack.io>，祝你玩的开心。
-
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，输入**任意关键字**查询更多云原生知识库。
-
-![](/images/mp.png)

@@ -1,6 +1,6 @@
 ---
 name: sync-notes-to-blog
-description: 把 ~/notes/history 里的新文章同步到本 Hugo 博客。用户说「同步 notes」「同步公众号文章到博客」「把 notes 里的新文章搬过来」「sync notes」时使用。负责复制正文、清理公众号元数据与运营标签、本地化图片、套用博客标准结尾，再由 agent 补 description 与题记。
+description: 把 ~/notes/history 里的新文章同步到本 Hugo 博客。用户说「同步 notes」「同步公众号文章到博客」「把 notes 里的新文章搬过来」「sync notes」时使用。负责复制正文、清理公众号元数据与运营标签、本地化图片、删除公众号结尾，再由 agent 补 description 与题记。
 ---
 
 # 同步 notes/history 到博客
@@ -18,16 +18,16 @@ description: 把 ~/notes/history 里的新文章同步到本 Hugo 博客。用�
 | 项 | 行为 |
 |---|---|
 | 候选识别 | 对比 `content/posts` 已有文件名（NFC 归一化），只处理新增；`--reprocess` 可重跑加工不完整的旧文章 |
-| frontmatter 重建 | 保留 title/date/draft/tags/description + 未识别的自定义键；**删除** `mp_url`、`stats`、`format`、`source` |
+| frontmatter 重建 | 保留 title/date/draft/tags/description + 未识别的自定义键；**删除** `mp_url`、`stats`、`format`、`cover`、`source` |
 | title 补全 | frontmatter 无 title 时，用正文首个 H1 回填（H1 的中英空格排版比文件名 slug 好） |
 | date 规范化 | 补齐成 `YYYY-MM-DDT10:00:00+08:00`；同日多篇按序递增分钟，保证排序稳定 |
 | tags 清理 | 删 `爆款`/`超爆款`/`小绿书`/`10万+`/`十万+` 等运营标签；规范化大小写（`kubernetes` → `Kubernetes`）；同时支持 inline 与 block 两种 YAML 写法 |
 | 正文首个 H1 | 删除（Hugo 模板已渲染 title，留着就是双 H1） |
 | 封面图 | 删除正文开头 alt/文件名含 `cover`/`封面` 的图 |
 | 话题标签行 | 删除文末 `#Codex #MCP #AI编程` 这类整行标签（**不会**误删 `##` 小节标题） |
-| 公众号引导语 | 删除文末 CTA 段落（含「好了今天就聊到这儿…关注 Feisky」「如果觉得有帮助…」等变体），**保留**「相关资源」列表 |
+| 公众号引导语 | 删除文末 CTA 段落（含「好了今天就聊到这儿…关注 Feisky」「如果觉得有帮助…」等变体）及 `/images/mp.png` 二维码，**保留**「相关资源」列表 |
 | 图片本地化 | 本地图片复制、远程图片下载到 `static/images/`，重命名为 `<文章slug>-<原名>.<ext>`（纯 ASCII 无空格），引用改写为 `/images/xxx` |
-| 标准结尾 | 追加或替换为博客统一结尾（分隔线 + 引导语 + `![Feisky 公众号二维码](/images/mp.png)`），保证全文只有一份 |
+| 不加结尾 | 博客文章**不再**追加公众号引导语和二维码（二维码统一放在 about 页社交链接前）；文末残留 `mp.png` 视为未加工完 |
 | 排版 | 裸 URL 转 autolink、中英文间距规范化，**只作用于非代码区**，代码块与行内代码零改动 |
 | 落盘校验 | 写入后逐条检查 `/images/` 引用是否真在磁盘上，有缺失则非零退出 |
 
@@ -61,7 +61,7 @@ python3 .Codex/skills/sync-notes-to-blog/scripts/sync_notes_to_blog.py --list
 | `--dry-run` | 全流程预演，不落盘（图片也不复制） |
 | `--only <文件名>` | 只处理指定文章，可重复传 |
 | `--batch N` | 本次最多处理 N 篇 |
-| `--reprocess` | 重新加工「已存在但没加工完」的文章（残留 mp_url、缺结尾等） |
+| `--reprocess` | 重新加工「已存在但没加工完」的文章（残留 mp_url、残留公众号结尾等） |
 | `--include-drafts` | 连 `draft: true` 的一起同步（默认跳过并在报告里列出） |
 | `--notes-dir` / `--blog-root` | 改源目录 / 博客根目录，默认 `~/notes/history` 与当前目录 |
 
@@ -85,7 +85,7 @@ hugo
 
 构建应当成功（只有已知的 `languageCode` / `.Site.LanguageCode` deprecation 警告）。再抽查：
 
-- 每篇文末只有一份「Feisky 公众号二维码」
+- 文末没有公众号引导语和二维码（`grep -l mp.png` 新文章应为空）
 - 小节标题（`##`/`###`）数量与源文一致，没有被话题标签清理误删
 - 新增图片在 `static/images/` 里真实存在
 - 新文章 frontmatter 都有 `description`

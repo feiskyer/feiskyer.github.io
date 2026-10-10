@@ -136,9 +136,3 @@ Peter Gostev 在 3D 场景生成方向做了一个 45 分钟的视频，60 多�
 - Thariq 原文：<https://x.com/trq212/status/2073100352921215386>
 - Anthropic 官方 Fable 5 提示词指南：<https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5>
 - Fable 5 知识蒸馏到 Skill 的完整 prompt（@PrajwalTomar_）：<https://x.com/PrajwalTomar_/status/2073768365873885396>
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
-
-![Feisky 公众号二维码](/images/mp.png)

@@ -169,9 +169,3 @@ Anthropic 观察到一个规律：Claude Code 推广最顺利的组织，都是�
 - 上下文管理：[Claude Code 作者亲授：百万 token 上下文的正确用法](https://mp.weixin.qq.com/s/ihzAIlFQZCe7AlvjLQfeCw)
 - Skill 写作经验：[写好一个 Skill 有多难](https://mp.weixin.qq.com/s/k_BmfjCByVE2HJz7nqtXRw)
 - 我的 Claude Code 配置：[feiskyer/claude-code-settings](https://github.com/feiskyer/claude-code-settings)
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
-
-![Feisky 公众号二维码](/images/mp.png)

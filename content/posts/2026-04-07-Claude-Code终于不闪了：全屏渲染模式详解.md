@@ -144,9 +144,3 @@ CLAUDE_CODE_NO_FLICKER=1 CLAUDE_CODE_DISABLE_MOUSE=1 claude
 
 - Claude Code Fullscreen 官方文档：<https://code.claude.com/docs/en/fullscreen>
 - Boris Cherny 发布推文：<https://x.com/bcherny/status/2039421575422980329>
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
-
-![Feisky 公众号二维码](/images/mp.png)

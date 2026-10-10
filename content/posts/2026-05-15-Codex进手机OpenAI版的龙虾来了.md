@@ -52,9 +52,3 @@ Claude Code 的 5 小时窗口是真的不够用，复杂任务几分钟就能�
 
 - OpenAI Codex Mobile 官方博客：<https://openai.com/index/work-with-codex-from-anywhere/>
 - Claude Code Remote Control 文档：<https://code.claude.com/docs/en/remote-control>
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
-
-![Feisky 公众号二维码](/images/mp.png)

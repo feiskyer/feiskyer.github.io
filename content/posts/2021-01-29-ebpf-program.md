@@ -289,9 +289,3 @@ cd samples/bpf
 ## 小结
 
 本文介绍了三种 eBPF 入门的编程方法，分别是 BCC、libbpf-bootstrap 以及内核源码。对于入门者来说，推荐用 libbpf-bootstrap 作为入门学习参考。
-
----
-
-欢迎扫描下面的二维码关注 **Feisky** 公众号，回复**任意关键字**查询更多云原生知识库，或回复**联系**加我微信。
-
-![](/images/mp.png)

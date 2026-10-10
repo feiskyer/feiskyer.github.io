@@ -314,9 +314,3 @@ OpenAI 说后续还会有更多文章，深入探讨 CLI 的架构、工具使�
 - Open Responses 规范：<https://www.openresponses.org/>
 - Codex CLI 配置文档：<https://developers.openai.com/codex/config-advanced>
 - Koder: <https://github.com/feiskyer/koder>
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
-
-![Feisky 公众号二维码](/images/mp.png)

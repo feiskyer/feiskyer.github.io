@@ -156,9 +156,3 @@ AKS CLI Agent 在提升 Kubernetes 操作的易用性、智能化和安全性方
 > 官方博客链接： https://blog.aks.azure.com/2025/08/15/cli-agent-for-aks
 >
 > 原作者：Pavneet Ahluwalia, Julia Yin, Aritra Ghosh（均为 AKS 产品 PM）
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
-
-![](/images/mp.png)

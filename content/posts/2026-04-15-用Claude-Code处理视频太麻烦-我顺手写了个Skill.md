@@ -97,9 +97,3 @@ AZURE_SPEECH_REGION=eastus
 video-skills 做的事情其实并不复杂，只是把 yt-dlp、ffmpeg、还有 Azure Speech 这些命令行工具和 AI 调用包进了 Skill，但用起来的流畅度完全不一样。感兴趣的话可以直接安装来试试：`npx skills add feiskyer/video-skills`。
 
 video-skills GitHub 为 <https://github.com/feiskyer/video-skills，有任何问题欢迎贡献完善>。
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
-
-![Feisky 公众号二维码](/images/mp.png)

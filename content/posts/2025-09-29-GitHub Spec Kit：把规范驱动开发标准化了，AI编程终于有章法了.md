@@ -311,9 +311,3 @@ specify init . --ai claude
 以上就是今天的内容，欢迎留言分享你的 vibe coding 实践经验！
 
 更多信息可以查看其 Github 项目 <https://github.com/github/spec-kit>。
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
-
-![](/images/mp.png)

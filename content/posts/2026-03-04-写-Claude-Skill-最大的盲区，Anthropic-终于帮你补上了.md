@@ -85,9 +85,3 @@ Anthropic 还提到了一个有意思的预判：随着模型越来越强，Skil
 - skill-creator 插件：<https://github.com/anthropics/claude-plugins-official/tree/main/plugins/skill-creator>
 - Anthropic 官方 Skills 仓库：<https://github.com/anthropics/skills>
 - 原文链接：<https://claude.com/blog/improving-skill-creator-test-measure-and-refine-agent-skills>
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
-
-![Feisky 公众号二维码](/images/mp.png)

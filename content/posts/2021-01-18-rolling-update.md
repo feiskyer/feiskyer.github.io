@@ -187,10 +187,3 @@ spec:
 * [2] Zero Downtime Server Updates For Your Kubernetes Cluster: *https://blog.gruntwork.io/zero-downtime-server-updates-for-your-kubernetes-cluster-902009df5b33*
 * [3] PodDisruptionBudget: *https://kubernetes.io/docs/tasks/run-application/configure-pdb/*
 * [4] Kubernetes Handbook: *https://github.com/feiskyer/kubernetes-handbook/tree/master/examples/nginx-ha*
-
-
----
-
-欢迎扫描下面的二维码关注 **Feisky** 公众号，回复**任意关键字**查询更多云原生知识库，或回复**联系**加我微信。
-
-![](/images/mp.png)

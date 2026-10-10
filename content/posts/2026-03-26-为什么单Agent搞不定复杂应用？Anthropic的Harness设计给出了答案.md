@@ -166,9 +166,3 @@ QA 仍然抓到了关键问题。第一轮反馈说：“应用设计很好，AI
 - Frontend Design Skill：<https://github.com/anthropics/claude-code/blob/main/plugins/frontend-design/skills/frontend-design/SKILL.md>
 - 上下文工程：<https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents>
 - Building Effective Agents：<https://www.anthropic.com/research/building-effective-agents>
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
-
-![Feisky 公众号二维码](/images/mp.png)

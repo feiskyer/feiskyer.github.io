@@ -833,9 +833,3 @@ def choose_deployment_strategy(requirements):
     else:
         return "混合部署：关键业务私有化，其他云服务"
 ```
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
-
-![](/images/mp.png)

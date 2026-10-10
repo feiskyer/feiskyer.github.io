@@ -315,9 +315,3 @@ DRA 添加了一个新字段，允许驱动程序报告资源请求中每个分�
 1. 删除了 1.26 引入的旧版 DRA（Classic DRA），使用了旧版 DRA 的用户需要先升级到新版本再进行升级。
 
 2. FlowSchema 和 PriorityLevelConfiguration 的 `flowcontrol.apiserver.k8s.io/v1beta3` API 版本已移除，需切换到 v1.29 引入的 `flowcontrol.apiserver.k8s.io/v1` （所有现有持久化对象都可通过新 API 访问）。另外，注意优先级配置 `spec.limited.nominalConcurrencyShares` 字段仅在未指定时默认为 30，显式值 0 不会被更改为 30。
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
-
-![Feisky 公众号二维码](/images/mp.png)

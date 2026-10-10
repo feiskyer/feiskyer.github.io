@@ -305,9 +305,3 @@ Codex Cloud 需要订阅 ChatGPT（Plus、Team、Pro 或 Enterprise），可以�
 特别是在 Claude Code “随便发挥”的对比下，GPT-5 的指令遵循能力简直是降维打击。你让它改个 CSS，它就只改 CSS；你让它写个测试，它就只写测试，不会顺手给你重构一遍代码。
 
 当然，配置复杂、网络依赖这些问题还是存在的。但如果你订阅了 ChatGPT Plus/Pro，或者就是喜欢折腾不同的 AI 模型，Codex 绝对值得一试。
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
-
-![](/images/mp.png)

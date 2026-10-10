@@ -133,9 +133,3 @@ Claude Code 支持 `allowed-tools` 字段，可以限制 Skill 只能用哪些�
 · Claude Code Skills 文档 https://code.claude.com/docs/en/skills
 
 · Claude Code 配置仓库 https://github.com/feiskyer/claude-code-settings
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
-
-![](/images/mp.png)

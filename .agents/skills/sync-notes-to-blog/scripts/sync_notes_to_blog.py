@@ -2,7 +2,7 @@
 """把 ~/notes/history 的新文章同步到 Hugo 博客。
 
 负责所有确定性的搬运与改写：识别新文章、清理 frontmatter、删除公众号运营残留、
-本地化图片、追加标准结尾。需要理解内容的部分（description 措辞、alt 描述、题记、
+本地化图片、删除公众号结尾。需要理解内容的部分（description 措辞、alt 描述、题记、
 faq）由 agent 在脚本跑完后补，脚本会把这些缺口列进报告。
 
 用法（必须在 blog 根目录运行）：
@@ -36,7 +36,7 @@ POSTS_DIR = Path("content/posts")
 STATE_FILE = Path(".claude/skills/sync-notes-to-blog/state.json")
 
 # frontmatter 中要删掉的公众号/运营字段
-DROP_FM_KEYS = {"mp_url", "stats", "format"}
+DROP_FM_KEYS = {"mp_url", "stats", "format", "cover"}
 # 要删掉的运营标签
 DROP_TAGS = {"爆款", "超爆款", "小绿书", "10万+", "十万+"}
 # 标签规范形（左边任意写法归一到右边）
@@ -58,13 +58,7 @@ TAG_CANON = {
     "rag": "RAG",
 }
 
-FOOTER = (
-    "---\n"
-    "\n"
-    "欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。\n"
-    "\n"
-    "![Feisky 公众号二维码](/images/mp.png)\n"
-)
+# 博客不再带公众号结尾，二维码统一放在 about 页。正文里出现它就说明结尾没清干净。
 FOOTER_MARKER = "/images/mp.png"
 
 IMAGE_RE = re.compile(r"!\[([^\]]*)\]\(\s*([^)\s]+?)\s*(?:\s+\"([^\"]*)\")?\s*\)")
@@ -79,6 +73,7 @@ CTA_PATTERNS = [
     re.compile(r"长按.{0,10}二维码"),
     re.compile(r"扫码关注"),
     re.compile(r"点赞|在看|转发一下|星标"),
+    re.compile(r"\(/images/mp\.png\)"),
 ]
 # 引导段里若出现这些，说明是正文而非纯 CTA，不删
 CTA_VETO = re.compile(r"^\s*(?:[-*+]\s|\d+\.\s|>|#)", re.M)
@@ -383,7 +378,7 @@ def strip_cta_block(body: str) -> tuple[str, list[str]]:
     「相关资源 / 相关链接」列表也在文末、也用 --- 分隔，必须保住，所以用段落级
     特征识别：整段命中 CTA 特征词、且不含列表项/链接/标题时才删。锚点不能写死成
     「好了今天就聊到这儿」，还有「如果觉得有帮助，欢迎关注我的公众号 Feisky」
-    这种变体，漏掉会导致旧引导语留着又追加一份标准结尾，文末出现两段关注引导。
+    这种变体，漏掉会导致旧引导语留在文末。公众号二维码图（/images/mp.png）也一并删除。
     """
     parts = split_code_aware(body)
     # CTA 只可能在最后一个非代码片段里
@@ -648,10 +643,7 @@ def process(
 
     res.empty_alts = sum(1 for m in IMAGE_RE.finditer(body) if not (m.group(1) or "").strip())
 
-    if FOOTER_MARKER not in body:
-        body = body.rstrip() + "\n\n" + FOOTER
-    else:
-        body = body.rstrip() + "\n"
+    body = body.rstrip() + "\n"
 
     # ---- 重建 frontmatter ----
     date_raw = get_fm_value(fm, "date")
@@ -751,8 +743,8 @@ def completeness(path: Path) -> list[str]:
         gaps.append("残留运营标签")
     if not get_fm_value(fm, "description"):
         gaps.append("缺 description")
-    if FOOTER_MARKER not in body:
-        gaps.append("缺标准结尾")
+    if FOOTER_MARKER in body:
+        gaps.append("残留公众号结尾")
     for m in IMAGE_RE.finditer(body):
         if not m.group(2).startswith(("/images/", "data:", "http")):
             gaps.append("图片引用未本地化")
@@ -955,7 +947,7 @@ def report(
         if r.hashtags_removed:
             bits.append(f"删话题标签 {r.hashtags_removed} 行")
         if r.cta_removed:
-            bits.append(f"替换公众号引导语 {len(r.cta_removed)} 段")
+            bits.append(f"删除公众号引导语 {len(r.cta_removed)} 段")
         cp = sum(1 for a in r.images if a.kind == "copy" and a.ok)
         dl = sum(1 for a in r.images if a.kind == "download" and a.ok)
         if cp:

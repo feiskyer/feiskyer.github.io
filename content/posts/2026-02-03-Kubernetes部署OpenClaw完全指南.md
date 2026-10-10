@@ -107,9 +107,3 @@ helm upgrade openclaw oci://ghcr.io/feiskyer/openclaw-kubernetes/openclaw \
 - OpenClaw 官网 <https://openclaw.ai/>
 - OpenClaw Helm Chart 仓库 <https://github.com/feiskyer/openclaw-kubernetes>
 - 前文：[[history/2026-01-30-OpenClaw 极简部署指南.md|OpenClaw 极简部署指南]]
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
-
-![Feisky 公众号二维码](/images/mp.png)

@@ -54,10 +54,3 @@ description: "分享快速掌握 Kubernetes 网络的方法，强调先吃透 IP
 (图片来自 redhat.com)
 
 更多 Kubernetes 网络相关的细节和学习资料请参考《[Kubernetes 指南](https://kubernetes.feisky.xyz/)》。
-
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，输入**任意关键字**查询更多云原生知识库。
-
-![](/images/mp.png)

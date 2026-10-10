@@ -124,9 +124,3 @@ AWS 和 Google 走了不同的技术路线，但都证明了一件事，Kubernet
 
 - AWS 博客原文：<https://aws.amazon.com/blogs/containers/under-the-hood-amazon-eks-ultra-scale-clusters/>
 - Google Cloud 博客原文：<https://cloud.google.com/blog/products/containers-kubernetes/how-we-built-a-130000-node-gke-cluster>
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
-
-![](/images/mp.png)

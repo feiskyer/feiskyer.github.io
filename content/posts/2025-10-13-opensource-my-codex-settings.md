@@ -181,9 +181,3 @@ codex
 - Codex 官方文档：<https://developers.openai.com/codex/cli/>
 - LiteLLM 文档：<https://docs.litellm.ai/>
 - Claude Code 配置：<https://github.com/feiskyer/claude-code-settings>
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
-
-![](/images/mp.png)

@@ -190,9 +190,3 @@ Zen MCP 是一个功能非常丰富的 MCP 服务器，提供了 `codereview`、
 - LiteLLM 文档：<https://docs.litellm.ai/docs/providers>
 - MCP 协议：<https://modelcontextprotocol.com>
 - Zen MCP 项目：<https://github.com/BeehiveInnovations/zen-mcp-server>
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
-
-![](/images/mp.png)

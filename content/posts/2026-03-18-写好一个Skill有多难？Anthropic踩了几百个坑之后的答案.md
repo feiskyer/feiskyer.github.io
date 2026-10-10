@@ -202,9 +202,3 @@ Skill 可以包含只在被调用时才激活的 Hook，持续到会话结束。
 ---
 
 话题标签：#ClaudeCode #Skills #Anthropic #AI 编程
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
-
-![Feisky 公众号二维码](/images/mp.png)

@@ -571,6 +571,8 @@ body.editorial-site :focus-visible {
 .about-intro__bio { max-width: 700px; margin-top: var(--space-6); color: var(--body); font: var(--fs-text-lg)/1.78 var(--serif); }
 .about-intro__bio p { margin: 0; text-wrap: pretty; }
 .about-intro__note { max-width: 680px; color: var(--muted); }
+.about-wechat { max-width: 340px; margin: var(--space-6) 0 0; }
+.about-wechat img { display: block; width: 100%; height: auto; border: 1px solid var(--border-subtle); border-radius: 8px; }
 .about-social { display: flex; flex-wrap: wrap; gap: 10px 24px; margin-top: var(--space-6); }
 .about-social a { min-height: 44px; display: inline-flex; align-items: center; gap: 10px; color: var(--ink); font-weight: 700; }
 .about-social a:hover { color: var(--accent-dark); }

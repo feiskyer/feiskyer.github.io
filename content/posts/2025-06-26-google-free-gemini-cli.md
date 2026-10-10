@@ -446,9 +446,3 @@ Gemini CLI 代码完全开源在 [GitHub](https://github.com/google-gemini/gemin
 | **MCP 集成**   | ✅ 完整    | ✅ 完整     | 仅 Rust 实现   | ✅ 完整 |
 | **内置搜索**   | ✅ Google  | ✅ Claude       | ❌     | ❌             |
 | **实际体验** | ⭐️⭐️⭐️⭐️⭐️ | ⭐️⭐️⭐️⭐️⭐️ | ⭐️⭐️ | ⭐️⭐️⭐️⭐️ |
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
-
-![](/images/mp.png)

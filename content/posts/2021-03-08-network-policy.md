@@ -53,12 +53,3 @@ spec:
 ```sh
 hubble observe --json --last 1000 --follow --namespace my-namespace > my-namespace-flows.json
 ```
-
-
-
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，输入**任意关键字**查询更多云原生知识库。
-
-![](/images/mp.png)

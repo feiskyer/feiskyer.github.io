@@ -67,9 +67,3 @@ Cherny 也给过几条建议，可以参考：权限开 auto 模式、让 Claude
 - Lance Martin: Designing loops with Fable 5：<https://x.com/RLanceMartin/status/2064397389189071163>
 - Boris Cherny 谈自我验证：<https://x.com/bcherny/status/2064426115255730578>
 - Codex /goal 上线后，我把 Ralph loop 卸了：<https://mp.weixin.qq.com/s/qwjxsGpMacLNy93g6dz4Aw>
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
-
-![Feisky 公众号二维码](/images/mp.png)

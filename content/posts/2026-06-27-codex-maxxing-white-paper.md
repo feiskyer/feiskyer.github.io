@@ -153,9 +153,3 @@ Codex 每 30 分钟检查 Slack 和 Gmail，找到需要关注的消息，搜索
 推荐完整读一遍原文，不管你用的是 Codex、Claude Code 还是别的 Agent 工具，这个闭环的思路都是通用的。
 
 原文链接：<https://openai.com/index/codex-maxxing-long-running-work/>
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
-
-![Feisky 公众号二维码](/images/mp.png)

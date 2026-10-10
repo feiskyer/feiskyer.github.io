@@ -85,9 +85,3 @@ Anthropic 的工程师 Thariq 在 X 上解释了技术细节。因为 Claude Cod
 - Thariq 的公告推文 <https://x.com/thariq212/status/2011523109871108570>
 
 - Introducing advanced tool use on the Claude Developer Platform: <https://www.anthropic.com/engineering/advanced-tool-use>
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
-
-![Feisky 公众号二维码](/images/mp.png)

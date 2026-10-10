@@ -86,9 +86,3 @@ bash scripts/completions-to-responses-upgrade.sh --repo /path/to/repo --no-inter
 | Responses | 2025.3 | 推理保持 | 终于像个正经产品了 |
 
 随着推理模型成为主流，新的 Responses API 显然就是为了推理模型而设计。再加上新兴的 Agent 所必须的状态维护和工具调用，是时候迁移到更稳定可靠的 Responses API 了。
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
-
-![](/images/mp.png)

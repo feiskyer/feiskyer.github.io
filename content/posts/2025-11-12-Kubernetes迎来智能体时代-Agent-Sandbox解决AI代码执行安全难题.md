@@ -218,9 +218,3 @@ Agent Sandbox 是 Kubernetes 社区对这些挑战的回应。用强隔离保证
 - Agent Sandbox 官方文档：<https://agent-sandbox.sigs.k8s.io/>
 - GitHub 仓库：<https://github.com/kubernetes-sigs/agent-sandbox>
 - Google Cloud 博客：[Introducing Agent Sandbox： Strong guardrails for agentic AI on Kubernetes and GKE](https://cloud.google.com/blog/products/containers-kubernetes/agentic-ai-on-kubernetes-and-gke)
-
----
-
-欢迎长按下面的二维码关注 **Feisky** 公众号，了解更多云原生和 AI 知识。
-
-![](/images/mp.png)
