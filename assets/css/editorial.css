@@ -550,18 +550,15 @@ body.editorial-site :focus-visible {
 /* ---------- About ---------- */
 .about-page { padding-bottom: var(--space-9); }
 .about-intro {
-  display: grid; grid-template-columns: 260px minmax(0, 760px); gap: clamp(50px, 9vw, 130px);
-  align-items: end; padding: var(--space-8) 0 var(--space-9); border-bottom: 5px solid var(--ink);
+  display: grid; grid-template-columns: 260px minmax(0, 760px); grid-template-rows: auto 1fr;
+  grid-template-areas: "portrait copy" "wechat copy"; gap: var(--space-6) clamp(50px, 9vw, 130px);
+  align-items: start; padding: var(--space-8) 0 var(--space-9); border-bottom: 5px solid var(--ink);
 }
-.about-intro__portrait { position: relative; align-self: start; }
+.about-intro__portrait { grid-area: portrait; }
+.about-intro__copy { grid-area: copy; align-self: center; }
 .about-intro__portrait img {
-  width: 220px; height: 280px; margin: 0; border-radius: 0; object-fit: cover;
+  width: 250px; height: 250px; margin: 0; border-radius: 0; object-fit: cover;
   box-shadow: 0 0 0 1px var(--paper-deep);
-}
-.about-intro__portrait span {
-  position: absolute; right: 0; bottom: -28px; display: grid; place-items: center;
-  width: 78px; height: 78px; color: var(--white); background: var(--accent);
-  font: 700 var(--fs-d1) var(--serif); letter-spacing: .08em;
 }
 .about-intro h1 {
   margin: 0; color: var(--ink); font: 900 var(--fd-hero)/1.08 var(--serif);
@@ -571,8 +568,10 @@ body.editorial-site :focus-visible {
 .about-intro__bio { max-width: 700px; margin-top: var(--space-6); color: var(--body); font: var(--fs-text-lg)/1.78 var(--serif); }
 .about-intro__bio p { margin: 0; text-wrap: pretty; }
 .about-intro__note { max-width: 680px; color: var(--muted); }
-.about-wechat { max-width: 340px; margin: var(--space-6) 0 0; }
-.about-wechat img { display: block; width: 100%; height: auto; border: 1px solid var(--border-subtle); border-radius: 8px; }
+.about-wechat { grid-area: wechat; width: 180px; margin: 0 0 0 35px; }
+.about-wechat img { display: block; width: 100%; height: auto; border: 1px solid var(--border-subtle); }
+.about-wechat figcaption { margin-top: 10px; color: var(--muted); font-size: var(--fs-label-xs); text-align: center; }
+.about-wechat strong { color: var(--ink); }
 .about-social { display: flex; flex-wrap: wrap; gap: 10px 24px; margin-top: var(--space-6); }
 .about-social a { min-height: 44px; display: inline-flex; align-items: center; gap: 10px; color: var(--ink); font-weight: 700; }
 .about-social a:hover { color: var(--accent-dark); }
@@ -582,7 +581,9 @@ body.editorial-site :focus-visible {
   margin: 0; color: var(--ink); font: 900 var(--fd-section)/1.08 var(--serif);
   letter-spacing: var(--tr-d-lg); text-wrap: balance;
 }
-.about-block__heading > p:last-child { max-width: 580px; color: var(--muted); font-family: var(--serif); }
+.about-block__heading > p:last-of-type { max-width: 580px; color: var(--muted); font-family: var(--serif); }
+.about-block__more { min-height: 44px; display: inline-flex; align-items: center; gap: 10px; color: var(--ink); font-weight: 700; }
+.about-block__more:hover { color: var(--accent-dark); }
 .about-featured-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--ink); }
 .about-featured {
   min-height: 210px; display: grid; grid-template-columns: 48px 1fr auto; gap: var(--space-5);
@@ -644,7 +645,8 @@ body.editorial-site :focus-visible {
   .topics { grid-template-columns: 1fr; gap: 30px; }
   .topic-links--archive { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .about-intro { grid-template-columns: 200px 1fr; gap: 45px; }
-  .about-intro__portrait img { width: 180px; height: 230px; }
+  .about-intro__portrait img { width: 200px; height: 200px; }
+  .about-wechat { width: 150px; margin-left: 25px; }
   .about-block--split { grid-template-columns: 1fr; gap: 10px; }
 
   /* TOC becomes a disclosure block above the body */
@@ -691,9 +693,9 @@ body.editorial-site :focus-visible {
   .navigation-single { grid-template-columns: 1fr; }
   .site-footer__grid { grid-template-columns: 1fr; }
   .site-footer__copyright { grid-column: auto; }
-  .about-intro { grid-template-columns: 1fr; padding-top: 45px; }
-  .about-intro__portrait img { width: 150px; height: 190px; }
-  .about-intro__portrait span { left: 115px; right: auto; width: 58px; height: 58px; bottom: -16px; }
+  .about-intro { grid-template-columns: 1fr; grid-template-rows: none; grid-template-areas: "portrait" "copy" "wechat"; padding-top: 45px; }
+  .about-wechat { width: 140px; margin-left: 0; }
+  .about-intro__portrait img { width: 170px; height: 170px; }
   .about-featured-grid { grid-template-columns: 1fr; }
   .about-featured:nth-child(odd) { border-right: 0; }
   .about-talks li { grid-template-columns: 1fr; gap: 8px; }

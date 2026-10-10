@@ -34,12 +34,6 @@ projects:
   - title: "koder"
     description: "直观的 AI 编程助手和交互式 CLI 工具。"
     url: "https://github.com/feiskyer/koder"
-  - title: "mcp-kubernetes-server"
-    description: "适配 Kubernetes 集群的 MCP (Model Context Protocol) 服务端。"
-    url: "https://github.com/feiskyer/mcp-kubernetes-server"
-  - title: "kube-copilot"
-    description: "基于 AI (OpenAI/Claude/Gemini 等) 的 Kubernetes 智能助手。"
-    url: "https://github.com/feiskyer/kube-copilot"
 
 books:
   - title: "Kubernetes 指南"
@@ -50,6 +44,12 @@ books:
     url: "https://github.com/feiskyer/sdn-handbook"
 
 talks:
+  - title: "What We Learned Securing AI Agents at Scale on Multi-Tenant Kubernetes Clusters"
+    event: "KubeCon China 2026"
+    url: "https://www.lfopensource.cn/kubecon-cloudnativecon-openinfra-summit-pytorch-conference-china/program/schedule/?id=1218010"
+  - title: "From Data Preparation to Inference: Closing the Lifecycle Gap in AI Infrastructure on Kubernetes"
+    event: "ETSI AI Native Open Session 2026"
+    url: "https://nfvwiki.etsi.org/index.php?title=2nd_AI_Native_Open_Session_Hosted_by_ETSI_ISG_NFV_%E2%80%93_7_Sep_2026_%E2%80%93_Shanghai"
   - title: "从构建到规模化：在 Azure 基础平台上强化 AI 应用能力的落地"
     event: "Microsoft AI Tour Shanghai 2026"
     url: "https://chinaevent.microsoft.com/SessionDetail/0f0d9ab6-f7fb-404f-9608-cb6c5a7d54bc"

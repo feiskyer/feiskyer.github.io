@@ -3,23 +3,23 @@
   {{ partial "breadcrumbs.html" . }}
   <header class="about-intro">
     <div class="about-intro__portrait">
-      <img src="{{ site.Params.authorimage | relURL }}" alt="{{ site.Params.author }} 的头像" width="220" height="220">
-      <span aria-hidden="true">PF</span>
+      <img src="{{ site.Params.authorimage | relURL }}" alt="{{ site.Params.author }} 的头像" width="250" height="250">
     </div>
     <div class="about-intro__copy">
       <p class="eyebrow">ABOUT ME</p>
       <h1>你好，我是<br><em>{{ site.Params.author }}</em>。</h1>
       <div class="about-intro__bio">{{ .Params.bio | markdownify }}</div>
       <p class="about-intro__note">我在这里分享自己对技术、工程实践与 AI 的理解，也记录持续学习和构建过程中的经验。</p>
-      <figure class="about-wechat">
-        <img src="{{ "images/mp.png" | relURL }}" alt="Feisky 公众号二维码：微信扫码或搜一搜 Feisky 关注" width="1710" height="624" decoding="async">
-      </figure>
       <nav class="about-social" aria-label="个人主页">
         {{ with .Params.social.github }}<a href="https://github.com/{{ . }}" rel="me noopener" target="_blank">GitHub <span aria-hidden="true">↗</span></a>{{ end }}
         {{ with .Params.social.twitter }}<a href="https://x.com/{{ . }}" rel="me noopener" target="_blank">X / Twitter <span aria-hidden="true">↗</span></a>{{ end }}
         {{ with .Params.social.weibo }}<a href="https://weibo.com/{{ . }}" rel="me noopener" target="_blank">微博 <span aria-hidden="true">↗</span></a>{{ end }}
       </nav>
     </div>
+    <figure class="about-wechat">
+      <img src="{{ "images/mp-qr.png" | relURL }}" alt="Feisky 公众号二维码" width="420" height="420" decoding="async">
+      <figcaption>扫码关注公众号 <strong>Feisky</strong></figcaption>
+    </figure>
   </header>
 
   {{ with .Params.columns }}
@@ -39,7 +39,7 @@
 
   {{ with .Params.projects }}
   <section class="about-block about-block--split" aria-labelledby="projects-title">
-    <div class="about-block__heading"><p class="eyebrow">OPEN SOURCE</p><h2 id="projects-title">开源项目</h2><p>一些仍在维护、也欢迎共同参与的工具与实验。</p></div>
+    <div class="about-block__heading"><p class="eyebrow">OPEN SOURCE</p><h2 id="projects-title">开源项目</h2><p>一些仍在维护、也欢迎共同参与的工具与实验。</p>{{ with $.Params.social.github }}<a class="about-block__more" href="https://github.com/{{ . }}" rel="me noopener" target="_blank">GitHub 主页 <span aria-hidden="true">↗</span></a>{{ end }}</div>
     <div class="about-link-list">
       {{ range . }}
       <a href="{{ .url }}" target="_blank" rel="noopener"><div><h3>{{ .title }}</h3><p>{{ .description }}</p></div><span aria-hidden="true">↗</span></a>
