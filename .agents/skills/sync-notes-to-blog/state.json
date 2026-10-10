@@ -1,0 +1,326 @@
+{
+  "2026-01-13-程序员的神器现在人人都能用了.md": {
+    "mechanical": "done",
+    "needs_description": true,
+    "empty_alts": 0,
+    "source_url": null
+  },
+  "2026-01-15-Claude-Code终于解决了MCP最大的痛点.md": {
+    "mechanical": "done",
+    "needs_description": true,
+    "empty_alts": 0,
+    "source_url": null
+  },
+  "2026-01-20-Cursor的多智能体实验：让数百个AI同时写代码是什么体验.md": {
+    "mechanical": "done",
+    "needs_description": true,
+    "empty_alts": 0,
+    "source_url": null
+  },
+  "2026-01-24-深入Codex-Agent-Loop.md": {
+    "mechanical": "done",
+    "needs_description": false,
+    "empty_alts": 1,
+    "source_url": null
+  },
+  "2026-01-27-从手写代码到指挥AI：AI大神Karpathy的编程转型实录.md": {
+    "mechanical": "done",
+    "needs_description": true,
+    "empty_alts": 0,
+    "source_url": null
+  },
+  "2026-01-29-AI让人变蠢了吗.md": {
+    "mechanical": "done",
+    "needs_description": true,
+    "empty_alts": 0,
+    "source_url": null
+  },
+  "2026-01-30-OpenClaw极简部署指南.md": {
+    "mechanical": "done",
+    "needs_description": true,
+    "empty_alts": 0,
+    "source_url": null
+  },
+  "2026-02-03-AI时代程序员成长指南.md": {
+    "mechanical": "done",
+    "needs_description": true,
+    "empty_alts": 0,
+    "source_url": null
+  },
+  "2026-02-03-Kubernetes部署OpenClaw完全指南.md": {
+    "mechanical": "done",
+    "needs_description": true,
+    "empty_alts": 0,
+    "source_url": null
+  },
+  "2026-02-09-Claude-Code-Agent-Team从原理到踩坑全指南.md": {
+    "mechanical": "done",
+    "needs_description": true,
+    "empty_alts": 0,
+    "source_url": null
+  },
+  "2026-02-13-OpenAI长时间Agent实战指南：Skills、Shell与上下文压缩.md": {
+    "mechanical": "done",
+    "needs_description": true,
+    "empty_alts": 0,
+    "source_url": null
+  },
+  "2026-02-26-装完OpenClaw不知道干嘛？这几个进阶玩法别错过.md": {
+    "mechanical": "done",
+    "needs_description": true,
+    "empty_alts": 0,
+    "source_url": null
+  },
+  "2026-02-27-Claude-Code自动记忆：AI编程助手终于不失忆了.md": {
+    "mechanical": "done",
+    "needs_description": true,
+    "empty_alts": 0,
+    "source_url": null
+  },
+  "2026-02-28-像Agent一样思考：Claude-Code工具设计的进化史.md": {
+    "mechanical": "done",
+    "needs_description": true,
+    "empty_alts": 0,
+    "source_url": null
+  },
+  "2026-03-02-一条提示词，让你的AI记忆随身携带.md": {
+    "mechanical": "done",
+    "needs_description": true,
+    "empty_alts": 0,
+    "source_url": null
+  },
+  "2026-03-03-23万OpenClaw公网裸奔.md": {
+    "mechanical": "done",
+    "needs_description": true,
+    "empty_alts": 0,
+    "source_url": null
+  },
+  "2026-03-04-写-Claude-Skill-最大的盲区，Anthropic-终于帮你补上了.md": {
+    "mechanical": "done",
+    "needs_description": true,
+    "empty_alts": 0,
+    "source_url": null
+  },
+  "2026-03-09-大厂抢着帮你养龙虾：国内OpenClaw一键部署服务横评.md": {
+    "mechanical": "done",
+    "needs_description": true,
+    "empty_alts": 0,
+    "source_url": null
+  },
+  "2026-03-12-十个顶级Claude-Code-Skills.md": {
+    "mechanical": "done",
+    "needs_description": true,
+    "empty_alts": 0,
+    "source_url": null
+  },
+  "2026-03-16-OpenClaw必备Skill清单.md": {
+    "mechanical": "done",
+    "needs_description": true,
+    "empty_alts": 0,
+    "source_url": null
+  },
+  "2026-03-18-写好一个Skill有多难？Anthropic踩了几百个坑之后的答案.md": {
+    "mechanical": "done",
+    "needs_description": true,
+    "empty_alts": 0,
+    "source_url": null
+  },
+  "2026-03-26-为什么单Agent搞不定复杂应用？Anthropic的Harness设计给出了答案.md": {
+    "mechanical": "done",
+    "needs_description": true,
+    "empty_alts": 0,
+    "source_url": null
+  },
+  "2026-03-26-软件升级最新习惯要改一改了.md": {
+    "mechanical": "done",
+    "needs_description": true,
+    "empty_alts": 0,
+    "source_url": null
+  },
+  "2026-03-31-Claude-Code源码泄漏：51万行代码里藏着什么.md": {
+    "mechanical": "done",
+    "needs_description": false,
+    "empty_alts": 0,
+    "source_url": null
+  },
+  "2026-04-07-Claude-Code终于不闪了：全屏渲染模式详解.md": {
+    "mechanical": "done",
+    "needs_description": false,
+    "empty_alts": 0,
+    "source_url": null
+  },
+  "2026-04-09-Anthropic给AI-Agent造了一套Kubernetes.md": {
+    "mechanical": "done",
+    "needs_description": true,
+    "empty_alts": 0,
+    "source_url": null
+  },
+  "2026-04-09-Claude-Code降智怎么办.md": {
+    "mechanical": "done",
+    "needs_description": true,
+    "empty_alts": 0,
+    "source_url": null
+  },
+  "2026-04-14-多Agent协调的五种模式：从最简单的开始，按需演进.md": {
+    "mechanical": "done",
+    "needs_description": true,
+    "empty_alts": 0,
+    "source_url": null
+  },
+  "2026-04-15-用Claude-Code处理视频太麻烦-我顺手写了个Skill.md": {
+    "mechanical": "done",
+    "needs_description": true,
+    "empty_alts": 0,
+    "source_url": null
+  },
+  "2026-04-16-Claude Code作者亲授：百万token上下文的正确用法.md": {
+    "mechanical": "done",
+    "needs_description": true,
+    "empty_alts": 0,
+    "source_url": null
+  },
+  "2026-04-21-三种Agent哲学.md": {
+    "mechanical": "done",
+    "needs_description": true,
+    "empty_alts": 0,
+    "source_url": null
+  },
+  "2026-04-21-从Recall到Chronicle-AI为什么这么想看你的屏幕.md": {
+    "mechanical": "done",
+    "needs_description": true,
+    "empty_alts": 0,
+    "source_url": null
+  },
+  "2026-04-23-MCP不只是开发工具：生产级Agent集成的三条路.md": {
+    "mechanical": "done",
+    "needs_description": true,
+    "empty_alts": 0,
+    "source_url": null
+  },
+  "2026-04-25-Hermes取代不了OpenClaw.md": {
+    "mechanical": "done",
+    "needs_description": true,
+    "empty_alts": 0,
+    "source_url": null
+  },
+  "2026-04-28-OpenClaw的正确打开方式.md": {
+    "mechanical": "done",
+    "needs_description": true,
+    "empty_alts": 0,
+    "source_url": null
+  },
+  "2026-05-01-你的AI有多会拍马屁.md": {
+    "mechanical": "done",
+    "needs_description": true,
+    "empty_alts": 0,
+    "source_url": null
+  },
+  "2026-05-08-codex-goal.md": {
+    "mechanical": "done",
+    "needs_description": true,
+    "empty_alts": 0,
+    "source_url": null
+  },
+  "2026-05-15-Codex进手机OpenAI版的龙虾来了.md": {
+    "mechanical": "done",
+    "needs_description": true,
+    "empty_alts": 0,
+    "source_url": null
+  },
+  "2026-05-16-claude-code-large-codebase.md": {
+    "mechanical": "done",
+    "needs_description": true,
+    "empty_alts": 0,
+    "source_url": null
+  },
+  "2026-06-03-烧了20亿token总结的Codex使用指南.md": {
+    "mechanical": "done",
+    "needs_description": true,
+    "empty_alts": 0,
+    "source_url": null
+  },
+  "2026-06-10-loop-engineering.md": {
+    "mechanical": "done",
+    "needs_description": true,
+    "empty_alts": 0,
+    "source_url": null
+  },
+  "2026-06-23-claude-code-steering.md": {
+    "mechanical": "done",
+    "needs_description": true,
+    "empty_alts": 0,
+    "source_url": null
+  },
+  "2026-06-27-codex-maxxing-white-paper.md": {
+    "mechanical": "done",
+    "needs_description": true,
+    "empty_alts": 0,
+    "source_url": "https://openai.com/index/codex-maxxing-long-running-work/"
+  },
+  "2026-07-01-claude-code-loops.md": {
+    "mechanical": "done",
+    "needs_description": true,
+    "empty_alts": 0,
+    "source_url": "https://claude.com/blog/getting-started-with-loops"
+  },
+  "2026-07-06-fable-field-guide-unknowns.md": {
+    "mechanical": "done",
+    "needs_description": true,
+    "empty_alts": 0,
+    "source_url": null
+  },
+  "2026-05-02-karpathy-10x.md": {
+    "mechanical": "done",
+    "needs_description": true,
+    "empty_alts": 0,
+    "source_url": null
+  },
+  "2026-05-13-claude-code-goal.md": {
+    "mechanical": "done",
+    "needs_description": true,
+    "empty_alts": 0,
+    "source_url": null
+  },
+  "2026-06-03-dynamic-workflows.md": {
+    "mechanical": "done",
+    "needs_description": true,
+    "empty_alts": 0,
+    "source_url": null
+  },
+  "2026-08-06-paseo-multi-agent-console.md": {
+    "mechanical": "done",
+    "needs_description": true,
+    "empty_alts": 0,
+    "source_url": null
+  },
+  "2026-08-13-ai-code-review.md": {
+    "mechanical": "done",
+    "needs_description": true,
+    "empty_alts": 0,
+    "source_url": null
+  },
+  "2026-08-14-deepseek-harness.md": {
+    "mechanical": "done",
+    "needs_description": true,
+    "empty_alts": 0,
+    "source_url": null
+  },
+  "2025-01-04-kubernetes-v1.32.md": {
+    "mechanical": "done",
+    "needs_description": true,
+    "empty_alts": 0,
+    "source_url": null
+  },
+  "2025-01-08-chatgpt-copilot.md": {
+    "mechanical": "done",
+    "needs_description": true,
+    "empty_alts": 0,
+    "source_url": null
+  },
+  "2025-06-25-claude-code-tracing.md": {
+    "mechanical": "done",
+    "needs_description": true,
+    "empty_alts": 2,
+    "source_url": null
+  }
+}

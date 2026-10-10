@@ -50,6 +50,12 @@ books:
     url: "https://github.com/feiskyer/sdn-handbook"
 
 talks:
+  - title: "从构建到规模化：在 Azure 基础平台上强化 AI 应用能力的落地"
+    event: "Microsoft AI Tour Shanghai 2026"
+    url: "https://chinaevent.microsoft.com/SessionDetail/0f0d9ab6-f7fb-404f-9608-cb6c5a7d54bc"
+  - title: "Kubernetes Community Panel: A Decade of Evolution and Future Trends"
+    event: "KubeCon China 2024"
+    url: "https://kccncossaidevchn2024.sched.com/event/1eYca/kubernetes-community-panel-a-decade-of-evolution-and-future-trends-kubernetesgu-ke-wondaep-paco-xu-mengjiao-liu-daocloud-qiming-teng-freelance-klaus-ma-nvidia-pengfei-ni-microsoft"
   - title: "Deep Dive into Cloud Provider Azure"
     event: "KubeCon North America 2019"
     url: "https://sched.co/UagX"
