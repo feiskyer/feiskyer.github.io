@@ -11,6 +11,11 @@
 
 ## 全部文章
 
+- [GPT-6 Intelligent UI 上手指南：ChatGPT 支持直接输出交互界面了](https://feisky.xyz/posts/2026-10-08-gpt-6-intelligent-ui/)：GPT-6 为 ChatGPT 带来 Intelligent UI，回答里可直接生成图表、表单和可玩的交互界面。本文实测提示词怎么写才能触发界面，为什么说「用 Intelligent UI」反而无效，以及 Pro 档不支持、组件无法保存分享等限制，并对比 Claude Code 直接生成 HTML 的做法。 (2026-10-08)
+- [从 Claude 全面迁到 GPT-6 + Codex，踩完坑之后的经验分享](https://feisky.xyz/posts/2026-09-22-gpt6-astra-skills-prompts/)：从 Claude Code 迁到 Codex 和 GPT-6 Astra 后的十条踩坑经验：指令范围失控、子 Agent 假装完成、429 不重试、旧规则过度约束等。分享如何精简 AGENTS.md、收窄 Skill 描述、明确授权安全工作流，让模型审计自己的规则，并注意跨模型兼容性。 (2026-09-22)
+- [在多租户 Kubernetes 集群上大规模安全部署 AI Agent](https://feisky.xyz/posts/2026-09-13-%E5%9C%A8%E5%A4%9A%E7%A7%9F%E6%88%B7kubernetes%E4%B8%8A%E5%A4%A7%E8%A7%84%E6%A8%A1%E4%BF%9D%E6%8A%A4ai-agent%E7%9A%84%E5%AE%89%E5%85%A8/)：KubeCon China 2026 分享文字版：在 AKS 多租户集群上大规模安全运行 AI Agent，解析 Harness 与 Runtime 分层设计，以及 Kata VM 沙箱、独立 Agent ID、网络可达性控制、Skill Marketplace 和 AI Gateway 等治理经验。 (2026-09-13)
+- [从数据准备到推理：用 TauGrid 补上 Kubernetes AI 基础设施的生命周期缺口](https://feisky.xyz/posts/2026-09-13-kubecon-taugrid-%E6%BC%94%E8%AE%B2%E6%96%87%E5%AD%97%E7%89%88/)：KubeCon China 2026 演讲文字版，解析 TauGrid 如何补上 Kubernetes AI 基础设施的生命周期缺口：四层架构、存储契约与 run ID、CLI 渲染、TauCluster 等三个 CRD、六种任务状态和资源释放机制，复用 Kueue、KubeRay、DCGM 而不重新造轮子。 (2026-09-13)
+- [开源 TauGrid：Kubernetes 上的云原生 GPU 基础设施](https://feisky.xyz/posts/2026-09-01-taugrid%E6%AD%A3%E5%BC%8F%E5%BC%80%E6%BA%90/)：TauGrid 是我们开源的 Kubernetes 原生 AI 基础设施，把 Kueue 队列、KubeRay 编排、GPU 健康监控和可观测性整合成一套平台。本文介绍 TauGrid 的定位、tau.yaml 工作原理、快速上手步骤和后续规划，研究员用一个 tau 命令即可完成任务提交、监控与故障恢复。 (2026-09-01)
 - [DeepSeek Harness 入门指南：一切皆插件的 Agent 到底怎么用](https://feisky.xyz/posts/2026-08-14-deepseek-harness/)：DeepSeek 开源首个 Agent 产品 DeepSeek Harness，模型、工具、会话乃至 Agent 循环全部做成可热插拔插件，并用一篇 88 页论文的数学证明保证运行时装卸安全。本文从安装、第一个任务到 Agent 预设、插件系统架构全流程实测讲解。 (2026-08-14)
 - [用 AI 审核 AI 的代码，踩了一堆坑之后我的方法](https://feisky.xyz/posts/2026-08-13-ai-code-review/)：AI 生成的代码量越来越大，人工审查早已跟不上节奏。作者分享一套用 AI 审 AI 代码的实战方法：质量门控打底、给 Agent 完整代码库上下文、真实环境验证、对抗式审查测试、安全扫描以及本地环境信息清理，兼顾审查效率与可靠性，避免被 AI 的完美推理链带偏。 (2026-08-13)
 - [Claude Code 用了一年多，我终于受不了它的终端了](https://feisky.xyz/posts/2026-08-06-paseo-multi-agent-console/)：用了一年多 Claude Code 后，作者被 TUI 的刷屏和消息审查体验逼到极限，转而使用多 Agent 控制台 Paseo。它不重造 Harness，原生兼容 Claude Code、Codex 等主流 Agent，支持跨设备远程操控和多 Agent 跨 Provider 协作。 (2026-08-06)
@@ -243,52 +248,61 @@
 ## 主题索引
 
 - AI（64 篇）：https://feisky.xyz/tags/ai/
+- Kubernetes（44 篇）：https://feisky.xyz/tags/kubernetes/
 - Claude Code（43 篇）：https://feisky.xyz/tags/claude-code/
-- Kubernetes（41 篇）：https://feisky.xyz/tags/kubernetes/
 - Vibe Coding（38 篇）：https://feisky.xyz/tags/vibe-coding/
 - Docker（33 篇）：https://feisky.xyz/tags/docker/
-- AI Agent（31 篇）：https://feisky.xyz/tags/ai-agent/
-- Agent（21 篇）：https://feisky.xyz/tags/agent/
-- Codex（16 篇）：https://feisky.xyz/tags/codex/
+- AI Agent（32 篇）：https://feisky.xyz/tags/ai-agent/
+- Agent（22 篇）：https://feisky.xyz/tags/agent/
+- Codex（17 篇）：https://feisky.xyz/tags/codex/
 - Anthropic（15 篇）：https://feisky.xyz/tags/anthropic/
 - MCP（15 篇）：https://feisky.xyz/tags/mcp/
 - 大模型（14 篇）：https://feisky.xyz/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/
 - AI 编程（13 篇）：https://feisky.xyz/tags/ai-%E7%BC%96%E7%A8%8B/
 - OpenClaw（12 篇）：https://feisky.xyz/tags/openclaw/
 - Linux（11 篇）：https://feisky.xyz/tags/linux/
+- Skills（10 篇）：https://feisky.xyz/tags/skills/
 - OpenAI（9 篇）：https://feisky.xyz/tags/openai/
-- Skills（9 篇）：https://feisky.xyz/tags/skills/
 - CloudNative（8 篇）：https://feisky.xyz/tags/cloudnative/
 - Container（7 篇）：https://feisky.xyz/tags/container/
 - Claude（6 篇）：https://feisky.xyz/tags/claude/
 - LLM（5 篇）：https://feisky.xyz/tags/llm/
 - 长时任务（5 篇）：https://feisky.xyz/tags/%E9%95%BF%E6%97%B6%E4%BB%BB%E5%8A%A1/
 - Devops（4 篇）：https://feisky.xyz/tags/devops/
-- EBPF（4 篇）：https://feisky.xyz/tags/ebpf/
+- Ebpf（4 篇）：https://feisky.xyz/tags/ebpf/
 - Go（4 篇）：https://feisky.xyz/tags/go/
 - Mesos（4 篇）：https://feisky.xyz/tags/mesos/
 - OpenStack（4 篇）：https://feisky.xyz/tags/openstack/
+- AI Infra（3 篇）：https://feisky.xyz/tags/ai-infra/
+- ChatGPT（3 篇）：https://feisky.xyz/tags/chatgpt/
+- Karpathy（3 篇）：https://feisky.xyz/tags/karpathy/
+- Kubecon（3 篇）：https://feisky.xyz/tags/kubecon/
 - Networking（3 篇）：https://feisky.xyz/tags/networking/
 - 多Agent架构（3 篇）：https://feisky.xyz/tags/%E5%A4%9Aagent%E6%9E%B6%E6%9E%84/
+- 开源（3 篇）：https://feisky.xyz/tags/%E5%BC%80%E6%BA%90/
 - 架构设计（3 篇）：https://feisky.xyz/tags/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/
 - AI 工具（2 篇）：https://feisky.xyz/tags/ai-%E5%B7%A5%E5%85%B7/
 - AI 记忆（2 篇）：https://feisky.xyz/tags/ai-%E8%AE%B0%E5%BF%86/
 - AI安全（2 篇）：https://feisky.xyz/tags/ai%E5%AE%89%E5%85%A8/
 - Auto Memory（2 篇）：https://feisky.xyz/tags/auto-memory/
 - Azure（2 篇）：https://feisky.xyz/tags/azure/
-- ChatGPT（2 篇）：https://feisky.xyz/tags/chatgpt/
 - Gemini（2 篇）：https://feisky.xyz/tags/gemini/
 - Google（2 篇）：https://feisky.xyz/tags/google/
+- GPT-6（2 篇）：https://feisky.xyz/tags/gpt-6/
+- GPU（2 篇）：https://feisky.xyz/tags/gpu/
 - Harness（2 篇）：https://feisky.xyz/tags/harness/
 - Hyper（2 篇）：https://feisky.xyz/tags/hyper/
-- Karpathy（2 篇）：https://feisky.xyz/tags/karpathy/
+- Kueue（2 篇）：https://feisky.xyz/tags/kueue/
 - Loop Engineering（2 篇）：https://feisky.xyz/tags/loop-engineering/
-- Ovs（2 篇）：https://feisky.xyz/tags/ovs/
+- OVS（2 篇）：https://feisky.xyz/tags/ovs/
 - Perf（2 篇）：https://feisky.xyz/tags/perf/
 - Prometheus（2 篇）：https://feisky.xyz/tags/prometheus/
 - Ralph Loop（2 篇）：https://feisky.xyz/tags/ralph-loop/
 - Skill（2 篇）：https://feisky.xyz/tags/skill/
+- TauGrid（2 篇）：https://feisky.xyz/tags/taugrid/
+- 安全（2 篇）：https://feisky.xyz/tags/%E5%AE%89%E5%85%A8/
 - 工作流（2 篇）：https://feisky.xyz/tags/%E5%B7%A5%E4%BD%9C%E6%B5%81/
+- 提示词（2 篇）：https://feisky.xyz/tags/%E6%8F%90%E7%A4%BA%E8%AF%8D/
 - 提示词工程（2 篇）：https://feisky.xyz/tags/%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%B7%A5%E7%A8%8B/
 - 效率工具（2 篇）：https://feisky.xyz/tags/%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7/
 - 教程（2 篇）：https://feisky.xyz/tags/%E6%95%99%E7%A8%8B/
@@ -297,9 +311,10 @@
 - /Goal（1 篇）：https://feisky.xyz/tags//goal/
 - 7x24（1 篇）：https://feisky.xyz/tags/7x24/
 - Agent Harness（1 篇）：https://feisky.xyz/tags/agent-harness/
+- Agent Runtime（1 篇）：https://feisky.xyz/tags/agent-runtime/
 - Agent Team（1 篇）：https://feisky.xyz/tags/agent-team/
 - Agentic Engineering（1 篇）：https://feisky.xyz/tags/agentic-engineering/
-- AI Infra（1 篇）：https://feisky.xyz/tags/ai-infra/
+- AKS（1 篇）：https://feisky.xyz/tags/aks/
 - Aws（1 篇）：https://feisky.xyz/tags/aws/
 - Blockchain（1 篇）：https://feisky.xyz/tags/blockchain/
 - Book（1 篇）：https://feisky.xyz/tags/book/
@@ -327,9 +342,11 @@
 - Hermes Agent（1 篇）：https://feisky.xyz/tags/hermes-agent/
 - Highscalability（1 篇）：https://feisky.xyz/tags/highscalability/
 - Hooks（1 篇）：https://feisky.xyz/tags/hooks/
+- HTML（1 篇）：https://feisky.xyz/tags/html/
 - Https（1 篇）：https://feisky.xyz/tags/https/
+- Intelligent UI（1 篇）：https://feisky.xyz/tags/intelligent-ui/
 - Koder（1 篇）：https://feisky.xyz/tags/koder/
-- Kubecon（1 篇）：https://feisky.xyz/tags/kubecon/
+- KubeRay（1 篇）：https://feisky.xyz/tags/kuberay/
 - LiteLLM（1 篇）：https://feisky.xyz/tags/litellm/
 - Managed Agents（1 篇）：https://feisky.xyz/tags/managed-agents/
 - Memory（1 篇）：https://feisky.xyz/tags/memory/
@@ -340,6 +357,7 @@
 - Prompt Engineering（1 篇）：https://feisky.xyz/tags/prompt-engineering/
 - Python（1 篇）：https://feisky.xyz/tags/python/
 - Rackspace（1 篇）：https://feisky.xyz/tags/rackspace/
+- Ray（1 篇）：https://feisky.xyz/tags/ray/
 - Reflect（1 篇）：https://feisky.xyz/tags/reflect/
 - Rkt（1 篇）：https://feisky.xyz/tags/rkt/
 - Runc（1 篇）：https://feisky.xyz/tags/runc/
@@ -366,14 +384,11 @@
 - 大型代码库（1 篇）：https://feisky.xyz/tags/%E5%A4%A7%E5%9E%8B%E4%BB%A3%E7%A0%81%E5%BA%93/
 - 字节（1 篇）：https://feisky.xyz/tags/%E5%AD%97%E8%8A%82/
 - 学习（1 篇）：https://feisky.xyz/tags/%E5%AD%A6%E4%B9%A0/
-- 安全（1 篇）：https://feisky.xyz/tags/%E5%AE%89%E5%85%A8/
 - 工具推荐（1 篇）：https://feisky.xyz/tags/%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/
 - 工具设计（1 篇）：https://feisky.xyz/tags/%E5%B7%A5%E5%85%B7%E8%AE%BE%E8%AE%A1/
 - 开发体验（1 篇）：https://feisky.xyz/tags/%E5%BC%80%E5%8F%91%E4%BD%93%E9%AA%8C/
 - 开发工具（1 篇）：https://feisky.xyz/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/
-- 开源（1 篇）：https://feisky.xyz/tags/%E5%BC%80%E6%BA%90/
 - 异步编程（1 篇）：https://feisky.xyz/tags/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/
-- 提示词（1 篇）：https://feisky.xyz/tags/%E6%8F%90%E7%A4%BA%E8%AF%8D/
 - 横向对比（1 篇）：https://feisky.xyz/tags/%E6%A8%AA%E5%90%91%E5%AF%B9%E6%AF%94/
 - 测试（1 篇）：https://feisky.xyz/tags/%E6%B5%8B%E8%AF%95/
 - 源码分析（1 篇）：https://feisky.xyz/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/
