@@ -14,13 +14,13 @@
       {{ end }}
     </article>
     {{ end }}
-    {{/* The next three posts sit beside the lead, so the first screen is all content. */}}
+    {{/* The next two posts sit beside the lead, so the first screen is all content. */}}
     <div class="seconds">
-      {{ range first 3 (after 1 $posts) }}
+      {{ range first 2 (after 1 $posts) }}
       <article class="second">
         <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01.02" }}</time>
         <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
-        <p>{{ with .Description }}{{ . | truncate 64 }}{{ else }}{{ .Summary | plainify | truncate 64 }}{{ end }}</p>
+        <p>{{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify | truncate 120 }}{{ end }}</p>
       </article>
       {{ end }}
     </div>
@@ -28,7 +28,7 @@
 
   <section class="block" aria-labelledby="recent-title">
     <h2 class="visually-hidden" id="recent-title">更多文章</h2>
-    {{ range first 10 (after 4 $posts) }}{{ partial "post-row.html" . }}{{ end }}
+    {{ range first 10 (after 3 $posts) }}{{ partial "post-row.html" . }}{{ end }}
     <p class="block__more"><a href="{{ "/posts/" | relURL }}">全部 {{ len $posts }} 篇文章</a></p>
   </section>
 

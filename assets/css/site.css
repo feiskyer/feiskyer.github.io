@@ -135,15 +135,19 @@ main:focus { outline: none; }
 
 .front { padding-block: clamp(1.5rem, 5vw, 3.5rem) clamp(2.5rem, 6vw, 4rem); border-bottom: 1px solid var(--rule); }
 .seconds { margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--rule); }
-.second + .second { margin-top: 1.75rem; }
+.second + .second { margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--rule); }
 .second time { color: var(--mute); font-size: 0.875rem; }
 .second h2 { margin-top: 0.3rem; font-weight: 700; font-size: 1.25rem; line-height: 1.45; text-wrap: pretty; }
 .second h2 a:hover { color: var(--accent); }
-.second p { margin-top: 0.4rem; color: var(--mute); font-size: 0.9375rem; line-height: 1.7; }
+.second p { margin-top: 0.4rem; color: var(--mute); font-size: 0.9375rem; line-height: 1.7; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden; }
 
 /* Lead on the left, the next three posts on the right */
 @media (min-width: 62rem) {
-  .front { display: grid; grid-template-columns: minmax(0, 1.75fr) minmax(0, 1fr); column-gap: clamp(3rem, 5vw, 5rem); align-items: start; }
+  /* Both columns share one height: the lead's tags sit on the same baseline as the
+     end of the right column, whatever the title lengths are. */
+  .front { display: grid; grid-template-columns: minmax(0, 1.75fr) minmax(0, 1fr); column-gap: clamp(3rem, 5vw, 5rem); align-items: stretch; }
+  .lead { display: flex; flex-direction: column; }
+  .lead .row__tags { margin-top: auto; padding-top: 1.25rem; }
   .seconds { margin: 0; padding: 0 0 0 clamp(2rem, 3vw, 3rem); border-top: 0; border-left: 1px solid var(--rule); }
 }
 
@@ -300,7 +304,8 @@ main:focus { outline: none; }
 .post__tags a { color: var(--accent); }
 .post__tags a:hover { text-decoration: underline; text-underline-offset: 0.25em; }
 
-.post__body { max-width: var(--measure); min-width: 0; }
+/* Posts without a contents rail keep a capped measure, or lines would run the full shell */
+.post__body { max-width: 60rem; min-width: 0; }
 
 .toc { margin-bottom: 2.5rem; font-size: 0.875rem; line-height: 1.6; }
 .toc summary { width: fit-content; padding: 0.35rem 0; font-weight: 600; cursor: pointer; }
@@ -311,9 +316,14 @@ main:focus { outline: none; }
 .toc a.is-active { color: var(--ink); border-left-color: var(--accent); }
 
 @media (min-width: 66rem) {
-  .post__layout--toc { display: grid; grid-template-columns: minmax(0, var(--measure)) minmax(13rem, 17rem); justify-content: space-between; column-gap: 4rem; align-items: start; }
-  .post__layout--toc .post__head { grid-column: 1; grid-row: 1; }
-  .post__layout--toc .post__body { grid-column: 1; grid-row: 2; }
+  .post__layout--toc { display: grid; grid-template-columns: minmax(0, 1fr) minmax(13rem, 16rem); column-gap: clamp(3rem, 5vw, 5.5rem); align-items: start; }
+  /* With the contents rail present, the text column takes all the remaining width,
+     so the article fills the shell at any window size. Type is a step larger here
+     to keep the longer lines comfortable. */
+  .post__layout--toc .post__head { grid-column: 1; grid-row: 1; max-width: none; }
+  .post__layout--toc .post__body { grid-column: 1; grid-row: 2; max-width: none; }
+  .post__layout--toc .post__lede { max-width: none; }
+  .post__layout--toc .prose { font-size: 1.125rem; }
   /* the contents rail starts level with the title and follows the reader down */
   .toc { grid-column: 2; grid-row: 1 / span 2; padding-top: 2.6rem; position: sticky; top: 1.5rem; max-height: calc(100vh - 3rem); margin: 0; overflow-y: auto; overscroll-behavior: contain; }
   .toc summary { list-style: none; cursor: default; pointer-events: none; padding-top: 0; }
