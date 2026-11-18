@@ -1,2 +1,335 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://search.yahoo.com/mrss/"><channel><title>Agent Harness | Feisky</title><link>https://feisky.xyz/tags/agent-harness/</link><description>极客时间专栏作者，专注于 Kubernetes、AI Infra、AI Agent 领域的深度技术分享，让 AI 成为你的第二大脑</description><generator>Hugo 0.167.0</generator><language>zh-CN</language><managingEditor>Pengfei Ni</managingEditor><webMaster>Pengfei Ni</webMaster><lastBuildDate>Mon, 12 Oct 2026 01:13:21 +0000</lastBuildDate><atom:link href="https://feisky.xyz/tags/agent-harness/index.xml" rel="self" type="application/rss+xml"/><item><title>DeepSeek Harness 入门指南：一切皆插件的 Agent 到底怎么用</title><link>https://feisky.xyz/posts/2026-08-14-deepseek-harness/</link><pubDate>Fri, 14 Aug 2026 10:00:00 +0800</pubDate><dc:creator>Pengfei Ni</dc:creator><category>DeepSeek</category><category>DeepSeek Harness</category><category>AI Agent</category><category>Agent Harness</category><category>开源</category><guid>https://feisky.xyz/posts/2026-08-14-deepseek-harness/</guid><description>&lt;p&gt;昨晚 DeepSeek 发布了新模型 DeepSeek V4 Pro，虽然有些波折，但性能提升毫不意外。倒是跟着一起出来的 DeepSeek Harness 让人眼前一亮，这是 DeepSeek 的第一个 Agent 产品。刚刚开源一天，GitHub 已经 7 万多星了，增速比当初 R1 开源的时候还猛。&lt;/p&gt;</description><content:encoded>&lt;![CDATA[<p>昨晚 DeepSeek 发布了新模型 DeepSeek V4 Pro，虽然有些波折，但性能提升毫不意外。倒是跟着一起出来的 DeepSeek Harness 让人眼前一亮，这是 DeepSeek 的第一个 Agent 产品。刚刚开源一天，GitHub 已经 7 万多星了，增速比当初 R1 开源的时候还猛。</p><p>很多人以为 DeepSeek Harness 是又一个 Codex 复刻，但实际跑一下就可以发现，这东西跟 Codex 们根本不是一个思路。</p><p>简单说，Codex 就是一体机，模型、工具、循环、权限全部焊死在一起。想换模型必须使用 Codex 支持的模型格式，想去掉用不到的工具省点 token 也没门。DeepSeek Harness 则是组装机，模型是插件，工具是插件，会话是插件，连 Agent 循环等等一切皆插件。</p><p>为此，DeepSeek 还专门发了一篇 88 页的论文，把插件的装卸做成了有数学证明的形式化系统。这还是我第一次看到有人用数学证明来定义 Agent Harness 该怎么组装。</p><p>下面就从安装开始，带你一步步把它跑起来。</p><h2 id="一行命令跑起来">一行命令跑起来</h2><p>首先，机器上需要安装 Node.js （版本号要求 22.19 以上，如果没有，可以让其他的 Agent 帮你安装）。然后在命令行执行：</p><pre tabindex="0"><code>npx @deepseek-ai/dsh web</code></pre><p>稍等一下，你会看到<code>dsh web: http://127.0.0.1:3080</code>。接着，在浏览器打开这个链接就进入了 DeepSeek Harness 主界面。</p><p>在开始使用之前，它会提示你输入 API Key。到 DeepSeek 开放平台（platform.deepseek.com）创建一个：</p><p><img src="/images/2026-08-14-deepseek-harness-api-keys.jpg" alt="DeepSeek 开放平台 API Keys" loading="lazy" decoding="async"/></p><p>复制 API Key，回到 Harness 界面粘贴上就可以进入如下所示的主界面了 ：</p><p><img src="/images/2026-08-14-deepseek-harness-web-ui-main.jpg" alt="DeepSeek Harness Web UI 主界面" loading="lazy" decoding="async"/></p><p>这时候输入框还是不能输入的。你需要先选择一个工作区（就是你要让 Agent 操作的项目目录），比如我选择了 deepseek-harness 源码目录，接着输入框就可以用了。</p><h2 id="开始第一个任务">开始第一个任务</h2><p>配好之后我试了个简单的：让它总结自己的源码仓库。发了一句“总结此代码库并识别其主要工作原理”，它读了 AGENTS.md，扫了 packages 目录，阅读了设计文档，一分钟左右就给出了一份架构概览，核心包和它们的职责列得挺清楚。</p><p><img src="/images/2026-08-14-deepseek-harness-dsh-conv.jpg" alt="DeepSeek Harness 会话示例" loading="lazy" decoding="async"/></p><p>直观用下来，跟 Codex 具有明显的不同：</p><p>第一个明显感受是速度。用惯了 Codex 再切过来，对比太明显了，响应速度和工具调用的周转都非常快。当然这跟 DeepSeek V4-Flash 本身的推理速度有关，但 Harness 端的开销控制也做得不错。</p><p>另一个亮点是轨迹视图。点开“轨迹”标签页，可以看到模型每一步看到了什么、调了哪个工具、传了什么参数、返回了什么结果，连 system prompt 和 context 注入都能展开看。</p><p><img src="/images/2026-08-14-deepseek-harness-trajectory-view.jpg" alt="Trajectory 视图：会话的每个细节都可追溯" loading="lazy" decoding="async"/></p><p>所有信息都记在 append-only 的会话日志里，恢复、分叉、回放都从这里派生。这个“模型可见即已记录”的方式，在其他 Agent 工具里不常见。</p><h2 id="装备-agent-预设">装备 Agent 预设</h2><p>DeepSeek Harness 对 Agent 的灵活控制体现在它的 Agent 预设功能里。所谓 Agent 预设就是一个会话的 Agent 所运行的插件组装，包括它的工具、提示词与能力等等。</p><p>打开设置里的“Agent 预设”，可以看到它已经内置了四种预设：</p><p><img src="/images/2026-08-14-deepseek-harness-agent-presets.jpg" alt="Agent 预设：四种模式" loading="lazy" decoding="async"/></p><p>标准模式是日常默认，提供了最完整工具组合。PTC 模式让模型用 TypeScript 程序编排多步工具调用，跟 Claude Code 的 thinking tool use 一个思路。极简模式只保留 bash + 编辑器这两个工具，用于基准测试。创造模式则在标准模式的基础上又增加了自检、插件实验和预设创建功能，用来创建新的 Agent 预设。</p><p>这四种模式本身就展示了“一切皆插件”的核心：不同模式就是不同的插件组合，你也可以复制一份改成自己的。</p><p>对于入门使用来说，标准模式就够了。等你玩熟练了，想针对特定场景或项目做定制，到时候就可以切换到创造模式，让它帮你装备上你特定的工具、Skill、知识库等私有配置。</p><h2 id="一切皆插件">一切皆插件</h2><p>前面说了 DeepSeek Harness 是组装机，那具体能组装哪些东西呢？翻了一下源码，我发现整个项目由 50 多个独立的 Cordis 插件组成，每个插件负责一个具体能力。这些插件之间没有谁是核心、谁是外围的区分，官方原话是 “There is no privileged core to patch”，所有插件地位平等。</p><p>下面这张图展示了主要的服务插件和它们的可替换选项：</p><p><img src="/images/2026-08-14-deepseek-harness-dsh-plugin-system.jpg" alt="DeepSeek Harness 插件系统架构" loading="lazy" decoding="async"/></p><p>从图里可以看到，模型、工具、会话、沙箱、技能、子 Agent 这些能力全部挂在同一个 Root Context 下面，每个都可替换。下面挑几个最实用的场景说一下：</p><ul><li><p>换模型。设置页面添加自定义 OpenAI 兼容端点，指向公司网关或 vLLM，下一次请求直接生效，不用重启。</p></li><li><p>换沙箱。默认本地沙箱（Linux Landlock / macOS sandbox-exec），代码里有 E2B 云端沙箱适配器，换个配置就行。</p></li><li><p>删工具。Claude Code 每次都把几十个工具 schema 塞进提示词白吃 token。DSH 每个工具是独立插件，配置里禁用即可。</p></li><li><p>换 Agent 循环。这是跟所有现有 Agent 最大的区别。Claude Code 和 Codex 的 agent loop 都是写死在运行时里的，你可以在预留的 hook 点做定制，但循环本身换不了。DSH 的 agent loop 就是一个普通插件，写一个新的替换它就行。而且循环里的每个关键节点（模型请求前、工具执行前、轮次结束时）都是 waterfall 事件，你写一个审批插件或日志插件，监听这些事件就能拦截和改写，不需要碰循环代码本身。</p></li></ul><p>说白了，其他 Agent 能做的事 DSH 都能做。但反过来，agent loop 本身可替换这件事，是其他 Agent 加多少 hook 都做不到的，因为这是最底层的架构决定。</p><h2 id="cordis-运行时安全装卸">Cordis 运行时安全装卸</h2><p>既然一切都是插件，那就必须回答一个问题：怎么保证插件在运行时装上去、卸下来不会把其他插件搞挂？这正是 Cordis 框架要解决的核心问题。</p><p>做个对比：VSCode 也有插件系统，但卸载每个插件必须重启整个编辑器。而 Cordis 的目标是让插件可以随意热插拔，而且有数学证明保证安全。</p><p>下面这张图展示了 DeepSeek Harness 的分层架构，从上到下每一层都可以被上一层覆盖：</p><p><img src="/images/2026-08-14-deepseek-harness-dsh-architecture-overview.jpg" alt="DeepSeek Harness 分层架构" loading="lazy" decoding="async"/></p><p>论文把安全装卸拆成两个维度来解决：</p><ul><li><p>时间维度，插件卸载时所有副作用必须可撤销。每个注册的事件监听器、服务、工具 schema 都通过<code>ctx.effect()</code> 安装，运行时追踪逆操作，卸载时反序执行。</p></li><li><p>空间维度，插件间依赖自动管理。通过<code>inject</code> 声明需要哪些服务，框架等依赖就绪再激活。被依赖的服务卸了，依赖它的插件自动暂停。</p></li></ul><p>有了这些，你可以在 Agent 跑着的时候换模型、加工具、改沙箱，不丢上下文，不丢会话。论文还证明了 confluence 定理，不管你以什么顺序装卸插件，最终状态等价于把最终配置从头加载一次。</p><h2 id="还不够好的地方">还不够好的地方</h2><p>DeepSeek Harness 虽然刚开源一天，但生态已经非常丰富了。内测阶段的招募在 Twitter 上引发了一场开发者路演，964 人报名提交了 897 个项目。开源后<code>awesome-deepseek-harness</code> 等精选列表迅速冒了出来。</p><p>有意思的是，从 GitHub commit 历史可以发现，不少代码是通过 Codex worktree 提交的。DeepSeek V4 原生支持 Responses API，可以无缝接入 Codex，所以团队直接拿竞争对手的工具来开发自己的产品，挺务实的。</p><p>目前官方不接受外部 PR，但可以通过 Discussion 反馈问题，也鼓励社区做独立插件丰富生态。官方表态也挺有意思：“我们不认为官方仓库中的包比社区创建的包更重要”。</p><p>不过问题也不少。现在的 v0.1 还处在开发者预览状态，后续肯定会有破坏兼容性的变更。安全方面，已有研究者发现几个严重漏洞，包括 read-only 沙箱对读操作不设防、动态插件的 vm 沙箱存在逃逸路径等，这些安全问题在使用时一定要注意。</p><h2 id="写在最后">写在最后</h2><p>如果把 DeepSeek Harness 当产品看，它现在有没有 Codex 好用？UI 成熟吗？体验够不够顺畅？这些问题的答案都是“还差得远”。</p><p>但 DeepSeek Harness 看的可能不是当下的使用体验。在模型能力还在高速变化、Harness 的最佳范式远没有收敛的阶段，过早押注一个封闭产品，等于拿一家公司的判断去猜一个还在移动的终局。DeepSeek 的做法是把门打开，保留尽可能多的选择权，让社区来探索什么组合最有效。</p><p>某种上下文策略胜出了，它就可以成为默认插件。PTC 比传统工具调用更有效，它就可以被强化。未来模型强到不需要复杂的多 Agent 编排，那些组件就可以随时卸掉。社区跑出来的问题、插件和经验，会不断暴露模型在真实任务中哪里不够用，这些反馈既推动 Harness 迭代，也能告诉模型团队下一代该往哪个方向训练。</p><p>你不用急着把全部任务都切过来，但可以考虑把中文写作、超长上下文任务、以及日常跑量大的工作丢给它试试，等慢慢稳定后再考虑切换更多工作过来。</p><p>相关链接：</p><ul><li>官方文档：deepseek.com/harness</li><li>GitHub 仓库：github.com/deepseek-ai/deepseek-harness</li><li>Cordis 论文：github.com/cordiverse/paper</li></ul>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://search.yahoo.com/mrss/"><channel><title>Agent Harness | Feisky</title><link>https://feisky.xyz/tags/agent-harness/</link><description>极客时间专栏作者，专注于 Kubernetes、AI Infra、AI Agent 领域的深度技术分享，让 AI 成为你的第二大脑</description><generator>Hugo 0.170.1</generator><language>zh-CN</language><managingEditor>Pengfei Ni</managingEditor><webMaster>Pengfei Ni</webMaster><lastBuildDate>Wed, 18 Nov 2026 11:51:19 +0000</lastBuildDate><atom:link href="https://feisky.xyz/tags/agent-harness/index.xml" rel="self" type="application/rss+xml"/><item><title>AI 编程最核心的一环，Claude Code 团队这篇博客讲清楚了</title><link>https://feisky.xyz/posts/2026-11-18-claude-code-verification/</link><pubDate>Wed, 18 Nov 2026 10:00:00 +0800</pubDate><dc:creator>Pengfei Ni</dc:creator><category>AI 编程</category><category>Claude Code</category><category>Codex</category><category>Agent Harness</category><category>自动化验证</category><guid>https://feisky.xyz/posts/2026-11-18-claude-code-verification/</guid><description>&lt;p&gt;现在用 AI 写代码，只要模型足够强，给 Agent 的目标足够清楚，用什么样的编程工具和 Agent Harness 其实都已经差不多了，大体上都能跑出一个不错的结果。&lt;/p&gt;&#10;&lt;p&gt;不过，想要保证 Agent 产出的质量和可靠性，最重要的一块是给它真实环境和真实功能的验证。我在日常开发里，现在每一个功能的开发都不再去做手工验证了，而是把验证步骤一步步列清楚，让 Agent 照着步骤去执行，包括跑完整的端到端测试。比如在做 Agent Runtime 项目的时候，我会直接让 Agent 调用 &lt;code&gt;kubectl&lt;/code&gt; 和后端 API，再配合 Chrome MCP 操作页面，把整个新功能端到端跑通。&lt;/p&gt;</description><content:encoded><![CDATA[<p>现在用 AI 写代码，只要模型足够强，给 Agent 的目标足够清楚，用什么样的编程工具和 Agent Harness 其实都已经差不多了，大体上都能跑出一个不错的结果。</p>
+<p>不过，想要保证 Agent 产出的质量和可靠性，最重要的一块是给它真实环境和真实功能的验证。我在日常开发里，现在每一个功能的开发都不再去做手工验证了，而是把验证步骤一步步列清楚，让 Agent 照着步骤去执行，包括跑完整的端到端测试。比如在做 Agent Runtime 项目的时候，我会直接让 Agent 调用 <code>kubectl</code> 和后端 API，再配合 Chrome MCP 操作页面，把整个新功能端到端跑通。</p>
+<p>这两天 Anthropic 工程师 Addy Osmani 发了一篇博客《How the Claude Code team thinks about verification》，正好把 AI 编程最核心的验证问题讲得很清楚。在 Claude Code 团队内部，大约 90% 的代码都由 Claude 编写和审查。没有自动验证的时候，一个人同一时间顶多盯一两个 Agent；把验证闭环搭起来之后，才能同时并行跑几十个甚至上百个 Agent。在他们针对结构化文件生成的内部测试里，加一个独立的评分器对照标准检查产出，任务成功率比普通提示词循环提高了最多 10 个百分点，而且问题越难提升越明显。</p>
+<p>虽然 Claude 封号严重，但不得不说，他们的工程博客质量真的很高，所以很推荐做 AI 编程的朋友读一读这篇原文。结合我自己的日常实践，下面也说一下我的理解。</p>
+<p><strong>1、端到端验证，把整个应用跑起来比写单元测试管用得多。</strong></p>
+<p>如果只能选一种测试投入精力，优先选端到端测试，核心是让 Agent 把改动后的应用实际跑起来。</p>
+<p>很多人用 Claude Code 或 Codex 写完代码，看单元测试全绿就觉得没问题了。但单元测试虽然跑得快、结果稳定，却经常出现测试全过、功能照样坏掉的情况。为什么会这样？因为写代码的 Agent 和单元测试都只看到了局部逻辑，并不理解完整的业务任务。</p>
+<p>更头疼的是报错信息。单元测试失败时，往往只抛出一句 <code>Error: Timeout after 30s</code>，没有执行步骤也没有现场痕迹，排查起来只能靠猜。而端到端测试描述的是注册、加购物车、结账、跳转确认页这样的真实用户流程，整个功能要么跑通、要么失败，很难糊弄过去；一旦挂掉，还能直接给出步骤轨迹、页面截图和具体的失败原因，比如结账按钮一直灰着点不了，是因为支付表单压根没有加载出来。</p>
+<p><img
+  src="/images/2026-11-18-claude-code-verification-unit-vs-e2e.jpg"
+  alt="单元测试与端到端测试报错信息对比"
+  loading="lazy"
+  decoding="async"
+/></p>
+<p>想让端到端测试发挥作用，就得给 Agent 配上操作和观察真实运行系统的手和眼。Addy 在文章里列了几类常用工具：</p>
+<ul>
+<li>前端网页改动用 Claude Chrome 扩展或基于 CDP 的浏览器工具</li>
+<li>移动端用 iOS 或 Android 模拟器的 MCP</li>
+<li>桌面应用用 Computer Use，后端开发就在本地把服务拉起来测</li>
+<li>同时还可以维护一份从用户视角编写的功能地图，写清访问路径、快捷键、页面选择器和预期结果，既当 Agent 的操作指南，也当验收打分的标准。</li>
+</ul>
+<p>我自己在开发 Agent 项目时也是这么做的。每次做完一个新功能，不再自己开浏览器点一遍，而是把验证步骤按顺序写清楚交给 Agent：构建，部署，检查集群里的工作负载和配置是否就绪，模拟工作负载，调用后端 API 校验，最后配合 Chrome MCP 打开页面走完整个交互流程，顺带同时盯着控制台和日志看看有没有报错。</p>
+<p>Claude Code 团队的做法是把启动运行环境和跑冒烟测试的步骤，统一写成仓库 <code>.claude/skills/</code> 目录下的 <code>verify</code> Skill，尽量放在离对应代码最近的位置，需要多少个就建多少个。Claude Code 在提交代码前知道先去调用 <code>verify</code> Skill 做端到端验证。他们还会专门让 Claude 反复打磨和压测这个 Skill，把它做得又快又稳。因为一旦测试变慢，Agent 分批跑测试的频次就会降下来，出了问题反而更难定位；至于比较重的测试，放在正式提交改动之前跑最合适。</p>
+<p><strong>2、属性测试和差分测试，专门补 Agent 自己想不到的边界情况。</strong></p>
+<p>端到端测试能守住主干流程，但常规测试都有一个局限：它们测的只是写代码的人预先想到的异常情况。</p>
+<p>如果业务代码和测试代码都是同一个 Agent 写的，两边就会带着同样的思维盲区，人容易漏掉的边界条件，Agent 照样会漏。以前写全套测试、基准和规范对工程师来说成本很高，现在让 Agent 生成这些东西非常快；而且测试一旦生成出来，就是作为普通软件反复运行，高频执行也几乎不消耗额外的 Token。所以除了端到端测试，还有两类测试很值得让 Agent 补上。</p>
+<p>第一，属性测试。</p>
+<p>你不需要一条条编造输入用例，而是先写下一条在系统里绝对不能违反的约束，再交给属性测试库（比如 JS/TS 的 <code>fast-check</code>、Python 的 <code>Hypothesis</code>、Rust 的 <code>proptest</code>）自动生成几千组随机输入去尝试证伪。</p>
+<p>几乎每个软件项目里都能找到这类约束：</p>
+<ul>
+<li>往返一致：比如编解码、解析和序列化，把数据编码再解码回来必须等于原值</li>
+<li>业务不变量：系统里始终成立的硬性条件，比如账户余额永远不能变成负数</li>
+<li>幂等性：迁移、归一化或重试动作执行两次，和执行一次的效果一样</li>
+<li>等价性：性能优化后的代码，和朴素但正确的实现输出结果一致</li>
+</ul>
+<p>因为这些边界输入不是写代码的那个 Agent 编出来的，在做老系统重写、原有文档早已偏离线上真实行为时尤其管用。</p>
+<p>第二，差分测试。</p>
+<p>在做大规模系统迁移或重构、要求新旧系统功能保持一致的场景下，老系统本身就是现成的标准答案。做法是拿随机生成的输入或者采样的真实线上流量，同时喂给老系统和新系统，对比两边的输出结果。只要输出对不上，就说明引入了新 bug 或者破坏性变更。落地时只需要注意抹掉空白字符这类无关差异，再维护一份新旧环境允许存在差异的已知变更白名单。</p>
+<p><strong>3、验证门控，不能让代码改动去修改审它的检查规则。</strong></p>
+<p>有了测试和验证步骤还不够，还得保证验证器本身不被糊弄。</p>
+<p>我之前做 AI 代码审查和 Agent 安全隔离时就发现，只要限制和检查规则放在 Agent 自己够得着的地方，它为了把任务顺利交差，很容易自己找路绕过去，比如顺手把报错的测试断言改掉、往测试里塞 <code>sleep</code> 硬等，甚至在同一个 PR 里把审查标准改松。如果一次代码改动能够修改评判它自己的检查规则，这道检查就失效了。</p>
+<p>那怎么保证验证环节不被 Agent 糊弄过去？Claude Code 团队有三条可以直接借鉴的工程规矩：</p>
+<p>第一，检查规则与被审代码隔离。</p>
+<p>他们不会靠堆叠多个昂贵的审查器来提高质量，而是集中调好一个主审查器，用 <code>REVIEW.md</code> 写明这部分代码需要重点关注什么，并让每一轮审查和验证都承接上一轮的上下文与历史失败记录，而不是每次从头重查。</p>
+<p>这里最关键的一条边界是：代码审查只从基础分支或默认分支读取 <code>REVIEW.md</code> 等门控规则，绝不读取当前 PR 改动里的版本。同时，打开 PR 之前必须先在本地通过 Hook 或 <code>/goal</code> 跑过测试、构建和 Lint 这些低成本检查，避免把本地就能抓到的低级问题推上去占用共享的审查和 CI 时间；审查也严格绑定具体的 commit，审查过程中只要有人新推了代码，旧的审查结果就直接作废。</p>
+<p>第二，修 3 轮还不过就停下来找人，对不稳定测试零容忍。</p>
+<p>没人能逐行读完所有改动，测试失败就是决定哪些地方需要人工介入的信号。Claude 会先跑检查并尝试修复失败项；如果连续修 3 轮还是挂，就立刻停下来拉人介入。每个模块的检查项由对应的代码负责人自己编写和打磨，拉人审查时必须直接写明原因，不用审查者自己去翻 diff 猜。</p>
+<p>碰到时好时坏的不稳定测试也是同样的处理原则。放任不稳定测试存在，等于训练 Agent 遇到报错就重跑碰运气，而不是去修代码。所以他们严禁 Claude 跳过测试、加 <code>sleep</code> 或者无限重试直到通过；实在找不到根因，就直接删掉这个测试并写明原因。</p>
+<p>第三，新门控先开观察模式，强制拦截留好防死锁出口。</p>
+<p>他们在内部仓库会给每个 commit 打上验证方式标记，连没做验证的提交也会标上 <code>none</code> 方便检索。同时他们做了一道检查当前会话是否包含 <code>/code-review</code> 或 <code>/verify</code> 的提交门控，分关闭、观察和强制三种模式。</p>
+<p>新门控上线先开观察模式，只记录哪些提交会被拦下，排查完误报再切到强制拦截模式。强制模式下，任何提交都可以在 commit message 里说明未做验证的原因；而且考虑到 Claude Code 也不是完美无缺的，如果同一个会话里提交连续被拦了两次，下一次提交就会放行，防止把 Agent 彻底卡死。</p>
+<p><strong>4、规则演进，把漏掉的问题沉淀下来还要定期清理。</strong></p>
+<p>验证体系搭起来之后，线上漏掉的问题要能回流成新规则，过时的规则也得定期清理。</p>
+<p>第一，按代码 diff 按需触发历史故障检查。</p>
+<p>靠人去背历史事故清单是不现实的，每次全量检查又太慢。Claude Code 团队维护了一份包含 39 个条目的可靠性检查清单，每一条都写清了可以从 diff 里识别的触发条件、具体检查项，以及对应的历史事故或 PR。比如其中一条是检查 <code>--resume</code> 能否加载旧会话记录：当 diff 修改了会话存储或消息结构时，就会自动触发检查新增字段能不能兼容没有这个字段的老记录。Claude 读完 diff 后只检查匹配触发条件的条目，每次通常只有 3 到 10 条，既防住了老问题复发，也不会拖慢节奏。</p>
+<p>第二，只把重复出现的问题变成规则。</p>
+<p>如果 Agent 反复在某类检查上栽跟头，比如日志里不小心打出用户数据，就可以加一个 Hook 或在 <code>CLAUDE.md</code>、<code>REVIEW.md</code> 里补一条更明确的规则堵住。在 Claude Code 仓库里，从人工审查评论和回滚 PR 里提炼规则有一个门槛：同类问题必须在至少两个 PR 里出现过，并且能直接从 diff 上看出来。另外，审查结果还会区分必改问题、细节改进和历史遗留问题，标了历史遗留问题的老 bug 不会算在当前改动的作者头上。</p>
+<p>第三，定期清理测试、验证步骤和规则文档。</p>
+<p>这一点我自己维护 <code>CLAUDE.md</code> 和 <code>AGENTS.md</code> 时也很有感触：不管是测试套件、验证步骤还是 <code>.md</code> 规则文件，只要不管就只会越长越长。文档一臃肿，模型容易漏掉关键约束；测试一膨胀，单次验证的耗时就会拖长。Claude Code 团队把清理测试和 <code>.md</code> 文件当成例行维护工作来做，删掉过时冗余的条目，只保留值得继续运行的检查。</p>
+<p><strong>5、AI 编程验证落地清单，日常开发可以按这张表逐项对照。</strong></p>
+<p>如果你想把手头项目里的手工验证替换掉，让 Claude Code 或 Codex 产出的代码质量更稳，可以按下面这五个环节逐项对照：</p>
+<table>
+	<thead>
+			<tr>
+					<th>验证环节</th>
+					<th>容易踩的坑</th>
+					<th>落地做法</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>端到端冒烟验证</td>
+					<td>单元测试全绿但完整功能坏掉，报错缺少上下文</td>
+					<td>给 Agent 配浏览器 MCP、<code>kubectl</code> 或本地服务环境，把启动与核心链路检查写成 <code>.claude/skills/verify</code></td>
+			</tr>
+			<tr>
+					<td>边界与重构测试</td>
+					<td>同一个 Agent 写代码和写测试，共享相同的思维盲区</td>
+					<td>用属性测试库随机生成输入校验核心不变量；大规模迁移时拿老系统做差分测试比对输出</td>
+			</tr>
+			<tr>
+					<td>检查规则隔离</td>
+					<td>Agent 为求通过顺手改松审查标准，或未自测就提 PR</td>
+					<td>只从基础分支读取 <code>REVIEW.md</code>，本地用 Hook 或 <code>/goal</code> 先跑测试与 Lint，审查绑定具体 commit</td>
+			</tr>
+			<tr>
+					<td>失败处理与门控</td>
+					<td>不稳定测试把 Agent 训成盲目重试，硬门控卡死会话</td>
+					<td>连续修 3 轮不过停下找人；严禁对不稳定测试加 <code>sleep</code> 或重试；新门控先开观察模式并留放行出口</td>
+			</tr>
+			<tr>
+					<td>历史故障回流与瘦身</td>
+					<td>历史事故反复出现，规则与测试只增不减越来越慢</td>
+					<td>维护按 diff 触发的检查清单，问题至少出现两次再进规则，定期清理过时的测试与 <code>.md</code> 文件</td>
+			</tr>
+	</tbody>
+</table>
+<p>把验证层当成一个独立的工程系统来维护之后，开发者的工作重心也就跟着变了：你不再需要逐行读完每一处 diff、手工去点每一个页面，而是把精力放在定义清楚什么叫做完，以及审查 Agent 跑出来的运行证据上。</p>
+<p>推荐阅读：</p>
+<ul>
+<li>How the Claude Code team thinks about verification：<a href="https://claude.dev/blog/how-the-claude-code-team-thinks-about-verification/">https://claude.dev/blog/how-the-claude-code-team-thinks-about-verification/</a></li>
+</ul>
+]]></content:encoded><dc:extent>9 min read</dc:extent></item><item><title>Anthropic 官方指南：搭好常驻 Agent 的架构清单</title><link>https://feisky.xyz/posts/2026-11-14-always-on-agents/</link><pubDate>Sat, 14 Nov 2026 10:00:00 +0800</pubDate><dc:creator>Pengfei Ni</dc:creator><category>AI Agent</category><category>Anthropic</category><category>Agent Harness</category><category>Agent Runtime</category><guid>https://feisky.xyz/posts/2026-11-14-always-on-agents/</guid><description>&lt;p&gt;想把一个聊天 Agent 改成 7×24 后台干活的工作伙伴，难的地方不在大模型，也不在 Agent Harness，而在推理循环之外的那套管理事件调度、状态延续和权限边界的外围系统。&lt;/p&gt;</description><content:encoded><![CDATA[<p>想把一个聊天 Agent 改成 7×24 后台干活的工作伙伴，难的地方不在大模型，也不在 Agent Harness，而在推理循环之外的那套管理事件调度、状态延续和权限边界的外围系统。</p>
+<p>很多人第一次搭常驻 Agent，直觉做法就是起一个长对话，再加个定时脚本每隔几分钟叫醒模型看一眼。我自己在玩 OpenClaw、Hermes Agent 以及 Codex、Claude Code 这些编程 Agent 的时候就发现：这种做法跑短时 Demo 没问题，真挂在后台跑几天，不是并发冲突把状态覆盖掉，就是上下文和记忆越攒越多，导致模型幻觉，甚至都会忘记一开始给它设定的任务目标。</p>
+<p>这两天 Anthropic 平台团队的 William Hu 发了一篇官方指南《Building always-on agents》，正好把搭好常驻 Agent 需要的五个核心原语列成了一份架构清单。一方面，新模型的判断力变强了，更清楚什么时候该自己推进、什么时候该停下来问人；另一方面，在一个长程编程基准测试里，Opus 5.5 每解决一个任务的成本比 Opus 5 降了 78% 。模型成本大幅降低了，后台常驻才有了大规模落地的条件。</p>
+<p>所谓的常驻在线，只是给用户的感受。实际上，Agent 底下的推理循环跟普通聊天模式没有区别，绝大部分时间都处于零 Token 消耗的休眠态，只有事件来了才醒来跑一小段执行，在会话里完成工具调用、关键信息存储、通知结果，接着继续休眠，也就是一套标准的事件驱动异步架构。</p>
+<p><img
+  src="/images/2026-11-14-always-on-agents-overview.jpg"
+  alt="常驻 Agent 的五个外围组件"
+  loading="lazy"
+  decoding="async"
+/></p>
+<p>这份清单里的事件收件箱、定时器、记忆、权限和发件箱这五个组件看起来很简单，但落到 Agent 上有不少容易漏掉的细节。结合之前体验过的 Agent 产品，我说一下自己的理解。</p>
+<p><strong>1、事件收件箱，外部事件不能直接调 Agent。</strong></p>
+<p>普通聊天 Agent 只有在用户发消息时才会运行，而常驻 Agent 的触发来源要多得多：Webhook 回调、定时任务、后台作业，还有用户的回复，随时都可能到达。</p>
+<p>最容易踩的坑，就是让这些事件源直接去调 Agent。两个事件同时到达，就会拉起两个并发执行互相覆盖状态；要是跑到一半进程挂了，这个事件也就直接丢了。</p>
+<p>所以在所有事件源前面，都需要先加一层事件收件箱。它的结构并不复杂：一张持久化的数据库表（或者消息队列）存事件列表，一个轻量 HTTP 接口负责接收写入，后面配一个后台 Worker 从表/队列里拉取待处理事件，并按事件源的唯一 ID 做去重。用户回复这类延续前文的消息，就恢复原来的会话；全新的外部事件，就新开一个会话。</p>
+<p><img
+  src="/images/2026-11-14-always-on-agents-event-inbox.jpg"
+  alt="事件收件箱的工作流程"
+  loading="lazy"
+  decoding="async"
+/></p>
+<p>架构看着简单，但实现上有四个细节要注意：</p>
+<p>第一，接收接口只做轻量校验，写入成功就立刻返回确认。很多 Webhook 服务商把慢响应直接当成失败处理，像防提示词注入这类耗时检查，应该留到后面的执行阶段再做。</p>
+<p>第二，以收件箱的数据表作为唯一事实源。Worker 被唤醒后先去表里拉取最新的待处理事件，这样就算执行中途崩溃，新拉起的 Worker 也能拿到同一条未完成的事件继续重试。</p>
+<p>第三，同一个收件箱同一时刻只允许一个活跃 Worker。起步阶段可以按每个用户一个收件箱来建，单 Worker 串行消费，从根源上避免并发写坏状态。如果执行中途又来了新事件，可以按策略排到下一轮、并入当前轮，或者打断重跑。</p>
+<p>第四，把连续到达的待处理事件合并成一次执行。比如用户连续发了几条消息，Worker 拉取时直接合并交给同一轮推理，Agent 只需要回复一次，既省 Token 也不会频繁打扰用户。</p>
+<p>之前分析 Grok Bot 的时候我发现，它的设计也是同样的思路。不管是定时任务到点、其他 Bot 发来消息、Slack 进了新通知，还是用户在卡片上点了授权，最后都会加上 <code>[SAND_HIDDEN_PROMPT]</code> 来源标记，统一放进同一条对话流里按顺序处理。反过来，Grok Bot 的多 Bot 私聊因为没有轮数上限，几个 Bot 互相发消息唤醒、反复互审，很快就能把一周的额度烧光。所以统一入口只管得了顺序和去重，Agent 之间互相唤醒还得有硬性的轮数上限，只靠提示词，模型可以不听。</p>
+<p><strong>2、定时器，主动干活不用让模型一直醒着。</strong></p>
+<p>常驻 Agent 能主动推进任务，靠的是一张独立的定时器表，把下一次该醒的时间记下来。</p>
+<p>定时器一般分成两类。一类是跟进提醒，由 Agent 在执行任务时给自己设定截止时间，比如等待外部回复时定时回来检查进展，触发一次就标记为完成；另一类是周期任务，按固定频率重复执行，比如每天早上的信息汇总，触发后自动把到期时间更新到下一个周期。</p>
+<p>定时器表要和事件收件箱分开存储，收件箱只存放当前已经就绪、可以立即处理的事件。定时器到期后，由后台调度服务或持久化执行引擎定期扫描到期记录，更新定时器状态后，往收件箱写入一条新事件并唤醒 Worker。</p>
+<p><img
+  src="/images/2026-11-14-always-on-agents-timers.jpg"
+  alt="定时器的触发与入队流程"
+  loading="lazy"
+  decoding="async"
+/></p>
+<p>为什么要先写入收件箱，而不是直接启动 Agent？</p>
+<p>因为定时任务到期的同一时刻，用户可能刚好也在发消息，Webhook 也可能刚好触发。统一写入收件箱之后，前面做好的单 Worker 串行消费和去重机制就能直接复用，不需要维护两套并发控制逻辑。</p>
+<p>Meta Muse 的定时机制也是这么处理的。它的目标页本身不运行任务，实际执行靠的是挂在目标下面的定时任务；遇到需要高频监控状态的场景，它不会每分钟唤醒一次大模型消耗 Token，而是先用普通脚本在外部轮询，检测到状态变化之后再发事件唤醒模型。</p>
+<p><strong>3、记忆系统，只存没法从别处查到的信息。</strong></p>
+<p>常驻 Agent 要跨多次独立执行保持上下文连贯，靠的是独立持久化的记忆系统。做记忆系统常见的问题不是记不住，而是什么都往里塞。</p>
+<p>我之前用 OpenClaw 时就碰到过这个问题。它的后台记忆整理机制很容易把对话里琐碎的细节也晋升上来，对话一多，<code>MEMORY.md</code> 就会越来越臃肿，每次启动都要占用不少上下文空间，最后只能定期手动清理。当时我的做法是给每个项目单独建一个目录，主 <code>MEMORY.md</code> 里只放索引，跟后面 Anthropic 给的思路一样。</p>
+<p>Anthropic 给出的原则是，记忆里只存无法从其他系统重新查到的信息。如果某项内容本来就在 Issue 跟踪系统或代码仓库里，记忆中只保留一个引用指针就够了，不需要把原始内容复制一份。</p>
+<p>在具体实现上，可以把记忆映射成数据库或对象存储支持的文件目录，保证 Worker 重建后记忆仍然保留。按加载时机来看，每次执行启动都必须加载的有两份：一份是用户指令，因为常驻场景下人不在旁边随时纠偏，行为约束每轮都需要加载；另一份是已发消息记录，记录已经向用户汇报过的内容，避免在不同轮次里重复发送。</p>
+<p>容易随时间增长的是另外两类：记录用户角色、偏好和历史纠正的用户笔记，以及每个长任务单独建一份、记录已完成和待办事项的任务进度。这两块内容变多以后就拆成多个小文件，每次启动只加载一份目录索引，执行中需要哪部分细节再去读取对应的文件。</p>
+<p><img
+  src="/images/2026-11-14-always-on-agents-memory.jpg"
+  alt="记忆目录的按需加载结构"
+  loading="lazy"
+  decoding="async"
+/></p>
+<p>在这四类运行期写入的记忆之上，还可以加一层离线的 Dreaming 整理机制，定期回顾历史会话、替换过期条目，提炼单次执行看不出来的长期模式。OpenClaw 的 Dreaming 也是这类机制，区别在于这里的整理要能替换过期条目，只往上晋升的话，记忆迟早还会臃肿。</p>
+<p>上下文窗口的固定开销也需要严格控制。系统提示词、工具定义和每轮必读的记忆文件每次执行都会加载，体积要尽量精简，再配合前缀缓存降低重复加载的成本。当会话过长需要压缩历史消息或重开新会话时，上下文细节不可避免会丢失，因此需要跨轮保留的信息要在执行过程中及时写入记忆文件，不能只依赖会话历史。</p>
+<p><strong>4、权限控制，凭据外置和异步审批缺一不可。</strong></p>
+<p>常驻 Agent 持有用户的访问权限，又在无人值守的状态下自动运行，权限控制是整套架构里风险最高的一环。这里既不能把明文密钥直接放进 Agent 的运行环境，也不能一遇到敏感操作就把后台 Worker 阻塞住等待人工确认。</p>
+<p>William 给出的解法是把现有的三个权限组件组合起来使用：</p>
+<p>第一，凭据存储与外部代理。常驻 Agent 访问外部系统少不了密码或 API Token，推荐的模式是在 Agent 运行环境外面加一层代理网关。Agent 发出的请求本身不带凭据，由外部代理在转发请求时把真实凭据注入进去，这样 Agent 始终接触不到明文密钥。</p>
+<p>第二，Auto mode 自动审查。后台运行不可能每次调用工具都找人审批，可以先像 Claude Code 的 Auto mode 那样，用分类器自动审查高风险动作，把识别出危险的操作拦截下来，让模型改用更安全的路径，只把关键决策留给人工审核。</p>
+<p>第三，延迟工具调用。当某个操作确实需要用户补充信息或确认授权时，先把当前会话在工具调用中途保存下来，直接结束本次执行，同时通过交互卡片（比如基于 MCP Apps 构建的卡片）把审批请求发送给用户。等待用户回复期间，Worker 不会被阻塞，可以继续处理收件箱里的其他事件；等用户在卡片上完成确认，结果会作为一条新事件写回收件箱，触发新的执行并恢复之前保存的会话继续运行。</p>
+<p>Meta Muse 里的 Sentinel 服务就是典型的外部权限网关。它把凭据和对外网络出口都放在容器外的独立安全域里，Agent 可以使用凭据但始终看不到明文；需要用户授权时，审批卡片直接推送到手机 App 上，不经过聊天会话，Agent 既看不到审批卡，也无法代替用户点击同意。即便模型受到外部网页的提示词注入影响，也绕不过容器外的这层拦截。</p>
+<p><strong>5、发件箱，后台 Agent 不能每跑一轮都发消息。</strong></p>
+<p>普通聊天 Agent 是边推理边向界面流式输出内容，用户可以跟着看它调用工具和生成回答的过程。常驻 Agent 的工作大部分在后台完成，用户通常只需要拿到最终结果和少量关键信息。</p>
+<p>所以在常驻架构里，一次后台执行结束时只有三种出口：向发件箱写入一条结果消息、发起延迟工具调用请求用户输入，或者判断没有必要通知用户，直接静默结束。</p>
+<p><img
+  src="/images/2026-11-14-always-on-agents-outbox.jpg"
+  alt="发件箱的三种结束路径"
+  loading="lazy"
+  decoding="async"
+/></p>
+<p>如果场景简单，给 Agent 配一个直接发送消息的 <code>send</code> 工具就够用了；只有在需要控制推送节奏或处理发送失败重试时，才需要单独建一张发件箱数据表，配合后台分发服务按策略投递。</p>
+<p>相比发件箱的表结构，更需要调优的是消息发送频率。发得太多容易变成噪音，发得太少又可能漏掉用户需要关注的信息。Anthropic 的建议是通过构建评测集来寻找平衡点；实际落地时，更稳妥的做法是让 Agent 一开始尽量少发消息，随着运行稳定再逐步增加主动推送。</p>
+<p>这一点在 Meta Muse 上也能看到一致的设计取舍。它的后台每小时都有流程在整理记忆、扫描信息，但主动推送的次数非常克制：非紧急事项要等用户醒着且空闲时才推送，每天最多一条；每条消息发出前还要经过分类器和撰写器两道筛选，提示词里明确要求，没有值得告知的内容就一条都不发。</p>
+<p><strong>6、常驻 Agent 架构清单，搭之前可以按这张表逐项核对。</strong></p>
+<p>如果你正准备把现有的 Agent 改成后台常驻，或者从零搭一套类似的系统，可以把上面这五个组件的职责和实现要点对照检查一遍：</p>
+<table>
+	<thead>
+			<tr>
+					<th>外围组件</th>
+					<th>解决的典型问题</th>
+					<th>核心实现要点</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>事件收件箱</td>
+					<td>并发执行覆盖状态、进程崩溃丢失事件</td>
+					<td>接口快速落表返回确认，单收件箱单活跃 Worker 串行消费，连续消息合并执行</td>
+			</tr>
+			<tr>
+					<td>定时器</td>
+					<td>死循环高频轮询消耗 Token</td>
+					<td>区分单次跟进提醒与固定周期任务，到期统一写入收件箱触发</td>
+			</tr>
+			<tr>
+					<td>记忆系统</td>
+					<td>跨轮次丢失上下文、记忆文件持续膨胀</td>
+					<td>只存无法从外部查到的信息，笔记与进度启动只读目录索引，配合离线整理清旧项</td>
+			</tr>
+			<tr>
+					<td>权限控制</td>
+					<td>明文密钥泄露、等待人工审批阻塞后台</td>
+					<td>外部代理注入凭据，分类器拦截高危操作，需人工审批时保存会话结束本次执行并释放 Worker</td>
+			</tr>
+			<tr>
+					<td>发件箱</td>
+					<td>后台频繁推送消息变成噪音</td>
+					<td>允许执行静默结束，用评测调优发送频率，初期保持低频推送再逐步放开</td>
+			</tr>
+	</tbody>
+</table>
+<p>当然，Anthropic 这份指南解决的主要是单个常驻 Agent 在应用层的闭环。如果真要放到团队或企业的多租户生产环境里大规模运行，在这五个组件底下，还需要补上虚拟机级别的强隔离 Sandbox、独立的 Agent 身份认证以及跨 Agent 的审计熔断机制，把安全底线放在 Agent 自己接触不到的基础设施层。</p>
+<p>我越来越觉得，随着大模型长程任务的成本大幅降低，做常驻 Agent 拉开差距的地方已经不在提示词和 Agent Harness 本身，而在推理循环之外的那套管理事件调度、状态延续和权限边界的系统工程能力。</p>
+<p><strong>推荐阅读：</strong></p>
+<ul>
+<li>Building always-on agents：<a href="https://claude.com/resources/articles/building-always-on-agents">https://claude.com/resources/articles/building-always-on-agents</a></li>
+</ul>
+]]></content:encoded><dc:extent>10 min read</dc:extent></item><item><title>DeepSeek Harness 入门指南：一切皆插件的 Agent 到底怎么用</title><link>https://feisky.xyz/posts/2026-08-14-deepseek-harness/</link><pubDate>Fri, 14 Aug 2026 10:00:00 +0800</pubDate><dc:creator>Pengfei Ni</dc:creator><category>DeepSeek</category><category>DeepSeek Harness</category><category>AI Agent</category><category>Agent Harness</category><category>开源</category><guid>https://feisky.xyz/posts/2026-08-14-deepseek-harness/</guid><description>&lt;p&gt;昨晚 DeepSeek 发布了新模型 DeepSeek V4 Pro，虽然有些波折，但性能提升毫不意外。倒是跟着一起出来的 DeepSeek Harness 让人眼前一亮，这是 DeepSeek 的第一个 Agent 产品。刚刚开源一天，GitHub 已经 7 万多星了，增速比当初 R1 开源的时候还猛。&lt;/p&gt;</description><content:encoded><![CDATA[<p>昨晚 DeepSeek 发布了新模型 DeepSeek V4 Pro，虽然有些波折，但性能提升毫不意外。倒是跟着一起出来的 DeepSeek Harness 让人眼前一亮，这是 DeepSeek 的第一个 Agent 产品。刚刚开源一天，GitHub 已经 7 万多星了，增速比当初 R1 开源的时候还猛。</p>
+<p>很多人以为 DeepSeek Harness 是又一个 Codex 复刻，但实际跑一下就可以发现，这东西跟 Codex 们根本不是一个思路。</p>
+<p>简单说，Codex 就是一体机，模型、工具、循环、权限全部焊死在一起。想换模型必须使用 Codex 支持的模型格式，想去掉用不到的工具省点 token 也没门。DeepSeek Harness 则是组装机，模型是插件，工具是插件，会话是插件，连 Agent 循环等等一切皆插件。</p>
+<p>为此，DeepSeek 还专门发了一篇 88 页的论文，把插件的装卸做成了有数学证明的形式化系统。这还是我第一次看到有人用数学证明来定义 Agent Harness 该怎么组装。</p>
+<p>下面就从安装开始，带你一步步把它跑起来。</p>
+<h2 id="一行命令跑起来">一行命令跑起来</h2>
+<p>首先，机器上需要安装 Node.js （版本号要求 22.19 以上，如果没有，可以让其他的 Agent 帮你安装）。然后在命令行执行：</p>
+<pre tabindex="0"><code>npx @deepseek-ai/dsh web
+</code></pre><p>稍等一下，你会看到 <code>dsh web: http://127.0.0.1:3080</code>。接着，在浏览器打开这个链接就进入了 DeepSeek Harness 主界面。</p>
+<p>在开始使用之前，它会提示你输入 API Key。到 DeepSeek 开放平台（platform.deepseek.com）创建一个：</p>
+<p><img
+  src="/images/2026-08-14-deepseek-harness-api-keys.jpg"
+  alt="DeepSeek 开放平台 API Keys"
+  loading="lazy"
+  decoding="async"
+/></p>
+<p>复制 API Key，回到 Harness 界面粘贴上就可以进入如下所示的主界面了 ：</p>
+<p><img
+  src="/images/2026-08-14-deepseek-harness-web-ui-main.jpg"
+  alt="DeepSeek Harness Web UI 主界面"
+  loading="lazy"
+  decoding="async"
+/></p>
+<p>这时候输入框还是不能输入的。你需要先选择一个工作区（就是你要让 Agent 操作的项目目录），比如我选择了 deepseek-harness 源码目录，接着输入框就可以用了。</p>
+<h2 id="开始第一个任务">开始第一个任务</h2>
+<p>配好之后我试了个简单的：让它总结自己的源码仓库。发了一句“总结此代码库并识别其主要工作原理”，它读了 AGENTS.md，扫了 packages 目录，阅读了设计文档，一分钟左右就给出了一份架构概览，核心包和它们的职责列得挺清楚。</p>
+<p><img
+  src="/images/2026-08-14-deepseek-harness-dsh-conv.jpg"
+  alt="DeepSeek Harness 会话示例"
+  loading="lazy"
+  decoding="async"
+/></p>
+<p>直观用下来，跟 Codex 具有明显的不同：</p>
+<p>第一个明显感受是速度。用惯了 Codex 再切过来，对比太明显了，响应速度和工具调用的周转都非常快。当然这跟 DeepSeek V4-Flash 本身的推理速度有关，但 Harness 端的开销控制也做得不错。</p>
+<p>另一个亮点是轨迹视图。点开“轨迹”标签页，可以看到模型每一步看到了什么、调了哪个工具、传了什么参数、返回了什么结果，连 system prompt 和 context 注入都能展开看。</p>
+<p><img
+  src="/images/2026-08-14-deepseek-harness-trajectory-view.jpg"
+  alt="Trajectory 视图：会话的每个细节都可追溯"
+  loading="lazy"
+  decoding="async"
+/></p>
+<p>所有信息都记在 append-only 的会话日志里，恢复、分叉、回放都从这里派生。这个“模型可见即已记录”的方式，在其他 Agent 工具里不常见。</p>
+<h2 id="装备-agent-预设">装备 Agent 预设</h2>
+<p>DeepSeek Harness 对 Agent 的灵活控制体现在它的 Agent 预设功能里。所谓 Agent 预设就是一个会话的 Agent 所运行的插件组装，包括它的工具、提示词与能力等等。</p>
+<p>打开设置里的“Agent 预设”，可以看到它已经内置了四种预设：</p>
+<p><img
+  src="/images/2026-08-14-deepseek-harness-agent-presets.jpg"
+  alt="Agent 预设：四种模式"
+  loading="lazy"
+  decoding="async"
+/></p>
+<p>标准模式是日常默认，提供了最完整工具组合。PTC 模式让模型用 TypeScript 程序编排多步工具调用，跟 Claude Code 的 thinking tool use 一个思路。极简模式只保留 bash + 编辑器这两个工具，用于基准测试。创造模式则在标准模式的基础上又增加了自检、插件实验和预设创建功能，用来创建新的 Agent 预设。</p>
+<p>这四种模式本身就展示了“一切皆插件”的核心：不同模式就是不同的插件组合，你也可以复制一份改成自己的。</p>
+<p>对于入门使用来说，标准模式就够了。等你玩熟练了，想针对特定场景或项目做定制，到时候就可以切换到创造模式，让它帮你装备上你特定的工具、Skill、知识库等私有配置。</p>
+<h2 id="一切皆插件">一切皆插件</h2>
+<p>前面说了 DeepSeek Harness 是组装机，那具体能组装哪些东西呢？翻了一下源码，我发现整个项目由 50 多个独立的 Cordis 插件组成，每个插件负责一个具体能力。这些插件之间没有谁是核心、谁是外围的区分，官方原话是 “There is no privileged core to patch”，所有插件地位平等。</p>
+<p>下面这张图展示了主要的服务插件和它们的可替换选项：</p>
+<p><img
+  src="/images/2026-08-14-deepseek-harness-dsh-plugin-system.jpg"
+  alt="DeepSeek Harness 插件系统架构"
+  loading="lazy"
+  decoding="async"
+/></p>
+<p>从图里可以看到，模型、工具、会话、沙箱、技能、子 Agent 这些能力全部挂在同一个 Root Context 下面，每个都可替换。下面挑几个最实用的场景说一下：</p>
+<ul>
+<li>
+<p>换模型。设置页面添加自定义 OpenAI 兼容端点，指向公司网关或 vLLM，下一次请求直接生效，不用重启。</p>
+</li>
+<li>
+<p>换沙箱。默认本地沙箱（Linux Landlock / macOS sandbox-exec），代码里有 E2B 云端沙箱适配器，换个配置就行。</p>
+</li>
+<li>
+<p>删工具。Claude Code 每次都把几十个工具 schema 塞进提示词白吃 token。DSH 每个工具是独立插件，配置里禁用即可。</p>
+</li>
+<li>
+<p>换 Agent 循环。这是跟所有现有 Agent 最大的区别。Claude Code 和 Codex 的 agent loop 都是写死在运行时里的，你可以在预留的 hook 点做定制，但循环本身换不了。DSH 的 agent loop 就是一个普通插件，写一个新的替换它就行。而且循环里的每个关键节点（模型请求前、工具执行前、轮次结束时）都是 waterfall 事件，你写一个审批插件或日志插件，监听这些事件就能拦截和改写，不需要碰循环代码本身。</p>
+</li>
+</ul>
+<p>说白了，其他 Agent 能做的事 DSH 都能做。但反过来，agent loop 本身可替换这件事，是其他 Agent 加多少 hook 都做不到的，因为这是最底层的架构决定。</p>
+<h2 id="cordis-运行时安全装卸">Cordis 运行时安全装卸</h2>
+<p>既然一切都是插件，那就必须回答一个问题：怎么保证插件在运行时装上去、卸下来不会把其他插件搞挂？这正是 Cordis 框架要解决的核心问题。</p>
+<p>做个对比：VSCode 也有插件系统，但卸载每个插件必须重启整个编辑器。而 Cordis 的目标是让插件可以随意热插拔，而且有数学证明保证安全。</p>
+<p>下面这张图展示了 DeepSeek Harness 的分层架构，从上到下每一层都可以被上一层覆盖：</p>
+<p><img
+  src="/images/2026-08-14-deepseek-harness-dsh-architecture-overview.jpg"
+  alt="DeepSeek Harness 分层架构"
+  loading="lazy"
+  decoding="async"
+/></p>
+<p>论文把安全装卸拆成两个维度来解决：</p>
+<ul>
+<li>
+<p>时间维度，插件卸载时所有副作用必须可撤销。每个注册的事件监听器、服务、工具 schema 都通过 <code>ctx.effect()</code> 安装，运行时追踪逆操作，卸载时反序执行。</p>
+</li>
+<li>
+<p>空间维度，插件间依赖自动管理。通过 <code>inject</code> 声明需要哪些服务，框架等依赖就绪再激活。被依赖的服务卸了，依赖它的插件自动暂停。</p>
+</li>
+</ul>
+<p>有了这些，你可以在 Agent 跑着的时候换模型、加工具、改沙箱，不丢上下文，不丢会话。论文还证明了 confluence 定理，不管你以什么顺序装卸插件，最终状态等价于把最终配置从头加载一次。</p>
+<h2 id="还不够好的地方">还不够好的地方</h2>
+<p>DeepSeek Harness 虽然刚开源一天，但生态已经非常丰富了。内测阶段的招募在 Twitter 上引发了一场开发者路演，964 人报名提交了 897 个项目。开源后 <code>awesome-deepseek-harness</code> 等精选列表迅速冒了出来。</p>
+<p>有意思的是，从 GitHub commit 历史可以发现，不少代码是通过 Codex worktree 提交的。DeepSeek V4 原生支持 Responses API，可以无缝接入 Codex，所以团队直接拿竞争对手的工具来开发自己的产品，挺务实的。</p>
+<p>目前官方不接受外部 PR，但可以通过 Discussion 反馈问题，也鼓励社区做独立插件丰富生态。官方表态也挺有意思：“我们不认为官方仓库中的包比社区创建的包更重要”。</p>
+<p>不过问题也不少。现在的 v0.1 还处在开发者预览状态，后续肯定会有破坏兼容性的变更。安全方面，已有研究者发现几个严重漏洞，包括 read-only 沙箱对读操作不设防、动态插件的 vm 沙箱存在逃逸路径等，这些安全问题在使用时一定要注意。</p>
+<h2 id="写在最后">写在最后</h2>
+<p>如果把 DeepSeek Harness 当产品看，它现在有没有 Codex 好用？UI 成熟吗？体验够不够顺畅？这些问题的答案都是“还差得远”。</p>
+<p>但 DeepSeek Harness 看的可能不是当下的使用体验。在模型能力还在高速变化、Harness 的最佳范式远没有收敛的阶段，过早押注一个封闭产品，等于拿一家公司的判断去猜一个还在移动的终局。DeepSeek 的做法是把门打开，保留尽可能多的选择权，让社区来探索什么组合最有效。</p>
+<p>某种上下文策略胜出了，它就可以成为默认插件。PTC 比传统工具调用更有效，它就可以被强化。未来模型强到不需要复杂的多 Agent 编排，那些组件就可以随时卸掉。社区跑出来的问题、插件和经验，会不断暴露模型在真实任务中哪里不够用，这些反馈既推动 Harness 迭代，也能告诉模型团队下一代该往哪个方向训练。</p>
+<p>你不用急着把全部任务都切过来，但可以考虑把中文写作、超长上下文任务、以及日常跑量大的工作丢给它试试，等慢慢稳定后再考虑切换更多工作过来。</p>
+<p>相关链接：</p>
+<ul>
+<li>官方文档：deepseek.com/harness</li>
+<li>GitHub 仓库：github.com/deepseek-ai/deepseek-harness</li>
+<li>Cordis 论文：github.com/cordiverse/paper</li>
+</ul>
 ]]></content:encoded><dc:extent>7 min read</dc:extent></item></channel></rss>

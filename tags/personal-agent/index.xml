@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://search.yahoo.com/mrss/"><channel><title>Personal Agent | Feisky</title><link>https://feisky.xyz/tags/personal-agent/</link><description>极客时间专栏作者，专注于 Kubernetes、AI Infra、AI Agent 领域的深度技术分享，让 AI 成为你的第二大脑</description><generator>Hugo 0.170.1</generator><language>zh-CN</language><managingEditor>Pengfei Ni</managingEditor><webMaster>Pengfei Ni</webMaster><lastBuildDate>Wed, 18 Nov 2026 11:51:19 +0000</lastBuildDate><atom:link href="https://feisky.xyz/tags/personal-agent/index.xml" rel="self" type="application/rss+xml"/><item><title>让 Meta 重新崛起的 Muse，这个 Personal Agent 背后是怎么工作的</title><link>https://feisky.xyz/posts/2026-10-13-meta-muse/</link><pubDate>Tue, 13 Oct 2026 10:00:00 +0800</pubDate><dc:creator>Pengfei Ni</dc:creator><category>Muse</category><category>Personal Agent</category><category>Agent</category><category>Harness</category><category>OpenClaw</category><guid>https://feisky.xyz/posts/2026-10-13-meta-muse/</guid><description>&lt;p&gt;提到 Personal Agent，很多人的第一反应是找个 Agent 替自己干活。可同样是 Personal Agent，大家拿 Grok Bot 和 Muse 干的活，几乎没什么重叠。&lt;/p&gt;&#10;&lt;p&gt;Grok Bot 常见的用法，是按岗位搭几个 Bot 一起干活：盯着 Slack 和 GitHub 的消息，跟进销售线索和会议，整理营销报表，运营社交媒体等等。而 Muse 不一样，更多的人拿它来办生活里的杂事：打电话替自己排队等人工，在客服窗口里把网费砍下来，翻银行账单揪出一笔不认识的扣款，再顺手退掉忘了的订阅等等。&lt;/p&gt;</description><content:encoded><![CDATA[<p>提到 Personal Agent，很多人的第一反应是找个 Agent 替自己干活。可同样是 Personal Agent，大家拿 Grok Bot 和 Muse 干的活，几乎没什么重叠。</p>
+<p>Grok Bot 常见的用法，是按岗位搭几个 Bot 一起干活：盯着 Slack 和 GitHub 的消息，跟进销售线索和会议，整理营销报表，运营社交媒体等等。而 Muse 不一样，更多的人拿它来办生活里的杂事：打电话替自己排队等人工，在客服窗口里把网费砍下来，翻银行账单揪出一笔不认识的扣款，再顺手退掉忘了的订阅等等。</p>
+<p>一个接管了上班琐事，一个接管了日常琐事。这不只是用法不同，两个产品的设计骨架和生态天然造就了它们的不同用法。Grok Bot 按岗位给你一群 Bot，每个 Bot 各管各的记忆和定时任务；Muse 只给你一个 Agent，一条主对话从第一天一直聊下去，你生活里的人和事都记在同一个 Agent 身上。</p>
+<p>设计骨架不一样，记忆和权限自然也是两种管法。<a href="https://mp.weixin.qq.com/s/NTnsKkc3BRM-Q6S-eIkXGA">上一篇拆完了 Grok Bot</a>，这一篇再看看让 Meta 重新崛起的 Muse，这样一个替你过日子的 Personal Agent，背后是怎么工作的。</p>
+<h2 id="muse-提供了什么环境">Muse 提供了什么环境</h2>
+<p>Muse 是 Meta 上个月推出的 Personal Agent，官方定位是一个人人都能用的个人 Agent，会主动帮你推进目标、给你出主意，用起来就像给人发消息，App 和 WhatsApp 里都能聊。目前只在美国和加拿大开放。</p>
+<p>和 Grok Bot 最大的不同，是一个人只有一个 Agent，没有 Bot 名册，也没有群聊。它的名字、头像和性格由你来定，主对话从第一天一直延续下去，话题多了可以另开副聊天，对话上下文分开，记忆还是同一份。</p>
+<p>用过 OpenClaw 的人，看到它云电脑里的文件会很眼熟：SOUL.md、IDENTITY.md、USER.md、MEMORY.md、AGENTS.md、HEARTBEAT.md，一个不差。这也是 X 上流传最广的说法，Muse 就是给普通人用的 OpenClaw。Meta 那边也没否认，说代码是从零写的，但产品上深受 OpenClaw 启发，文件名也是照着用的。</p>
+<p>不同的是，在 OpenClaw 里这些文件要你自己写、自己清理；在 Muse 里，MEMORY.md、SOUL.md 这几个你可以在 Identity 页直接改，但大部分时候不用动手，后台会替你整理。</p>
+<p>配置上，两边也差了不少。Grok Bot 是 8 核 CPU、15GB 内存的 Debian 13；Muse 则只有 2 个 vCPU、8GB 内存。Grok Bot 会给每个 Bot 都开一个桌面和浏览器，Muse 的 Agent 则没有桌面。</p>
+<p><img
+  src="/images/2026-10-13-meta-muse-muse-vm.jpg"
+  alt="Muse 的云电脑"
+  loading="lazy"
+  decoding="async"
+/></p>
+<p>官方的说法是，这是一台机器上的两个隔离的安全域，而不是一个拿着 root 权限的 Agent。上一篇讲过，Grok Bot 的凭据以环境变量的形式出现在 Shell 命令上，靠审查模型在动手前把关；Muse 则直接把凭据和对外的出口放到了 Agent 够不着的地方。</p>
+<h2 id="muse-是怎么运行的">Muse 是怎么运行的</h2>
+<p>对话之外，Muse 一直有一组后台流程在不停跑着：每小时整理记忆、更新你身边每个人的档案，每天写构想卡、复盘技能，每晚研读你的目标，再“做梦”回顾最近的对话。Feed 则由另一条流程每小时决定要不要出一刊。</p>
+<p>跟 Codex 这种编程 Agent 不同，Muse 后台执行的任务虽然非常多，但来找你的次数并不多。普通的事要等你醒着、闲下来才发，每天最多一条，只有紧急的才立刻推送；每条结果还要先过分类器和撰写器两关，提示词里写得很明白：没有值得说的，就一条都不发。嫌它太吵或者太安静，直接跟它说就行：</p>
+<p><img
+  src="/images/2026-10-13-meta-muse-muse-background.jpg"
+  alt="Muse 的后台流程"
+  loading="lazy"
+  decoding="async"
+/></p>
+<p>构想卡也有一套规矩。每张卡都是一份可以验收的执行合约，写着做完你能得到什么、有哪些限制、怎么算做好、为什么推给你；写完还要过一道评审，只问一个问题：这张卡是不是只可能写给这个人？你问它为什么推这张，它也得去数据库里查当初存下的理由，不能临场编一个。</p>
+<p>目标页也是同一个思路。目标本身不跑任何东西，真正干活的是挂在它下面的定时任务。</p>
+<p>上一篇讲过，Grok Bot 的主动性是在聊天里提一句，问你要不要把重复的活做成定时任务；Muse 则把主动性拆成了几个单独的页面和一整套后台流程。</p>
+<h2 id="记忆怎么管">记忆怎么管</h2>
+<p>跟所有 Agent 一样，会话聊久了总是需要压缩，而压缩就不可避免导致信息丢失，所以 Muse 在对话之外另外维护了一套五层的记忆。写入有两条路：Agent 在对话里学到值得记的事，当场就写进去；后台每小时从对话里抽出一条条事实，带着类型、置信度、你的原话和来源消息，再合并进去：</p>
+<p><img
+  src="/images/2026-10-13-meta-muse-muse-memory.jpg"
+  alt="记忆怎么写进去"
+  loading="lazy"
+  decoding="async"
+/></p>
+<p>这些事实会被证实、到期、被新的事实取代，MEMORY.md 只留最新的版本，旧的轨迹留在每日笔记里。之前我写 <a href="https://mp.weixin.qq.com/s/AihoveTaONbtSt4ez87B2w">OpenClaw 的正确打开方式</a> 时提过一个坑：OpenClaw 的 Dreaming 容易把啰嗦的内容也晋升上来，MEMORY.md 越来越臃肿，只能定期手动清理。Muse 用新事实取代旧事实的办法来控制它，做梦写出的那份“该怎么对待这位用户”的总结，也只当作参考，不能替你下命令。</p>
+<p>当然只是增加记忆还远远不够，能够正确遗忘才是记忆系统的核心。在 Muse 里，你说一句“忘掉这件事”，它并不是简单地删掉一行记忆，而是会走一整套清理流程，具体步骤如下图所示：</p>
+<p><img
+  src="/images/2026-10-13-meta-muse-muse-forget.jpg"
+  alt="说一句忘掉这件事之后"
+  loading="lazy"
+  decoding="async"
+/></p>
+<p>另外，遗忘和删除在 Muse 里是分开的。删掉聊天记录，它从里面学到的东西可能还留在记忆里，需要再让它忘掉一次；反过来，让它忘掉某件事，原来的聊天记录也还在，而主聊天只能通过重置整个 Muse 才能清空。</p>
+<h2 id="权限是怎么管理的">权限是怎么管理的</h2>
+<p>打电话、砍网费、下单，这些都是让 Agent 替你出面去做事，而 Agent 总是有可能会出错的。Meta 官方文档也强调了这个安全问题：不管模型多强，这类 Agent 都一定会犯错，也会被它读到的数据攻击，所以整套系统都是按照 Agent 可能已经被攻破的前提来设计的。</p>
+<p>这套设计的核心是 Sentinel。它是一个跑在容器外面的独立服务，也是连接器动作和网络出口唯一的授权方：Agent 只能提出要做什么，批不批则由 Sentinel 按照你设定的策略来决定。需要问你的时候，审批卡会直接弹到 App 上，而不是通过你和 Muse 的对话，所以 Agent 既看不到这张卡，也没法替你点同意：</p>
+<p><img
+  src="/images/2026-10-13-meta-muse-muse-permission.jpg"
+  alt="权限是怎么管理的"
+  loading="lazy"
+  decoding="async"
+/></p>
+<p>哪些出站请求可以不打扰你？Muse 的办法是在内核里用 eBPF 追踪数据的流向：每个工具进程启动时都是干净的，一旦读过你的数据，就会被打上污点，从而失去自动放行的资格，必须走正常的审批流程。而涉及花钱的操作，每一笔都需要你单独批准。</p>
+<p>凭据也是同样的思路，Agent 可以使用凭据，但始终看不到凭据本身：</p>
+<p><img
+  src="/images/2026-10-13-meta-muse-muse-credentials.jpg"
+  alt="凭据是怎么管理的"
+  loading="lazy"
+  decoding="async"
+/></p>
+<p>上一篇讲权限时我提到，Grok Bot 能守住的约束基本都写在了 schema 和代码里。Muse 则把这条线又往下推了一层，把约束放进了 Agent 碰不到的另一个安全域，这样即使 Agent 被骗了，也没法绕过 Sentinel 把你的数据发出去。当然，官方也承认 prompt 注入目前仍然没有解决，所以同时开放了漏洞赏金计划。</p>
+<p>定时任务的设计也和 Grok Bot 不太一样。任务跑完之后，要先判断有没有值得报告的内容，再交给面向你的 Agent 转告，所以任务跑完并不等于你收到了结果，官方条款里也写明了不保证按时完成。需要频繁盯着某件事时，Muse 也不会每分钟叫醒一次模型，而是让一段脚本去轮询，真有事了才叫醒模型。</p>
+<p>不过，这些设计也是有代价的：Muse 的能力基本依赖 Meta 和合作方提供的技能和连接器，用户没法自己接入 MCP 服务器。</p>
+<h2 id="浙大团队的-nanomuse">浙大团队的 nanoMuse</h2>
+<p>Muse 目前只在美国和加拿大开放，国内想体验的话，可以试试浙大团队做的开源项目 nanoMuse。它在 Muse 上线两周后开工，基本由一个人开发，两周多就发布了 1.0，GitHub 上已经有近千个 star。</p>
+<p>从使用体验上看，nanoMuse 基本上就是 Muse 的复刻（对得起它的名字）：Feed、Ideas、Goals、Library、Markdown 记忆和审批卡片等等都有，还多了操作 Android 手机屏幕、设备之间互相派活这些 Muse 没有的能力。不过从代码来看，它的实现跟 Muse 差别很大：</p>
+<p><img
+  src="/images/2026-10-13-meta-muse-muse-vs-nanomuse.jpg"
+  alt="Muse 和 nanoMuse"
+  loading="lazy"
+  decoding="async"
+/></p>
+<p>其中差别最大的是 Sentinel。nanoMuse 的 Sentinel 和 agent 跑在同一个进程、同一个系统用户下，凭据库和密钥也放在同一个目录里，作者也承认，这只是策略边界，而不是权限边界。1.0 发布前后，它就已经修过两次同一类漏洞：在放手模式下，后台任务可以先读取一份私密数据，再悄悄发到一个陌生的主机上，整个过程都不需要审批。</p>
+<p>所以 nanoMuse 更适合用来体验 Muse 这一套交互方式，真正难做的是交互背后的两件事：后台怎么把记忆积累起来、管理好，以及怎么把对外的出口放到 Agent 够不着的地方。</p>
+<h2 id="写在最后">写在最后</h2>
+<p>拆完 Muse 再回头看，它和 Grok Bot 其实是在同一道题上给出了两个不同的答案。Grok Bot 给你一群 Bot 和一台什么都能装的电脑，用起来很灵活，但很多边界需要你自己操心；Muse 只给你一个 Agent，记忆交给后台整理，出口放在 Agent 够不着的地方，普通人也敢把事情交给它。所以挑 Personal Agent 之前，先想清楚你要它接管的是上班琐事，还是日常琐事。</p>
+<p>不过，越懂你的 Agent，记住的东西也就越多。Muse 会给你提到的每个人建档，让它忘掉也不等于真的清理干净了，Meta 自己也承认现在的架构挡不住它访问你的数据。所以除了看它能替你办成多少事之外，也要注意它的隐私问题，比如记了谁、记了什么，以及能不能在需要的时候让它真的忘掉。</p>
+<p>推荐阅读：</p>
+<ul>
+<li><a href="https://mp.weixin.qq.com/s/NTnsKkc3BRM-Q6S-eIkXGA">拆开 Grok Bot，看看一个 Personal Agent 是怎么工作的</a></li>
+<li><a href="https://mp.weixin.qq.com/s/AihoveTaONbtSt4ez87B2w">OpenClaw 的正确打开方式：从也就那样到离不开</a></li>
+</ul>
+]]></content:encoded><dc:extent>7 min read</dc:extent></item><item><title>拆开 Grok Bot，看看一个 Personal Agent 是怎么工作的</title><link>https://feisky.xyz/posts/2026-10-12-personal-agent-grok-bot/</link><pubDate>Mon, 12 Oct 2026 10:00:00 +0800</pubDate><dc:creator>Pengfei Ni</dc:creator><category>Grok Bot</category><category>Personal Agent</category><category>Agent</category><category>Harness</category><category>OpenClaw</category><guid>https://feisky.xyz/posts/2026-10-12-personal-agent-grok-bot/</guid><description>&lt;p&gt;很多人看到 Personal Agent 之后，第一印象就是：这不就是把 OpenClaw 再做一遍吗？&lt;/p&gt;&#10;&lt;p&gt;OpenClaw 我很早之前就配置用了起来，后来又切换到了 Hermes Agent，Hermes Agent 也就渐渐成了我的日常工作搭档，调研、设计、开发测试、端到端验证、PR 审核这些日常工作，也都一个个迁移到了 Hermes 上。所以论能做的事，这个印象没错，这批 Personal Agent 能干的，OpenClaw 和 Hermes 也都能干。&lt;/p&gt;</description><content:encoded><![CDATA[<p>很多人看到 Personal Agent 之后，第一印象就是：这不就是把 OpenClaw 再做一遍吗？</p>
+<p>OpenClaw 我很早之前就配置用了起来，后来又切换到了 Hermes Agent，Hermes Agent 也就渐渐成了我的日常工作搭档，调研、设计、开发测试、端到端验证、PR 审核这些日常工作，也都一个个迁移到了 Hermes 上。所以论能做的事，这个印象没错，这批 Personal Agent 能干的，OpenClaw 和 Hermes 也都能干。</p>
+<blockquote>
+<p>注：我体验下来，Hermes Agent 在开发方面跟 Codex、Claude Code 这些 Agent 相比还有很大差距，所以日常的大部分开发工作还是转给 Codex 执行；而对于文档和前端设计，Claude Code 效果会更好。</p>
+</blockquote>
+<p>但之前的 OpenClaw 和 Hermes 还都是极客在玩，没有进入大众视野。现在完全换了一个形态，不仅用 Agent 替换掉了原来的 Chat 聊天，每个 Agent 还都自带一套完整的系统。对普通用户来说，不用再去抢 Mac Mini，不用手动配置各种 MCP、Skill 和软件包，点一下按钮，就能把日常那些碎片化的工具拼起来。邮件、日历、网页上的杂事交给它之后，它会在后台一直默默干完，需要你拍板时才回来找你。</p>
+<p>也正因为体验好、用起来简单，比之前的 Chat 模式强出一大截，Grok Bot、Muse、Cue、Dots 一个接一个发布，几乎是出来一个火一个。Grok Bot 我自己深度用过，还在上面搭了很多小团队，下面就拿它为例来看看，Personal Agent 背后到底是怎么工作的。</p>
+<h2 id="grok-bot-是怎么设计的">Grok Bot 是怎么设计的</h2>
+<p>Grok Bot 是 SpaceXAI 8 月中旬推出的 Personal Agent，官方的定位是一组常驻在线、可以交真活的 AI 同事。每个 Bot 有自己的名字、头像和职位，背后有一台云端电脑，能登录你的各种工具，在后台把活干完，只在需要你批准的时候回来找你。</p>
+<p>它和 OpenClaw、Hermes 最不一样的地方，是怎么组织一个 Agent。大部分 AI 聊天产品是围绕一次会话来组织的：开个窗口问完问题，窗口沉到侧边栏底下，后面新会话再开一个新的。问题每次不同的时候，这没毛病。可很多时候，新问题跟旧会话是有关联的，假如它记不住之前的问题和完成的工作，你就需要每次花很长时间跟它介绍你的背景，用起来还是很别扭的。</p>
+<p>Grok Bot 的设计不同，它的侧边栏放的是 Bot 名册，不是聊天记录，你明天回来，找的还是同一个 Bot。</p>
+<p>在 Bot 名册之下，能力和上下文是按两条线切开的：</p>
+<ul>
+<li>工具和 Skill 放在账号级，所有 Bot 都能用。我统计了一下，自己已经装进去 35 个 Skill 了，每个 Bot 都看得到。</li>
+<li>记忆和定时任务归每个 Bot 自己，因为它们代表这个角色知道什么和干什么活。</li>
+</ul>
+<p>在这之下的机器是共享的，一个用户只有一台 Linux 云电脑，所有 Bot 共用文件、浏览器和登录态。你可以在需要时从 Bot 接管这台机器，进行任何你想要的操作。这也意味着你可以查看和配置这台机器，并且可以直接看到它内部是如何管理、运行和维护你的所有 Bot 的。</p>
+<p>比如，下面这个就是 Grok Bot 终端的一个截图，截图中的 sand-host 就是 Grok Bot 最核心的 Agent Harness 实现：</p>
+<p><img
+  src="/images/2026-10-12-personal-agent-grok-bot-sand-host-terminal.jpg"
+  alt="Grok Bot 电脑里的 sand-host 目录"
+  loading="lazy"
+  decoding="async"
+/></p>
+<p>这里面，host-main.cjs 就是整个 Grok Bot 的核心，系统 Prompt 都以明文字符串存在里面。你在使用 Grok Bot 过程中安装的 Skills，以及 Bot 的记忆、定时任务，都存储在这台机器的 HOME 目录中（用户名是 box），生成的文件则默认放在 <code>/workspace</code> 下。</p>
+<p>从 host-main.cjs 里的系统提示词来看，Grok Bot 每一轮送进模型的内容大致是这样组织的：</p>
+<p><img
+  src="/images/2026-10-12-personal-agent-grok-bot-system-prompt-structure.jpg"
+  alt="Grok Bot 每一轮送进模型的内容"
+  loading="lazy"
+  decoding="async"
+/></p>
+<p>顺带说一句，这套 harness 应该是基于 Cursor 的（据报道 Sand 是 Cursor 内部这个产品的代号），而 Cursor 也早就被 SpaceX 收购了。</p>
+<h2 id="对话如何持续">对话如何持续</h2>
+<p>在 Grok Bot 里，你和一个 Bot 的一对一聊天就是一条持续的对话，不会像 ChatGPT 那样每次新开一个窗口，后面发生的大部分事都会进到这条对话里。如果话题变成了另一件需要长期跟进的事，官方的建议是在聊天里开一个线程，或者干脆新建一个 Bot。</p>
+<p>叫醒 Bot 的也不只是你发的消息。下面这些事件，在 Grok Bot 里都会变成一条用户消息交给 Bot：</p>
+<ul>
+<li>定时任务到点了；</li>
+<li>别的 Bot 给它发了消息；</li>
+<li>Slack 这类渠道来了新消息；</li>
+<li>你在弹出的卡片上点了授权；</li>
+<li>后台跑的命令或子任务结束了。</li>
+</ul>
+<p><img
+  src="/images/2026-10-12-personal-agent-grok-bot-one-conversation.jpg"
+  alt="各种事件都进同一条对话"
+  loading="lazy"
+  decoding="async"
+/></p>
+<p>这些消息前面会多一个 <code>[SAND_HIDDEN_PROMPT]</code> 标记，再加上 <code>[routine]</code>、<code>[agent]</code> 这类前缀，告诉模型这条消息是从哪来的。比如定时任务那条会说，这是你自己的定时任务到点了，不是用户的输入；队友那条会说，这是另一个 Bot 在找你，用户在这个聊天里已经看得到它发的内容。</p>
+<p>这样一来，不管是谁叫醒它，它面对的都是同一个 Bot 的身份、记忆和上下文，看得到自己上次干到哪、刚才跟你说过什么，你也不用每次都重新交代一遍背景。</p>
+<p>反过来，没有事件它就不会醒。一开始的时候，Grok Bot 里没有周期性的心跳，主动干活全靠定时任务。不过 10 月初的版本，官方补上了主动性：你可以把一个 Bot 设成主 Bot（侧边栏上带星标的那个），它会自己留意有哪些活可以从你手里接过去，然后主动来问你要不要交给它。</p>
+<p>一条永远不结束的对话，最大的问题是贵。每一轮，模型都要把系统提示、记忆、Skill 目录和整段历史重新读一遍。所以 Grok Bot 做了好几层省钱的设计，目的都是让 prompt 前缀每轮保持一字不差，好命中模型服务的前缀缓存：</p>
+<ul>
+<li>冻结动态内容。系统提示里有四段内容会变：记忆、定时任务、队友名单和连接器说明。Grok Bot 把它们渲染一次就存成快照，只要对话还没被压缩，下一轮就接着用旧快照；中间变了的部分，以一个 <code>&lt;instructions_update&gt;</code> 差异块附在最新那条用户消息后面，只列加了哪几行、删了哪几行，等下次压缩时才真正替换。</li>
+<li>固定工具清单。模型看到的静态工具只有十来个，连接器的工具都藏在两个元工具后面，用的时候再去查。你装再多连接器，工具定义也不会变。</li>
+<li>按需加载 Skill。系统提示里只放 Skill 的目录，最多占上下文窗口的 2% ，正文用到时再读。原来写在系统提示里的长指引，也在一段段往 Skill 里搬。</li>
+</ul>
+<p>不过，缓存省的只是重复前缀的钱，省不掉对话本身越来越长带来的问题。Grok Bot 每一轮都会把完整对话发给模型，快到上下文上限才自动摘要，用户没法手动压缩，这个应该也是以后需要优化的点。</p>
+<h2 id="记忆怎么管">记忆怎么管</h2>
+<p>会话长了之后自动压缩，而压缩必然会带来上下文信息的丢失。为了缓解这个问题，Grok Bot 在对话之外另外攒了一套记忆系统，它分为三层：</p>
+<ul>
+<li>Bot 自己的记忆：<code>profile.md</code> 记你是谁、怎么跟你打交道，每一轮都在系统提示里；<code>log/</code> 按日期记做过的事。</li>
+<li>项目记忆：项目是 Bot 用内部工具自己建的一个共享文件夹，加入同一个项目的 Bot 共享这一层记忆。</li>
+<li>用户记忆：你名下所有 Bot 都看得到，比如你的名字、时区和长期偏好。</li>
+</ul>
+<p>这三层记忆越具体的越优先：Bot 自己的记忆 &gt; 项目记忆 &gt; 用户记忆。</p>
+<p>记忆的写入也有一套规矩。用户记忆虽然是共享的，但它按 Bot 分成了子目录，每个 Bot 只能写自己那份，别的 Bot 记错了，只能在自己那份里写一条更正，以最新的为准。每一轮结束后，后台会单独跑一次模型调用，从对话里挑出值得记的内容，寒暄直接过滤掉；模型想删一条记忆，也只有那条记忆逐字存在时才会执行。</p>
+<p>代码里还有一条更严格的新路线（9 月中旬那份安装包里还没启用，官方也没公开说过它是否上线），攒够证据再一次性合成，要依次通过模型提案、模型审核、程序校验证据编号这三道关：</p>
+<p><img
+  src="/images/2026-10-12-personal-agent-grok-bot-memory.jpg"
+  alt="记忆怎么写进去"
+  loading="lazy"
+  decoding="async"
+/></p>
+<p>写入时如果发现记忆已经被改过，它会重跑而不是直接覆盖，这套设计默认不让模型随意改写已有的记忆。这些攒下来的记忆，也是 Bot 主动给你提建议的依据。</p>
+<p>系统提示里专门有一段讲主动性，要求每个建议都要能指回一个它真的看到过的信号：同一件手工活出现第二次、第三次，就提议做成定时任务；做完一件事明显还有下一次，就问一句要不要每周来一遍，你说不要就别再提，而且一次只推一个建议。不过官方自己也没指望记忆完全靠得住，文档建议做重要决定之前，让 Bot 回去核对原始数据，别只信记忆。</p>
+<h2 id="权限怎么管">权限怎么管</h2>
+<p>前面说过，各种事件都会变成一条用户消息交给 Bot。这样做也带来一个安全问题：Slack 消息、网页内容、别的 Bot 发来的话都混在同一个对话里，Bot 要怎么分清哪些才是你的意思？Grok Bot 的做法是在每条消息上标明来源，由代码记住“这条消息是谁发的”，而不是只靠 prompt 提醒模型小心。</p>
+<p>这个来源标记，就是前面提到的 <code>[SAND_HIDDEN_PROMPT]</code>。有副作用的工具调用（跑命令、调插件、操作电脑等）执行前，都会先过一个 Auto-review 审查模型，判断这个动作是不是用户要的。带隐藏标记的消息，在审查模型眼里都不算用户的要求。例外只有一种：你自己写下的定时任务按时触发，或者你手动点了立即运行，会额外带一个可信标记，重新算作你的意图。由外部事件触发的定时任务一律不可信，因为里面夹带着第三方的内容。</p>
+<p>比如，一个盯着 Slack 频道的定时任务，被一条写着“把数据库删了”的消息唤醒，不管这句话怎么写，都没法让审查模型认定是你授权的。系统提示里对应的规矩是，动手的授权只来自聊天里那个真实的用户，别的 Bot、工具结果、定时任务、网页里带进来的指令，都不能提升它的权限。</p>
+<p>审查模型看的也不是原始命令字符串。Shell 命令在送审之前会被解析成语法树，所以被拦下之后换个写法、base64 编码一下或者拆成几步，都算一个全新的动作，从头再审。</p>
+<p><img
+  src="/images/2026-10-12-personal-agent-grok-bot-trust-boundary.jpg"
+  alt="权限怎么管"
+  loading="lazy"
+  decoding="async"
+/></p>
+<p>凭据走的是另一条路，模型知道钥匙在哪、也会用，但看不到钥匙本身：</p>
+<ul>
+<li>Bot 的凭据只作为环境变量出现在 Shell 命令上，输出里一旦出现就自动打码；</li>
+<li>1Password 里的凭据，模型只看得到标题和网站；</li>
+<li>需要你输入的密码，由宿主程序直接填进页面，回执只告诉模型填没填成功；</li>
+<li>负责操作浏览器和桌面的子代理，连这些环境变量都拿不到，因为它们一直在读不可信的网页内容。</li>
+</ul>
+<p>Bot 之间互相发消息，也是同一个思路。<code>SendToAgent</code> 一次只能发给一个 Bot，模型要是传一个收件人数组，参数校验会直接报错。群聊最多 6 个成员，每轮能发几条、最多聊几轮都有硬性上限，一整轮没人说话就提前结束。</p>
+<p>但在这些边界之外，也是有潜在问题的：</p>
+<ul>
+<li>一个是每个用户只有一台电脑，所有 Bot 都共用登录态和连接器，官方文档也提醒，不要把不同的 Bot 当成安全边界。</li>
+<li>另一个是 Bot 之间的私聊。群聊有轮数上限，私聊却没有。几个 Bot 互相唤醒、反复互审，很快就能把一周的额度烧光。只靠提示词，模型可以不听；更可靠的办法是只留一个指挥 Bot，让它用子代理干活，子代理干完就停，不要再回头叫醒其他 Bot。</li>
+</ul>
+<p>从这儿你可以发现，能守住的约束基本都写在了 schema 和代码里，而只写在 Prompt 里面的约束就很容易会出现越界问题。</p>
+<h2 id="写在最后">写在最后</h2>
+<p>拆完 Grok Bot 再回头看，它最弱的一环反而是模型。Grok Bot 的模型其实一直是个硬伤，比起 Claude Opus 5.5 和 GPT-6，都还有挺大的差距。所以它自己也在往调度的方向走：写代码交给 Cursor 的 Cloud Agent，10 月初又宣布后端会按任务挑模型，Claude Opus 5.5 也在其中。这其实和我自己的体验差不多，开发审核看 GPT-6，文档和前端则 Claude Opus 5.5 更强。</p>
+<p>对 Personal Agent 来说，模型可以按任务换，真正换不掉的，是在 Bot 身上攒下来的记忆、技能、个性化定制，还有你已经习惯交给它做的那些事。所以在我看来，Personal Agent 接下来比的不只是谁的模型更强，还有这几件更重要的事：</p>
+<ul>
+<li>理解你：读懂你的偏好、做决定的方式和背后的意图，知道你为什么这么做，而不只是记住你做过什么；</li>
+<li>发掘需求：顺着你的意图往前多想一步，及时补上你没想到的地方，发现你还没说出口的需求；</li>
+<li>长期积累：记忆一直攒下去，很久以前聊过的事，碰到相关的时候还能接得上。</li>
+</ul>
+<p>不过这几件事都有一个前提：Bot 攒下的东西越多、越懂你，它能碰到的账号和数据也越多，前面讲的那套权限边界就越重要。所以如果你正在挑 Personal Agent，或者自己搭建，除了看它懂不懂你之外，也要注意它能不能管住安全边界。</p>
+<p>下一篇，我会接着拆 Meta 的 Muse，看看它在记忆和权限上走了一条什么样的路。</p>
+<p>推荐阅读：</p>
+<ul>
+<li><a href="https://mp.weixin.qq.com/s/8tjjmj1ZBwh_VWNDT73_gg">Harness 不只是脚手架：从 Claude Code、Hermes 和 OpenClaw 看 Agent 架构的三条路</a></li>
+<li><a href="https://mp.weixin.qq.com/s/gkTsLXiGOHmracA0JpKPEQ">Managed Agents 架构拆解：Anthropic 给 Agent 造了一套 K8s</a></li>
+</ul>
+]]></content:encoded><dc:extent>10 min read</dc:extent></item></channel></rss>

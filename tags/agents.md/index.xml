@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://search.yahoo.com/mrss/"><channel><title>AGENTS.md | Feisky</title><link>https://feisky.xyz/tags/agents.md/</link><description>极客时间专栏作者，专注于 Kubernetes、AI Infra、AI Agent 领域的深度技术分享，让 AI 成为你的第二大脑</description><generator>Hugo 0.170.1</generator><language>zh-CN</language><managingEditor>Pengfei Ni</managingEditor><webMaster>Pengfei Ni</webMaster><lastBuildDate>Wed, 18 Nov 2026 11:51:19 +0000</lastBuildDate><atom:link href="https://feisky.xyz/tags/agents.md/index.xml" rel="self" type="application/rss+xml"/><item><title>推荐用 Codex 的朋友，收藏这份防过度设计模板</title><link>https://feisky.xyz/posts/2026-11-05-astra-scope-creep/</link><pubDate>Thu, 05 Nov 2026 10:00:00 +0800</pubDate><dc:creator>Pengfei Ni</dc:creator><category>Codex</category><category>GPT-6</category><category>AI 编程</category><category>AGENTS.md</category><category>Prompt Engineering</category><guid>https://feisky.xyz/posts/2026-11-05-astra-scope-creep/</guid><description>&lt;p&gt;这两个月，我的开发任务都迁移到了 Codex 上，搭配 GPT-6 Astra 使用。用下来整体效果比 Opus 还是差不少，最头疼倒不是它性能不好，或者写的代码差，而是很多时候它想的太多了，经常出现过度设计的问题。&lt;/p&gt;</description><content:encoded><![CDATA[<p>这两个月，我的开发任务都迁移到了 Codex 上，搭配 GPT-6 Astra 使用。用下来整体效果比 Opus 还是差不少，最头疼倒不是它性能不好，或者写的代码差，而是很多时候它想的太多了，经常出现过度设计的问题。</p>
+<p>OpenAI 介绍 Astra 的时候，说它擅长守住任务边界。而从我的使用体验和会话记录来看，恰恰相反。</p>
+<p>给它一个小任务，交回来的东西经常大幅超出任务范围，后面得花不少精力去做清理，Token 也跟着白白烧掉，导致我的 Token 额度都不够用了。所以，这几天，我让 Codex 把过去一个月的会话历史翻了一遍，类似的场景就整理出来十多个。</p>
+<p>根据这些历史会话的分析结果和踩过的坑，我把这些教训都更新到了全局配置 AGENTS.md 中，并整理了一份防过度设计的模板放在文末，推荐用 Codex 的朋友收藏一下。</p>
+<p>先来看看这些分析结果都发现了什么。</p>
+<p><strong>1、Codex 过度设计，大多是把小任务做成了一套机制。</strong></p>
+<p>这是最典型的过度设计问题。比如，我让它更新基础镜像里的工具版本，本来改几个版本号再做一些基本测试验证就足够了。结果 Codex 不仅更新好了版本，还夹带着做了一套前端开发验证框架。我只好回复它这个项目并不需要开发前端，只是用的开源组件包含了前端功能，只需要开个浏览器验证前端的基本功能可用就行了。</p>
+<p>其实这些问题很少是 Codex 乱改代码，大多是把小任务做过了头，把本来很简单的事情复杂化了。</p>
+<p><strong>2、过度设计不全是 Astra 的错，Codex 的默认设置也有问题。</strong></p>
+<p>为了解决这个问题，我又去翻了 OpenAI 的 GPT-6 使用指南，里面说 Astra 比之前的模型更容易停下来问问题，所以单看模型本身，它其实不算冒进。</p>
+<p>问题出在 Codex 这一层。Codex 发给模型的提示词里，有这么一句：<strong>In Default mode, strongly prefer making reasonable assumptions and executing the user&rsquo;s request rather than stopping to ask questions.</strong> 意思就是尽量自己做合理的假设，直接执行，不要老停下来问用户问题。</p>
+<p>一个本来就会主动推进把事情做完的模型，再加上这么个提示词，过度设计的问题就来了：Astra 会倾向替用户多想一步，举一反三，小任务慢慢就演变成了复杂的大任务。</p>
+<p>Codex 内置的提示词其实也写了官方的测试校准，比如不要给可回滚、低影响的改动写测试等。但官方提示词写的都是通用原则，你的项目和任务的背景信息，它是不知道的。</p>
+<p>所以，光靠官方的提示词还不够，还得在自己的项目配置里补上，而且最好在开工之前就写好。因为做得少了，可以让它再补一轮加上；但做多了，多出来的东西就只能清理掉，前面花掉的 Token 也收不回来了。</p>
+<p><strong>3、AGENTS.md 别删光，要把踩过的坑写进去。</strong></p>
+<p>Astra 出来以后，有不少文章都建议先删掉 AGENTS.md。OpenAI 官方指南也强烈建议大家审计 AGENTS.md 和 skills，因为 Astra 对指令更敏感，以前为旧模型写的每次都要读、每次都要测这类规则，都建议清理掉。</p>
+<p>这一点我是同意的，旧规则该删就删，Astra 自己能干好的事情留给它自由发挥就好。</p>
+<p>但同时也要注意避免前面刚刚提到的过度设计问题。如果只加一句笼统的“不要过度设计”，用处并不大，因为在具体任务上，它也不知道所谓的过度设计具体指什么。</p>
+<p>所以我现在的 AGENTS.md 里，只写具体的规则：</p>
+<p>第一，先约定范围。第一条规则是让它先从当前的请求里，找出预期结果、允许修改的对象、必须保持的约束和验收条件；如果路径不清楚，就先做一次简单的查找，限定只做最小的改动。</p>
+<p>第二，只读的请求就只读。解释、诊断、评审这类请求，只做排查和报告。让它看代码，并不代表允许它去跑测试或者探针。</p>
+<p>第三，不扩展没有要求的机制。在现有代码的基础上做够用的最小改动，不新增兼容层、开关、依赖或者抽象。</p>
+<p>第四，测试跟着改动的风险走。可逆、低风险的改动，不写只是复述实现的测试；版本更新不加新的测试框架；也不写只验证版本号、文件数量、措辞的测试。</p>
+<p>第五，做完就停。发现问题并不等于获准修复，不影响验收的问题，交付的时候列出来让用户决定。</p>
+<p>这些规则是通用的，我加到了全局的 AGENTS.md，对每个项目都适用。到了具体的项目里，还可以写得更细一些：哪些设计在这个项目里是绝对不要加的，哪些做法有更好的替代方案等等。这些都是项目自己的设计取舍，模型自己是猜不出来的。</p>
+<p><strong>4、全局配置管的是通用规则，具体的范围还需要任务里写清楚。</strong></p>
+<p>全局配置并不知道每一次的任务要什么、不要什么。OpenAI 的 Codex 最佳实践里，把往任务提示词里塞长期规则列为常见错误，长期规则应该放进 AGENTS.md。反过来也是一样，每一次任务的范围，应该写在任务描述里。</p>
+<p>所以我给 Astra 派活的时候，会在开头写清楚目标、允许修改、必须保持、不在范围内和验收这几项。也有人管这个叫 GPT 八股文，写法都差不多。也有人建议多加一项“为什么”，我觉得复杂任务也值得加上，它可以帮模型判断做到什么程度就够了。</p>
+<p>当然了，这些八股文并不需要完全手写，可以在任务开始执行之前让 Codex 跟你一起确认清楚。对于复杂的任务，还可以开启<code>/plan</code>模式，把详细的细节都讨论清楚并记录到文档中。</p>
+<p><strong>5、限制规则不宜多，不然 Codex 可能会经常停下来请示你。</strong></p>
+<p>这是一个跟过度主动反过来的坑。Astra 本来就比旧模型更爱问，如果先问我、等我批准这类话写多了，它会动不动就停下来请示你，这在长程任务上会非常痛苦。</p>
+<p>所以，需要人确认的事情要简单清晰，并写清楚 Codex 在范围内可以自己做什么。比如 OpenAI 有个官方的例子就不错：</p>
+<blockquote>
+<p>The local tests use disposable fixtures and have no production access. Run them, fix failures caused by the requested change, and rerun affected tests without asking for approval at each step.</p>
+</blockquote>
+<p>意思是本地测试用的是一次性数据，碰不到生产环境，可以直接跑，不用每一步都来问。</p>
+<p>不管是做得太多，还是动不动就停下来，说到底都是因为模型不知道边界在哪里，我觉得这其实也是人的价值所在。</p>
+<p><strong>6、想省 Token，别只靠换便宜模型。</strong></p>
+<p>Token 额度不够用的时候，很多人的第一反应是换一个便宜点的模型。说实话，我不太建议这么做。</p>
+<p>Claude Code 负责人 Boris Cherny 年初分享过自己的用法：所有任务都用 Opus 加 thinking。Opus 比 Sonnet 更大也更慢，但需要纠偏的次数更少，工具也用得更好，所以最后几乎总是比用小模型更快。</p>
+<p>OpenAI 介绍 Astra 的时候也给了类似的说法：虽然它的单价比旧模型高，但按每个任务估算的 API 成本反而更低。</p>
+<p>而且换便宜模型，还可能碰到反方向的问题，比如不理解任务目标、偷懒、代码质量差、需要反复强调才能遵循指令、需要装专门催它干活的 skill 才肯好好做等等。这样省下来的单价，很可能又花在不停催它返工上了。</p>
+<p>便宜模型的单价确实低，但一个任务来回跑好几轮，花的时间更长不说，算下来总账不一定划算。</p>
+<p><strong>7、AGENTS.md 和任务模版</strong></p>
+<p>最后附上我的模板。我把这些配置放到了 <code>~/.codex/AGENTS.md</code> 里，对全局项目都有效，你可以按照自己的项目来修改：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="gu">## 任务范围
+</span></span></span><span class="line"><span class="cl">从当前请求里找出目标、允许修改的对象、必须保持的约束和验收条件。路径不清楚时，先做一次有边界的查找。
+</span></span><span class="line"><span class="cl">按现有代码和模式做最小的充分改动，不新增兼容层、开关、依赖或抽象。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="gu">## 只读请求
+</span></span></span><span class="line"><span class="cl">解释、诊断、评审类请求只排查和报告，不改代码。静态检查不授权跑测试、探针或完整审计。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="gu">## 测试与验证
+</span></span></span><span class="line"><span class="cl">可逆、低风险的改动不写复述实现的测试。小 demo 或版本更新不加测试框架、检查器或 CI 门禁。
+</span></span><span class="line"><span class="cl">不写只验证版本号、文件数量、措辞、字段顺序的测试。
+</span></span><span class="line"><span class="cl">跑与改动相关的检查，通过后只在出现新改动、失败或具体风险时扩大验证。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="gu">## 自主与确认
+</span></span></span><span class="line"><span class="cl">范围内的读、改、测直接做。提交、推送、部署、写外部系统或明显扩大范围前，先做完能做的部分，再说明原因和最小扩展，等我确认。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="gu">## 交付
+</span></span></span><span class="line"><span class="cl">发现问题不等于获准修复。不阻塞验收的问题交付时列出。
+</span></span><span class="line"><span class="cl">文档归档只保留需要的文档、脚本和结果汇总。
+</span></span><span class="line"><span class="cl">达到验收就停，说明改了哪些文件、验证结果、没验证的部分。
+</span></span></code></pre></div><p>而对每个任务来说，则使用下面的模版：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">目标：[预期行为]
+</span></span><span class="line"><span class="cl">为什么做：[要解决什么问题，做到什么程度就够]
+</span></span><span class="line"><span class="cl">允许修改：[文件或路径；只读任务写「只读」]
+</span></span><span class="line"><span class="cl">必须保持：[接口、默认行为、已确认的设计]
+</span></span><span class="line"><span class="cl">不在范围内：[最要紧的一两项]
+</span></span><span class="line"><span class="cl">验收：[可观察的结果和要跑的检查]
+</span></span></code></pre></div><p>你有没有碰到过类似的问题？欢迎在评论区跟我交流。</p>
+<hr>
+<p>相关链接：</p>
+<ul>
+<li>OpenAI Using GPT-6：<a href="https://developers.openai.com/api/docs/guides/latest-model">https://developers.openai.com/api/docs/guides/latest-model</a></li>
+<li>OpenAI Rethinking skills and prompts for GPT-6 Astra：<a href="https://developers.openai.com/blog/rethinking-skills-and-prompts-for-gpt-6-astra">https://developers.openai.com/blog/rethinking-skills-and-prompts-for-gpt-6-astra</a></li>
+<li>Codex 最佳实践：<a href="https://developers.openai.com/codex/learn/best-practices">https://developers.openai.com/codex/learn/best-practices</a></li>
+<li>Codex Default 模式指令：<a href="https://github.com/openai/codex/blob/main/codex-rs/collaboration-mode-templates/templates/default.md">https://github.com/openai/codex/blob/main/codex-rs/collaboration-mode-templates/templates/default.md</a></li>
+</ul>
+]]></content:encoded><dc:extent>7 min read</dc:extent></item></channel></rss>

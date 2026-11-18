@@ -1,3 +1,413 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://search.yahoo.com/mrss/"><channel><title>Agent Runtime | Feisky</title><link>https://feisky.xyz/tags/agent-runtime/</link><description>极客时间专栏作者，专注于 Kubernetes、AI Infra、AI Agent 领域的深度技术分享，让 AI 成为你的第二大脑</description><generator>Hugo 0.167.0</generator><language>zh-CN</language><managingEditor>Pengfei Ni</managingEditor><webMaster>Pengfei Ni</webMaster><lastBuildDate>Mon, 12 Oct 2026 01:13:21 +0000</lastBuildDate><atom:link href="https://feisky.xyz/tags/agent-runtime/index.xml" rel="self" type="application/rss+xml"/><item><title>在多租户 Kubernetes 集群上大规模安全部署 AI Agent</title><link>https://feisky.xyz/posts/2026-09-13-%E5%9C%A8%E5%A4%9A%E7%A7%9F%E6%88%B7kubernetes%E4%B8%8A%E5%A4%A7%E8%A7%84%E6%A8%A1%E4%BF%9D%E6%8A%A4ai-agent%E7%9A%84%E5%AE%89%E5%85%A8/</link><pubDate>Sun, 13 Sep 2026 20:00:00 +0800</pubDate><dc:creator>Pengfei Ni</dc:creator><category>AI Agent</category><category>Kubernetes</category><category>AKS</category><category>Agent Runtime</category><category>安全</category><category>KubeCon</category><guid>https://feisky.xyz/posts/2026-09-13-%E5%9C%A8%E5%A4%9A%E7%A7%9F%E6%88%B7kubernetes%E4%B8%8A%E5%A4%A7%E8%A7%84%E6%A8%A1%E4%BF%9D%E6%8A%A4ai-agent%E7%9A%84%E5%AE%89%E5%85%A8/</guid><description>&lt;p&gt;上周在 KubeCon China 2026 做了一个分享《在多租户 Kubernetes 集群上大规模安全部署 AI 智能体》。讲完好几个朋友来问有没有文字版，今天整理了一下，发出来。&lt;/p&gt;
-&lt;p&gt;这次分享的是我们在 AKS 上搭建的多租户 Agent 平台，给工程师做日常开发、Oncall 值班和问题诊断用。内容主要侧重安全和治理，我把它们分成三块：为什么 Agent Harness 治理需要一个 Runtime、安全边界为什么不能放在 Agent Harness 里以及我们在构建过程中踩过了哪些坑、又学到了哪些经验教训。&lt;/p&gt;</description><content:encoded>&lt;![CDATA[<p>上周在 KubeCon China 2026 做了一个分享《在多租户 Kubernetes 集群上大规模安全部署 AI 智能体》。讲完好几个朋友来问有没有文字版，今天整理了一下，发出来。</p><p>这次分享的是我们在 AKS 上搭建的多租户 Agent 平台，给工程师做日常开发、Oncall 值班和问题诊断用。内容主要侧重安全和治理，我把它们分成三块：为什么 Agent Harness 治理需要一个 Runtime、安全边界为什么不能放在 Agent Harness 里以及我们在构建过程中踩过了哪些坑、又学到了哪些经验教训。</p><h2 id="agent-改变了我们的工作方式">Agent 改变了我们的工作方式</h2><p>先说一个我们平台上每天都在发生的事。</p><p><img src="/images/2026-09-13-KubernetesAI-Agent-slide03.png" alt="跨时区接力：下班前把 issue 交给 Agent，下一时区的同事接手已有 PR 的工作现场" loading="lazy" decoding="async"/></p><p>我们团队分布在好几个时区。一个时区的工程师下班前把 issue 交给 Agent。人离线以后，Agent 继续改代码、跑 E2E，失败了接着修，然后创建或更新 PR。下一时区的同事上线时，接手的是一个已经有 PR、每一步都有记录的工作现场。</p><p>这给我们的工作方式带来了一个巨大的变化：Agent 不再是你指导一下它干一步的聊天工具，而是成了一个随时在线、持续推进任务的工作伙伴，Agent 的工作生命周期已经超过了人的在线时间。</p><p>不过任务继续推进，不代表 Agent 可以想干啥就干啥。它只能在授权的仓库、分支和策略范围里行动。碰到 Oncall 这种涉及生产的场景，变更和发给客户的消息还是要人确认才会发出。</p><p>所以人下线以后，Session、上下文和记忆得留在线上，Runtime 继续管着权限、预算和操作记录。说白了，会干活和能长期可控地干活，是两码事。</p><h2 id="设计思路">设计思路</h2><p>这其实也对应着我们对 Agent 的设计，即应该把 Agent 的运行和 Agent 的治理放到两个不同的层面。如下图所示：</p><p><img src="/images/2026-09-13-KubernetesAI-Agent-slide04.png" alt="Agent Harness 与 Agent Runtime 分层：Harness 负责思考和执行，Runtime 负责隔离与治理" loading="lazy" decoding="async"/></p><p>上层是 Agent Harness，GitHub Copilot、Hermes、OpenClaw 这些都在这一层，也包括你自己写的 Agent。它负责理解任务、选工具、执行动作，也就是整套系统的大脑。</p><p>下层是 Agent Runtime，一个隔离、安全的执行环境，让一个不可信的 Agent 能长期跑下去。它不仅管理着 Agent Harness 的生命周期、配额、成本和审计，也负责 Agent 身份和安全的治理。Runtime 对 Harness 是中立的，不替它思考，只管让它可靠、可控地运行。</p><h2 id="架构原理">架构原理</h2><p>这两个层级对应到 Kubernetes 系统又是如何工作的呢？下面就是整个系统的架构图：</p><p><img src="/images/2026-09-13-KubernetesAI-Agent-slide05.png" alt="Agent Runtime 三层架构：控制面、运行在 Kata VM Sandbox 中的 Agent Instance、AKS 集群" loading="lazy" decoding="async"/></p><p>整个系统分为三层：</p><p>最上面是 Agent Runtime 控制面。Team 和 Skill 怎么共享，身份怎么授权，安全策略怎么定，Fleet 生命周期、预算和审计，都由控制面负责。这些策略都由管理员配置，Agent 看不到、改不了、更跳不过。</p><p>中间是实际干活的 Agent Instance，每个跑在独立的 Kata VM Sandbox 里。Sandbox 里面是 Agent Harness，搭配 MCP 和 Skills 的外置能力，加上自己的 Workspace、Session 和长期记忆。Sandbox 内部产生的所有数据都会持久化存储到 PVC 中，任何异常发生后重启都可以恢复到之前的状态。大模型调用和外部网络请求则分别经过 AI Gateway 和 Egress Gateway 的管控。</p><p>最下面是 AKS 集群，提供调度、持久化、Monitoring、错误恢复、准入控制和网络策略。</p><p>从这个图中，不知道你有没有注意到，我们 Agent Harness 单独跑在 Kata VM Sandbox 中，而所有的安全加固都放到了 Harness 的外面。这是为什么呢？</p><h2 id="权限控制">权限控制</h2><p>来看一个在云平台上运行 Agent 时很容易犯的错误。</p><p><img src="/images/2026-09-13-KubernetesAI-Agent-slide07.png" alt="攻击链：Agent 执行 issue 评论中的脚本，访问 IMDS 拿到云身份 Token 并外泄" loading="lazy" decoding="async"/></p><p>Agent 接到任务，打开 issue，评论区有一段看起来像正常排查步骤的话，让它跑一个脚本。Harness 觉得合理，选了执行工具，脚本跑起来了。脚本里多了一步，访问<code>169.254.169.254</code>，在云上这个地址就是 IMDS，返回的是这台机器云身份的 Token。拿到 Token，再发一个普通的 HTTPS 请求，就可能把 Token 泄露出去了。</p><p>单独看每一步都是正常的功能。整个过程发生在 Sandbox 里面，控制面和 Kubernetes 全程没参与。不需要容器逃逸，不会产生任何告警，甚至 Pod 状态一直是 healthy 的。但这已经产生了巨大的安全风险。</p><p>说实话，很早之前我用 AI 编程工具做开发的时候，就碰到过类似的问题。基本上主流的 AI 编程工具都提供了权限配置系统，我也试过在里面把<code>curl 169.254.169.254</code> 禁止掉。</p><p><img src="/images/2026-09-13-KubernetesAI-Agent-slide08.png" alt="在权限配置里禁止 curl 后，Agent 改用 Python 脚本绕过" loading="lazy" decoding="async"/></p><p>但很快我就发现，Agent 太聪明了，发现 curl 命令被禁止后，使用 Python 写了个功能相同的脚本，权限配置很容易就被绕过去了。好在这个 IMDS 对应的 identity 没有授权任何云资源的访问权限，没有造成损失。</p><p>当时我不确定这算不算真正的安全边界，后来想明白了：一个控制，如果 Agent 自己能绕过去，它最多算纵深防御中给 Agent 的一层建议（Agent 可以选择不接受建议）。能当安全边界的控制，得跟 Agent 用什么工具无关，也不能被 Agent 改掉。</p><h2 id="安全边界">安全边界</h2><p>所以这个问题的答案就是把控制放在 Harness 外面，具体分四层。</p><p><img src="/images/2026-09-13-KubernetesAI-Agent-slide09.png" alt="四层安全边界：Harness、Agent Instance、Runtime、Kubernetes" loading="lazy" decoding="async"/></p><p>最里面是 Harness，以及进入其上下文的 MCP 和 Skills，全都是不可信输入。往外是 Agent Instance，也就是 Sandbox，代码在这里跑，隔离配置由 Runtime 创建，Harness 改不了。再往外是 Runtime，身份、权限、网络、预算和审计都在这里，Agent 碰不到。最外面是 Kubernetes，把这些约束执行出来。</p><p>回到刚才那条攻击链，里面两层看起来都是正常操作，都会放过。到了第三层，网络策略发现它要访问被禁止的地址，直接挡掉。这就是外层 Boundary 在兜底。</p><h2 id="实践经验">实践经验</h2><p>了解了 Agent Runtime 的设计原理和安全边界之后，接下来再来分享一些我们在构建整套系统中的经验教训。</p><h3 id="vm-安全边界">VM 安全边界</h3><p><img src="/images/2026-09-13-KubernetesAI-Agent-slide11.png" alt="每个 Agent 运行在拥有独立 Guest Kernel 的 Kata VM Sandbox 中" loading="lazy" decoding="async"/></p><p>从刚才的安全边界部分你可以看到，每个 Agent 的 Sandbox 都是一个 Kata VM。为什么要到 VM 级别而不是选择用常规的容器呢？因为 Agent 跑的是自己刚生成的代码，会调编译器、构建工具、浏览器，没人事先知道它下一步碰哪个 syscall。</p><p>所以我们用 Kata VM 给每个 Agent 一层独立的 Guest Kernel，进程、文件、资源全都隔离在虚拟机中。就算 Agent 拿到 root 权限、甚至打穿 Guest Kernel，也出不了这台 VM，碰不到节点和别的 Agent。</p><p>当然要注意，虚拟化是有代价的：启动慢、密度低。不过跑的是不可信代码，这些代价可以接受。</p><p>你可能也经常听到要让 Agent 跑在 Sandbox 里面，那是不是说有了 VM 就足够了呢？当然不是的。VM 只管 Agent 的代码在哪儿跑。Agent 代表谁、能不能连到外网、花多少 Token、留下什么痕迹等等，Sandbox 都回答不了。这些得由 Agent Runtime 在外面管控。</p><h3 id="给-agent-一个身份">给 Agent 一个身份</h3><p>比如，要让 Agent 真正有用，得先让它能够访问我们的工作系统。问题也就来了，Agent 通过什么身份来访问呢？</p><p><img src="/images/2026-09-13-KubernetesAI-Agent-slide12.png" alt="为 Agent 分配独立 Agent ID，通过 OIDC Federation 换取短期限权凭据" loading="lazy" decoding="async"/></p><p>最直觉的做法是让 Agent 直接复用用户的 Token，这样后面也省了再去单独给 Agent 配置权限。不过这儿有两个绕不开的问题：</p><ul><li>一是 Agent 的权限等于用户的全部权限，它只想读一个仓库，却能碰到用户能碰到的所有东西。</li><li>二是审计日志里分不清哪一步是人做的、哪一步是 Agent 做的。</li></ul><p>所以我们给每个 Agent 一个独立的 Agent ID，这是一个区别于用户身份的独立主体。Agent 启动时默认只有最基本的模型访问权限，用户来决定把哪些资源和操作授权给它，自己的身份不会交给 Agent。</p><p>实际执行每个 Action 时，Runtime 通过 OIDC Federation 用 Agent ID 换一张短期、限权、可撤销的云凭据。这样即使凭据被滥用，能拿到的权限和存活时间都有限，每次访问也都能追溯到具体的 Agent 会话和授权来源。</p><p>不过身份和权限只解决了“能不能做”的问题。还有一个问题是“能不能到达”，这就需要网络层面的控制了。</p><h3 id="网络可达性控制">网络可达性控制</h3><p>实际系统的访问通常有两道门：第一道门是检查有没有权限，第二道门则是平台有没有为这次操作开一条网络路径。两道门都过了，访问才能真正发生。</p><p><img src="/images/2026-09-13-KubernetesAI-Agent-slide13.png" alt="网络可达性控制：权限检查与网络路径两道门" loading="lazy" decoding="async"/></p><p>具体做法是对 Agent Workload 默认阻断 IMDS、集群管理面和其他 Agent 的内部网段。为什么 IMDS 可以无条件封掉呢？因为我们的身份系统用的是 OIDC Federation，换凭据根本不走 IMDS，封掉它不影响 Agent 任何合法的云访问。出口则是默认允许，但配置一些禁止访问的目标。在出口 Gateway 上每条请求都留日志，发现异常目标就会加入黑名单。</p><p>那这些策略怎么保证不被绕开、不随时间漂移呢？</p><p><img src="/images/2026-09-13-KubernetesAI-Agent-slide14.png" alt="Admission 准入检查与 Reconciliation 持续校正两类机制" loading="lazy" decoding="async"/></p><p>靠两类机制，Admission 和 Reconciliation：</p><ul><li>Admission 在 Agent Workload 进集群之前做检查，部署如果缺了平台要求的隔离、身份或网络配置，压根就创建不了。</li><li>Reconciliation 负责持续校正，因为安全策略不是静态的，会随着异常检测持续更新。</li></ul><p>有意思的是，做 Reconciliation 的也是一个 Agent，我们叫它 AdminClaw。它持续监控所有 Agent Instance 的状态和网络请求，发现异常先告警，能自主执行的只有管理员预先划定的一小组收紧动作（比如收掉一个目标、隔离或重启一个可疑的 Instance）。但放宽网络策略不在它的权限范围里，必须由人来操作。</p><h3 id="skill-的版本管理">Skill 的版本管理</h3><p>接下来聊 Skill 这块。你大概也已经感受到了，Skill 正在成为 Agent 能力扩展的核心方式。但 Skill 的管理如果做不好，本身就会成为新的安全隐患。</p><p><img src="/images/2026-09-13-KubernetesAI-Agent-slide15.png" alt="Skill Marketplace：私有迭代，经 PR 评审后发布为 Team 共享版本" loading="lazy" decoding="async"/></p><p>我举一个我们实际碰到的例子。有位工程师很早就给自己的 Agent 写了一个 CI failure diagnosis Skill，分析测试日志和失败原因。挺好用的，同事们就开始复制过去用。后来发现里面一条规则会把网络超时误判成代码问题，作者很快修好了，但团队里已经有好几个副本，有人用新版有人用旧版，谁也说不清某个错误结论到底来自哪一版。</p><p>这件事让我意识到两个问题：第一，Skill 不能靠复制传播，它需要版本管理和发布机制。第二，Skill 也是攻击面的一部分，一条被篡改的指令跟着副本扩散到哪个 Agent，就借哪个 Agent 的权限执行。</p><p>所以我们做了一个 Skill Marketplace。每个人先在自己的私有 Skill 里迭代，稳定以后通过 PR 提交评审，通过才发布到 Marketplace 成为 Team 共享版本。代价是发 Skill 比复制粘贴慢一步，但换来的是 Team 里只有一个版本。再出类似的误判，不用猜每个人手里到底是哪一份了。</p><p><img src="/images/2026-09-13-KubernetesAI-Agent-slide16.png" alt="Team 模型四层：平台管理员、Team、用户、Agent 实例" loading="lazy" decoding="async"/></p><p>那一个 Agent 装哪些 Skill 又由谁来决定呢？答案是它所在的 Team。我们的 Team 模型分四层：最上面是平台管理员定企业级策略，往下是 Team 决定支持哪些 Harness 和 Skill，再往下是用户使用 Team 配好的能力，最下面是 Agent 实例各自跑在独立 Sandbox 里。</p><p>能力沿着这四层往下流。新的 Agent Instance 创建时自动加载 Team 允许的 Skill 列表，Marketplace 有更新时，Runtime 自动同步，没人需要手动 pull。更新在新的 Session 里生效，正在跑的 Session 不会中途被换掉 Skill。同时状态严格隔离，任何一个 Agent 都看不到另一个 Agent 的内部状态，哪怕它们属于同一个用户。</p><h3 id="大规模-agent-的运行和成本管控">大规模 Agent 的运行和成本管控</h3><p>最后一个维度是 Scale。在我们的场景下，规模问题主要体现在三个方向。</p><p><img src="/images/2026-09-13-KubernetesAI-Agent-slide17.png" alt="大规模 Agent 的三个方向：数量、时间、委派" loading="lazy" decoding="async"/></p><p>第一个是数量。平台服务的是整个工程组织，Agent 一多，要管的就不只是更多 Pod 了，还有更多身份、授权关系、Skill 版本、网络策略和 Session。</p><p>第二个是时间。比如 Oncall 的一次 incident 调查可能跑好几个小时甚至跨天，中间 Pod 可能重启过，但 Agent 还得继续，所有状态都持久化在 PVC 里。</p><p>第三个是委派，多个 Agent 开始互相委派任务，每次委派都增加系统复杂性，所有的会话历史都要持久化存储以备追溯。</p><p>你可能也注意到了，大规模 Pod 部署、升级、调度、持久化，这些恰好都是 Kubernetes 本来就在解决的问题。所以整套 Runtime 直接跑在 Kubernetes 上，StatefulSet、PVC、CRD、Autoscaler 用的都是原生能力，我们没有另外造一套调度系统。</p><p>不过 Kubernetes 管得了 Pod、卷和调度，管不了 Model Token。Agent 多了、跑的时间也长了，Token 消耗就成了一个必须单独管控的问题。</p><p><img src="/images/2026-09-13-KubernetesAI-Agent-slide18.png" alt="AI Gateway 统一管控模型调用：追踪、预算限流、内容过滤与故障切换" loading="lazy" decoding="async"/></p><p>所以我们把所有 Agent 的模型调用统一收进了一个 AI Gateway。Sandbox 里面只有 Gateway 的地址，看不到真实的大模型 API 和 API Key。</p><p>AI Gateway 主要做了这么几件事：全链路追踪每次 Agent 调用；Token 统计、预算和限流来控制成本；输入输出内容过滤和 Prompt Injection 防护；如果配了多个模型，还能做负载均衡和故障自动切换。</p><h2 id="三条经验">三条经验</h2><p>回头看这个过程，如果只留三条经验的话：</p><p>第一，Harness 里面全是不可信输入，包括 Prompt、评论、Tool 输出、Skill，还有 Agent 自己生成的代码，这些都可能被攻击者控制。所以放在 Harness 里的控制，Agent 能碰到就能改掉，最多算纵深防御中的一层建议（Agent 可以选择不接受）。</p><p>第二，真正的安全边界得跟 Agent 怎么行动无关。Sandbox 决定代码在哪跑，Agent ID 决定它以谁行动，网络策略决定它能到达哪里。这三样都由 Agent Runtime 在 Harness 外面执行，Agent Harness 看不到也改不了。</p><p>第三，一切得按无人值守来设计。Session 落在 PVC 里 Pod 重启还在，Skill 版本绑在 Session 上不会中途被换掉，Token 预算一旦超出，AI Gateway 直接停服，不用等人来关。人下线以后，Runtime 继续为 Agent 守着这些边界。</p><h2 id="接下来的计划">接下来的计划</h2><p>上面讲到的 Sandbox、身份、网络可达性、AI Gateway、Skill 治理这几个维度，是这套 Agent Runtime 已经交付的基座。在这个基座上我们接下来还有几件事要做：Harness 插件化让大家可以接入自己的 Agent，按任务维度做更精细的身份和权限控制，Sandbox 插件化支持更多的 MicroVM 方案，以及接入同一集群里部署的推理模型。</p><p>这些核心能力我们正在准备完整开源，计划在未来几个月内正式发布。如果你也在 Kubernetes 上跑 AI Agent，或者正在琢磨 Agent 的安全治理问题，欢迎关注后续的开源进展。</p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://search.yahoo.com/mrss/"><channel><title>Agent Runtime | Feisky</title><link>https://feisky.xyz/tags/agent-runtime/</link><description>极客时间专栏作者，专注于 Kubernetes、AI Infra、AI Agent 领域的深度技术分享，让 AI 成为你的第二大脑</description><generator>Hugo 0.170.1</generator><language>zh-CN</language><managingEditor>Pengfei Ni</managingEditor><webMaster>Pengfei Ni</webMaster><lastBuildDate>Wed, 18 Nov 2026 11:51:19 +0000</lastBuildDate><atom:link href="https://feisky.xyz/tags/agent-runtime/index.xml" rel="self" type="application/rss+xml"/><item><title>Anthropic 官方指南：搭好常驻 Agent 的架构清单</title><link>https://feisky.xyz/posts/2026-11-14-always-on-agents/</link><pubDate>Sat, 14 Nov 2026 10:00:00 +0800</pubDate><dc:creator>Pengfei Ni</dc:creator><category>AI Agent</category><category>Anthropic</category><category>Agent Harness</category><category>Agent Runtime</category><guid>https://feisky.xyz/posts/2026-11-14-always-on-agents/</guid><description>&lt;p&gt;想把一个聊天 Agent 改成 7×24 后台干活的工作伙伴，难的地方不在大模型，也不在 Agent Harness，而在推理循环之外的那套管理事件调度、状态延续和权限边界的外围系统。&lt;/p&gt;</description><content:encoded><![CDATA[<p>想把一个聊天 Agent 改成 7×24 后台干活的工作伙伴，难的地方不在大模型，也不在 Agent Harness，而在推理循环之外的那套管理事件调度、状态延续和权限边界的外围系统。</p>
+<p>很多人第一次搭常驻 Agent，直觉做法就是起一个长对话，再加个定时脚本每隔几分钟叫醒模型看一眼。我自己在玩 OpenClaw、Hermes Agent 以及 Codex、Claude Code 这些编程 Agent 的时候就发现：这种做法跑短时 Demo 没问题，真挂在后台跑几天，不是并发冲突把状态覆盖掉，就是上下文和记忆越攒越多，导致模型幻觉，甚至都会忘记一开始给它设定的任务目标。</p>
+<p>这两天 Anthropic 平台团队的 William Hu 发了一篇官方指南《Building always-on agents》，正好把搭好常驻 Agent 需要的五个核心原语列成了一份架构清单。一方面，新模型的判断力变强了，更清楚什么时候该自己推进、什么时候该停下来问人；另一方面，在一个长程编程基准测试里，Opus 5.5 每解决一个任务的成本比 Opus 5 降了 78% 。模型成本大幅降低了，后台常驻才有了大规模落地的条件。</p>
+<p>所谓的常驻在线，只是给用户的感受。实际上，Agent 底下的推理循环跟普通聊天模式没有区别，绝大部分时间都处于零 Token 消耗的休眠态，只有事件来了才醒来跑一小段执行，在会话里完成工具调用、关键信息存储、通知结果，接着继续休眠，也就是一套标准的事件驱动异步架构。</p>
+<p><img
+  src="/images/2026-11-14-always-on-agents-overview.jpg"
+  alt="常驻 Agent 的五个外围组件"
+  loading="lazy"
+  decoding="async"
+/></p>
+<p>这份清单里的事件收件箱、定时器、记忆、权限和发件箱这五个组件看起来很简单，但落到 Agent 上有不少容易漏掉的细节。结合之前体验过的 Agent 产品，我说一下自己的理解。</p>
+<p><strong>1、事件收件箱，外部事件不能直接调 Agent。</strong></p>
+<p>普通聊天 Agent 只有在用户发消息时才会运行，而常驻 Agent 的触发来源要多得多：Webhook 回调、定时任务、后台作业，还有用户的回复，随时都可能到达。</p>
+<p>最容易踩的坑，就是让这些事件源直接去调 Agent。两个事件同时到达，就会拉起两个并发执行互相覆盖状态；要是跑到一半进程挂了，这个事件也就直接丢了。</p>
+<p>所以在所有事件源前面，都需要先加一层事件收件箱。它的结构并不复杂：一张持久化的数据库表（或者消息队列）存事件列表，一个轻量 HTTP 接口负责接收写入，后面配一个后台 Worker 从表/队列里拉取待处理事件，并按事件源的唯一 ID 做去重。用户回复这类延续前文的消息，就恢复原来的会话；全新的外部事件，就新开一个会话。</p>
+<p><img
+  src="/images/2026-11-14-always-on-agents-event-inbox.jpg"
+  alt="事件收件箱的工作流程"
+  loading="lazy"
+  decoding="async"
+/></p>
+<p>架构看着简单，但实现上有四个细节要注意：</p>
+<p>第一，接收接口只做轻量校验，写入成功就立刻返回确认。很多 Webhook 服务商把慢响应直接当成失败处理，像防提示词注入这类耗时检查，应该留到后面的执行阶段再做。</p>
+<p>第二，以收件箱的数据表作为唯一事实源。Worker 被唤醒后先去表里拉取最新的待处理事件，这样就算执行中途崩溃，新拉起的 Worker 也能拿到同一条未完成的事件继续重试。</p>
+<p>第三，同一个收件箱同一时刻只允许一个活跃 Worker。起步阶段可以按每个用户一个收件箱来建，单 Worker 串行消费，从根源上避免并发写坏状态。如果执行中途又来了新事件，可以按策略排到下一轮、并入当前轮，或者打断重跑。</p>
+<p>第四，把连续到达的待处理事件合并成一次执行。比如用户连续发了几条消息，Worker 拉取时直接合并交给同一轮推理，Agent 只需要回复一次，既省 Token 也不会频繁打扰用户。</p>
+<p>之前分析 Grok Bot 的时候我发现，它的设计也是同样的思路。不管是定时任务到点、其他 Bot 发来消息、Slack 进了新通知，还是用户在卡片上点了授权，最后都会加上 <code>[SAND_HIDDEN_PROMPT]</code> 来源标记，统一放进同一条对话流里按顺序处理。反过来，Grok Bot 的多 Bot 私聊因为没有轮数上限，几个 Bot 互相发消息唤醒、反复互审，很快就能把一周的额度烧光。所以统一入口只管得了顺序和去重，Agent 之间互相唤醒还得有硬性的轮数上限，只靠提示词，模型可以不听。</p>
+<p><strong>2、定时器，主动干活不用让模型一直醒着。</strong></p>
+<p>常驻 Agent 能主动推进任务，靠的是一张独立的定时器表，把下一次该醒的时间记下来。</p>
+<p>定时器一般分成两类。一类是跟进提醒，由 Agent 在执行任务时给自己设定截止时间，比如等待外部回复时定时回来检查进展，触发一次就标记为完成；另一类是周期任务，按固定频率重复执行，比如每天早上的信息汇总，触发后自动把到期时间更新到下一个周期。</p>
+<p>定时器表要和事件收件箱分开存储，收件箱只存放当前已经就绪、可以立即处理的事件。定时器到期后，由后台调度服务或持久化执行引擎定期扫描到期记录，更新定时器状态后，往收件箱写入一条新事件并唤醒 Worker。</p>
+<p><img
+  src="/images/2026-11-14-always-on-agents-timers.jpg"
+  alt="定时器的触发与入队流程"
+  loading="lazy"
+  decoding="async"
+/></p>
+<p>为什么要先写入收件箱，而不是直接启动 Agent？</p>
+<p>因为定时任务到期的同一时刻，用户可能刚好也在发消息，Webhook 也可能刚好触发。统一写入收件箱之后，前面做好的单 Worker 串行消费和去重机制就能直接复用，不需要维护两套并发控制逻辑。</p>
+<p>Meta Muse 的定时机制也是这么处理的。它的目标页本身不运行任务，实际执行靠的是挂在目标下面的定时任务；遇到需要高频监控状态的场景，它不会每分钟唤醒一次大模型消耗 Token，而是先用普通脚本在外部轮询，检测到状态变化之后再发事件唤醒模型。</p>
+<p><strong>3、记忆系统，只存没法从别处查到的信息。</strong></p>
+<p>常驻 Agent 要跨多次独立执行保持上下文连贯，靠的是独立持久化的记忆系统。做记忆系统常见的问题不是记不住，而是什么都往里塞。</p>
+<p>我之前用 OpenClaw 时就碰到过这个问题。它的后台记忆整理机制很容易把对话里琐碎的细节也晋升上来，对话一多，<code>MEMORY.md</code> 就会越来越臃肿，每次启动都要占用不少上下文空间，最后只能定期手动清理。当时我的做法是给每个项目单独建一个目录，主 <code>MEMORY.md</code> 里只放索引，跟后面 Anthropic 给的思路一样。</p>
+<p>Anthropic 给出的原则是，记忆里只存无法从其他系统重新查到的信息。如果某项内容本来就在 Issue 跟踪系统或代码仓库里，记忆中只保留一个引用指针就够了，不需要把原始内容复制一份。</p>
+<p>在具体实现上，可以把记忆映射成数据库或对象存储支持的文件目录，保证 Worker 重建后记忆仍然保留。按加载时机来看，每次执行启动都必须加载的有两份：一份是用户指令，因为常驻场景下人不在旁边随时纠偏，行为约束每轮都需要加载；另一份是已发消息记录，记录已经向用户汇报过的内容，避免在不同轮次里重复发送。</p>
+<p>容易随时间增长的是另外两类：记录用户角色、偏好和历史纠正的用户笔记，以及每个长任务单独建一份、记录已完成和待办事项的任务进度。这两块内容变多以后就拆成多个小文件，每次启动只加载一份目录索引，执行中需要哪部分细节再去读取对应的文件。</p>
+<p><img
+  src="/images/2026-11-14-always-on-agents-memory.jpg"
+  alt="记忆目录的按需加载结构"
+  loading="lazy"
+  decoding="async"
+/></p>
+<p>在这四类运行期写入的记忆之上，还可以加一层离线的 Dreaming 整理机制，定期回顾历史会话、替换过期条目，提炼单次执行看不出来的长期模式。OpenClaw 的 Dreaming 也是这类机制，区别在于这里的整理要能替换过期条目，只往上晋升的话，记忆迟早还会臃肿。</p>
+<p>上下文窗口的固定开销也需要严格控制。系统提示词、工具定义和每轮必读的记忆文件每次执行都会加载，体积要尽量精简，再配合前缀缓存降低重复加载的成本。当会话过长需要压缩历史消息或重开新会话时，上下文细节不可避免会丢失，因此需要跨轮保留的信息要在执行过程中及时写入记忆文件，不能只依赖会话历史。</p>
+<p><strong>4、权限控制，凭据外置和异步审批缺一不可。</strong></p>
+<p>常驻 Agent 持有用户的访问权限，又在无人值守的状态下自动运行，权限控制是整套架构里风险最高的一环。这里既不能把明文密钥直接放进 Agent 的运行环境，也不能一遇到敏感操作就把后台 Worker 阻塞住等待人工确认。</p>
+<p>William 给出的解法是把现有的三个权限组件组合起来使用：</p>
+<p>第一，凭据存储与外部代理。常驻 Agent 访问外部系统少不了密码或 API Token，推荐的模式是在 Agent 运行环境外面加一层代理网关。Agent 发出的请求本身不带凭据，由外部代理在转发请求时把真实凭据注入进去，这样 Agent 始终接触不到明文密钥。</p>
+<p>第二，Auto mode 自动审查。后台运行不可能每次调用工具都找人审批，可以先像 Claude Code 的 Auto mode 那样，用分类器自动审查高风险动作，把识别出危险的操作拦截下来，让模型改用更安全的路径，只把关键决策留给人工审核。</p>
+<p>第三，延迟工具调用。当某个操作确实需要用户补充信息或确认授权时，先把当前会话在工具调用中途保存下来，直接结束本次执行，同时通过交互卡片（比如基于 MCP Apps 构建的卡片）把审批请求发送给用户。等待用户回复期间，Worker 不会被阻塞，可以继续处理收件箱里的其他事件；等用户在卡片上完成确认，结果会作为一条新事件写回收件箱，触发新的执行并恢复之前保存的会话继续运行。</p>
+<p>Meta Muse 里的 Sentinel 服务就是典型的外部权限网关。它把凭据和对外网络出口都放在容器外的独立安全域里，Agent 可以使用凭据但始终看不到明文；需要用户授权时，审批卡片直接推送到手机 App 上，不经过聊天会话，Agent 既看不到审批卡，也无法代替用户点击同意。即便模型受到外部网页的提示词注入影响，也绕不过容器外的这层拦截。</p>
+<p><strong>5、发件箱，后台 Agent 不能每跑一轮都发消息。</strong></p>
+<p>普通聊天 Agent 是边推理边向界面流式输出内容，用户可以跟着看它调用工具和生成回答的过程。常驻 Agent 的工作大部分在后台完成，用户通常只需要拿到最终结果和少量关键信息。</p>
+<p>所以在常驻架构里，一次后台执行结束时只有三种出口：向发件箱写入一条结果消息、发起延迟工具调用请求用户输入，或者判断没有必要通知用户，直接静默结束。</p>
+<p><img
+  src="/images/2026-11-14-always-on-agents-outbox.jpg"
+  alt="发件箱的三种结束路径"
+  loading="lazy"
+  decoding="async"
+/></p>
+<p>如果场景简单，给 Agent 配一个直接发送消息的 <code>send</code> 工具就够用了；只有在需要控制推送节奏或处理发送失败重试时，才需要单独建一张发件箱数据表，配合后台分发服务按策略投递。</p>
+<p>相比发件箱的表结构，更需要调优的是消息发送频率。发得太多容易变成噪音，发得太少又可能漏掉用户需要关注的信息。Anthropic 的建议是通过构建评测集来寻找平衡点；实际落地时，更稳妥的做法是让 Agent 一开始尽量少发消息，随着运行稳定再逐步增加主动推送。</p>
+<p>这一点在 Meta Muse 上也能看到一致的设计取舍。它的后台每小时都有流程在整理记忆、扫描信息，但主动推送的次数非常克制：非紧急事项要等用户醒着且空闲时才推送，每天最多一条；每条消息发出前还要经过分类器和撰写器两道筛选，提示词里明确要求，没有值得告知的内容就一条都不发。</p>
+<p><strong>6、常驻 Agent 架构清单，搭之前可以按这张表逐项核对。</strong></p>
+<p>如果你正准备把现有的 Agent 改成后台常驻，或者从零搭一套类似的系统，可以把上面这五个组件的职责和实现要点对照检查一遍：</p>
+<table>
+	<thead>
+			<tr>
+					<th>外围组件</th>
+					<th>解决的典型问题</th>
+					<th>核心实现要点</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>事件收件箱</td>
+					<td>并发执行覆盖状态、进程崩溃丢失事件</td>
+					<td>接口快速落表返回确认，单收件箱单活跃 Worker 串行消费，连续消息合并执行</td>
+			</tr>
+			<tr>
+					<td>定时器</td>
+					<td>死循环高频轮询消耗 Token</td>
+					<td>区分单次跟进提醒与固定周期任务，到期统一写入收件箱触发</td>
+			</tr>
+			<tr>
+					<td>记忆系统</td>
+					<td>跨轮次丢失上下文、记忆文件持续膨胀</td>
+					<td>只存无法从外部查到的信息，笔记与进度启动只读目录索引，配合离线整理清旧项</td>
+			</tr>
+			<tr>
+					<td>权限控制</td>
+					<td>明文密钥泄露、等待人工审批阻塞后台</td>
+					<td>外部代理注入凭据，分类器拦截高危操作，需人工审批时保存会话结束本次执行并释放 Worker</td>
+			</tr>
+			<tr>
+					<td>发件箱</td>
+					<td>后台频繁推送消息变成噪音</td>
+					<td>允许执行静默结束，用评测调优发送频率，初期保持低频推送再逐步放开</td>
+			</tr>
+	</tbody>
+</table>
+<p>当然，Anthropic 这份指南解决的主要是单个常驻 Agent 在应用层的闭环。如果真要放到团队或企业的多租户生产环境里大规模运行，在这五个组件底下，还需要补上虚拟机级别的强隔离 Sandbox、独立的 Agent 身份认证以及跨 Agent 的审计熔断机制，把安全底线放在 Agent 自己接触不到的基础设施层。</p>
+<p>我越来越觉得，随着大模型长程任务的成本大幅降低，做常驻 Agent 拉开差距的地方已经不在提示词和 Agent Harness 本身，而在推理循环之外的那套管理事件调度、状态延续和权限边界的系统工程能力。</p>
+<p><strong>推荐阅读：</strong></p>
+<ul>
+<li>Building always-on agents：<a href="https://claude.com/resources/articles/building-always-on-agents">https://claude.com/resources/articles/building-always-on-agents</a></li>
+</ul>
+]]></content:encoded><dc:extent>10 min read</dc:extent></item><item><title>Anthropic 平台负责人这篇文章，写给担心被 AI 替代的工程师。</title><link>https://feisky.xyz/posts/2026-10-30-engineers-new-work/</link><pubDate>Fri, 30 Oct 2026 10:00:00 +0800</pubDate><dc:creator>Pengfei Ni</dc:creator><category>AI Agent</category><category>Agent Runtime</category><category>Anthropic</category><category>Codex</category><category>CetiRun</category><guid>https://feisky.xyz/posts/2026-10-30-engineers-new-work/</guid><description>&lt;p&gt;如果你也担心哪天会被 AI 替代，Anthropic 平台工程负责人 Katelyn Lesse 前几天发的这篇博客，就是写给你的。&lt;/p&gt;&#10;&lt;p&gt;她开头就说，很多软件工程师正在经历一场身份危机，担心自己的知识和技能不再重要。&lt;/p&gt;</description><content:encoded><![CDATA[<p>如果你也担心哪天会被 AI 替代，Anthropic 平台工程负责人 Katelyn Lesse 前几天发的这篇博客，就是写给你的。</p>
+<p>她开头就说，很多软件工程师正在经历一场身份危机，担心自己的知识和技能不再重要。</p>
+<p>这种焦虑很好理解。编程 Agent 普及以后，工程师个人写代码确实快了很多。</p>
+<p>但很多公司算总账的时候发现，团队整体的产出，并没有跟着同倍涨上去。</p>
+<p>做研发效能分析的 Faros AI，去年统计过一万多名开发者的数据。AI 用得多的团队，完成的任务多了 21% ，合并的 PR 多了 98% ，PR 评审时间也涨了 91% 。放到整个公司看，交付指标却看不到明显的改善。</p>
+<p>Faros 最新一期报告把样本扩到了两万两千名开发者。AI 用得越多，上线的东西是变多了，可 QA 环节的耗时涨了 300% ，每个月的线上事故也多了 125% 。</p>
+<p>多出来的效率，去哪儿了？</p>
+<p>写代码只是整个工程的一小部分。代码写得快了，评审、测试和线上排障没跟上，很多脏活累活就全堆到了下游。</p>
+<p>Google 去年的 DORA 报告也说，AI 是个放大器，组织原来的长处会被放大，短处也一样。</p>
+<p>这些还只是老问题被放大。Katelyn 这篇博客给的，是一张新问题的清单。</p>
+<p>Agent 正在从聊天框走到云上，从一个 Agent 变成一群 Agent 协作，甚至几千个 Agent 长期一起干活。到了这一步，隔离、身份、监控、基础设施，每一件都会冒出新问题，而且都得工程师来解决。</p>
+<p>这张清单，恰恰是我这段时间做 Agent Runtime 要解决的问题。我说一下自己的理解。</p>
+<p><strong>1、规则写在 Agent 够得着的地方，就一定会被绕过去。</strong></p>
+<p>先说一个我自己踩过的坑。</p>
+<p>早期用 Codex、Claude Code 这些编程 Agent 的时候，我老老实实在它们的权限配置里加了各种规则，比如禁止 rm -rf。结果模型强了以后，Agent 自己写个脚本，就把规则绕过去了。</p>
+<p>我的开发机上，还真发生过整个 HOME 目录被删掉的事。</p>
+<p>还有一次，我在权限配置里禁掉了 <code>curl 169.254.169.254</code>。这是云上虚拟机的 IMDS 地址，访问它就能拿到这台机器云身份的 Token。Agent 发现 curl 被禁，转头用 Python 写了个功能一样的脚本。好在那台机器的身份没有写权限，没造成损失。</p>
+<p>问题出在哪？</p>
+<p>不是 Agent 学坏了，而是规则写在了它够得着的地方。它一心想把活干完，总能找到别的路。</p>
+<p>多 Agent 协作还会更麻烦。一个 Agent 被注入以后，可能把恶意指令传给协作的其他 Agent，还会写进记忆，让后来的 Agent 当成可信的信息照着执行。</p>
+<p>所以 Agent 要动手，就得放进强隔离的 Sandbox 里，关键的限制放在 Sandbox 外面。</p>
+<p>我们现在的做法是，每个 Agent 一个 Kata Sandbox，做虚拟机级别的隔离。它的工具、会话和记忆都在自己独占的盘上，就算误删，删掉的也只是它自己那一份。IMDS 这种请求在网络层直接挡掉，跟 Agent 执行什么代码没有关系。</p>
+<p>即便是最强的模型，也别指望它永远不犯错。真正要做的，是让错误停在它自己的 Sandbox 里。</p>
+<p><strong>2、Agent 也得有自己的身份。</strong></p>
+<p>最省事的做法，是让 Agent 直接用你本人的身份。很多编程 Agent 开箱就是这么配的，我一开始也是这么用的。</p>
+<p>结果马上冒出两个问题。</p>
+<p>第一，权限太大。我只是让它读一个仓库，它却能去改仓库的配置，甚至读写别的仓库。</p>
+<p>第二，说不清是谁干的。审计日志里的操作人全是我本人，分不清哪一步是我做的，哪一步是 Agent 做的。</p>
+<p>Agent 一旦 7×24 在线，这两个问题都会被放大。</p>
+<p>所以授权的人和干活的 Agent 得分开。比如访问云资源，Agent Runtime 支持给每个 Agent 实例配一个独立的 Agent ID。Agent 默认只能调用大模型，用户手动授权以后，才能代表用户拿一张短期凭据去访问。它的权限不会超过授权人本人，每一次访问也都能追到授权人和这个 Agent。</p>
+<p>当然，更难的部分还在后面。比如 Agent 连着跑几周，人怎么给它有意义的授权；Agent 之间怎么互相信任；权限怎么跟着任务收放。这些都要一步步去解决。</p>
+<p><strong>3、监控容易搭，难的是分清哪些是异常。</strong></p>
+<p>不管是跟踪 Agent 的行为，还是分析调用过程、给成本优化提供数据，都得把 Agent 的整个执行过程监控起来。对 Agent 的监控，有两个基本要求。</p>
+<p>第一，追踪记录要能跨 Agent 串起来，而且 Agent 改不了自己和别人的记录。</p>
+<p>第二，监控能直接触发一个开关，一按下去，凭据切断，Agent 对外的访问全部停掉。</p>
+<p>但说实话，监控系统很容易搭起来，难的是判断什么算异常。</p>
+<p>很多时候，恶意行为跟正常行为看起来没有区别，都是正常的网络请求或者命令执行。反过来，看起来像攻击的行为，可能只是 Agent 为了完成任务，多试了几条不同的路径。</p>
+<p>所以 Agent 的每一步都要留下记录，记录和开关都得放在 Agent 够不着的地方。</p>
+<p><strong>4、Agent Infra，Kubernetes 早就够用了。</strong></p>
+<p>Agent 一多，基础设施就成了绕不开的问题。</p>
+<p>Google 今年开源了一个项目，叫 Agent Substrate。它的出发点是，Agent 大部分时间都在等模型推理、等工具返回、等人回复，真正干活的时间很短。所以它把 Agent 的状态和 Pod 拆开，Agent 一闲下来就做快照挂起，来了请求再恢复，暂停和恢复绕过 Kubernetes 自己管。</p>
+<p>在我看来，这有点过度设计了。</p>
+<p>Agent 连续跑几天、几周，早就成了常态。非要加一堆快照和休眠，绕过 Kubernetes 去重新解决它早就解决了的问题，复杂度上去了不说，频繁的拉起和关闭还可能拖慢 Agent 的执行。而且挂起的时候，打开的网络连接是不保留的，数据库会话、MCP 服务的连接，恢复以后都得重新连。</p>
+<p>我们的场景是每个工程师配备专属助理 Agent，随时在线，人下线了它还在干活。复杂、需要单独上下文的任务，交给 subagent 去做，整体 Agent 的数量远到不了压垮 Kubernetes 控制面的规模。</p>
+<p>所以我们的做法很简单。每个 Agent 一个 Pod，一直跑着，状态放在自己的 PVC 上，调度、存储和节点自愈都交给 Kubernetes。真要长时间不用，暂停就行，资源释放了，会话和记忆都还留在 PVC 上。</p>
+<p>当然，如果是强化学习、批量评测这种一次拉起成千上万个、跑完就扔的短任务，Substrate 这套设计就很合适。所以，具体选哪种设计，还是要看具体的场景。</p>
+<p>上面这些，就是我们做 CetiRun 这个 Agent Runtime 平台的原因。它不做 Harness，也不做模型，只负责 Agent 的治理：每个 Agent 跑在隔离的 Sandbox 里，有自己的身份，大模型调用、预算和用量都走统一的网关，底下是多团队共享的 Kubernetes 集群。完整的架构是这样的：</p>
+<p><img
+  src="/images/2026-10-30-engineers-new-work-cetirun-architecture.png"
+  alt="CetiRun 架构"
+  loading="lazy"
+  decoding="async"
+/></p>
+<p>CetiRun 很快就会开源出去，后面的文章我会继续分享里面的实践。</p>
+<p>最后说两句。</p>
+<p>Katelyn 在文章最后说，这些问题能不能解决，差别可能就在工程师和他们的技能上。</p>
+<p>我越来越觉得，AI 抹平的是写代码这件事本身，并没有抹平工程和产品能力。安全隔离、身份认证、审计、扩展这些做基础设施的老功夫，在 Agent 时代反而更值钱了。</p>
+<p>推荐阅读：</p>
+<ul>
+<li>Katelyn Lesse：The new set of problems for engineers to solve：<a href="https://www.katelynlesse.com/blog/new-problems-for-engineers-to-solve">https://www.katelynlesse.com/blog/new-problems-for-engineers-to-solve</a></li>
+</ul>
+]]></content:encoded><dc:extent>6 min read</dc:extent></item><item><title>Agent 怎么大规模安全地跑起来？从 Anthropic 平台负责人点名的四个新问题说起</title><link>https://feisky.xyz/posts/2026-10-29-agent-runtime-new-problems/</link><pubDate>Thu, 29 Oct 2026 10:00:00 +0800</pubDate><dc:creator>Pengfei Ni</dc:creator><category>AI Agent</category><category>Agent Runtime</category><category>Anthropic</category><category>Sandbox</category><category>CetiRun</category><guid>https://feisky.xyz/posts/2026-10-29-agent-runtime-new-problems/</guid><description>&lt;p&gt;最近的出差总算告一段落了。这段时间拜访了不少客户，聊了很多大模型和 Agent 落地的场景。虽然很多人都已经意识到 Agent 能够代替人来完成很多任务，并且 Agent 的执行需要控制，但依然还是有人认为 Agent 跑在工程师的笔记本上就足够了，不需要额外的治理。&lt;/p&gt;</description><content:encoded><![CDATA[<p>最近的出差总算告一段落了。这段时间拜访了不少客户，聊了很多大模型和 Agent 落地的场景。虽然很多人都已经意识到 Agent 能够代替人来完成很多任务，并且 Agent 的执行需要控制，但依然还是有人认为 Agent 跑在工程师的笔记本上就足够了，不需要额外的治理。</p>
+<p>这个想法我很能理解，因为我也是跟着大模型和 Agent 的发展一步步走过来的。早期用编程 Agent 的时候，我老老实实在它的权限配置里加了各种规则，包括禁止 rm -rf 等等。结果大模型强了之后，自己写个脚本就很容易绕过去了。在我的开发机上，甚至发生过整个 HOME 目录被删掉的问题。</p>
+<p>今天刚好读到 Anthropic 平台工程负责人 Katelyn Lesse 的一篇博客，开头就说很多软件工程师正在经历一场身份危机，担心自己的知识和技能不再重要。她的回答是，Agent 正在从聊天走向云和多 Agent 协作，甚至几千个 Agent 长期协同干活，这带出了一批新的问题，比如基础设施、身份和授权、安全和隔离、监控和熔断。想要 Agent 安全可靠完成它的任务，前提是工程师先把这些问题解决掉。</p>
+<p>这些问题其实也正是 Agent 治理需要解决的问题，也是我们去做 Agent Runtime 平台 CetiRun 的原因。想让 Agent 大规模、安全地跑起来，落到一个个具体的 Agent 上，就绕不开四个问题：Agent 怎么隔离？怎么控制权限？跑错了怎么办？规模上去之后怎么扩展？下面就按这个顺序，结合我们在做的 CetiRun 逐个聊聊。</p>
+<h2 id="agent-隔离安全要放在-agent-够不着的地方">Agent 隔离：安全要放在 Agent 够不着的地方</h2>
+<p>先说安全和隔离。最近几个月，漏洞冒出来的速度已经超过了业界打补丁的速度，不少还出在大量系统都依赖的核心软件里。几千个长期运行的 Agent 跑在这些软件上，一边写不可信的代码，一边读不可信的内容，这些没补上的漏洞想想就知道会有多危险了。所以，要想办法把内核、浏览器、运行时和常用库这些底层软件加固起来。</p>
+<p>除此之外，多 Agent 系统还多了一层麻烦。一个 Agent 被注入以后，可能把恶意指令传给跟它协作的其他 Agent，这些指令还可能被写进记忆，让后来的 Agent 当成可信的信息照着执行。所以 Agent 要执行动作，就应该放进强隔离的 Sandbox 里。</p>
+<p>我也经常碰到类似的问题。除了开头说的 HOME 目录被删这种问题，我还试过在 AI 编程工具的权限配置里禁掉 <code>curl 169.254.169.254</code>。这是云上虚拟机的 IMDS 地址，访问它就能拿到这台机器云身份的 Token。结果 Agent 发现 curl 被禁，转头用 Python 写了个功能一样的脚本，规则就这么被绕过去了。</p>
+<p>这说明，只要限制写在 Agent 自己够得着的地方，它总有办法绕过去。所以只在笔记本上给 Agent 配几条权限规则，是远远不够的。没开 Sandbox 的话，Agent 和你用的是同一个用户、同一个 HOME 目录，你能读到的代码、密钥和登录态，它都能读到。它读的网页或者 issue 里要是藏着注入指令，受影响的可能就是你这台机器上的所有东西，诸如此类的供应链攻击的影响有可能会被无限放大。</p>
+<p>所以在设计 Agent Runtime 时，我们把关键控制都放在了 Agent 够不着的位置。每个 Agent 实例跑在自己的 Kata Sandbox 里，一个实例一个 Pod，做的是虚拟机级别的隔离。实例的工具、会话和记忆都放在它独占的 HOME 盘上，即便它在里面误删了东西，删掉的也只是它自己那一份。</p>
+<p>IMDS 这种请求在网络层直接挡掉，集群内部也只放行少数必需的平台服务，Agent 的 Pod 默认也不挂载 Kubernetes 的 service account token。这层控制在 Sandbox 外面，跟 Agent 执行什么代码没有关系。</p>
+<p>即便是最强大的模型，也不要指望 Agent 永远不犯错，而是让错误停在它自己的 Sandbox 里，让最坏情况的影响限制在可控范围内。</p>
+<h2 id="权限控制agent-也得有自己的身份">权限控制：Agent 也得有自己的身份</h2>
+<p>没有 Agent 身份时，Agent 用的就是人的身份和凭据，出了事，分不清是 Agent 做的还是人做的，这也就是为什么需要给 Agent 单独的身份。这一块，可以分别从认证和授权来看：</p>
+<ul>
+<li>认证回答的是“这个动作是哪个 Agent 做的”，比如用短期证书代替静态密钥的工作负载身份。</li>
+<li>授权回答的是“允许让 Agent 做什么”，比如加上 RBAC 权限，避免把人的全部权限都给了 Agent。</li>
+</ul>
+<p>这两个问题最省事的做法是让 Agent 直接用用户本人的身份，这其实也是很多编程 Agent 开箱即用的默认配置。我一开始也是这么做的，结果马上冒出两个问题：Agent 的权限等于我的全部权限，只是让它读一个仓库，结果它还能去改写仓库的配置，甚至读写其他仓库；审计日志里的操作人全是本人，分不清哪一步是人做的、哪一步是 Agent 做的。Agent 一旦 7×24 在线，这两个问题都会被放大。</p>
+<p>所以授权的人和干活的 Agent 得分开。比如，在访问云资源这条路上，Agent Runtime 支持给每个实例配一个独立的 Entra Agent ID。Agent 启动时默认只能调用大模型，用户手动授权以后，它才能代表用户拿一张短期凭据去访问云资源。它拿到的权限不会超过授权人本人，每一次访问也都能追到授权人和这个 Agent ID。</p>
+<p>当然，还有更难的部分，比如 Agent 用自己的身份执行长期任务时怎么去实现自动批准、Agent 之间怎么互相信任、怎么让权限跟着任务收放而不是一直挂在 Agent 身上等等，这些都是以后要逐步解决的问题。</p>
+<h2 id="监控审计agent-所有行为都要可追溯">监控审计：Agent 所有行为都要可追溯</h2>
+<p>无论是跟踪 Agent 的行为，还是分析 Agent 调用过程，为成本优化提供数据支持，都需要监控 Agent 的整个执行过程。这样，对 Agent 的监控有两条基本的要求：</p>
+<ul>
+<li>跨 Agent 的 OpenTelemetry 追踪，而且 Agent 永远不能改自己或者别人的追踪记录。</li>
+<li>监控能够直接触发安全策略开关，一按下去，凭据切断，Agent 对外访问终止。</li>
+</ul>
+<p>监控系统很容易就可以搭建起来，真正难的是如何判定异常行为从而准确阻断 Agent 的恶意行为。很多时候，恶意行为跟正常行为看起来并没有区别，看起来都是正常的网络请求或者命令执行；反过来也是一样，看起来是攻击的行为，有可能也只是 Agent 为了完成任务多尝试了几种不同的方法路径。</p>
+<p>这也是为什么 Agent 的每一步都要留下记录，而且记录和开关都得放在 Agent 够不着的地方。</p>
+<h2 id="规模扩展agent-是长期运行的工作负载">规模扩展：Agent 是长期运行的工作负载</h2>
+<p>Agent 一多，基础设施就成了绕不开的问题。现在的软件基本都跑在 Kubernetes 上，无状态的服务用 Deployment，数据库这类有状态应用则是 StatefulSet 或者 CRD+Operator，这些 Kubernetes 很早就都支持了。</p>
+<p>但 Agent 带来的新问题，不在有没有状态，而在规模和忙闲。Google 今年开源的 Agent Substrate，就是冲着这个问题来的。它的出发点是，Agent 大部分时间都在等模型推理、等工具返回，或者等人回复，真正干活的时间很短；规模一上来，又要能随时扩展到成千上万个，甚至上百万个。标准的 Kubernetes 做法是一个 Agent 对应一个专属的 Pod，规模一大就会碰到几个问题：</p>
+<ul>
+<li>闲着的 Pod 照样占着 CPU 和内存，大量资源白白浪费。</li>
+<li>Pod 的调度吞吐和启动延迟有限，跟不上成批涌进来的 Agent 和亚秒级的工具调用。</li>
+<li>Kubernetes 不支持让 Pod 休眠，上百万个闲着的 Agent 会耗尽集群的 Pod 上限和控制面的内存。</li>
+</ul>
+<p>想省下闲置的资源，就只能把 Pod 关掉，再自己想办法把 Agent 的状态存到外面。</p>
+<p>Agent Substrate 的做法是把 Agent 的状态和 Pod 拆开。Agent 是一个个 Actor，真正跑它们的是一池预热好的 Worker。Agent 一闲下来，就把它的内存和文件做成快照存起来，Worker 还回池子；新请求一来，再从池子里取一个 Worker，把快照恢复回去。Kubernetes 照样管机器和 Worker，高频的暂停和恢复则交给 Substrate 自己的控制面，不走 Pod 的生命周期。</p>
+<p>在我看来，Substrate 有些过度设计了。Agent 连续跑几天、几周早就成了常态，非要加上一堆快照、休眠之类的功能，绕过 Kubernetes 去重新解决它早就解决了的问题，增加了复杂性不说，这些额外的、频繁的拉起和关闭，还有可能增加 Agent 的执行延迟。而且 Substrate 挂起 Agent 时，打开的网络连接是不保留的，数据库会话、MCP 服务的连接这些，恢复以后都得 Agent 自己重新连。</p>
+<p>所以 Agent Runtime 没有走这条路，而是把 Agent 当成长期运行的工作负载来管。我们的场景是每个工程师一个专属助理 Agent，随时在线、持续推进任务，人下线了它还在干活。对这样的 Agent，前面说的这些并不是问题：它一直在干活，谈不上闲着浪费；复杂、需要单独上下文的任务都可以通过 subagent 执行，整体 Agent 的数量也远到不了压垮 Kubernetes 控制面的规模。</p>
+<p>我们的做法也很简单，每个 Agent 实例一个 Pod，一直跑着，状态放在它自己的 PVC 上，调度、存储和节点自愈都直接交给 Kubernetes，简单可靠。真要长时间不用的实例，暂停就行，Pod 停掉、资源释放，会话和记忆都还留在 PVC 上。</p>
+<p>当然，如果是强化学习、批量评测这类一次拉起成千上万个、跑完就扔的短任务，Substrate 这套设计就很合适。具体选哪种做法，还是要看目标场景。</p>
+<h2 id="cetirun-的架构">CetiRun 的架构</h2>
+<p>前面几节零零散散讲了 CetiRun 的做法，这里放一张完整的架构图，把它们串起来：</p>
+<p><img
+  src="/images/2026-10-29-agent-runtime-new-problems-cetirun-architecture.png"
+  alt="CetiRun 架构"
+  loading="lazy"
+  decoding="async"
+/></p>
+<p>CetiRun 不做 Harness，也不做模型，只负责 Agent Harness 的治理。它由这几部分组成：</p>
+<ul>
+<li>Portal：用户在这里自助创建和维护自己的 Agent，管理员在这里管理 Team、安全策略和整个平台。</li>
+<li>控制面：Operator 管理 Agent 的生命周期，Team Skills 把团队共享的 Skill 分发下去，Governance 管安全策略，Agent ID 负责 Agent 的身份和凭据。</li>
+<li>Agent 实例：每个 Agent 实例跑在隔离的 Sandbox 中，通过 PVC 持久化记忆。</li>
+<li>AI Gateway：为 Agent 提供大模型调用，预算、用量、跟踪都在这里管。</li>
+<li>底座：多租户的 Kubernetes 集群，不用为 Agent 另外搭一套基础设施。</li>
+</ul>
+<p>CetiRun 很快就会开源出去，我还会在后面的文章继续分享相关的实践和方法思路。</p>
+<h2 id="写在最后">写在最后</h2>
+<p>Katelyn 在 Anthropic 平台上碰到的这些问题，从隔离、权限到监控审计和规模扩展，其实是所有企业要运行 Agent 都需要解决的问题。</p>
+<p>这同样是我观察到的共性需求。不管是什么业务，只要想让 Agent 大规模、安全地跑起来，要去治理 Agent 的执行，就绕不开这几件事。</p>
+<p>这也是为什么我们要把这套 Agent Runtime 设计出来，并且开源出去。这是所有人都需要、也都在做的事情，与其每家关起门来各自从头造一遍，不如放到开源社区里一起做。</p>
+<p>推荐阅读：</p>
+<ul>
+<li>Katelyn Lesse：The new set of problems for engineers to solve：<a href="https://www.katelynlesse.com/blog/new-problems-for-engineers-to-solve">https://www.katelynlesse.com/blog/new-problems-for-engineers-to-solve</a></li>
+<li>在多租户 Kubernetes 集群上大规模安全部署 AI Agent：<a href="https://mp.weixin.qq.com/s/x8g9VRq4DTj4ZzJFluApNQ">https://mp.weixin.qq.com/s/x8g9VRq4DTj4ZzJFluApNQ</a></li>
+</ul>
+]]></content:encoded><dc:extent>8 min read</dc:extent></item><item><title>在多租户 Kubernetes 集群上大规模安全部署 AI Agent</title><link>https://feisky.xyz/posts/2026-09-13-%E5%9C%A8%E5%A4%9A%E7%A7%9F%E6%88%B7kubernetes%E4%B8%8A%E5%A4%A7%E8%A7%84%E6%A8%A1%E4%BF%9D%E6%8A%A4ai-agent%E7%9A%84%E5%AE%89%E5%85%A8/</link><pubDate>Sun, 13 Sep 2026 20:00:00 +0800</pubDate><dc:creator>Pengfei Ni</dc:creator><category>AI Agent</category><category>Kubernetes</category><category>AKS</category><category>Agent Runtime</category><category>安全</category><category>KubeCon</category><guid>https://feisky.xyz/posts/2026-09-13-%E5%9C%A8%E5%A4%9A%E7%A7%9F%E6%88%B7kubernetes%E4%B8%8A%E5%A4%A7%E8%A7%84%E6%A8%A1%E4%BF%9D%E6%8A%A4ai-agent%E7%9A%84%E5%AE%89%E5%85%A8/</guid><description>&lt;p&gt;上周在 KubeCon China 2026 做了一个分享《在多租户 Kubernetes 集群上大规模安全部署 AI 智能体》。讲完好几个朋友来问有没有文字版，今天整理了一下，发出来。&lt;/p&gt;&#10;&lt;p&gt;这次分享的是我们在 AKS 上搭建的多租户 Agent 平台，给工程师做日常开发、Oncall 值班和问题诊断用。内容主要侧重安全和治理，我把它们分成三块：为什么 Agent Harness 治理需要一个 Runtime、安全边界为什么不能放在 Agent Harness 里以及我们在构建过程中踩过了哪些坑、又学到了哪些经验教训。&lt;/p&gt;</description><content:encoded><![CDATA[<p>上周在 KubeCon China 2026 做了一个分享《在多租户 Kubernetes 集群上大规模安全部署 AI 智能体》。讲完好几个朋友来问有没有文字版，今天整理了一下，发出来。</p>
+<p>这次分享的是我们在 AKS 上搭建的多租户 Agent 平台，给工程师做日常开发、Oncall 值班和问题诊断用。内容主要侧重安全和治理，我把它们分成三块：为什么 Agent Harness 治理需要一个 Runtime、安全边界为什么不能放在 Agent Harness 里以及我们在构建过程中踩过了哪些坑、又学到了哪些经验教训。</p>
+<h2 id="agent-改变了我们的工作方式">Agent 改变了我们的工作方式</h2>
+<p>先说一个我们平台上每天都在发生的事。</p>
+<p><img
+  src="/images/2026-09-13-KubernetesAI-Agent-slide03.png"
+  alt="跨时区接力：下班前把 issue 交给 Agent，下一时区的同事接手已有 PR 的工作现场"
+  loading="lazy"
+  decoding="async"
+/></p>
+<p>我们团队分布在好几个时区。一个时区的工程师下班前把 issue 交给 Agent。人离线以后，Agent 继续改代码、跑 E2E，失败了接着修，然后创建或更新 PR。下一时区的同事上线时，接手的是一个已经有 PR、每一步都有记录的工作现场。</p>
+<p>这给我们的工作方式带来了一个巨大的变化：Agent 不再是你指导一下它干一步的聊天工具，而是成了一个随时在线、持续推进任务的工作伙伴，Agent 的工作生命周期已经超过了人的在线时间。</p>
+<p>不过任务继续推进，不代表 Agent 可以想干啥就干啥。它只能在授权的仓库、分支和策略范围里行动。碰到 Oncall 这种涉及生产的场景，变更和发给客户的消息还是要人确认才会发出。</p>
+<p>所以人下线以后，Session、上下文和记忆得留在线上，Runtime 继续管着权限、预算和操作记录。说白了，会干活和能长期可控地干活，是两码事。</p>
+<h2 id="设计思路">设计思路</h2>
+<p>这其实也对应着我们对 Agent 的设计，即应该把 Agent 的运行和 Agent 的治理放到两个不同的层面。如下图所示：</p>
+<p><img
+  src="/images/2026-09-13-KubernetesAI-Agent-slide04.png"
+  alt="Agent Harness 与 Agent Runtime 分层：Harness 负责思考和执行，Runtime 负责隔离与治理"
+  loading="lazy"
+  decoding="async"
+/></p>
+<p>上层是 Agent Harness，GitHub Copilot、Hermes、OpenClaw 这些都在这一层，也包括你自己写的 Agent。它负责理解任务、选工具、执行动作，也就是整套系统的大脑。</p>
+<p>下层是 Agent Runtime，一个隔离、安全的执行环境，让一个不可信的 Agent 能长期跑下去。它不仅管理着 Agent Harness 的生命周期、配额、成本和审计，也负责 Agent 身份和安全的治理。Runtime 对 Harness 是中立的，不替它思考，只管让它可靠、可控地运行。</p>
+<h2 id="架构原理">架构原理</h2>
+<p>这两个层级对应到 Kubernetes 系统又是如何工作的呢？下面就是整个系统的架构图：</p>
+<p><img
+  src="/images/2026-09-13-KubernetesAI-Agent-slide05.png"
+  alt="Agent Runtime 三层架构：控制面、运行在 Kata VM Sandbox 中的 Agent Instance、AKS 集群"
+  loading="lazy"
+  decoding="async"
+/></p>
+<p>整个系统分为三层：</p>
+<p>最上面是 Agent Runtime 控制面。Team 和 Skill 怎么共享，身份怎么授权，安全策略怎么定，Fleet 生命周期、预算和审计，都由控制面负责。这些策略都由管理员配置，Agent 看不到、改不了、更跳不过。</p>
+<p>中间是实际干活的 Agent Instance，每个跑在独立的 Kata VM Sandbox 里。Sandbox 里面是 Agent Harness，搭配 MCP 和 Skills 的外置能力，加上自己的 Workspace、Session 和长期记忆。Sandbox 内部产生的所有数据都会持久化存储到 PVC 中，任何异常发生后重启都可以恢复到之前的状态。大模型调用和外部网络请求则分别经过 AI Gateway 和 Egress Gateway 的管控。</p>
+<p>最下面是 AKS 集群，提供调度、持久化、Monitoring、错误恢复、准入控制和网络策略。</p>
+<p>从这个图中，不知道你有没有注意到，我们 Agent Harness 单独跑在 Kata VM Sandbox 中，而所有的安全加固都放到了 Harness 的外面。这是为什么呢？</p>
+<h2 id="权限控制">权限控制</h2>
+<p>来看一个在云平台上运行 Agent 时很容易犯的错误。</p>
+<p><img
+  src="/images/2026-09-13-KubernetesAI-Agent-slide07.png"
+  alt="攻击链：Agent 执行 issue 评论中的脚本，访问 IMDS 拿到云身份 Token 并外泄"
+  loading="lazy"
+  decoding="async"
+/></p>
+<p>Agent 接到任务，打开 issue，评论区有一段看起来像正常排查步骤的话，让它跑一个脚本。Harness 觉得合理，选了执行工具，脚本跑起来了。脚本里多了一步，访问 <code>169.254.169.254</code>，在云上这个地址就是 IMDS，返回的是这台机器云身份的 Token。拿到 Token，再发一个普通的 HTTPS 请求，就可能把 Token 泄露出去了。</p>
+<p>单独看每一步都是正常的功能。整个过程发生在 Sandbox 里面，控制面和 Kubernetes 全程没参与。不需要容器逃逸，不会产生任何告警，甚至 Pod 状态一直是 healthy 的。但这已经产生了巨大的安全风险。</p>
+<p>说实话，很早之前我用 AI 编程工具做开发的时候，就碰到过类似的问题。基本上主流的 AI 编程工具都提供了权限配置系统，我也试过在里面把 <code>curl 169.254.169.254</code> 禁止掉。</p>
+<p><img
+  src="/images/2026-09-13-KubernetesAI-Agent-slide08.png"
+  alt="在权限配置里禁止 curl 后，Agent 改用 Python 脚本绕过"
+  loading="lazy"
+  decoding="async"
+/></p>
+<p>但很快我就发现，Agent 太聪明了，发现 curl 命令被禁止后，使用 Python 写了个功能相同的脚本，权限配置很容易就被绕过去了。好在这个 IMDS 对应的 identity 没有授权任何云资源的访问权限，没有造成损失。</p>
+<p>当时我不确定这算不算真正的安全边界，后来想明白了：一个控制，如果 Agent 自己能绕过去，它最多算纵深防御中给 Agent 的一层建议（Agent 可以选择不接受建议）。能当安全边界的控制，得跟 Agent 用什么工具无关，也不能被 Agent 改掉。</p>
+<h2 id="安全边界">安全边界</h2>
+<p>所以这个问题的答案就是把控制放在 Harness 外面，具体分四层。</p>
+<p><img
+  src="/images/2026-09-13-KubernetesAI-Agent-slide09.png"
+  alt="四层安全边界：Harness、Agent Instance、Runtime、Kubernetes"
+  loading="lazy"
+  decoding="async"
+/></p>
+<p>最里面是 Harness，以及进入其上下文的 MCP 和 Skills，全都是不可信输入。往外是 Agent Instance，也就是 Sandbox，代码在这里跑，隔离配置由 Runtime 创建，Harness 改不了。再往外是 Runtime，身份、权限、网络、预算和审计都在这里，Agent 碰不到。最外面是 Kubernetes，把这些约束执行出来。</p>
+<p>回到刚才那条攻击链，里面两层看起来都是正常操作，都会放过。到了第三层，网络策略发现它要访问被禁止的地址，直接挡掉。这就是外层 Boundary 在兜底。</p>
+<h2 id="实践经验">实践经验</h2>
+<p>了解了 Agent Runtime 的设计原理和安全边界之后，接下来再来分享一些我们在构建整套系统中的经验教训。</p>
+<h3 id="vm-安全边界">VM 安全边界</h3>
+<p><img
+  src="/images/2026-09-13-KubernetesAI-Agent-slide11.png"
+  alt="每个 Agent 运行在拥有独立 Guest Kernel 的 Kata VM Sandbox 中"
+  loading="lazy"
+  decoding="async"
+/></p>
+<p>从刚才的安全边界部分你可以看到，每个 Agent 的 Sandbox 都是一个 Kata VM。为什么要到 VM 级别而不是选择用常规的容器呢？因为 Agent 跑的是自己刚生成的代码，会调编译器、构建工具、浏览器，没人事先知道它下一步碰哪个 syscall。</p>
+<p>所以我们用 Kata VM 给每个 Agent 一层独立的 Guest Kernel，进程、文件、资源全都隔离在虚拟机中。就算 Agent 拿到 root 权限、甚至打穿 Guest Kernel，也出不了这台 VM，碰不到节点和别的 Agent。</p>
+<p>当然要注意，虚拟化是有代价的：启动慢、密度低。不过跑的是不可信代码，这些代价可以接受。</p>
+<p>你可能也经常听到要让 Agent 跑在 Sandbox 里面，那是不是说有了 VM 就足够了呢？当然不是的。VM 只管 Agent 的代码在哪儿跑。Agent 代表谁、能不能连到外网、花多少 Token、留下什么痕迹等等，Sandbox 都回答不了。这些得由 Agent Runtime 在外面管控。</p>
+<h3 id="给-agent-一个身份">给 Agent 一个身份</h3>
+<p>比如，要让 Agent 真正有用，得先让它能够访问我们的工作系统。问题也就来了，Agent 通过什么身份来访问呢？</p>
+<p><img
+  src="/images/2026-09-13-KubernetesAI-Agent-slide12.png"
+  alt="为 Agent 分配独立 Agent ID，通过 OIDC Federation 换取短期限权凭据"
+  loading="lazy"
+  decoding="async"
+/></p>
+<p>最直觉的做法是让 Agent 直接复用用户的 Token，这样后面也省了再去单独给 Agent 配置权限。不过这儿有两个绕不开的问题：</p>
+<ul>
+<li>一是 Agent 的权限等于用户的全部权限，它只想读一个仓库，却能碰到用户能碰到的所有东西。</li>
+<li>二是审计日志里分不清哪一步是人做的、哪一步是 Agent 做的。</li>
+</ul>
+<p>所以我们给每个 Agent 一个独立的 Agent ID，这是一个区别于用户身份的独立主体。Agent 启动时默认只有最基本的模型访问权限，用户来决定把哪些资源和操作授权给它，自己的身份不会交给 Agent。</p>
+<p>实际执行每个 Action 时，Runtime 通过 OIDC Federation 用 Agent ID 换一张短期、限权、可撤销的云凭据。这样即使凭据被滥用，能拿到的权限和存活时间都有限，每次访问也都能追溯到具体的 Agent 会话和授权来源。</p>
+<p>不过身份和权限只解决了“能不能做”的问题。还有一个问题是“能不能到达”，这就需要网络层面的控制了。</p>
+<h3 id="网络可达性控制">网络可达性控制</h3>
+<p>实际系统的访问通常有两道门：第一道门是检查有没有权限，第二道门则是平台有没有为这次操作开一条网络路径。两道门都过了，访问才能真正发生。</p>
+<p><img
+  src="/images/2026-09-13-KubernetesAI-Agent-slide13.png"
+  alt="网络可达性控制：权限检查与网络路径两道门"
+  loading="lazy"
+  decoding="async"
+/></p>
+<p>具体做法是对 Agent Workload 默认阻断 IMDS、集群管理面和其他 Agent 的内部网段。为什么 IMDS 可以无条件封掉呢？因为我们的身份系统用的是 OIDC Federation，换凭据根本不走 IMDS，封掉它不影响 Agent 任何合法的云访问。出口则是默认允许，但配置一些禁止访问的目标。在出口 Gateway 上每条请求都留日志，发现异常目标就会加入黑名单。</p>
+<p>那这些策略怎么保证不被绕开、不随时间漂移呢？</p>
+<p><img
+  src="/images/2026-09-13-KubernetesAI-Agent-slide14.png"
+  alt="Admission 准入检查与 Reconciliation 持续校正两类机制"
+  loading="lazy"
+  decoding="async"
+/></p>
+<p>靠两类机制，Admission 和 Reconciliation：</p>
+<ul>
+<li>Admission 在 Agent Workload 进集群之前做检查，部署如果缺了平台要求的隔离、身份或网络配置，压根就创建不了。</li>
+<li>Reconciliation 负责持续校正，因为安全策略不是静态的，会随着异常检测持续更新。</li>
+</ul>
+<p>有意思的是，做 Reconciliation 的也是一个 Agent，我们叫它 AdminClaw。它持续监控所有 Agent Instance 的状态和网络请求，发现异常先告警，能自主执行的只有管理员预先划定的一小组收紧动作（比如收掉一个目标、隔离或重启一个可疑的 Instance）。但放宽网络策略不在它的权限范围里，必须由人来操作。</p>
+<h3 id="skill-的版本管理">Skill 的版本管理</h3>
+<p>接下来聊 Skill 这块。你大概也已经感受到了，Skill 正在成为 Agent 能力扩展的核心方式。但 Skill 的管理如果做不好，本身就会成为新的安全隐患。</p>
+<p><img
+  src="/images/2026-09-13-KubernetesAI-Agent-slide15.png"
+  alt="Skill Marketplace：私有迭代，经 PR 评审后发布为 Team 共享版本"
+  loading="lazy"
+  decoding="async"
+/></p>
+<p>我举一个我们实际碰到的例子。有位工程师很早就给自己的 Agent 写了一个 CI failure diagnosis Skill，分析测试日志和失败原因。挺好用的，同事们就开始复制过去用。后来发现里面一条规则会把网络超时误判成代码问题，作者很快修好了，但团队里已经有好几个副本，有人用新版有人用旧版，谁也说不清某个错误结论到底来自哪一版。</p>
+<p>这件事让我意识到两个问题：第一，Skill 不能靠复制传播，它需要版本管理和发布机制。第二，Skill 也是攻击面的一部分，一条被篡改的指令跟着副本扩散到哪个 Agent，就借哪个 Agent 的权限执行。</p>
+<p>所以我们做了一个 Skill Marketplace。每个人先在自己的私有 Skill 里迭代，稳定以后通过 PR 提交评审，通过才发布到 Marketplace 成为 Team 共享版本。代价是发 Skill 比复制粘贴慢一步，但换来的是 Team 里只有一个版本。再出类似的误判，不用猜每个人手里到底是哪一份了。</p>
+<p><img
+  src="/images/2026-09-13-KubernetesAI-Agent-slide16.png"
+  alt="Team 模型四层：平台管理员、Team、用户、Agent 实例"
+  loading="lazy"
+  decoding="async"
+/></p>
+<p>那一个 Agent 装哪些 Skill 又由谁来决定呢？答案是它所在的 Team。我们的 Team 模型分四层：最上面是平台管理员定企业级策略，往下是 Team 决定支持哪些 Harness 和 Skill，再往下是用户使用 Team 配好的能力，最下面是 Agent 实例各自跑在独立 Sandbox 里。</p>
+<p>能力沿着这四层往下流。新的 Agent Instance 创建时自动加载 Team 允许的 Skill 列表，Marketplace 有更新时，Runtime 自动同步，没人需要手动 pull。更新在新的 Session 里生效，正在跑的 Session 不会中途被换掉 Skill。同时状态严格隔离，任何一个 Agent 都看不到另一个 Agent 的内部状态，哪怕它们属于同一个用户。</p>
+<h3 id="大规模-agent-的运行和成本管控">大规模 Agent 的运行和成本管控</h3>
+<p>最后一个维度是 Scale。在我们的场景下，规模问题主要体现在三个方向。</p>
+<p><img
+  src="/images/2026-09-13-KubernetesAI-Agent-slide17.png"
+  alt="大规模 Agent 的三个方向：数量、时间、委派"
+  loading="lazy"
+  decoding="async"
+/></p>
+<p>第一个是数量。平台服务的是整个工程组织，Agent 一多，要管的就不只是更多 Pod 了，还有更多身份、授权关系、Skill 版本、网络策略和 Session。</p>
+<p>第二个是时间。比如 Oncall 的一次 incident 调查可能跑好几个小时甚至跨天，中间 Pod 可能重启过，但 Agent 还得继续，所有状态都持久化在 PVC 里。</p>
+<p>第三个是委派，多个 Agent 开始互相委派任务，每次委派都增加系统复杂性，所有的会话历史都要持久化存储以备追溯。</p>
+<p>你可能也注意到了，大规模 Pod 部署、升级、调度、持久化，这些恰好都是 Kubernetes 本来就在解决的问题。所以整套 Runtime 直接跑在 Kubernetes 上，StatefulSet、PVC、CRD、Autoscaler 用的都是原生能力，我们没有另外造一套调度系统。</p>
+<p>不过 Kubernetes 管得了 Pod、卷和调度，管不了 Model Token。Agent 多了、跑的时间也长了，Token 消耗就成了一个必须单独管控的问题。</p>
+<p><img
+  src="/images/2026-09-13-KubernetesAI-Agent-slide18.png"
+  alt="AI Gateway 统一管控模型调用：追踪、预算限流、内容过滤与故障切换"
+  loading="lazy"
+  decoding="async"
+/></p>
+<p>所以我们把所有 Agent 的模型调用统一收进了一个 AI Gateway。Sandbox 里面只有 Gateway 的地址，看不到真实的大模型 API 和 API Key。</p>
+<p>AI Gateway 主要做了这么几件事：全链路追踪每次 Agent 调用；Token 统计、预算和限流来控制成本；输入输出内容过滤和 Prompt Injection 防护；如果配了多个模型，还能做负载均衡和故障自动切换。</p>
+<h2 id="三条经验">三条经验</h2>
+<p>回头看这个过程，如果只留三条经验的话：</p>
+<p>第一，Harness 里面全是不可信输入，包括 Prompt、评论、Tool 输出、Skill，还有 Agent 自己生成的代码，这些都可能被攻击者控制。所以放在 Harness 里的控制，Agent 能碰到就能改掉，最多算纵深防御中的一层建议（Agent 可以选择不接受）。</p>
+<p>第二，真正的安全边界得跟 Agent 怎么行动无关。Sandbox 决定代码在哪跑，Agent ID 决定它以谁行动，网络策略决定它能到达哪里。这三样都由 Agent Runtime 在 Harness 外面执行，Agent Harness 看不到也改不了。</p>
+<p>第三，一切得按无人值守来设计。Session 落在 PVC 里 Pod 重启还在，Skill 版本绑在 Session 上不会中途被换掉，Token 预算一旦超出，AI Gateway 直接停服，不用等人来关。人下线以后，Runtime 继续为 Agent 守着这些边界。</p>
+<h2 id="接下来的计划">接下来的计划</h2>
+<p>上面讲到的 Sandbox、身份、网络可达性、AI Gateway、Skill 治理这几个维度，是这套 Agent Runtime 已经交付的基座。在这个基座上我们接下来还有几件事要做：Harness 插件化让大家可以接入自己的 Agent，按任务维度做更精细的身份和权限控制，Sandbox 插件化支持更多的 MicroVM 方案，以及接入同一集群里部署的推理模型。</p>
+<p>这些核心能力我们正在准备完整开源，计划在未来几个月内正式发布。如果你也在 Kubernetes 上跑 AI Agent，或者正在琢磨 Agent 的安全治理问题，欢迎关注后续的开源进展。</p>
 ]]></content:encoded><dc:extent>11 min read</dc:extent></item></channel></rss>
