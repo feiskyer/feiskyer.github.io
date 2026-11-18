@@ -41,9 +41,12 @@
       {{ end }}
       {{ end }}
       <guid>{{ .Permalink }}</guid>
-      <description>{{ .Summary | html }}</description>
+      <description>{{ .Summary | transform.XMLEscape | safeHTML }}</description>
       {{/* Full content for AI crawlers - critical for GEO */}}
-      <content:encoded><![CDATA[{{ .Content }}]]></content:encoded>
+      {{- /* html/template strips a literal CDATA opener, which used to leave raw HTML
+             (and undefined entities such as &rsquo;) in the feed. Build the section as a
+             string instead, and split any "]]>" inside the content so it cannot close it early. */}}
+      <content:encoded>{{ printf "<![CDATA[%s]]>" (replace .Content "]]>" "]]]]><![CDATA[>") | safeHTML }}</content:encoded>
       {{/* Media for images */}}
       {{ with .Params.image }}
       <media:content url="{{ . | absURL }}" medium="image" />

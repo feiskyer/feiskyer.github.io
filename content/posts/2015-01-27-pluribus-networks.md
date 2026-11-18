@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Pluribus Networks"
+date: 2015-01-27
 description: "介绍融资 9500 万美元的 Pluribus Networks 及其 Server Switch 产品，分析它如何兼顾扩展性、可见性与性能，突破传统网络厂商的局限。"
 category: 
 tags: []

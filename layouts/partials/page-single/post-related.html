@@ -1,0 +1,15 @@
+{{ if (site.Params.seo.relatedPosts | default true) }}
+{{ with site.RegularPages.Related . | first 5 }}
+<section class="related" aria-labelledby="related-title">
+  <h2 id="related-title">相关文章</h2>
+  <ul class="entries entries--dated">
+    {{ range . }}
+    <li class="entry">
+      <time class="entry__date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01" }}</time>
+      <a class="entry__title" href="{{ .RelPermalink }}">{{ .Title }}</a>
+    </li>
+    {{ end }}
+  </ul>
+</section>
+{{ end }}
+{{ end }}

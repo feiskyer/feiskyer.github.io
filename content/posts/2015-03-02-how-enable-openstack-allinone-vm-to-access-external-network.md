@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "How enable OpenStack allinone vm to access external network"
+date: 2015-03-02
 description: "解决 OpenStack All-in-One 环境下虚拟机绑定公网 IP 后仍无法访问外网的问题，介绍公网网络配置与网关设置的具体方法。"
 category: 
 tags: [OpenStack]

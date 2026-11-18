@@ -1,19 +1,31 @@
 {{ define "content" }}
-<div class="archive shell">
-  {{ partial "breadcrumbs.html" . }}
-  <header class="archive__header rise rise-1">
-    <p class="eyebrow">ARCHIVE / INDEX</p>
-    <h1>{{ if eq .Kind "taxonomy" }}主题索引{{ else }}{{ .Title }}{{ end }}</h1>
-    {{ with .Description }}<p>{{ . }}</p>{{ else }}<p>按时间与主题浏览长期积累的技术文章。</p>{{ end }}
-  </header>
+<div class="shell page">
   {{ if eq .Kind "taxonomy" }}
-    <nav class="topic-links topic-links--archive rise rise-2" aria-label="全部主题">
-      {{ range .Data.Terms.ByCount }}<a href="{{ .Page.RelPermalink }}"><span>{{ .Page.Title }}</span><small>{{ .Count }} 篇</small></a>{{ end }}
-    </nav>
+  <header class="page__head">
+    <h1>主题</h1>
+    <p>共 {{ len .Data.Terms }} 个主题，按文章数量排列。</p>
+  </header>
+  <ul class="topics topics--all">
+    {{ range .Data.Terms.ByCount }}
+    <li><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}<span>{{ .Count }}</span></a></li>
+    {{ end }}
+  </ul>
   {{ else }}
-    {{ $paginator := .Paginate .Pages.ByDate.Reverse 12 }}
-    <div class="story-grid story-grid--archive rise rise-2">{{ range $paginator.Pages }}{{ partial "post-card.html" . }}{{ end }}</div>
-    {{ partial "pagination.html" . }}
+  <header class="page__head">
+    {{ if eq .Kind "term" }}{{ partial "breadcrumbs.html" . }}{{ end }}
+    <h1>{{ if eq .Kind "term" }}{{ .Title }}{{ else }}文章{{ end }}</h1>
+    <p>{{ if eq .Kind "term" }}这个主题下共 {{ len .Pages }} 篇文章。{{ else }}共 {{ len .Pages }} 篇，从 {{ (index .Pages.ByDate 0).Date.Year }} 年写到现在，按时间倒序排列。{{ end }}</p>
+    {{ if gt (len .Pages) 20 }}
+    <div class="filter" id="filter" hidden>
+      <label for="filter-input">筛选</label>
+      <input id="filter-input" type="search" placeholder="输入标题或主题里的词" autocomplete="off" spellcheck="false">
+      <p class="filter__status" id="filter-status" role="status" aria-live="polite"></p>
+    </div>
+    {{ end }}
+  </header>
+  {{ if eq .Kind "section" }}{{ partial "skyline.html" . }}{{ end }}
+  {{ partial "post-index.html" .Pages }}
+  <p class="empty" id="filter-empty" hidden>没有匹配的文章。换一个词，或者清空筛选看全部。</p>
   {{ end }}
 </div>
 {{ end }}

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "How to disable ubuntu services"
+date: 2015-03-18
 description: "介绍在 Ubuntu 上通过 Upstart override 机制永久禁用或启用系统服务的方法，帮助你精细控制开机自启项。"
 category: Linux
 tags: [Linux, ubuntu]

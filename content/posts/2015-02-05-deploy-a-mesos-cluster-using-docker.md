@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Deploy a Mesos Cluster Using Docker"
+date: 2015-02-05
 description: "手把手教你用 Docker 容器快速搭建单节点 Mesos 集群，并为后续扩展到多节点打下基础，是入门 Mesos 集群部署的实用教程。"
 category: mesos
 tags: [docker, mesos]

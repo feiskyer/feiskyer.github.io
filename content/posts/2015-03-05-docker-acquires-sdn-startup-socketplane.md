@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Docker acquires SDN startup SocketPlane"
+date: 2015-03-05
 description: "解读 Docker 收购 SDN 创业公司 SocketPlane 的背景与意义，分析这次收购对 Docker 原生网络能力演进的深远影响。"
 category: 
 tags: [docker]

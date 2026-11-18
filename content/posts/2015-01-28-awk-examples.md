@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "awk examples"
+date: 2015-01-28
 description: "汇总常用 awk 单行命令示例，包括行号处理、字段提取替换、文本格式化等实用技巧，帮助你在命令行快速处理文本数据。"
 category: 
 tags: []

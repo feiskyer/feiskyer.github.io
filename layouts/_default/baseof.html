@@ -1,13 +1,15 @@
 <!doctype html>
-<html lang="{{ .Site.Language.Locale | default "zh-CN" }}">
+<html lang="{{ site.Language.Locale | default "zh-CN" }}">
   {{ partial "header.html" . }}
-  <body class="editorial-site">
-    <a class="skip-link" href="#main-content">跳到主要内容</a>
+  <body>
+    <a class="skip-link" href="#main">跳到正文</a>
     {{ partial "site-header.html" . }}
-    <main id="main-content" class="site-main" tabindex="-1">
+    <main id="main" tabindex="-1">
       {{ block "content" . }}{{ end }}
     </main>
     {{ partial "site-footer.html" . }}
-    {{ block "footer" . }}{{ end }}
+    {{ if and (not hugo.IsServer) site.Config.Services.GoogleAnalytics.ID }}
+    {{ template "_internal/google_analytics.html" . }}
+    {{ end }}
   </body>
 </html>

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Perform Consistent Snapshots with qemu guest agent"
+date: 2015-02-10
 description: "介绍如何借助 qemu-guest-agent 对虚拟机做一致性快照，避免传统方式的侵入性，适用于 OpenStack 等虚拟化环境的数据保护。"
 category: 
 tags: []

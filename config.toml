@@ -103,3 +103,8 @@ enableGitInfo = true
 
 [markup.goldmark.renderer]
 unsafe= true
+
+# Chroma emits classes instead of inline colours; the palette lives in
+# assets/css/site.css so code blocks follow light/dark mode.
+[markup.highlight]
+noClasses = false

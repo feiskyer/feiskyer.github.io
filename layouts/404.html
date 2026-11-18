@@ -1,0 +1,19 @@
+{{ define "content" }}
+<div class="shell page">
+  <header class="page__head">
+    <h1>这个地址下没有页面</h1>
+    <p>链接可能已经变更或写错了。可以从最近的文章重新开始，或者去<a href="{{ "/posts/" | relURL }}">全部文章</a>里筛选。</p>
+  </header>
+  <section class="group">
+    <h2 class="group__label">最近</h2>
+    <ul class="entries">
+      {{ range first 8 (where site.RegularPages "Section" "posts") }}
+      <li class="entry">
+        <time class="entry__date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "01.02" }}</time>
+        <a class="entry__title" href="{{ .RelPermalink }}">{{ .Title }}</a>
+      </li>
+      {{ end }}
+    </ul>
+  </section>
+</div>
+{{ end }}

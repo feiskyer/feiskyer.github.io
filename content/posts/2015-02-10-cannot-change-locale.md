@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "cannot change locale"
+date: 2015-02-10
 description: "记录 Linux 下 locale 无法切换、报 POSIX 默认值的常见问题，给出定位与修复方法，解决终端乱码与本地化设置失效。"
 category: linux
 tags: [Linux]

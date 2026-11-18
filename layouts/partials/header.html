@@ -1,0 +1,14 @@
+{{/* Project-level <head>. Meta/SEO lives in header/meta.html (a copy of the theme's,
+     with only the viewport and theme-color lines changed);
+     everything else (stylesheet, script, resource hints) is owned here. */}}
+<head>
+    {{ partial "header/meta.html" . }}
+    <meta name="color-scheme" content="light dark">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+    <link rel="icon" href="/favicon.png">
+    {{ partial "header/feeds.html" . }}
+    {{ $css := resources.Get "css/site.css" | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+    {{ $js := resources.Get "js/site.js" | minify | fingerprint }}
+    <script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
+</head>

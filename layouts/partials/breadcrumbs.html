@@ -1,11 +1,5 @@
-<nav class="breadcrumbs" aria-label="面包屑导航">
-  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
-    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="{{ site.Home.RelPermalink }}" itemprop="item"><span itemprop="name">首页</span></a><meta itemprop="position" content="1"></li>
-    {{ if .IsPage }}
-      {{ with .Section }}<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="{{ printf "/%s/" . | relURL }}" itemprop="item"><span itemprop="name">文章</span></a><meta itemprop="position" content="2"></li>{{ end }}
-      <li aria-current="page"><span>{{ .Title }}</span></li>
-    {{ else }}
-      <li aria-current="page"><span>{{ .Title }}</span></li>
-    {{ end }}
-  </ol>
+{{/* Visible trail only; BreadcrumbList structured data is emitted as JSON-LD by seo/schema.html. */}}
+<nav class="crumbs" aria-label="面包屑导航">
+  <a href="{{ site.Home.RelPermalink }}">首页</a>
+  {{ if eq .Kind "term" }}<a href="{{ "/tags/" | relURL }}">主题</a>{{ else if eq .Section "posts" }}<a href="{{ "/posts/" | relURL }}">文章</a>{{ end }}
 </nav>

@@ -1,72 +1,58 @@
 {{ define "content" }}
-<div class="about-page shell">
-  {{ partial "breadcrumbs.html" . }}
-  <header class="about-intro">
-    <div class="about-intro__portrait">
-      <img src="{{ site.Params.authorimage | relURL }}" alt="{{ site.Params.author }} 的头像" width="250" height="250">
-    </div>
-    <div class="about-intro__copy">
-      <p class="eyebrow">ABOUT ME</p>
-      <h1>你好，我是<br><em>{{ site.Params.author }}</em>。</h1>
-      <div class="about-intro__bio">{{ .Params.bio | markdownify }}</div>
-      <p class="about-intro__note">我在这里分享自己对技术、工程实践与 AI 的理解，也记录持续学习和构建过程中的经验。</p>
-      <nav class="about-social" aria-label="个人主页">
-        {{ with .Params.social.github }}<a href="https://github.com/{{ . }}" rel="me noopener" target="_blank">GitHub <span aria-hidden="true">↗</span></a>{{ end }}
-        {{ with .Params.social.twitter }}<a href="https://x.com/{{ . }}" rel="me noopener" target="_blank">X / Twitter <span aria-hidden="true">↗</span></a>{{ end }}
-        {{ with .Params.social.weibo }}<a href="https://weibo.com/{{ . }}" rel="me noopener" target="_blank">微博 <span aria-hidden="true">↗</span></a>{{ end }}
-      </nav>
-    </div>
-    <figure class="about-wechat">
-      <img src="{{ "images/mp-qr.png" | relURL }}" alt="Feisky 公众号二维码" width="420" height="420" decoding="async">
-      <figcaption>扫码关注公众号 <strong>Feisky</strong></figcaption>
-    </figure>
+<div class="shell page about">
+  <header class="page__head about__head">
+    <img class="about__avatar" src="{{ site.Params.authorimage | relURL }}" alt="{{ site.Params.author }} 的头像" width="112" height="112">
+    <h1>你好，我是 {{ site.Params.author }}。</h1>
+    <div class="about__bio">{{ .Params.bio | markdownify }}</div>
+    <p>这里记录我对技术、工程实践和 AI 的理解，也记录持续学习和动手构建时踩过的坑。</p>
+    <nav class="about__links" aria-label="我的其他主页">
+      {{ with .Params.social.github }}<a href="https://github.com/{{ . }}" rel="me noopener">GitHub</a>{{ end }}
+      {{ with .Params.social.twitter }}<a href="https://x.com/{{ . }}" rel="me noopener">X</a>{{ end }}
+      {{ with .Params.social.weibo }}<a href="https://weibo.com/{{ . }}" rel="me noopener">微博</a>{{ end }}
+    </nav>
   </header>
 
+  <section class="group">
+    <h2 class="group__label">公众号</h2>
+    <figure class="about__wechat">
+      <img src="{{ "images/mp-qr.png" | relURL }}" alt="Feisky 公众号二维码" width="420" height="420" loading="lazy" decoding="async">
+      <figcaption>微信扫码关注 <strong>Feisky</strong>，新文章会先发在那里。</figcaption>
+    </figure>
+  </section>
+
   {{ with .Params.columns }}
-  <section class="about-block" aria-labelledby="columns-title">
-    <div class="about-block__heading"><p class="eyebrow">COURSES</p><h2 id="columns-title">极客时间专栏</h2><p>将多年实践经验整理成系统化课程。</p></div>
-    <div class="about-featured-grid">
-      {{ range $index, $column := . }}
-      <a class="about-featured" href="{{ .url }}" target="_blank" rel="noopener">
-        <span class="about-featured__index" aria-hidden="true">{{ printf "%02d" (add $index 1) }}</span>
-        <div><h3>{{ .title }}</h3><p>查看专栏介绍与课程目录</p></div>
-        <span aria-hidden="true">↗</span>
-      </a>
-      {{ end }}
-    </div>
+  <section class="group">
+    <h2 class="group__label">专栏<small>极客时间</small></h2>
+    <ul class="entries entries--plain">
+      {{ range . }}<li class="entry"><a class="entry__title" href="{{ .url }}" rel="noopener">{{ .title }}</a></li>{{ end }}
+    </ul>
   </section>
   {{ end }}
 
   {{ with .Params.projects }}
-  <section class="about-block about-block--split" aria-labelledby="projects-title">
-    <div class="about-block__heading"><p class="eyebrow">OPEN SOURCE</p><h2 id="projects-title">开源项目</h2><p>一些仍在维护、也欢迎共同参与的工具与实验。</p>{{ with $.Params.social.github }}<a class="about-block__more" href="https://github.com/{{ . }}" rel="me noopener" target="_blank">GitHub 主页 <span aria-hidden="true">↗</span></a>{{ end }}</div>
-    <div class="about-link-list">
-      {{ range . }}
-      <a href="{{ .url }}" target="_blank" rel="noopener"><div><h3>{{ .title }}</h3><p>{{ .description }}</p></div><span aria-hidden="true">↗</span></a>
-      {{ end }}
-    </div>
+  <section class="group">
+    <h2 class="group__label">开源项目</h2>
+    <ul class="entries entries--plain">
+      {{ range . }}<li class="entry"><a class="entry__title" href="{{ .url }}" rel="noopener">{{ .title }}</a><p class="entry__note">{{ .description }}</p></li>{{ end }}
+    </ul>
   </section>
   {{ end }}
 
   {{ with .Params.books }}
-  <section class="about-block about-block--split" aria-labelledby="books-title">
-    <div class="about-block__heading"><p class="eyebrow">HANDBOOKS</p><h2 id="books-title">开源书籍</h2><p>可以在线阅读，也可以在 GitHub 上参与完善。</p></div>
-    <div class="about-link-list about-link-list--books">
-      {{ range . }}
-      <a href="{{ .url }}" target="_blank" rel="noopener"><div><h3>{{ .title }}</h3><p>{{ .description }}</p></div><span aria-hidden="true">阅读 ↗</span></a>
-      {{ end }}
-    </div>
+  <section class="group">
+    <h2 class="group__label">开源书籍</h2>
+    <ul class="entries entries--plain">
+      {{ range . }}<li class="entry"><a class="entry__title" href="{{ .url }}" rel="noopener">{{ .title }}</a><p class="entry__note">{{ .description }}</p></li>{{ end }}
+    </ul>
   </section>
   {{ end }}
 
   {{ with .Params.talks }}
-  <section class="about-block about-talks" aria-labelledby="talks-title">
-    <div class="about-block__heading"><p class="eyebrow">SELECTED TALKS</p><h2 id="talks-title">技术演讲</h2><p>从 Kubernetes、云原生到 AI 应用落地的部分公开分享。</p></div>
-    <ol>
-      {{ range . }}
-      <li><span>{{ .event }}</span><a href="{{ .url }}" target="_blank" rel="noopener">{{ .title }} <i aria-hidden="true">↗</i></a></li>
-      {{ end }}
-    </ol>
+  <section class="group">
+    <h2 class="group__label">演讲</h2>
+    <ul class="entries entries--plain">
+      {{ range . }}<li class="entry"><a class="entry__title" href="{{ .url }}" rel="noopener">{{ .title }}</a><p class="entry__note">{{ .event }}</p></li>{{ end }}
+    </ul>
   </section>
   {{ end }}
 </div>

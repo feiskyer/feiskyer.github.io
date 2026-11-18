@@ -1,0 +1,24 @@
+{{/* The skyline: one bar per post, grouped by year, oldest on the left.
+     Height encodes reading time; colour encodes whether the post is about
+     AI/agents or about systems and cloud native. Purely a visual index:
+     hidden from assistive tech because the full list follows on the page. */}}
+{{ $posts := (where site.RegularPages "Section" "posts").ByDate }}
+{{ $i := 0 }}
+<div class="skyline" id="skyline" aria-hidden="true">
+  {{ range $posts.GroupByDate "2006" "asc" }}
+  <div class="skyline__year">
+    <div class="skyline__bars">
+      {{- range .Pages.ByDate -}}
+      {{- $tags := delimit (.Params.tags | default slice) " " -}}
+      {{- $ai := findRE `(?i)\b(AI|LLM|GPT|MCP)\b|agent|claude|codex|openai|anthropic|gemini|deepseek|copilot|vibe|skill|prompt|harness|评估|模型|智能体` (printf "%s %s" $tags .Title) 1 -}}
+      {{- $h := math.Round (math.Min 100 (add 12 (mul .ReadingTime 5.5))) -}}
+      <a tabindex="-1" href="{{ .RelPermalink }}"{{ if $ai }} class="ai"{{ end }} data-t="{{ .Date.Format "2006.01.02" }}　{{ .Title }}" style="--h:{{ $h }};--i:{{ $i }}"></a>
+      {{- $i = add $i 1 -}}
+      {{- end -}}
+    </div>
+    <span class="skyline__label">{{ .Key }}</span>
+  </div>
+  {{ end }}
+  <p class="skyline__legend"><span>系统与云原生</span><span class="ai">AI 与 Agent</span><span class="skyline__note">每根竖线是一篇文章，越高读得越久</span></p>
+  <div class="skyline__tip" hidden></div>
+</div>

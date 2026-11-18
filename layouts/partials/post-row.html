@@ -1,0 +1,13 @@
+{{/* A post with its description: used for the "recent" list on the home page. */}}
+<article class="row">
+  <time class="row__date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01.02" }}</time>
+  <div class="row__main">
+    <h3 class="row__title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+    <p class="row__desc">{{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify | truncate 120 }}{{ end }}</p>
+  </div>
+  {{ with .Params.tags }}
+  <ul class="row__tags" aria-label="主题">
+    {{ range first 3 . }}<li><a href="{{ printf "/tags/%s/" (. | urlize) | relURL }}">{{ . }}</a></li>{{ end }}
+  </ul>
+  {{ end }}
+</article>
